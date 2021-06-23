@@ -1,0 +1,4 @@
+[submodule "src/ondewo-vtsi-api"]
+	path = src/ondewo-vtsi-api
+	url = https://github.com/ondewo/ondewo-vtsi-api.git
+	branch = release/0.3.1
