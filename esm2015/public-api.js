@@ -1,0 +1,12 @@
+export * from './api/ondewo/vtsi/voip.pbsc';
+export * from './api/ondewo/vtsi/call-log.pbsc';
+export * from './api/ondewo/vtsi/call-log.pb';
+export * from './api/ondewo/vtsi/call-log.pbconf';
+export * from './api/ondewo/vtsi/voip.pbconf';
+export * from './api/ondewo/vtsi/voip.pb';
+export * from './api/ondewo/nlu/context.pbsc';
+export * from './api/ondewo/nlu/context.pbconf';
+export * from './api/ondewo/nlu/context.pb';
+export * from './api/google/api/annotations.pb';
+export * from './api/google/api/http.pb';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3B1YmxpYy1hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsY0FBYyw2QkFBNkIsQ0FBQztBQUM1QyxjQUFjLGlDQUFpQyxDQUFDO0FBQ2hELGNBQWMsK0JBQStCLENBQUM7QUFDOUMsY0FBYyxtQ0FBbUMsQ0FBQztBQUNsRCxjQUFjLCtCQUErQixDQUFDO0FBQzlDLGNBQWMsMkJBQTJCLENBQUM7QUFDMUMsY0FBYywrQkFBK0IsQ0FBQztBQUM5QyxjQUFjLGlDQUFpQyxDQUFDO0FBQ2hELGNBQWMsNkJBQTZCLENBQUM7QUFDNUMsY0FBYyxpQ0FBaUMsQ0FBQztBQUNoRCxjQUFjLDBCQUEwQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9hcGkvb25kZXdvL3Z0c2kvdm9pcC5wYnNjJztcbmV4cG9ydCAqIGZyb20gJy4vYXBpL29uZGV3by92dHNpL2NhbGwtbG9nLnBic2MnO1xuZXhwb3J0ICogZnJvbSAnLi9hcGkvb25kZXdvL3Z0c2kvY2FsbC1sb2cucGInO1xuZXhwb3J0ICogZnJvbSAnLi9hcGkvb25kZXdvL3Z0c2kvY2FsbC1sb2cucGJjb25mJztcbmV4cG9ydCAqIGZyb20gJy4vYXBpL29uZGV3by92dHNpL3ZvaXAucGJjb25mJztcbmV4cG9ydCAqIGZyb20gJy4vYXBpL29uZGV3by92dHNpL3ZvaXAucGInO1xuZXhwb3J0ICogZnJvbSAnLi9hcGkvb25kZXdvL25sdS9jb250ZXh0LnBic2MnO1xuZXhwb3J0ICogZnJvbSAnLi9hcGkvb25kZXdvL25sdS9jb250ZXh0LnBiY29uZic7XG5leHBvcnQgKiBmcm9tICcuL2FwaS9vbmRld28vbmx1L2NvbnRleHQucGInO1xuZXhwb3J0ICogZnJvbSAnLi9hcGkvZ29vZ2xlL2FwaS9hbm5vdGF0aW9ucy5wYic7XG5leHBvcnQgKiBmcm9tICcuL2FwaS9nb29nbGUvYXBpL2h0dHAucGInO1xuIl19
