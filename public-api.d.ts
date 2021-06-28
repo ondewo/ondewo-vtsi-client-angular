@@ -7,5 +7,8 @@ export * from './api/ondewo/vtsi/voip.pb';
 export * from './api/ondewo/nlu/context.pbsc';
 export * from './api/ondewo/nlu/context.pbconf';
 export * from './api/ondewo/nlu/context.pb';
+export * from './api/ondewo/sip/sip.pb';
+export * from './api/ondewo/sip/sip.pbconf';
+export * from './api/ondewo/sip/sip.pbsc';
 export * from './api/google/api/annotations.pb';
 export * from './api/google/api/http.pb';

@@ -498,11 +498,11 @@ export declare class StartCallInstanceRequest implements GrpcMessage {
     private _asteriskConfig?;
     private _caiConfig?;
     private _sttConfig?;
-    private _demuxConfig?;
     private _ttsConfig?;
     private _sipPrefix?;
     private _sipName?;
     private _passwordDictionary?;
+    private _initialIntent?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of StartCallInstanceRequest to deeply clone from
@@ -526,8 +526,6 @@ export declare class StartCallInstanceRequest implements GrpcMessage {
     set caiConfig(value: ServiceConfig | undefined);
     get sttConfig(): ServiceConfig | undefined;
     set sttConfig(value: ServiceConfig | undefined);
-    get demuxConfig(): ServiceConfig | undefined;
-    set demuxConfig(value: ServiceConfig | undefined);
     get ttsConfig(): ServiceConfig | undefined;
     set ttsConfig(value: ServiceConfig | undefined);
     get sipPrefix(): string | undefined;
@@ -536,6 +534,8 @@ export declare class StartCallInstanceRequest implements GrpcMessage {
     set sipName(value: string | undefined);
     get passwordDictionary(): googleProtobuf006.Struct | undefined;
     set passwordDictionary(value: googleProtobuf006.Struct | undefined);
+    get initialIntent(): string | undefined;
+    set initialIntent(value: string | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -570,11 +570,11 @@ export declare module StartCallInstanceRequest {
         asteriskConfig?: ServiceConfig.AsObject;
         caiConfig?: ServiceConfig.AsObject;
         sttConfig?: ServiceConfig.AsObject;
-        demuxConfig?: ServiceConfig.AsObject;
         ttsConfig?: ServiceConfig.AsObject;
         sipPrefix?: string;
         sipName?: string;
         passwordDictionary?: googleProtobuf006.Struct.AsObject;
+        initialIntent?: string;
     }
     /**
      * Protobuf JSON representation for StartCallInstanceRequest
@@ -589,11 +589,11 @@ export declare module StartCallInstanceRequest {
         asteriskConfig?: ServiceConfig.AsProtobufJSON | null;
         caiConfig?: ServiceConfig.AsProtobufJSON | null;
         sttConfig?: ServiceConfig.AsProtobufJSON | null;
-        demuxConfig?: ServiceConfig.AsProtobufJSON | null;
         ttsConfig?: ServiceConfig.AsProtobufJSON | null;
         sipPrefix?: string;
         sipName?: string;
         passwordDictionary?: googleProtobuf006.Struct.AsProtobufJSON | null;
+        initialIntent?: string;
     }
 }
 /**
@@ -667,6 +667,149 @@ export declare module StartCallInstanceResponse {
      */
     interface AsProtobufJSON {
         request?: StartCallInstanceRequest.AsProtobufJSON | null;
+        success?: boolean;
+    }
+}
+/**
+ * Message implementation for ondewo.nlu.StartMultipleCallInstancesRequest
+ */
+export declare class StartMultipleCallInstancesRequest implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): StartMultipleCallInstancesRequest;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: StartMultipleCallInstancesRequest): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: StartMultipleCallInstancesRequest, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: StartMultipleCallInstancesRequest, _writer: BinaryWriter): void;
+    private _requests?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of StartMultipleCallInstancesRequest to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<StartMultipleCallInstancesRequest.AsObject>);
+    get requests(): StartCallInstanceRequest[] | undefined;
+    set requests(value: StartCallInstanceRequest[] | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): StartMultipleCallInstancesRequest.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): StartMultipleCallInstancesRequest.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): StartMultipleCallInstancesRequest.AsProtobufJSON;
+}
+export declare module StartMultipleCallInstancesRequest {
+    /**
+     * Standard JavaScript object representation for StartMultipleCallInstancesRequest
+     */
+    interface AsObject {
+        requests?: StartCallInstanceRequest.AsObject[];
+    }
+    /**
+     * Protobuf JSON representation for StartMultipleCallInstancesRequest
+     */
+    interface AsProtobufJSON {
+        requests?: StartCallInstanceRequest.AsProtobufJSON[] | null;
+    }
+}
+/**
+ * Message implementation for ondewo.nlu.StartMultipleCallInstancesResponse
+ */
+export declare class StartMultipleCallInstancesResponse implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): StartMultipleCallInstancesResponse;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: StartMultipleCallInstancesResponse): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: StartMultipleCallInstancesResponse, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: StartMultipleCallInstancesResponse, _writer: BinaryWriter): void;
+    private _request?;
+    private _success?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of StartMultipleCallInstancesResponse to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<StartMultipleCallInstancesResponse.AsObject>);
+    get request(): StartMultipleCallInstancesRequest | undefined;
+    set request(value: StartMultipleCallInstancesRequest | undefined);
+    get success(): boolean | undefined;
+    set success(value: boolean | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): StartMultipleCallInstancesResponse.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): StartMultipleCallInstancesResponse.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): StartMultipleCallInstancesResponse.AsProtobufJSON;
+}
+export declare module StartMultipleCallInstancesResponse {
+    /**
+     * Standard JavaScript object representation for StartMultipleCallInstancesResponse
+     */
+    interface AsObject {
+        request?: StartMultipleCallInstancesRequest.AsObject;
+        success?: boolean;
+    }
+    /**
+     * Protobuf JSON representation for StartMultipleCallInstancesResponse
+     */
+    interface AsProtobufJSON {
+        request?: StartMultipleCallInstancesRequest.AsProtobufJSON | null;
         success?: boolean;
     }
 }

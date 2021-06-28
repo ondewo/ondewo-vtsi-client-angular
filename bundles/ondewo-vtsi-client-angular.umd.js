@@ -2499,9 +2499,6 @@
             this.sttConfig = _value.sttConfig
                 ? new ServiceConfig(_value.sttConfig)
                 : undefined;
-            this.demuxConfig = _value.demuxConfig
-                ? new ServiceConfig(_value.demuxConfig)
-                : undefined;
             this.ttsConfig = _value.ttsConfig
                 ? new ServiceConfig(_value.ttsConfig)
                 : undefined;
@@ -2510,6 +2507,7 @@
             this.passwordDictionary = _value.passwordDictionary
                 ? new googleProtobuf003.Struct(_value.passwordDictionary)
                 : undefined;
+            this.initialIntent = _value.initialIntent;
             StartCallInstanceRequest.refineValues(this);
         }
         /**
@@ -2535,11 +2533,11 @@
             _instance.asteriskConfig = _instance.asteriskConfig || undefined;
             _instance.caiConfig = _instance.caiConfig || undefined;
             _instance.sttConfig = _instance.sttConfig || undefined;
-            _instance.demuxConfig = _instance.demuxConfig || undefined;
             _instance.ttsConfig = _instance.ttsConfig || undefined;
             _instance.sipPrefix = _instance.sipPrefix || '';
             _instance.sipName = _instance.sipName || '';
             _instance.passwordDictionary = _instance.passwordDictionary || undefined;
+            _instance.initialIntent = _instance.initialIntent || '';
         };
         /**
          * Deserializes / reads binary message into message instance using provided binary reader
@@ -2583,10 +2581,6 @@
                         _instance.sttConfig = new ServiceConfig();
                         _reader.readMessage(_instance.sttConfig, ServiceConfig.deserializeBinaryFromReader);
                         break;
-                    case 10:
-                        _instance.demuxConfig = new ServiceConfig();
-                        _reader.readMessage(_instance.demuxConfig, ServiceConfig.deserializeBinaryFromReader);
-                        break;
                     case 11:
                         _instance.ttsConfig = new ServiceConfig();
                         _reader.readMessage(_instance.ttsConfig, ServiceConfig.deserializeBinaryFromReader);
@@ -2600,6 +2594,9 @@
                     case 14:
                         _instance.passwordDictionary = new googleProtobuf003.Struct();
                         _reader.readMessage(_instance.passwordDictionary, googleProtobuf003.Struct.deserializeBinaryFromReader);
+                        break;
+                    case 15:
+                        _instance.initialIntent = _reader.readString();
                         break;
                     default:
                         _reader.skipField();
@@ -2640,9 +2637,6 @@
             if (_instance.sttConfig) {
                 _writer.writeMessage(9, _instance.sttConfig, ServiceConfig.serializeBinaryToWriter);
             }
-            if (_instance.demuxConfig) {
-                _writer.writeMessage(10, _instance.demuxConfig, ServiceConfig.serializeBinaryToWriter);
-            }
             if (_instance.ttsConfig) {
                 _writer.writeMessage(11, _instance.ttsConfig, ServiceConfig.serializeBinaryToWriter);
             }
@@ -2654,6 +2648,9 @@
             }
             if (_instance.passwordDictionary) {
                 _writer.writeMessage(14, _instance.passwordDictionary, googleProtobuf003.Struct.serializeBinaryToWriter);
+            }
+            if (_instance.initialIntent) {
+                _writer.writeString(15, _instance.initialIntent);
             }
         };
         Object.defineProperty(StartCallInstanceRequest.prototype, "callId", {
@@ -2746,16 +2743,6 @@
             enumerable: false,
             configurable: true
         });
-        Object.defineProperty(StartCallInstanceRequest.prototype, "demuxConfig", {
-            get: function () {
-                return this._demuxConfig;
-            },
-            set: function (value) {
-                this._demuxConfig = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
         Object.defineProperty(StartCallInstanceRequest.prototype, "ttsConfig", {
             get: function () {
                 return this._ttsConfig;
@@ -2796,6 +2783,16 @@
             enumerable: false,
             configurable: true
         });
+        Object.defineProperty(StartCallInstanceRequest.prototype, "initialIntent", {
+            get: function () {
+                return this._initialIntent;
+            },
+            set: function (value) {
+                this._initialIntent = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
         /**
          * Serialize message to binary data
          * @param instance message instance
@@ -2821,13 +2818,13 @@
                     : undefined,
                 caiConfig: this.caiConfig ? this.caiConfig.toObject() : undefined,
                 sttConfig: this.sttConfig ? this.sttConfig.toObject() : undefined,
-                demuxConfig: this.demuxConfig ? this.demuxConfig.toObject() : undefined,
                 ttsConfig: this.ttsConfig ? this.ttsConfig.toObject() : undefined,
                 sipPrefix: this.sipPrefix,
                 sipName: this.sipName,
                 passwordDictionary: this.passwordDictionary
                     ? this.passwordDictionary.toObject()
-                    : undefined
+                    : undefined,
+                initialIntent: this.initialIntent
             };
         };
         /**
@@ -2856,15 +2853,13 @@
                     : null,
                 caiConfig: this.caiConfig ? this.caiConfig.toProtobufJSON(options) : null,
                 sttConfig: this.sttConfig ? this.sttConfig.toProtobufJSON(options) : null,
-                demuxConfig: this.demuxConfig
-                    ? this.demuxConfig.toProtobufJSON(options)
-                    : null,
                 ttsConfig: this.ttsConfig ? this.ttsConfig.toProtobufJSON(options) : null,
                 sipPrefix: this.sipPrefix,
                 sipName: this.sipName,
                 passwordDictionary: this.passwordDictionary
                     ? this.passwordDictionary.toProtobufJSON(options)
-                    : null
+                    : null,
+                initialIntent: this.initialIntent
             };
         };
         return StartCallInstanceRequest;
@@ -2999,6 +2994,243 @@
         return StartCallInstanceResponse;
     }());
     StartCallInstanceResponse.id = 'ondewo.nlu.StartCallInstanceResponse';
+    /**
+     * Message implementation for ondewo.nlu.StartMultipleCallInstancesRequest
+     */
+    var StartMultipleCallInstancesRequest = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of StartMultipleCallInstancesRequest to deeply clone from
+         */
+        function StartMultipleCallInstancesRequest(_value) {
+            _value = _value || {};
+            this.requests = (_value.requests || []).map(function (m) { return new StartCallInstanceRequest(m); });
+            StartMultipleCallInstancesRequest.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        StartMultipleCallInstancesRequest.deserializeBinary = function (bytes) {
+            var instance = new StartMultipleCallInstancesRequest();
+            StartMultipleCallInstancesRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        StartMultipleCallInstancesRequest.refineValues = function (_instance) {
+            _instance.requests = _instance.requests || [];
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        StartMultipleCallInstancesRequest.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        var messageInitializer1 = new StartCallInstanceRequest();
+                        _reader.readMessage(messageInitializer1, StartCallInstanceRequest.deserializeBinaryFromReader);
+                        (_instance.requests = _instance.requests || []).push(messageInitializer1);
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            StartMultipleCallInstancesRequest.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        StartMultipleCallInstancesRequest.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.requests && _instance.requests.length) {
+                _writer.writeRepeatedMessage(1, _instance.requests, StartCallInstanceRequest.serializeBinaryToWriter);
+            }
+        };
+        Object.defineProperty(StartMultipleCallInstancesRequest.prototype, "requests", {
+            get: function () {
+                return this._requests;
+            },
+            set: function (value) {
+                this._requests = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        StartMultipleCallInstancesRequest.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            StartMultipleCallInstancesRequest.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        StartMultipleCallInstancesRequest.prototype.toObject = function () {
+            return {
+                requests: (this.requests || []).map(function (m) { return m.toObject(); })
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        StartMultipleCallInstancesRequest.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        StartMultipleCallInstancesRequest.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                requests: (this.requests || []).map(function (m) { return m.toProtobufJSON(options); })
+            };
+        };
+        return StartMultipleCallInstancesRequest;
+    }());
+    StartMultipleCallInstancesRequest.id = 'ondewo.nlu.StartMultipleCallInstancesRequest';
+    /**
+     * Message implementation for ondewo.nlu.StartMultipleCallInstancesResponse
+     */
+    var StartMultipleCallInstancesResponse = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of StartMultipleCallInstancesResponse to deeply clone from
+         */
+        function StartMultipleCallInstancesResponse(_value) {
+            _value = _value || {};
+            this.request = _value.request
+                ? new StartMultipleCallInstancesRequest(_value.request)
+                : undefined;
+            this.success = _value.success;
+            StartMultipleCallInstancesResponse.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        StartMultipleCallInstancesResponse.deserializeBinary = function (bytes) {
+            var instance = new StartMultipleCallInstancesResponse();
+            StartMultipleCallInstancesResponse.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        StartMultipleCallInstancesResponse.refineValues = function (_instance) {
+            _instance.request = _instance.request || undefined;
+            _instance.success = _instance.success || false;
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        StartMultipleCallInstancesResponse.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.request = new StartMultipleCallInstancesRequest();
+                        _reader.readMessage(_instance.request, StartMultipleCallInstancesRequest.deserializeBinaryFromReader);
+                        break;
+                    case 2:
+                        _instance.success = _reader.readBool();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            StartMultipleCallInstancesResponse.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        StartMultipleCallInstancesResponse.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.request) {
+                _writer.writeMessage(1, _instance.request, StartMultipleCallInstancesRequest.serializeBinaryToWriter);
+            }
+            if (_instance.success) {
+                _writer.writeBool(2, _instance.success);
+            }
+        };
+        Object.defineProperty(StartMultipleCallInstancesResponse.prototype, "request", {
+            get: function () {
+                return this._request;
+            },
+            set: function (value) {
+                this._request = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(StartMultipleCallInstancesResponse.prototype, "success", {
+            get: function () {
+                return this._success;
+            },
+            set: function (value) {
+                this._success = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        StartMultipleCallInstancesResponse.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            StartMultipleCallInstancesResponse.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        StartMultipleCallInstancesResponse.prototype.toObject = function () {
+            return {
+                request: this.request ? this.request.toObject() : undefined,
+                success: this.success
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        StartMultipleCallInstancesResponse.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        StartMultipleCallInstancesResponse.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                request: this.request ? this.request.toProtobufJSON(options) : null,
+                success: this.success
+            };
+        };
+        return StartMultipleCallInstancesResponse;
+    }());
+    StartMultipleCallInstancesResponse.id = 'ondewo.nlu.StartMultipleCallInstancesResponse';
     /**
      * Message implementation for ondewo.nlu.StopCallInstanceRequest
      */
@@ -5563,6 +5795,25 @@
                     });
                 },
                 /**
+                 * Unary RPC for /ondewo.nlu.VoipSessions/StartMultipleCallInstances
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<thisProto.StartMultipleCallInstancesResponse>>
+                 */
+                startMultipleCallInstances: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.nlu.VoipSessions/StartMultipleCallInstances',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: StartMultipleCallInstancesRequest,
+                        responseClass: StartMultipleCallInstancesResponse
+                    });
+                },
+                /**
                  * Unary RPC for /ondewo.nlu.VoipSessions/GetCallIDs
                  *
                  * @param requestMessage Request message
@@ -5777,6 +6028,19 @@
                 .pipe(i2.throwStatusErrors(), i2.takeMessages());
         };
         /**
+         * Unary RPC for /ondewo.nlu.VoipSessions/StartMultipleCallInstances
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<thisProto.StartMultipleCallInstancesResponse>
+         */
+        VoipSessionsClient.prototype.startMultipleCallInstances = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .startMultipleCallInstances(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
          * Unary RPC for /ondewo.nlu.VoipSessions/GetCallIDs
          *
          * @param requestMessage Request message
@@ -5879,8 +6143,1003 @@
         { type: i2.GrpcHandler }
     ]; };
 
+    /* tslint:disable */
     /**
-     * Message implementation for ondewo.nlu.GetCallIdsRequest
+     * Message implementation for ondewo.sip.EndCallRequest
+     */
+    var EndCallRequest = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of EndCallRequest to deeply clone from
+         */
+        function EndCallRequest(_value) {
+            _value = _value || {};
+            this.hardHangup = _value.hardHangup;
+            EndCallRequest.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        EndCallRequest.deserializeBinary = function (bytes) {
+            var instance = new EndCallRequest();
+            EndCallRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        EndCallRequest.refineValues = function (_instance) {
+            _instance.hardHangup = _instance.hardHangup || false;
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        EndCallRequest.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.hardHangup = _reader.readBool();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            EndCallRequest.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        EndCallRequest.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.hardHangup) {
+                _writer.writeBool(1, _instance.hardHangup);
+            }
+        };
+        Object.defineProperty(EndCallRequest.prototype, "hardHangup", {
+            get: function () {
+                return this._hardHangup;
+            },
+            set: function (value) {
+                this._hardHangup = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        EndCallRequest.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            EndCallRequest.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        EndCallRequest.prototype.toObject = function () {
+            return {
+                hardHangup: this.hardHangup
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        EndCallRequest.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        EndCallRequest.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                hardHangup: this.hardHangup
+            };
+        };
+        return EndCallRequest;
+    }());
+    EndCallRequest.id = 'ondewo.sip.EndCallRequest';
+    /**
+     * Message implementation for ondewo.sip.StartCallRequest
+     */
+    var StartCallRequest = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of StartCallRequest to deeply clone from
+         */
+        function StartCallRequest(_value) {
+            _value = _value || {};
+            this.calleeId = _value.calleeId;
+            StartCallRequest.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        StartCallRequest.deserializeBinary = function (bytes) {
+            var instance = new StartCallRequest();
+            StartCallRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        StartCallRequest.refineValues = function (_instance) {
+            _instance.calleeId = _instance.calleeId || '';
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        StartCallRequest.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.calleeId = _reader.readString();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            StartCallRequest.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        StartCallRequest.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.calleeId) {
+                _writer.writeString(1, _instance.calleeId);
+            }
+        };
+        Object.defineProperty(StartCallRequest.prototype, "calleeId", {
+            get: function () {
+                return this._calleeId;
+            },
+            set: function (value) {
+                this._calleeId = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        StartCallRequest.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            StartCallRequest.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        StartCallRequest.prototype.toObject = function () {
+            return {
+                calleeId: this.calleeId
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        StartCallRequest.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        StartCallRequest.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                calleeId: this.calleeId
+            };
+        };
+        return StartCallRequest;
+    }());
+    StartCallRequest.id = 'ondewo.sip.StartCallRequest';
+    /**
+     * Message implementation for ondewo.sip.RegisterAccountRequest
+     */
+    var RegisterAccountRequest = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of RegisterAccountRequest to deeply clone from
+         */
+        function RegisterAccountRequest(_value) {
+            _value = _value || {};
+            this.accountName = _value.accountName;
+            this.password = _value.password;
+            RegisterAccountRequest.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        RegisterAccountRequest.deserializeBinary = function (bytes) {
+            var instance = new RegisterAccountRequest();
+            RegisterAccountRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        RegisterAccountRequest.refineValues = function (_instance) {
+            _instance.accountName = _instance.accountName || '';
+            _instance.password = _instance.password || '';
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        RegisterAccountRequest.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.accountName = _reader.readString();
+                        break;
+                    case 2:
+                        _instance.password = _reader.readString();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            RegisterAccountRequest.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        RegisterAccountRequest.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.accountName) {
+                _writer.writeString(1, _instance.accountName);
+            }
+            if (_instance.password) {
+                _writer.writeString(2, _instance.password);
+            }
+        };
+        Object.defineProperty(RegisterAccountRequest.prototype, "accountName", {
+            get: function () {
+                return this._accountName;
+            },
+            set: function (value) {
+                this._accountName = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(RegisterAccountRequest.prototype, "password", {
+            get: function () {
+                return this._password;
+            },
+            set: function (value) {
+                this._password = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        RegisterAccountRequest.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            RegisterAccountRequest.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        RegisterAccountRequest.prototype.toObject = function () {
+            return {
+                accountName: this.accountName,
+                password: this.password
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        RegisterAccountRequest.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        RegisterAccountRequest.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                accountName: this.accountName,
+                password: this.password
+            };
+        };
+        return RegisterAccountRequest;
+    }());
+    RegisterAccountRequest.id = 'ondewo.sip.RegisterAccountRequest';
+    /**
+     * Message implementation for ondewo.sip.StartSessionRequest
+     */
+    var StartSessionRequest = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of StartSessionRequest to deeply clone from
+         */
+        function StartSessionRequest(_value) {
+            _value = _value || {};
+            this.accountName = _value.accountName;
+            this.autoAnswerInterval = _value.autoAnswerInterval;
+            StartSessionRequest.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        StartSessionRequest.deserializeBinary = function (bytes) {
+            var instance = new StartSessionRequest();
+            StartSessionRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        StartSessionRequest.refineValues = function (_instance) {
+            _instance.accountName = _instance.accountName || '';
+            _instance.autoAnswerInterval = _instance.autoAnswerInterval || 0;
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        StartSessionRequest.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.accountName = _reader.readString();
+                        break;
+                    case 2:
+                        _instance.autoAnswerInterval = _reader.readInt32();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            StartSessionRequest.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        StartSessionRequest.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.accountName) {
+                _writer.writeString(1, _instance.accountName);
+            }
+            if (_instance.autoAnswerInterval) {
+                _writer.writeInt32(2, _instance.autoAnswerInterval);
+            }
+        };
+        Object.defineProperty(StartSessionRequest.prototype, "accountName", {
+            get: function () {
+                return this._accountName;
+            },
+            set: function (value) {
+                this._accountName = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(StartSessionRequest.prototype, "autoAnswerInterval", {
+            get: function () {
+                return this._autoAnswerInterval;
+            },
+            set: function (value) {
+                this._autoAnswerInterval = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        StartSessionRequest.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            StartSessionRequest.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        StartSessionRequest.prototype.toObject = function () {
+            return {
+                accountName: this.accountName,
+                autoAnswerInterval: this.autoAnswerInterval
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        StartSessionRequest.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        StartSessionRequest.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                accountName: this.accountName,
+                autoAnswerInterval: this.autoAnswerInterval
+            };
+        };
+        return StartSessionRequest;
+    }());
+    StartSessionRequest.id = 'ondewo.sip.StartSessionRequest';
+    /**
+     * Message implementation for ondewo.sip.TransferCallRequest
+     */
+    var TransferCallRequest = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of TransferCallRequest to deeply clone from
+         */
+        function TransferCallRequest(_value) {
+            _value = _value || {};
+            this.transferId = _value.transferId;
+            TransferCallRequest.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        TransferCallRequest.deserializeBinary = function (bytes) {
+            var instance = new TransferCallRequest();
+            TransferCallRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        TransferCallRequest.refineValues = function (_instance) {
+            _instance.transferId = _instance.transferId || '';
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        TransferCallRequest.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.transferId = _reader.readString();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            TransferCallRequest.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        TransferCallRequest.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.transferId) {
+                _writer.writeString(1, _instance.transferId);
+            }
+        };
+        Object.defineProperty(TransferCallRequest.prototype, "transferId", {
+            get: function () {
+                return this._transferId;
+            },
+            set: function (value) {
+                this._transferId = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        TransferCallRequest.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            TransferCallRequest.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        TransferCallRequest.prototype.toObject = function () {
+            return {
+                transferId: this.transferId
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        TransferCallRequest.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        TransferCallRequest.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                transferId: this.transferId
+            };
+        };
+        return TransferCallRequest;
+    }());
+    TransferCallRequest.id = 'ondewo.sip.TransferCallRequest';
+    /**
+     * Message implementation for ondewo.sip.SipStatus
+     */
+    exports.SipStatus = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of SipStatus to deeply clone from
+         */
+        function SipStatus(_value) {
+            _value = _value || {};
+            this.accountName = _value.accountName;
+            this.timestamp = _value.timestamp
+                ? new googleProtobuf003.Timestamp(_value.timestamp)
+                : undefined;
+            this.statusType = _value.statusType;
+            this.calleeId = _value.calleeId;
+            this.transferCallId = _value.transferCallId;
+            SipStatus.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        SipStatus.deserializeBinary = function (bytes) {
+            var instance = new SipStatus();
+            SipStatus.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        SipStatus.refineValues = function (_instance) {
+            _instance.accountName = _instance.accountName || '';
+            _instance.timestamp = _instance.timestamp || undefined;
+            _instance.statusType = _instance.statusType || 0;
+            _instance.calleeId = _instance.calleeId || '';
+            _instance.transferCallId = _instance.transferCallId || '';
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        SipStatus.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.accountName = _reader.readString();
+                        break;
+                    case 2:
+                        _instance.timestamp = new googleProtobuf003.Timestamp();
+                        _reader.readMessage(_instance.timestamp, googleProtobuf003.Timestamp.deserializeBinaryFromReader);
+                        break;
+                    case 3:
+                        _instance.statusType = _reader.readEnum();
+                        break;
+                    case 4:
+                        _instance.calleeId = _reader.readString();
+                        break;
+                    case 5:
+                        _instance.transferCallId = _reader.readString();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            SipStatus.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        SipStatus.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.accountName) {
+                _writer.writeString(1, _instance.accountName);
+            }
+            if (_instance.timestamp) {
+                _writer.writeMessage(2, _instance.timestamp, googleProtobuf003.Timestamp.serializeBinaryToWriter);
+            }
+            if (_instance.statusType) {
+                _writer.writeEnum(3, _instance.statusType);
+            }
+            if (_instance.calleeId) {
+                _writer.writeString(4, _instance.calleeId);
+            }
+            if (_instance.transferCallId) {
+                _writer.writeString(5, _instance.transferCallId);
+            }
+        };
+        Object.defineProperty(SipStatus.prototype, "accountName", {
+            get: function () {
+                return this._accountName;
+            },
+            set: function (value) {
+                this._accountName = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SipStatus.prototype, "timestamp", {
+            get: function () {
+                return this._timestamp;
+            },
+            set: function (value) {
+                this._timestamp = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SipStatus.prototype, "statusType", {
+            get: function () {
+                return this._statusType;
+            },
+            set: function (value) {
+                this._statusType = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SipStatus.prototype, "calleeId", {
+            get: function () {
+                return this._calleeId;
+            },
+            set: function (value) {
+                this._calleeId = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SipStatus.prototype, "transferCallId", {
+            get: function () {
+                return this._transferCallId;
+            },
+            set: function (value) {
+                this._transferCallId = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        SipStatus.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            SipStatus.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        SipStatus.prototype.toObject = function () {
+            return {
+                accountName: this.accountName,
+                timestamp: this.timestamp ? this.timestamp.toObject() : undefined,
+                statusType: this.statusType,
+                calleeId: this.calleeId,
+                transferCallId: this.transferCallId
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        SipStatus.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        SipStatus.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            var _a;
+            return {
+                accountName: this.accountName,
+                timestamp: this.timestamp ? this.timestamp.toProtobufJSON(options) : null,
+                statusType: SipStatus.StatusType[(_a = this.statusType) !== null && _a !== void 0 ? _a : 0],
+                calleeId: this.calleeId,
+                transferCallId: this.transferCallId
+            };
+        };
+        return SipStatus;
+    }());
+    exports.SipStatus.id = 'ondewo.sip.SipStatus';
+    (function (SipStatus) {
+        var StatusType;
+        (function (StatusType) {
+            StatusType[StatusType["no_session"] = 0] = "no_session";
+            StatusType[StatusType["registered"] = 1] = "registered";
+            StatusType[StatusType["ready"] = 2] = "ready";
+            StatusType[StatusType["incoming_call_initiated"] = 3] = "incoming_call_initiated";
+            StatusType[StatusType["outgoing_call_initiated"] = 4] = "outgoing_call_initiated";
+            StatusType[StatusType["outgoing_call_connected"] = 5] = "outgoing_call_connected";
+            StatusType[StatusType["incoming_call_connected"] = 6] = "incoming_call_connected";
+            StatusType[StatusType["transfer_call_initiated"] = 7] = "transfer_call_initiated";
+            StatusType[StatusType["soft_hangup_initiated"] = 8] = "soft_hangup_initiated";
+            StatusType[StatusType["hard_hangup_initiated"] = 9] = "hard_hangup_initiated";
+            StatusType[StatusType["incoming_call_failed"] = 10] = "incoming_call_failed";
+            StatusType[StatusType["outgoing_call_failed"] = 11] = "outgoing_call_failed";
+            StatusType[StatusType["incoming_call_finished"] = 12] = "incoming_call_finished";
+            StatusType[StatusType["outgoing_call_finished"] = 13] = "outgoing_call_finished";
+        })(StatusType = SipStatus.StatusType || (SipStatus.StatusType = {}));
+    })(exports.SipStatus || (exports.SipStatus = {}));
+    /**
+     * Message implementation for ondewo.sip.SipStatusHistoryResponse
+     */
+    var SipStatusHistoryResponse = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of SipStatusHistoryResponse to deeply clone from
+         */
+        function SipStatusHistoryResponse(_value) {
+            _value = _value || {};
+            this.statusHistory = (_value.statusHistory || []).map(function (m) { return new exports.SipStatus(m); });
+            SipStatusHistoryResponse.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        SipStatusHistoryResponse.deserializeBinary = function (bytes) {
+            var instance = new SipStatusHistoryResponse();
+            SipStatusHistoryResponse.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        SipStatusHistoryResponse.refineValues = function (_instance) {
+            _instance.statusHistory = _instance.statusHistory || [];
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        SipStatusHistoryResponse.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        var messageInitializer1 = new exports.SipStatus();
+                        _reader.readMessage(messageInitializer1, exports.SipStatus.deserializeBinaryFromReader);
+                        (_instance.statusHistory = _instance.statusHistory || []).push(messageInitializer1);
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            SipStatusHistoryResponse.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        SipStatusHistoryResponse.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.statusHistory && _instance.statusHistory.length) {
+                _writer.writeRepeatedMessage(1, _instance.statusHistory, exports.SipStatus.serializeBinaryToWriter);
+            }
+        };
+        Object.defineProperty(SipStatusHistoryResponse.prototype, "statusHistory", {
+            get: function () {
+                return this._statusHistory;
+            },
+            set: function (value) {
+                this._statusHistory = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        SipStatusHistoryResponse.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            SipStatusHistoryResponse.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        SipStatusHistoryResponse.prototype.toObject = function () {
+            return {
+                statusHistory: (this.statusHistory || []).map(function (m) { return m.toObject(); })
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        SipStatusHistoryResponse.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        SipStatusHistoryResponse.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                statusHistory: (this.statusHistory || []).map(function (m) { return m.toProtobufJSON(options); })
+            };
+        };
+        return SipStatusHistoryResponse;
+    }());
+    SipStatusHistoryResponse.id = 'ondewo.sip.SipStatusHistoryResponse';
+    /**
+     * Message implementation for ondewo.sip.PlayWavFilesRequest
+     */
+    var PlayWavFilesRequest = /** @class */ (function () {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of PlayWavFilesRequest to deeply clone from
+         */
+        function PlayWavFilesRequest(_value) {
+            _value = _value || {};
+            this.wavFiles = (_value.wavFiles || []).map(function (b) { return b ? b.subarray(0) : new Uint8Array(); });
+            PlayWavFilesRequest.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        PlayWavFilesRequest.deserializeBinary = function (bytes) {
+            var instance = new PlayWavFilesRequest();
+            PlayWavFilesRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
+            return instance;
+        };
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        PlayWavFilesRequest.refineValues = function (_instance) {
+            _instance.wavFiles = _instance.wavFiles || [];
+        };
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        PlayWavFilesRequest.deserializeBinaryFromReader = function (_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        (_instance.wavFiles = _instance.wavFiles || []).push(_reader.readBytes());
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            PlayWavFilesRequest.refineValues(_instance);
+        };
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        PlayWavFilesRequest.serializeBinaryToWriter = function (_instance, _writer) {
+            if (_instance.wavFiles && _instance.wavFiles.length) {
+                _writer.writeRepeatedBytes(1, _instance.wavFiles);
+            }
+        };
+        Object.defineProperty(PlayWavFilesRequest.prototype, "wavFiles", {
+            get: function () {
+                return this._wavFiles;
+            },
+            set: function (value) {
+                this._wavFiles = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        PlayWavFilesRequest.prototype.serializeBinary = function () {
+            var writer = new googleProtobuf.BinaryWriter();
+            PlayWavFilesRequest.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        };
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        PlayWavFilesRequest.prototype.toObject = function () {
+            return {
+                wavFiles: (this.wavFiles || []).map(function (b) { return b ? b.subarray(0) : new Uint8Array(); })
+            };
+        };
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        PlayWavFilesRequest.prototype.toJSON = function () {
+            return this.toObject();
+        };
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        PlayWavFilesRequest.prototype.toProtobufJSON = function (
+        // @ts-ignore
+        options) {
+            return {
+                wavFiles: (this.wavFiles || []).map(function (b) { return (b ? common.uint8ArrayToBase64(b) : ''); })
+            };
+        };
+        return PlayWavFilesRequest;
+    }());
+    PlayWavFilesRequest.id = 'ondewo.sip.PlayWavFilesRequest';
+
+    /**
+     * Message implementation for ondewo.sip.GetCallIdsRequest
      */
     var GetCallIdsRequest = /** @class */ (function () {
         /**
@@ -5984,9 +7243,9 @@
         };
         return GetCallIdsRequest;
     }());
-    GetCallIdsRequest.id = 'ondewo.nlu.GetCallIdsRequest';
+    GetCallIdsRequest.id = 'ondewo.sip.GetCallIdsRequest';
     /**
-     * Message implementation for ondewo.nlu.GetCallIdsResponse
+     * Message implementation for ondewo.sip.GetCallIdsResponse
      */
     var GetCallIdsResponse = /** @class */ (function () {
         /**
@@ -6110,574 +7369,9 @@
         };
         return GetCallIdsResponse;
     }());
-    GetCallIdsResponse.id = 'ondewo.nlu.GetCallIdsResponse';
+    GetCallIdsResponse.id = 'ondewo.sip.GetCallIdsResponse';
     /**
-     * Message implementation for ondewo.nlu.StartVoipLogRequest
-     */
-    var StartVoipLogRequest = /** @class */ (function () {
-        /**
-         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-         * @param _value initial values object or instance of StartVoipLogRequest to deeply clone from
-         */
-        function StartVoipLogRequest(_value) {
-            _value = _value || {};
-            this.callId = _value.callId;
-            this.startTime = _value.startTime;
-            StartVoipLogRequest.refineValues(this);
-        }
-        /**
-         * Deserialize binary data to message
-         * @param instance message instance
-         */
-        StartVoipLogRequest.deserializeBinary = function (bytes) {
-            var instance = new StartVoipLogRequest();
-            StartVoipLogRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
-            return instance;
-        };
-        /**
-         * Check all the properties and set default protobuf values if necessary
-         * @param _instance message instance
-         */
-        StartVoipLogRequest.refineValues = function (_instance) {
-            _instance.callId = _instance.callId || '';
-            _instance.startTime = _instance.startTime || 0;
-        };
-        /**
-         * Deserializes / reads binary message into message instance using provided binary reader
-         * @param _instance message instance
-         * @param _reader binary reader instance
-         */
-        StartVoipLogRequest.deserializeBinaryFromReader = function (_instance, _reader) {
-            while (_reader.nextField()) {
-                if (_reader.isEndGroup())
-                    break;
-                switch (_reader.getFieldNumber()) {
-                    case 1:
-                        _instance.callId = _reader.readString();
-                        break;
-                    case 2:
-                        _instance.startTime = _reader.readFloat();
-                        break;
-                    default:
-                        _reader.skipField();
-                }
-            }
-            StartVoipLogRequest.refineValues(_instance);
-        };
-        /**
-         * Serializes a message to binary format using provided binary reader
-         * @param _instance message instance
-         * @param _writer binary writer instance
-         */
-        StartVoipLogRequest.serializeBinaryToWriter = function (_instance, _writer) {
-            if (_instance.callId) {
-                _writer.writeString(1, _instance.callId);
-            }
-            if (_instance.startTime) {
-                _writer.writeFloat(2, _instance.startTime);
-            }
-        };
-        Object.defineProperty(StartVoipLogRequest.prototype, "callId", {
-            get: function () {
-                return this._callId;
-            },
-            set: function (value) {
-                this._callId = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(StartVoipLogRequest.prototype, "startTime", {
-            get: function () {
-                return this._startTime;
-            },
-            set: function (value) {
-                this._startTime = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * Serialize message to binary data
-         * @param instance message instance
-         */
-        StartVoipLogRequest.prototype.serializeBinary = function () {
-            var writer = new googleProtobuf.BinaryWriter();
-            StartVoipLogRequest.serializeBinaryToWriter(this, writer);
-            return writer.getResultBuffer();
-        };
-        /**
-         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-         */
-        StartVoipLogRequest.prototype.toObject = function () {
-            return {
-                callId: this.callId,
-                startTime: this.startTime
-            };
-        };
-        /**
-         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-         */
-        StartVoipLogRequest.prototype.toJSON = function () {
-            return this.toObject();
-        };
-        /**
-         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-         */
-        StartVoipLogRequest.prototype.toProtobufJSON = function (
-        // @ts-ignore
-        options) {
-            return {
-                callId: this.callId,
-                startTime: this.startTime
-            };
-        };
-        return StartVoipLogRequest;
-    }());
-    StartVoipLogRequest.id = 'ondewo.nlu.StartVoipLogRequest';
-    /**
-     * Message implementation for ondewo.nlu.FinishVoipLogRequest
-     */
-    var FinishVoipLogRequest = /** @class */ (function () {
-        /**
-         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-         * @param _value initial values object or instance of FinishVoipLogRequest to deeply clone from
-         */
-        function FinishVoipLogRequest(_value) {
-            _value = _value || {};
-            this.callId = _value.callId;
-            this.endTime = _value.endTime;
-            FinishVoipLogRequest.refineValues(this);
-        }
-        /**
-         * Deserialize binary data to message
-         * @param instance message instance
-         */
-        FinishVoipLogRequest.deserializeBinary = function (bytes) {
-            var instance = new FinishVoipLogRequest();
-            FinishVoipLogRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
-            return instance;
-        };
-        /**
-         * Check all the properties and set default protobuf values if necessary
-         * @param _instance message instance
-         */
-        FinishVoipLogRequest.refineValues = function (_instance) {
-            _instance.callId = _instance.callId || '';
-            _instance.endTime = _instance.endTime || 0;
-        };
-        /**
-         * Deserializes / reads binary message into message instance using provided binary reader
-         * @param _instance message instance
-         * @param _reader binary reader instance
-         */
-        FinishVoipLogRequest.deserializeBinaryFromReader = function (_instance, _reader) {
-            while (_reader.nextField()) {
-                if (_reader.isEndGroup())
-                    break;
-                switch (_reader.getFieldNumber()) {
-                    case 1:
-                        _instance.callId = _reader.readString();
-                        break;
-                    case 2:
-                        _instance.endTime = _reader.readFloat();
-                        break;
-                    default:
-                        _reader.skipField();
-                }
-            }
-            FinishVoipLogRequest.refineValues(_instance);
-        };
-        /**
-         * Serializes a message to binary format using provided binary reader
-         * @param _instance message instance
-         * @param _writer binary writer instance
-         */
-        FinishVoipLogRequest.serializeBinaryToWriter = function (_instance, _writer) {
-            if (_instance.callId) {
-                _writer.writeString(1, _instance.callId);
-            }
-            if (_instance.endTime) {
-                _writer.writeFloat(2, _instance.endTime);
-            }
-        };
-        Object.defineProperty(FinishVoipLogRequest.prototype, "callId", {
-            get: function () {
-                return this._callId;
-            },
-            set: function (value) {
-                this._callId = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(FinishVoipLogRequest.prototype, "endTime", {
-            get: function () {
-                return this._endTime;
-            },
-            set: function (value) {
-                this._endTime = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * Serialize message to binary data
-         * @param instance message instance
-         */
-        FinishVoipLogRequest.prototype.serializeBinary = function () {
-            var writer = new googleProtobuf.BinaryWriter();
-            FinishVoipLogRequest.serializeBinaryToWriter(this, writer);
-            return writer.getResultBuffer();
-        };
-        /**
-         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-         */
-        FinishVoipLogRequest.prototype.toObject = function () {
-            return {
-                callId: this.callId,
-                endTime: this.endTime
-            };
-        };
-        /**
-         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-         */
-        FinishVoipLogRequest.prototype.toJSON = function () {
-            return this.toObject();
-        };
-        /**
-         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-         */
-        FinishVoipLogRequest.prototype.toProtobufJSON = function (
-        // @ts-ignore
-        options) {
-            return {
-                callId: this.callId,
-                endTime: this.endTime
-            };
-        };
-        return FinishVoipLogRequest;
-    }());
-    FinishVoipLogRequest.id = 'ondewo.nlu.FinishVoipLogRequest';
-    /**
-     * Message implementation for ondewo.nlu.UpdateVoipLogRequest
-     */
-    var UpdateVoipLogRequest = /** @class */ (function () {
-        /**
-         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-         * @param _value initial values object or instance of UpdateVoipLogRequest to deeply clone from
-         */
-        function UpdateVoipLogRequest(_value) {
-            _value = _value || {};
-            this.callId = _value.callId;
-            this.serviceName = _value.serviceName;
-            this.logMessage = _value.logMessage;
-            this.counters = _value.counters ? new Counters(_value.counters) : undefined;
-            UpdateVoipLogRequest.refineValues(this);
-        }
-        /**
-         * Deserialize binary data to message
-         * @param instance message instance
-         */
-        UpdateVoipLogRequest.deserializeBinary = function (bytes) {
-            var instance = new UpdateVoipLogRequest();
-            UpdateVoipLogRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
-            return instance;
-        };
-        /**
-         * Check all the properties and set default protobuf values if necessary
-         * @param _instance message instance
-         */
-        UpdateVoipLogRequest.refineValues = function (_instance) {
-            _instance.callId = _instance.callId || '';
-            _instance.serviceName = _instance.serviceName || '';
-            _instance.logMessage = _instance.logMessage || '';
-            _instance.counters = _instance.counters || undefined;
-        };
-        /**
-         * Deserializes / reads binary message into message instance using provided binary reader
-         * @param _instance message instance
-         * @param _reader binary reader instance
-         */
-        UpdateVoipLogRequest.deserializeBinaryFromReader = function (_instance, _reader) {
-            while (_reader.nextField()) {
-                if (_reader.isEndGroup())
-                    break;
-                switch (_reader.getFieldNumber()) {
-                    case 1:
-                        _instance.callId = _reader.readString();
-                        break;
-                    case 2:
-                        _instance.serviceName = _reader.readString();
-                        break;
-                    case 3:
-                        _instance.logMessage = _reader.readString();
-                        break;
-                    case 4:
-                        _instance.counters = new Counters();
-                        _reader.readMessage(_instance.counters, Counters.deserializeBinaryFromReader);
-                        break;
-                    default:
-                        _reader.skipField();
-                }
-            }
-            UpdateVoipLogRequest.refineValues(_instance);
-        };
-        /**
-         * Serializes a message to binary format using provided binary reader
-         * @param _instance message instance
-         * @param _writer binary writer instance
-         */
-        UpdateVoipLogRequest.serializeBinaryToWriter = function (_instance, _writer) {
-            if (_instance.callId) {
-                _writer.writeString(1, _instance.callId);
-            }
-            if (_instance.serviceName) {
-                _writer.writeString(2, _instance.serviceName);
-            }
-            if (_instance.logMessage) {
-                _writer.writeString(3, _instance.logMessage);
-            }
-            if (_instance.counters) {
-                _writer.writeMessage(4, _instance.counters, Counters.serializeBinaryToWriter);
-            }
-        };
-        Object.defineProperty(UpdateVoipLogRequest.prototype, "callId", {
-            get: function () {
-                return this._callId;
-            },
-            set: function (value) {
-                this._callId = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(UpdateVoipLogRequest.prototype, "serviceName", {
-            get: function () {
-                return this._serviceName;
-            },
-            set: function (value) {
-                this._serviceName = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(UpdateVoipLogRequest.prototype, "logMessage", {
-            get: function () {
-                return this._logMessage;
-            },
-            set: function (value) {
-                this._logMessage = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(UpdateVoipLogRequest.prototype, "counters", {
-            get: function () {
-                return this._counters;
-            },
-            set: function (value) {
-                this._counters = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * Serialize message to binary data
-         * @param instance message instance
-         */
-        UpdateVoipLogRequest.prototype.serializeBinary = function () {
-            var writer = new googleProtobuf.BinaryWriter();
-            UpdateVoipLogRequest.serializeBinaryToWriter(this, writer);
-            return writer.getResultBuffer();
-        };
-        /**
-         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-         */
-        UpdateVoipLogRequest.prototype.toObject = function () {
-            return {
-                callId: this.callId,
-                serviceName: this.serviceName,
-                logMessage: this.logMessage,
-                counters: this.counters ? this.counters.toObject() : undefined
-            };
-        };
-        /**
-         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-         */
-        UpdateVoipLogRequest.prototype.toJSON = function () {
-            return this.toObject();
-        };
-        /**
-         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-         */
-        UpdateVoipLogRequest.prototype.toProtobufJSON = function (
-        // @ts-ignore
-        options) {
-            return {
-                callId: this.callId,
-                serviceName: this.serviceName,
-                logMessage: this.logMessage,
-                counters: this.counters ? this.counters.toProtobufJSON(options) : null
-            };
-        };
-        return UpdateVoipLogRequest;
-    }());
-    UpdateVoipLogRequest.id = 'ondewo.nlu.UpdateVoipLogRequest';
-    /**
-     * Message implementation for ondewo.nlu.VoipLogResponse
-     */
-    var VoipLogResponse = /** @class */ (function () {
-        /**
-         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-         * @param _value initial values object or instance of VoipLogResponse to deeply clone from
-         */
-        function VoipLogResponse(_value) {
-            _value = _value || {};
-            this.success = _value.success;
-            this.logMessage = _value.logMessage;
-            this.duration = _value.duration;
-            VoipLogResponse.refineValues(this);
-        }
-        /**
-         * Deserialize binary data to message
-         * @param instance message instance
-         */
-        VoipLogResponse.deserializeBinary = function (bytes) {
-            var instance = new VoipLogResponse();
-            VoipLogResponse.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
-            return instance;
-        };
-        /**
-         * Check all the properties and set default protobuf values if necessary
-         * @param _instance message instance
-         */
-        VoipLogResponse.refineValues = function (_instance) {
-            _instance.success = _instance.success || false;
-            _instance.logMessage = _instance.logMessage || '';
-            _instance.duration = _instance.duration || 0;
-        };
-        /**
-         * Deserializes / reads binary message into message instance using provided binary reader
-         * @param _instance message instance
-         * @param _reader binary reader instance
-         */
-        VoipLogResponse.deserializeBinaryFromReader = function (_instance, _reader) {
-            while (_reader.nextField()) {
-                if (_reader.isEndGroup())
-                    break;
-                switch (_reader.getFieldNumber()) {
-                    case 1:
-                        _instance.success = _reader.readBool();
-                        break;
-                    case 2:
-                        _instance.logMessage = _reader.readString();
-                        break;
-                    case 3:
-                        _instance.duration = _reader.readFloat();
-                        break;
-                    default:
-                        _reader.skipField();
-                }
-            }
-            VoipLogResponse.refineValues(_instance);
-        };
-        /**
-         * Serializes a message to binary format using provided binary reader
-         * @param _instance message instance
-         * @param _writer binary writer instance
-         */
-        VoipLogResponse.serializeBinaryToWriter = function (_instance, _writer) {
-            if (_instance.success) {
-                _writer.writeBool(1, _instance.success);
-            }
-            if (_instance.logMessage) {
-                _writer.writeString(2, _instance.logMessage);
-            }
-            if (_instance.duration) {
-                _writer.writeFloat(3, _instance.duration);
-            }
-        };
-        Object.defineProperty(VoipLogResponse.prototype, "success", {
-            get: function () {
-                return this._success;
-            },
-            set: function (value) {
-                this._success = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(VoipLogResponse.prototype, "logMessage", {
-            get: function () {
-                return this._logMessage;
-            },
-            set: function (value) {
-                this._logMessage = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(VoipLogResponse.prototype, "duration", {
-            get: function () {
-                return this._duration;
-            },
-            set: function (value) {
-                this._duration = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * Serialize message to binary data
-         * @param instance message instance
-         */
-        VoipLogResponse.prototype.serializeBinary = function () {
-            var writer = new googleProtobuf.BinaryWriter();
-            VoipLogResponse.serializeBinaryToWriter(this, writer);
-            return writer.getResultBuffer();
-        };
-        /**
-         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-         */
-        VoipLogResponse.prototype.toObject = function () {
-            return {
-                success: this.success,
-                logMessage: this.logMessage,
-                duration: this.duration
-            };
-        };
-        /**
-         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-         */
-        VoipLogResponse.prototype.toJSON = function () {
-            return this.toObject();
-        };
-        /**
-         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-         */
-        VoipLogResponse.prototype.toProtobufJSON = function (
-        // @ts-ignore
-        options) {
-            return {
-                success: this.success,
-                logMessage: this.logMessage,
-                duration: this.duration
-            };
-        };
-        return VoipLogResponse;
-    }());
-    VoipLogResponse.id = 'ondewo.nlu.VoipLogResponse';
-    /**
-     * Message implementation for ondewo.nlu.GetVoipLogRequest
+     * Message implementation for ondewo.sip.GetVoipLogRequest
      */
     var GetVoipLogRequest = /** @class */ (function () {
         /**
@@ -6781,9 +7475,9 @@
         };
         return GetVoipLogRequest;
     }());
-    GetVoipLogRequest.id = 'ondewo.nlu.GetVoipLogRequest';
+    GetVoipLogRequest.id = 'ondewo.sip.GetVoipLogRequest';
     /**
-     * Message implementation for ondewo.nlu.GetVoipLogResponse
+     * Message implementation for ondewo.sip.GetVoipLogResponse
      */
     var GetVoipLogResponse = /** @class */ (function () {
         /**
@@ -6912,9 +7606,9 @@
         };
         return GetVoipLogResponse;
     }());
-    GetVoipLogResponse.id = 'ondewo.nlu.GetVoipLogResponse';
+    GetVoipLogResponse.id = 'ondewo.sip.GetVoipLogResponse';
     /**
-     * Message implementation for ondewo.nlu.VoipLog
+     * Message implementation for ondewo.sip.VoipLog
      */
     var VoipLog = /** @class */ (function () {
         /**
@@ -6926,7 +7620,7 @@
             this.callId = _value.callId;
             this.startTime = _value.startTime;
             this.endTime = _value.endTime;
-            this.logs = (_value.logs || []).map(function (m) { return new LogEntry(m); });
+            this.statusHistory = (_value.statusHistory || []).map(function (m) { return new exports.SipStatus(m); });
             this.counters = _value.counters ? new Counters(_value.counters) : undefined;
             VoipLog.refineValues(this);
         }
@@ -6947,7 +7641,7 @@
             _instance.callId = _instance.callId || '';
             _instance.startTime = _instance.startTime || 0;
             _instance.endTime = _instance.endTime || 0;
-            _instance.logs = _instance.logs || [];
+            _instance.statusHistory = _instance.statusHistory || [];
             _instance.counters = _instance.counters || undefined;
         };
         /**
@@ -6970,9 +7664,9 @@
                         _instance.endTime = _reader.readDouble();
                         break;
                     case 4:
-                        var messageInitializer4 = new LogEntry();
-                        _reader.readMessage(messageInitializer4, LogEntry.deserializeBinaryFromReader);
-                        (_instance.logs = _instance.logs || []).push(messageInitializer4);
+                        var messageInitializer4 = new exports.SipStatus();
+                        _reader.readMessage(messageInitializer4, exports.SipStatus.deserializeBinaryFromReader);
+                        (_instance.statusHistory = _instance.statusHistory || []).push(messageInitializer4);
                         break;
                     case 5:
                         _instance.counters = new Counters();
@@ -6999,8 +7693,8 @@
             if (_instance.endTime) {
                 _writer.writeDouble(3, _instance.endTime);
             }
-            if (_instance.logs && _instance.logs.length) {
-                _writer.writeRepeatedMessage(4, _instance.logs, LogEntry.serializeBinaryToWriter);
+            if (_instance.statusHistory && _instance.statusHistory.length) {
+                _writer.writeRepeatedMessage(4, _instance.statusHistory, exports.SipStatus.serializeBinaryToWriter);
             }
             if (_instance.counters) {
                 _writer.writeMessage(5, _instance.counters, Counters.serializeBinaryToWriter);
@@ -7036,12 +7730,12 @@
             enumerable: false,
             configurable: true
         });
-        Object.defineProperty(VoipLog.prototype, "logs", {
+        Object.defineProperty(VoipLog.prototype, "statusHistory", {
             get: function () {
-                return this._logs;
+                return this._statusHistory;
             },
             set: function (value) {
-                this._logs = value;
+                this._statusHistory = value;
             },
             enumerable: false,
             configurable: true
@@ -7073,7 +7767,7 @@
                 callId: this.callId,
                 startTime: this.startTime,
                 endTime: this.endTime,
-                logs: (this.logs || []).map(function (m) { return m.toObject(); }),
+                statusHistory: (this.statusHistory || []).map(function (m) { return m.toObject(); }),
                 counters: this.counters ? this.counters.toObject() : undefined
             };
         };
@@ -7095,15 +7789,15 @@
                 callId: this.callId,
                 startTime: this.startTime,
                 endTime: this.endTime,
-                logs: (this.logs || []).map(function (m) { return m.toProtobufJSON(options); }),
+                statusHistory: (this.statusHistory || []).map(function (m) { return m.toProtobufJSON(options); }),
                 counters: this.counters ? this.counters.toProtobufJSON(options) : null
             };
         };
         return VoipLog;
     }());
-    VoipLog.id = 'ondewo.nlu.VoipLog';
+    VoipLog.id = 'ondewo.sip.VoipLog';
     /**
-     * Message implementation for ondewo.nlu.Counters
+     * Message implementation for ondewo.sip.Counters
      */
     var Counters = /** @class */ (function () {
         /**
@@ -7227,155 +7921,9 @@
         };
         return Counters;
     }());
-    Counters.id = 'ondewo.nlu.Counters';
+    Counters.id = 'ondewo.sip.Counters';
     /**
-     * Message implementation for ondewo.nlu.LogEntry
-     */
-    var LogEntry = /** @class */ (function () {
-        /**
-         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-         * @param _value initial values object or instance of LogEntry to deeply clone from
-         */
-        function LogEntry(_value) {
-            _value = _value || {};
-            this.timestamp = _value.timestamp;
-            this.serviceName = _value.serviceName;
-            this.logMessage = _value.logMessage;
-            LogEntry.refineValues(this);
-        }
-        /**
-         * Deserialize binary data to message
-         * @param instance message instance
-         */
-        LogEntry.deserializeBinary = function (bytes) {
-            var instance = new LogEntry();
-            LogEntry.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
-            return instance;
-        };
-        /**
-         * Check all the properties and set default protobuf values if necessary
-         * @param _instance message instance
-         */
-        LogEntry.refineValues = function (_instance) {
-            _instance.timestamp = _instance.timestamp || 0;
-            _instance.serviceName = _instance.serviceName || '';
-            _instance.logMessage = _instance.logMessage || '';
-        };
-        /**
-         * Deserializes / reads binary message into message instance using provided binary reader
-         * @param _instance message instance
-         * @param _reader binary reader instance
-         */
-        LogEntry.deserializeBinaryFromReader = function (_instance, _reader) {
-            while (_reader.nextField()) {
-                if (_reader.isEndGroup())
-                    break;
-                switch (_reader.getFieldNumber()) {
-                    case 1:
-                        _instance.timestamp = _reader.readDouble();
-                        break;
-                    case 2:
-                        _instance.serviceName = _reader.readString();
-                        break;
-                    case 3:
-                        _instance.logMessage = _reader.readString();
-                        break;
-                    default:
-                        _reader.skipField();
-                }
-            }
-            LogEntry.refineValues(_instance);
-        };
-        /**
-         * Serializes a message to binary format using provided binary reader
-         * @param _instance message instance
-         * @param _writer binary writer instance
-         */
-        LogEntry.serializeBinaryToWriter = function (_instance, _writer) {
-            if (_instance.timestamp) {
-                _writer.writeDouble(1, _instance.timestamp);
-            }
-            if (_instance.serviceName) {
-                _writer.writeString(2, _instance.serviceName);
-            }
-            if (_instance.logMessage) {
-                _writer.writeString(3, _instance.logMessage);
-            }
-        };
-        Object.defineProperty(LogEntry.prototype, "timestamp", {
-            get: function () {
-                return this._timestamp;
-            },
-            set: function (value) {
-                this._timestamp = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(LogEntry.prototype, "serviceName", {
-            get: function () {
-                return this._serviceName;
-            },
-            set: function (value) {
-                this._serviceName = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(LogEntry.prototype, "logMessage", {
-            get: function () {
-                return this._logMessage;
-            },
-            set: function (value) {
-                this._logMessage = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * Serialize message to binary data
-         * @param instance message instance
-         */
-        LogEntry.prototype.serializeBinary = function () {
-            var writer = new googleProtobuf.BinaryWriter();
-            LogEntry.serializeBinaryToWriter(this, writer);
-            return writer.getResultBuffer();
-        };
-        /**
-         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-         */
-        LogEntry.prototype.toObject = function () {
-            return {
-                timestamp: this.timestamp,
-                serviceName: this.serviceName,
-                logMessage: this.logMessage
-            };
-        };
-        /**
-         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-         */
-        LogEntry.prototype.toJSON = function () {
-            return this.toObject();
-        };
-        /**
-         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-         */
-        LogEntry.prototype.toProtobufJSON = function (
-        // @ts-ignore
-        options) {
-            return {
-                timestamp: this.timestamp,
-                serviceName: this.serviceName,
-                logMessage: this.logMessage
-            };
-        };
-        return LogEntry;
-    }());
-    LogEntry.id = 'ondewo.nlu.LogEntry';
-    /**
-     * Message implementation for ondewo.nlu.GetManifestVoipLogRequest
+     * Message implementation for ondewo.sip.GetManifestVoipLogRequest
      */
     var GetManifestVoipLogRequest = /** @class */ (function () {
         /**
@@ -7479,9 +8027,9 @@
         };
         return GetManifestVoipLogRequest;
     }());
-    GetManifestVoipLogRequest.id = 'ondewo.nlu.GetManifestVoipLogRequest';
+    GetManifestVoipLogRequest.id = 'ondewo.sip.GetManifestVoipLogRequest';
     /**
-     * Message implementation for ondewo.nlu.ManifestVoipLog
+     * Message implementation for ondewo.sip.ManifestVoipLog
      */
     var ManifestVoipLog = /** @class */ (function () {
         /**
@@ -7609,118 +8157,9 @@
         };
         return ManifestVoipLog;
     }());
-    ManifestVoipLog.id = 'ondewo.nlu.ManifestVoipLog';
+    ManifestVoipLog.id = 'ondewo.sip.ManifestVoipLog';
     /**
-     * Message implementation for ondewo.nlu.SaveCallLogsRequest
-     */
-    var SaveCallLogsRequest = /** @class */ (function () {
-        /**
-         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-         * @param _value initial values object or instance of SaveCallLogsRequest to deeply clone from
-         */
-        function SaveCallLogsRequest(_value) {
-            _value = _value || {};
-            this.empty = _value.empty
-                ? new googleProtobuf003.Empty(_value.empty)
-                : undefined;
-            SaveCallLogsRequest.refineValues(this);
-        }
-        /**
-         * Deserialize binary data to message
-         * @param instance message instance
-         */
-        SaveCallLogsRequest.deserializeBinary = function (bytes) {
-            var instance = new SaveCallLogsRequest();
-            SaveCallLogsRequest.deserializeBinaryFromReader(instance, new googleProtobuf.BinaryReader(bytes));
-            return instance;
-        };
-        /**
-         * Check all the properties and set default protobuf values if necessary
-         * @param _instance message instance
-         */
-        SaveCallLogsRequest.refineValues = function (_instance) {
-            _instance.empty = _instance.empty || undefined;
-        };
-        /**
-         * Deserializes / reads binary message into message instance using provided binary reader
-         * @param _instance message instance
-         * @param _reader binary reader instance
-         */
-        SaveCallLogsRequest.deserializeBinaryFromReader = function (_instance, _reader) {
-            while (_reader.nextField()) {
-                if (_reader.isEndGroup())
-                    break;
-                switch (_reader.getFieldNumber()) {
-                    case 1:
-                        _instance.empty = new googleProtobuf003.Empty();
-                        _reader.readMessage(_instance.empty, googleProtobuf003.Empty.deserializeBinaryFromReader);
-                        break;
-                    default:
-                        _reader.skipField();
-                }
-            }
-            SaveCallLogsRequest.refineValues(_instance);
-        };
-        /**
-         * Serializes a message to binary format using provided binary reader
-         * @param _instance message instance
-         * @param _writer binary writer instance
-         */
-        SaveCallLogsRequest.serializeBinaryToWriter = function (_instance, _writer) {
-            if (_instance.empty) {
-                _writer.writeMessage(1, _instance.empty, googleProtobuf003.Empty.serializeBinaryToWriter);
-            }
-        };
-        Object.defineProperty(SaveCallLogsRequest.prototype, "empty", {
-            get: function () {
-                return this._empty;
-            },
-            set: function (value) {
-                this._empty = value;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * Serialize message to binary data
-         * @param instance message instance
-         */
-        SaveCallLogsRequest.prototype.serializeBinary = function () {
-            var writer = new googleProtobuf.BinaryWriter();
-            SaveCallLogsRequest.serializeBinaryToWriter(this, writer);
-            return writer.getResultBuffer();
-        };
-        /**
-         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-         */
-        SaveCallLogsRequest.prototype.toObject = function () {
-            return {
-                empty: this.empty ? this.empty.toObject() : undefined
-            };
-        };
-        /**
-         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-         */
-        SaveCallLogsRequest.prototype.toJSON = function () {
-            return this.toObject();
-        };
-        /**
-         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-         */
-        SaveCallLogsRequest.prototype.toProtobufJSON = function (
-        // @ts-ignore
-        options) {
-            return {
-                empty: this.empty ? this.empty.toProtobufJSON(options) : null
-            };
-        };
-        return SaveCallLogsRequest;
-    }());
-    SaveCallLogsRequest.id = 'ondewo.nlu.SaveCallLogsRequest';
-    /**
-     * Message implementation for ondewo.nlu.SaveCallLogsResponse
+     * Message implementation for ondewo.sip.SaveCallLogsResponse
      */
     var SaveCallLogsResponse = /** @class */ (function () {
         /**
@@ -7824,7 +8263,7 @@
         };
         return SaveCallLogsResponse;
     }());
-    SaveCallLogsResponse.id = 'ondewo.nlu.SaveCallLogsResponse';
+    SaveCallLogsResponse.id = 'ondewo.sip.SaveCallLogsResponse';
 
     /* tslint:disable */
     /**
@@ -7835,7 +8274,7 @@
 
     /* tslint:disable */
     /**
-     * Service client implementation for ondewo.nlu.VoipCallLogs
+     * Service client implementation for ondewo.sip.VoipCallLogs
      */
     var VoipCallLogsClient = /** @class */ (function () {
         function VoipCallLogsClient(settings, clientFactory, handler) {
@@ -7848,64 +8287,7 @@
              */
             this.$raw = {
                 /**
-                 * Unary RPC for /ondewo.nlu.VoipCallLogs/StartVoipLog
-                 *
-                 * @param requestMessage Request message
-                 * @param requestMetadata Request metadata
-                 * @returns Observable<GrpcEvent<thisProto.VoipLogResponse>>
-                 */
-                startVoipLog: function (requestData, requestMetadata) {
-                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
-                    return _this.handler.handle({
-                        type: common.GrpcCallType.unary,
-                        client: _this.client,
-                        path: '/ondewo.nlu.VoipCallLogs/StartVoipLog',
-                        requestData: requestData,
-                        requestMetadata: requestMetadata,
-                        requestClass: StartVoipLogRequest,
-                        responseClass: VoipLogResponse
-                    });
-                },
-                /**
-                 * Unary RPC for /ondewo.nlu.VoipCallLogs/FinishVoipLog
-                 *
-                 * @param requestMessage Request message
-                 * @param requestMetadata Request metadata
-                 * @returns Observable<GrpcEvent<thisProto.VoipLogResponse>>
-                 */
-                finishVoipLog: function (requestData, requestMetadata) {
-                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
-                    return _this.handler.handle({
-                        type: common.GrpcCallType.unary,
-                        client: _this.client,
-                        path: '/ondewo.nlu.VoipCallLogs/FinishVoipLog',
-                        requestData: requestData,
-                        requestMetadata: requestMetadata,
-                        requestClass: FinishVoipLogRequest,
-                        responseClass: VoipLogResponse
-                    });
-                },
-                /**
-                 * Unary RPC for /ondewo.nlu.VoipCallLogs/UpdateVoipLog
-                 *
-                 * @param requestMessage Request message
-                 * @param requestMetadata Request metadata
-                 * @returns Observable<GrpcEvent<thisProto.VoipLogResponse>>
-                 */
-                updateVoipLog: function (requestData, requestMetadata) {
-                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
-                    return _this.handler.handle({
-                        type: common.GrpcCallType.unary,
-                        client: _this.client,
-                        path: '/ondewo.nlu.VoipCallLogs/UpdateVoipLog',
-                        requestData: requestData,
-                        requestMetadata: requestMetadata,
-                        requestClass: UpdateVoipLogRequest,
-                        responseClass: VoipLogResponse
-                    });
-                },
-                /**
-                 * Unary RPC for /ondewo.nlu.VoipCallLogs/GetVoipLog
+                 * Unary RPC for /ondewo.sip.VoipCallLogs/GetVoipLog
                  *
                  * @param requestMessage Request message
                  * @param requestMetadata Request metadata
@@ -7916,7 +8298,7 @@
                     return _this.handler.handle({
                         type: common.GrpcCallType.unary,
                         client: _this.client,
-                        path: '/ondewo.nlu.VoipCallLogs/GetVoipLog',
+                        path: '/ondewo.sip.VoipCallLogs/GetVoipLog',
                         requestData: requestData,
                         requestMetadata: requestMetadata,
                         requestClass: GetVoipLogRequest,
@@ -7924,7 +8306,7 @@
                     });
                 },
                 /**
-                 * Unary RPC for /ondewo.nlu.VoipCallLogs/GetManifestVoipLog
+                 * Unary RPC for /ondewo.sip.VoipCallLogs/GetManifestVoipLog
                  *
                  * @param requestMessage Request message
                  * @param requestMetadata Request metadata
@@ -7935,7 +8317,7 @@
                     return _this.handler.handle({
                         type: common.GrpcCallType.unary,
                         client: _this.client,
-                        path: '/ondewo.nlu.VoipCallLogs/GetManifestVoipLog',
+                        path: '/ondewo.sip.VoipCallLogs/GetManifestVoipLog',
                         requestData: requestData,
                         requestMetadata: requestMetadata,
                         requestClass: GetManifestVoipLogRequest,
@@ -7943,7 +8325,7 @@
                     });
                 },
                 /**
-                 * Unary RPC for /ondewo.nlu.VoipCallLogs/ActivateSaveCallLogs
+                 * Unary RPC for /ondewo.sip.VoipCallLogs/ActivateSaveCallLogs
                  *
                  * @param requestMessage Request message
                  * @param requestMetadata Request metadata
@@ -7954,57 +8336,18 @@
                     return _this.handler.handle({
                         type: common.GrpcCallType.unary,
                         client: _this.client,
-                        path: '/ondewo.nlu.VoipCallLogs/ActivateSaveCallLogs',
+                        path: '/ondewo.sip.VoipCallLogs/ActivateSaveCallLogs',
                         requestData: requestData,
                         requestMetadata: requestMetadata,
-                        requestClass: SaveCallLogsRequest,
+                        requestClass: googleProtobuf003.Empty,
                         responseClass: SaveCallLogsResponse
                     });
                 }
             };
-            this.client = clientFactory.createClient('ondewo.nlu.VoipCallLogs', settings);
+            this.client = clientFactory.createClient('ondewo.sip.VoipCallLogs', settings);
         }
         /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/StartVoipLog
-         *
-         * @param requestMessage Request message
-         * @param requestMetadata Request metadata
-         * @returns Observable<thisProto.VoipLogResponse>
-         */
-        VoipCallLogsClient.prototype.startVoipLog = function (requestData, requestMetadata) {
-            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
-            return this.$raw
-                .startVoipLog(requestData, requestMetadata)
-                .pipe(i2.throwStatusErrors(), i2.takeMessages());
-        };
-        /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/FinishVoipLog
-         *
-         * @param requestMessage Request message
-         * @param requestMetadata Request metadata
-         * @returns Observable<thisProto.VoipLogResponse>
-         */
-        VoipCallLogsClient.prototype.finishVoipLog = function (requestData, requestMetadata) {
-            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
-            return this.$raw
-                .finishVoipLog(requestData, requestMetadata)
-                .pipe(i2.throwStatusErrors(), i2.takeMessages());
-        };
-        /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/UpdateVoipLog
-         *
-         * @param requestMessage Request message
-         * @param requestMetadata Request metadata
-         * @returns Observable<thisProto.VoipLogResponse>
-         */
-        VoipCallLogsClient.prototype.updateVoipLog = function (requestData, requestMetadata) {
-            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
-            return this.$raw
-                .updateVoipLog(requestData, requestMetadata)
-                .pipe(i2.throwStatusErrors(), i2.takeMessages());
-        };
-        /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/GetVoipLog
+         * Unary RPC for /ondewo.sip.VoipCallLogs/GetVoipLog
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -8017,7 +8360,7 @@
                 .pipe(i2.throwStatusErrors(), i2.takeMessages());
         };
         /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/GetManifestVoipLog
+         * Unary RPC for /ondewo.sip.VoipCallLogs/GetManifestVoipLog
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -8030,7 +8373,7 @@
                 .pipe(i2.throwStatusErrors(), i2.takeMessages());
         };
         /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/ActivateSaveCallLogs
+         * Unary RPC for /ondewo.sip.VoipCallLogs/ActivateSaveCallLogs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -8278,6 +8621,330 @@
     ];
     ContextsClient.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [GRPC_CONTEXTS_CLIENT_SETTINGS,] }] },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i2.GRPC_CLIENT_FACTORY,] }] },
+        { type: i2.GrpcHandler }
+    ]; };
+
+    /* tslint:disable */
+    /**
+     * Specific GrpcClientSettings for Sip.
+     * Use it only if your default settings are not set or the service requires other settings.
+     */
+    var GRPC_SIP_CLIENT_SETTINGS = new i0.InjectionToken('GRPC_SIP_CLIENT_SETTINGS');
+
+    /* tslint:disable */
+    /**
+     * Service client implementation for ondewo.sip.Sip
+     */
+    var SipClient = /** @class */ (function () {
+        function SipClient(settings, clientFactory, handler) {
+            var _this = this;
+            this.handler = handler;
+            /**
+             * Raw RPC implementation for each service client method.
+             * The raw methods provide more control on the incoming data and events. E.g. they can be useful to read status `OK` metadata.
+             * Attention: these methods do not throw errors when non-zero status codes are received.
+             */
+            this.$raw = {
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/StartSession
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+                 */
+                startSession: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/StartSession',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: StartSessionRequest,
+                        responseClass: googleProtobuf003.Empty
+                    });
+                },
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/EndSession
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+                 */
+                endSession: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/EndSession',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: googleProtobuf003.Empty,
+                        responseClass: googleProtobuf003.Empty
+                    });
+                },
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/StartCall
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+                 */
+                startCall: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/StartCall',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: StartCallRequest,
+                        responseClass: googleProtobuf003.Empty
+                    });
+                },
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/EndCall
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+                 */
+                endCall: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/EndCall',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: EndCallRequest,
+                        responseClass: googleProtobuf003.Empty
+                    });
+                },
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/TransferCall
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+                 */
+                transferCall: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/TransferCall',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: TransferCallRequest,
+                        responseClass: googleProtobuf003.Empty
+                    });
+                },
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/RegisterAccount
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+                 */
+                registerAccount: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/RegisterAccount',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: RegisterAccountRequest,
+                        responseClass: googleProtobuf003.Empty
+                    });
+                },
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/GetSipStatus
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<thisProto.SipStatus>>
+                 */
+                getSipStatus: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/GetSipStatus',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: googleProtobuf003.Empty,
+                        responseClass: exports.SipStatus
+                    });
+                },
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/GetSipStatusHistory
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<thisProto.SipStatusHistoryResponse>>
+                 */
+                getSipStatusHistory: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/GetSipStatusHistory',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: googleProtobuf003.Empty,
+                        responseClass: SipStatusHistoryResponse
+                    });
+                },
+                /**
+                 * Unary RPC for /ondewo.sip.Sip/PlayWavFiles
+                 *
+                 * @param requestMessage Request message
+                 * @param requestMetadata Request metadata
+                 * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+                 */
+                playWavFiles: function (requestData, requestMetadata) {
+                    if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+                    return _this.handler.handle({
+                        type: common.GrpcCallType.unary,
+                        client: _this.client,
+                        path: '/ondewo.sip.Sip/PlayWavFiles',
+                        requestData: requestData,
+                        requestMetadata: requestMetadata,
+                        requestClass: PlayWavFilesRequest,
+                        responseClass: googleProtobuf003.Empty
+                    });
+                }
+            };
+            this.client = clientFactory.createClient('ondewo.sip.Sip', settings);
+        }
+        /**
+         * Unary RPC for /ondewo.sip.Sip/StartSession
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<googleProtobuf000.Empty>
+         */
+        SipClient.prototype.startSession = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .startSession(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
+         * Unary RPC for /ondewo.sip.Sip/EndSession
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<googleProtobuf000.Empty>
+         */
+        SipClient.prototype.endSession = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .endSession(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
+         * Unary RPC for /ondewo.sip.Sip/StartCall
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<googleProtobuf000.Empty>
+         */
+        SipClient.prototype.startCall = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .startCall(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
+         * Unary RPC for /ondewo.sip.Sip/EndCall
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<googleProtobuf000.Empty>
+         */
+        SipClient.prototype.endCall = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .endCall(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
+         * Unary RPC for /ondewo.sip.Sip/TransferCall
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<googleProtobuf000.Empty>
+         */
+        SipClient.prototype.transferCall = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .transferCall(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
+         * Unary RPC for /ondewo.sip.Sip/RegisterAccount
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<googleProtobuf000.Empty>
+         */
+        SipClient.prototype.registerAccount = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .registerAccount(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
+         * Unary RPC for /ondewo.sip.Sip/GetSipStatus
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<thisProto.SipStatus>
+         */
+        SipClient.prototype.getSipStatus = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .getSipStatus(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
+         * Unary RPC for /ondewo.sip.Sip/GetSipStatusHistory
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<thisProto.SipStatusHistoryResponse>
+         */
+        SipClient.prototype.getSipStatusHistory = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .getSipStatusHistory(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        /**
+         * Unary RPC for /ondewo.sip.Sip/PlayWavFiles
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<googleProtobuf000.Empty>
+         */
+        SipClient.prototype.playWavFiles = function (requestData, requestMetadata) {
+            if (requestMetadata === void 0) { requestMetadata = new common.GrpcMetadata(); }
+            return this.$raw
+                .playWavFiles(requestData, requestMetadata)
+                .pipe(i2.throwStatusErrors(), i2.takeMessages());
+        };
+        return SipClient;
+    }());
+    SipClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function SipClient_Factory() { return new SipClient(i0.ɵɵinject(GRPC_SIP_CLIENT_SETTINGS, 8), i0.ɵɵinject(i2.GRPC_CLIENT_FACTORY), i0.ɵɵinject(i2.GrpcHandler)); }, token: SipClient, providedIn: "any" });
+    SipClient.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'any' },] }
+    ];
+    SipClient.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [GRPC_SIP_CLIENT_SETTINGS,] }] },
         { type: undefined, decorators: [{ type: i0.Inject, args: [i2.GRPC_CLIENT_FACTORY,] }] },
         { type: i2.GrpcHandler }
     ]; };
@@ -8881,8 +9548,9 @@
     exports.DeleteContextRequest = DeleteContextRequest;
     exports.DeployPreconditionRequest = DeployPreconditionRequest;
     exports.DeployPreconditionResponse = DeployPreconditionResponse;
-    exports.FinishVoipLogRequest = FinishVoipLogRequest;
+    exports.EndCallRequest = EndCallRequest;
     exports.GRPC_CONTEXTS_CLIENT_SETTINGS = GRPC_CONTEXTS_CLIENT_SETTINGS;
+    exports.GRPC_SIP_CLIENT_SETTINGS = GRPC_SIP_CLIENT_SETTINGS;
     exports.GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS = GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS;
     exports.GRPC_VOIP_SESSIONS_CLIENT_SETTINGS = GRPC_VOIP_SESSIONS_CLIENT_SETTINGS;
     exports.GetCallIDsRequest = GetCallIDsRequest;
@@ -8900,27 +9568,31 @@
     exports.Http = Http;
     exports.ListContextsRequest = ListContextsRequest;
     exports.ListContextsResponse = ListContextsResponse;
-    exports.LogEntry = LogEntry;
     exports.ManifestRequest = ManifestRequest;
     exports.ManifestVoipLog = ManifestVoipLog;
+    exports.PlayWavFilesRequest = PlayWavFilesRequest;
+    exports.RegisterAccountRequest = RegisterAccountRequest;
     exports.RemoveManifestResponse = RemoveManifestResponse;
     exports.RunManifestResponse = RunManifestResponse;
-    exports.SaveCallLogsRequest = SaveCallLogsRequest;
     exports.SaveCallLogsResponse = SaveCallLogsResponse;
     exports.ServiceConfig = ServiceConfig;
     exports.ServiceStatus = ServiceStatus;
     exports.ShutdownUnhealthyCallsRequest = ShutdownUnhealthyCallsRequest;
     exports.ShutdownUnhealthyCallsResponse = ShutdownUnhealthyCallsResponse;
+    exports.SipClient = SipClient;
+    exports.SipStatusHistoryResponse = SipStatusHistoryResponse;
     exports.StartCallInstanceRequest = StartCallInstanceRequest;
     exports.StartCallInstanceResponse = StartCallInstanceResponse;
-    exports.StartVoipLogRequest = StartVoipLogRequest;
+    exports.StartCallRequest = StartCallRequest;
+    exports.StartMultipleCallInstancesRequest = StartMultipleCallInstancesRequest;
+    exports.StartMultipleCallInstancesResponse = StartMultipleCallInstancesResponse;
+    exports.StartSessionRequest = StartSessionRequest;
     exports.StopCallInstanceResponse = StopCallInstanceResponse;
+    exports.TransferCallRequest = TransferCallRequest;
     exports.UpdateContextRequest = UpdateContextRequest;
     exports.UpdateServicesStatusResponse = UpdateServicesStatusResponse;
-    exports.UpdateVoipLogRequest = UpdateVoipLogRequest;
     exports.VoipCallLogsClient = VoipCallLogsClient;
     exports.VoipLog = VoipLog;
-    exports.VoipLogResponse = VoipLogResponse;
     exports.VoipManifest = VoipManifest;
     exports.VoipManifestResponse = VoipManifestResponse;
     exports.VoipManifestStatus = VoipManifestStatus;
