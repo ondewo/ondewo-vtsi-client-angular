@@ -63,6 +63,14 @@ export declare class VoipSessionsClient {
          */
         stopCallInstance: (requestData: thisProto.StopCallInstanceRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StopCallInstanceResponse>>;
         /**
+         * Unary RPC for /ondewo.nlu.VoipSessions/StartMultipleCallInstances
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.StartMultipleCallInstancesResponse>>
+         */
+        startMultipleCallInstances: (requestData: thisProto.StartMultipleCallInstancesRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StartMultipleCallInstancesResponse>>;
+        /**
          * Unary RPC for /ondewo.nlu.VoipSessions/GetCallIDs
          *
          * @param requestMessage Request message
@@ -168,6 +176,14 @@ export declare class VoipSessionsClient {
      * @returns Observable<thisProto.StopCallInstanceResponse>
      */
     stopCallInstance(requestData: thisProto.StopCallInstanceRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StopCallInstanceResponse>;
+    /**
+     * Unary RPC for /ondewo.nlu.VoipSessions/StartMultipleCallInstances
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.StartMultipleCallInstancesResponse>
+     */
+    startMultipleCallInstances(requestData: thisProto.StartMultipleCallInstancesRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StartMultipleCallInstancesResponse>;
     /**
      * Unary RPC for /ondewo.nlu.VoipSessions/GetCallIDs
      *

@@ -1,6 +1,6 @@
 {
   "name": "@ondewo/vtsi-client-angular",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Ondewo voice telephone system integration client library for angular",
   "keywords": ["ondewo", "vtsi", "api", "client", "ngx-grpc", "grpc"],
   "scripts": {

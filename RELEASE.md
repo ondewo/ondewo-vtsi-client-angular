@@ -1,6 +1,13 @@
 # Release History
 *****************
 
+## Release ONDEWO VTSI Angular Client 0.4.0
+
+### New Features
+* Keeps track of ONDEWO VTSI API 0.4.*
+
+***
+
 ## Release ONDEWO VTSI Angular Client 0.3.0
 
 ### New Features

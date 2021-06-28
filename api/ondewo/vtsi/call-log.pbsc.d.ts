@@ -2,8 +2,9 @@ import { GrpcClientFactory, GrpcEvent, GrpcMetadata } from '@ngx-grpc/common';
 import { GrpcHandler } from '@ngx-grpc/core';
 import { Observable } from 'rxjs';
 import * as thisProto from './call-log.pb';
+import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 /**
- * Service client implementation for ondewo.nlu.VoipCallLogs
+ * Service client implementation for ondewo.sip.VoipCallLogs
  */
 export declare class VoipCallLogsClient {
     private handler;
@@ -15,31 +16,7 @@ export declare class VoipCallLogsClient {
      */
     $raw: {
         /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/StartVoipLog
-         *
-         * @param requestMessage Request message
-         * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.VoipLogResponse>>
-         */
-        startVoipLog: (requestData: thisProto.StartVoipLogRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.VoipLogResponse>>;
-        /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/FinishVoipLog
-         *
-         * @param requestMessage Request message
-         * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.VoipLogResponse>>
-         */
-        finishVoipLog: (requestData: thisProto.FinishVoipLogRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.VoipLogResponse>>;
-        /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/UpdateVoipLog
-         *
-         * @param requestMessage Request message
-         * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.VoipLogResponse>>
-         */
-        updateVoipLog: (requestData: thisProto.UpdateVoipLogRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.VoipLogResponse>>;
-        /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/GetVoipLog
+         * Unary RPC for /ondewo.sip.VoipCallLogs/GetVoipLog
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -47,7 +24,7 @@ export declare class VoipCallLogsClient {
          */
         getVoipLog: (requestData: thisProto.GetVoipLogRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetVoipLogResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/GetManifestVoipLog
+         * Unary RPC for /ondewo.sip.VoipCallLogs/GetManifestVoipLog
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -55,41 +32,17 @@ export declare class VoipCallLogsClient {
          */
         getManifestVoipLog: (requestData: thisProto.GetManifestVoipLogRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.ManifestVoipLog>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipCallLogs/ActivateSaveCallLogs
+         * Unary RPC for /ondewo.sip.VoipCallLogs/ActivateSaveCallLogs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
          * @returns Observable<GrpcEvent<thisProto.SaveCallLogsResponse>>
          */
-        activateSaveCallLogs: (requestData: thisProto.SaveCallLogsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.SaveCallLogsResponse>>;
+        activateSaveCallLogs: (requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.SaveCallLogsResponse>>;
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
-     * Unary RPC for /ondewo.nlu.VoipCallLogs/StartVoipLog
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.VoipLogResponse>
-     */
-    startVoipLog(requestData: thisProto.StartVoipLogRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.VoipLogResponse>;
-    /**
-     * Unary RPC for /ondewo.nlu.VoipCallLogs/FinishVoipLog
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.VoipLogResponse>
-     */
-    finishVoipLog(requestData: thisProto.FinishVoipLogRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.VoipLogResponse>;
-    /**
-     * Unary RPC for /ondewo.nlu.VoipCallLogs/UpdateVoipLog
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.VoipLogResponse>
-     */
-    updateVoipLog(requestData: thisProto.UpdateVoipLogRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.VoipLogResponse>;
-    /**
-     * Unary RPC for /ondewo.nlu.VoipCallLogs/GetVoipLog
+     * Unary RPC for /ondewo.sip.VoipCallLogs/GetVoipLog
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -97,7 +50,7 @@ export declare class VoipCallLogsClient {
      */
     getVoipLog(requestData: thisProto.GetVoipLogRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetVoipLogResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipCallLogs/GetManifestVoipLog
+     * Unary RPC for /ondewo.sip.VoipCallLogs/GetManifestVoipLog
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -105,11 +58,11 @@ export declare class VoipCallLogsClient {
      */
     getManifestVoipLog(requestData: thisProto.GetManifestVoipLogRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.ManifestVoipLog>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipCallLogs/ActivateSaveCallLogs
+     * Unary RPC for /ondewo.sip.VoipCallLogs/ActivateSaveCallLogs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
      * @returns Observable<thisProto.SaveCallLogsResponse>
      */
-    activateSaveCallLogs(requestData: thisProto.SaveCallLogsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.SaveCallLogsResponse>;
+    activateSaveCallLogs(requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata): Observable<thisProto.SaveCallLogsResponse>;
 }
