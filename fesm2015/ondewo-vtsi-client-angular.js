@@ -2,7 +2,7 @@ import { InjectionToken, ɵɵdefineInjectable, ɵɵinject, Injectable, Optional,
 import { GrpcMetadata, GrpcCallType, uint8ArrayToBase64 } from '@ngx-grpc/common';
 import { throwStatusErrors, takeMessages, GRPC_CLIENT_FACTORY, GrpcHandler } from '@ngx-grpc/core';
 import { BinaryReader, BinaryWriter } from 'google-protobuf';
-import { FieldMask, Struct, Empty, Timestamp } from '@ngx-grpc/well-known-types';
+import { FieldMask, Empty, Timestamp } from '@ngx-grpc/well-known-types';
 
 /**
  * Message implementation for ondewo.nlu.Context
@@ -1226,8 +1226,34 @@ class DeleteAllContextsRequest {
 }
 DeleteAllContextsRequest.id = 'ondewo.nlu.DeleteAllContextsRequest';
 
+var Pcm;
+(function (Pcm) {
+    Pcm[Pcm["PCM_16"] = 0] = "PCM_16";
+    Pcm[Pcm["PCM_24"] = 1] = "PCM_24";
+    Pcm[Pcm["PCM_32"] = 2] = "PCM_32";
+    Pcm[Pcm["PCM_S8"] = 3] = "PCM_S8";
+    Pcm[Pcm["PCM_U8"] = 4] = "PCM_U8";
+    Pcm[Pcm["FLOAT"] = 5] = "FLOAT";
+    Pcm[Pcm["DOUBLE"] = 6] = "DOUBLE";
+})(Pcm || (Pcm = {}));
+var AudioFormat;
+(function (AudioFormat) {
+    AudioFormat[AudioFormat["wav"] = 0] = "wav";
+    AudioFormat[AudioFormat["flac"] = 1] = "flac";
+    AudioFormat[AudioFormat["caf"] = 2] = "caf";
+    AudioFormat[AudioFormat["mp3"] = 3] = "mp3";
+    AudioFormat[AudioFormat["aac"] = 4] = "aac";
+    AudioFormat[AudioFormat["ogg"] = 5] = "ogg";
+    AudioFormat[AudioFormat["wma"] = 6] = "wma";
+})(AudioFormat || (AudioFormat = {}));
+var CTCDecoding;
+(function (CTCDecoding) {
+    CTCDecoding[CTCDecoding["DEFAULT"] = 0] = "DEFAULT";
+    CTCDecoding[CTCDecoding["GREEDY"] = 1] = "GREEDY";
+    CTCDecoding[CTCDecoding["BEAM_SEARCH_WITH_LM"] = 2] = "BEAM_SEARCH_WITH_LM";
+})(CTCDecoding || (CTCDecoding = {}));
 /**
- * Message implementation for ondewo.nlu.VoipManifest
+ * Message implementation for ondewo.vtsi.VoipManifest
  */
 class VoipManifest {
     /**
@@ -1362,9 +1388,9 @@ class VoipManifest {
         };
     }
 }
-VoipManifest.id = 'ondewo.nlu.VoipManifest';
+VoipManifest.id = 'ondewo.vtsi.VoipManifest';
 /**
- * Message implementation for ondewo.nlu.ManifestRequest
+ * Message implementation for ondewo.vtsi.ManifestRequest
  */
 class ManifestRequest {
     /**
@@ -1463,9 +1489,9 @@ class ManifestRequest {
         };
     }
 }
-ManifestRequest.id = 'ondewo.nlu.ManifestRequest';
+ManifestRequest.id = 'ondewo.vtsi.ManifestRequest';
 /**
- * Message implementation for ondewo.nlu.RunManifestResponse
+ * Message implementation for ondewo.vtsi.RunManifestResponse
  */
 class RunManifestResponse {
     /**
@@ -1583,9 +1609,9 @@ class RunManifestResponse {
         };
     }
 }
-RunManifestResponse.id = 'ondewo.nlu.RunManifestResponse';
+RunManifestResponse.id = 'ondewo.vtsi.RunManifestResponse';
 /**
- * Message implementation for ondewo.nlu.RemoveManifestResponse
+ * Message implementation for ondewo.vtsi.RemoveManifestResponse
  */
 class RemoveManifestResponse {
     /**
@@ -1721,30 +1747,29 @@ class RemoveManifestResponse {
         };
     }
 }
-RemoveManifestResponse.id = 'ondewo.nlu.RemoveManifestResponse';
+RemoveManifestResponse.id = 'ondewo.vtsi.RemoveManifestResponse';
 /**
- * Message implementation for ondewo.nlu.ServiceConfig
+ * Message implementation for ondewo.vtsi.BaseServiceConfig
  */
-class ServiceConfig {
+class BaseServiceConfig {
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of ServiceConfig to deeply clone from
+     * @param _value initial values object or instance of BaseServiceConfig to deeply clone from
      */
     constructor(_value) {
         _value = _value || {};
         this.host = _value.host;
         this.port = _value.port;
-        this.serviceIdentifier = _value.serviceIdentifier;
-        this.languageCode = _value.languageCode;
-        ServiceConfig.refineValues(this);
+        this.grpcCert = _value.grpcCert;
+        BaseServiceConfig.refineValues(this);
     }
     /**
      * Deserialize binary data to message
      * @param instance message instance
      */
     static deserializeBinary(bytes) {
-        const instance = new ServiceConfig();
-        ServiceConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        const instance = new BaseServiceConfig();
+        BaseServiceConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
         return instance;
     }
     /**
@@ -1754,8 +1779,7 @@ class ServiceConfig {
     static refineValues(_instance) {
         _instance.host = _instance.host || '';
         _instance.port = _instance.port || 0;
-        _instance.serviceIdentifier = _instance.serviceIdentifier || '';
-        _instance.languageCode = _instance.languageCode || '';
+        _instance.grpcCert = _instance.grpcCert || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -1774,16 +1798,13 @@ class ServiceConfig {
                     _instance.port = _reader.readInt32();
                     break;
                 case 3:
-                    _instance.serviceIdentifier = _reader.readString();
-                    break;
-                case 5:
-                    _instance.languageCode = _reader.readString();
+                    _instance.grpcCert = _reader.readString();
                     break;
                 default:
                     _reader.skipField();
             }
         }
-        ServiceConfig.refineValues(_instance);
+        BaseServiceConfig.refineValues(_instance);
     }
     /**
      * Serializes a message to binary format using provided binary reader
@@ -1797,11 +1818,8 @@ class ServiceConfig {
         if (_instance.port) {
             _writer.writeInt32(2, _instance.port);
         }
-        if (_instance.serviceIdentifier) {
-            _writer.writeString(3, _instance.serviceIdentifier);
-        }
-        if (_instance.languageCode) {
-            _writer.writeString(5, _instance.languageCode);
+        if (_instance.grpcCert) {
+            _writer.writeString(3, _instance.grpcCert);
         }
     }
     get host() {
@@ -1816,11 +1834,308 @@ class ServiceConfig {
     set port(value) {
         this._port = value;
     }
-    get serviceIdentifier() {
-        return this._serviceIdentifier;
+    get grpcCert() {
+        return this._grpcCert;
     }
-    set serviceIdentifier(value) {
-        this._serviceIdentifier = value;
+    set grpcCert(value) {
+        this._grpcCert = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        BaseServiceConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            host: this.host,
+            port: this.port,
+            grpcCert: this.grpcCert
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            host: this.host,
+            port: this.port,
+            grpcCert: this.grpcCert
+        };
+    }
+}
+BaseServiceConfig.id = 'ondewo.vtsi.BaseServiceConfig';
+/**
+ * Message implementation for ondewo.vtsi.Credentials
+ */
+class Credentials {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of Credentials to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.accountName = _value.accountName;
+        this.password = _value.password;
+        Credentials.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new Credentials();
+        Credentials.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.accountName = _instance.accountName || '';
+        _instance.password = _instance.password || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.accountName = _reader.readString();
+                    break;
+                case 2:
+                    _instance.password = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        Credentials.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.accountName) {
+            _writer.writeString(1, _instance.accountName);
+        }
+        if (_instance.password) {
+            _writer.writeString(2, _instance.password);
+        }
+    }
+    get accountName() {
+        return this._accountName;
+    }
+    set accountName(value) {
+        this._accountName = value;
+    }
+    get password() {
+        return this._password;
+    }
+    set password(value) {
+        this._password = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        Credentials.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            accountName: this.accountName,
+            password: this.password
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            accountName: this.accountName,
+            password: this.password
+        };
+    }
+}
+Credentials.id = 'ondewo.vtsi.Credentials';
+/**
+ * Message implementation for ondewo.vtsi.NLUConfig
+ */
+class NLUConfig {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of NLUConfig to deeply clone from
+     */
+    constructor(_value) {
+        this._authentication = NLUConfig.AuthenticationCase.none;
+        _value = _value || {};
+        this.baseConfig = _value.baseConfig
+            ? new BaseServiceConfig(_value.baseConfig)
+            : undefined;
+        this.credentials = _value.credentials
+            ? new Credentials(_value.credentials)
+            : undefined;
+        this.authToken = _value.authToken;
+        this.languageCode = _value.languageCode;
+        this.projectId = _value.projectId;
+        this.initialIntent = _value.initialIntent;
+        this.contexts = (_value.contexts || []).map(m => new Context(m));
+        NLUConfig.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new NLUConfig();
+        NLUConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.baseConfig = _instance.baseConfig || undefined;
+        _instance.languageCode = _instance.languageCode || '';
+        _instance.projectId = _instance.projectId || '';
+        _instance.initialIntent = _instance.initialIntent || '';
+        _instance.contexts = _instance.contexts || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.baseConfig = new BaseServiceConfig();
+                    _reader.readMessage(_instance.baseConfig, BaseServiceConfig.deserializeBinaryFromReader);
+                    break;
+                case 2:
+                    _instance.credentials = new Credentials();
+                    _reader.readMessage(_instance.credentials, Credentials.deserializeBinaryFromReader);
+                    break;
+                case 3:
+                    _instance.authToken = _reader.readString();
+                    break;
+                case 4:
+                    _instance.languageCode = _reader.readString();
+                    break;
+                case 5:
+                    _instance.projectId = _reader.readString();
+                    break;
+                case 6:
+                    _instance.initialIntent = _reader.readString();
+                    break;
+                case 7:
+                    const messageInitializer7 = new Context();
+                    _reader.readMessage(messageInitializer7, Context.deserializeBinaryFromReader);
+                    (_instance.contexts = _instance.contexts || []).push(messageInitializer7);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        NLUConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.baseConfig) {
+            _writer.writeMessage(1, _instance.baseConfig, BaseServiceConfig.serializeBinaryToWriter);
+        }
+        if (_instance.credentials) {
+            _writer.writeMessage(2, _instance.credentials, Credentials.serializeBinaryToWriter);
+        }
+        if (_instance.authToken || _instance.authToken === '') {
+            _writer.writeString(3, _instance.authToken);
+        }
+        if (_instance.languageCode) {
+            _writer.writeString(4, _instance.languageCode);
+        }
+        if (_instance.projectId) {
+            _writer.writeString(5, _instance.projectId);
+        }
+        if (_instance.initialIntent) {
+            _writer.writeString(6, _instance.initialIntent);
+        }
+        if (_instance.contexts && _instance.contexts.length) {
+            _writer.writeRepeatedMessage(7, _instance.contexts, Context.serializeBinaryToWriter);
+        }
+    }
+    get baseConfig() {
+        return this._baseConfig;
+    }
+    set baseConfig(value) {
+        this._baseConfig = value;
+    }
+    get credentials() {
+        return this._credentials;
+    }
+    set credentials(value) {
+        if (value !== undefined && value !== null) {
+            this._authToken = undefined;
+            this._authentication = NLUConfig.AuthenticationCase.credentials;
+        }
+        this._credentials = value;
+    }
+    get authToken() {
+        return this._authToken;
+    }
+    set authToken(value) {
+        if (value !== undefined && value !== null) {
+            this._credentials = undefined;
+            this._authentication = NLUConfig.AuthenticationCase.authToken;
+        }
+        this._authToken = value;
     }
     get languageCode() {
         return this._languageCode;
@@ -1828,371 +2143,17 @@ class ServiceConfig {
     set languageCode(value) {
         this._languageCode = value;
     }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        ServiceConfig.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            host: this.host,
-            port: this.port,
-            serviceIdentifier: this.serviceIdentifier,
-            languageCode: this.languageCode
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            host: this.host,
-            port: this.port,
-            serviceIdentifier: this.serviceIdentifier,
-            languageCode: this.languageCode
-        };
-    }
-}
-ServiceConfig.id = 'ondewo.nlu.ServiceConfig';
-/**
- * Message implementation for ondewo.nlu.VoipManifestResponse
- */
-class VoipManifestResponse {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of VoipManifestResponse to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.request = _value.request
-            ? new VoipManifest(_value.request)
-            : undefined;
-        this.success = _value.success;
-        VoipManifestResponse.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new VoipManifestResponse();
-        VoipManifestResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.request = _instance.request || undefined;
-        _instance.success = _instance.success || false;
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    _instance.request = new VoipManifest();
-                    _reader.readMessage(_instance.request, VoipManifest.deserializeBinaryFromReader);
-                    break;
-                case 2:
-                    _instance.success = _reader.readBool();
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        VoipManifestResponse.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.request) {
-            _writer.writeMessage(1, _instance.request, VoipManifest.serializeBinaryToWriter);
-        }
-        if (_instance.success) {
-            _writer.writeBool(2, _instance.success);
-        }
-    }
-    get request() {
-        return this._request;
-    }
-    set request(value) {
-        this._request = value;
-    }
-    get success() {
-        return this._success;
-    }
-    set success(value) {
-        this._success = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        VoipManifestResponse.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            request: this.request ? this.request.toObject() : undefined,
-            success: this.success
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            request: this.request ? this.request.toProtobufJSON(options) : null,
-            success: this.success
-        };
-    }
-}
-VoipManifestResponse.id = 'ondewo.nlu.VoipManifestResponse';
-/**
- * Message implementation for ondewo.nlu.StartCallInstanceRequest
- */
-class StartCallInstanceRequest {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of StartCallInstanceRequest to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.callId = _value.callId;
-        this.sipSimVersion = _value.sipSimVersion;
-        this.projectId = _value.projectId;
-        this.phoneNumber = _value.phoneNumber;
-        this.contexts = (_value.contexts || []).map(m => new Context(m));
-        this.initText = _value.initText;
-        this.asteriskConfig = _value.asteriskConfig
-            ? new ServiceConfig(_value.asteriskConfig)
-            : undefined;
-        this.caiConfig = _value.caiConfig
-            ? new ServiceConfig(_value.caiConfig)
-            : undefined;
-        this.sttConfig = _value.sttConfig
-            ? new ServiceConfig(_value.sttConfig)
-            : undefined;
-        this.ttsConfig = _value.ttsConfig
-            ? new ServiceConfig(_value.ttsConfig)
-            : undefined;
-        this.sipPrefix = _value.sipPrefix;
-        this.sipName = _value.sipName;
-        this.passwordDictionary = _value.passwordDictionary
-            ? new Struct(_value.passwordDictionary)
-            : undefined;
-        this.initialIntent = _value.initialIntent;
-        StartCallInstanceRequest.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new StartCallInstanceRequest();
-        StartCallInstanceRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.callId = _instance.callId || '';
-        _instance.sipSimVersion = _instance.sipSimVersion || '';
-        _instance.projectId = _instance.projectId || '';
-        _instance.phoneNumber = _instance.phoneNumber || '';
-        _instance.contexts = _instance.contexts || [];
-        _instance.initText = _instance.initText || '';
-        _instance.asteriskConfig = _instance.asteriskConfig || undefined;
-        _instance.caiConfig = _instance.caiConfig || undefined;
-        _instance.sttConfig = _instance.sttConfig || undefined;
-        _instance.ttsConfig = _instance.ttsConfig || undefined;
-        _instance.sipPrefix = _instance.sipPrefix || '';
-        _instance.sipName = _instance.sipName || '';
-        _instance.passwordDictionary = _instance.passwordDictionary || undefined;
-        _instance.initialIntent = _instance.initialIntent || '';
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    _instance.callId = _reader.readString();
-                    break;
-                case 2:
-                    _instance.sipSimVersion = _reader.readString();
-                    break;
-                case 3:
-                    _instance.projectId = _reader.readString();
-                    break;
-                case 4:
-                    _instance.phoneNumber = _reader.readString();
-                    break;
-                case 5:
-                    const messageInitializer5 = new Context();
-                    _reader.readMessage(messageInitializer5, Context.deserializeBinaryFromReader);
-                    (_instance.contexts = _instance.contexts || []).push(messageInitializer5);
-                    break;
-                case 6:
-                    _instance.initText = _reader.readString();
-                    break;
-                case 7:
-                    _instance.asteriskConfig = new ServiceConfig();
-                    _reader.readMessage(_instance.asteriskConfig, ServiceConfig.deserializeBinaryFromReader);
-                    break;
-                case 8:
-                    _instance.caiConfig = new ServiceConfig();
-                    _reader.readMessage(_instance.caiConfig, ServiceConfig.deserializeBinaryFromReader);
-                    break;
-                case 9:
-                    _instance.sttConfig = new ServiceConfig();
-                    _reader.readMessage(_instance.sttConfig, ServiceConfig.deserializeBinaryFromReader);
-                    break;
-                case 11:
-                    _instance.ttsConfig = new ServiceConfig();
-                    _reader.readMessage(_instance.ttsConfig, ServiceConfig.deserializeBinaryFromReader);
-                    break;
-                case 12:
-                    _instance.sipPrefix = _reader.readString();
-                    break;
-                case 13:
-                    _instance.sipName = _reader.readString();
-                    break;
-                case 14:
-                    _instance.passwordDictionary = new Struct();
-                    _reader.readMessage(_instance.passwordDictionary, Struct.deserializeBinaryFromReader);
-                    break;
-                case 15:
-                    _instance.initialIntent = _reader.readString();
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        StartCallInstanceRequest.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.callId) {
-            _writer.writeString(1, _instance.callId);
-        }
-        if (_instance.sipSimVersion) {
-            _writer.writeString(2, _instance.sipSimVersion);
-        }
-        if (_instance.projectId) {
-            _writer.writeString(3, _instance.projectId);
-        }
-        if (_instance.phoneNumber) {
-            _writer.writeString(4, _instance.phoneNumber);
-        }
-        if (_instance.contexts && _instance.contexts.length) {
-            _writer.writeRepeatedMessage(5, _instance.contexts, Context.serializeBinaryToWriter);
-        }
-        if (_instance.initText) {
-            _writer.writeString(6, _instance.initText);
-        }
-        if (_instance.asteriskConfig) {
-            _writer.writeMessage(7, _instance.asteriskConfig, ServiceConfig.serializeBinaryToWriter);
-        }
-        if (_instance.caiConfig) {
-            _writer.writeMessage(8, _instance.caiConfig, ServiceConfig.serializeBinaryToWriter);
-        }
-        if (_instance.sttConfig) {
-            _writer.writeMessage(9, _instance.sttConfig, ServiceConfig.serializeBinaryToWriter);
-        }
-        if (_instance.ttsConfig) {
-            _writer.writeMessage(11, _instance.ttsConfig, ServiceConfig.serializeBinaryToWriter);
-        }
-        if (_instance.sipPrefix) {
-            _writer.writeString(12, _instance.sipPrefix);
-        }
-        if (_instance.sipName) {
-            _writer.writeString(13, _instance.sipName);
-        }
-        if (_instance.passwordDictionary) {
-            _writer.writeMessage(14, _instance.passwordDictionary, Struct.serializeBinaryToWriter);
-        }
-        if (_instance.initialIntent) {
-            _writer.writeString(15, _instance.initialIntent);
-        }
-    }
-    get callId() {
-        return this._callId;
-    }
-    set callId(value) {
-        this._callId = value;
-    }
-    get sipSimVersion() {
-        return this._sipSimVersion;
-    }
-    set sipSimVersion(value) {
-        this._sipSimVersion = value;
-    }
     get projectId() {
         return this._projectId;
     }
     set projectId(value) {
         this._projectId = value;
     }
-    get phoneNumber() {
-        return this._phoneNumber;
+    get initialIntent() {
+        return this._initialIntent;
     }
-    set phoneNumber(value) {
-        this._phoneNumber = value;
+    set initialIntent(value) {
+        this._initialIntent = value;
     }
     get contexts() {
         return this._contexts;
@@ -2200,11 +2161,2386 @@ class StartCallInstanceRequest {
     set contexts(value) {
         this._contexts = value;
     }
-    get initText() {
-        return this._initText;
+    get authentication() {
+        return this._authentication;
     }
-    set initText(value) {
-        this._initText = value;
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        NLUConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            baseConfig: this.baseConfig ? this.baseConfig.toObject() : undefined,
+            credentials: this.credentials ? this.credentials.toObject() : undefined,
+            authToken: this.authToken,
+            languageCode: this.languageCode,
+            projectId: this.projectId,
+            initialIntent: this.initialIntent,
+            contexts: (this.contexts || []).map(m => m.toObject())
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        var _a;
+        return {
+            baseConfig: this.baseConfig
+                ? this.baseConfig.toProtobufJSON(options)
+                : null,
+            credentials: this.credentials
+                ? this.credentials.toProtobufJSON(options)
+                : null,
+            authToken: (_a = this.authToken) !== null && _a !== void 0 ? _a : null,
+            languageCode: this.languageCode,
+            projectId: this.projectId,
+            initialIntent: this.initialIntent,
+            contexts: (this.contexts || []).map(m => m.toProtobufJSON(options))
+        };
+    }
+}
+NLUConfig.id = 'ondewo.vtsi.NLUConfig';
+(function (NLUConfig) {
+    let AuthenticationCase;
+    (function (AuthenticationCase) {
+        AuthenticationCase[AuthenticationCase["none"] = 0] = "none";
+        AuthenticationCase[AuthenticationCase["credentials"] = 1] = "credentials";
+        AuthenticationCase[AuthenticationCase["authToken"] = 2] = "authToken";
+    })(AuthenticationCase = NLUConfig.AuthenticationCase || (NLUConfig.AuthenticationCase = {}));
+})(NLUConfig || (NLUConfig = {}));
+/**
+ * Message implementation for ondewo.vtsi.T2SConfig
+ */
+class T2SConfig {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of T2SConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.baseConfig = _value.baseConfig
+            ? new BaseServiceConfig(_value.baseConfig)
+            : undefined;
+        this.t2sConfig = _value.t2sConfig
+            ? new RequestConfig(_value.t2sConfig)
+            : undefined;
+        T2SConfig.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new T2SConfig();
+        T2SConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.baseConfig = _instance.baseConfig || undefined;
+        _instance.t2sConfig = _instance.t2sConfig || undefined;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.baseConfig = new BaseServiceConfig();
+                    _reader.readMessage(_instance.baseConfig, BaseServiceConfig.deserializeBinaryFromReader);
+                    break;
+                case 2:
+                    _instance.t2sConfig = new RequestConfig();
+                    _reader.readMessage(_instance.t2sConfig, RequestConfig.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        T2SConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.baseConfig) {
+            _writer.writeMessage(1, _instance.baseConfig, BaseServiceConfig.serializeBinaryToWriter);
+        }
+        if (_instance.t2sConfig) {
+            _writer.writeMessage(2, _instance.t2sConfig, RequestConfig.serializeBinaryToWriter);
+        }
+    }
+    get baseConfig() {
+        return this._baseConfig;
+    }
+    set baseConfig(value) {
+        this._baseConfig = value;
+    }
+    get t2sConfig() {
+        return this._t2sConfig;
+    }
+    set t2sConfig(value) {
+        this._t2sConfig = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        T2SConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            baseConfig: this.baseConfig ? this.baseConfig.toObject() : undefined,
+            t2sConfig: this.t2sConfig ? this.t2sConfig.toObject() : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            baseConfig: this.baseConfig
+                ? this.baseConfig.toProtobufJSON(options)
+                : null,
+            t2sConfig: this.t2sConfig ? this.t2sConfig.toProtobufJSON(options) : null
+        };
+    }
+}
+T2SConfig.id = 'ondewo.vtsi.T2SConfig';
+/**
+ * Message implementation for ondewo.vtsi.RequestConfig
+ */
+class RequestConfig {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of RequestConfig to deeply clone from
+     */
+    constructor(_value) {
+        this._oneofLengthScale = RequestConfig.OneofLengthScaleCase.none;
+        this._oneofNoiseScale = RequestConfig.OneofNoiseScaleCase.none;
+        this._oneofSampleRate = RequestConfig.OneofSampleRateCase.none;
+        this._oneofPcm = RequestConfig.OneofPcmCase.none;
+        this._oneofAudioFormat = RequestConfig.OneofAudioFormatCase.none;
+        this._oneofUseCache = RequestConfig.OneofUseCacheCase.none;
+        _value = _value || {};
+        this.t2sPipelineId = _value.t2sPipelineId;
+        this.lengthScale = _value.lengthScale;
+        this.noiseScale = _value.noiseScale;
+        this.sampleRate = _value.sampleRate;
+        this.pcm = _value.pcm;
+        this.audioFormat = _value.audioFormat;
+        this.useCache = _value.useCache;
+        RequestConfig.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new RequestConfig();
+        RequestConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.t2sPipelineId = _instance.t2sPipelineId || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.t2sPipelineId = _reader.readString();
+                    break;
+                case 2:
+                    _instance.lengthScale = _reader.readFloat();
+                    break;
+                case 3:
+                    _instance.noiseScale = _reader.readFloat();
+                    break;
+                case 4:
+                    _instance.sampleRate = _reader.readInt32();
+                    break;
+                case 5:
+                    _instance.pcm = _reader.readEnum();
+                    break;
+                case 6:
+                    _instance.audioFormat = _reader.readEnum();
+                    break;
+                case 7:
+                    _instance.useCache = _reader.readBool();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        RequestConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.t2sPipelineId) {
+            _writer.writeString(1, _instance.t2sPipelineId);
+        }
+        if (_instance.lengthScale || _instance.lengthScale === 0) {
+            _writer.writeFloat(2, _instance.lengthScale);
+        }
+        if (_instance.noiseScale || _instance.noiseScale === 0) {
+            _writer.writeFloat(3, _instance.noiseScale);
+        }
+        if (_instance.sampleRate || _instance.sampleRate === 0) {
+            _writer.writeInt32(4, _instance.sampleRate);
+        }
+        if (_instance.pcm || _instance.pcm === 0) {
+            _writer.writeEnum(5, _instance.pcm);
+        }
+        if (_instance.audioFormat || _instance.audioFormat === 0) {
+            _writer.writeEnum(6, _instance.audioFormat);
+        }
+        if (_instance.useCache || _instance.useCache === false) {
+            _writer.writeBool(7, _instance.useCache);
+        }
+    }
+    get t2sPipelineId() {
+        return this._t2sPipelineId;
+    }
+    set t2sPipelineId(value) {
+        this._t2sPipelineId = value;
+    }
+    get lengthScale() {
+        return this._lengthScale;
+    }
+    set lengthScale(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofLengthScale = RequestConfig.OneofLengthScaleCase.lengthScale;
+        }
+        this._lengthScale = value;
+    }
+    get noiseScale() {
+        return this._noiseScale;
+    }
+    set noiseScale(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofNoiseScale = RequestConfig.OneofNoiseScaleCase.noiseScale;
+        }
+        this._noiseScale = value;
+    }
+    get sampleRate() {
+        return this._sampleRate;
+    }
+    set sampleRate(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofSampleRate = RequestConfig.OneofSampleRateCase.sampleRate;
+        }
+        this._sampleRate = value;
+    }
+    get pcm() {
+        return this._pcm;
+    }
+    set pcm(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofPcm = RequestConfig.OneofPcmCase.pcm;
+        }
+        this._pcm = value;
+    }
+    get audioFormat() {
+        return this._audioFormat;
+    }
+    set audioFormat(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofAudioFormat = RequestConfig.OneofAudioFormatCase.audioFormat;
+        }
+        this._audioFormat = value;
+    }
+    get useCache() {
+        return this._useCache;
+    }
+    set useCache(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofUseCache = RequestConfig.OneofUseCacheCase.useCache;
+        }
+        this._useCache = value;
+    }
+    get oneofLengthScale() {
+        return this._oneofLengthScale;
+    }
+    get oneofNoiseScale() {
+        return this._oneofNoiseScale;
+    }
+    get oneofSampleRate() {
+        return this._oneofSampleRate;
+    }
+    get oneofPcm() {
+        return this._oneofPcm;
+    }
+    get oneofAudioFormat() {
+        return this._oneofAudioFormat;
+    }
+    get oneofUseCache() {
+        return this._oneofUseCache;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        RequestConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            t2sPipelineId: this.t2sPipelineId,
+            lengthScale: this.lengthScale,
+            noiseScale: this.noiseScale,
+            sampleRate: this.sampleRate,
+            pcm: this.pcm,
+            audioFormat: this.audioFormat,
+            useCache: this.useCache
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        var _a, _b, _c, _d, _e;
+        return {
+            t2sPipelineId: this.t2sPipelineId,
+            lengthScale: (_a = this.lengthScale) !== null && _a !== void 0 ? _a : null,
+            noiseScale: (_b = this.noiseScale) !== null && _b !== void 0 ? _b : null,
+            sampleRate: (_c = this.sampleRate) !== null && _c !== void 0 ? _c : null,
+            pcm: this.pcm === undefined ? null : Pcm[(_d = this.pcm) !== null && _d !== void 0 ? _d : 0],
+            audioFormat: this.audioFormat === undefined
+                ? null
+                : AudioFormat[(_e = this.audioFormat) !== null && _e !== void 0 ? _e : 0],
+            useCache: this.useCache
+        };
+    }
+}
+RequestConfig.id = 'ondewo.vtsi.RequestConfig';
+(function (RequestConfig) {
+    let OneofLengthScaleCase;
+    (function (OneofLengthScaleCase) {
+        OneofLengthScaleCase[OneofLengthScaleCase["none"] = 0] = "none";
+        OneofLengthScaleCase[OneofLengthScaleCase["lengthScale"] = 1] = "lengthScale";
+    })(OneofLengthScaleCase = RequestConfig.OneofLengthScaleCase || (RequestConfig.OneofLengthScaleCase = {}));
+    let OneofNoiseScaleCase;
+    (function (OneofNoiseScaleCase) {
+        OneofNoiseScaleCase[OneofNoiseScaleCase["none"] = 0] = "none";
+        OneofNoiseScaleCase[OneofNoiseScaleCase["noiseScale"] = 1] = "noiseScale";
+    })(OneofNoiseScaleCase = RequestConfig.OneofNoiseScaleCase || (RequestConfig.OneofNoiseScaleCase = {}));
+    let OneofSampleRateCase;
+    (function (OneofSampleRateCase) {
+        OneofSampleRateCase[OneofSampleRateCase["none"] = 0] = "none";
+        OneofSampleRateCase[OneofSampleRateCase["sampleRate"] = 1] = "sampleRate";
+    })(OneofSampleRateCase = RequestConfig.OneofSampleRateCase || (RequestConfig.OneofSampleRateCase = {}));
+    let OneofPcmCase;
+    (function (OneofPcmCase) {
+        OneofPcmCase[OneofPcmCase["none"] = 0] = "none";
+        OneofPcmCase[OneofPcmCase["pcm"] = 1] = "pcm";
+    })(OneofPcmCase = RequestConfig.OneofPcmCase || (RequestConfig.OneofPcmCase = {}));
+    let OneofAudioFormatCase;
+    (function (OneofAudioFormatCase) {
+        OneofAudioFormatCase[OneofAudioFormatCase["none"] = 0] = "none";
+        OneofAudioFormatCase[OneofAudioFormatCase["audioFormat"] = 1] = "audioFormat";
+    })(OneofAudioFormatCase = RequestConfig.OneofAudioFormatCase || (RequestConfig.OneofAudioFormatCase = {}));
+    let OneofUseCacheCase;
+    (function (OneofUseCacheCase) {
+        OneofUseCacheCase[OneofUseCacheCase["none"] = 0] = "none";
+        OneofUseCacheCase[OneofUseCacheCase["useCache"] = 1] = "useCache";
+    })(OneofUseCacheCase = RequestConfig.OneofUseCacheCase || (RequestConfig.OneofUseCacheCase = {}));
+})(RequestConfig || (RequestConfig = {}));
+/**
+ * Message implementation for ondewo.vtsi.S2TConfig
+ */
+class S2TConfig {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of S2TConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.baseConfig = _value.baseConfig
+            ? new BaseServiceConfig(_value.baseConfig)
+            : undefined;
+        this.s2tConfig = _value.s2tConfig
+            ? new TranscribeRequestConfig(_value.s2tConfig)
+            : undefined;
+        S2TConfig.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new S2TConfig();
+        S2TConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.baseConfig = _instance.baseConfig || undefined;
+        _instance.s2tConfig = _instance.s2tConfig || undefined;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.baseConfig = new BaseServiceConfig();
+                    _reader.readMessage(_instance.baseConfig, BaseServiceConfig.deserializeBinaryFromReader);
+                    break;
+                case 2:
+                    _instance.s2tConfig = new TranscribeRequestConfig();
+                    _reader.readMessage(_instance.s2tConfig, TranscribeRequestConfig.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        S2TConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.baseConfig) {
+            _writer.writeMessage(1, _instance.baseConfig, BaseServiceConfig.serializeBinaryToWriter);
+        }
+        if (_instance.s2tConfig) {
+            _writer.writeMessage(2, _instance.s2tConfig, TranscribeRequestConfig.serializeBinaryToWriter);
+        }
+    }
+    get baseConfig() {
+        return this._baseConfig;
+    }
+    set baseConfig(value) {
+        this._baseConfig = value;
+    }
+    get s2tConfig() {
+        return this._s2tConfig;
+    }
+    set s2tConfig(value) {
+        this._s2tConfig = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        S2TConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            baseConfig: this.baseConfig ? this.baseConfig.toObject() : undefined,
+            s2tConfig: this.s2tConfig ? this.s2tConfig.toObject() : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            baseConfig: this.baseConfig
+                ? this.baseConfig.toProtobufJSON(options)
+                : null,
+            s2tConfig: this.s2tConfig ? this.s2tConfig.toProtobufJSON(options) : null
+        };
+    }
+}
+S2TConfig.id = 'ondewo.vtsi.S2TConfig';
+/**
+ * Message implementation for ondewo.vtsi.TranscribeRequestConfig
+ */
+class TranscribeRequestConfig {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TranscribeRequestConfig to deeply clone from
+     */
+    constructor(_value) {
+        this._oneofLanguageModelName = TranscribeRequestConfig.OneofLanguageModelNameCase.none;
+        this._oneofPostProcessing = TranscribeRequestConfig.OneofPostProcessingCase.none;
+        this._oneofUtteranceDetection = TranscribeRequestConfig.OneofUtteranceDetectionCase.none;
+        this._voiceActivityDetection = TranscribeRequestConfig.VoiceActivityDetectionCase.none;
+        this._oneofReturnOptions = TranscribeRequestConfig.OneofReturnOptionsCase.none;
+        _value = _value || {};
+        this.s2tPipelineId = _value.s2tPipelineId;
+        this.ctcDecoding = _value.ctcDecoding;
+        this.languageModelName = _value.languageModelName;
+        this.postProcessing = _value.postProcessing
+            ? new PostProcessingOptions(_value.postProcessing)
+            : undefined;
+        this.utteranceDetection = _value.utteranceDetection
+            ? new UtteranceDetectionOptions(_value.utteranceDetection)
+            : undefined;
+        this.pyannote = _value.pyannote ? new Pyannote(_value.pyannote) : undefined;
+        this.matchbox = _value.matchbox ? new Matchbox(_value.matchbox) : undefined;
+        this.returnOptions = _value.returnOptions
+            ? new TranscriptionReturnOptions(_value.returnOptions)
+            : undefined;
+        TranscribeRequestConfig.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new TranscribeRequestConfig();
+        TranscribeRequestConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.s2tPipelineId = _instance.s2tPipelineId || '';
+        _instance.ctcDecoding = _instance.ctcDecoding || 0;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.s2tPipelineId = _reader.readString();
+                    break;
+                case 2:
+                    _instance.ctcDecoding = _reader.readEnum();
+                    break;
+                case 3:
+                    _instance.languageModelName = _reader.readString();
+                    break;
+                case 4:
+                    _instance.postProcessing = new PostProcessingOptions();
+                    _reader.readMessage(_instance.postProcessing, PostProcessingOptions.deserializeBinaryFromReader);
+                    break;
+                case 5:
+                    _instance.utteranceDetection = new UtteranceDetectionOptions();
+                    _reader.readMessage(_instance.utteranceDetection, UtteranceDetectionOptions.deserializeBinaryFromReader);
+                    break;
+                case 6:
+                    _instance.pyannote = new Pyannote();
+                    _reader.readMessage(_instance.pyannote, Pyannote.deserializeBinaryFromReader);
+                    break;
+                case 7:
+                    _instance.matchbox = new Matchbox();
+                    _reader.readMessage(_instance.matchbox, Matchbox.deserializeBinaryFromReader);
+                    break;
+                case 8:
+                    _instance.returnOptions = new TranscriptionReturnOptions();
+                    _reader.readMessage(_instance.returnOptions, TranscriptionReturnOptions.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        TranscribeRequestConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.s2tPipelineId) {
+            _writer.writeString(1, _instance.s2tPipelineId);
+        }
+        if (_instance.ctcDecoding) {
+            _writer.writeEnum(2, _instance.ctcDecoding);
+        }
+        if (_instance.languageModelName || _instance.languageModelName === '') {
+            _writer.writeString(3, _instance.languageModelName);
+        }
+        if (_instance.postProcessing) {
+            _writer.writeMessage(4, _instance.postProcessing, PostProcessingOptions.serializeBinaryToWriter);
+        }
+        if (_instance.utteranceDetection) {
+            _writer.writeMessage(5, _instance.utteranceDetection, UtteranceDetectionOptions.serializeBinaryToWriter);
+        }
+        if (_instance.pyannote) {
+            _writer.writeMessage(6, _instance.pyannote, Pyannote.serializeBinaryToWriter);
+        }
+        if (_instance.matchbox) {
+            _writer.writeMessage(7, _instance.matchbox, Matchbox.serializeBinaryToWriter);
+        }
+        if (_instance.returnOptions) {
+            _writer.writeMessage(8, _instance.returnOptions, TranscriptionReturnOptions.serializeBinaryToWriter);
+        }
+    }
+    get s2tPipelineId() {
+        return this._s2tPipelineId;
+    }
+    set s2tPipelineId(value) {
+        this._s2tPipelineId = value;
+    }
+    get ctcDecoding() {
+        return this._ctcDecoding;
+    }
+    set ctcDecoding(value) {
+        this._ctcDecoding = value;
+    }
+    get languageModelName() {
+        return this._languageModelName;
+    }
+    set languageModelName(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofLanguageModelName =
+                TranscribeRequestConfig.OneofLanguageModelNameCase.languageModelName;
+        }
+        this._languageModelName = value;
+    }
+    get postProcessing() {
+        return this._postProcessing;
+    }
+    set postProcessing(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofPostProcessing =
+                TranscribeRequestConfig.OneofPostProcessingCase.postProcessing;
+        }
+        this._postProcessing = value;
+    }
+    get utteranceDetection() {
+        return this._utteranceDetection;
+    }
+    set utteranceDetection(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofUtteranceDetection =
+                TranscribeRequestConfig.OneofUtteranceDetectionCase.utteranceDetection;
+        }
+        this._utteranceDetection = value;
+    }
+    get pyannote() {
+        return this._pyannote;
+    }
+    set pyannote(value) {
+        if (value !== undefined && value !== null) {
+            this._matchbox = undefined;
+            this._voiceActivityDetection =
+                TranscribeRequestConfig.VoiceActivityDetectionCase.pyannote;
+        }
+        this._pyannote = value;
+    }
+    get matchbox() {
+        return this._matchbox;
+    }
+    set matchbox(value) {
+        if (value !== undefined && value !== null) {
+            this._pyannote = undefined;
+            this._voiceActivityDetection =
+                TranscribeRequestConfig.VoiceActivityDetectionCase.matchbox;
+        }
+        this._matchbox = value;
+    }
+    get returnOptions() {
+        return this._returnOptions;
+    }
+    set returnOptions(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofReturnOptions =
+                TranscribeRequestConfig.OneofReturnOptionsCase.returnOptions;
+        }
+        this._returnOptions = value;
+    }
+    get oneofLanguageModelName() {
+        return this._oneofLanguageModelName;
+    }
+    get oneofPostProcessing() {
+        return this._oneofPostProcessing;
+    }
+    get oneofUtteranceDetection() {
+        return this._oneofUtteranceDetection;
+    }
+    get voiceActivityDetection() {
+        return this._voiceActivityDetection;
+    }
+    get oneofReturnOptions() {
+        return this._oneofReturnOptions;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        TranscribeRequestConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            s2tPipelineId: this.s2tPipelineId,
+            ctcDecoding: this.ctcDecoding,
+            languageModelName: this.languageModelName,
+            postProcessing: this.postProcessing
+                ? this.postProcessing.toObject()
+                : undefined,
+            utteranceDetection: this.utteranceDetection
+                ? this.utteranceDetection.toObject()
+                : undefined,
+            pyannote: this.pyannote ? this.pyannote.toObject() : undefined,
+            matchbox: this.matchbox ? this.matchbox.toObject() : undefined,
+            returnOptions: this.returnOptions
+                ? this.returnOptions.toObject()
+                : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        var _a, _b;
+        return {
+            s2tPipelineId: this.s2tPipelineId,
+            ctcDecoding: CTCDecoding[(_a = this.ctcDecoding) !== null && _a !== void 0 ? _a : 0],
+            languageModelName: (_b = this.languageModelName) !== null && _b !== void 0 ? _b : null,
+            postProcessing: this.postProcessing
+                ? this.postProcessing.toProtobufJSON(options)
+                : null,
+            utteranceDetection: this.utteranceDetection
+                ? this.utteranceDetection.toProtobufJSON(options)
+                : null,
+            pyannote: this.pyannote ? this.pyannote.toProtobufJSON(options) : null,
+            matchbox: this.matchbox ? this.matchbox.toProtobufJSON(options) : null,
+            returnOptions: this.returnOptions
+                ? this.returnOptions.toProtobufJSON(options)
+                : null
+        };
+    }
+}
+TranscribeRequestConfig.id = 'ondewo.vtsi.TranscribeRequestConfig';
+(function (TranscribeRequestConfig) {
+    let OneofLanguageModelNameCase;
+    (function (OneofLanguageModelNameCase) {
+        OneofLanguageModelNameCase[OneofLanguageModelNameCase["none"] = 0] = "none";
+        OneofLanguageModelNameCase[OneofLanguageModelNameCase["languageModelName"] = 1] = "languageModelName";
+    })(OneofLanguageModelNameCase = TranscribeRequestConfig.OneofLanguageModelNameCase || (TranscribeRequestConfig.OneofLanguageModelNameCase = {}));
+    let OneofPostProcessingCase;
+    (function (OneofPostProcessingCase) {
+        OneofPostProcessingCase[OneofPostProcessingCase["none"] = 0] = "none";
+        OneofPostProcessingCase[OneofPostProcessingCase["postProcessing"] = 1] = "postProcessing";
+    })(OneofPostProcessingCase = TranscribeRequestConfig.OneofPostProcessingCase || (TranscribeRequestConfig.OneofPostProcessingCase = {}));
+    let OneofUtteranceDetectionCase;
+    (function (OneofUtteranceDetectionCase) {
+        OneofUtteranceDetectionCase[OneofUtteranceDetectionCase["none"] = 0] = "none";
+        OneofUtteranceDetectionCase[OneofUtteranceDetectionCase["utteranceDetection"] = 1] = "utteranceDetection";
+    })(OneofUtteranceDetectionCase = TranscribeRequestConfig.OneofUtteranceDetectionCase || (TranscribeRequestConfig.OneofUtteranceDetectionCase = {}));
+    let VoiceActivityDetectionCase;
+    (function (VoiceActivityDetectionCase) {
+        VoiceActivityDetectionCase[VoiceActivityDetectionCase["none"] = 0] = "none";
+        VoiceActivityDetectionCase[VoiceActivityDetectionCase["pyannote"] = 1] = "pyannote";
+        VoiceActivityDetectionCase[VoiceActivityDetectionCase["matchbox"] = 2] = "matchbox";
+    })(VoiceActivityDetectionCase = TranscribeRequestConfig.VoiceActivityDetectionCase || (TranscribeRequestConfig.VoiceActivityDetectionCase = {}));
+    let OneofReturnOptionsCase;
+    (function (OneofReturnOptionsCase) {
+        OneofReturnOptionsCase[OneofReturnOptionsCase["none"] = 0] = "none";
+        OneofReturnOptionsCase[OneofReturnOptionsCase["returnOptions"] = 1] = "returnOptions";
+    })(OneofReturnOptionsCase = TranscribeRequestConfig.OneofReturnOptionsCase || (TranscribeRequestConfig.OneofReturnOptionsCase = {}));
+})(TranscribeRequestConfig || (TranscribeRequestConfig = {}));
+/**
+ * Message implementation for ondewo.vtsi.Pyannote
+ */
+class Pyannote {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of Pyannote to deeply clone from
+     */
+    constructor(_value) {
+        this._oneofLogScale = Pyannote.OneofLogScaleCase.none;
+        _value = _value || {};
+        this.modelPath = _value.modelPath;
+        this.minAudioSize = _value.minAudioSize;
+        this.offset = _value.offset;
+        this.onset = _value.onset;
+        this.logScale = _value.logScale;
+        this.minDurationOff = _value.minDurationOff;
+        this.minDurationOn = _value.minDurationOn;
+        Pyannote.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new Pyannote();
+        Pyannote.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.modelPath = _instance.modelPath || '';
+        _instance.minAudioSize = _instance.minAudioSize || '0';
+        _instance.offset = _instance.offset || 0;
+        _instance.onset = _instance.onset || 0;
+        _instance.minDurationOff = _instance.minDurationOff || 0;
+        _instance.minDurationOn = _instance.minDurationOn || 0;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.modelPath = _reader.readString();
+                    break;
+                case 2:
+                    _instance.minAudioSize = _reader.readInt64String();
+                    break;
+                case 3:
+                    _instance.offset = _reader.readFloat();
+                    break;
+                case 4:
+                    _instance.onset = _reader.readFloat();
+                    break;
+                case 5:
+                    _instance.logScale = _reader.readBool();
+                    break;
+                case 6:
+                    _instance.minDurationOff = _reader.readFloat();
+                    break;
+                case 7:
+                    _instance.minDurationOn = _reader.readFloat();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        Pyannote.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.modelPath) {
+            _writer.writeString(1, _instance.modelPath);
+        }
+        if (_instance.minAudioSize) {
+            _writer.writeInt64String(2, _instance.minAudioSize);
+        }
+        if (_instance.offset) {
+            _writer.writeFloat(3, _instance.offset);
+        }
+        if (_instance.onset) {
+            _writer.writeFloat(4, _instance.onset);
+        }
+        if (_instance.logScale || _instance.logScale === false) {
+            _writer.writeBool(5, _instance.logScale);
+        }
+        if (_instance.minDurationOff) {
+            _writer.writeFloat(6, _instance.minDurationOff);
+        }
+        if (_instance.minDurationOn) {
+            _writer.writeFloat(7, _instance.minDurationOn);
+        }
+    }
+    get modelPath() {
+        return this._modelPath;
+    }
+    set modelPath(value) {
+        this._modelPath = value;
+    }
+    get minAudioSize() {
+        return this._minAudioSize;
+    }
+    set minAudioSize(value) {
+        this._minAudioSize = value;
+    }
+    get offset() {
+        return this._offset;
+    }
+    set offset(value) {
+        this._offset = value;
+    }
+    get onset() {
+        return this._onset;
+    }
+    set onset(value) {
+        this._onset = value;
+    }
+    get logScale() {
+        return this._logScale;
+    }
+    set logScale(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofLogScale = Pyannote.OneofLogScaleCase.logScale;
+        }
+        this._logScale = value;
+    }
+    get minDurationOff() {
+        return this._minDurationOff;
+    }
+    set minDurationOff(value) {
+        this._minDurationOff = value;
+    }
+    get minDurationOn() {
+        return this._minDurationOn;
+    }
+    set minDurationOn(value) {
+        this._minDurationOn = value;
+    }
+    get oneofLogScale() {
+        return this._oneofLogScale;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        Pyannote.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            modelPath: this.modelPath,
+            minAudioSize: this.minAudioSize,
+            offset: this.offset,
+            onset: this.onset,
+            logScale: this.logScale,
+            minDurationOff: this.minDurationOff,
+            minDurationOn: this.minDurationOn
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            modelPath: this.modelPath,
+            minAudioSize: this.minAudioSize,
+            offset: this.offset,
+            onset: this.onset,
+            logScale: this.logScale,
+            minDurationOff: this.minDurationOff,
+            minDurationOn: this.minDurationOn
+        };
+    }
+}
+Pyannote.id = 'ondewo.vtsi.Pyannote';
+(function (Pyannote) {
+    let OneofLogScaleCase;
+    (function (OneofLogScaleCase) {
+        OneofLogScaleCase[OneofLogScaleCase["none"] = 0] = "none";
+        OneofLogScaleCase[OneofLogScaleCase["logScale"] = 1] = "logScale";
+    })(OneofLogScaleCase = Pyannote.OneofLogScaleCase || (Pyannote.OneofLogScaleCase = {}));
+})(Pyannote || (Pyannote = {}));
+/**
+ * Message implementation for ondewo.vtsi.Matchbox
+ */
+class Matchbox {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of Matchbox to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.modelConfig = _value.modelConfig;
+        this.encoderPath = _value.encoderPath;
+        this.decoderPath = _value.decoderPath;
+        Matchbox.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new Matchbox();
+        Matchbox.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.modelConfig = _instance.modelConfig || '';
+        _instance.encoderPath = _instance.encoderPath || '';
+        _instance.decoderPath = _instance.decoderPath || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.modelConfig = _reader.readString();
+                    break;
+                case 2:
+                    _instance.encoderPath = _reader.readString();
+                    break;
+                case 3:
+                    _instance.decoderPath = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        Matchbox.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.modelConfig) {
+            _writer.writeString(1, _instance.modelConfig);
+        }
+        if (_instance.encoderPath) {
+            _writer.writeString(2, _instance.encoderPath);
+        }
+        if (_instance.decoderPath) {
+            _writer.writeString(3, _instance.decoderPath);
+        }
+    }
+    get modelConfig() {
+        return this._modelConfig;
+    }
+    set modelConfig(value) {
+        this._modelConfig = value;
+    }
+    get encoderPath() {
+        return this._encoderPath;
+    }
+    set encoderPath(value) {
+        this._encoderPath = value;
+    }
+    get decoderPath() {
+        return this._decoderPath;
+    }
+    set decoderPath(value) {
+        this._decoderPath = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        Matchbox.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            modelConfig: this.modelConfig,
+            encoderPath: this.encoderPath,
+            decoderPath: this.decoderPath
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            modelConfig: this.modelConfig,
+            encoderPath: this.encoderPath,
+            decoderPath: this.decoderPath
+        };
+    }
+}
+Matchbox.id = 'ondewo.vtsi.Matchbox';
+/**
+ * Message implementation for ondewo.vtsi.PostProcessing
+ */
+class PostProcessing {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of PostProcessing to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.pipeline = (_value.pipeline || []).slice();
+        this.postProcessors = _value.postProcessors
+            ? new PostProcessors(_value.postProcessors)
+            : undefined;
+        PostProcessing.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new PostProcessing();
+        PostProcessing.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.pipeline = _instance.pipeline || [];
+        _instance.postProcessors = _instance.postProcessors || undefined;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    (_instance.pipeline = _instance.pipeline || []).push(_reader.readString());
+                    break;
+                case 2:
+                    _instance.postProcessors = new PostProcessors();
+                    _reader.readMessage(_instance.postProcessors, PostProcessors.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        PostProcessing.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.pipeline && _instance.pipeline.length) {
+            _writer.writeRepeatedString(1, _instance.pipeline);
+        }
+        if (_instance.postProcessors) {
+            _writer.writeMessage(2, _instance.postProcessors, PostProcessors.serializeBinaryToWriter);
+        }
+    }
+    get pipeline() {
+        return this._pipeline;
+    }
+    set pipeline(value) {
+        this._pipeline = value;
+    }
+    get postProcessors() {
+        return this._postProcessors;
+    }
+    set postProcessors(value) {
+        this._postProcessors = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        PostProcessing.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            pipeline: (this.pipeline || []).slice(),
+            postProcessors: this.postProcessors
+                ? this.postProcessors.toObject()
+                : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            pipeline: (this.pipeline || []).slice(),
+            postProcessors: this.postProcessors
+                ? this.postProcessors.toProtobufJSON(options)
+                : null
+        };
+    }
+}
+PostProcessing.id = 'ondewo.vtsi.PostProcessing';
+/**
+ * Message implementation for ondewo.vtsi.PostProcessors
+ */
+class PostProcessors {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of PostProcessors to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.symSpell = _value.symSpell ? new SymSpell(_value.symSpell) : undefined;
+        this.normalization = _value.normalization
+            ? new Normalization(_value.normalization)
+            : undefined;
+        PostProcessors.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new PostProcessors();
+        PostProcessors.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.symSpell = _instance.symSpell || undefined;
+        _instance.normalization = _instance.normalization || undefined;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.symSpell = new SymSpell();
+                    _reader.readMessage(_instance.symSpell, SymSpell.deserializeBinaryFromReader);
+                    break;
+                case 2:
+                    _instance.normalization = new Normalization();
+                    _reader.readMessage(_instance.normalization, Normalization.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        PostProcessors.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.symSpell) {
+            _writer.writeMessage(1, _instance.symSpell, SymSpell.serializeBinaryToWriter);
+        }
+        if (_instance.normalization) {
+            _writer.writeMessage(2, _instance.normalization, Normalization.serializeBinaryToWriter);
+        }
+    }
+    get symSpell() {
+        return this._symSpell;
+    }
+    set symSpell(value) {
+        this._symSpell = value;
+    }
+    get normalization() {
+        return this._normalization;
+    }
+    set normalization(value) {
+        this._normalization = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        PostProcessors.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            symSpell: this.symSpell ? this.symSpell.toObject() : undefined,
+            normalization: this.normalization
+                ? this.normalization.toObject()
+                : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            symSpell: this.symSpell ? this.symSpell.toProtobufJSON(options) : null,
+            normalization: this.normalization
+                ? this.normalization.toProtobufJSON(options)
+                : null
+        };
+    }
+}
+PostProcessors.id = 'ondewo.vtsi.PostProcessors';
+/**
+ * Message implementation for ondewo.vtsi.SymSpell
+ */
+class SymSpell {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of SymSpell to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.dictPath = _value.dictPath;
+        this.maxDictionaryEditDistance = _value.maxDictionaryEditDistance;
+        this.prefixLength = _value.prefixLength;
+        SymSpell.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new SymSpell();
+        SymSpell.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.dictPath = _instance.dictPath || '';
+        _instance.maxDictionaryEditDistance =
+            _instance.maxDictionaryEditDistance || '0';
+        _instance.prefixLength = _instance.prefixLength || '0';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.dictPath = _reader.readString();
+                    break;
+                case 2:
+                    _instance.maxDictionaryEditDistance = _reader.readInt64String();
+                    break;
+                case 3:
+                    _instance.prefixLength = _reader.readInt64String();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        SymSpell.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.dictPath) {
+            _writer.writeString(1, _instance.dictPath);
+        }
+        if (_instance.maxDictionaryEditDistance) {
+            _writer.writeInt64String(2, _instance.maxDictionaryEditDistance);
+        }
+        if (_instance.prefixLength) {
+            _writer.writeInt64String(3, _instance.prefixLength);
+        }
+    }
+    get dictPath() {
+        return this._dictPath;
+    }
+    set dictPath(value) {
+        this._dictPath = value;
+    }
+    get maxDictionaryEditDistance() {
+        return this._maxDictionaryEditDistance;
+    }
+    set maxDictionaryEditDistance(value) {
+        this._maxDictionaryEditDistance = value;
+    }
+    get prefixLength() {
+        return this._prefixLength;
+    }
+    set prefixLength(value) {
+        this._prefixLength = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        SymSpell.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            dictPath: this.dictPath,
+            maxDictionaryEditDistance: this.maxDictionaryEditDistance,
+            prefixLength: this.prefixLength
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            dictPath: this.dictPath,
+            maxDictionaryEditDistance: this.maxDictionaryEditDistance,
+            prefixLength: this.prefixLength
+        };
+    }
+}
+SymSpell.id = 'ondewo.vtsi.SymSpell';
+/**
+ * Message implementation for ondewo.vtsi.Normalization
+ */
+class Normalization {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of Normalization to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.language = _value.language;
+        Normalization.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new Normalization();
+        Normalization.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.language = _instance.language || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.language = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        Normalization.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.language) {
+            _writer.writeString(1, _instance.language);
+        }
+    }
+    get language() {
+        return this._language;
+    }
+    set language(value) {
+        this._language = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        Normalization.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            language: this.language
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            language: this.language
+        };
+    }
+}
+Normalization.id = 'ondewo.vtsi.Normalization';
+/**
+ * Message implementation for ondewo.vtsi.TranscriptionReturnOptions
+ */
+class TranscriptionReturnOptions {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TranscriptionReturnOptions to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.returnStartOfSpeech = _value.returnStartOfSpeech;
+        this.returnAudio = _value.returnAudio;
+        this.returnAlternativeTranscriptions =
+            _value.returnAlternativeTranscriptions;
+        this.returnConfidenceScore = _value.returnConfidenceScore;
+        this.returnWordTiming = _value.returnWordTiming;
+        TranscriptionReturnOptions.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new TranscriptionReturnOptions();
+        TranscriptionReturnOptions.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.returnStartOfSpeech = _instance.returnStartOfSpeech || false;
+        _instance.returnAudio = _instance.returnAudio || false;
+        _instance.returnAlternativeTranscriptions =
+            _instance.returnAlternativeTranscriptions || false;
+        _instance.returnConfidenceScore = _instance.returnConfidenceScore || false;
+        _instance.returnWordTiming = _instance.returnWordTiming || false;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.returnStartOfSpeech = _reader.readBool();
+                    break;
+                case 2:
+                    _instance.returnAudio = _reader.readBool();
+                    break;
+                case 3:
+                    _instance.returnAlternativeTranscriptions = _reader.readBool();
+                    break;
+                case 4:
+                    _instance.returnConfidenceScore = _reader.readBool();
+                    break;
+                case 8:
+                    _instance.returnWordTiming = _reader.readBool();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        TranscriptionReturnOptions.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.returnStartOfSpeech) {
+            _writer.writeBool(1, _instance.returnStartOfSpeech);
+        }
+        if (_instance.returnAudio) {
+            _writer.writeBool(2, _instance.returnAudio);
+        }
+        if (_instance.returnAlternativeTranscriptions) {
+            _writer.writeBool(3, _instance.returnAlternativeTranscriptions);
+        }
+        if (_instance.returnConfidenceScore) {
+            _writer.writeBool(4, _instance.returnConfidenceScore);
+        }
+        if (_instance.returnWordTiming) {
+            _writer.writeBool(8, _instance.returnWordTiming);
+        }
+    }
+    get returnStartOfSpeech() {
+        return this._returnStartOfSpeech;
+    }
+    set returnStartOfSpeech(value) {
+        this._returnStartOfSpeech = value;
+    }
+    get returnAudio() {
+        return this._returnAudio;
+    }
+    set returnAudio(value) {
+        this._returnAudio = value;
+    }
+    get returnAlternativeTranscriptions() {
+        return this._returnAlternativeTranscriptions;
+    }
+    set returnAlternativeTranscriptions(value) {
+        this._returnAlternativeTranscriptions = value;
+    }
+    get returnConfidenceScore() {
+        return this._returnConfidenceScore;
+    }
+    set returnConfidenceScore(value) {
+        this._returnConfidenceScore = value;
+    }
+    get returnWordTiming() {
+        return this._returnWordTiming;
+    }
+    set returnWordTiming(value) {
+        this._returnWordTiming = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        TranscriptionReturnOptions.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            returnStartOfSpeech: this.returnStartOfSpeech,
+            returnAudio: this.returnAudio,
+            returnAlternativeTranscriptions: this.returnAlternativeTranscriptions,
+            returnConfidenceScore: this.returnConfidenceScore,
+            returnWordTiming: this.returnWordTiming
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            returnStartOfSpeech: this.returnStartOfSpeech,
+            returnAudio: this.returnAudio,
+            returnAlternativeTranscriptions: this.returnAlternativeTranscriptions,
+            returnConfidenceScore: this.returnConfidenceScore,
+            returnWordTiming: this.returnWordTiming
+        };
+    }
+}
+TranscriptionReturnOptions.id = 'ondewo.vtsi.TranscriptionReturnOptions';
+/**
+ * Message implementation for ondewo.vtsi.UtteranceDetectionOptions
+ */
+class UtteranceDetectionOptions {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of UtteranceDetectionOptions to deeply clone from
+     */
+    constructor(_value) {
+        this._oneofTranscribeNotFinal = UtteranceDetectionOptions.OneofTranscribeNotFinalCase.none;
+        _value = _value || {};
+        this.transcribeNotFinal = _value.transcribeNotFinal;
+        this.startOfUtteranceThreshold = _value.startOfUtteranceThreshold;
+        this.endOfUtteranceThreshold = _value.endOfUtteranceThreshold;
+        this.nextChunkTimeout = _value.nextChunkTimeout;
+        UtteranceDetectionOptions.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new UtteranceDetectionOptions();
+        UtteranceDetectionOptions.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.startOfUtteranceThreshold =
+            _instance.startOfUtteranceThreshold || 0;
+        _instance.endOfUtteranceThreshold = _instance.endOfUtteranceThreshold || 0;
+        _instance.nextChunkTimeout = _instance.nextChunkTimeout || 0;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.transcribeNotFinal = _reader.readBool();
+                    break;
+                case 2:
+                    _instance.startOfUtteranceThreshold = _reader.readFloat();
+                    break;
+                case 3:
+                    _instance.endOfUtteranceThreshold = _reader.readFloat();
+                    break;
+                case 4:
+                    _instance.nextChunkTimeout = _reader.readFloat();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        UtteranceDetectionOptions.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.transcribeNotFinal ||
+            _instance.transcribeNotFinal === false) {
+            _writer.writeBool(1, _instance.transcribeNotFinal);
+        }
+        if (_instance.startOfUtteranceThreshold) {
+            _writer.writeFloat(2, _instance.startOfUtteranceThreshold);
+        }
+        if (_instance.endOfUtteranceThreshold) {
+            _writer.writeFloat(3, _instance.endOfUtteranceThreshold);
+        }
+        if (_instance.nextChunkTimeout) {
+            _writer.writeFloat(4, _instance.nextChunkTimeout);
+        }
+    }
+    get transcribeNotFinal() {
+        return this._transcribeNotFinal;
+    }
+    set transcribeNotFinal(value) {
+        if (value !== undefined && value !== null) {
+            this._oneofTranscribeNotFinal =
+                UtteranceDetectionOptions.OneofTranscribeNotFinalCase.transcribeNotFinal;
+        }
+        this._transcribeNotFinal = value;
+    }
+    get startOfUtteranceThreshold() {
+        return this._startOfUtteranceThreshold;
+    }
+    set startOfUtteranceThreshold(value) {
+        this._startOfUtteranceThreshold = value;
+    }
+    get endOfUtteranceThreshold() {
+        return this._endOfUtteranceThreshold;
+    }
+    set endOfUtteranceThreshold(value) {
+        this._endOfUtteranceThreshold = value;
+    }
+    get nextChunkTimeout() {
+        return this._nextChunkTimeout;
+    }
+    set nextChunkTimeout(value) {
+        this._nextChunkTimeout = value;
+    }
+    get oneofTranscribeNotFinal() {
+        return this._oneofTranscribeNotFinal;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        UtteranceDetectionOptions.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            transcribeNotFinal: this.transcribeNotFinal,
+            startOfUtteranceThreshold: this.startOfUtteranceThreshold,
+            endOfUtteranceThreshold: this.endOfUtteranceThreshold,
+            nextChunkTimeout: this.nextChunkTimeout
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            transcribeNotFinal: this.transcribeNotFinal,
+            startOfUtteranceThreshold: this.startOfUtteranceThreshold,
+            endOfUtteranceThreshold: this.endOfUtteranceThreshold,
+            nextChunkTimeout: this.nextChunkTimeout
+        };
+    }
+}
+UtteranceDetectionOptions.id = 'ondewo.vtsi.UtteranceDetectionOptions';
+(function (UtteranceDetectionOptions) {
+    let OneofTranscribeNotFinalCase;
+    (function (OneofTranscribeNotFinalCase) {
+        OneofTranscribeNotFinalCase[OneofTranscribeNotFinalCase["none"] = 0] = "none";
+        OneofTranscribeNotFinalCase[OneofTranscribeNotFinalCase["transcribeNotFinal"] = 1] = "transcribeNotFinal";
+    })(OneofTranscribeNotFinalCase = UtteranceDetectionOptions.OneofTranscribeNotFinalCase || (UtteranceDetectionOptions.OneofTranscribeNotFinalCase = {}));
+})(UtteranceDetectionOptions || (UtteranceDetectionOptions = {}));
+/**
+ * Message implementation for ondewo.vtsi.PostProcessingOptions
+ */
+class PostProcessingOptions {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of PostProcessingOptions to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.spellingCorrection = _value.spellingCorrection;
+        this.normalize = _value.normalize;
+        this.config = _value.config ? new PostProcessing(_value.config) : undefined;
+        PostProcessingOptions.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new PostProcessingOptions();
+        PostProcessingOptions.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.spellingCorrection = _instance.spellingCorrection || false;
+        _instance.normalize = _instance.normalize || false;
+        _instance.config = _instance.config || undefined;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.spellingCorrection = _reader.readBool();
+                    break;
+                case 2:
+                    _instance.normalize = _reader.readBool();
+                    break;
+                case 3:
+                    _instance.config = new PostProcessing();
+                    _reader.readMessage(_instance.config, PostProcessing.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        PostProcessingOptions.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.spellingCorrection) {
+            _writer.writeBool(1, _instance.spellingCorrection);
+        }
+        if (_instance.normalize) {
+            _writer.writeBool(2, _instance.normalize);
+        }
+        if (_instance.config) {
+            _writer.writeMessage(3, _instance.config, PostProcessing.serializeBinaryToWriter);
+        }
+    }
+    get spellingCorrection() {
+        return this._spellingCorrection;
+    }
+    set spellingCorrection(value) {
+        this._spellingCorrection = value;
+    }
+    get normalize() {
+        return this._normalize;
+    }
+    set normalize(value) {
+        this._normalize = value;
+    }
+    get config() {
+        return this._config;
+    }
+    set config(value) {
+        this._config = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        PostProcessingOptions.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            spellingCorrection: this.spellingCorrection,
+            normalize: this.normalize,
+            config: this.config ? this.config.toObject() : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            spellingCorrection: this.spellingCorrection,
+            normalize: this.normalize,
+            config: this.config ? this.config.toProtobufJSON(options) : null
+        };
+    }
+}
+PostProcessingOptions.id = 'ondewo.vtsi.PostProcessingOptions';
+/**
+ * Message implementation for ondewo.vtsi.AsteriskConfig
+ */
+class AsteriskConfig {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of AsteriskConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.baseConfig = _value.baseConfig
+            ? new BaseServiceConfig(_value.baseConfig)
+            : undefined;
+        AsteriskConfig.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new AsteriskConfig();
+        AsteriskConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.baseConfig = _instance.baseConfig || undefined;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.baseConfig = new BaseServiceConfig();
+                    _reader.readMessage(_instance.baseConfig, BaseServiceConfig.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        AsteriskConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.baseConfig) {
+            _writer.writeMessage(1, _instance.baseConfig, BaseServiceConfig.serializeBinaryToWriter);
+        }
+    }
+    get baseConfig() {
+        return this._baseConfig;
+    }
+    set baseConfig(value) {
+        this._baseConfig = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        AsteriskConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            baseConfig: this.baseConfig ? this.baseConfig.toObject() : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            baseConfig: this.baseConfig
+                ? this.baseConfig.toProtobufJSON(options)
+                : null
+        };
+    }
+}
+AsteriskConfig.id = 'ondewo.vtsi.AsteriskConfig';
+/**
+ * Message implementation for ondewo.vtsi.CommonServicesConfigs
+ */
+class CommonServicesConfigs {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CommonServicesConfigs to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.asteriskConfig = _value.asteriskConfig
+            ? new AsteriskConfig(_value.asteriskConfig)
+            : undefined;
+        this.caiConfig = _value.caiConfig
+            ? new NLUConfig(_value.caiConfig)
+            : undefined;
+        this.sttConfig = _value.sttConfig
+            ? new S2TConfig(_value.sttConfig)
+            : undefined;
+        this.ttsConfig = _value.ttsConfig
+            ? new T2SConfig(_value.ttsConfig)
+            : undefined;
+        CommonServicesConfigs.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new CommonServicesConfigs();
+        CommonServicesConfigs.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.asteriskConfig = _instance.asteriskConfig || undefined;
+        _instance.caiConfig = _instance.caiConfig || undefined;
+        _instance.sttConfig = _instance.sttConfig || undefined;
+        _instance.ttsConfig = _instance.ttsConfig || undefined;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.asteriskConfig = new AsteriskConfig();
+                    _reader.readMessage(_instance.asteriskConfig, AsteriskConfig.deserializeBinaryFromReader);
+                    break;
+                case 2:
+                    _instance.caiConfig = new NLUConfig();
+                    _reader.readMessage(_instance.caiConfig, NLUConfig.deserializeBinaryFromReader);
+                    break;
+                case 3:
+                    _instance.sttConfig = new S2TConfig();
+                    _reader.readMessage(_instance.sttConfig, S2TConfig.deserializeBinaryFromReader);
+                    break;
+                case 4:
+                    _instance.ttsConfig = new T2SConfig();
+                    _reader.readMessage(_instance.ttsConfig, T2SConfig.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        CommonServicesConfigs.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.asteriskConfig) {
+            _writer.writeMessage(1, _instance.asteriskConfig, AsteriskConfig.serializeBinaryToWriter);
+        }
+        if (_instance.caiConfig) {
+            _writer.writeMessage(2, _instance.caiConfig, NLUConfig.serializeBinaryToWriter);
+        }
+        if (_instance.sttConfig) {
+            _writer.writeMessage(3, _instance.sttConfig, S2TConfig.serializeBinaryToWriter);
+        }
+        if (_instance.ttsConfig) {
+            _writer.writeMessage(4, _instance.ttsConfig, T2SConfig.serializeBinaryToWriter);
+        }
     }
     get asteriskConfig() {
         return this._asteriskConfig;
@@ -2230,29 +4566,241 @@ class StartCallInstanceRequest {
     set ttsConfig(value) {
         this._ttsConfig = value;
     }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        CommonServicesConfigs.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            asteriskConfig: this.asteriskConfig
+                ? this.asteriskConfig.toObject()
+                : undefined,
+            caiConfig: this.caiConfig ? this.caiConfig.toObject() : undefined,
+            sttConfig: this.sttConfig ? this.sttConfig.toObject() : undefined,
+            ttsConfig: this.ttsConfig ? this.ttsConfig.toObject() : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            asteriskConfig: this.asteriskConfig
+                ? this.asteriskConfig.toProtobufJSON(options)
+                : null,
+            caiConfig: this.caiConfig ? this.caiConfig.toProtobufJSON(options) : null,
+            sttConfig: this.sttConfig ? this.sttConfig.toProtobufJSON(options) : null,
+            ttsConfig: this.ttsConfig ? this.ttsConfig.toProtobufJSON(options) : null
+        };
+    }
+}
+CommonServicesConfigs.id = 'ondewo.vtsi.CommonServicesConfigs';
+/**
+ * Message implementation for ondewo.vtsi.SIPConfig
+ */
+class SIPConfig {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of SIPConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.callId = _value.callId;
+        this.callDisplayName = _value.callDisplayName;
+        this.sipSimVersion = _value.sipSimVersion;
+        this.sipPrefix = _value.sipPrefix;
+        this.sipAccount = _value.sipAccount;
+        (this.accountPasswordDictionary = _value.accountPasswordDictionary
+            ? Object.keys(_value.accountPasswordDictionary).reduce((r, k) => (Object.assign(Object.assign({}, r), { [k]: _value.accountPasswordDictionary[k] })), {})
+            : {}),
+            (this.phoneNumber = _value.phoneNumber);
+        (this.headers = _value.headers
+            ? Object.keys(_value.headers).reduce((r, k) => (Object.assign(Object.assign({}, r), { [k]: _value.headers[k] })), {})
+            : {}),
+            SIPConfig.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new SIPConfig();
+        SIPConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.callId = _instance.callId || '';
+        _instance.callDisplayName = _instance.callDisplayName || '';
+        _instance.sipSimVersion = _instance.sipSimVersion || '';
+        _instance.sipPrefix = _instance.sipPrefix || '';
+        _instance.sipAccount = _instance.sipAccount || '';
+        _instance.accountPasswordDictionary =
+            _instance.accountPasswordDictionary || {};
+        _instance.phoneNumber = _instance.phoneNumber || '';
+        _instance.headers = _instance.headers || {};
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.callId = _reader.readString();
+                    break;
+                case 2:
+                    _instance.callDisplayName = _reader.readString();
+                    break;
+                case 3:
+                    _instance.sipSimVersion = _reader.readString();
+                    break;
+                case 4:
+                    _instance.sipPrefix = _reader.readString();
+                    break;
+                case 5:
+                    _instance.sipAccount = _reader.readString();
+                    break;
+                case 6:
+                    const msg_6 = {};
+                    _reader.readMessage(msg_6, SIPConfig.AccountPasswordDictionaryEntry.deserializeBinaryFromReader);
+                    _instance.accountPasswordDictionary =
+                        _instance.accountPasswordDictionary || {};
+                    _instance.accountPasswordDictionary[msg_6.key] = msg_6.value;
+                    break;
+                case 7:
+                    _instance.phoneNumber = _reader.readString();
+                    break;
+                case 8:
+                    const msg_8 = {};
+                    _reader.readMessage(msg_8, SIPConfig.HeadersEntry.deserializeBinaryFromReader);
+                    _instance.headers = _instance.headers || {};
+                    _instance.headers[msg_8.key] = msg_8.value;
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        SIPConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.callId) {
+            _writer.writeString(1, _instance.callId);
+        }
+        if (_instance.callDisplayName) {
+            _writer.writeString(2, _instance.callDisplayName);
+        }
+        if (_instance.sipSimVersion) {
+            _writer.writeString(3, _instance.sipSimVersion);
+        }
+        if (_instance.sipPrefix) {
+            _writer.writeString(4, _instance.sipPrefix);
+        }
+        if (_instance.sipAccount) {
+            _writer.writeString(5, _instance.sipAccount);
+        }
+        if (!!_instance.accountPasswordDictionary) {
+            const keys_6 = Object.keys(_instance.accountPasswordDictionary);
+            if (keys_6.length) {
+                const repeated_6 = keys_6
+                    .map(key => ({
+                    key: key,
+                    value: _instance.accountPasswordDictionary[key]
+                }))
+                    .reduce((r, v) => [...r, v], []);
+                _writer.writeRepeatedMessage(6, repeated_6, SIPConfig.AccountPasswordDictionaryEntry.serializeBinaryToWriter);
+            }
+        }
+        if (_instance.phoneNumber) {
+            _writer.writeString(7, _instance.phoneNumber);
+        }
+        if (!!_instance.headers) {
+            const keys_8 = Object.keys(_instance.headers);
+            if (keys_8.length) {
+                const repeated_8 = keys_8
+                    .map(key => ({ key: key, value: _instance.headers[key] }))
+                    .reduce((r, v) => [...r, v], []);
+                _writer.writeRepeatedMessage(8, repeated_8, SIPConfig.HeadersEntry.serializeBinaryToWriter);
+            }
+        }
+    }
+    get callId() {
+        return this._callId;
+    }
+    set callId(value) {
+        this._callId = value;
+    }
+    get callDisplayName() {
+        return this._callDisplayName;
+    }
+    set callDisplayName(value) {
+        this._callDisplayName = value;
+    }
+    get sipSimVersion() {
+        return this._sipSimVersion;
+    }
+    set sipSimVersion(value) {
+        this._sipSimVersion = value;
+    }
     get sipPrefix() {
         return this._sipPrefix;
     }
     set sipPrefix(value) {
         this._sipPrefix = value;
     }
-    get sipName() {
-        return this._sipName;
+    get sipAccount() {
+        return this._sipAccount;
     }
-    set sipName(value) {
-        this._sipName = value;
+    set sipAccount(value) {
+        this._sipAccount = value;
     }
-    get passwordDictionary() {
-        return this._passwordDictionary;
+    get accountPasswordDictionary() {
+        return this._accountPasswordDictionary;
     }
-    set passwordDictionary(value) {
-        this._passwordDictionary = value;
+    set accountPasswordDictionary(value) {
+        this._accountPasswordDictionary = value;
     }
-    get initialIntent() {
-        return this._initialIntent;
+    get phoneNumber() {
+        return this._phoneNumber;
     }
-    set initialIntent(value) {
-        this._initialIntent = value;
+    set phoneNumber(value) {
+        this._phoneNumber = value;
+    }
+    get headers() {
+        return this._headers;
+    }
+    set headers(value) {
+        this._headers = value;
     }
     /**
      * Serialize message to binary data
@@ -2260,7 +4808,7 @@ class StartCallInstanceRequest {
      */
     serializeBinary() {
         const writer = new BinaryWriter();
-        StartCallInstanceRequest.serializeBinaryToWriter(this, writer);
+        SIPConfig.serializeBinaryToWriter(this, writer);
         return writer.getResultBuffer();
     }
     /**
@@ -2269,23 +4817,17 @@ class StartCallInstanceRequest {
     toObject() {
         return {
             callId: this.callId,
+            callDisplayName: this.callDisplayName,
             sipSimVersion: this.sipSimVersion,
-            projectId: this.projectId,
-            phoneNumber: this.phoneNumber,
-            contexts: (this.contexts || []).map(m => m.toObject()),
-            initText: this.initText,
-            asteriskConfig: this.asteriskConfig
-                ? this.asteriskConfig.toObject()
-                : undefined,
-            caiConfig: this.caiConfig ? this.caiConfig.toObject() : undefined,
-            sttConfig: this.sttConfig ? this.sttConfig.toObject() : undefined,
-            ttsConfig: this.ttsConfig ? this.ttsConfig.toObject() : undefined,
             sipPrefix: this.sipPrefix,
-            sipName: this.sipName,
-            passwordDictionary: this.passwordDictionary
-                ? this.passwordDictionary.toObject()
-                : undefined,
-            initialIntent: this.initialIntent
+            sipAccount: this.sipAccount,
+            accountPasswordDictionary: this.accountPasswordDictionary
+                ? Object.keys(this.accountPasswordDictionary).reduce((r, k) => (Object.assign(Object.assign({}, r), { [k]: this.accountPasswordDictionary[k] })), {})
+                : {},
+            phoneNumber: this.phoneNumber,
+            headers: this.headers
+                ? Object.keys(this.headers).reduce((r, k) => (Object.assign(Object.assign({}, r), { [k]: this.headers[k] })), {})
+                : {}
         };
     }
     /**
@@ -2304,29 +4846,388 @@ class StartCallInstanceRequest {
     options) {
         return {
             callId: this.callId,
+            callDisplayName: this.callDisplayName,
             sipSimVersion: this.sipSimVersion,
-            projectId: this.projectId,
-            phoneNumber: this.phoneNumber,
-            contexts: (this.contexts || []).map(m => m.toProtobufJSON(options)),
-            initText: this.initText,
-            asteriskConfig: this.asteriskConfig
-                ? this.asteriskConfig.toProtobufJSON(options)
-                : null,
-            caiConfig: this.caiConfig ? this.caiConfig.toProtobufJSON(options) : null,
-            sttConfig: this.sttConfig ? this.sttConfig.toProtobufJSON(options) : null,
-            ttsConfig: this.ttsConfig ? this.ttsConfig.toProtobufJSON(options) : null,
             sipPrefix: this.sipPrefix,
-            sipName: this.sipName,
-            passwordDictionary: this.passwordDictionary
-                ? this.passwordDictionary.toProtobufJSON(options)
-                : null,
-            initialIntent: this.initialIntent
+            sipAccount: this.sipAccount,
+            accountPasswordDictionary: this.accountPasswordDictionary
+                ? Object.keys(this.accountPasswordDictionary).reduce((r, k) => (Object.assign(Object.assign({}, r), { [k]: this.accountPasswordDictionary[k] })), {})
+                : {},
+            phoneNumber: this.phoneNumber,
+            headers: this.headers
+                ? Object.keys(this.headers).reduce((r, k) => (Object.assign(Object.assign({}, r), { [k]: this.headers[k] })), {})
+                : {}
         };
     }
 }
-StartCallInstanceRequest.id = 'ondewo.nlu.StartCallInstanceRequest';
+SIPConfig.id = 'ondewo.vtsi.SIPConfig';
+(function (SIPConfig) {
+    /**
+     * Message implementation for ondewo.vtsi.AccountPasswordDictionaryEntry
+     */
+    class AccountPasswordDictionaryEntry {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of AccountPasswordDictionaryEntry to deeply clone from
+         */
+        constructor(_value) {
+            _value = _value || {};
+            this.key = _value.key;
+            this.value = _value.value;
+            AccountPasswordDictionaryEntry.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes) {
+            const instance = new AccountPasswordDictionaryEntry();
+            AccountPasswordDictionaryEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+            return instance;
+        }
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance) {
+            _instance.key = _instance.key || '';
+            _instance.value = _instance.value || '';
+        }
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.key = _reader.readString();
+                        break;
+                    case 2:
+                        _instance.value = _reader.readString();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            AccountPasswordDictionaryEntry.refineValues(_instance);
+        }
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance, _writer) {
+            if (_instance.key) {
+                _writer.writeString(1, _instance.key);
+            }
+            if (_instance.value) {
+                _writer.writeString(2, _instance.value);
+            }
+        }
+        get key() {
+            return this._key;
+        }
+        set key(value) {
+            this._key = value;
+        }
+        get value() {
+            return this._value;
+        }
+        set value(value) {
+            this._value = value;
+        }
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary() {
+            const writer = new BinaryWriter();
+            AccountPasswordDictionaryEntry.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        }
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject() {
+            return {
+                key: this.key,
+                value: this.value
+            };
+        }
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON() {
+            return this.toObject();
+        }
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(
+        // @ts-ignore
+        options) {
+            return {
+                key: this.key,
+                value: this.value
+            };
+        }
+    }
+    AccountPasswordDictionaryEntry.id = 'ondewo.vtsi.AccountPasswordDictionaryEntry';
+    SIPConfig.AccountPasswordDictionaryEntry = AccountPasswordDictionaryEntry;
+    /**
+     * Message implementation for ondewo.vtsi.HeadersEntry
+     */
+    class HeadersEntry {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of HeadersEntry to deeply clone from
+         */
+        constructor(_value) {
+            _value = _value || {};
+            this.key = _value.key;
+            this.value = _value.value;
+            HeadersEntry.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes) {
+            const instance = new HeadersEntry();
+            HeadersEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+            return instance;
+        }
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance) {
+            _instance.key = _instance.key || '';
+            _instance.value = _instance.value || '';
+        }
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.key = _reader.readString();
+                        break;
+                    case 2:
+                        _instance.value = _reader.readString();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            HeadersEntry.refineValues(_instance);
+        }
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance, _writer) {
+            if (_instance.key) {
+                _writer.writeString(1, _instance.key);
+            }
+            if (_instance.value) {
+                _writer.writeString(2, _instance.value);
+            }
+        }
+        get key() {
+            return this._key;
+        }
+        set key(value) {
+            this._key = value;
+        }
+        get value() {
+            return this._value;
+        }
+        set value(value) {
+            this._value = value;
+        }
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary() {
+            const writer = new BinaryWriter();
+            HeadersEntry.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        }
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject() {
+            return {
+                key: this.key,
+                value: this.value
+            };
+        }
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON() {
+            return this.toObject();
+        }
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(
+        // @ts-ignore
+        options) {
+            return {
+                key: this.key,
+                value: this.value
+            };
+        }
+    }
+    HeadersEntry.id = 'ondewo.vtsi.HeadersEntry';
+    SIPConfig.HeadersEntry = HeadersEntry;
+})(SIPConfig || (SIPConfig = {}));
 /**
- * Message implementation for ondewo.nlu.StartCallInstanceResponse
+ * Message implementation for ondewo.vtsi.StartCallInstanceRequest
+ */
+class StartCallInstanceRequest {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of StartCallInstanceRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.sipConfig = _value.sipConfig
+            ? new SIPConfig(_value.sipConfig)
+            : undefined;
+        this.servicesConfigs = _value.servicesConfigs
+            ? new CommonServicesConfigs(_value.servicesConfigs)
+            : undefined;
+        StartCallInstanceRequest.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new StartCallInstanceRequest();
+        StartCallInstanceRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.sipConfig = _instance.sipConfig || undefined;
+        _instance.servicesConfigs = _instance.servicesConfigs || undefined;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.sipConfig = new SIPConfig();
+                    _reader.readMessage(_instance.sipConfig, SIPConfig.deserializeBinaryFromReader);
+                    break;
+                case 2:
+                    _instance.servicesConfigs = new CommonServicesConfigs();
+                    _reader.readMessage(_instance.servicesConfigs, CommonServicesConfigs.deserializeBinaryFromReader);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        StartCallInstanceRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.sipConfig) {
+            _writer.writeMessage(1, _instance.sipConfig, SIPConfig.serializeBinaryToWriter);
+        }
+        if (_instance.servicesConfigs) {
+            _writer.writeMessage(2, _instance.servicesConfigs, CommonServicesConfigs.serializeBinaryToWriter);
+        }
+    }
+    get sipConfig() {
+        return this._sipConfig;
+    }
+    set sipConfig(value) {
+        this._sipConfig = value;
+    }
+    get servicesConfigs() {
+        return this._servicesConfigs;
+    }
+    set servicesConfigs(value) {
+        this._servicesConfigs = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        StartCallInstanceRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            sipConfig: this.sipConfig ? this.sipConfig.toObject() : undefined,
+            servicesConfigs: this.servicesConfigs
+                ? this.servicesConfigs.toObject()
+                : undefined
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            sipConfig: this.sipConfig ? this.sipConfig.toProtobufJSON(options) : null,
+            servicesConfigs: this.servicesConfigs
+                ? this.servicesConfigs.toProtobufJSON(options)
+                : null
+        };
+    }
+}
+StartCallInstanceRequest.id = 'ondewo.vtsi.StartCallInstanceRequest';
+/**
+ * Message implementation for ondewo.vtsi.StartCallInstanceResponse
  */
 class StartCallInstanceResponse {
     /**
@@ -2444,9 +5345,9 @@ class StartCallInstanceResponse {
         };
     }
 }
-StartCallInstanceResponse.id = 'ondewo.nlu.StartCallInstanceResponse';
+StartCallInstanceResponse.id = 'ondewo.vtsi.StartCallInstanceResponse';
 /**
- * Message implementation for ondewo.nlu.StartMultipleCallInstancesRequest
+ * Message implementation for ondewo.vtsi.StartMultipleCallInstancesRequest
  */
 class StartMultipleCallInstancesRequest {
     /**
@@ -2547,9 +5448,9 @@ class StartMultipleCallInstancesRequest {
         };
     }
 }
-StartMultipleCallInstancesRequest.id = 'ondewo.nlu.StartMultipleCallInstancesRequest';
+StartMultipleCallInstancesRequest.id = 'ondewo.vtsi.StartMultipleCallInstancesRequest';
 /**
- * Message implementation for ondewo.nlu.StartMultipleCallInstancesResponse
+ * Message implementation for ondewo.vtsi.StartMultipleCallInstancesResponse
  */
 class StartMultipleCallInstancesResponse {
     /**
@@ -2667,9 +5568,9 @@ class StartMultipleCallInstancesResponse {
         };
     }
 }
-StartMultipleCallInstancesResponse.id = 'ondewo.nlu.StartMultipleCallInstancesResponse';
+StartMultipleCallInstancesResponse.id = 'ondewo.vtsi.StartMultipleCallInstancesResponse';
 /**
- * Message implementation for ondewo.nlu.StopCallInstanceRequest
+ * Message implementation for ondewo.vtsi.StopCallInstanceRequest
  */
 class StopCallInstanceRequest {
     /**
@@ -2794,7 +5695,7 @@ class StopCallInstanceRequest {
         };
     }
 }
-StopCallInstanceRequest.id = 'ondewo.nlu.StopCallInstanceRequest';
+StopCallInstanceRequest.id = 'ondewo.vtsi.StopCallInstanceRequest';
 (function (StopCallInstanceRequest) {
     let IdCase;
     (function (IdCase) {
@@ -2804,7 +5705,7 @@ StopCallInstanceRequest.id = 'ondewo.nlu.StopCallInstanceRequest';
     })(IdCase = StopCallInstanceRequest.IdCase || (StopCallInstanceRequest.IdCase = {}));
 })(StopCallInstanceRequest || (StopCallInstanceRequest = {}));
 /**
- * Message implementation for ondewo.nlu.StopCallInstanceResponse
+ * Message implementation for ondewo.vtsi.StopCallInstanceResponse
  */
 class StopCallInstanceResponse {
     /**
@@ -2938,9 +5839,9 @@ class StopCallInstanceResponse {
         };
     }
 }
-StopCallInstanceResponse.id = 'ondewo.nlu.StopCallInstanceResponse';
+StopCallInstanceResponse.id = 'ondewo.vtsi.StopCallInstanceResponse';
 /**
- * Message implementation for ondewo.nlu.VoipManifestStatusRequest
+ * Message implementation for ondewo.vtsi.VoipManifestStatusRequest
  */
 class VoipManifestStatusRequest {
     /**
@@ -3039,9 +5940,9 @@ class VoipManifestStatusRequest {
         };
     }
 }
-VoipManifestStatusRequest.id = 'ondewo.nlu.VoipManifestStatusRequest';
+VoipManifestStatusRequest.id = 'ondewo.vtsi.VoipManifestStatusRequest';
 /**
- * Message implementation for ondewo.nlu.VoipManifestStatus
+ * Message implementation for ondewo.vtsi.VoipManifestStatus
  */
 class VoipManifestStatus {
     /**
@@ -3161,9 +6062,9 @@ class VoipManifestStatus {
         };
     }
 }
-VoipManifestStatus.id = 'ondewo.nlu.VoipManifestStatus';
+VoipManifestStatus.id = 'ondewo.vtsi.VoipManifestStatus';
 /**
- * Message implementation for ondewo.nlu.GetVoipStatusRequest
+ * Message implementation for ondewo.vtsi.GetVoipStatusRequest
  */
 class GetVoipStatusRequest {
     /**
@@ -3288,7 +6189,7 @@ class GetVoipStatusRequest {
         };
     }
 }
-GetVoipStatusRequest.id = 'ondewo.nlu.GetVoipStatusRequest';
+GetVoipStatusRequest.id = 'ondewo.vtsi.GetVoipStatusRequest';
 (function (GetVoipStatusRequest) {
     let IdCase;
     (function (IdCase) {
@@ -3298,7 +6199,7 @@ GetVoipStatusRequest.id = 'ondewo.nlu.GetVoipStatusRequest';
     })(IdCase = GetVoipStatusRequest.IdCase || (GetVoipStatusRequest.IdCase = {}));
 })(GetVoipStatusRequest || (GetVoipStatusRequest = {}));
 /**
- * Message implementation for ondewo.nlu.VoipStatus
+ * Message implementation for ondewo.vtsi.VoipStatus
  */
 class VoipStatus {
     /**
@@ -3493,9 +6394,9 @@ class VoipStatus {
         };
     }
 }
-VoipStatus.id = 'ondewo.nlu.VoipStatus';
+VoipStatus.id = 'ondewo.vtsi.VoipStatus';
 /**
- * Message implementation for ondewo.nlu.ServiceStatus
+ * Message implementation for ondewo.vtsi.ServiceStatus
  */
 class ServiceStatus {
     /**
@@ -3610,9 +6511,9 @@ class ServiceStatus {
         };
     }
 }
-ServiceStatus.id = 'ondewo.nlu.ServiceStatus';
+ServiceStatus.id = 'ondewo.vtsi.ServiceStatus';
 /**
- * Message implementation for ondewo.nlu.UpdateServicesStatusRequest
+ * Message implementation for ondewo.vtsi.UpdateServicesStatusRequest
  */
 class UpdateServicesStatusRequest {
     /**
@@ -3756,7 +6657,7 @@ class UpdateServicesStatusRequest {
         };
     }
 }
-UpdateServicesStatusRequest.id = 'ondewo.nlu.UpdateServicesStatusRequest';
+UpdateServicesStatusRequest.id = 'ondewo.vtsi.UpdateServicesStatusRequest';
 (function (UpdateServicesStatusRequest) {
     let IdCase;
     (function (IdCase) {
@@ -3767,7 +6668,7 @@ UpdateServicesStatusRequest.id = 'ondewo.nlu.UpdateServicesStatusRequest';
     })(IdCase = UpdateServicesStatusRequest.IdCase || (UpdateServicesStatusRequest.IdCase = {}));
 })(UpdateServicesStatusRequest || (UpdateServicesStatusRequest = {}));
 /**
- * Message implementation for ondewo.nlu.UpdateServicesStatusResponse
+ * Message implementation for ondewo.vtsi.UpdateServicesStatusResponse
  */
 class UpdateServicesStatusResponse {
     /**
@@ -3869,9 +6770,9 @@ class UpdateServicesStatusResponse {
         };
     }
 }
-UpdateServicesStatusResponse.id = 'ondewo.nlu.UpdateServicesStatusResponse';
+UpdateServicesStatusResponse.id = 'ondewo.vtsi.UpdateServicesStatusResponse';
 /**
- * Message implementation for ondewo.nlu.DeployPreconditionRequest
+ * Message implementation for ondewo.vtsi.DeployPreconditionRequest
  */
 class DeployPreconditionRequest {
     /**
@@ -3882,7 +6783,7 @@ class DeployPreconditionRequest {
         _value = _value || {};
         this.sipSimVersion = _value.sipSimVersion;
         this.asteriskConfig = _value.asteriskConfig
-            ? new ServiceConfig(_value.asteriskConfig)
+            ? new AsteriskConfig(_value.asteriskConfig)
             : undefined;
         DeployPreconditionRequest.refineValues(this);
     }
@@ -3917,8 +6818,8 @@ class DeployPreconditionRequest {
                     _instance.sipSimVersion = _reader.readString();
                     break;
                 case 2:
-                    _instance.asteriskConfig = new ServiceConfig();
-                    _reader.readMessage(_instance.asteriskConfig, ServiceConfig.deserializeBinaryFromReader);
+                    _instance.asteriskConfig = new AsteriskConfig();
+                    _reader.readMessage(_instance.asteriskConfig, AsteriskConfig.deserializeBinaryFromReader);
                     break;
                 default:
                     _reader.skipField();
@@ -3936,7 +6837,7 @@ class DeployPreconditionRequest {
             _writer.writeString(1, _instance.sipSimVersion);
         }
         if (_instance.asteriskConfig) {
-            _writer.writeMessage(2, _instance.asteriskConfig, ServiceConfig.serializeBinaryToWriter);
+            _writer.writeMessage(2, _instance.asteriskConfig, AsteriskConfig.serializeBinaryToWriter);
         }
     }
     get sipSimVersion() {
@@ -3993,9 +6894,9 @@ class DeployPreconditionRequest {
         };
     }
 }
-DeployPreconditionRequest.id = 'ondewo.nlu.DeployPreconditionRequest';
+DeployPreconditionRequest.id = 'ondewo.vtsi.DeployPreconditionRequest';
 /**
- * Message implementation for ondewo.nlu.DeployPreconditionResponse
+ * Message implementation for ondewo.vtsi.DeployPreconditionResponse
  */
 class DeployPreconditionResponse {
     /**
@@ -4094,9 +6995,9 @@ class DeployPreconditionResponse {
         };
     }
 }
-DeployPreconditionResponse.id = 'ondewo.nlu.DeployPreconditionResponse';
+DeployPreconditionResponse.id = 'ondewo.vtsi.DeployPreconditionResponse';
 /**
- * Message implementation for ondewo.nlu.GetManifestIDsRequest
+ * Message implementation for ondewo.vtsi.GetManifestIDsRequest
  */
 class GetManifestIDsRequest {
     /**
@@ -4198,9 +7099,9 @@ class GetManifestIDsRequest {
         };
     }
 }
-GetManifestIDsRequest.id = 'ondewo.nlu.GetManifestIDsRequest';
+GetManifestIDsRequest.id = 'ondewo.vtsi.GetManifestIDsRequest';
 /**
- * Message implementation for ondewo.nlu.GetManifestIDsResponse
+ * Message implementation for ondewo.vtsi.GetManifestIDsResponse
  */
 class GetManifestIDsResponse {
     /**
@@ -4299,9 +7200,9 @@ class GetManifestIDsResponse {
         };
     }
 }
-GetManifestIDsResponse.id = 'ondewo.nlu.GetManifestIDsResponse';
+GetManifestIDsResponse.id = 'ondewo.vtsi.GetManifestIDsResponse';
 /**
- * Message implementation for ondewo.nlu.GetCallIDsRequest
+ * Message implementation for ondewo.vtsi.GetCallIDsRequest
  */
 class GetCallIDsRequest {
     /**
@@ -4403,9 +7304,9 @@ class GetCallIDsRequest {
         };
     }
 }
-GetCallIDsRequest.id = 'ondewo.nlu.GetCallIDsRequest';
+GetCallIDsRequest.id = 'ondewo.vtsi.GetCallIDsRequest';
 /**
- * Message implementation for ondewo.nlu.GetCallIDsResponse
+ * Message implementation for ondewo.vtsi.GetCallIDsResponse
  */
 class GetCallIDsResponse {
     /**
@@ -4504,9 +7405,9 @@ class GetCallIDsResponse {
         };
     }
 }
-GetCallIDsResponse.id = 'ondewo.nlu.GetCallIDsResponse';
+GetCallIDsResponse.id = 'ondewo.vtsi.GetCallIDsResponse';
 /**
- * Message implementation for ondewo.nlu.GetSessionIDRequest
+ * Message implementation for ondewo.vtsi.GetSessionIDRequest
  */
 class GetSessionIDRequest {
     /**
@@ -4605,9 +7506,9 @@ class GetSessionIDRequest {
         };
     }
 }
-GetSessionIDRequest.id = 'ondewo.nlu.GetSessionIDRequest';
+GetSessionIDRequest.id = 'ondewo.vtsi.GetSessionIDRequest';
 /**
- * Message implementation for ondewo.nlu.GetSessionIDResponse
+ * Message implementation for ondewo.vtsi.GetSessionIDResponse
  */
 class GetSessionIDResponse {
     /**
@@ -4722,9 +7623,9 @@ class GetSessionIDResponse {
         };
     }
 }
-GetSessionIDResponse.id = 'ondewo.nlu.GetSessionIDResponse';
+GetSessionIDResponse.id = 'ondewo.vtsi.GetSessionIDResponse';
 /**
- * Message implementation for ondewo.nlu.ShutdownUnhealthyCallsRequest
+ * Message implementation for ondewo.vtsi.ShutdownUnhealthyCallsRequest
  */
 class ShutdownUnhealthyCallsRequest {
     /**
@@ -4826,9 +7727,9 @@ class ShutdownUnhealthyCallsRequest {
         };
     }
 }
-ShutdownUnhealthyCallsRequest.id = 'ondewo.nlu.ShutdownUnhealthyCallsRequest';
+ShutdownUnhealthyCallsRequest.id = 'ondewo.vtsi.ShutdownUnhealthyCallsRequest';
 /**
- * Message implementation for ondewo.nlu.ShutdownUnhealthyCallsResponse
+ * Message implementation for ondewo.vtsi.ShutdownUnhealthyCallsResponse
  */
 class ShutdownUnhealthyCallsResponse {
     /**
@@ -4927,7 +7828,7 @@ class ShutdownUnhealthyCallsResponse {
         };
     }
 }
-ShutdownUnhealthyCallsResponse.id = 'ondewo.nlu.ShutdownUnhealthyCallsResponse';
+ShutdownUnhealthyCallsResponse.id = 'ondewo.vtsi.ShutdownUnhealthyCallsResponse';
 
 /* tslint:disable */
 /**
@@ -4938,7 +7839,7 @@ const GRPC_VOIP_SESSIONS_CLIENT_SETTINGS = new InjectionToken('GRPC_VOIP_SESSION
 
 /* tslint:disable */
 /**
- * Service client implementation for ondewo.nlu.VoipSessions
+ * Service client implementation for ondewo.vtsi.VoipSessions
  */
 class VoipSessionsClient {
     constructor(settings, clientFactory, handler) {
@@ -4950,25 +7851,7 @@ class VoipSessionsClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/LoadManifest
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.VoipManifestResponse>>
-             */
-            loadManifest: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.unary,
-                    client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/LoadManifest',
-                    requestData,
-                    requestMetadata,
-                    requestClass: VoipManifest,
-                    responseClass: VoipManifestResponse
-                });
-            },
-            /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/RunManifest
+             * Unary RPC for /ondewo.vtsi.VoipSessions/RunManifest
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -4978,7 +7861,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/RunManifest',
+                    path: '/ondewo.vtsi.VoipSessions/RunManifest',
                     requestData,
                     requestMetadata,
                     requestClass: ManifestRequest,
@@ -4986,7 +7869,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/RemoveManifest
+             * Unary RPC for /ondewo.vtsi.VoipSessions/RemoveManifest
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -4996,7 +7879,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/RemoveManifest',
+                    path: '/ondewo.vtsi.VoipSessions/RemoveManifest',
                     requestData,
                     requestMetadata,
                     requestClass: ManifestRequest,
@@ -5004,7 +7887,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/GetManifestIDs
+             * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestIDs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5014,7 +7897,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/GetManifestIDs',
+                    path: '/ondewo.vtsi.VoipSessions/GetManifestIDs',
                     requestData,
                     requestMetadata,
                     requestClass: GetManifestIDsRequest,
@@ -5022,7 +7905,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/StartCallInstance
+             * Unary RPC for /ondewo.vtsi.VoipSessions/StartCallInstance
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5032,7 +7915,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/StartCallInstance',
+                    path: '/ondewo.vtsi.VoipSessions/StartCallInstance',
                     requestData,
                     requestMetadata,
                     requestClass: StartCallInstanceRequest,
@@ -5040,7 +7923,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/StopCallInstance
+             * Unary RPC for /ondewo.vtsi.VoipSessions/StopCallInstance
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5050,7 +7933,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/StopCallInstance',
+                    path: '/ondewo.vtsi.VoipSessions/StopCallInstance',
                     requestData,
                     requestMetadata,
                     requestClass: StopCallInstanceRequest,
@@ -5058,7 +7941,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/StartMultipleCallInstances
+             * Unary RPC for /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5068,7 +7951,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/StartMultipleCallInstances',
+                    path: '/ondewo.vtsi.VoipSessions/StartMultipleCallInstances',
                     requestData,
                     requestMetadata,
                     requestClass: StartMultipleCallInstancesRequest,
@@ -5076,7 +7959,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/GetCallIDs
+             * Unary RPC for /ondewo.vtsi.VoipSessions/GetCallIDs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5086,7 +7969,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/GetCallIDs',
+                    path: '/ondewo.vtsi.VoipSessions/GetCallIDs',
                     requestData,
                     requestMetadata,
                     requestClass: GetCallIDsRequest,
@@ -5094,7 +7977,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/GetSessionID
+             * Unary RPC for /ondewo.vtsi.VoipSessions/GetSessionID
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5104,7 +7987,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/GetSessionID',
+                    path: '/ondewo.vtsi.VoipSessions/GetSessionID',
                     requestData,
                     requestMetadata,
                     requestClass: GetSessionIDRequest,
@@ -5112,7 +7995,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/ShutdownUnhealthyCalls
+             * Unary RPC for /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5122,7 +8005,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/ShutdownUnhealthyCalls',
+                    path: '/ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls',
                     requestData,
                     requestMetadata,
                     requestClass: ShutdownUnhealthyCallsRequest,
@@ -5130,7 +8013,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/GetManifestStatus
+             * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5140,7 +8023,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/GetManifestStatus',
+                    path: '/ondewo.vtsi.VoipSessions/GetManifestStatus',
                     requestData,
                     requestMetadata,
                     requestClass: VoipManifestStatusRequest,
@@ -5148,7 +8031,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/GetInstanceStatus
+             * Unary RPC for /ondewo.vtsi.VoipSessions/GetInstanceStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5158,7 +8041,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/GetInstanceStatus',
+                    path: '/ondewo.vtsi.VoipSessions/GetInstanceStatus',
                     requestData,
                     requestMetadata,
                     requestClass: GetVoipStatusRequest,
@@ -5166,7 +8049,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/UpdateServicesStatus
+             * Unary RPC for /ondewo.vtsi.VoipSessions/UpdateServicesStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5176,7 +8059,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/UpdateServicesStatus',
+                    path: '/ondewo.vtsi.VoipSessions/UpdateServicesStatus',
                     requestData,
                     requestMetadata,
                     requestClass: UpdateServicesStatusRequest,
@@ -5184,7 +8067,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.VoipSessions/DeployPreconditionForWorkingSetup
+             * Unary RPC for /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -5194,7 +8077,7 @@ class VoipSessionsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.nlu.VoipSessions/DeployPreconditionForWorkingSetup',
+                    path: '/ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup',
                     requestData,
                     requestMetadata,
                     requestClass: DeployPreconditionRequest,
@@ -5202,22 +8085,10 @@ class VoipSessionsClient {
                 });
             }
         };
-        this.client = clientFactory.createClient('ondewo.nlu.VoipSessions', settings);
+        this.client = clientFactory.createClient('ondewo.vtsi.VoipSessions', settings);
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/LoadManifest
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.VoipManifestResponse>
-     */
-    loadManifest(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .loadManifest(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/RunManifest
+     * Unary RPC for /ondewo.vtsi.VoipSessions/RunManifest
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5229,7 +8100,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/RemoveManifest
+     * Unary RPC for /ondewo.vtsi.VoipSessions/RemoveManifest
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5241,7 +8112,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetManifestIDs
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestIDs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5253,7 +8124,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/StartCallInstance
+     * Unary RPC for /ondewo.vtsi.VoipSessions/StartCallInstance
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5265,7 +8136,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/StopCallInstance
+     * Unary RPC for /ondewo.vtsi.VoipSessions/StopCallInstance
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5277,7 +8148,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/StartMultipleCallInstances
+     * Unary RPC for /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5289,7 +8160,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetCallIDs
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetCallIDs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5301,7 +8172,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetSessionID
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetSessionID
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5313,7 +8184,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/ShutdownUnhealthyCalls
+     * Unary RPC for /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5325,7 +8196,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetManifestStatus
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5337,7 +8208,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetInstanceStatus
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetInstanceStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5349,7 +8220,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/UpdateServicesStatus
+     * Unary RPC for /ondewo.vtsi.VoipSessions/UpdateServicesStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -5361,7 +8232,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/DeployPreconditionForWorkingSetup
+     * Unary RPC for /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -6315,7 +9186,7 @@ class PlayWavFilesRequest {
 PlayWavFilesRequest.id = 'ondewo.sip.PlayWavFilesRequest';
 
 /**
- * Message implementation for ondewo.sip.GetCallIdsRequest
+ * Message implementation for ondewo.vtsi.GetCallIdsRequest
  */
 class GetCallIdsRequest {
     /**
@@ -6414,9 +9285,9 @@ class GetCallIdsRequest {
         };
     }
 }
-GetCallIdsRequest.id = 'ondewo.sip.GetCallIdsRequest';
+GetCallIdsRequest.id = 'ondewo.vtsi.GetCallIdsRequest';
 /**
- * Message implementation for ondewo.sip.GetCallIdsResponse
+ * Message implementation for ondewo.vtsi.GetCallIdsResponse
  */
 class GetCallIdsResponse {
     /**
@@ -6531,9 +9402,9 @@ class GetCallIdsResponse {
         };
     }
 }
-GetCallIdsResponse.id = 'ondewo.sip.GetCallIdsResponse';
+GetCallIdsResponse.id = 'ondewo.vtsi.GetCallIdsResponse';
 /**
- * Message implementation for ondewo.sip.GetVoipLogRequest
+ * Message implementation for ondewo.vtsi.GetVoipLogRequest
  */
 class GetVoipLogRequest {
     /**
@@ -6632,9 +9503,9 @@ class GetVoipLogRequest {
         };
     }
 }
-GetVoipLogRequest.id = 'ondewo.sip.GetVoipLogRequest';
+GetVoipLogRequest.id = 'ondewo.vtsi.GetVoipLogRequest';
 /**
- * Message implementation for ondewo.sip.GetVoipLogResponse
+ * Message implementation for ondewo.vtsi.GetVoipLogResponse
  */
 class GetVoipLogResponse {
     /**
@@ -6754,9 +9625,9 @@ class GetVoipLogResponse {
         };
     }
 }
-GetVoipLogResponse.id = 'ondewo.sip.GetVoipLogResponse';
+GetVoipLogResponse.id = 'ondewo.vtsi.GetVoipLogResponse';
 /**
- * Message implementation for ondewo.sip.VoipLog
+ * Message implementation for ondewo.vtsi.VoipLog
  */
 class VoipLog {
     /**
@@ -6922,9 +9793,9 @@ class VoipLog {
         };
     }
 }
-VoipLog.id = 'ondewo.sip.VoipLog';
+VoipLog.id = 'ondewo.vtsi.VoipLog';
 /**
- * Message implementation for ondewo.sip.Counters
+ * Message implementation for ondewo.vtsi.Counters
  */
 class Counters {
     /**
@@ -7039,231 +9910,9 @@ class Counters {
         };
     }
 }
-Counters.id = 'ondewo.sip.Counters';
+Counters.id = 'ondewo.vtsi.Counters';
 /**
- * Message implementation for ondewo.sip.GetManifestVoipLogRequest
- */
-class GetManifestVoipLogRequest {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of GetManifestVoipLogRequest to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.manifestId = _value.manifestId;
-        GetManifestVoipLogRequest.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new GetManifestVoipLogRequest();
-        GetManifestVoipLogRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.manifestId = _instance.manifestId || '';
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    _instance.manifestId = _reader.readString();
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        GetManifestVoipLogRequest.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.manifestId) {
-            _writer.writeString(1, _instance.manifestId);
-        }
-    }
-    get manifestId() {
-        return this._manifestId;
-    }
-    set manifestId(value) {
-        this._manifestId = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        GetManifestVoipLogRequest.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            manifestId: this.manifestId
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            manifestId: this.manifestId
-        };
-    }
-}
-GetManifestVoipLogRequest.id = 'ondewo.sip.GetManifestVoipLogRequest';
-/**
- * Message implementation for ondewo.sip.ManifestVoipLog
- */
-class ManifestVoipLog {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of ManifestVoipLog to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.callerLogs = (_value.callerLogs || []).map(m => new GetVoipLogResponse(m));
-        this.listenerLogs = (_value.listenerLogs || []).map(m => new GetVoipLogResponse(m));
-        ManifestVoipLog.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new ManifestVoipLog();
-        ManifestVoipLog.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.callerLogs = _instance.callerLogs || [];
-        _instance.listenerLogs = _instance.listenerLogs || [];
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    const messageInitializer1 = new GetVoipLogResponse();
-                    _reader.readMessage(messageInitializer1, GetVoipLogResponse.deserializeBinaryFromReader);
-                    (_instance.callerLogs = _instance.callerLogs || []).push(messageInitializer1);
-                    break;
-                case 2:
-                    const messageInitializer2 = new GetVoipLogResponse();
-                    _reader.readMessage(messageInitializer2, GetVoipLogResponse.deserializeBinaryFromReader);
-                    (_instance.listenerLogs = _instance.listenerLogs || []).push(messageInitializer2);
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        ManifestVoipLog.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.callerLogs && _instance.callerLogs.length) {
-            _writer.writeRepeatedMessage(1, _instance.callerLogs, GetVoipLogResponse.serializeBinaryToWriter);
-        }
-        if (_instance.listenerLogs && _instance.listenerLogs.length) {
-            _writer.writeRepeatedMessage(2, _instance.listenerLogs, GetVoipLogResponse.serializeBinaryToWriter);
-        }
-    }
-    get callerLogs() {
-        return this._callerLogs;
-    }
-    set callerLogs(value) {
-        this._callerLogs = value;
-    }
-    get listenerLogs() {
-        return this._listenerLogs;
-    }
-    set listenerLogs(value) {
-        this._listenerLogs = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        ManifestVoipLog.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            callerLogs: (this.callerLogs || []).map(m => m.toObject()),
-            listenerLogs: (this.listenerLogs || []).map(m => m.toObject())
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            callerLogs: (this.callerLogs || []).map(m => m.toProtobufJSON(options)),
-            listenerLogs: (this.listenerLogs || []).map(m => m.toProtobufJSON(options))
-        };
-    }
-}
-ManifestVoipLog.id = 'ondewo.sip.ManifestVoipLog';
-/**
- * Message implementation for ondewo.sip.SaveCallLogsResponse
+ * Message implementation for ondewo.vtsi.SaveCallLogsResponse
  */
 class SaveCallLogsResponse {
     /**
@@ -7362,7 +10011,7 @@ class SaveCallLogsResponse {
         };
     }
 }
-SaveCallLogsResponse.id = 'ondewo.sip.SaveCallLogsResponse';
+SaveCallLogsResponse.id = 'ondewo.vtsi.SaveCallLogsResponse';
 
 /* tslint:disable */
 /**
@@ -7373,7 +10022,7 @@ const GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS = new InjectionToken('GRPC_VOIP_CALL_L
 
 /* tslint:disable */
 /**
- * Service client implementation for ondewo.sip.VoipCallLogs
+ * Service client implementation for ondewo.vtsi.VoipCallLogs
  */
 class VoipCallLogsClient {
     constructor(settings, clientFactory, handler) {
@@ -7385,7 +10034,7 @@ class VoipCallLogsClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.sip.VoipCallLogs/GetVoipLog
+             * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -7395,7 +10044,7 @@ class VoipCallLogsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.sip.VoipCallLogs/GetVoipLog',
+                    path: '/ondewo.vtsi.VoipCallLogs/GetVoipLog',
                     requestData,
                     requestMetadata,
                     requestClass: GetVoipLogRequest,
@@ -7403,25 +10052,7 @@ class VoipCallLogsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.VoipCallLogs/GetManifestVoipLog
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.ManifestVoipLog>>
-             */
-            getManifestVoipLog: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.unary,
-                    client: this.client,
-                    path: '/ondewo.sip.VoipCallLogs/GetManifestVoipLog',
-                    requestData,
-                    requestMetadata,
-                    requestClass: GetManifestVoipLogRequest,
-                    responseClass: ManifestVoipLog
-                });
-            },
-            /**
-             * Unary RPC for /ondewo.sip.VoipCallLogs/ActivateSaveCallLogs
+             * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -7431,7 +10062,7 @@ class VoipCallLogsClient {
                 return this.handler.handle({
                     type: GrpcCallType.unary,
                     client: this.client,
-                    path: '/ondewo.sip.VoipCallLogs/ActivateSaveCallLogs',
+                    path: '/ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs',
                     requestData,
                     requestMetadata,
                     requestClass: Empty,
@@ -7439,10 +10070,10 @@ class VoipCallLogsClient {
                 });
             }
         };
-        this.client = clientFactory.createClient('ondewo.sip.VoipCallLogs', settings);
+        this.client = clientFactory.createClient('ondewo.vtsi.VoipCallLogs', settings);
     }
     /**
-     * Unary RPC for /ondewo.sip.VoipCallLogs/GetVoipLog
+     * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -7454,19 +10085,7 @@ class VoipCallLogsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.VoipCallLogs/GetManifestVoipLog
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.ManifestVoipLog>
-     */
-    getManifestVoipLog(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .getManifestVoipLog(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Unary RPC for /ondewo.sip.VoipCallLogs/ActivateSaveCallLogs
+     * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -8534,5 +11153,5 @@ CustomHttpPattern.id = 'google.api.CustomHttpPattern';
  * Generated bundle index. Do not edit.
  */
 
-export { Context, ContextsClient, Counters, CreateContextRequest, CustomHttpPattern, DeleteAllContextsRequest, DeleteContextRequest, DeployPreconditionRequest, DeployPreconditionResponse, EndCallRequest, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, GetCallIDsRequest, GetCallIDsResponse, GetCallIdsRequest, GetCallIdsResponse, GetContextRequest, GetManifestIDsRequest, GetManifestIDsResponse, GetManifestVoipLogRequest, GetSessionIDRequest, GetSessionIDResponse, GetVoipLogRequest, GetVoipLogResponse, GetVoipStatusRequest, Http, HttpRule, ListContextsRequest, ListContextsResponse, ManifestRequest, ManifestVoipLog, PlayWavFilesRequest, RegisterAccountRequest, RemoveManifestResponse, RunManifestResponse, SaveCallLogsResponse, ServiceConfig, ServiceStatus, ShutdownUnhealthyCallsRequest, ShutdownUnhealthyCallsResponse, SipClient, SipStatus, SipStatusHistoryResponse, StartCallInstanceRequest, StartCallInstanceResponse, StartCallRequest, StartMultipleCallInstancesRequest, StartMultipleCallInstancesResponse, StartSessionRequest, StopCallInstanceRequest, StopCallInstanceResponse, TransferCallRequest, UpdateContextRequest, UpdateServicesStatusRequest, UpdateServicesStatusResponse, VoipCallLogsClient, VoipLog, VoipManifest, VoipManifestResponse, VoipManifestStatus, VoipManifestStatusRequest, VoipSessionsClient, VoipStatus };
+export { AsteriskConfig, AudioFormat, BaseServiceConfig, CTCDecoding, CommonServicesConfigs, Context, ContextsClient, Counters, CreateContextRequest, Credentials, CustomHttpPattern, DeleteAllContextsRequest, DeleteContextRequest, DeployPreconditionRequest, DeployPreconditionResponse, EndCallRequest, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, GetCallIDsRequest, GetCallIDsResponse, GetCallIdsRequest, GetCallIdsResponse, GetContextRequest, GetManifestIDsRequest, GetManifestIDsResponse, GetSessionIDRequest, GetSessionIDResponse, GetVoipLogRequest, GetVoipLogResponse, GetVoipStatusRequest, Http, HttpRule, ListContextsRequest, ListContextsResponse, ManifestRequest, Matchbox, NLUConfig, Normalization, Pcm, PlayWavFilesRequest, PostProcessing, PostProcessingOptions, PostProcessors, Pyannote, RegisterAccountRequest, RemoveManifestResponse, RequestConfig, RunManifestResponse, S2TConfig, SIPConfig, SaveCallLogsResponse, ServiceStatus, ShutdownUnhealthyCallsRequest, ShutdownUnhealthyCallsResponse, SipClient, SipStatus, SipStatusHistoryResponse, StartCallInstanceRequest, StartCallInstanceResponse, StartCallRequest, StartMultipleCallInstancesRequest, StartMultipleCallInstancesResponse, StartSessionRequest, StopCallInstanceRequest, StopCallInstanceResponse, SymSpell, T2SConfig, TranscribeRequestConfig, TranscriptionReturnOptions, TransferCallRequest, UpdateContextRequest, UpdateServicesStatusRequest, UpdateServicesStatusResponse, UtteranceDetectionOptions, VoipCallLogsClient, VoipLog, VoipManifest, VoipManifestStatus, VoipManifestStatusRequest, VoipSessionsClient, VoipStatus };
 //# sourceMappingURL=ondewo-vtsi-client-angular.js.map

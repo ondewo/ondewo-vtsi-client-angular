@@ -3,7 +3,7 @@ import { GrpcHandler } from '@ngx-grpc/core';
 import { Observable } from 'rxjs';
 import * as thisProto from './voip.pb';
 /**
- * Service client implementation for ondewo.nlu.VoipSessions
+ * Service client implementation for ondewo.vtsi.VoipSessions
  */
 export declare class VoipSessionsClient {
     private handler;
@@ -15,15 +15,7 @@ export declare class VoipSessionsClient {
      */
     $raw: {
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/LoadManifest
-         *
-         * @param requestMessage Request message
-         * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.VoipManifestResponse>>
-         */
-        loadManifest: (requestData: thisProto.VoipManifest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.VoipManifestResponse>>;
-        /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/RunManifest
+         * Unary RPC for /ondewo.vtsi.VoipSessions/RunManifest
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -31,7 +23,7 @@ export declare class VoipSessionsClient {
          */
         runManifest: (requestData: thisProto.ManifestRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.RunManifestResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/RemoveManifest
+         * Unary RPC for /ondewo.vtsi.VoipSessions/RemoveManifest
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -39,7 +31,7 @@ export declare class VoipSessionsClient {
          */
         removeManifest: (requestData: thisProto.ManifestRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.RemoveManifestResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/GetManifestIDs
+         * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestIDs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -47,7 +39,7 @@ export declare class VoipSessionsClient {
          */
         getManifestIDs: (requestData: thisProto.GetManifestIDsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetManifestIDsResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/StartCallInstance
+         * Unary RPC for /ondewo.vtsi.VoipSessions/StartCallInstance
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -55,7 +47,7 @@ export declare class VoipSessionsClient {
          */
         startCallInstance: (requestData: thisProto.StartCallInstanceRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StartCallInstanceResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/StopCallInstance
+         * Unary RPC for /ondewo.vtsi.VoipSessions/StopCallInstance
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -63,7 +55,7 @@ export declare class VoipSessionsClient {
          */
         stopCallInstance: (requestData: thisProto.StopCallInstanceRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StopCallInstanceResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/StartMultipleCallInstances
+         * Unary RPC for /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -71,7 +63,7 @@ export declare class VoipSessionsClient {
          */
         startMultipleCallInstances: (requestData: thisProto.StartMultipleCallInstancesRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StartMultipleCallInstancesResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/GetCallIDs
+         * Unary RPC for /ondewo.vtsi.VoipSessions/GetCallIDs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -79,7 +71,7 @@ export declare class VoipSessionsClient {
          */
         getCallIDs: (requestData: thisProto.GetCallIDsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetCallIDsResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/GetSessionID
+         * Unary RPC for /ondewo.vtsi.VoipSessions/GetSessionID
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -87,7 +79,7 @@ export declare class VoipSessionsClient {
          */
         getSessionID: (requestData: thisProto.GetSessionIDRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetSessionIDResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/ShutdownUnhealthyCalls
+         * Unary RPC for /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -95,7 +87,7 @@ export declare class VoipSessionsClient {
          */
         shutdownUnhealthyCalls: (requestData: thisProto.ShutdownUnhealthyCallsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.ShutdownUnhealthyCallsResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/GetManifestStatus
+         * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestStatus
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -103,7 +95,7 @@ export declare class VoipSessionsClient {
          */
         getManifestStatus: (requestData: thisProto.VoipManifestStatusRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.VoipManifestStatus>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/GetInstanceStatus
+         * Unary RPC for /ondewo.vtsi.VoipSessions/GetInstanceStatus
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -111,7 +103,7 @@ export declare class VoipSessionsClient {
          */
         getInstanceStatus: (requestData: thisProto.GetVoipStatusRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.VoipStatus>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/UpdateServicesStatus
+         * Unary RPC for /ondewo.vtsi.VoipSessions/UpdateServicesStatus
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -119,7 +111,7 @@ export declare class VoipSessionsClient {
          */
         updateServicesStatus: (requestData: thisProto.UpdateServicesStatusRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.UpdateServicesStatusResponse>>;
         /**
-         * Unary RPC for /ondewo.nlu.VoipSessions/DeployPreconditionForWorkingSetup
+         * Unary RPC for /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -129,15 +121,7 @@ export declare class VoipSessionsClient {
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/LoadManifest
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.VoipManifestResponse>
-     */
-    loadManifest(requestData: thisProto.VoipManifest, requestMetadata?: GrpcMetadata): Observable<thisProto.VoipManifestResponse>;
-    /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/RunManifest
+     * Unary RPC for /ondewo.vtsi.VoipSessions/RunManifest
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -145,7 +129,7 @@ export declare class VoipSessionsClient {
      */
     runManifest(requestData: thisProto.ManifestRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.RunManifestResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/RemoveManifest
+     * Unary RPC for /ondewo.vtsi.VoipSessions/RemoveManifest
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -153,7 +137,7 @@ export declare class VoipSessionsClient {
      */
     removeManifest(requestData: thisProto.ManifestRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.RemoveManifestResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetManifestIDs
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestIDs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -161,7 +145,7 @@ export declare class VoipSessionsClient {
      */
     getManifestIDs(requestData: thisProto.GetManifestIDsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetManifestIDsResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/StartCallInstance
+     * Unary RPC for /ondewo.vtsi.VoipSessions/StartCallInstance
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -169,7 +153,7 @@ export declare class VoipSessionsClient {
      */
     startCallInstance(requestData: thisProto.StartCallInstanceRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StartCallInstanceResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/StopCallInstance
+     * Unary RPC for /ondewo.vtsi.VoipSessions/StopCallInstance
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -177,7 +161,7 @@ export declare class VoipSessionsClient {
      */
     stopCallInstance(requestData: thisProto.StopCallInstanceRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StopCallInstanceResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/StartMultipleCallInstances
+     * Unary RPC for /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -185,7 +169,7 @@ export declare class VoipSessionsClient {
      */
     startMultipleCallInstances(requestData: thisProto.StartMultipleCallInstancesRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StartMultipleCallInstancesResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetCallIDs
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetCallIDs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -193,7 +177,7 @@ export declare class VoipSessionsClient {
      */
     getCallIDs(requestData: thisProto.GetCallIDsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetCallIDsResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetSessionID
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetSessionID
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -201,7 +185,7 @@ export declare class VoipSessionsClient {
      */
     getSessionID(requestData: thisProto.GetSessionIDRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetSessionIDResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/ShutdownUnhealthyCalls
+     * Unary RPC for /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -209,7 +193,7 @@ export declare class VoipSessionsClient {
      */
     shutdownUnhealthyCalls(requestData: thisProto.ShutdownUnhealthyCallsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.ShutdownUnhealthyCallsResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetManifestStatus
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -217,7 +201,7 @@ export declare class VoipSessionsClient {
      */
     getManifestStatus(requestData: thisProto.VoipManifestStatusRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.VoipManifestStatus>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/GetInstanceStatus
+     * Unary RPC for /ondewo.vtsi.VoipSessions/GetInstanceStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -225,7 +209,7 @@ export declare class VoipSessionsClient {
      */
     getInstanceStatus(requestData: thisProto.GetVoipStatusRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.VoipStatus>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/UpdateServicesStatus
+     * Unary RPC for /ondewo.vtsi.VoipSessions/UpdateServicesStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -233,7 +217,7 @@ export declare class VoipSessionsClient {
      */
     updateServicesStatus(requestData: thisProto.UpdateServicesStatusRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.UpdateServicesStatusResponse>;
     /**
-     * Unary RPC for /ondewo.nlu.VoipSessions/DeployPreconditionForWorkingSetup
+     * Unary RPC for /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
