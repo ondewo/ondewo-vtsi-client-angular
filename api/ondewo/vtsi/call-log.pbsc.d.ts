@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import * as thisProto from './call-log.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 /**
- * Service client implementation for ondewo.sip.VoipCallLogs
+ * Service client implementation for ondewo.vtsi.VoipCallLogs
  */
 export declare class VoipCallLogsClient {
     private handler;
@@ -16,7 +16,7 @@ export declare class VoipCallLogsClient {
      */
     $raw: {
         /**
-         * Unary RPC for /ondewo.sip.VoipCallLogs/GetVoipLog
+         * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -24,15 +24,7 @@ export declare class VoipCallLogsClient {
          */
         getVoipLog: (requestData: thisProto.GetVoipLogRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetVoipLogResponse>>;
         /**
-         * Unary RPC for /ondewo.sip.VoipCallLogs/GetManifestVoipLog
-         *
-         * @param requestMessage Request message
-         * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.ManifestVoipLog>>
-         */
-        getManifestVoipLog: (requestData: thisProto.GetManifestVoipLogRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.ManifestVoipLog>>;
-        /**
-         * Unary RPC for /ondewo.sip.VoipCallLogs/ActivateSaveCallLogs
+         * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -42,7 +34,7 @@ export declare class VoipCallLogsClient {
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
-     * Unary RPC for /ondewo.sip.VoipCallLogs/GetVoipLog
+     * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -50,15 +42,7 @@ export declare class VoipCallLogsClient {
      */
     getVoipLog(requestData: thisProto.GetVoipLogRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetVoipLogResponse>;
     /**
-     * Unary RPC for /ondewo.sip.VoipCallLogs/GetManifestVoipLog
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.ManifestVoipLog>
-     */
-    getManifestVoipLog(requestData: thisProto.GetManifestVoipLogRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.ManifestVoipLog>;
-    /**
-     * Unary RPC for /ondewo.sip.VoipCallLogs/ActivateSaveCallLogs
+     * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
