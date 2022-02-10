@@ -1,2 +1,6 @@
-.idea
 npm
+.idea
+.isort.cfg
+.mypy_cache
+*.egg-info
+grpc_cert
