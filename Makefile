@@ -25,13 +25,11 @@ TESTFILE := ondewo
 CODE_CHECK_IMAGE := code_check_image_${TESTFILE}
 IMAGE_NAME := dockerregistry.ondewo.com:5000/ondewo-vtsi-client-python
 
-install:
-	git submodule update --init --recursive
-
 build: clean_protos_from_submodules check_out_correct_submodule_versions copy_proto_files_all_submodules generate_protos
 
 check_out_correct_submodule_versions: 
 	@echo "START checking out correct submodule versions ..."
+	git submodule update --init --recursive
 	git -C ${NLU_APIS_DIR} fetch --all
 	git -C ${NLU_APIS_DIR} checkout ${NLU_API_GIT_BRANCH}
 	git -C ${S2T_APIS_DIR} fetch --all
@@ -96,43 +94,9 @@ copy_proto_files_for_ondewo_sip_api:
 
 generate_protos:
 	@echo "START generate protos ..."
-	docker run -it -v src:/input-volume -v .:/output-volume ondewo-angular-proto-compiler ondewo-vtsi-api ondewo
+	cd src/ && npm run generate_all_protos
 	@echo "DONE generate protos."
 
-
-# {{{ PROTOS
-# generate_all_protos: generate_ondewo_protos generate_google_protos generate_specific_protos
-# generate_google_protos:
-# 	# generate google api files
-# 	python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. ${GOOGLE_APIS_DIR}/google/api/annotations.proto
-# 	python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. ${GOOGLE_APIS_DIR}/google/rpc/status.proto
-# 	python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. ${GOOGLE_APIS_DIR}/google/type/latlng.proto
-# 	python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. ${GOOGLE_APIS_DIR}/google/api/http.proto
-# 	python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. ${GOOGLE_APIS_DIR}/google/longrunning/operations.proto
-
-# generate_ondewo_protos:
-# 	for f in $$(find ${NLU_PROTOS_DIR} -name '*.proto'); do \
-# 		python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} -I${NLU_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. $$f; \
-# 	done
-
-# generate_specific_protos:
-# 	for f in $$(find ${NLU_PROTOS_DIR}nlu -name '*.proto'); do \
-# 		python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} -I${NLU_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. $$f; \
-# 	done
-# 	for f in $$(find ${SIP_PROTOS_DIR} -name '*.proto'); do \
-# 		python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} -I${NLU_APIS_DIR} -I${SIP_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. $$f; \
-# 	done
-# 	for f in $$(find ${S2T_PROTOS_DIR} -name '*.proto'); do \
-# 		python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} -I${NLU_APIS_DIR} -I${S2T_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. $$f; \
-# 	done
-# 	for f in $$(find ${T2S_PROTOS_DIR} -name '*.proto'); do \
-# 		python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} -I${NLU_APIS_DIR} -I${T2S_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. $$f; \
-# 	done
-# 	for f in $$(find ${VTSI_PROTOS_DIR} -name '*.proto'); do \
-# 		python -m grpc_tools.protoc -I${GOOGLE_APIS_DIR} -I${NLU_APIS_DIR} -I${VTSI_APIS_DIR} -I${SIP_APIS_DIR} -I${T2S_APIS_DIR} -I${S2T_APIS_DIR} --python_out=. --mypy_out=. --grpc_python_out=. $$f; \
-# 	done
-
-# # }}}
 # push_to_pypi: build_package upload_package clear_package_data
 # 	echo 'pushed to pypi : )'
 
@@ -144,4 +108,3 @@ generate_protos:
 
 # clear_package_data:
 # 	rm -rf build dist ondewo_vtsi_client_python.egg-info
-# # vim:foldmethod=marker:foldlevel=0
