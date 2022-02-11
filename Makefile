@@ -94,7 +94,7 @@ copy_proto_files_for_ondewo_sip_api:
 
 generate_protos:
 	@echo "START generate protos ..."
-	cd src/ && npm run generate_all_protos
+	cd src/ && npm run generate
 	@echo "DONE generate protos."
 
 # push_to_pypi: build_package upload_package clear_package_data
