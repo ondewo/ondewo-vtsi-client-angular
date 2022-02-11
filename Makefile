@@ -1,29 +1,27 @@
+# which branches to use for the build of the client sdk
+VTSI_API_GIT_BRANCH=develop
+NLU_API_GIT_BRANCH=release/2.4.0
+S2T_API_GIT_BRANCH=develop
+SIP_API_GIT_BRANCH=release/1.1.0
+T2S_API_GIT_BRANCH=develop
+
 NLU_APIS_DIR=src/ondewo-nlu-api
 NLU_PROTOS_DIR=${NLU_APIS_DIR}/ondewo
-NLU_API_GIT_BRANCH=release/2.4.0
+
 GOOGLE_APIS_DIR=${NLU_APIS_DIR}/googleapis
 GOOGLE_PROTOS_DIR=${GOOGLE_APIS_DIR}/google
 
 S2T_APIS_DIR=src/ondewo-s2t-api
 S2T_PROTOS_DIR=${S2T_APIS_DIR}/ondewo
-S2T_API_GIT_BRANCH=develop
 
 SIP_APIS_DIR=src/ondewo-sip-api
 SIP_PROTOS_DIR=${SIP_APIS_DIR}/ondewo
-SIP_API_GIT_BRANCH=release/1.1.0
 
 T2S_APIS_DIR=src/ondewo-t2s-api
 T2S_PROTOS_DIR=${T2S_APIS_DIR}/ondewo
-T2S_API_GIT_BRANCH=develop
 
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
-VTSI_API_GIT_BRANCH=develop
-
-
-TESTFILE := ondewo
-CODE_CHECK_IMAGE := code_check_image_${TESTFILE}
-IMAGE_NAME := dockerregistry.ondewo.com:5000/ondewo-vtsi-client-python
 
 build: clean_protos_from_submodules check_out_correct_submodule_versions copy_proto_files_all_submodules generate_protos
 
@@ -97,14 +95,7 @@ generate_protos:
 	cd src/ && npm run generate
 	@echo "DONE generate protos."
 
-# push_to_pypi: build_package upload_package clear_package_data
-# 	echo 'pushed to pypi : )'
-
-# build_package:
-# 	python setup.py sdist bdist_wheel
-
-# upload_package:
-# 	twine upload -r pypi dist/*
-
-# clear_package_data:
-# 	rm -rf build dist ondewo_vtsi_client_python.egg-info
+push_to_npm: 
+	@echo "START pushing release to npm ..."
+	cd src/ && npm run publish-npm
+	@echo "DONE pushing release to npm."
