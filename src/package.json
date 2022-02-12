@@ -1,11 +1,12 @@
 {
   "name": "@ondewo/vtsi-client-angular",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "description": "Ondewo voice telephone system integration client library for angular",
   "keywords": ["ondewo", "vtsi", "api", "client", "ngx-grpc", "grpc"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "git submodule update --init --recursive --remote && docker run -it -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler ondewo-vtsi-api ondewo",
+    "submodule_update": "git submodule update --init --recursive",
+    "build": "docker run -it -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler ondewo-vtsi-api ondewo",
     "generate": "docker run -it -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler ondewo-vtsi-api ondewo",
     "debug": "docker run -it --entrypoint /bin/bash -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler",
     "publish-npm": "npm publish ../npm --access public"
@@ -21,6 +22,6 @@
   },
   "repository": {
     "type": "git",
-    "directory": "https://github.com/ondewo/ondewo-vtsi-client-angular.git"
+    "directory": "https://github.com/ondewo/ondewo-vtsi-client-angular"
   }
 }
