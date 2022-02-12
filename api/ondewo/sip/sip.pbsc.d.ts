@@ -3,6 +3,7 @@ import { GrpcHandler } from '@ngx-grpc/core';
 import { Observable } from 'rxjs';
 import * as thisProto from './sip.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
+import * as i0 from "@angular/core";
 /**
  * Service client implementation for ondewo.sip.Sip
  */
@@ -87,6 +88,22 @@ export declare class SipClient {
          * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
          */
         playWavFiles: (requestData: thisProto.PlayWavFilesRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
+        /**
+         * Unary RPC for /ondewo.sip.Sip/Mute
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+         */
+        mute: (requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
+        /**
+         * Unary RPC for /ondewo.sip.Sip/UnMute
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+         */
+        unMute: (requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
@@ -161,4 +178,23 @@ export declare class SipClient {
      * @returns Observable<googleProtobuf000.Empty>
      */
     playWavFiles(requestData: thisProto.PlayWavFilesRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
+    /**
+     * Unary RPC for /ondewo.sip.Sip/Mute
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<googleProtobuf000.Empty>
+     */
+    mute(requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
+    /**
+     * Unary RPC for /ondewo.sip.Sip/UnMute
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<googleProtobuf000.Empty>
+     */
+    unMute(requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SipClient, [{ optional: true; }, null, null]>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SipClient>;
 }
+//# sourceMappingURL=sip.pbsc.d.ts.map

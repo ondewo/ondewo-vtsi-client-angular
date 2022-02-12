@@ -2,6 +2,7 @@ import { GrpcClientFactory, GrpcEvent, GrpcMetadata } from '@ngx-grpc/common';
 import { GrpcHandler } from '@ngx-grpc/core';
 import { Observable } from 'rxjs';
 import * as thisProto from './voip.pb';
+import * as i0 from "@angular/core";
 /**
  * Service client implementation for ondewo.vtsi.VoipSessions
  */
@@ -224,4 +225,7 @@ export declare class VoipSessionsClient {
      * @returns Observable<thisProto.DeployPreconditionResponse>
      */
     deployPreconditionForWorkingSetup(requestData: thisProto.DeployPreconditionRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.DeployPreconditionResponse>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<VoipSessionsClient, [{ optional: true; }, null, null]>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<VoipSessionsClient>;
 }
+//# sourceMappingURL=voip.pbsc.d.ts.map

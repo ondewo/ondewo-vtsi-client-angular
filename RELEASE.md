@@ -10,7 +10,7 @@
 
 ### Dependencies
 * ONDEWO Natural Language Understanding (NLU) API Version [2.4.0]https://github.com/ondewo/ondewo-nlu-api/releases)
-* ONDEWO SIP (SIP) API Version [1.1.0](https://github.com/ondewo/ondewo-sip-api/releases)
+* ONDEWO SIP (SIP) API Version [1.2.0](https://github.com/ondewo/ondewo-sip-api/releases)
 * ONDEWO Speech-2-Text (S2T) API Version [3.0.0](https://github.com/ondewo/ondewo-s2t-api/releases)
 * ONDEWO Text-2-Speech (S2T) API Version [3.0.0](https://github.com/ondewo/ondewo-t2s-api/releases)
 * ONDEWO VOIP Telephone Integration (VOIP) API Version [2.2.0](https://github.com/ondewo/ondewo-vtsi-api/releases)
