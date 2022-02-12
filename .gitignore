@@ -1,7 +1,7 @@
-./ondewo-nlu-api/*
-./ondewo-s2t-api/*
-./ondewo-t2s-api/*
-./ondewo-vtsi-api/*
+ondewo-nlu-api/*
+ondewo-s2t-api/*
+ondewo-t2s-api/*
+ondewo-vtsi-api/*
 .idea
 .isort.cfg
 .mypy_cache
