@@ -1,9 +1,9 @@
 # which branches to use for the build of the client sdk
-VTSI_API_GIT_BRANCH=develop
-NLU_API_GIT_BRANCH=release/2.4.0
-S2T_API_GIT_BRANCH=develop
-SIP_API_GIT_BRANCH=release/1.1.0
-T2S_API_GIT_BRANCH=develop
+VTSI_API_GIT_BRANCH=tags/2.2.0
+NLU_API_GIT_BRANCH=tags/2.4.0
+S2T_API_GIT_BRANCH=tags/3.0.0
+SIP_API_GIT_BRANCH=tags/1.2.0
+T2S_API_GIT_BRANCH=tags/3.0.0
 
 NLU_APIS_DIR=src/ondewo-nlu-api
 NLU_PROTOS_DIR=${NLU_APIS_DIR}/ondewo
