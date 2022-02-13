@@ -98,6 +98,7 @@ export declare class StartCallRequest implements GrpcMessage {
      */
     static serializeBinaryToWriter(_instance: StartCallRequest, _writer: BinaryWriter): void;
     private _calleeId?;
+    private _headers?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of StartCallRequest to deeply clone from
@@ -105,6 +106,12 @@ export declare class StartCallRequest implements GrpcMessage {
     constructor(_value?: RecursivePartial<StartCallRequest.AsObject>);
     get calleeId(): string | undefined;
     set calleeId(value: string | undefined);
+    get headers(): {
+        [prop: string]: string;
+    } | undefined;
+    set headers(value: {
+        [prop: string]: string;
+    } | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -131,12 +138,92 @@ export declare module StartCallRequest {
      */
     interface AsObject {
         calleeId?: string;
+        headers?: {
+            [prop: string]: string;
+        };
     }
     /**
      * Protobuf JSON representation for StartCallRequest
      */
     interface AsProtobufJSON {
         calleeId?: string;
+        headers?: {
+            [prop: string]: string;
+        };
+    }
+    /**
+     * Message implementation for ondewo.sip.HeadersEntry
+     */
+    class HeadersEntry implements GrpcMessage {
+        static id: string;
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes: ByteSource): HeadersEntry;
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance: HeadersEntry): void;
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance: HeadersEntry, _reader: BinaryReader): void;
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance: HeadersEntry, _writer: BinaryWriter): void;
+        private _key?;
+        private _value?;
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of HeadersEntry to deeply clone from
+         */
+        constructor(_value?: RecursivePartial<HeadersEntry.AsObject>);
+        get key(): string | undefined;
+        set key(value: string | undefined);
+        get value(): string | undefined;
+        set value(value: string | undefined);
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary(): any;
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject(): HeadersEntry.AsObject;
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON(): HeadersEntry.AsObject;
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(options?: ToProtobufJSONOptions): HeadersEntry.AsProtobufJSON;
+    }
+    module HeadersEntry {
+        /**
+         * Standard JavaScript object representation for HeadersEntry
+         */
+        interface AsObject {
+            key?: string;
+            value?: string;
+        }
+        /**
+         * Protobuf JSON representation for HeadersEntry
+         */
+        interface AsProtobufJSON {
+            key?: string;
+            value?: string;
+        }
     }
 }
 /**
@@ -315,6 +402,7 @@ export declare class TransferCallRequest implements GrpcMessage {
      */
     static serializeBinaryToWriter(_instance: TransferCallRequest, _writer: BinaryWriter): void;
     private _transferId?;
+    private _headers?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of TransferCallRequest to deeply clone from
@@ -322,6 +410,12 @@ export declare class TransferCallRequest implements GrpcMessage {
     constructor(_value?: RecursivePartial<TransferCallRequest.AsObject>);
     get transferId(): string | undefined;
     set transferId(value: string | undefined);
+    get headers(): {
+        [prop: string]: string;
+    } | undefined;
+    set headers(value: {
+        [prop: string]: string;
+    } | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -348,12 +442,92 @@ export declare module TransferCallRequest {
      */
     interface AsObject {
         transferId?: string;
+        headers?: {
+            [prop: string]: string;
+        };
     }
     /**
      * Protobuf JSON representation for TransferCallRequest
      */
     interface AsProtobufJSON {
         transferId?: string;
+        headers?: {
+            [prop: string]: string;
+        };
+    }
+    /**
+     * Message implementation for ondewo.sip.HeadersEntry
+     */
+    class HeadersEntry implements GrpcMessage {
+        static id: string;
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes: ByteSource): HeadersEntry;
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance: HeadersEntry): void;
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance: HeadersEntry, _reader: BinaryReader): void;
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance: HeadersEntry, _writer: BinaryWriter): void;
+        private _key?;
+        private _value?;
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of HeadersEntry to deeply clone from
+         */
+        constructor(_value?: RecursivePartial<HeadersEntry.AsObject>);
+        get key(): string | undefined;
+        set key(value: string | undefined);
+        get value(): string | undefined;
+        set value(value: string | undefined);
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary(): any;
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject(): HeadersEntry.AsObject;
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON(): HeadersEntry.AsObject;
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(options?: ToProtobufJSONOptions): HeadersEntry.AsProtobufJSON;
+    }
+    module HeadersEntry {
+        /**
+         * Standard JavaScript object representation for HeadersEntry
+         */
+        interface AsObject {
+            key?: string;
+            value?: string;
+        }
+        /**
+         * Protobuf JSON representation for HeadersEntry
+         */
+        interface AsProtobufJSON {
+            key?: string;
+            value?: string;
+        }
     }
 }
 /**
@@ -388,6 +562,7 @@ export declare class SipStatus implements GrpcMessage {
     private _statusType?;
     private _calleeId?;
     private _transferCallId?;
+    private _headers?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of SipStatus to deeply clone from
@@ -403,6 +578,12 @@ export declare class SipStatus implements GrpcMessage {
     set calleeId(value: string | undefined);
     get transferCallId(): string | undefined;
     set transferCallId(value: string | undefined);
+    get headers(): {
+        [prop: string]: string;
+    } | undefined;
+    set headers(value: {
+        [prop: string]: string;
+    } | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -433,6 +614,9 @@ export declare module SipStatus {
         statusType?: SipStatus.StatusType;
         calleeId?: string;
         transferCallId?: string;
+        headers?: {
+            [prop: string]: string;
+        };
     }
     /**
      * Protobuf JSON representation for SipStatus
@@ -443,6 +627,9 @@ export declare module SipStatus {
         statusType?: string;
         calleeId?: string;
         transferCallId?: string;
+        headers?: {
+            [prop: string]: string;
+        };
     }
     enum StatusType {
         no_session = 0,
@@ -459,6 +646,80 @@ export declare module SipStatus {
         outgoing_call_failed = 11,
         incoming_call_finished = 12,
         outgoing_call_finished = 13
+    }
+    /**
+     * Message implementation for ondewo.sip.HeadersEntry
+     */
+    class HeadersEntry implements GrpcMessage {
+        static id: string;
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes: ByteSource): HeadersEntry;
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance: HeadersEntry): void;
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance: HeadersEntry, _reader: BinaryReader): void;
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance: HeadersEntry, _writer: BinaryWriter): void;
+        private _key?;
+        private _value?;
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of HeadersEntry to deeply clone from
+         */
+        constructor(_value?: RecursivePartial<HeadersEntry.AsObject>);
+        get key(): string | undefined;
+        set key(value: string | undefined);
+        get value(): string | undefined;
+        set value(value: string | undefined);
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary(): any;
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject(): HeadersEntry.AsObject;
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON(): HeadersEntry.AsObject;
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(options?: ToProtobufJSONOptions): HeadersEntry.AsProtobufJSON;
+    }
+    module HeadersEntry {
+        /**
+         * Standard JavaScript object representation for HeadersEntry
+         */
+        interface AsObject {
+            key?: string;
+            value?: string;
+        }
+        /**
+         * Protobuf JSON representation for HeadersEntry
+         */
+        interface AsProtobufJSON {
+            key?: string;
+            value?: string;
+        }
     }
 }
 /**
@@ -599,3 +860,4 @@ export declare module PlayWavFilesRequest {
         wavFiles?: string[];
     }
 }
+//# sourceMappingURL=sip.pb.d.ts.map

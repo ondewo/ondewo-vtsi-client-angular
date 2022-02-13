@@ -3,6 +3,7 @@ import { GrpcHandler } from '@ngx-grpc/core';
 import { Observable } from 'rxjs';
 import * as thisProto from './call-log.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
+import * as i0 from "@angular/core";
 /**
  * Service client implementation for ondewo.vtsi.VoipCallLogs
  */
@@ -49,4 +50,7 @@ export declare class VoipCallLogsClient {
      * @returns Observable<thisProto.SaveCallLogsResponse>
      */
     activateSaveCallLogs(requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata): Observable<thisProto.SaveCallLogsResponse>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<VoipCallLogsClient, [{ optional: true; }, null, null]>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<VoipCallLogsClient>;
 }
+//# sourceMappingURL=call-log.pbsc.d.ts.map
