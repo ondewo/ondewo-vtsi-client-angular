@@ -2,29 +2,8 @@ import { GrpcMessage, RecursivePartial, ToProtobufJSONOptions } from '@ngx-grpc/
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 import * as googleProtobuf003 from '@ngx-grpc/well-known-types';
 import * as ondewoNlu005 from '../../ondewo/nlu/context.pb';
-export declare enum Pcm {
-    PCM_16 = 0,
-    PCM_24 = 1,
-    PCM_32 = 2,
-    PCM_S8 = 3,
-    PCM_U8 = 4,
-    FLOAT = 5,
-    DOUBLE = 6
-}
-export declare enum AudioFormat {
-    wav = 0,
-    flac = 1,
-    caf = 2,
-    mp3 = 3,
-    aac = 4,
-    ogg = 5,
-    wma = 6
-}
-export declare enum CTCDecoding {
-    DEFAULT = 0,
-    GREEDY = 1,
-    BEAM_SEARCH_WITH_LM = 2
-}
+import * as ondewoS2t008 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s009 from '../../ondewo/t2s/text-to-speech.pb';
 /**
  * Message implementation for ondewo.vtsi.VoipManifest
  */
@@ -621,8 +600,8 @@ export declare class T2SConfig implements GrpcMessage {
     constructor(_value?: RecursivePartial<T2SConfig.AsObject>);
     get baseConfig(): BaseServiceConfig | undefined;
     set baseConfig(value: BaseServiceConfig | undefined);
-    get t2sConfig(): RequestConfig | undefined;
-    set t2sConfig(value: RequestConfig | undefined);
+    get t2sConfig(): ondewoT2s009.RequestConfig | undefined;
+    set t2sConfig(value: ondewoT2s009.RequestConfig | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -649,149 +628,14 @@ export declare module T2SConfig {
      */
     interface AsObject {
         baseConfig?: BaseServiceConfig.AsObject;
-        t2sConfig?: RequestConfig.AsObject;
+        t2sConfig?: ondewoT2s009.RequestConfig.AsObject;
     }
     /**
      * Protobuf JSON representation for T2SConfig
      */
     interface AsProtobufJSON {
         baseConfig?: BaseServiceConfig.AsProtobufJSON | null;
-        t2sConfig?: RequestConfig.AsProtobufJSON | null;
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.RequestConfig
- */
-export declare class RequestConfig implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): RequestConfig;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: RequestConfig): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: RequestConfig, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: RequestConfig, _writer: BinaryWriter): void;
-    private _t2sPipelineId?;
-    private _lengthScale?;
-    private _noiseScale?;
-    private _sampleRate?;
-    private _pcm?;
-    private _audioFormat?;
-    private _useCache?;
-    private _oneofLengthScale;
-    private _oneofNoiseScale;
-    private _oneofSampleRate;
-    private _oneofPcm;
-    private _oneofAudioFormat;
-    private _oneofUseCache;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of RequestConfig to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<RequestConfig.AsObject>);
-    get t2sPipelineId(): string | undefined;
-    set t2sPipelineId(value: string | undefined);
-    get lengthScale(): number | undefined;
-    set lengthScale(value: number | undefined);
-    get noiseScale(): number | undefined;
-    set noiseScale(value: number | undefined);
-    get sampleRate(): number | undefined;
-    set sampleRate(value: number | undefined);
-    get pcm(): Pcm | undefined;
-    set pcm(value: Pcm | undefined);
-    get audioFormat(): AudioFormat | undefined;
-    set audioFormat(value: AudioFormat | undefined);
-    get useCache(): boolean | undefined;
-    set useCache(value: boolean | undefined);
-    get oneofLengthScale(): RequestConfig.OneofLengthScaleCase;
-    get oneofNoiseScale(): RequestConfig.OneofNoiseScaleCase;
-    get oneofSampleRate(): RequestConfig.OneofSampleRateCase;
-    get oneofPcm(): RequestConfig.OneofPcmCase;
-    get oneofAudioFormat(): RequestConfig.OneofAudioFormatCase;
-    get oneofUseCache(): RequestConfig.OneofUseCacheCase;
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): RequestConfig.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): RequestConfig.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): RequestConfig.AsProtobufJSON;
-}
-export declare module RequestConfig {
-    /**
-     * Standard JavaScript object representation for RequestConfig
-     */
-    interface AsObject {
-        t2sPipelineId?: string;
-        lengthScale?: number;
-        noiseScale?: number;
-        sampleRate?: number;
-        pcm?: Pcm;
-        audioFormat?: AudioFormat;
-        useCache?: boolean;
-    }
-    /**
-     * Protobuf JSON representation for RequestConfig
-     */
-    interface AsProtobufJSON {
-        t2sPipelineId?: string;
-        lengthScale?: number | null;
-        noiseScale?: number | null;
-        sampleRate?: number | null;
-        pcm?: string | null;
-        audioFormat?: string | null;
-        useCache?: boolean;
-    }
-    enum OneofLengthScaleCase {
-        none = 0,
-        lengthScale = 1
-    }
-    enum OneofNoiseScaleCase {
-        none = 0,
-        noiseScale = 1
-    }
-    enum OneofSampleRateCase {
-        none = 0,
-        sampleRate = 1
-    }
-    enum OneofPcmCase {
-        none = 0,
-        pcm = 1
-    }
-    enum OneofAudioFormatCase {
-        none = 0,
-        audioFormat = 1
-    }
-    enum OneofUseCacheCase {
-        none = 0,
-        useCache = 1
+        t2sConfig?: ondewoT2s009.RequestConfig.AsProtobufJSON | null;
     }
 }
 /**
@@ -830,8 +674,8 @@ export declare class S2TConfig implements GrpcMessage {
     constructor(_value?: RecursivePartial<S2TConfig.AsObject>);
     get baseConfig(): BaseServiceConfig | undefined;
     set baseConfig(value: BaseServiceConfig | undefined);
-    get s2tConfig(): TranscribeRequestConfig | undefined;
-    set s2tConfig(value: TranscribeRequestConfig | undefined);
+    get s2tConfig(): ondewoS2t008.TranscribeRequestConfig | undefined;
+    set s2tConfig(value: ondewoS2t008.TranscribeRequestConfig | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -858,887 +702,14 @@ export declare module S2TConfig {
      */
     interface AsObject {
         baseConfig?: BaseServiceConfig.AsObject;
-        s2tConfig?: TranscribeRequestConfig.AsObject;
+        s2tConfig?: ondewoS2t008.TranscribeRequestConfig.AsObject;
     }
     /**
      * Protobuf JSON representation for S2TConfig
      */
     interface AsProtobufJSON {
         baseConfig?: BaseServiceConfig.AsProtobufJSON | null;
-        s2tConfig?: TranscribeRequestConfig.AsProtobufJSON | null;
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.TranscribeRequestConfig
- */
-export declare class TranscribeRequestConfig implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): TranscribeRequestConfig;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: TranscribeRequestConfig): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: TranscribeRequestConfig, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: TranscribeRequestConfig, _writer: BinaryWriter): void;
-    private _s2tPipelineId?;
-    private _ctcDecoding?;
-    private _languageModelName?;
-    private _postProcessing?;
-    private _utteranceDetection?;
-    private _pyannote?;
-    private _matchbox?;
-    private _returnOptions?;
-    private _oneofLanguageModelName;
-    private _oneofPostProcessing;
-    private _oneofUtteranceDetection;
-    private _voiceActivityDetection;
-    private _oneofReturnOptions;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of TranscribeRequestConfig to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<TranscribeRequestConfig.AsObject>);
-    get s2tPipelineId(): string | undefined;
-    set s2tPipelineId(value: string | undefined);
-    get ctcDecoding(): CTCDecoding | undefined;
-    set ctcDecoding(value: CTCDecoding | undefined);
-    get languageModelName(): string | undefined;
-    set languageModelName(value: string | undefined);
-    get postProcessing(): PostProcessingOptions | undefined;
-    set postProcessing(value: PostProcessingOptions | undefined);
-    get utteranceDetection(): UtteranceDetectionOptions | undefined;
-    set utteranceDetection(value: UtteranceDetectionOptions | undefined);
-    get pyannote(): Pyannote | undefined;
-    set pyannote(value: Pyannote | undefined);
-    get matchbox(): Matchbox | undefined;
-    set matchbox(value: Matchbox | undefined);
-    get returnOptions(): TranscriptionReturnOptions | undefined;
-    set returnOptions(value: TranscriptionReturnOptions | undefined);
-    get oneofLanguageModelName(): TranscribeRequestConfig.OneofLanguageModelNameCase;
-    get oneofPostProcessing(): TranscribeRequestConfig.OneofPostProcessingCase;
-    get oneofUtteranceDetection(): TranscribeRequestConfig.OneofUtteranceDetectionCase;
-    get voiceActivityDetection(): TranscribeRequestConfig.VoiceActivityDetectionCase;
-    get oneofReturnOptions(): TranscribeRequestConfig.OneofReturnOptionsCase;
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): TranscribeRequestConfig.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): TranscribeRequestConfig.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): TranscribeRequestConfig.AsProtobufJSON;
-}
-export declare module TranscribeRequestConfig {
-    /**
-     * Standard JavaScript object representation for TranscribeRequestConfig
-     */
-    interface AsObject {
-        s2tPipelineId?: string;
-        ctcDecoding?: CTCDecoding;
-        languageModelName?: string;
-        postProcessing?: PostProcessingOptions.AsObject;
-        utteranceDetection?: UtteranceDetectionOptions.AsObject;
-        pyannote?: Pyannote.AsObject;
-        matchbox?: Matchbox.AsObject;
-        returnOptions?: TranscriptionReturnOptions.AsObject;
-    }
-    /**
-     * Protobuf JSON representation for TranscribeRequestConfig
-     */
-    interface AsProtobufJSON {
-        s2tPipelineId?: string;
-        ctcDecoding?: string;
-        languageModelName?: string | null;
-        postProcessing?: PostProcessingOptions.AsProtobufJSON | null;
-        utteranceDetection?: UtteranceDetectionOptions.AsProtobufJSON | null;
-        pyannote?: Pyannote.AsProtobufJSON | null;
-        matchbox?: Matchbox.AsProtobufJSON | null;
-        returnOptions?: TranscriptionReturnOptions.AsProtobufJSON | null;
-    }
-    enum OneofLanguageModelNameCase {
-        none = 0,
-        languageModelName = 1
-    }
-    enum OneofPostProcessingCase {
-        none = 0,
-        postProcessing = 1
-    }
-    enum OneofUtteranceDetectionCase {
-        none = 0,
-        utteranceDetection = 1
-    }
-    enum VoiceActivityDetectionCase {
-        none = 0,
-        pyannote = 1,
-        matchbox = 2
-    }
-    enum OneofReturnOptionsCase {
-        none = 0,
-        returnOptions = 1
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.Pyannote
- */
-export declare class Pyannote implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): Pyannote;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: Pyannote): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: Pyannote, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: Pyannote, _writer: BinaryWriter): void;
-    private _modelPath?;
-    private _minAudioSize?;
-    private _offset?;
-    private _onset?;
-    private _logScale?;
-    private _minDurationOff?;
-    private _minDurationOn?;
-    private _oneofLogScale;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of Pyannote to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<Pyannote.AsObject>);
-    get modelPath(): string | undefined;
-    set modelPath(value: string | undefined);
-    get minAudioSize(): string | undefined;
-    set minAudioSize(value: string | undefined);
-    get offset(): number | undefined;
-    set offset(value: number | undefined);
-    get onset(): number | undefined;
-    set onset(value: number | undefined);
-    get logScale(): boolean | undefined;
-    set logScale(value: boolean | undefined);
-    get minDurationOff(): number | undefined;
-    set minDurationOff(value: number | undefined);
-    get minDurationOn(): number | undefined;
-    set minDurationOn(value: number | undefined);
-    get oneofLogScale(): Pyannote.OneofLogScaleCase;
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): Pyannote.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): Pyannote.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): Pyannote.AsProtobufJSON;
-}
-export declare module Pyannote {
-    /**
-     * Standard JavaScript object representation for Pyannote
-     */
-    interface AsObject {
-        modelPath?: string;
-        minAudioSize?: string;
-        offset?: number;
-        onset?: number;
-        logScale?: boolean;
-        minDurationOff?: number;
-        minDurationOn?: number;
-    }
-    /**
-     * Protobuf JSON representation for Pyannote
-     */
-    interface AsProtobufJSON {
-        modelPath?: string;
-        minAudioSize?: string;
-        offset?: number;
-        onset?: number;
-        logScale?: boolean;
-        minDurationOff?: number;
-        minDurationOn?: number;
-    }
-    enum OneofLogScaleCase {
-        none = 0,
-        logScale = 1
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.Matchbox
- */
-export declare class Matchbox implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): Matchbox;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: Matchbox): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: Matchbox, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: Matchbox, _writer: BinaryWriter): void;
-    private _modelConfig?;
-    private _encoderPath?;
-    private _decoderPath?;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of Matchbox to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<Matchbox.AsObject>);
-    get modelConfig(): string | undefined;
-    set modelConfig(value: string | undefined);
-    get encoderPath(): string | undefined;
-    set encoderPath(value: string | undefined);
-    get decoderPath(): string | undefined;
-    set decoderPath(value: string | undefined);
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): Matchbox.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): Matchbox.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): Matchbox.AsProtobufJSON;
-}
-export declare module Matchbox {
-    /**
-     * Standard JavaScript object representation for Matchbox
-     */
-    interface AsObject {
-        modelConfig?: string;
-        encoderPath?: string;
-        decoderPath?: string;
-    }
-    /**
-     * Protobuf JSON representation for Matchbox
-     */
-    interface AsProtobufJSON {
-        modelConfig?: string;
-        encoderPath?: string;
-        decoderPath?: string;
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.PostProcessing
- */
-export declare class PostProcessing implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): PostProcessing;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: PostProcessing): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: PostProcessing, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: PostProcessing, _writer: BinaryWriter): void;
-    private _pipeline?;
-    private _postProcessors?;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of PostProcessing to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<PostProcessing.AsObject>);
-    get pipeline(): string[] | undefined;
-    set pipeline(value: string[] | undefined);
-    get postProcessors(): PostProcessors | undefined;
-    set postProcessors(value: PostProcessors | undefined);
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): PostProcessing.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): PostProcessing.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): PostProcessing.AsProtobufJSON;
-}
-export declare module PostProcessing {
-    /**
-     * Standard JavaScript object representation for PostProcessing
-     */
-    interface AsObject {
-        pipeline?: string[];
-        postProcessors?: PostProcessors.AsObject;
-    }
-    /**
-     * Protobuf JSON representation for PostProcessing
-     */
-    interface AsProtobufJSON {
-        pipeline?: string[];
-        postProcessors?: PostProcessors.AsProtobufJSON | null;
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.PostProcessors
- */
-export declare class PostProcessors implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): PostProcessors;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: PostProcessors): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: PostProcessors, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: PostProcessors, _writer: BinaryWriter): void;
-    private _symSpell?;
-    private _normalization?;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of PostProcessors to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<PostProcessors.AsObject>);
-    get symSpell(): SymSpell | undefined;
-    set symSpell(value: SymSpell | undefined);
-    get normalization(): Normalization | undefined;
-    set normalization(value: Normalization | undefined);
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): PostProcessors.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): PostProcessors.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): PostProcessors.AsProtobufJSON;
-}
-export declare module PostProcessors {
-    /**
-     * Standard JavaScript object representation for PostProcessors
-     */
-    interface AsObject {
-        symSpell?: SymSpell.AsObject;
-        normalization?: Normalization.AsObject;
-    }
-    /**
-     * Protobuf JSON representation for PostProcessors
-     */
-    interface AsProtobufJSON {
-        symSpell?: SymSpell.AsProtobufJSON | null;
-        normalization?: Normalization.AsProtobufJSON | null;
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.SymSpell
- */
-export declare class SymSpell implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): SymSpell;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: SymSpell): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: SymSpell, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: SymSpell, _writer: BinaryWriter): void;
-    private _dictPath?;
-    private _maxDictionaryEditDistance?;
-    private _prefixLength?;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of SymSpell to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<SymSpell.AsObject>);
-    get dictPath(): string | undefined;
-    set dictPath(value: string | undefined);
-    get maxDictionaryEditDistance(): string | undefined;
-    set maxDictionaryEditDistance(value: string | undefined);
-    get prefixLength(): string | undefined;
-    set prefixLength(value: string | undefined);
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): SymSpell.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): SymSpell.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): SymSpell.AsProtobufJSON;
-}
-export declare module SymSpell {
-    /**
-     * Standard JavaScript object representation for SymSpell
-     */
-    interface AsObject {
-        dictPath?: string;
-        maxDictionaryEditDistance?: string;
-        prefixLength?: string;
-    }
-    /**
-     * Protobuf JSON representation for SymSpell
-     */
-    interface AsProtobufJSON {
-        dictPath?: string;
-        maxDictionaryEditDistance?: string;
-        prefixLength?: string;
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.Normalization
- */
-export declare class Normalization implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): Normalization;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: Normalization): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: Normalization, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: Normalization, _writer: BinaryWriter): void;
-    private _language?;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of Normalization to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<Normalization.AsObject>);
-    get language(): string | undefined;
-    set language(value: string | undefined);
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): Normalization.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): Normalization.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): Normalization.AsProtobufJSON;
-}
-export declare module Normalization {
-    /**
-     * Standard JavaScript object representation for Normalization
-     */
-    interface AsObject {
-        language?: string;
-    }
-    /**
-     * Protobuf JSON representation for Normalization
-     */
-    interface AsProtobufJSON {
-        language?: string;
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.TranscriptionReturnOptions
- */
-export declare class TranscriptionReturnOptions implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): TranscriptionReturnOptions;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: TranscriptionReturnOptions): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: TranscriptionReturnOptions, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: TranscriptionReturnOptions, _writer: BinaryWriter): void;
-    private _returnStartOfSpeech?;
-    private _returnAudio?;
-    private _returnAlternativeTranscriptions?;
-    private _returnConfidenceScore?;
-    private _returnWordTiming?;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of TranscriptionReturnOptions to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<TranscriptionReturnOptions.AsObject>);
-    get returnStartOfSpeech(): boolean | undefined;
-    set returnStartOfSpeech(value: boolean | undefined);
-    get returnAudio(): boolean | undefined;
-    set returnAudio(value: boolean | undefined);
-    get returnAlternativeTranscriptions(): boolean | undefined;
-    set returnAlternativeTranscriptions(value: boolean | undefined);
-    get returnConfidenceScore(): boolean | undefined;
-    set returnConfidenceScore(value: boolean | undefined);
-    get returnWordTiming(): boolean | undefined;
-    set returnWordTiming(value: boolean | undefined);
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): TranscriptionReturnOptions.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): TranscriptionReturnOptions.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): TranscriptionReturnOptions.AsProtobufJSON;
-}
-export declare module TranscriptionReturnOptions {
-    /**
-     * Standard JavaScript object representation for TranscriptionReturnOptions
-     */
-    interface AsObject {
-        returnStartOfSpeech?: boolean;
-        returnAudio?: boolean;
-        returnAlternativeTranscriptions?: boolean;
-        returnConfidenceScore?: boolean;
-        returnWordTiming?: boolean;
-    }
-    /**
-     * Protobuf JSON representation for TranscriptionReturnOptions
-     */
-    interface AsProtobufJSON {
-        returnStartOfSpeech?: boolean;
-        returnAudio?: boolean;
-        returnAlternativeTranscriptions?: boolean;
-        returnConfidenceScore?: boolean;
-        returnWordTiming?: boolean;
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.UtteranceDetectionOptions
- */
-export declare class UtteranceDetectionOptions implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): UtteranceDetectionOptions;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: UtteranceDetectionOptions): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: UtteranceDetectionOptions, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: UtteranceDetectionOptions, _writer: BinaryWriter): void;
-    private _transcribeNotFinal?;
-    private _startOfUtteranceThreshold?;
-    private _endOfUtteranceThreshold?;
-    private _nextChunkTimeout?;
-    private _oneofTranscribeNotFinal;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of UtteranceDetectionOptions to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<UtteranceDetectionOptions.AsObject>);
-    get transcribeNotFinal(): boolean | undefined;
-    set transcribeNotFinal(value: boolean | undefined);
-    get startOfUtteranceThreshold(): number | undefined;
-    set startOfUtteranceThreshold(value: number | undefined);
-    get endOfUtteranceThreshold(): number | undefined;
-    set endOfUtteranceThreshold(value: number | undefined);
-    get nextChunkTimeout(): number | undefined;
-    set nextChunkTimeout(value: number | undefined);
-    get oneofTranscribeNotFinal(): UtteranceDetectionOptions.OneofTranscribeNotFinalCase;
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): UtteranceDetectionOptions.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): UtteranceDetectionOptions.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): UtteranceDetectionOptions.AsProtobufJSON;
-}
-export declare module UtteranceDetectionOptions {
-    /**
-     * Standard JavaScript object representation for UtteranceDetectionOptions
-     */
-    interface AsObject {
-        transcribeNotFinal?: boolean;
-        startOfUtteranceThreshold?: number;
-        endOfUtteranceThreshold?: number;
-        nextChunkTimeout?: number;
-    }
-    /**
-     * Protobuf JSON representation for UtteranceDetectionOptions
-     */
-    interface AsProtobufJSON {
-        transcribeNotFinal?: boolean;
-        startOfUtteranceThreshold?: number;
-        endOfUtteranceThreshold?: number;
-        nextChunkTimeout?: number;
-    }
-    enum OneofTranscribeNotFinalCase {
-        none = 0,
-        transcribeNotFinal = 1
-    }
-}
-/**
- * Message implementation for ondewo.vtsi.PostProcessingOptions
- */
-export declare class PostProcessingOptions implements GrpcMessage {
-    static id: string;
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource): PostProcessingOptions;
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: PostProcessingOptions): void;
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance: PostProcessingOptions, _reader: BinaryReader): void;
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance: PostProcessingOptions, _writer: BinaryWriter): void;
-    private _spellingCorrection?;
-    private _normalize?;
-    private _config?;
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of PostProcessingOptions to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<PostProcessingOptions.AsObject>);
-    get spellingCorrection(): boolean | undefined;
-    set spellingCorrection(value: boolean | undefined);
-    get normalize(): boolean | undefined;
-    set normalize(value: boolean | undefined);
-    get config(): PostProcessing | undefined;
-    set config(value: PostProcessing | undefined);
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary(): any;
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): PostProcessingOptions.AsObject;
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON(): PostProcessingOptions.AsObject;
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(options?: ToProtobufJSONOptions): PostProcessingOptions.AsProtobufJSON;
-}
-export declare module PostProcessingOptions {
-    /**
-     * Standard JavaScript object representation for PostProcessingOptions
-     */
-    interface AsObject {
-        spellingCorrection?: boolean;
-        normalize?: boolean;
-        config?: PostProcessing.AsObject;
-    }
-    /**
-     * Protobuf JSON representation for PostProcessingOptions
-     */
-    interface AsProtobufJSON {
-        spellingCorrection?: boolean;
-        normalize?: boolean;
-        config?: PostProcessing.AsProtobufJSON | null;
+        s2tConfig?: ondewoS2t008.TranscribeRequestConfig.AsProtobufJSON | null;
     }
 }
 /**
@@ -1841,6 +812,7 @@ export declare class CommonServicesConfigs implements GrpcMessage {
     private _caiConfig?;
     private _sttConfig?;
     private _ttsConfig?;
+    private _csiConfig?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of CommonServicesConfigs to deeply clone from
@@ -1854,6 +826,8 @@ export declare class CommonServicesConfigs implements GrpcMessage {
     set sttConfig(value: S2TConfig | undefined);
     get ttsConfig(): T2SConfig | undefined;
     set ttsConfig(value: T2SConfig | undefined);
+    get csiConfig(): CsiConfig | undefined;
+    set csiConfig(value: CsiConfig | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -1883,6 +857,7 @@ export declare module CommonServicesConfigs {
         caiConfig?: NLUConfig.AsObject;
         sttConfig?: S2TConfig.AsObject;
         ttsConfig?: T2SConfig.AsObject;
+        csiConfig?: CsiConfig.AsObject;
     }
     /**
      * Protobuf JSON representation for CommonServicesConfigs
@@ -1892,6 +867,7 @@ export declare module CommonServicesConfigs {
         caiConfig?: NLUConfig.AsProtobufJSON | null;
         sttConfig?: S2TConfig.AsProtobufJSON | null;
         ttsConfig?: T2SConfig.AsProtobufJSON | null;
+        csiConfig?: CsiConfig.AsProtobufJSON | null;
     }
 }
 /**
@@ -2160,6 +1136,719 @@ export declare module SIPConfig {
             key?: string;
             value?: string;
         }
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.CsiConfig
+ */
+export declare class CsiConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): CsiConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: CsiConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: CsiConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: CsiConfig, _writer: BinaryWriter): void;
+    private _s2tCallbacks?;
+    private _nluCallbacks?;
+    private _t2sCallbacks?;
+    private _audioObjectStoreConfig?;
+    private _messageBrokerConfig?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CsiConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<CsiConfig.AsObject>);
+    get s2tCallbacks(): S2tCallbacks | undefined;
+    set s2tCallbacks(value: S2tCallbacks | undefined);
+    get nluCallbacks(): NluCallbacks | undefined;
+    set nluCallbacks(value: NluCallbacks | undefined);
+    get t2sCallbacks(): T2sCallbacks | undefined;
+    set t2sCallbacks(value: T2sCallbacks | undefined);
+    get audioObjectStoreConfig(): AudioObjectStorageConfig | undefined;
+    set audioObjectStoreConfig(value: AudioObjectStorageConfig | undefined);
+    get messageBrokerConfig(): MessageBrokerConfig | undefined;
+    set messageBrokerConfig(value: MessageBrokerConfig | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): CsiConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): CsiConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): CsiConfig.AsProtobufJSON;
+}
+export declare module CsiConfig {
+    /**
+     * Standard JavaScript object representation for CsiConfig
+     */
+    interface AsObject {
+        s2tCallbacks?: S2tCallbacks.AsObject;
+        nluCallbacks?: NluCallbacks.AsObject;
+        t2sCallbacks?: T2sCallbacks.AsObject;
+        audioObjectStoreConfig?: AudioObjectStorageConfig.AsObject;
+        messageBrokerConfig?: MessageBrokerConfig.AsObject;
+    }
+    /**
+     * Protobuf JSON representation for CsiConfig
+     */
+    interface AsProtobufJSON {
+        s2tCallbacks?: S2tCallbacks.AsProtobufJSON | null;
+        nluCallbacks?: NluCallbacks.AsProtobufJSON | null;
+        t2sCallbacks?: T2sCallbacks.AsProtobufJSON | null;
+        audioObjectStoreConfig?: AudioObjectStorageConfig.AsProtobufJSON | null;
+        messageBrokerConfig?: MessageBrokerConfig.AsProtobufJSON | null;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.AudioObjectStorageConfig
+ */
+export declare class AudioObjectStorageConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): AudioObjectStorageConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: AudioObjectStorageConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: AudioObjectStorageConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: AudioObjectStorageConfig, _writer: BinaryWriter): void;
+    private _minioConfig?;
+    private _audioStorageConfig;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of AudioObjectStorageConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<AudioObjectStorageConfig.AsObject>);
+    get minioConfig(): MinioConfig | undefined;
+    set minioConfig(value: MinioConfig | undefined);
+    get audioStorageConfig(): AudioObjectStorageConfig.AudioStorageConfigCase;
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): AudioObjectStorageConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): AudioObjectStorageConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): AudioObjectStorageConfig.AsProtobufJSON;
+}
+export declare module AudioObjectStorageConfig {
+    /**
+     * Standard JavaScript object representation for AudioObjectStorageConfig
+     */
+    interface AsObject {
+        minioConfig?: MinioConfig.AsObject;
+    }
+    /**
+     * Protobuf JSON representation for AudioObjectStorageConfig
+     */
+    interface AsProtobufJSON {
+        minioConfig?: MinioConfig.AsProtobufJSON | null;
+    }
+    enum AudioStorageConfigCase {
+        none = 0,
+        minioConfig = 1
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.MessageBrokerConfig
+ */
+export declare class MessageBrokerConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): MessageBrokerConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: MessageBrokerConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: MessageBrokerConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: MessageBrokerConfig, _writer: BinaryWriter): void;
+    private _rabbitMqConfig?;
+    private _messageBrokerConfig;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of MessageBrokerConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<MessageBrokerConfig.AsObject>);
+    get rabbitMqConfig(): RabbitMqConfig | undefined;
+    set rabbitMqConfig(value: RabbitMqConfig | undefined);
+    get messageBrokerConfig(): MessageBrokerConfig.MessageBrokerConfigCase;
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): MessageBrokerConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): MessageBrokerConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): MessageBrokerConfig.AsProtobufJSON;
+}
+export declare module MessageBrokerConfig {
+    /**
+     * Standard JavaScript object representation for MessageBrokerConfig
+     */
+    interface AsObject {
+        rabbitMqConfig?: RabbitMqConfig.AsObject;
+    }
+    /**
+     * Protobuf JSON representation for MessageBrokerConfig
+     */
+    interface AsProtobufJSON {
+        rabbitMqConfig?: RabbitMqConfig.AsProtobufJSON | null;
+    }
+    enum MessageBrokerConfigCase {
+        none = 0,
+        rabbitMqConfig = 1
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.RabbitMqConfig
+ */
+export declare class RabbitMqConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): RabbitMqConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: RabbitMqConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: RabbitMqConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: RabbitMqConfig, _writer: BinaryWriter): void;
+    private _host?;
+    private _port?;
+    private _port2?;
+    private _user?;
+    private _password?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of RabbitMqConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<RabbitMqConfig.AsObject>);
+    get host(): string | undefined;
+    set host(value: string | undefined);
+    get port(): string | undefined;
+    set port(value: string | undefined);
+    get port2(): string | undefined;
+    set port2(value: string | undefined);
+    get user(): string | undefined;
+    set user(value: string | undefined);
+    get password(): string | undefined;
+    set password(value: string | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): RabbitMqConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): RabbitMqConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): RabbitMqConfig.AsProtobufJSON;
+}
+export declare module RabbitMqConfig {
+    /**
+     * Standard JavaScript object representation for RabbitMqConfig
+     */
+    interface AsObject {
+        host?: string;
+        port?: string;
+        port2?: string;
+        user?: string;
+        password?: string;
+    }
+    /**
+     * Protobuf JSON representation for RabbitMqConfig
+     */
+    interface AsProtobufJSON {
+        host?: string;
+        port?: string;
+        port2?: string;
+        user?: string;
+        password?: string;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.Endpoint
+ */
+export declare class Endpoint implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): Endpoint;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: Endpoint): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: Endpoint, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: Endpoint, _writer: BinaryWriter): void;
+    private _host?;
+    private _port?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of Endpoint to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<Endpoint.AsObject>);
+    get host(): string | undefined;
+    set host(value: string | undefined);
+    get port(): string | undefined;
+    set port(value: string | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): Endpoint.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): Endpoint.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): Endpoint.AsProtobufJSON;
+}
+export declare module Endpoint {
+    /**
+     * Standard JavaScript object representation for Endpoint
+     */
+    interface AsObject {
+        host?: string;
+        port?: string;
+    }
+    /**
+     * Protobuf JSON representation for Endpoint
+     */
+    interface AsProtobufJSON {
+        host?: string;
+        port?: string;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.MinioConfig
+ */
+export declare class MinioConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): MinioConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: MinioConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: MinioConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: MinioConfig, _writer: BinaryWriter): void;
+    private _endpoint?;
+    private _accessKey?;
+    private _secretKey?;
+    private _secure?;
+    private _sessionToken?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of MinioConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<MinioConfig.AsObject>);
+    get endpoint(): Endpoint | undefined;
+    set endpoint(value: Endpoint | undefined);
+    get accessKey(): string | undefined;
+    set accessKey(value: string | undefined);
+    get secretKey(): string | undefined;
+    set secretKey(value: string | undefined);
+    get secure(): boolean | undefined;
+    set secure(value: boolean | undefined);
+    get sessionToken(): string | undefined;
+    set sessionToken(value: string | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): MinioConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): MinioConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): MinioConfig.AsProtobufJSON;
+}
+export declare module MinioConfig {
+    /**
+     * Standard JavaScript object representation for MinioConfig
+     */
+    interface AsObject {
+        endpoint?: Endpoint.AsObject;
+        accessKey?: string;
+        secretKey?: string;
+        secure?: boolean;
+        sessionToken?: string;
+    }
+    /**
+     * Protobuf JSON representation for MinioConfig
+     */
+    interface AsProtobufJSON {
+        endpoint?: Endpoint.AsProtobufJSON | null;
+        accessKey?: string;
+        secretKey?: string;
+        secure?: boolean;
+        sessionToken?: string;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.S2tCallbacks
+ */
+export declare class S2tCallbacks implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): S2tCallbacks;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: S2tCallbacks): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: S2tCallbacks, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: S2tCallbacks, _writer: BinaryWriter): void;
+    private _preS2tCallbacks?;
+    private _postS2tCallbacks?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of S2tCallbacks to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<S2tCallbacks.AsObject>);
+    get preS2tCallbacks(): string[] | undefined;
+    set preS2tCallbacks(value: string[] | undefined);
+    get postS2tCallbacks(): string[] | undefined;
+    set postS2tCallbacks(value: string[] | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): S2tCallbacks.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): S2tCallbacks.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): S2tCallbacks.AsProtobufJSON;
+}
+export declare module S2tCallbacks {
+    /**
+     * Standard JavaScript object representation for S2tCallbacks
+     */
+    interface AsObject {
+        preS2tCallbacks?: string[];
+        postS2tCallbacks?: string[];
+    }
+    /**
+     * Protobuf JSON representation for S2tCallbacks
+     */
+    interface AsProtobufJSON {
+        preS2tCallbacks?: string[];
+        postS2tCallbacks?: string[];
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.NluCallbacks
+ */
+export declare class NluCallbacks implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): NluCallbacks;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: NluCallbacks): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: NluCallbacks, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: NluCallbacks, _writer: BinaryWriter): void;
+    private _preNluCallbacks?;
+    private _postNluCallbacks?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of NluCallbacks to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<NluCallbacks.AsObject>);
+    get preNluCallbacks(): string[] | undefined;
+    set preNluCallbacks(value: string[] | undefined);
+    get postNluCallbacks(): string[] | undefined;
+    set postNluCallbacks(value: string[] | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): NluCallbacks.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): NluCallbacks.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): NluCallbacks.AsProtobufJSON;
+}
+export declare module NluCallbacks {
+    /**
+     * Standard JavaScript object representation for NluCallbacks
+     */
+    interface AsObject {
+        preNluCallbacks?: string[];
+        postNluCallbacks?: string[];
+    }
+    /**
+     * Protobuf JSON representation for NluCallbacks
+     */
+    interface AsProtobufJSON {
+        preNluCallbacks?: string[];
+        postNluCallbacks?: string[];
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.T2sCallbacks
+ */
+export declare class T2sCallbacks implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): T2sCallbacks;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: T2sCallbacks): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: T2sCallbacks, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: T2sCallbacks, _writer: BinaryWriter): void;
+    private _preT2sCallbacks?;
+    private _postT2sCallbacks?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of T2sCallbacks to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<T2sCallbacks.AsObject>);
+    get preT2sCallbacks(): string[] | undefined;
+    set preT2sCallbacks(value: string[] | undefined);
+    get postT2sCallbacks(): string[] | undefined;
+    set postT2sCallbacks(value: string[] | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): T2sCallbacks.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): T2sCallbacks.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): T2sCallbacks.AsProtobufJSON;
+}
+export declare module T2sCallbacks {
+    /**
+     * Standard JavaScript object representation for T2sCallbacks
+     */
+    interface AsObject {
+        preT2sCallbacks?: string[];
+        postT2sCallbacks?: string[];
+    }
+    /**
+     * Protobuf JSON representation for T2sCallbacks
+     */
+    interface AsProtobufJSON {
+        preT2sCallbacks?: string[];
+        postT2sCallbacks?: string[];
     }
 }
 /**
@@ -3861,3 +3550,4 @@ export declare module ShutdownUnhealthyCallsResponse {
         success?: boolean;
     }
 }
+//# sourceMappingURL=voip.pb.d.ts.map
