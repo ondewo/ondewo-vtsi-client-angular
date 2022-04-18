@@ -17,7 +17,7 @@
     "generate": "docker run -it -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler ondewo-vtsi-api ondewo",
     "debug": "docker run -it --entrypoint /bin/bash -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler",
     "publish-npm": "npm publish ../npm --access public",
-    "test-in-ondewo-aim": "npm run build && rm -rf ../../ondewo-aim/node_modules/@ondewo/survey-client-angular/* && cp ../npm/* ../../ondewo-aim/node_modules/@ondewo/vtsi-client-angular/. -R"
+    "test-in-ondewo-aim": "cd .. && make build && cd src && rm -rf ../../ondewo-aim/node_modules/@ondewo/survey-client-angular/* && cp ../npm/* ../../ondewo-aim/node_modules/@ondewo/vtsi-client-angular/. -R"
   },
   "author": "ONDEWO GmbH",
   "homepage": "https://ondewo.com/",
