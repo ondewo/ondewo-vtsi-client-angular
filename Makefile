@@ -1,7 +1,7 @@
 # which branches to use for the build of the client sdk
 VTSI_API_GIT_BRANCH=tags/2.2.0
-NLU_API_GIT_BRANCH=tags/2.4.0
-S2T_API_GIT_BRANCH=tags/3.0.0
+NLU_API_GIT_BRANCH=tags/2.6.0
+S2T_API_GIT_BRANCH=tags/3.1.1
 SIP_API_GIT_BRANCH=tags/1.2.0
 T2S_API_GIT_BRANCH=tags/3.0.0
 

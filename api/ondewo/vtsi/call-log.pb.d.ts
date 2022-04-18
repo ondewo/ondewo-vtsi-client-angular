@@ -519,4 +519,3 @@ export declare module SaveCallLogsResponse {
         success?: boolean;
     }
 }
-//# sourceMappingURL=call-log.pb.d.ts.map

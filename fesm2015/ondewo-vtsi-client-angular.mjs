@@ -2547,6 +2547,7 @@ class TranscribeStreamRequest {
         this.config = _value.config
             ? new TranscribeRequestConfig(_value.config)
             : undefined;
+        this.muteAudio = _value.muteAudio;
         TranscribeStreamRequest.refineValues(this);
     }
     /**
@@ -2566,6 +2567,7 @@ class TranscribeStreamRequest {
         _instance.audioChunk = _instance.audioChunk || new Uint8Array();
         _instance.endOfStream = _instance.endOfStream || false;
         _instance.config = _instance.config || undefined;
+        _instance.muteAudio = _instance.muteAudio || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -2586,6 +2588,9 @@ class TranscribeStreamRequest {
                 case 3:
                     _instance.config = new TranscribeRequestConfig();
                     _reader.readMessage(_instance.config, TranscribeRequestConfig.deserializeBinaryFromReader);
+                    break;
+                case 4:
+                    _instance.muteAudio = _reader.readBool();
                     break;
                 default:
                     _reader.skipField();
@@ -2608,6 +2613,9 @@ class TranscribeStreamRequest {
         if (_instance.config) {
             _writer.writeMessage(3, _instance.config, TranscribeRequestConfig.serializeBinaryToWriter);
         }
+        if (_instance.muteAudio) {
+            _writer.writeBool(4, _instance.muteAudio);
+        }
     }
     get audioChunk() {
         return this._audioChunk;
@@ -2627,6 +2635,12 @@ class TranscribeStreamRequest {
     set config(value) {
         this._config = value;
     }
+    get muteAudio() {
+        return this._muteAudio;
+    }
+    set muteAudio(value) {
+        this._muteAudio = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -2645,7 +2659,8 @@ class TranscribeStreamRequest {
                 ? this.audioChunk.subarray(0)
                 : new Uint8Array(),
             endOfStream: this.endOfStream,
-            config: this.config ? this.config.toObject() : undefined
+            config: this.config ? this.config.toObject() : undefined,
+            muteAudio: this.muteAudio
         };
     }
     /**
@@ -2665,7 +2680,8 @@ class TranscribeStreamRequest {
         return {
             audioChunk: this.audioChunk ? uint8ArrayToBase64(this.audioChunk) : '',
             endOfStream: this.endOfStream,
-            config: this.config ? this.config.toProtobufJSON(options) : null
+            config: this.config ? this.config.toProtobufJSON(options) : null,
+            muteAudio: this.muteAudio
         };
     }
 }
@@ -3538,6 +3554,7 @@ class ListS2tPipelinesRequest {
         this.languages = (_value.languages || []).slice();
         this.pipelineOwners = (_value.pipelineOwners || []).slice();
         this.domains = (_value.domains || []).slice();
+        this.registeredOnly = _value.registeredOnly;
         ListS2tPipelinesRequest.refineValues(this);
     }
     /**
@@ -3557,6 +3574,7 @@ class ListS2tPipelinesRequest {
         _instance.languages = _instance.languages || [];
         _instance.pipelineOwners = _instance.pipelineOwners || [];
         _instance.domains = _instance.domains || [];
+        _instance.registeredOnly = _instance.registeredOnly || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -3576,6 +3594,9 @@ class ListS2tPipelinesRequest {
                     break;
                 case 3:
                     (_instance.domains = _instance.domains || []).push(_reader.readString());
+                    break;
+                case 4:
+                    _instance.registeredOnly = _reader.readBool();
                     break;
                 default:
                     _reader.skipField();
@@ -3598,6 +3619,9 @@ class ListS2tPipelinesRequest {
         if (_instance.domains && _instance.domains.length) {
             _writer.writeRepeatedString(3, _instance.domains);
         }
+        if (_instance.registeredOnly) {
+            _writer.writeBool(4, _instance.registeredOnly);
+        }
     }
     get languages() {
         return this._languages;
@@ -3617,6 +3641,12 @@ class ListS2tPipelinesRequest {
     set domains(value) {
         this._domains = value;
     }
+    get registeredOnly() {
+        return this._registeredOnly;
+    }
+    set registeredOnly(value) {
+        this._registeredOnly = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -3633,7 +3663,8 @@ class ListS2tPipelinesRequest {
         return {
             languages: (this.languages || []).slice(),
             pipelineOwners: (this.pipelineOwners || []).slice(),
-            domains: (this.domains || []).slice()
+            domains: (this.domains || []).slice(),
+            registeredOnly: this.registeredOnly
         };
     }
     /**
@@ -3653,7 +3684,8 @@ class ListS2tPipelinesRequest {
         return {
             languages: (this.languages || []).slice(),
             pipelineOwners: (this.pipelineOwners || []).slice(),
-            domains: (this.domains || []).slice()
+            domains: (this.domains || []).slice(),
+            registeredOnly: this.registeredOnly
         };
     }
 }
@@ -4840,6 +4872,9 @@ class CtcAcousticModels {
             ? new QuartznetTriton(_value.quartznetTriton)
             : undefined;
         this.wav2vec = _value.wav2vec ? new Wav2Vec(_value.wav2vec) : undefined;
+        this.wav2vecTriton = _value.wav2vecTriton
+            ? new Wav2VecTriton(_value.wav2vecTriton)
+            : undefined;
         CtcAcousticModels.refineValues(this);
     }
     /**
@@ -4860,6 +4895,7 @@ class CtcAcousticModels {
         _instance.quartznet = _instance.quartznet || undefined;
         _instance.quartznetTriton = _instance.quartznetTriton || undefined;
         _instance.wav2vec = _instance.wav2vec || undefined;
+        _instance.wav2vecTriton = _instance.wav2vecTriton || undefined;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -4886,6 +4922,10 @@ class CtcAcousticModels {
                     _instance.wav2vec = new Wav2Vec();
                     _reader.readMessage(_instance.wav2vec, Wav2Vec.deserializeBinaryFromReader);
                     break;
+                case 5:
+                    _instance.wav2vecTriton = new Wav2VecTriton();
+                    _reader.readMessage(_instance.wav2vecTriton, Wav2VecTriton.deserializeBinaryFromReader);
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -4909,6 +4949,9 @@ class CtcAcousticModels {
         }
         if (_instance.wav2vec) {
             _writer.writeMessage(4, _instance.wav2vec, Wav2Vec.serializeBinaryToWriter);
+        }
+        if (_instance.wav2vecTriton) {
+            _writer.writeMessage(5, _instance.wav2vecTriton, Wav2VecTriton.serializeBinaryToWriter);
         }
     }
     get type() {
@@ -4935,6 +4978,12 @@ class CtcAcousticModels {
     set wav2vec(value) {
         this._wav2vec = value;
     }
+    get wav2vecTriton() {
+        return this._wav2vecTriton;
+    }
+    set wav2vecTriton(value) {
+        this._wav2vecTriton = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -4954,7 +5003,10 @@ class CtcAcousticModels {
             quartznetTriton: this.quartznetTriton
                 ? this.quartznetTriton.toObject()
                 : undefined,
-            wav2vec: this.wav2vec ? this.wav2vec.toObject() : undefined
+            wav2vec: this.wav2vec ? this.wav2vec.toObject() : undefined,
+            wav2vecTriton: this.wav2vecTriton
+                ? this.wav2vecTriton.toObject()
+                : undefined
         };
     }
     /**
@@ -4977,7 +5029,10 @@ class CtcAcousticModels {
             quartznetTriton: this.quartznetTriton
                 ? this.quartznetTriton.toProtobufJSON(options)
                 : null,
-            wav2vec: this.wav2vec ? this.wav2vec.toProtobufJSON(options) : null
+            wav2vec: this.wav2vec ? this.wav2vec.toProtobufJSON(options) : null,
+            wav2vecTriton: this.wav2vecTriton
+                ? this.wav2vecTriton.toProtobufJSON(options)
+                : null
         };
     }
 }
@@ -5099,6 +5154,155 @@ class Wav2Vec {
     }
 }
 Wav2Vec.id = 'ondewo.s2t.Wav2Vec';
+/**
+ * Message implementation for ondewo.s2t.Wav2VecTriton
+ */
+class Wav2VecTriton {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of Wav2VecTriton to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.processorPath = _value.processorPath;
+        this.tritonModelName = _value.tritonModelName;
+        this.tritonModelVersion = _value.tritonModelVersion;
+        this.checkStatusTimeout = _value.checkStatusTimeout;
+        Wav2VecTriton.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new Wav2VecTriton();
+        Wav2VecTriton.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.processorPath = _instance.processorPath || '';
+        _instance.tritonModelName = _instance.tritonModelName || '';
+        _instance.tritonModelVersion = _instance.tritonModelVersion || '';
+        _instance.checkStatusTimeout = _instance.checkStatusTimeout || '0';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.processorPath = _reader.readString();
+                    break;
+                case 2:
+                    _instance.tritonModelName = _reader.readString();
+                    break;
+                case 3:
+                    _instance.tritonModelVersion = _reader.readString();
+                    break;
+                case 4:
+                    _instance.checkStatusTimeout = _reader.readInt64String();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        Wav2VecTriton.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.processorPath) {
+            _writer.writeString(1, _instance.processorPath);
+        }
+        if (_instance.tritonModelName) {
+            _writer.writeString(2, _instance.tritonModelName);
+        }
+        if (_instance.tritonModelVersion) {
+            _writer.writeString(3, _instance.tritonModelVersion);
+        }
+        if (_instance.checkStatusTimeout) {
+            _writer.writeInt64String(4, _instance.checkStatusTimeout);
+        }
+    }
+    get processorPath() {
+        return this._processorPath;
+    }
+    set processorPath(value) {
+        this._processorPath = value;
+    }
+    get tritonModelName() {
+        return this._tritonModelName;
+    }
+    set tritonModelName(value) {
+        this._tritonModelName = value;
+    }
+    get tritonModelVersion() {
+        return this._tritonModelVersion;
+    }
+    set tritonModelVersion(value) {
+        this._tritonModelVersion = value;
+    }
+    get checkStatusTimeout() {
+        return this._checkStatusTimeout;
+    }
+    set checkStatusTimeout(value) {
+        this._checkStatusTimeout = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        Wav2VecTriton.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            processorPath: this.processorPath,
+            tritonModelName: this.tritonModelName,
+            tritonModelVersion: this.tritonModelVersion,
+            checkStatusTimeout: this.checkStatusTimeout
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            processorPath: this.processorPath,
+            tritonModelName: this.tritonModelName,
+            tritonModelVersion: this.tritonModelVersion,
+            checkStatusTimeout: this.checkStatusTimeout
+        };
+    }
+}
+Wav2VecTriton.id = 'ondewo.s2t.Wav2VecTriton';
 /**
  * Message implementation for ondewo.s2t.Quartznet
  */
@@ -20216,7 +20420,7 @@ class VoipCallLogsClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
+             * Unary call: /ondewo.vtsi.VoipCallLogs/GetVoipLog
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20234,7 +20438,7 @@ class VoipCallLogsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
+             * Unary call: /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20255,7 +20459,7 @@ class VoipCallLogsClient {
         this.client = clientFactory.createClient('ondewo.vtsi.VoipCallLogs', settings);
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
+     * Unary call @/ondewo.vtsi.VoipCallLogs/GetVoipLog
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20267,7 +20471,7 @@ class VoipCallLogsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
+     * Unary call @/ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20279,12 +20483,13 @@ class VoipCallLogsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-VoipCallLogsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipCallLogsClient, deps: [{ token: GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-VoipCallLogsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipCallLogsClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipCallLogsClient, decorators: [{
+VoipCallLogsClient.ɵfac = function VoipCallLogsClient_Factory(t) { return new (t || VoipCallLogsClient)(i0.ɵɵinject(GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
+VoipCallLogsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: VoipCallLogsClient, factory: VoipCallLogsClient.ɵfac, providedIn: 'any' });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(VoipCallLogsClient, [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], ctorParameters: function () {
+        }], function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -20294,7 +20499,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    } });
+    }, null);
+})();
 
 /* tslint:disable */
 /**
@@ -20310,7 +20516,7 @@ class VoipSessionsClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/RunManifest
+             * Unary call: /ondewo.vtsi.VoipSessions/RunManifest
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20328,7 +20534,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/RemoveManifest
+             * Unary call: /ondewo.vtsi.VoipSessions/RemoveManifest
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20346,7 +20552,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestIDs
+             * Unary call: /ondewo.vtsi.VoipSessions/GetManifestIDs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20364,7 +20570,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/StartCallInstance
+             * Unary call: /ondewo.vtsi.VoipSessions/StartCallInstance
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20382,7 +20588,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/StopCallInstance
+             * Unary call: /ondewo.vtsi.VoipSessions/StopCallInstance
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20400,7 +20606,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
+             * Unary call: /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20418,7 +20624,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetCallIDs
+             * Unary call: /ondewo.vtsi.VoipSessions/GetCallIDs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20436,7 +20642,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetSessionID
+             * Unary call: /ondewo.vtsi.VoipSessions/GetSessionID
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20454,7 +20660,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
+             * Unary call: /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20472,7 +20678,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestStatus
+             * Unary call: /ondewo.vtsi.VoipSessions/GetManifestStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20490,7 +20696,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetInstanceStatus
+             * Unary call: /ondewo.vtsi.VoipSessions/GetInstanceStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20508,7 +20714,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/UpdateServicesStatus
+             * Unary call: /ondewo.vtsi.VoipSessions/UpdateServicesStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20526,7 +20732,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
+             * Unary call: /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20547,7 +20753,7 @@ class VoipSessionsClient {
         this.client = clientFactory.createClient('ondewo.vtsi.VoipSessions', settings);
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/RunManifest
+     * Unary call @/ondewo.vtsi.VoipSessions/RunManifest
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20559,7 +20765,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/RemoveManifest
+     * Unary call @/ondewo.vtsi.VoipSessions/RemoveManifest
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20571,7 +20777,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestIDs
+     * Unary call @/ondewo.vtsi.VoipSessions/GetManifestIDs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20583,7 +20789,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/StartCallInstance
+     * Unary call @/ondewo.vtsi.VoipSessions/StartCallInstance
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20595,7 +20801,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/StopCallInstance
+     * Unary call @/ondewo.vtsi.VoipSessions/StopCallInstance
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20607,7 +20813,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
+     * Unary call @/ondewo.vtsi.VoipSessions/StartMultipleCallInstances
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20619,7 +20825,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetCallIDs
+     * Unary call @/ondewo.vtsi.VoipSessions/GetCallIDs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20631,7 +20837,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetSessionID
+     * Unary call @/ondewo.vtsi.VoipSessions/GetSessionID
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20643,7 +20849,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
+     * Unary call @/ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20655,7 +20861,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/GetManifestStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20667,7 +20873,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetInstanceStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/GetInstanceStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20679,7 +20885,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/UpdateServicesStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/UpdateServicesStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20691,7 +20897,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
+     * Unary call @/ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20703,12 +20909,13 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-VoipSessionsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipSessionsClient, deps: [{ token: GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-VoipSessionsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipSessionsClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipSessionsClient, decorators: [{
+VoipSessionsClient.ɵfac = function VoipSessionsClient_Factory(t) { return new (t || VoipSessionsClient)(i0.ɵɵinject(GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
+VoipSessionsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: VoipSessionsClient, factory: VoipSessionsClient.ɵfac, providedIn: 'any' });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(VoipSessionsClient, [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], ctorParameters: function () {
+        }], function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -20718,7 +20925,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    } });
+    }, null);
+})();
 
 /* tslint:disable */
 /**
@@ -20741,7 +20949,7 @@ class Speech2TextClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/TranscribeFile
+             * Unary call: /ondewo.s2t.Speech2Text/TranscribeFile
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20759,7 +20967,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Server streaming RPC for /ondewo.s2t.Speech2Text/TranscribeStream
+             * Bidirectional streaming: /ondewo.s2t.Speech2Text/TranscribeStream
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20767,7 +20975,7 @@ class Speech2TextClient {
              */
             transcribeStream: (requestData, requestMetadata = new GrpcMetadata()) => {
                 return this.handler.handle({
-                    type: GrpcCallType.serverStream,
+                    type: GrpcCallType.bidiStream,
                     client: this.client,
                     path: '/ondewo.s2t.Speech2Text/TranscribeStream',
                     requestData,
@@ -20777,7 +20985,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/GetS2tPipeline
+             * Unary call: /ondewo.s2t.Speech2Text/GetS2tPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20795,7 +21003,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/CreateS2tPipeline
+             * Unary call: /ondewo.s2t.Speech2Text/CreateS2tPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20813,7 +21021,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/DeleteS2tPipeline
+             * Unary call: /ondewo.s2t.Speech2Text/DeleteS2tPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20831,7 +21039,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/UpdateS2tPipeline
+             * Unary call: /ondewo.s2t.Speech2Text/UpdateS2tPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20849,7 +21057,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tPipelines
+             * Unary call: /ondewo.s2t.Speech2Text/ListS2tPipelines
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20867,7 +21075,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tLanguages
+             * Unary call: /ondewo.s2t.Speech2Text/ListS2tLanguages
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20885,7 +21093,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tDomains
+             * Unary call: /ondewo.s2t.Speech2Text/ListS2tDomains
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20903,7 +21111,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/GetServiceInfo
+             * Unary call: /ondewo.s2t.Speech2Text/GetServiceInfo
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20921,7 +21129,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tLanguageModels
+             * Unary call: /ondewo.s2t.Speech2Text/ListS2tLanguageModels
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20942,7 +21150,7 @@ class Speech2TextClient {
         this.client = clientFactory.createClient('ondewo.s2t.Speech2Text', settings);
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/TranscribeFile
+     * Unary call @/ondewo.s2t.Speech2Text/TranscribeFile
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20954,7 +21162,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Server streaming RPC for /ondewo.s2t.Speech2Text/TranscribeStream
+     * Bidirectional streaming @/ondewo.s2t.Speech2Text/TranscribeStream
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20966,7 +21174,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/GetS2tPipeline
+     * Unary call @/ondewo.s2t.Speech2Text/GetS2tPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20978,7 +21186,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/CreateS2tPipeline
+     * Unary call @/ondewo.s2t.Speech2Text/CreateS2tPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20990,7 +21198,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/DeleteS2tPipeline
+     * Unary call @/ondewo.s2t.Speech2Text/DeleteS2tPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21002,7 +21210,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/UpdateS2tPipeline
+     * Unary call @/ondewo.s2t.Speech2Text/UpdateS2tPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21014,7 +21222,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tPipelines
+     * Unary call @/ondewo.s2t.Speech2Text/ListS2tPipelines
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21026,7 +21234,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tLanguages
+     * Unary call @/ondewo.s2t.Speech2Text/ListS2tLanguages
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21038,7 +21246,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tDomains
+     * Unary call @/ondewo.s2t.Speech2Text/ListS2tDomains
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21050,7 +21258,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/GetServiceInfo
+     * Unary call @/ondewo.s2t.Speech2Text/GetServiceInfo
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21062,7 +21270,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tLanguageModels
+     * Unary call @/ondewo.s2t.Speech2Text/ListS2tLanguageModels
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21074,12 +21282,13 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-Speech2TextClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Speech2TextClient, deps: [{ token: GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-Speech2TextClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Speech2TextClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Speech2TextClient, decorators: [{
+Speech2TextClient.ɵfac = function Speech2TextClient_Factory(t) { return new (t || Speech2TextClient)(i0.ɵɵinject(GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
+Speech2TextClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: Speech2TextClient, factory: Speech2TextClient.ɵfac, providedIn: 'any' });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(Speech2TextClient, [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], ctorParameters: function () {
+        }], function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -21089,7 +21298,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    } });
+    }, null);
+})();
 
 /* tslint:disable */
 /**
@@ -21925,7 +22135,7 @@ class CustomPhonemizersClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer
+             * Unary call: /ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21943,7 +22153,7 @@ class CustomPhonemizersClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer
+             * Unary call: /ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21961,7 +22171,7 @@ class CustomPhonemizersClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer
+             * Unary call: /ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21979,7 +22189,7 @@ class CustomPhonemizersClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer
+             * Unary call: /ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21997,7 +22207,7 @@ class CustomPhonemizersClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer
+             * Unary call: /ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22018,7 +22228,7 @@ class CustomPhonemizersClient {
         this.client = clientFactory.createClient('ondewo.t2s.CustomPhonemizers', settings);
     }
     /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer
+     * Unary call @/ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22030,7 +22240,7 @@ class CustomPhonemizersClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer
+     * Unary call @/ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22042,7 +22252,7 @@ class CustomPhonemizersClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer
+     * Unary call @/ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22054,7 +22264,7 @@ class CustomPhonemizersClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer
+     * Unary call @/ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22066,7 +22276,7 @@ class CustomPhonemizersClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer
+     * Unary call @/ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22078,12 +22288,13 @@ class CustomPhonemizersClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-CustomPhonemizersClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CustomPhonemizersClient, deps: [{ token: GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-CustomPhonemizersClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CustomPhonemizersClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CustomPhonemizersClient, decorators: [{
+CustomPhonemizersClient.ɵfac = function CustomPhonemizersClient_Factory(t) { return new (t || CustomPhonemizersClient)(i0.ɵɵinject(GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
+CustomPhonemizersClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: CustomPhonemizersClient, factory: CustomPhonemizersClient.ɵfac, providedIn: 'any' });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CustomPhonemizersClient, [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], ctorParameters: function () {
+        }], function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -22093,7 +22304,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    } });
+    }, null);
+})();
 
 /* tslint:disable */
 /**
@@ -22109,7 +22321,7 @@ class Text2SpeechClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/Synthesize
+             * Unary call: /ondewo.t2s.Text2Speech/Synthesize
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22127,7 +22339,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/BatchSynthesize
+             * Unary call: /ondewo.t2s.Text2Speech/BatchSynthesize
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22145,7 +22357,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/GetT2sPipeline
+             * Unary call: /ondewo.t2s.Text2Speech/GetT2sPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22163,7 +22375,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/CreateT2sPipeline
+             * Unary call: /ondewo.t2s.Text2Speech/CreateT2sPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22181,7 +22393,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/DeleteT2sPipeline
+             * Unary call: /ondewo.t2s.Text2Speech/DeleteT2sPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22199,7 +22411,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/UpdateT2sPipeline
+             * Unary call: /ondewo.t2s.Text2Speech/UpdateT2sPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22217,7 +22429,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sPipelines
+             * Unary call: /ondewo.t2s.Text2Speech/ListT2sPipelines
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22235,7 +22447,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sLanguages
+             * Unary call: /ondewo.t2s.Text2Speech/ListT2sLanguages
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22253,7 +22465,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sDomains
+             * Unary call: /ondewo.t2s.Text2Speech/ListT2sDomains
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22271,7 +22483,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/GetServiceInfo
+             * Unary call: /ondewo.t2s.Text2Speech/GetServiceInfo
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22292,7 +22504,7 @@ class Text2SpeechClient {
         this.client = clientFactory.createClient('ondewo.t2s.Text2Speech', settings);
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/Synthesize
+     * Unary call @/ondewo.t2s.Text2Speech/Synthesize
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22304,7 +22516,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/BatchSynthesize
+     * Unary call @/ondewo.t2s.Text2Speech/BatchSynthesize
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22316,7 +22528,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/GetT2sPipeline
+     * Unary call @/ondewo.t2s.Text2Speech/GetT2sPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22328,7 +22540,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/CreateT2sPipeline
+     * Unary call @/ondewo.t2s.Text2Speech/CreateT2sPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22340,7 +22552,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/DeleteT2sPipeline
+     * Unary call @/ondewo.t2s.Text2Speech/DeleteT2sPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22352,7 +22564,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/UpdateT2sPipeline
+     * Unary call @/ondewo.t2s.Text2Speech/UpdateT2sPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22364,7 +22576,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sPipelines
+     * Unary call @/ondewo.t2s.Text2Speech/ListT2sPipelines
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22376,7 +22588,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sLanguages
+     * Unary call @/ondewo.t2s.Text2Speech/ListT2sLanguages
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22388,7 +22600,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sDomains
+     * Unary call @/ondewo.t2s.Text2Speech/ListT2sDomains
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22400,7 +22612,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/GetServiceInfo
+     * Unary call @/ondewo.t2s.Text2Speech/GetServiceInfo
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22412,12 +22624,13 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-Text2SpeechClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Text2SpeechClient, deps: [{ token: GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-Text2SpeechClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Text2SpeechClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Text2SpeechClient, decorators: [{
+Text2SpeechClient.ɵfac = function Text2SpeechClient_Factory(t) { return new (t || Text2SpeechClient)(i0.ɵɵinject(GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
+Text2SpeechClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: Text2SpeechClient, factory: Text2SpeechClient.ɵfac, providedIn: 'any' });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(Text2SpeechClient, [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], ctorParameters: function () {
+        }], function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -22427,7 +22640,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    } });
+    }, null);
+})();
 
 /* tslint:disable */
 /**
@@ -22450,7 +22664,7 @@ class ContextsClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/ListContexts
+             * Unary call: /ondewo.nlu.Contexts/ListContexts
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22468,7 +22682,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/GetContext
+             * Unary call: /ondewo.nlu.Contexts/GetContext
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22486,7 +22700,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/CreateContext
+             * Unary call: /ondewo.nlu.Contexts/CreateContext
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22504,7 +22718,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/UpdateContext
+             * Unary call: /ondewo.nlu.Contexts/UpdateContext
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22522,7 +22736,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/DeleteContext
+             * Unary call: /ondewo.nlu.Contexts/DeleteContext
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22540,7 +22754,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/DeleteAllContexts
+             * Unary call: /ondewo.nlu.Contexts/DeleteAllContexts
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22561,7 +22775,7 @@ class ContextsClient {
         this.client = clientFactory.createClient('ondewo.nlu.Contexts', settings);
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/ListContexts
+     * Unary call @/ondewo.nlu.Contexts/ListContexts
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22573,7 +22787,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/GetContext
+     * Unary call @/ondewo.nlu.Contexts/GetContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22585,7 +22799,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/CreateContext
+     * Unary call @/ondewo.nlu.Contexts/CreateContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22597,7 +22811,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/UpdateContext
+     * Unary call @/ondewo.nlu.Contexts/UpdateContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22609,7 +22823,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/DeleteContext
+     * Unary call @/ondewo.nlu.Contexts/DeleteContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22621,7 +22835,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/DeleteAllContexts
+     * Unary call @/ondewo.nlu.Contexts/DeleteAllContexts
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22633,12 +22847,13 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-ContextsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ContextsClient, deps: [{ token: GRPC_CONTEXTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-ContextsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ContextsClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ContextsClient, decorators: [{
+ContextsClient.ɵfac = function ContextsClient_Factory(t) { return new (t || ContextsClient)(i0.ɵɵinject(GRPC_CONTEXTS_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
+ContextsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ContextsClient, factory: ContextsClient.ɵfac, providedIn: 'any' });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ContextsClient, [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], ctorParameters: function () {
+        }], function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -22648,7 +22863,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    } });
+    }, null);
+})();
 
 /* tslint:disable */
 /**
@@ -22671,7 +22887,7 @@ class SipClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.sip.Sip/StartSession
+             * Unary call: /ondewo.sip.Sip/StartSession
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22689,7 +22905,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/EndSession
+             * Unary call: /ondewo.sip.Sip/EndSession
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22707,7 +22923,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/StartCall
+             * Unary call: /ondewo.sip.Sip/StartCall
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22725,7 +22941,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/EndCall
+             * Unary call: /ondewo.sip.Sip/EndCall
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22743,7 +22959,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/TransferCall
+             * Unary call: /ondewo.sip.Sip/TransferCall
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22761,7 +22977,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/RegisterAccount
+             * Unary call: /ondewo.sip.Sip/RegisterAccount
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22779,7 +22995,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/GetSipStatus
+             * Unary call: /ondewo.sip.Sip/GetSipStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22797,7 +23013,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/GetSipStatusHistory
+             * Unary call: /ondewo.sip.Sip/GetSipStatusHistory
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22815,7 +23031,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/PlayWavFiles
+             * Unary call: /ondewo.sip.Sip/PlayWavFiles
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22833,7 +23049,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/Mute
+             * Unary call: /ondewo.sip.Sip/Mute
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22851,7 +23067,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/UnMute
+             * Unary call: /ondewo.sip.Sip/UnMute
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22872,7 +23088,7 @@ class SipClient {
         this.client = clientFactory.createClient('ondewo.sip.Sip', settings);
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/StartSession
+     * Unary call @/ondewo.sip.Sip/StartSession
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22884,7 +23100,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/EndSession
+     * Unary call @/ondewo.sip.Sip/EndSession
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22896,7 +23112,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/StartCall
+     * Unary call @/ondewo.sip.Sip/StartCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22908,7 +23124,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/EndCall
+     * Unary call @/ondewo.sip.Sip/EndCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22920,7 +23136,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/TransferCall
+     * Unary call @/ondewo.sip.Sip/TransferCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22932,7 +23148,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/RegisterAccount
+     * Unary call @/ondewo.sip.Sip/RegisterAccount
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22944,7 +23160,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/GetSipStatus
+     * Unary call @/ondewo.sip.Sip/GetSipStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22956,7 +23172,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/GetSipStatusHistory
+     * Unary call @/ondewo.sip.Sip/GetSipStatusHistory
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22968,7 +23184,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/PlayWavFiles
+     * Unary call @/ondewo.sip.Sip/PlayWavFiles
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22980,7 +23196,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/Mute
+     * Unary call @/ondewo.sip.Sip/Mute
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -22992,7 +23208,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/UnMute
+     * Unary call @/ondewo.sip.Sip/UnMute
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23004,12 +23220,13 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-SipClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: SipClient, deps: [{ token: GRPC_SIP_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-SipClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: SipClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: SipClient, decorators: [{
+SipClient.ɵfac = function SipClient_Factory(t) { return new (t || SipClient)(i0.ɵɵinject(GRPC_SIP_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
+SipClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: SipClient, factory: SipClient.ɵfac, providedIn: 'any' });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SipClient, [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], ctorParameters: function () {
+        }], function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -23019,11 +23236,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    } });
+    }, null);
+})();
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { Apodization, AsteriskConfig, AudioFormat, AudioObjectStorageConfig, BaseServiceConfig, BatchSynthesizeRequest, BatchSynthesizeResponse, CTCDecoding, Caching, CkptFile, CommonServicesConfigs, CompositeInference, Context, ContextsClient, Counters, CreateContextRequest, CreateCustomPhonemizerRequest, Credentials, CsiConfig, CtcAcousticModels, CustomHttpPattern, CustomPhonemizerProto, CustomPhonemizersClient, DeleteAllContextsRequest, DeleteContextRequest, DeployPreconditionRequest, DeployPreconditionResponse, EndCallRequest, Endpoint, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, GetCallIDsRequest, GetCallIDsResponse, GetCallIdsRequest, GetCallIdsResponse, GetContextRequest, GetManifestIDsRequest, GetManifestIDsResponse, GetSessionIDRequest, GetSessionIDResponse, GetVoipLogRequest, GetVoipLogResponse, GetVoipStatusRequest, GlowTTS, GlowTTSTriton, HiFiGan, HiFiGanTriton, Http, HttpRule, LanguageModelPipelineId, LanguageModels, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, Logging, Logmnse, ManifestRequest, Map, Matchbox, MbMelganTriton, Mel2Audio, MessageBrokerConfig, MinioConfig, NLUConfig, NluCallbacks, Pcm, PhonemizerId, PlayWavFilesRequest, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, PtFiles, Pyannote, Quartznet, QuartznetTriton, RabbitMqConfig, RegisterAccountRequest, RemoveManifestResponse, RequestConfig, RunManifestResponse, S2TConfig, S2TDescription, S2TGetServiceInfoResponse, S2TInference, S2TNormalization, S2tCallbacks, S2tPipelineId, SIPConfig, SaveCallLogsResponse, ServiceStatus, ShutdownUnhealthyCallsRequest, ShutdownUnhealthyCallsResponse, SipClient, SipStatus, SipStatusHistoryResponse, Speech2TextClient, Speech2TextConfig, StartCallInstanceRequest, StartCallInstanceResponse, StartCallRequest, StartMultipleCallInstancesRequest, StartMultipleCallInstancesResponse, StartSessionRequest, StopCallInstanceRequest, StopCallInstanceResponse, StreamingServer, StreamingSpeechRecognition, SymSpell, SynthesizeRequest, SynthesizeResponse, T2SConfig, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCallbacks, T2sPipelineId, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionReturnOptions, TransferCallRequest, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateServicesStatusRequest, UpdateServicesStatusResponse, UtteranceDetectionOptions, VoiceActivityDetection, VoipCallLogsClient, VoipLog, VoipManifest, VoipManifestStatus, VoipManifestStatusRequest, VoipSessionsClient, VoipStatus, Wav2Vec, Wiener, WordTiming };
+export { Apodization, AsteriskConfig, AudioFormat, AudioObjectStorageConfig, BaseServiceConfig, BatchSynthesizeRequest, BatchSynthesizeResponse, CTCDecoding, Caching, CkptFile, CommonServicesConfigs, CompositeInference, Context, ContextsClient, Counters, CreateContextRequest, CreateCustomPhonemizerRequest, Credentials, CsiConfig, CtcAcousticModels, CustomHttpPattern, CustomPhonemizerProto, CustomPhonemizersClient, DeleteAllContextsRequest, DeleteContextRequest, DeployPreconditionRequest, DeployPreconditionResponse, EndCallRequest, Endpoint, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, GetCallIDsRequest, GetCallIDsResponse, GetCallIdsRequest, GetCallIdsResponse, GetContextRequest, GetManifestIDsRequest, GetManifestIDsResponse, GetSessionIDRequest, GetSessionIDResponse, GetVoipLogRequest, GetVoipLogResponse, GetVoipStatusRequest, GlowTTS, GlowTTSTriton, HiFiGan, HiFiGanTriton, Http, HttpRule, LanguageModelPipelineId, LanguageModels, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, Logging, Logmnse, ManifestRequest, Map, Matchbox, MbMelganTriton, Mel2Audio, MessageBrokerConfig, MinioConfig, NLUConfig, NluCallbacks, Pcm, PhonemizerId, PlayWavFilesRequest, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, PtFiles, Pyannote, Quartznet, QuartznetTriton, RabbitMqConfig, RegisterAccountRequest, RemoveManifestResponse, RequestConfig, RunManifestResponse, S2TConfig, S2TDescription, S2TGetServiceInfoResponse, S2TInference, S2TNormalization, S2tCallbacks, S2tPipelineId, SIPConfig, SaveCallLogsResponse, ServiceStatus, ShutdownUnhealthyCallsRequest, ShutdownUnhealthyCallsResponse, SipClient, SipStatus, SipStatusHistoryResponse, Speech2TextClient, Speech2TextConfig, StartCallInstanceRequest, StartCallInstanceResponse, StartCallRequest, StartMultipleCallInstancesRequest, StartMultipleCallInstancesResponse, StartSessionRequest, StopCallInstanceRequest, StopCallInstanceResponse, StreamingServer, StreamingSpeechRecognition, SymSpell, SynthesizeRequest, SynthesizeResponse, T2SConfig, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCallbacks, T2sPipelineId, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionReturnOptions, TransferCallRequest, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateServicesStatusRequest, UpdateServicesStatusResponse, UtteranceDetectionOptions, VoiceActivityDetection, VoipCallLogsClient, VoipLog, VoipManifest, VoipManifestStatus, VoipManifestStatusRequest, VoipSessionsClient, VoipStatus, Wav2Vec, Wav2VecTriton, Wiener, WordTiming };
 //# sourceMappingURL=ondewo-vtsi-client-angular.mjs.map
