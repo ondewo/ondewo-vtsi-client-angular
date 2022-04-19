@@ -92,10 +92,20 @@ copy_proto_files_for_ondewo_sip_api:
 
 generate_protos:
 	@echo "START generate protos ..."
-	cd src/ && npm run generate
+	cd src/ && npm run generate && cd ..
 	@echo "DONE generate protos."
 
-push_to_npm: 
+publish-npm: 
 	@echo "START pushing release to npm ..."
-	cd src/ && npm run publish-npm
+	cd src/ && npm run publish-npm && cd ..
 	@echo "DONE pushing release to npm."
+
+submodule_update: 
+	@echo "START updating submodule ..."
+	cd src/ && npm run submodule_update && cd ..
+	@echo "DONE updating submodule."
+
+test-in-ondewo-aim: 
+	@echo "START copying files to local AIM for testing ..."
+	cd src/ && npm run test-in-ondewo-aim && cd ..
+	@echo "DONE copying files to local AIM for testing."
