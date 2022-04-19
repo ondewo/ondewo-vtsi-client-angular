@@ -20483,13 +20483,12 @@ class VoipCallLogsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-VoipCallLogsClient.ɵfac = function VoipCallLogsClient_Factory(t) { return new (t || VoipCallLogsClient)(i0.ɵɵinject(GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
-VoipCallLogsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: VoipCallLogsClient, factory: VoipCallLogsClient.ɵfac, providedIn: 'any' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(VoipCallLogsClient, [{
+VoipCallLogsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipCallLogsClient, deps: [{ token: GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+VoipCallLogsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipCallLogsClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipCallLogsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -20499,8 +20498,7 @@ VoipCallLogsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: VoipC
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    }, null);
-})();
+    } });
 
 /* tslint:disable */
 /**
@@ -20909,13 +20907,12 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-VoipSessionsClient.ɵfac = function VoipSessionsClient_Factory(t) { return new (t || VoipSessionsClient)(i0.ɵɵinject(GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
-VoipSessionsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: VoipSessionsClient, factory: VoipSessionsClient.ɵfac, providedIn: 'any' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(VoipSessionsClient, [{
+VoipSessionsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipSessionsClient, deps: [{ token: GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+VoipSessionsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipSessionsClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipSessionsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -20925,8 +20922,7 @@ VoipSessionsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: VoipS
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    }, null);
-})();
+    } });
 
 /* tslint:disable */
 /**
@@ -21282,13 +21278,12 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-Speech2TextClient.ɵfac = function Speech2TextClient_Factory(t) { return new (t || Speech2TextClient)(i0.ɵɵinject(GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
-Speech2TextClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: Speech2TextClient, factory: Speech2TextClient.ɵfac, providedIn: 'any' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(Speech2TextClient, [{
+Speech2TextClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Speech2TextClient, deps: [{ token: GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+Speech2TextClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Speech2TextClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Speech2TextClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -21298,8 +21293,7 @@ Speech2TextClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: Speech
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    }, null);
-})();
+    } });
 
 /* tslint:disable */
 /**
@@ -22288,13 +22282,12 @@ class CustomPhonemizersClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-CustomPhonemizersClient.ɵfac = function CustomPhonemizersClient_Factory(t) { return new (t || CustomPhonemizersClient)(i0.ɵɵinject(GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
-CustomPhonemizersClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: CustomPhonemizersClient, factory: CustomPhonemizersClient.ɵfac, providedIn: 'any' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CustomPhonemizersClient, [{
+CustomPhonemizersClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: CustomPhonemizersClient, deps: [{ token: GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+CustomPhonemizersClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: CustomPhonemizersClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: CustomPhonemizersClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -22304,8 +22297,7 @@ CustomPhonemizersClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: 
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    }, null);
-})();
+    } });
 
 /* tslint:disable */
 /**
@@ -22624,13 +22616,12 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-Text2SpeechClient.ɵfac = function Text2SpeechClient_Factory(t) { return new (t || Text2SpeechClient)(i0.ɵɵinject(GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
-Text2SpeechClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: Text2SpeechClient, factory: Text2SpeechClient.ɵfac, providedIn: 'any' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(Text2SpeechClient, [{
+Text2SpeechClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Text2SpeechClient, deps: [{ token: GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+Text2SpeechClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Text2SpeechClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Text2SpeechClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -22640,8 +22631,7 @@ Text2SpeechClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: Text2S
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    }, null);
-})();
+    } });
 
 /* tslint:disable */
 /**
@@ -22847,13 +22837,12 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-ContextsClient.ɵfac = function ContextsClient_Factory(t) { return new (t || ContextsClient)(i0.ɵɵinject(GRPC_CONTEXTS_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
-ContextsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ContextsClient, factory: ContextsClient.ɵfac, providedIn: 'any' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ContextsClient, [{
+ContextsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: ContextsClient, deps: [{ token: GRPC_CONTEXTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+ContextsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: ContextsClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: ContextsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -22863,8 +22852,7 @@ ContextsClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ContextsC
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    }, null);
-})();
+    } });
 
 /* tslint:disable */
 /**
@@ -23220,13 +23208,12 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-SipClient.ɵfac = function SipClient_Factory(t) { return new (t || SipClient)(i0.ɵɵinject(GRPC_SIP_CLIENT_SETTINGS, 8), i0.ɵɵinject(GRPC_CLIENT_FACTORY), i0.ɵɵinject(i1.GrpcHandler)); };
-SipClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: SipClient, factory: SipClient.ɵfac, providedIn: 'any' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SipClient, [{
+SipClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: SipClient, deps: [{ token: GRPC_SIP_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+SipClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: SipClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: SipClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Optional
                     }, {
@@ -23236,8 +23223,7 @@ SipClient.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: SipClient, fac
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
                     }] }, { type: i1.GrpcHandler }];
-    }, null);
-})();
+    } });
 
 /**
  * Generated bundle index. Do not edit.
