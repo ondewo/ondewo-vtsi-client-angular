@@ -17,7 +17,7 @@ export declare class SipClient {
      */
     $raw: {
         /**
-         * Unary RPC for /ondewo.sip.Sip/StartSession
+         * Unary call: /ondewo.sip.Sip/StartSession
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -25,7 +25,7 @@ export declare class SipClient {
          */
         startSession: (requestData: thisProto.StartSessionRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/EndSession
+         * Unary call: /ondewo.sip.Sip/EndSession
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -33,7 +33,7 @@ export declare class SipClient {
          */
         endSession: (requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/StartCall
+         * Unary call: /ondewo.sip.Sip/StartCall
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -41,7 +41,7 @@ export declare class SipClient {
          */
         startCall: (requestData: thisProto.StartCallRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/EndCall
+         * Unary call: /ondewo.sip.Sip/EndCall
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -49,7 +49,7 @@ export declare class SipClient {
          */
         endCall: (requestData: thisProto.EndCallRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/TransferCall
+         * Unary call: /ondewo.sip.Sip/TransferCall
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -57,7 +57,7 @@ export declare class SipClient {
          */
         transferCall: (requestData: thisProto.TransferCallRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/RegisterAccount
+         * Unary call: /ondewo.sip.Sip/RegisterAccount
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -65,7 +65,7 @@ export declare class SipClient {
          */
         registerAccount: (requestData: thisProto.RegisterAccountRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/GetSipStatus
+         * Unary call: /ondewo.sip.Sip/GetSipStatus
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -73,7 +73,7 @@ export declare class SipClient {
          */
         getSipStatus: (requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.SipStatus>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/GetSipStatusHistory
+         * Unary call: /ondewo.sip.Sip/GetSipStatusHistory
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -81,7 +81,7 @@ export declare class SipClient {
          */
         getSipStatusHistory: (requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.SipStatusHistoryResponse>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/PlayWavFiles
+         * Unary call: /ondewo.sip.Sip/PlayWavFiles
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -89,7 +89,7 @@ export declare class SipClient {
          */
         playWavFiles: (requestData: thisProto.PlayWavFilesRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/Mute
+         * Unary call: /ondewo.sip.Sip/Mute
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -97,7 +97,7 @@ export declare class SipClient {
          */
         mute: (requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf000.Empty>>;
         /**
-         * Unary RPC for /ondewo.sip.Sip/UnMute
+         * Unary call: /ondewo.sip.Sip/UnMute
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -107,7 +107,7 @@ export declare class SipClient {
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
-     * Unary RPC for /ondewo.sip.Sip/StartSession
+     * Unary call @/ondewo.sip.Sip/StartSession
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -115,7 +115,7 @@ export declare class SipClient {
      */
     startSession(requestData: thisProto.StartSessionRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/EndSession
+     * Unary call @/ondewo.sip.Sip/EndSession
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -123,7 +123,7 @@ export declare class SipClient {
      */
     endSession(requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/StartCall
+     * Unary call @/ondewo.sip.Sip/StartCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -131,7 +131,7 @@ export declare class SipClient {
      */
     startCall(requestData: thisProto.StartCallRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/EndCall
+     * Unary call @/ondewo.sip.Sip/EndCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -139,7 +139,7 @@ export declare class SipClient {
      */
     endCall(requestData: thisProto.EndCallRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/TransferCall
+     * Unary call @/ondewo.sip.Sip/TransferCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -147,7 +147,7 @@ export declare class SipClient {
      */
     transferCall(requestData: thisProto.TransferCallRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/RegisterAccount
+     * Unary call @/ondewo.sip.Sip/RegisterAccount
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -155,7 +155,7 @@ export declare class SipClient {
      */
     registerAccount(requestData: thisProto.RegisterAccountRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/GetSipStatus
+     * Unary call @/ondewo.sip.Sip/GetSipStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -163,7 +163,7 @@ export declare class SipClient {
      */
     getSipStatus(requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata): Observable<thisProto.SipStatus>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/GetSipStatusHistory
+     * Unary call @/ondewo.sip.Sip/GetSipStatusHistory
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -171,7 +171,7 @@ export declare class SipClient {
      */
     getSipStatusHistory(requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata): Observable<thisProto.SipStatusHistoryResponse>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/PlayWavFiles
+     * Unary call @/ondewo.sip.Sip/PlayWavFiles
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -179,7 +179,7 @@ export declare class SipClient {
      */
     playWavFiles(requestData: thisProto.PlayWavFilesRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/Mute
+     * Unary call @/ondewo.sip.Sip/Mute
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -187,7 +187,7 @@ export declare class SipClient {
      */
     mute(requestData: googleProtobuf000.Empty, requestMetadata?: GrpcMetadata): Observable<googleProtobuf000.Empty>;
     /**
-     * Unary RPC for /ondewo.sip.Sip/UnMute
+     * Unary call @/ondewo.sip.Sip/UnMute
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -197,4 +197,3 @@ export declare class SipClient {
     static ɵfac: i0.ɵɵFactoryDeclaration<SipClient, [{ optional: true; }, null, null]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SipClient>;
 }
-//# sourceMappingURL=sip.pbsc.d.ts.map

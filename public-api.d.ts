@@ -21,4 +21,3 @@ export * from './api/ondewo/nlu/context.pbsc';
 export * from './api/ondewo/sip/sip.pb';
 export * from './api/ondewo/sip/sip.pbsc';
 export * from './api/ondewo/sip/sip.pbconf';
-//# sourceMappingURL=public-api.d.ts.map

@@ -1,24 +1,32 @@
 {
   "name": "@ondewo/vtsi-client-angular",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Ondewo voice telephone system integration client library for angular",
-  "keywords": ["ondewo", "vtsi", "api", "client", "ngx-grpc", "grpc"],
+  "keywords": [
+    "ondewo",
+    "vtsi",
+    "api",
+    "client",
+    "ngx-grpc",
+    "grpc"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "submodule_update": "git submodule update --init --recursive",
     "build": "docker run -it -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler ondewo-vtsi-api ondewo",
     "generate": "docker run -it -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler ondewo-vtsi-api ondewo",
     "debug": "docker run -it --entrypoint /bin/bash -v ${PWD}:/input-volume -v ${PWD}/..:/output-volume ondewo-angular-proto-compiler",
-    "publish-npm": "npm publish ../npm --access public"
+    "publish-npm": "npm publish ../npm --access public",
+    "test-in-ondewo-aim": "cd .. && make build && cd src && rm -rf ../../ondewo-aim/node_modules/@ondewo/vtsi-client-angular/* && cp ../npm/* ../../ondewo-aim/node_modules/@ondewo/vtsi-client-angular/. -R"
   },
   "author": "ONDEWO GmbH",
   "homepage": "https://ondewo.com/",
   "license": "Apache-2.0",
   "peerDependencies": {
-    "@angular/common": ">=8.0.0",
-    "@angular/core": ">=8.0.0",
-    "@ngx-grpc/common": "^2.1.0",
-    "@ngx-grpc/core": "^2.1.0"
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0",
+    "@ngx-grpc/common": ">=3.0.0",
+    "@ngx-grpc/core": ">=3.0.0"
   },
   "repository": {
     "type": "git",
