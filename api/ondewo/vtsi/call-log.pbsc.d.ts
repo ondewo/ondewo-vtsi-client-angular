@@ -17,7 +17,7 @@ export declare class VoipCallLogsClient {
      */
     $raw: {
         /**
-         * Unary call: /ondewo.vtsi.VoipCallLogs/GetVoipLog
+         * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -25,7 +25,7 @@ export declare class VoipCallLogsClient {
          */
         getVoipLog: (requestData: thisProto.GetVoipLogRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetVoipLogResponse>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
+         * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -35,7 +35,7 @@ export declare class VoipCallLogsClient {
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
-     * Unary call @/ondewo.vtsi.VoipCallLogs/GetVoipLog
+     * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -43,7 +43,7 @@ export declare class VoipCallLogsClient {
      */
     getVoipLog(requestData: thisProto.GetVoipLogRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetVoipLogResponse>;
     /**
-     * Unary call @/ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
+     * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -53,3 +53,4 @@ export declare class VoipCallLogsClient {
     static ɵfac: i0.ɵɵFactoryDeclaration<VoipCallLogsClient, [{ optional: true; }, null, null]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<VoipCallLogsClient>;
 }
+//# sourceMappingURL=call-log.pbsc.d.ts.map
