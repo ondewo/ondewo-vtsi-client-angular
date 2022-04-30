@@ -17,7 +17,7 @@ export declare class ContextsClient {
      */
     $raw: {
         /**
-         * Unary call: /ondewo.nlu.Contexts/ListContexts
+         * Unary RPC for /ondewo.nlu.Contexts/ListContexts
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -25,7 +25,7 @@ export declare class ContextsClient {
          */
         listContexts: (requestData: thisProto.ListContextsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.ListContextsResponse>>;
         /**
-         * Unary call: /ondewo.nlu.Contexts/GetContext
+         * Unary RPC for /ondewo.nlu.Contexts/GetContext
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -33,7 +33,7 @@ export declare class ContextsClient {
          */
         getContext: (requestData: thisProto.GetContextRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.Context>>;
         /**
-         * Unary call: /ondewo.nlu.Contexts/CreateContext
+         * Unary RPC for /ondewo.nlu.Contexts/CreateContext
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -41,7 +41,7 @@ export declare class ContextsClient {
          */
         createContext: (requestData: thisProto.CreateContextRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.Context>>;
         /**
-         * Unary call: /ondewo.nlu.Contexts/UpdateContext
+         * Unary RPC for /ondewo.nlu.Contexts/UpdateContext
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -49,7 +49,7 @@ export declare class ContextsClient {
          */
         updateContext: (requestData: thisProto.UpdateContextRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.Context>>;
         /**
-         * Unary call: /ondewo.nlu.Contexts/DeleteContext
+         * Unary RPC for /ondewo.nlu.Contexts/DeleteContext
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -57,7 +57,7 @@ export declare class ContextsClient {
          */
         deleteContext: (requestData: thisProto.DeleteContextRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.nlu.Contexts/DeleteAllContexts
+         * Unary RPC for /ondewo.nlu.Contexts/DeleteAllContexts
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
@@ -67,7 +67,7 @@ export declare class ContextsClient {
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
-     * Unary call @/ondewo.nlu.Contexts/ListContexts
+     * Unary RPC for /ondewo.nlu.Contexts/ListContexts
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -75,7 +75,7 @@ export declare class ContextsClient {
      */
     listContexts(requestData: thisProto.ListContextsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.ListContextsResponse>;
     /**
-     * Unary call @/ondewo.nlu.Contexts/GetContext
+     * Unary RPC for /ondewo.nlu.Contexts/GetContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -83,7 +83,7 @@ export declare class ContextsClient {
      */
     getContext(requestData: thisProto.GetContextRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.Context>;
     /**
-     * Unary call @/ondewo.nlu.Contexts/CreateContext
+     * Unary RPC for /ondewo.nlu.Contexts/CreateContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -91,7 +91,7 @@ export declare class ContextsClient {
      */
     createContext(requestData: thisProto.CreateContextRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.Context>;
     /**
-     * Unary call @/ondewo.nlu.Contexts/UpdateContext
+     * Unary RPC for /ondewo.nlu.Contexts/UpdateContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -99,7 +99,7 @@ export declare class ContextsClient {
      */
     updateContext(requestData: thisProto.UpdateContextRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.Context>;
     /**
-     * Unary call @/ondewo.nlu.Contexts/DeleteContext
+     * Unary RPC for /ondewo.nlu.Contexts/DeleteContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -107,7 +107,7 @@ export declare class ContextsClient {
      */
     deleteContext(requestData: thisProto.DeleteContextRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.nlu.Contexts/DeleteAllContexts
+     * Unary RPC for /ondewo.nlu.Contexts/DeleteAllContexts
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -117,3 +117,4 @@ export declare class ContextsClient {
     static ɵfac: i0.ɵɵFactoryDeclaration<ContextsClient, [{ optional: true; }, null, null]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<ContextsClient>;
 }
+//# sourceMappingURL=context.pbsc.d.ts.map

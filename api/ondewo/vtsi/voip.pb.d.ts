@@ -3550,3 +3550,300 @@ export declare module ShutdownUnhealthyCallsResponse {
         success?: boolean;
     }
 }
+/**
+ * Message implementation for ondewo.vtsi.GetAudioFileRequest
+ */
+export declare class GetAudioFileRequest implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): GetAudioFileRequest;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: GetAudioFileRequest): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: GetAudioFileRequest, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: GetAudioFileRequest, _writer: BinaryWriter): void;
+    private _bucketName?;
+    private _objectName?;
+    private _minioConfig?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of GetAudioFileRequest to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<GetAudioFileRequest.AsObject>);
+    get bucketName(): string | undefined;
+    set bucketName(value: string | undefined);
+    get objectName(): string | undefined;
+    set objectName(value: string | undefined);
+    get minioConfig(): MinioConfig | undefined;
+    set minioConfig(value: MinioConfig | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): GetAudioFileRequest.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): GetAudioFileRequest.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): GetAudioFileRequest.AsProtobufJSON;
+}
+export declare module GetAudioFileRequest {
+    /**
+     * Standard JavaScript object representation for GetAudioFileRequest
+     */
+    interface AsObject {
+        bucketName?: string;
+        objectName?: string;
+        minioConfig?: MinioConfig.AsObject;
+    }
+    /**
+     * Protobuf JSON representation for GetAudioFileRequest
+     */
+    interface AsProtobufJSON {
+        bucketName?: string;
+        objectName?: string;
+        minioConfig?: MinioConfig.AsProtobufJSON | null;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.GetAudioFileResponse
+ */
+export declare class GetAudioFileResponse implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): GetAudioFileResponse;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: GetAudioFileResponse): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: GetAudioFileResponse, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: GetAudioFileResponse, _writer: BinaryWriter): void;
+    private _audio?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of GetAudioFileResponse to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<GetAudioFileResponse.AsObject>);
+    get audio(): Uint8Array | undefined;
+    set audio(value: Uint8Array | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): GetAudioFileResponse.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): GetAudioFileResponse.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): GetAudioFileResponse.AsProtobufJSON;
+}
+export declare module GetAudioFileResponse {
+    /**
+     * Standard JavaScript object representation for GetAudioFileResponse
+     */
+    interface AsObject {
+        audio?: Uint8Array;
+    }
+    /**
+     * Protobuf JSON representation for GetAudioFileResponse
+     */
+    interface AsProtobufJSON {
+        audio?: string;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.GetFullConversationAudioFileRequest
+ */
+export declare class GetFullConversationAudioFileRequest implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): GetFullConversationAudioFileRequest;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: GetFullConversationAudioFileRequest): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: GetFullConversationAudioFileRequest, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: GetFullConversationAudioFileRequest, _writer: BinaryWriter): void;
+    private _bucketName?;
+    private _objectNames?;
+    private _minioConfig?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of GetFullConversationAudioFileRequest to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<GetFullConversationAudioFileRequest.AsObject>);
+    get bucketName(): string | undefined;
+    set bucketName(value: string | undefined);
+    get objectNames(): string[] | undefined;
+    set objectNames(value: string[] | undefined);
+    get minioConfig(): MinioConfig | undefined;
+    set minioConfig(value: MinioConfig | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): GetFullConversationAudioFileRequest.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): GetFullConversationAudioFileRequest.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): GetFullConversationAudioFileRequest.AsProtobufJSON;
+}
+export declare module GetFullConversationAudioFileRequest {
+    /**
+     * Standard JavaScript object representation for GetFullConversationAudioFileRequest
+     */
+    interface AsObject {
+        bucketName?: string;
+        objectNames?: string[];
+        minioConfig?: MinioConfig.AsObject;
+    }
+    /**
+     * Protobuf JSON representation for GetFullConversationAudioFileRequest
+     */
+    interface AsProtobufJSON {
+        bucketName?: string;
+        objectNames?: string[];
+        minioConfig?: MinioConfig.AsProtobufJSON | null;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.GetFullConversationAudioFileResponse
+ */
+export declare class GetFullConversationAudioFileResponse implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): GetFullConversationAudioFileResponse;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: GetFullConversationAudioFileResponse): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: GetFullConversationAudioFileResponse, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: GetFullConversationAudioFileResponse, _writer: BinaryWriter): void;
+    private _audio?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of GetFullConversationAudioFileResponse to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<GetFullConversationAudioFileResponse.AsObject>);
+    get audio(): Uint8Array | undefined;
+    set audio(value: Uint8Array | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): GetFullConversationAudioFileResponse.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): GetFullConversationAudioFileResponse.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): GetFullConversationAudioFileResponse.AsProtobufJSON;
+}
+export declare module GetFullConversationAudioFileResponse {
+    /**
+     * Standard JavaScript object representation for GetFullConversationAudioFileResponse
+     */
+    interface AsObject {
+        audio?: Uint8Array;
+    }
+    /**
+     * Protobuf JSON representation for GetFullConversationAudioFileResponse
+     */
+    interface AsProtobufJSON {
+        audio?: string;
+    }
+}
+//# sourceMappingURL=voip.pb.d.ts.map
