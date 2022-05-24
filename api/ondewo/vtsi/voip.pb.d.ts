@@ -3846,4 +3846,3 @@ export declare module GetFullConversationAudioFileResponse {
         audio?: string;
     }
 }
-//# sourceMappingURL=voip.pb.d.ts.map

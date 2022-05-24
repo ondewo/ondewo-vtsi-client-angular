@@ -3422,4 +3422,3 @@ export declare module ListS2tLanguageModelsResponse {
         lmPipelineIds?: LanguageModelPipelineId.AsProtobufJSON[] | null;
     }
 }
-//# sourceMappingURL=speech-to-text.pb.d.ts.map

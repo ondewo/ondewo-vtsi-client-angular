@@ -11,9 +11,6 @@ export * from './api/ondewo/s2t/speech-to-text.pb';
 export * from './api/ondewo/s2t/speech-to-text.pbconf';
 export * from './api/ondewo/t2s/text-to-speech.pbconf';
 export * from './api/ondewo/t2s/text-to-speech.pb';
-export * from './api/ondewo/t2s/custom-phonemizer.pbsc';
-export * from './api/ondewo/t2s/custom-phonemizer.pbconf';
-export * from './api/ondewo/t2s/custom-phonemizer.pb';
 export * from './api/ondewo/t2s/text-to-speech.pbsc';
 export * from './api/ondewo/nlu/context.pbconf';
 export * from './api/ondewo/nlu/context.pb';
@@ -21,4 +18,3 @@ export * from './api/ondewo/nlu/context.pbsc';
 export * from './api/ondewo/sip/sip.pb';
 export * from './api/ondewo/sip/sip.pbsc';
 export * from './api/ondewo/sip/sip.pbconf';
-//# sourceMappingURL=public-api.d.ts.map

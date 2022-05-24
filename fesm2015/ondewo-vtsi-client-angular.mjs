@@ -8112,12 +8112,12 @@ class RequestConfig {
      * @param _value initial values object or instance of RequestConfig to deeply clone from
      */
     constructor(_value) {
-        this._lengthScale = RequestConfig.LengthScaleCase.none;
-        this._noiseScale = RequestConfig.NoiseScaleCase.none;
-        this._sampleRate = RequestConfig.SampleRateCase.none;
-        this._pcm = RequestConfig.PcmCase.none;
-        this._audioFormat = RequestConfig.AudioFormatCase.none;
-        this._useCache = RequestConfig.UseCacheCase.none;
+        this._oneofLengthScale = RequestConfig.OneofLengthScaleCase.none;
+        this._oneofNoiseScale = RequestConfig.OneofNoiseScaleCase.none;
+        this._oneofSampleRate = RequestConfig.OneofSampleRateCase.none;
+        this._oneofPcm = RequestConfig.OneofPcmCase.none;
+        this._oneofAudioFormat = RequestConfig.OneofAudioFormatCase.none;
+        this._oneofUseCache = RequestConfig.OneofUseCacheCase.none;
         _value = _value || {};
         this.t2sPipelineId = _value.t2sPipelineId;
         this.lengthScale = _value.lengthScale;
@@ -8220,7 +8220,7 @@ class RequestConfig {
     }
     set lengthScale(value) {
         if (value !== undefined && value !== null) {
-            this._lengthScale = RequestConfig.LengthScaleCase.lengthScale;
+            this._oneofLengthScale = RequestConfig.OneofLengthScaleCase.lengthScale;
         }
         this._lengthScale = value;
     }
@@ -8229,7 +8229,7 @@ class RequestConfig {
     }
     set noiseScale(value) {
         if (value !== undefined && value !== null) {
-            this._noiseScale = RequestConfig.NoiseScaleCase.noiseScale;
+            this._oneofNoiseScale = RequestConfig.OneofNoiseScaleCase.noiseScale;
         }
         this._noiseScale = value;
     }
@@ -8238,7 +8238,7 @@ class RequestConfig {
     }
     set sampleRate(value) {
         if (value !== undefined && value !== null) {
-            this._sampleRate = RequestConfig.SampleRateCase.sampleRate;
+            this._oneofSampleRate = RequestConfig.OneofSampleRateCase.sampleRate;
         }
         this._sampleRate = value;
     }
@@ -8247,7 +8247,7 @@ class RequestConfig {
     }
     set pcm(value) {
         if (value !== undefined && value !== null) {
-            this._pcm = RequestConfig.PcmCase.pcm;
+            this._oneofPcm = RequestConfig.OneofPcmCase.pcm;
         }
         this._pcm = value;
     }
@@ -8256,7 +8256,7 @@ class RequestConfig {
     }
     set audioFormat(value) {
         if (value !== undefined && value !== null) {
-            this._audioFormat = RequestConfig.AudioFormatCase.audioFormat;
+            this._oneofAudioFormat = RequestConfig.OneofAudioFormatCase.audioFormat;
         }
         this._audioFormat = value;
     }
@@ -8265,27 +8265,27 @@ class RequestConfig {
     }
     set useCache(value) {
         if (value !== undefined && value !== null) {
-            this._useCache = RequestConfig.UseCacheCase.useCache;
+            this._oneofUseCache = RequestConfig.OneofUseCacheCase.useCache;
         }
         this._useCache = value;
     }
-    get lengthScale() {
-        return this._lengthScale;
+    get oneofLengthScale() {
+        return this._oneofLengthScale;
     }
-    get noiseScale() {
-        return this._noiseScale;
+    get oneofNoiseScale() {
+        return this._oneofNoiseScale;
     }
-    get sampleRate() {
-        return this._sampleRate;
+    get oneofSampleRate() {
+        return this._oneofSampleRate;
     }
-    get pcm() {
-        return this._pcm;
+    get oneofPcm() {
+        return this._oneofPcm;
     }
-    get audioFormat() {
-        return this._audioFormat;
+    get oneofAudioFormat() {
+        return this._oneofAudioFormat;
     }
-    get useCache() {
-        return this._useCache;
+    get oneofUseCache() {
+        return this._oneofUseCache;
     }
     /**
      * Serialize message to binary data
@@ -8349,36 +8349,36 @@ class RequestConfig {
 }
 RequestConfig.id = 'ondewo.t2s.RequestConfig';
 (function (RequestConfig) {
-    let LengthScaleCase;
-    (function (LengthScaleCase) {
-        LengthScaleCase[LengthScaleCase["none"] = 0] = "none";
-        LengthScaleCase[LengthScaleCase["lengthScale"] = 1] = "lengthScale";
-    })(LengthScaleCase = RequestConfig.LengthScaleCase || (RequestConfig.LengthScaleCase = {}));
-    let NoiseScaleCase;
-    (function (NoiseScaleCase) {
-        NoiseScaleCase[NoiseScaleCase["none"] = 0] = "none";
-        NoiseScaleCase[NoiseScaleCase["noiseScale"] = 1] = "noiseScale";
-    })(NoiseScaleCase = RequestConfig.NoiseScaleCase || (RequestConfig.NoiseScaleCase = {}));
-    let SampleRateCase;
-    (function (SampleRateCase) {
-        SampleRateCase[SampleRateCase["none"] = 0] = "none";
-        SampleRateCase[SampleRateCase["sampleRate"] = 1] = "sampleRate";
-    })(SampleRateCase = RequestConfig.SampleRateCase || (RequestConfig.SampleRateCase = {}));
-    let PcmCase;
-    (function (PcmCase) {
-        PcmCase[PcmCase["none"] = 0] = "none";
-        PcmCase[PcmCase["pcm"] = 1] = "pcm";
-    })(PcmCase = RequestConfig.PcmCase || (RequestConfig.PcmCase = {}));
-    let AudioFormatCase;
-    (function (AudioFormatCase) {
-        AudioFormatCase[AudioFormatCase["none"] = 0] = "none";
-        AudioFormatCase[AudioFormatCase["audioFormat"] = 1] = "audioFormat";
-    })(AudioFormatCase = RequestConfig.AudioFormatCase || (RequestConfig.AudioFormatCase = {}));
-    let UseCacheCase;
-    (function (UseCacheCase) {
-        UseCacheCase[UseCacheCase["none"] = 0] = "none";
-        UseCacheCase[UseCacheCase["useCache"] = 1] = "useCache";
-    })(UseCacheCase = RequestConfig.UseCacheCase || (RequestConfig.UseCacheCase = {}));
+    let OneofLengthScaleCase;
+    (function (OneofLengthScaleCase) {
+        OneofLengthScaleCase[OneofLengthScaleCase["none"] = 0] = "none";
+        OneofLengthScaleCase[OneofLengthScaleCase["lengthScale"] = 1] = "lengthScale";
+    })(OneofLengthScaleCase = RequestConfig.OneofLengthScaleCase || (RequestConfig.OneofLengthScaleCase = {}));
+    let OneofNoiseScaleCase;
+    (function (OneofNoiseScaleCase) {
+        OneofNoiseScaleCase[OneofNoiseScaleCase["none"] = 0] = "none";
+        OneofNoiseScaleCase[OneofNoiseScaleCase["noiseScale"] = 1] = "noiseScale";
+    })(OneofNoiseScaleCase = RequestConfig.OneofNoiseScaleCase || (RequestConfig.OneofNoiseScaleCase = {}));
+    let OneofSampleRateCase;
+    (function (OneofSampleRateCase) {
+        OneofSampleRateCase[OneofSampleRateCase["none"] = 0] = "none";
+        OneofSampleRateCase[OneofSampleRateCase["sampleRate"] = 1] = "sampleRate";
+    })(OneofSampleRateCase = RequestConfig.OneofSampleRateCase || (RequestConfig.OneofSampleRateCase = {}));
+    let OneofPcmCase;
+    (function (OneofPcmCase) {
+        OneofPcmCase[OneofPcmCase["none"] = 0] = "none";
+        OneofPcmCase[OneofPcmCase["pcm"] = 1] = "pcm";
+    })(OneofPcmCase = RequestConfig.OneofPcmCase || (RequestConfig.OneofPcmCase = {}));
+    let OneofAudioFormatCase;
+    (function (OneofAudioFormatCase) {
+        OneofAudioFormatCase[OneofAudioFormatCase["none"] = 0] = "none";
+        OneofAudioFormatCase[OneofAudioFormatCase["audioFormat"] = 1] = "audioFormat";
+    })(OneofAudioFormatCase = RequestConfig.OneofAudioFormatCase || (RequestConfig.OneofAudioFormatCase = {}));
+    let OneofUseCacheCase;
+    (function (OneofUseCacheCase) {
+        OneofUseCacheCase[OneofUseCacheCase["none"] = 0] = "none";
+        OneofUseCacheCase[OneofUseCacheCase["useCache"] = 1] = "useCache";
+    })(OneofUseCacheCase = RequestConfig.OneofUseCacheCase || (RequestConfig.OneofUseCacheCase = {}));
 })(RequestConfig || (RequestConfig = {}));
 /**
  * Message implementation for ondewo.t2s.SynthesizeResponse
@@ -8396,6 +8396,7 @@ class SynthesizeResponse {
         this.audioLength = _value.audioLength;
         this.text = _value.text;
         this.config = _value.config ? new RequestConfig(_value.config) : undefined;
+        this.normalizedText = _value.normalizedText;
         SynthesizeResponse.refineValues(this);
     }
     /**
@@ -8418,6 +8419,7 @@ class SynthesizeResponse {
         _instance.audioLength = _instance.audioLength || 0;
         _instance.text = _instance.text || '';
         _instance.config = _instance.config || undefined;
+        _instance.normalizedText = _instance.normalizedText || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -8448,6 +8450,9 @@ class SynthesizeResponse {
                     _instance.config = new RequestConfig();
                     _reader.readMessage(_instance.config, RequestConfig.deserializeBinaryFromReader);
                     break;
+                case 7:
+                    _instance.normalizedText = _reader.readString();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -8477,6 +8482,9 @@ class SynthesizeResponse {
         }
         if (_instance.config) {
             _writer.writeMessage(6, _instance.config, RequestConfig.serializeBinaryToWriter);
+        }
+        if (_instance.normalizedText) {
+            _writer.writeString(7, _instance.normalizedText);
         }
     }
     get audioUuid() {
@@ -8515,6 +8523,12 @@ class SynthesizeResponse {
     set config(value) {
         this._config = value;
     }
+    get normalizedText() {
+        return this._normalizedText;
+    }
+    set normalizedText(value) {
+        this._normalizedText = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -8534,7 +8548,8 @@ class SynthesizeResponse {
             generationTime: this.generationTime,
             audioLength: this.audioLength,
             text: this.text,
-            config: this.config ? this.config.toObject() : undefined
+            config: this.config ? this.config.toObject() : undefined,
+            normalizedText: this.normalizedText
         };
     }
     /**
@@ -8557,7 +8572,8 @@ class SynthesizeResponse {
             generationTime: this.generationTime,
             audioLength: this.audioLength,
             text: this.text,
-            config: this.config ? this.config.toProtobufJSON(options) : null
+            config: this.config ? this.config.toProtobufJSON(options) : null,
+            normalizedText: this.normalizedText
         };
     }
 }
@@ -10532,7 +10548,6 @@ class GlowTTSTriton {
         this.cleaners = (_value.cleaners || []).slice();
         this.maxTextLength = _value.maxTextLength;
         this.paramConfigPath = _value.paramConfigPath;
-        this.tritonUrl = _value.tritonUrl;
         this.tritonModelName = _value.tritonModelName;
         GlowTTSTriton.refineValues(this);
     }
@@ -10556,7 +10571,6 @@ class GlowTTSTriton {
         _instance.cleaners = _instance.cleaners || [];
         _instance.maxTextLength = _instance.maxTextLength || '0';
         _instance.paramConfigPath = _instance.paramConfigPath || '';
-        _instance.tritonUrl = _instance.tritonUrl || '';
         _instance.tritonModelName = _instance.tritonModelName || '';
     }
     /**
@@ -10588,9 +10602,6 @@ class GlowTTSTriton {
                     _instance.paramConfigPath = _reader.readString();
                     break;
                 case 7:
-                    _instance.tritonUrl = _reader.readString();
-                    break;
-                case 8:
                     _instance.tritonModelName = _reader.readString();
                     break;
                 default:
@@ -10623,11 +10634,8 @@ class GlowTTSTriton {
         if (_instance.paramConfigPath) {
             _writer.writeString(6, _instance.paramConfigPath);
         }
-        if (_instance.tritonUrl) {
-            _writer.writeString(7, _instance.tritonUrl);
-        }
         if (_instance.tritonModelName) {
-            _writer.writeString(8, _instance.tritonModelName);
+            _writer.writeString(7, _instance.tritonModelName);
         }
     }
     get batchSize() {
@@ -10666,12 +10674,6 @@ class GlowTTSTriton {
     set paramConfigPath(value) {
         this._paramConfigPath = value;
     }
-    get tritonUrl() {
-        return this._tritonUrl;
-    }
-    set tritonUrl(value) {
-        this._tritonUrl = value;
-    }
     get tritonModelName() {
         return this._tritonModelName;
     }
@@ -10698,7 +10700,6 @@ class GlowTTSTriton {
             cleaners: (this.cleaners || []).slice(),
             maxTextLength: this.maxTextLength,
             paramConfigPath: this.paramConfigPath,
-            tritonUrl: this.tritonUrl,
             tritonModelName: this.tritonModelName
         };
     }
@@ -10723,7 +10724,6 @@ class GlowTTSTriton {
             cleaners: (this.cleaners || []).slice(),
             maxTextLength: this.maxTextLength,
             paramConfigPath: this.paramConfigPath,
-            tritonUrl: this.tritonUrl,
             tritonModelName: this.tritonModelName
         };
     }
@@ -11054,7 +11054,6 @@ class HiFiGanTriton {
         _value = _value || {};
         this.configPath = _value.configPath;
         this.tritonModelName = _value.tritonModelName;
-        this.tritonUrl = _value.tritonUrl;
         HiFiGanTriton.refineValues(this);
     }
     /**
@@ -11073,7 +11072,6 @@ class HiFiGanTriton {
     static refineValues(_instance) {
         _instance.configPath = _instance.configPath || '';
         _instance.tritonModelName = _instance.tritonModelName || '';
-        _instance.tritonUrl = _instance.tritonUrl || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -11090,9 +11088,6 @@ class HiFiGanTriton {
                     break;
                 case 2:
                     _instance.tritonModelName = _reader.readString();
-                    break;
-                case 3:
-                    _instance.tritonUrl = _reader.readString();
                     break;
                 default:
                     _reader.skipField();
@@ -11112,9 +11107,6 @@ class HiFiGanTriton {
         if (_instance.tritonModelName) {
             _writer.writeString(2, _instance.tritonModelName);
         }
-        if (_instance.tritonUrl) {
-            _writer.writeString(3, _instance.tritonUrl);
-        }
     }
     get configPath() {
         return this._configPath;
@@ -11127,12 +11119,6 @@ class HiFiGanTriton {
     }
     set tritonModelName(value) {
         this._tritonModelName = value;
-    }
-    get tritonUrl() {
-        return this._tritonUrl;
-    }
-    set tritonUrl(value) {
-        this._tritonUrl = value;
     }
     /**
      * Serialize message to binary data
@@ -11149,8 +11135,7 @@ class HiFiGanTriton {
     toObject() {
         return {
             configPath: this.configPath,
-            tritonModelName: this.tritonModelName,
-            tritonUrl: this.tritonUrl
+            tritonModelName: this.tritonModelName
         };
     }
     /**
@@ -11169,8 +11154,7 @@ class HiFiGanTriton {
     options) {
         return {
             configPath: this.configPath,
-            tritonModelName: this.tritonModelName,
-            tritonUrl: this.tritonUrl
+            tritonModelName: this.tritonModelName
         };
     }
 }
@@ -11518,6 +11502,10 @@ class T2SNormalization {
         this.language = _value.language;
         this.pipeline = (_value.pipeline || []).slice();
         this.customPhonemizerId = _value.customPhonemizerId;
+        this.customLengthScales = _value.customLengthScales
+            ? new T2SCustomLengthScales(_value.customLengthScales)
+            : undefined;
+        this.arpabetMappping = _value.arpabetMappping;
         T2SNormalization.refineValues(this);
     }
     /**
@@ -11537,6 +11525,8 @@ class T2SNormalization {
         _instance.language = _instance.language || '';
         _instance.pipeline = _instance.pipeline || [];
         _instance.customPhonemizerId = _instance.customPhonemizerId || '';
+        _instance.customLengthScales = _instance.customLengthScales || undefined;
+        _instance.arpabetMappping = _instance.arpabetMappping || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -11556,6 +11546,13 @@ class T2SNormalization {
                     break;
                 case 3:
                     _instance.customPhonemizerId = _reader.readString();
+                    break;
+                case 4:
+                    _instance.customLengthScales = new T2SCustomLengthScales();
+                    _reader.readMessage(_instance.customLengthScales, T2SCustomLengthScales.deserializeBinaryFromReader);
+                    break;
+                case 5:
+                    _instance.arpabetMappping = _reader.readString();
                     break;
                 default:
                     _reader.skipField();
@@ -11578,6 +11575,12 @@ class T2SNormalization {
         if (_instance.customPhonemizerId) {
             _writer.writeString(3, _instance.customPhonemizerId);
         }
+        if (_instance.customLengthScales) {
+            _writer.writeMessage(4, _instance.customLengthScales, T2SCustomLengthScales.serializeBinaryToWriter);
+        }
+        if (_instance.arpabetMappping) {
+            _writer.writeString(5, _instance.arpabetMappping);
+        }
     }
     get language() {
         return this._language;
@@ -11597,6 +11600,18 @@ class T2SNormalization {
     set customPhonemizerId(value) {
         this._customPhonemizerId = value;
     }
+    get customLengthScales() {
+        return this._customLengthScales;
+    }
+    set customLengthScales(value) {
+        this._customLengthScales = value;
+    }
+    get arpabetMappping() {
+        return this._arpabetMappping;
+    }
+    set arpabetMappping(value) {
+        this._arpabetMappping = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -11613,7 +11628,11 @@ class T2SNormalization {
         return {
             language: this.language,
             pipeline: (this.pipeline || []).slice(),
-            customPhonemizerId: this.customPhonemizerId
+            customPhonemizerId: this.customPhonemizerId,
+            customLengthScales: this.customLengthScales
+                ? this.customLengthScales.toObject()
+                : undefined,
+            arpabetMappping: this.arpabetMappping
         };
     }
     /**
@@ -11633,7 +11652,11 @@ class T2SNormalization {
         return {
             language: this.language,
             pipeline: (this.pipeline || []).slice(),
-            customPhonemizerId: this.customPhonemizerId
+            customPhonemizerId: this.customPhonemizerId,
+            customLengthScales: this.customLengthScales
+                ? this.customLengthScales.toProtobufJSON(options)
+                : null,
+            arpabetMappping: this.arpabetMappping
         };
     }
 }
@@ -12209,6 +12232,992 @@ class Apodization {
     }
 }
 Apodization.id = 'ondewo.t2s.Apodization';
+/**
+ * Message implementation for ondewo.t2s.T2SCustomLengthScales
+ */
+class T2SCustomLengthScales {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of T2SCustomLengthScales to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.text = _value.text;
+        this.email = _value.email;
+        this.url = _value.url;
+        this.phone = _value.phone;
+        this.spell = _value.spell;
+        this.spellWithNames = _value.spellWithNames;
+        T2SCustomLengthScales.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new T2SCustomLengthScales();
+        T2SCustomLengthScales.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.text = _instance.text || 0;
+        _instance.email = _instance.email || 0;
+        _instance.url = _instance.url || 0;
+        _instance.phone = _instance.phone || 0;
+        _instance.spell = _instance.spell || 0;
+        _instance.spellWithNames = _instance.spellWithNames || 0;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.text = _reader.readFloat();
+                    break;
+                case 2:
+                    _instance.email = _reader.readFloat();
+                    break;
+                case 3:
+                    _instance.url = _reader.readFloat();
+                    break;
+                case 4:
+                    _instance.phone = _reader.readFloat();
+                    break;
+                case 5:
+                    _instance.spell = _reader.readFloat();
+                    break;
+                case 6:
+                    _instance.spellWithNames = _reader.readFloat();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        T2SCustomLengthScales.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.text) {
+            _writer.writeFloat(1, _instance.text);
+        }
+        if (_instance.email) {
+            _writer.writeFloat(2, _instance.email);
+        }
+        if (_instance.url) {
+            _writer.writeFloat(3, _instance.url);
+        }
+        if (_instance.phone) {
+            _writer.writeFloat(4, _instance.phone);
+        }
+        if (_instance.spell) {
+            _writer.writeFloat(5, _instance.spell);
+        }
+        if (_instance.spellWithNames) {
+            _writer.writeFloat(6, _instance.spellWithNames);
+        }
+    }
+    get text() {
+        return this._text;
+    }
+    set text(value) {
+        this._text = value;
+    }
+    get email() {
+        return this._email;
+    }
+    set email(value) {
+        this._email = value;
+    }
+    get url() {
+        return this._url;
+    }
+    set url(value) {
+        this._url = value;
+    }
+    get phone() {
+        return this._phone;
+    }
+    set phone(value) {
+        this._phone = value;
+    }
+    get spell() {
+        return this._spell;
+    }
+    set spell(value) {
+        this._spell = value;
+    }
+    get spellWithNames() {
+        return this._spellWithNames;
+    }
+    set spellWithNames(value) {
+        this._spellWithNames = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        T2SCustomLengthScales.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            text: this.text,
+            email: this.email,
+            url: this.url,
+            phone: this.phone,
+            spell: this.spell,
+            spellWithNames: this.spellWithNames
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            text: this.text,
+            email: this.email,
+            url: this.url,
+            phone: this.phone,
+            spell: this.spell,
+            spellWithNames: this.spellWithNames
+        };
+    }
+}
+T2SCustomLengthScales.id = 'ondewo.t2s.T2SCustomLengthScales';
+/**
+ * Message implementation for ondewo.t2s.PhonemizerId
+ */
+class PhonemizerId {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of PhonemizerId to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.id = _value.id;
+        PhonemizerId.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new PhonemizerId();
+        PhonemizerId.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.id = _instance.id || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.id = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        PhonemizerId.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.id) {
+            _writer.writeString(1, _instance.id);
+        }
+    }
+    get id() {
+        return this._id;
+    }
+    set id(value) {
+        this._id = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        PhonemizerId.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            id: this.id
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            id: this.id
+        };
+    }
+}
+PhonemizerId.id = 'ondewo.t2s.PhonemizerId';
+/**
+ * Message implementation for ondewo.t2s.CustomPhonemizerProto
+ */
+class CustomPhonemizerProto {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CustomPhonemizerProto to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.id = _value.id;
+        this.maps = (_value.maps || []).map(m => new Map(m));
+        CustomPhonemizerProto.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new CustomPhonemizerProto();
+        CustomPhonemizerProto.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.id = _instance.id || '';
+        _instance.maps = _instance.maps || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.id = _reader.readString();
+                    break;
+                case 2:
+                    const messageInitializer2 = new Map();
+                    _reader.readMessage(messageInitializer2, Map.deserializeBinaryFromReader);
+                    (_instance.maps = _instance.maps || []).push(messageInitializer2);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        CustomPhonemizerProto.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.id) {
+            _writer.writeString(1, _instance.id);
+        }
+        if (_instance.maps && _instance.maps.length) {
+            _writer.writeRepeatedMessage(2, _instance.maps, Map.serializeBinaryToWriter);
+        }
+    }
+    get id() {
+        return this._id;
+    }
+    set id(value) {
+        this._id = value;
+    }
+    get maps() {
+        return this._maps;
+    }
+    set maps(value) {
+        this._maps = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        CustomPhonemizerProto.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            id: this.id,
+            maps: (this.maps || []).map(m => m.toObject())
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            id: this.id,
+            maps: (this.maps || []).map(m => m.toProtobufJSON(options))
+        };
+    }
+}
+CustomPhonemizerProto.id = 'ondewo.t2s.CustomPhonemizerProto';
+/**
+ * Message implementation for ondewo.t2s.Map
+ */
+class Map {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of Map to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.word = _value.word;
+        this.phonemeGroups = _value.phonemeGroups;
+        Map.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new Map();
+        Map.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.word = _instance.word || '';
+        _instance.phonemeGroups = _instance.phonemeGroups || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.word = _reader.readString();
+                    break;
+                case 2:
+                    _instance.phonemeGroups = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        Map.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.word) {
+            _writer.writeString(1, _instance.word);
+        }
+        if (_instance.phonemeGroups) {
+            _writer.writeString(2, _instance.phonemeGroups);
+        }
+    }
+    get word() {
+        return this._word;
+    }
+    set word(value) {
+        this._word = value;
+    }
+    get phonemeGroups() {
+        return this._phonemeGroups;
+    }
+    set phonemeGroups(value) {
+        this._phonemeGroups = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        Map.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            word: this.word,
+            phonemeGroups: this.phonemeGroups
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            word: this.word,
+            phonemeGroups: this.phonemeGroups
+        };
+    }
+}
+Map.id = 'ondewo.t2s.Map';
+/**
+ * Message implementation for ondewo.t2s.ListCustomPhonemizerResponse
+ */
+class ListCustomPhonemizerResponse {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of ListCustomPhonemizerResponse to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.phonemizers = (_value.phonemizers || []).map(m => new CustomPhonemizerProto(m));
+        ListCustomPhonemizerResponse.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new ListCustomPhonemizerResponse();
+        ListCustomPhonemizerResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.phonemizers = _instance.phonemizers || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    const messageInitializer1 = new CustomPhonemizerProto();
+                    _reader.readMessage(messageInitializer1, CustomPhonemizerProto.deserializeBinaryFromReader);
+                    (_instance.phonemizers = _instance.phonemizers || []).push(messageInitializer1);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        ListCustomPhonemizerResponse.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.phonemizers && _instance.phonemizers.length) {
+            _writer.writeRepeatedMessage(1, _instance.phonemizers, CustomPhonemizerProto.serializeBinaryToWriter);
+        }
+    }
+    get phonemizers() {
+        return this._phonemizers;
+    }
+    set phonemizers(value) {
+        this._phonemizers = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        ListCustomPhonemizerResponse.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            phonemizers: (this.phonemizers || []).map(m => m.toObject())
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            phonemizers: (this.phonemizers || []).map(m => m.toProtobufJSON(options))
+        };
+    }
+}
+ListCustomPhonemizerResponse.id = 'ondewo.t2s.ListCustomPhonemizerResponse';
+/**
+ * Message implementation for ondewo.t2s.ListCustomPhonemizerRequest
+ */
+class ListCustomPhonemizerRequest {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of ListCustomPhonemizerRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.pipelineIds = (_value.pipelineIds || []).slice();
+        ListCustomPhonemizerRequest.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new ListCustomPhonemizerRequest();
+        ListCustomPhonemizerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.pipelineIds = _instance.pipelineIds || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    (_instance.pipelineIds = _instance.pipelineIds || []).push(_reader.readString());
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        ListCustomPhonemizerRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.pipelineIds && _instance.pipelineIds.length) {
+            _writer.writeRepeatedString(1, _instance.pipelineIds);
+        }
+    }
+    get pipelineIds() {
+        return this._pipelineIds;
+    }
+    set pipelineIds(value) {
+        this._pipelineIds = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        ListCustomPhonemizerRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            pipelineIds: (this.pipelineIds || []).slice()
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            pipelineIds: (this.pipelineIds || []).slice()
+        };
+    }
+}
+ListCustomPhonemizerRequest.id = 'ondewo.t2s.ListCustomPhonemizerRequest';
+/**
+ * Message implementation for ondewo.t2s.UpdateCustomPhonemizerRequest
+ */
+class UpdateCustomPhonemizerRequest {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of UpdateCustomPhonemizerRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.id = _value.id;
+        this.updateMethod = _value.updateMethod;
+        this.maps = (_value.maps || []).map(m => new Map(m));
+        UpdateCustomPhonemizerRequest.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new UpdateCustomPhonemizerRequest();
+        UpdateCustomPhonemizerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.id = _instance.id || '';
+        _instance.updateMethod = _instance.updateMethod || 0;
+        _instance.maps = _instance.maps || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.id = _reader.readString();
+                    break;
+                case 2:
+                    _instance.updateMethod = _reader.readEnum();
+                    break;
+                case 3:
+                    const messageInitializer3 = new Map();
+                    _reader.readMessage(messageInitializer3, Map.deserializeBinaryFromReader);
+                    (_instance.maps = _instance.maps || []).push(messageInitializer3);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        UpdateCustomPhonemizerRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.id) {
+            _writer.writeString(1, _instance.id);
+        }
+        if (_instance.updateMethod) {
+            _writer.writeEnum(2, _instance.updateMethod);
+        }
+        if (_instance.maps && _instance.maps.length) {
+            _writer.writeRepeatedMessage(3, _instance.maps, Map.serializeBinaryToWriter);
+        }
+    }
+    get id() {
+        return this._id;
+    }
+    set id(value) {
+        this._id = value;
+    }
+    get updateMethod() {
+        return this._updateMethod;
+    }
+    set updateMethod(value) {
+        this._updateMethod = value;
+    }
+    get maps() {
+        return this._maps;
+    }
+    set maps(value) {
+        this._maps = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        UpdateCustomPhonemizerRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            id: this.id,
+            updateMethod: this.updateMethod,
+            maps: (this.maps || []).map(m => m.toObject())
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            id: this.id,
+            updateMethod: UpdateCustomPhonemizerRequest.UpdateMethod[this.updateMethod === null || this.updateMethod === undefined
+                ? 0
+                : this.updateMethod],
+            maps: (this.maps || []).map(m => m.toProtobufJSON(options))
+        };
+    }
+}
+UpdateCustomPhonemizerRequest.id = 'ondewo.t2s.UpdateCustomPhonemizerRequest';
+(function (UpdateCustomPhonemizerRequest) {
+    let UpdateMethod;
+    (function (UpdateMethod) {
+        UpdateMethod[UpdateMethod["extend_hard"] = 0] = "extend_hard";
+        UpdateMethod[UpdateMethod["extend_soft"] = 1] = "extend_soft";
+        UpdateMethod[UpdateMethod["replace"] = 2] = "replace";
+    })(UpdateMethod = UpdateCustomPhonemizerRequest.UpdateMethod || (UpdateCustomPhonemizerRequest.UpdateMethod = {}));
+})(UpdateCustomPhonemizerRequest || (UpdateCustomPhonemizerRequest = {}));
+/**
+ * Message implementation for ondewo.t2s.CreateCustomPhonemizerRequest
+ */
+class CreateCustomPhonemizerRequest {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CreateCustomPhonemizerRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.prefix = _value.prefix;
+        this.maps = (_value.maps || []).map(m => new Map(m));
+        CreateCustomPhonemizerRequest.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new CreateCustomPhonemizerRequest();
+        CreateCustomPhonemizerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.prefix = _instance.prefix || '';
+        _instance.maps = _instance.maps || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.prefix = _reader.readString();
+                    break;
+                case 2:
+                    const messageInitializer2 = new Map();
+                    _reader.readMessage(messageInitializer2, Map.deserializeBinaryFromReader);
+                    (_instance.maps = _instance.maps || []).push(messageInitializer2);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        CreateCustomPhonemizerRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.prefix) {
+            _writer.writeString(1, _instance.prefix);
+        }
+        if (_instance.maps && _instance.maps.length) {
+            _writer.writeRepeatedMessage(2, _instance.maps, Map.serializeBinaryToWriter);
+        }
+    }
+    get prefix() {
+        return this._prefix;
+    }
+    set prefix(value) {
+        this._prefix = value;
+    }
+    get maps() {
+        return this._maps;
+    }
+    set maps(value) {
+        this._maps = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        CreateCustomPhonemizerRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            prefix: this.prefix,
+            maps: (this.maps || []).map(m => m.toObject())
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            prefix: this.prefix,
+            maps: (this.maps || []).map(m => m.toProtobufJSON(options))
+        };
+    }
+}
+CreateCustomPhonemizerRequest.id = 'ondewo.t2s.CreateCustomPhonemizerRequest';
 
 /* tslint:disable */
 /**
@@ -20899,7 +21908,7 @@ class VoipCallLogsClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
+             * Unary call: /ondewo.vtsi.VoipCallLogs/GetVoipLog
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20917,7 +21926,7 @@ class VoipCallLogsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
+             * Unary call: /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -20938,7 +21947,7 @@ class VoipCallLogsClient {
         this.client = clientFactory.createClient('ondewo.vtsi.VoipCallLogs', settings);
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipCallLogs/GetVoipLog
+     * Unary call @/ondewo.vtsi.VoipCallLogs/GetVoipLog
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20950,7 +21959,7 @@ class VoipCallLogsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
+     * Unary call @/ondewo.vtsi.VoipCallLogs/ActivateSaveCallLogs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -20962,9 +21971,9 @@ class VoipCallLogsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-VoipCallLogsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipCallLogsClient, deps: [{ token: GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-VoipCallLogsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipCallLogsClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipCallLogsClient, decorators: [{
+VoipCallLogsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipCallLogsClient, deps: [{ token: GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+VoipCallLogsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipCallLogsClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipCallLogsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: function () {
@@ -20993,7 +22002,7 @@ class VoipSessionsClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/RunManifest
+             * Unary call: /ondewo.vtsi.VoipSessions/RunManifest
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21011,7 +22020,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/RemoveManifest
+             * Unary call: /ondewo.vtsi.VoipSessions/RemoveManifest
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21029,7 +22038,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestIDs
+             * Unary call: /ondewo.vtsi.VoipSessions/GetManifestIDs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21047,7 +22056,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/StartCallInstance
+             * Unary call: /ondewo.vtsi.VoipSessions/StartCallInstance
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21065,7 +22074,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/StopCallInstance
+             * Unary call: /ondewo.vtsi.VoipSessions/StopCallInstance
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21083,7 +22092,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
+             * Unary call: /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21101,7 +22110,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetCallIDs
+             * Unary call: /ondewo.vtsi.VoipSessions/GetCallIDs
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21119,7 +22128,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetSessionID
+             * Unary call: /ondewo.vtsi.VoipSessions/GetSessionID
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21137,7 +22146,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
+             * Unary call: /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21155,7 +22164,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestStatus
+             * Unary call: /ondewo.vtsi.VoipSessions/GetManifestStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21173,7 +22182,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetInstanceStatus
+             * Unary call: /ondewo.vtsi.VoipSessions/GetInstanceStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21191,7 +22200,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/UpdateServicesStatus
+             * Unary call: /ondewo.vtsi.VoipSessions/UpdateServicesStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21209,7 +22218,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
+             * Unary call: /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21227,7 +22236,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetAudioFile
+             * Unary call: /ondewo.vtsi.VoipSessions/GetAudioFile
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21245,7 +22254,7 @@ class VoipSessionsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.vtsi.VoipSessions/GetFullConversationAudioFile
+             * Unary call: /ondewo.vtsi.VoipSessions/GetFullConversationAudioFile
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21266,7 +22275,7 @@ class VoipSessionsClient {
         this.client = clientFactory.createClient('ondewo.vtsi.VoipSessions', settings);
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/RunManifest
+     * Unary call @/ondewo.vtsi.VoipSessions/RunManifest
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21278,7 +22287,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/RemoveManifest
+     * Unary call @/ondewo.vtsi.VoipSessions/RemoveManifest
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21290,7 +22299,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestIDs
+     * Unary call @/ondewo.vtsi.VoipSessions/GetManifestIDs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21302,7 +22311,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/StartCallInstance
+     * Unary call @/ondewo.vtsi.VoipSessions/StartCallInstance
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21314,7 +22323,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/StopCallInstance
+     * Unary call @/ondewo.vtsi.VoipSessions/StopCallInstance
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21326,7 +22335,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
+     * Unary call @/ondewo.vtsi.VoipSessions/StartMultipleCallInstances
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21338,7 +22347,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetCallIDs
+     * Unary call @/ondewo.vtsi.VoipSessions/GetCallIDs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21350,7 +22359,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetSessionID
+     * Unary call @/ondewo.vtsi.VoipSessions/GetSessionID
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21362,7 +22371,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
+     * Unary call @/ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21374,7 +22383,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetManifestStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/GetManifestStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21386,7 +22395,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetInstanceStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/GetInstanceStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21398,7 +22407,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/UpdateServicesStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/UpdateServicesStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21410,7 +22419,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
+     * Unary call @/ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21422,7 +22431,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetAudioFile
+     * Unary call @/ondewo.vtsi.VoipSessions/GetAudioFile
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21434,7 +22443,7 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.vtsi.VoipSessions/GetFullConversationAudioFile
+     * Unary call @/ondewo.vtsi.VoipSessions/GetFullConversationAudioFile
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21446,9 +22455,9 @@ class VoipSessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-VoipSessionsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipSessionsClient, deps: [{ token: GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-VoipSessionsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipSessionsClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: VoipSessionsClient, decorators: [{
+VoipSessionsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipSessionsClient, deps: [{ token: GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+VoipSessionsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipSessionsClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: VoipSessionsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: function () {
@@ -21484,7 +22493,7 @@ class Speech2TextClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/TranscribeFile
+             * Unary call: /ondewo.s2t.Speech2Text/TranscribeFile
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21502,7 +22511,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Server streaming RPC for /ondewo.s2t.Speech2Text/TranscribeStream
+             * Bidirectional streaming: /ondewo.s2t.Speech2Text/TranscribeStream
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21510,7 +22519,7 @@ class Speech2TextClient {
              */
             transcribeStream: (requestData, requestMetadata = new GrpcMetadata()) => {
                 return this.handler.handle({
-                    type: GrpcCallType.serverStream,
+                    type: GrpcCallType.bidiStream,
                     client: this.client,
                     path: '/ondewo.s2t.Speech2Text/TranscribeStream',
                     requestData,
@@ -21520,7 +22529,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/GetS2tPipeline
+             * Unary call: /ondewo.s2t.Speech2Text/GetS2tPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21538,7 +22547,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/CreateS2tPipeline
+             * Unary call: /ondewo.s2t.Speech2Text/CreateS2tPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21556,7 +22565,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/DeleteS2tPipeline
+             * Unary call: /ondewo.s2t.Speech2Text/DeleteS2tPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21574,7 +22583,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/UpdateS2tPipeline
+             * Unary call: /ondewo.s2t.Speech2Text/UpdateS2tPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21592,7 +22601,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tPipelines
+             * Unary call: /ondewo.s2t.Speech2Text/ListS2tPipelines
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21610,7 +22619,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tLanguages
+             * Unary call: /ondewo.s2t.Speech2Text/ListS2tLanguages
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21628,7 +22637,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tDomains
+             * Unary call: /ondewo.s2t.Speech2Text/ListS2tDomains
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21646,7 +22655,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/GetServiceInfo
+             * Unary call: /ondewo.s2t.Speech2Text/GetServiceInfo
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21664,7 +22673,7 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tLanguageModels
+             * Unary call: /ondewo.s2t.Speech2Text/ListS2tLanguageModels
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -21685,7 +22694,7 @@ class Speech2TextClient {
         this.client = clientFactory.createClient('ondewo.s2t.Speech2Text', settings);
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/TranscribeFile
+     * Unary call @/ondewo.s2t.Speech2Text/TranscribeFile
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21697,7 +22706,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Server streaming RPC for /ondewo.s2t.Speech2Text/TranscribeStream
+     * Bidirectional streaming @/ondewo.s2t.Speech2Text/TranscribeStream
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21709,7 +22718,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/GetS2tPipeline
+     * Unary call @/ondewo.s2t.Speech2Text/GetS2tPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21721,7 +22730,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/CreateS2tPipeline
+     * Unary call @/ondewo.s2t.Speech2Text/CreateS2tPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21733,7 +22742,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/DeleteS2tPipeline
+     * Unary call @/ondewo.s2t.Speech2Text/DeleteS2tPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21745,7 +22754,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/UpdateS2tPipeline
+     * Unary call @/ondewo.s2t.Speech2Text/UpdateS2tPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21757,7 +22766,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tPipelines
+     * Unary call @/ondewo.s2t.Speech2Text/ListS2tPipelines
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21769,7 +22778,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tLanguages
+     * Unary call @/ondewo.s2t.Speech2Text/ListS2tLanguages
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21781,7 +22790,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tDomains
+     * Unary call @/ondewo.s2t.Speech2Text/ListS2tDomains
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21793,7 +22802,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/GetServiceInfo
+     * Unary call @/ondewo.s2t.Speech2Text/GetServiceInfo
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21805,7 +22814,7 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.s2t.Speech2Text/ListS2tLanguageModels
+     * Unary call @/ondewo.s2t.Speech2Text/ListS2tLanguageModels
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -21817,9 +22826,9 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-Speech2TextClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Speech2TextClient, deps: [{ token: GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-Speech2TextClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Speech2TextClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Speech2TextClient, decorators: [{
+Speech2TextClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Speech2TextClient, deps: [{ token: GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+Speech2TextClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Speech2TextClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Speech2TextClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: function () {
@@ -21840,1003 +22849,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
  * Use it only if your default settings are not set or the service requires other settings.
  */
 const GRPC_TEXT2_SPEECH_CLIENT_SETTINGS = new InjectionToken('GRPC_TEXT2_SPEECH_CLIENT_SETTINGS');
-
-/**
- * Message implementation for ondewo.t2s.PhonemizerId
- */
-class PhonemizerId {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of PhonemizerId to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.id = _value.id;
-        PhonemizerId.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new PhonemizerId();
-        PhonemizerId.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.id = _instance.id || '';
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    _instance.id = _reader.readString();
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        PhonemizerId.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.id) {
-            _writer.writeString(1, _instance.id);
-        }
-    }
-    get id() {
-        return this._id;
-    }
-    set id(value) {
-        this._id = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        PhonemizerId.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            id: this.id
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            id: this.id
-        };
-    }
-}
-PhonemizerId.id = 'ondewo.t2s.PhonemizerId';
-/**
- * Message implementation for ondewo.t2s.CustomPhonemizerProto
- */
-class CustomPhonemizerProto {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of CustomPhonemizerProto to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.id = _value.id;
-        this.maps = (_value.maps || []).map(m => new Map(m));
-        CustomPhonemizerProto.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new CustomPhonemizerProto();
-        CustomPhonemizerProto.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.id = _instance.id || '';
-        _instance.maps = _instance.maps || [];
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    _instance.id = _reader.readString();
-                    break;
-                case 2:
-                    const messageInitializer2 = new Map();
-                    _reader.readMessage(messageInitializer2, Map.deserializeBinaryFromReader);
-                    (_instance.maps = _instance.maps || []).push(messageInitializer2);
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        CustomPhonemizerProto.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.id) {
-            _writer.writeString(1, _instance.id);
-        }
-        if (_instance.maps && _instance.maps.length) {
-            _writer.writeRepeatedMessage(2, _instance.maps, Map.serializeBinaryToWriter);
-        }
-    }
-    get id() {
-        return this._id;
-    }
-    set id(value) {
-        this._id = value;
-    }
-    get maps() {
-        return this._maps;
-    }
-    set maps(value) {
-        this._maps = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        CustomPhonemizerProto.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            id: this.id,
-            maps: (this.maps || []).map(m => m.toObject())
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            id: this.id,
-            maps: (this.maps || []).map(m => m.toProtobufJSON(options))
-        };
-    }
-}
-CustomPhonemizerProto.id = 'ondewo.t2s.CustomPhonemizerProto';
-/**
- * Message implementation for ondewo.t2s.Map
- */
-class Map {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of Map to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.word = _value.word;
-        this.phonemeGroups = _value.phonemeGroups;
-        Map.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new Map();
-        Map.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.word = _instance.word || '';
-        _instance.phonemeGroups = _instance.phonemeGroups || '';
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    _instance.word = _reader.readString();
-                    break;
-                case 2:
-                    _instance.phonemeGroups = _reader.readString();
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        Map.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.word) {
-            _writer.writeString(1, _instance.word);
-        }
-        if (_instance.phonemeGroups) {
-            _writer.writeString(2, _instance.phonemeGroups);
-        }
-    }
-    get word() {
-        return this._word;
-    }
-    set word(value) {
-        this._word = value;
-    }
-    get phonemeGroups() {
-        return this._phonemeGroups;
-    }
-    set phonemeGroups(value) {
-        this._phonemeGroups = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        Map.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            word: this.word,
-            phonemeGroups: this.phonemeGroups
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            word: this.word,
-            phonemeGroups: this.phonemeGroups
-        };
-    }
-}
-Map.id = 'ondewo.t2s.Map';
-/**
- * Message implementation for ondewo.t2s.ListCustomPhonemizerResponse
- */
-class ListCustomPhonemizerResponse {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of ListCustomPhonemizerResponse to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.phonemizers = (_value.phonemizers || []).map(m => new CustomPhonemizerProto(m));
-        ListCustomPhonemizerResponse.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new ListCustomPhonemizerResponse();
-        ListCustomPhonemizerResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.phonemizers = _instance.phonemizers || [];
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    const messageInitializer1 = new CustomPhonemizerProto();
-                    _reader.readMessage(messageInitializer1, CustomPhonemizerProto.deserializeBinaryFromReader);
-                    (_instance.phonemizers = _instance.phonemizers || []).push(messageInitializer1);
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        ListCustomPhonemizerResponse.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.phonemizers && _instance.phonemizers.length) {
-            _writer.writeRepeatedMessage(1, _instance.phonemizers, CustomPhonemizerProto.serializeBinaryToWriter);
-        }
-    }
-    get phonemizers() {
-        return this._phonemizers;
-    }
-    set phonemizers(value) {
-        this._phonemizers = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        ListCustomPhonemizerResponse.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            phonemizers: (this.phonemizers || []).map(m => m.toObject())
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            phonemizers: (this.phonemizers || []).map(m => m.toProtobufJSON(options))
-        };
-    }
-}
-ListCustomPhonemizerResponse.id = 'ondewo.t2s.ListCustomPhonemizerResponse';
-/**
- * Message implementation for ondewo.t2s.ListCustomPhonemizerRequest
- */
-class ListCustomPhonemizerRequest {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of ListCustomPhonemizerRequest to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.pipelineIds = (_value.pipelineIds || []).slice();
-        ListCustomPhonemizerRequest.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new ListCustomPhonemizerRequest();
-        ListCustomPhonemizerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.pipelineIds = _instance.pipelineIds || [];
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    (_instance.pipelineIds = _instance.pipelineIds || []).push(_reader.readString());
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        ListCustomPhonemizerRequest.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.pipelineIds && _instance.pipelineIds.length) {
-            _writer.writeRepeatedString(1, _instance.pipelineIds);
-        }
-    }
-    get pipelineIds() {
-        return this._pipelineIds;
-    }
-    set pipelineIds(value) {
-        this._pipelineIds = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        ListCustomPhonemizerRequest.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            pipelineIds: (this.pipelineIds || []).slice()
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            pipelineIds: (this.pipelineIds || []).slice()
-        };
-    }
-}
-ListCustomPhonemizerRequest.id = 'ondewo.t2s.ListCustomPhonemizerRequest';
-/**
- * Message implementation for ondewo.t2s.UpdateCustomPhonemizerRequest
- */
-class UpdateCustomPhonemizerRequest {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of UpdateCustomPhonemizerRequest to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.id = _value.id;
-        this.updateMethod = _value.updateMethod;
-        this.maps = (_value.maps || []).map(m => new Map(m));
-        UpdateCustomPhonemizerRequest.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new UpdateCustomPhonemizerRequest();
-        UpdateCustomPhonemizerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.id = _instance.id || '';
-        _instance.updateMethod = _instance.updateMethod || 0;
-        _instance.maps = _instance.maps || [];
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    _instance.id = _reader.readString();
-                    break;
-                case 2:
-                    _instance.updateMethod = _reader.readEnum();
-                    break;
-                case 3:
-                    const messageInitializer3 = new Map();
-                    _reader.readMessage(messageInitializer3, Map.deserializeBinaryFromReader);
-                    (_instance.maps = _instance.maps || []).push(messageInitializer3);
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        UpdateCustomPhonemizerRequest.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.id) {
-            _writer.writeString(1, _instance.id);
-        }
-        if (_instance.updateMethod) {
-            _writer.writeEnum(2, _instance.updateMethod);
-        }
-        if (_instance.maps && _instance.maps.length) {
-            _writer.writeRepeatedMessage(3, _instance.maps, Map.serializeBinaryToWriter);
-        }
-    }
-    get id() {
-        return this._id;
-    }
-    set id(value) {
-        this._id = value;
-    }
-    get updateMethod() {
-        return this._updateMethod;
-    }
-    set updateMethod(value) {
-        this._updateMethod = value;
-    }
-    get maps() {
-        return this._maps;
-    }
-    set maps(value) {
-        this._maps = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        UpdateCustomPhonemizerRequest.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            id: this.id,
-            updateMethod: this.updateMethod,
-            maps: (this.maps || []).map(m => m.toObject())
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            id: this.id,
-            updateMethod: UpdateCustomPhonemizerRequest.UpdateMethod[this.updateMethod === null || this.updateMethod === undefined
-                ? 0
-                : this.updateMethod],
-            maps: (this.maps || []).map(m => m.toProtobufJSON(options))
-        };
-    }
-}
-UpdateCustomPhonemizerRequest.id = 'ondewo.t2s.UpdateCustomPhonemizerRequest';
-(function (UpdateCustomPhonemizerRequest) {
-    let UpdateMethod;
-    (function (UpdateMethod) {
-        UpdateMethod[UpdateMethod["extend_hard"] = 0] = "extend_hard";
-        UpdateMethod[UpdateMethod["extend_soft"] = 1] = "extend_soft";
-        UpdateMethod[UpdateMethod["replace"] = 2] = "replace";
-    })(UpdateMethod = UpdateCustomPhonemizerRequest.UpdateMethod || (UpdateCustomPhonemizerRequest.UpdateMethod = {}));
-})(UpdateCustomPhonemizerRequest || (UpdateCustomPhonemizerRequest = {}));
-/**
- * Message implementation for ondewo.t2s.CreateCustomPhonemizerRequest
- */
-class CreateCustomPhonemizerRequest {
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of CreateCustomPhonemizerRequest to deeply clone from
-     */
-    constructor(_value) {
-        _value = _value || {};
-        this.prefix = _value.prefix;
-        this.maps = (_value.maps || []).map(m => new Map(m));
-        CreateCustomPhonemizerRequest.refineValues(this);
-    }
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes) {
-        const instance = new CreateCustomPhonemizerRequest();
-        CreateCustomPhonemizerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-        return instance;
-    }
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance) {
-        _instance.prefix = _instance.prefix || '';
-        _instance.maps = _instance.maps || [];
-    }
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(_instance, _reader) {
-        while (_reader.nextField()) {
-            if (_reader.isEndGroup())
-                break;
-            switch (_reader.getFieldNumber()) {
-                case 1:
-                    _instance.prefix = _reader.readString();
-                    break;
-                case 2:
-                    const messageInitializer2 = new Map();
-                    _reader.readMessage(messageInitializer2, Map.deserializeBinaryFromReader);
-                    (_instance.maps = _instance.maps || []).push(messageInitializer2);
-                    break;
-                default:
-                    _reader.skipField();
-            }
-        }
-        CreateCustomPhonemizerRequest.refineValues(_instance);
-    }
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.prefix) {
-            _writer.writeString(1, _instance.prefix);
-        }
-        if (_instance.maps && _instance.maps.length) {
-            _writer.writeRepeatedMessage(2, _instance.maps, Map.serializeBinaryToWriter);
-        }
-    }
-    get prefix() {
-        return this._prefix;
-    }
-    set prefix(value) {
-        this._prefix = value;
-    }
-    get maps() {
-        return this._maps;
-    }
-    set maps(value) {
-        this._maps = value;
-    }
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-        const writer = new BinaryWriter();
-        CreateCustomPhonemizerRequest.serializeBinaryToWriter(this, writer);
-        return writer.getResultBuffer();
-    }
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject() {
-        return {
-            prefix: this.prefix,
-            maps: (this.maps || []).map(m => m.toObject())
-        };
-    }
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-        return this.toObject();
-    }
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-    // @ts-ignore
-    options) {
-        return {
-            prefix: this.prefix,
-            maps: (this.maps || []).map(m => m.toProtobufJSON(options))
-        };
-    }
-}
-CreateCustomPhonemizerRequest.id = 'ondewo.t2s.CreateCustomPhonemizerRequest';
-
-/* tslint:disable */
 /**
  * Specific GrpcClientSettings for CustomPhonemizers.
  * Use it only if your default settings are not set or the service requires other settings.
  */
 const GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS = new InjectionToken('GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS');
-
-/* tslint:disable */
-/**
- * Service client implementation for ondewo.t2s.CustomPhonemizers
- */
-class CustomPhonemizersClient {
-    constructor(settings, clientFactory, handler) {
-        this.handler = handler;
-        /**
-         * Raw RPC implementation for each service client method.
-         * The raw methods provide more control on the incoming data and events. E.g. they can be useful to read status `OK` metadata.
-         * Attention: these methods do not throw errors when non-zero status codes are received.
-         */
-        this.$raw = {
-            /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.CustomPhonemizerProto>>
-             */
-            getCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.unary,
-                    client: this.client,
-                    path: '/ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer',
-                    requestData,
-                    requestMetadata,
-                    requestClass: PhonemizerId,
-                    responseClass: CustomPhonemizerProto
-                });
-            },
-            /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.PhonemizerId>>
-             */
-            createCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.unary,
-                    client: this.client,
-                    path: '/ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer',
-                    requestData,
-                    requestMetadata,
-                    requestClass: CreateCustomPhonemizerRequest,
-                    responseClass: PhonemizerId
-                });
-            },
-            /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
-             */
-            deleteCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.unary,
-                    client: this.client,
-                    path: '/ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer',
-                    requestData,
-                    requestMetadata,
-                    requestClass: PhonemizerId,
-                    responseClass: googleProtobuf000.Empty
-                });
-            },
-            /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.CustomPhonemizerProto>>
-             */
-            updateCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.unary,
-                    client: this.client,
-                    path: '/ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer',
-                    requestData,
-                    requestMetadata,
-                    requestClass: UpdateCustomPhonemizerRequest,
-                    responseClass: CustomPhonemizerProto
-                });
-            },
-            /**
-             * Unary RPC for /ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.ListCustomPhonemizerResponse>>
-             */
-            listCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.unary,
-                    client: this.client,
-                    path: '/ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer',
-                    requestData,
-                    requestMetadata,
-                    requestClass: ListCustomPhonemizerRequest,
-                    responseClass: ListCustomPhonemizerResponse
-                });
-            }
-        };
-        this.client = clientFactory.createClient('ondewo.t2s.CustomPhonemizers', settings);
-    }
-    /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.CustomPhonemizerProto>
-     */
-    getCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .getCustomPhonemizer(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.PhonemizerId>
-     */
-    createCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .createCustomPhonemizer(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<googleProtobuf000.Empty>
-     */
-    deleteCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .deleteCustomPhonemizer(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.CustomPhonemizerProto>
-     */
-    updateCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .updateCustomPhonemizer(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Unary RPC for /ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.ListCustomPhonemizerResponse>
-     */
-    listCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .listCustomPhonemizer(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-}
-CustomPhonemizersClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CustomPhonemizersClient, deps: [{ token: GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-CustomPhonemizersClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CustomPhonemizersClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CustomPhonemizersClient, decorators: [{
-            type: Injectable,
-            args: [{ providedIn: 'any' }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Optional
-                    }, {
-                        type: Inject,
-                        args: [GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS]
-                    }] }, { type: undefined, decorators: [{
-                        type: Inject,
-                        args: [GRPC_CLIENT_FACTORY]
-                    }] }, { type: i1.GrpcHandler }];
-    } });
 
 /* tslint:disable */
 /**
@@ -22852,7 +22869,7 @@ class Text2SpeechClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/Synthesize
+             * Unary call: /ondewo.t2s.Text2Speech/Synthesize
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22870,7 +22887,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/BatchSynthesize
+             * Unary call: /ondewo.t2s.Text2Speech/BatchSynthesize
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22888,7 +22905,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/GetT2sPipeline
+             * Unary call: /ondewo.t2s.Text2Speech/GetT2sPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22906,7 +22923,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/CreateT2sPipeline
+             * Unary call: /ondewo.t2s.Text2Speech/CreateT2sPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22924,7 +22941,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/DeleteT2sPipeline
+             * Unary call: /ondewo.t2s.Text2Speech/DeleteT2sPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22942,7 +22959,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/UpdateT2sPipeline
+             * Unary call: /ondewo.t2s.Text2Speech/UpdateT2sPipeline
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22960,7 +22977,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sPipelines
+             * Unary call: /ondewo.t2s.Text2Speech/ListT2sPipelines
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22978,7 +22995,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sLanguages
+             * Unary call: /ondewo.t2s.Text2Speech/ListT2sLanguages
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -22996,7 +23013,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sDomains
+             * Unary call: /ondewo.t2s.Text2Speech/ListT2sDomains
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23014,7 +23031,7 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.t2s.Text2Speech/GetServiceInfo
+             * Unary call: /ondewo.t2s.Text2Speech/GetServiceInfo
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23035,7 +23052,7 @@ class Text2SpeechClient {
         this.client = clientFactory.createClient('ondewo.t2s.Text2Speech', settings);
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/Synthesize
+     * Unary call @/ondewo.t2s.Text2Speech/Synthesize
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23047,7 +23064,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/BatchSynthesize
+     * Unary call @/ondewo.t2s.Text2Speech/BatchSynthesize
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23059,7 +23076,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/GetT2sPipeline
+     * Unary call @/ondewo.t2s.Text2Speech/GetT2sPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23071,7 +23088,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/CreateT2sPipeline
+     * Unary call @/ondewo.t2s.Text2Speech/CreateT2sPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23083,7 +23100,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/DeleteT2sPipeline
+     * Unary call @/ondewo.t2s.Text2Speech/DeleteT2sPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23095,7 +23112,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/UpdateT2sPipeline
+     * Unary call @/ondewo.t2s.Text2Speech/UpdateT2sPipeline
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23107,7 +23124,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sPipelines
+     * Unary call @/ondewo.t2s.Text2Speech/ListT2sPipelines
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23119,7 +23136,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sLanguages
+     * Unary call @/ondewo.t2s.Text2Speech/ListT2sLanguages
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23131,7 +23148,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/ListT2sDomains
+     * Unary call @/ondewo.t2s.Text2Speech/ListT2sDomains
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23143,7 +23160,7 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.t2s.Text2Speech/GetServiceInfo
+     * Unary call @/ondewo.t2s.Text2Speech/GetServiceInfo
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23155,9 +23172,9 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-Text2SpeechClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Text2SpeechClient, deps: [{ token: GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-Text2SpeechClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Text2SpeechClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: Text2SpeechClient, decorators: [{
+Text2SpeechClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Text2SpeechClient, deps: [{ token: GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+Text2SpeechClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Text2SpeechClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: Text2SpeechClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: function () {
@@ -23166,6 +23183,188 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                     }, {
                         type: Inject,
                         args: [GRPC_TEXT2_SPEECH_CLIENT_SETTINGS]
+                    }] }, { type: undefined, decorators: [{
+                        type: Inject,
+                        args: [GRPC_CLIENT_FACTORY]
+                    }] }, { type: i1.GrpcHandler }];
+    } });
+/**
+ * Service client implementation for ondewo.t2s.CustomPhonemizers
+ */
+class CustomPhonemizersClient {
+    constructor(settings, clientFactory, handler) {
+        this.handler = handler;
+        /**
+         * Raw RPC implementation for each service client method.
+         * The raw methods provide more control on the incoming data and events. E.g. they can be useful to read status `OK` metadata.
+         * Attention: these methods do not throw errors when non-zero status codes are received.
+         */
+        this.$raw = {
+            /**
+             * Unary call: /ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.CustomPhonemizerProto>>
+             */
+            getCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer',
+                    requestData,
+                    requestMetadata,
+                    requestClass: PhonemizerId,
+                    responseClass: CustomPhonemizerProto
+                });
+            },
+            /**
+             * Unary call: /ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.PhonemizerId>>
+             */
+            createCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer',
+                    requestData,
+                    requestMetadata,
+                    requestClass: CreateCustomPhonemizerRequest,
+                    responseClass: PhonemizerId
+                });
+            },
+            /**
+             * Unary call: /ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<googleProtobuf000.Empty>>
+             */
+            deleteCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer',
+                    requestData,
+                    requestMetadata,
+                    requestClass: PhonemizerId,
+                    responseClass: googleProtobuf000.Empty
+                });
+            },
+            /**
+             * Unary call: /ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.CustomPhonemizerProto>>
+             */
+            updateCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer',
+                    requestData,
+                    requestMetadata,
+                    requestClass: UpdateCustomPhonemizerRequest,
+                    responseClass: CustomPhonemizerProto
+                });
+            },
+            /**
+             * Unary call: /ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.ListCustomPhonemizerResponse>>
+             */
+            listCustomPhonemizer: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer',
+                    requestData,
+                    requestMetadata,
+                    requestClass: ListCustomPhonemizerRequest,
+                    responseClass: ListCustomPhonemizerResponse
+                });
+            }
+        };
+        this.client = clientFactory.createClient('ondewo.t2s.CustomPhonemizers', settings);
+    }
+    /**
+     * Unary call @/ondewo.t2s.CustomPhonemizers/GetCustomPhonemizer
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.CustomPhonemizerProto>
+     */
+    getCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .getCustomPhonemizer(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Unary call @/ondewo.t2s.CustomPhonemizers/CreateCustomPhonemizer
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.PhonemizerId>
+     */
+    createCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .createCustomPhonemizer(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Unary call @/ondewo.t2s.CustomPhonemizers/DeleteCustomPhonemizer
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<googleProtobuf000.Empty>
+     */
+    deleteCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .deleteCustomPhonemizer(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Unary call @/ondewo.t2s.CustomPhonemizers/UpdateCustomPhonemizer
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.CustomPhonemizerProto>
+     */
+    updateCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .updateCustomPhonemizer(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Unary call @/ondewo.t2s.CustomPhonemizers/ListCustomPhonemizer
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.ListCustomPhonemizerResponse>
+     */
+    listCustomPhonemizer(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .listCustomPhonemizer(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+}
+CustomPhonemizersClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: CustomPhonemizersClient, deps: [{ token: GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+CustomPhonemizersClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: CustomPhonemizersClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: CustomPhonemizersClient, decorators: [{
+            type: Injectable,
+            args: [{ providedIn: 'any' }]
+        }], ctorParameters: function () {
+        return [{ type: undefined, decorators: [{
+                        type: Optional
+                    }, {
+                        type: Inject,
+                        args: [GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS]
                     }] }, { type: undefined, decorators: [{
                         type: Inject,
                         args: [GRPC_CLIENT_FACTORY]
@@ -23193,7 +23392,7 @@ class ContextsClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/ListContexts
+             * Unary call: /ondewo.nlu.Contexts/ListContexts
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23211,7 +23410,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/GetContext
+             * Unary call: /ondewo.nlu.Contexts/GetContext
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23229,7 +23428,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/CreateContext
+             * Unary call: /ondewo.nlu.Contexts/CreateContext
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23247,7 +23446,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/UpdateContext
+             * Unary call: /ondewo.nlu.Contexts/UpdateContext
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23265,7 +23464,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/DeleteContext
+             * Unary call: /ondewo.nlu.Contexts/DeleteContext
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23283,7 +23482,7 @@ class ContextsClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.nlu.Contexts/DeleteAllContexts
+             * Unary call: /ondewo.nlu.Contexts/DeleteAllContexts
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23304,7 +23503,7 @@ class ContextsClient {
         this.client = clientFactory.createClient('ondewo.nlu.Contexts', settings);
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/ListContexts
+     * Unary call @/ondewo.nlu.Contexts/ListContexts
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23316,7 +23515,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/GetContext
+     * Unary call @/ondewo.nlu.Contexts/GetContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23328,7 +23527,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/CreateContext
+     * Unary call @/ondewo.nlu.Contexts/CreateContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23340,7 +23539,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/UpdateContext
+     * Unary call @/ondewo.nlu.Contexts/UpdateContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23352,7 +23551,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/DeleteContext
+     * Unary call @/ondewo.nlu.Contexts/DeleteContext
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23364,7 +23563,7 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.nlu.Contexts/DeleteAllContexts
+     * Unary call @/ondewo.nlu.Contexts/DeleteAllContexts
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23376,9 +23575,9 @@ class ContextsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-ContextsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ContextsClient, deps: [{ token: GRPC_CONTEXTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-ContextsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ContextsClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ContextsClient, decorators: [{
+ContextsClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: ContextsClient, deps: [{ token: GRPC_CONTEXTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+ContextsClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: ContextsClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: ContextsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: function () {
@@ -23414,7 +23613,7 @@ class SipClient {
          */
         this.$raw = {
             /**
-             * Unary RPC for /ondewo.sip.Sip/StartSession
+             * Unary call: /ondewo.sip.Sip/StartSession
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23432,7 +23631,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/EndSession
+             * Unary call: /ondewo.sip.Sip/EndSession
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23450,7 +23649,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/StartCall
+             * Unary call: /ondewo.sip.Sip/StartCall
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23468,7 +23667,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/EndCall
+             * Unary call: /ondewo.sip.Sip/EndCall
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23486,7 +23685,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/TransferCall
+             * Unary call: /ondewo.sip.Sip/TransferCall
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23504,7 +23703,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/RegisterAccount
+             * Unary call: /ondewo.sip.Sip/RegisterAccount
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23522,7 +23721,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/GetSipStatus
+             * Unary call: /ondewo.sip.Sip/GetSipStatus
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23540,7 +23739,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/GetSipStatusHistory
+             * Unary call: /ondewo.sip.Sip/GetSipStatusHistory
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23558,7 +23757,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/PlayWavFiles
+             * Unary call: /ondewo.sip.Sip/PlayWavFiles
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23576,7 +23775,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/Mute
+             * Unary call: /ondewo.sip.Sip/Mute
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23594,7 +23793,7 @@ class SipClient {
                 });
             },
             /**
-             * Unary RPC for /ondewo.sip.Sip/UnMute
+             * Unary call: /ondewo.sip.Sip/UnMute
              *
              * @param requestMessage Request message
              * @param requestMetadata Request metadata
@@ -23615,7 +23814,7 @@ class SipClient {
         this.client = clientFactory.createClient('ondewo.sip.Sip', settings);
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/StartSession
+     * Unary call @/ondewo.sip.Sip/StartSession
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23627,7 +23826,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/EndSession
+     * Unary call @/ondewo.sip.Sip/EndSession
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23639,7 +23838,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/StartCall
+     * Unary call @/ondewo.sip.Sip/StartCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23651,7 +23850,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/EndCall
+     * Unary call @/ondewo.sip.Sip/EndCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23663,7 +23862,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/TransferCall
+     * Unary call @/ondewo.sip.Sip/TransferCall
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23675,7 +23874,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/RegisterAccount
+     * Unary call @/ondewo.sip.Sip/RegisterAccount
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23687,7 +23886,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/GetSipStatus
+     * Unary call @/ondewo.sip.Sip/GetSipStatus
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23699,7 +23898,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/GetSipStatusHistory
+     * Unary call @/ondewo.sip.Sip/GetSipStatusHistory
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23711,7 +23910,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/PlayWavFiles
+     * Unary call @/ondewo.sip.Sip/PlayWavFiles
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23723,7 +23922,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/Mute
+     * Unary call @/ondewo.sip.Sip/Mute
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23735,7 +23934,7 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
-     * Unary RPC for /ondewo.sip.Sip/UnMute
+     * Unary call @/ondewo.sip.Sip/UnMute
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
@@ -23747,9 +23946,9 @@ class SipClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
-SipClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: SipClient, deps: [{ token: GRPC_SIP_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
-SipClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: SipClient, providedIn: 'any' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: SipClient, decorators: [{
+SipClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: SipClient, deps: [{ token: GRPC_SIP_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable });
+SipClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: SipClient, providedIn: 'any' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: SipClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: function () {
@@ -23768,5 +23967,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Apodization, AsteriskConfig, AudioFormat, AudioObjectStorageConfig, BaseServiceConfig, BatchSynthesizeRequest, BatchSynthesizeResponse, CTCDecoding, Caching, CkptFile, CommonServicesConfigs, CompositeInference, Context, ContextsClient, Counters, CreateContextRequest, CreateCustomPhonemizerRequest, Credentials, CsiConfig, CtcAcousticModels, CustomHttpPattern, CustomPhonemizerProto, CustomPhonemizersClient, DeleteAllContextsRequest, DeleteContextRequest, DeployPreconditionRequest, DeployPreconditionResponse, EndCallRequest, Endpoint, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, GetAudioFileRequest, GetAudioFileResponse, GetCallIDsRequest, GetCallIDsResponse, GetCallIdsRequest, GetCallIdsResponse, GetContextRequest, GetFullConversationAudioFileRequest, GetFullConversationAudioFileResponse, GetManifestIDsRequest, GetManifestIDsResponse, GetSessionIDRequest, GetSessionIDResponse, GetVoipLogRequest, GetVoipLogResponse, GetVoipStatusRequest, GlowTTS, GlowTTSTriton, HiFiGan, HiFiGanTriton, Http, HttpRule, LanguageModelPipelineId, LanguageModels, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, Logging, Logmnse, ManifestRequest, Map, Matchbox, MbMelganTriton, Mel2Audio, MessageBrokerConfig, MinioConfig, NLUConfig, NluCallbacks, Pcm, PhonemizerId, PlayWavFilesRequest, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, PtFiles, Pyannote, Quartznet, QuartznetTriton, RabbitMqConfig, RegisterAccountRequest, RemoveManifestResponse, RequestConfig, RunManifestResponse, S2TConfig, S2TDescription, S2TGetServiceInfoResponse, S2TInference, S2TNormalization, S2tCallbacks, S2tPipelineId, SIPConfig, SaveCallLogsResponse, ServiceStatus, ShutdownUnhealthyCallsRequest, ShutdownUnhealthyCallsResponse, SipClient, SipStatus, SipStatusHistoryResponse, Speech2TextClient, Speech2TextConfig, StartCallInstanceRequest, StartCallInstanceResponse, StartCallRequest, StartMultipleCallInstancesRequest, StartMultipleCallInstancesResponse, StartSessionRequest, StopCallInstanceRequest, StopCallInstanceResponse, StreamingServer, StreamingSpeechRecognition, SymSpell, SynthesizeRequest, SynthesizeResponse, T2SConfig, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCallbacks, T2sPipelineId, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionReturnOptions, TransferCallRequest, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateServicesStatusRequest, UpdateServicesStatusResponse, UtteranceDetectionOptions, VoiceActivityDetection, VoipCallLogsClient, VoipLog, VoipManifest, VoipManifestStatus, VoipManifestStatusRequest, VoipSessionsClient, VoipStatus, Wav2Vec, Wav2VecTriton, Wiener, WordTiming };
+export { Apodization, AsteriskConfig, AudioFormat, AudioObjectStorageConfig, BaseServiceConfig, BatchSynthesizeRequest, BatchSynthesizeResponse, CTCDecoding, Caching, CkptFile, CommonServicesConfigs, CompositeInference, Context, ContextsClient, Counters, CreateContextRequest, CreateCustomPhonemizerRequest, Credentials, CsiConfig, CtcAcousticModels, CustomHttpPattern, CustomPhonemizerProto, CustomPhonemizersClient, DeleteAllContextsRequest, DeleteContextRequest, DeployPreconditionRequest, DeployPreconditionResponse, EndCallRequest, Endpoint, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_VOIP_CALL_LOGS_CLIENT_SETTINGS, GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, GetAudioFileRequest, GetAudioFileResponse, GetCallIDsRequest, GetCallIDsResponse, GetCallIdsRequest, GetCallIdsResponse, GetContextRequest, GetFullConversationAudioFileRequest, GetFullConversationAudioFileResponse, GetManifestIDsRequest, GetManifestIDsResponse, GetSessionIDRequest, GetSessionIDResponse, GetVoipLogRequest, GetVoipLogResponse, GetVoipStatusRequest, GlowTTS, GlowTTSTriton, HiFiGan, HiFiGanTriton, Http, HttpRule, LanguageModelPipelineId, LanguageModels, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, Logging, Logmnse, ManifestRequest, Map, Matchbox, MbMelganTriton, Mel2Audio, MessageBrokerConfig, MinioConfig, NLUConfig, NluCallbacks, Pcm, PhonemizerId, PlayWavFilesRequest, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, PtFiles, Pyannote, Quartznet, QuartznetTriton, RabbitMqConfig, RegisterAccountRequest, RemoveManifestResponse, RequestConfig, RunManifestResponse, S2TConfig, S2TDescription, S2TGetServiceInfoResponse, S2TInference, S2TNormalization, S2tCallbacks, S2tPipelineId, SIPConfig, SaveCallLogsResponse, ServiceStatus, ShutdownUnhealthyCallsRequest, ShutdownUnhealthyCallsResponse, SipClient, SipStatus, SipStatusHistoryResponse, Speech2TextClient, Speech2TextConfig, StartCallInstanceRequest, StartCallInstanceResponse, StartCallRequest, StartMultipleCallInstancesRequest, StartMultipleCallInstancesResponse, StartSessionRequest, StopCallInstanceRequest, StopCallInstanceResponse, StreamingServer, StreamingSpeechRecognition, SymSpell, SynthesizeRequest, SynthesizeResponse, T2SConfig, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCallbacks, T2sPipelineId, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionReturnOptions, TransferCallRequest, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateServicesStatusRequest, UpdateServicesStatusResponse, UtteranceDetectionOptions, VoiceActivityDetection, VoipCallLogsClient, VoipLog, VoipManifest, VoipManifestStatus, VoipManifestStatusRequest, VoipSessionsClient, VoipStatus, Wav2Vec, Wav2VecTriton, Wiener, WordTiming };
 //# sourceMappingURL=ondewo-vtsi-client-angular.mjs.map
