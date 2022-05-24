@@ -2,7 +2,7 @@
 NLU_API_GIT_BRANCH=tags/2.6.0
 SIP_API_GIT_BRANCH=tags/1.2.0
 S2T_API_GIT_BRANCH=tags/3.1.1
-T2S_API_GIT_BRANCH=tags/3.0.0
+T2S_API_GIT_BRANCH=tags/4.0.2
 VTSI_API_GIT_BRANCH=tags/2.3.0
 
 NLU_APIS_DIR=src/ondewo-nlu-api
@@ -81,7 +81,6 @@ copy_proto_files_for_ondewo_t2s_api:
 	@echo "START copying ondewo-t2s protos from submodules to build folder ..."
 	-mkdir -p ${VTSI_APIS_DIR}/ondewo/t2s/
 	cp ${T2S_PROTOS_DIR}/t2s/text-to-speech.proto ${VTSI_APIS_DIR}/ondewo/t2s/
-	cp ${T2S_PROTOS_DIR}/t2s/custom_phonemizer.proto ${VTSI_APIS_DIR}/ondewo/t2s/
 	@echo "DONE copying ondewo-t2s protos from submodules to build folder."
 
 copy_proto_files_for_ondewo_sip_api:
