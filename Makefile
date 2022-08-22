@@ -15,10 +15,10 @@ export
 # 		Variables
 ########################################################
 
-ONDEWO_VTSI_VERSION = 3.0.0
+ONDEWO_VTSI_VERSION = 4.0.0
 
-VTSI_API_GIT_BRANCH="transfercall-adjustment"
-ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/2.1.0
+VTSI_API_GIT_BRANCH=tags/4.0.0
+ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/3.0.0
 ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo

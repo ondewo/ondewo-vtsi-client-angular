@@ -5,6 +5,7 @@ import * as googleProtobuf007 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf008 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf009 from '@ngx-grpc/well-known-types';
 import * as ondewoNlu010 from '../../ondewo/nlu/project-role.pb';
+import * as googleProtobuf011 from '@ngx-grpc/well-known-types';
 import * as ondewoNlu014 from '../../ondewo/nlu/intent.pb';
 import * as ondewoNlu015 from '../../ondewo/nlu/user.pb';
 export declare enum AgentView {
@@ -3532,5 +3533,258 @@ export declare module PlatformMapping {
     interface AsProtobufJSON {
         parent?: string;
         platformInfo?: CustomPlatformInfo.AsProtobufJSON[] | null;
+    }
+}
+/**
+ * Message implementation for ondewo.nlu.FullTextSearchRequest
+ */
+export declare class FullTextSearchRequest implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): FullTextSearchRequest;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: FullTextSearchRequest): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: FullTextSearchRequest, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: FullTextSearchRequest, _writer: BinaryWriter): void;
+    private _parent?;
+    private _languageCode?;
+    private _queryType?;
+    private _term?;
+    private _pageToken?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of FullTextSearchRequest to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<FullTextSearchRequest.AsObject>);
+    get parent(): string | undefined;
+    set parent(value: string | undefined);
+    get languageCode(): string | undefined;
+    set languageCode(value: string | undefined);
+    get queryType(): FullTextSearchRequest.QueryType | undefined;
+    set queryType(value: FullTextSearchRequest.QueryType | undefined);
+    get term(): string | undefined;
+    set term(value: string | undefined);
+    get pageToken(): string | undefined;
+    set pageToken(value: string | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): FullTextSearchRequest.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): FullTextSearchRequest.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): FullTextSearchRequest.AsProtobufJSON;
+}
+export declare module FullTextSearchRequest {
+    /**
+     * Standard JavaScript object representation for FullTextSearchRequest
+     */
+    interface AsObject {
+        parent?: string;
+        languageCode?: string;
+        queryType?: FullTextSearchRequest.QueryType;
+        term?: string;
+        pageToken?: string;
+    }
+    /**
+     * Protobuf JSON representation for FullTextSearchRequest
+     */
+    interface AsProtobufJSON {
+        parent?: string;
+        languageCode?: string;
+        queryType?: string;
+        term?: string;
+        pageToken?: string;
+    }
+    enum QueryType {
+        ALL = 0,
+        OndewoEntityQuery = 1,
+        OndewoEntityTypeQuery = 2,
+        OndewoEntitySynonymQuery = 3,
+        OndewoIntentQuery = 4,
+        OndewoIntentContextInQuery = 5,
+        OndewoIntentContextOutQuery = 6,
+        OndewoIntentUsersaysQuery = 7,
+        OndewoIntentTagsQuery = 8,
+        OndewoIntentParametersQuery = 9,
+        OndewoIntentResponseQuery = 10
+    }
+}
+/**
+ * Message implementation for ondewo.nlu.FullTextSearchResponse
+ */
+export declare class FullTextSearchResponse implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): FullTextSearchResponse;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: FullTextSearchResponse): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: FullTextSearchResponse, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: FullTextSearchResponse, _writer: BinaryWriter): void;
+    private _response?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of FullTextSearchResponse to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<FullTextSearchResponse.AsObject>);
+    get response(): {
+        [prop: string]: googleProtobuf011.Any;
+    } | undefined;
+    set response(value: {
+        [prop: string]: googleProtobuf011.Any;
+    } | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): FullTextSearchResponse.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): FullTextSearchResponse.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): FullTextSearchResponse.AsProtobufJSON;
+}
+export declare module FullTextSearchResponse {
+    /**
+     * Standard JavaScript object representation for FullTextSearchResponse
+     */
+    interface AsObject {
+        response?: {
+            [prop: string]: googleProtobuf011.Any;
+        };
+    }
+    /**
+     * Protobuf JSON representation for FullTextSearchResponse
+     */
+    interface AsProtobufJSON {
+        response?: {
+            [prop: string]: googleProtobuf011.Any;
+        };
+    }
+    /**
+     * Message implementation for ondewo.nlu.ResponseEntry
+     */
+    class ResponseEntry implements GrpcMessage {
+        static id: string;
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes: ByteSource): ResponseEntry;
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance: ResponseEntry): void;
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance: ResponseEntry, _reader: BinaryReader): void;
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance: ResponseEntry, _writer: BinaryWriter): void;
+        private _key?;
+        private _value?;
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of ResponseEntry to deeply clone from
+         */
+        constructor(_value?: RecursivePartial<ResponseEntry.AsObject>);
+        get key(): string | undefined;
+        set key(value: string | undefined);
+        get value(): googleProtobuf011.Any | undefined;
+        set value(value: googleProtobuf011.Any | undefined);
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary(): any;
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject(): ResponseEntry.AsObject;
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON(): ResponseEntry.AsObject;
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(options?: ToProtobufJSONOptions): ResponseEntry.AsProtobufJSON;
+    }
+    module ResponseEntry {
+        /**
+         * Standard JavaScript object representation for ResponseEntry
+         */
+        interface AsObject {
+            key?: string;
+            value?: googleProtobuf011.Any.AsObject;
+        }
+        /**
+         * Protobuf JSON representation for ResponseEntry
+         */
+        interface AsProtobufJSON {
+            key?: string;
+            value?: googleProtobuf011.Any.AsProtobufJSON | null;
+        }
     }
 }

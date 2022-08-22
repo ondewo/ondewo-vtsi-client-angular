@@ -52077,7 +52077,7 @@ class Operation {
         _value = _value || {};
         this.name = _value.name;
         this.metadata = _value.metadata
-            ? new googleProtobuf003.Any(_value.metadata)
+            ? new OperationMetadata(_value.metadata)
             : undefined;
         this.done = _value.done;
         this.error = _value.error
@@ -52120,8 +52120,8 @@ class Operation {
                     _instance.name = _reader.readString();
                     break;
                 case 2:
-                    _instance.metadata = new googleProtobuf003.Any();
-                    _reader.readMessage(_instance.metadata, googleProtobuf003.Any.deserializeBinaryFromReader);
+                    _instance.metadata = new OperationMetadata();
+                    _reader.readMessage(_instance.metadata, OperationMetadata.deserializeBinaryFromReader);
                     break;
                 case 3:
                     _instance.done = _reader.readBool();
@@ -52150,7 +52150,7 @@ class Operation {
             _writer.writeString(1, _instance.name);
         }
         if (_instance.metadata) {
-            _writer.writeMessage(2, _instance.metadata, googleProtobuf003.Any.serializeBinaryToWriter);
+            _writer.writeMessage(2, _instance.metadata, OperationMetadata.serializeBinaryToWriter);
         }
         if (_instance.done) {
             _writer.writeBool(3, _instance.done);
@@ -65753,6 +65753,439 @@ class PlatformMapping {
     }
 }
 PlatformMapping.id = 'ondewo.nlu.PlatformMapping';
+/**
+ * Message implementation for ondewo.nlu.FullTextSearchRequest
+ */
+class FullTextSearchRequest {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of FullTextSearchRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.parent = _value.parent;
+        this.languageCode = _value.languageCode;
+        this.queryType = _value.queryType;
+        this.term = _value.term;
+        this.pageToken = _value.pageToken;
+        FullTextSearchRequest.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new FullTextSearchRequest();
+        FullTextSearchRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.parent = _instance.parent || '';
+        _instance.languageCode = _instance.languageCode || '';
+        _instance.queryType = _instance.queryType || 0;
+        _instance.term = _instance.term || '';
+        _instance.pageToken = _instance.pageToken || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.parent = _reader.readString();
+                    break;
+                case 2:
+                    _instance.languageCode = _reader.readString();
+                    break;
+                case 3:
+                    _instance.queryType = _reader.readEnum();
+                    break;
+                case 4:
+                    _instance.term = _reader.readString();
+                    break;
+                case 5:
+                    _instance.pageToken = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        FullTextSearchRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.parent) {
+            _writer.writeString(1, _instance.parent);
+        }
+        if (_instance.languageCode) {
+            _writer.writeString(2, _instance.languageCode);
+        }
+        if (_instance.queryType) {
+            _writer.writeEnum(3, _instance.queryType);
+        }
+        if (_instance.term) {
+            _writer.writeString(4, _instance.term);
+        }
+        if (_instance.pageToken) {
+            _writer.writeString(5, _instance.pageToken);
+        }
+    }
+    get parent() {
+        return this._parent;
+    }
+    set parent(value) {
+        this._parent = value;
+    }
+    get languageCode() {
+        return this._languageCode;
+    }
+    set languageCode(value) {
+        this._languageCode = value;
+    }
+    get queryType() {
+        return this._queryType;
+    }
+    set queryType(value) {
+        this._queryType = value;
+    }
+    get term() {
+        return this._term;
+    }
+    set term(value) {
+        this._term = value;
+    }
+    get pageToken() {
+        return this._pageToken;
+    }
+    set pageToken(value) {
+        this._pageToken = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        FullTextSearchRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            parent: this.parent,
+            languageCode: this.languageCode,
+            queryType: this.queryType,
+            term: this.term,
+            pageToken: this.pageToken
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            parent: this.parent,
+            languageCode: this.languageCode,
+            queryType: FullTextSearchRequest.QueryType[this.queryType === null || this.queryType === undefined
+                ? 0
+                : this.queryType],
+            term: this.term,
+            pageToken: this.pageToken
+        };
+    }
+}
+FullTextSearchRequest.id = 'ondewo.nlu.FullTextSearchRequest';
+(function (FullTextSearchRequest) {
+    let QueryType;
+    (function (QueryType) {
+        QueryType[QueryType["ALL"] = 0] = "ALL";
+        QueryType[QueryType["OndewoEntityQuery"] = 1] = "OndewoEntityQuery";
+        QueryType[QueryType["OndewoEntityTypeQuery"] = 2] = "OndewoEntityTypeQuery";
+        QueryType[QueryType["OndewoEntitySynonymQuery"] = 3] = "OndewoEntitySynonymQuery";
+        QueryType[QueryType["OndewoIntentQuery"] = 4] = "OndewoIntentQuery";
+        QueryType[QueryType["OndewoIntentContextInQuery"] = 5] = "OndewoIntentContextInQuery";
+        QueryType[QueryType["OndewoIntentContextOutQuery"] = 6] = "OndewoIntentContextOutQuery";
+        QueryType[QueryType["OndewoIntentUsersaysQuery"] = 7] = "OndewoIntentUsersaysQuery";
+        QueryType[QueryType["OndewoIntentTagsQuery"] = 8] = "OndewoIntentTagsQuery";
+        QueryType[QueryType["OndewoIntentParametersQuery"] = 9] = "OndewoIntentParametersQuery";
+        QueryType[QueryType["OndewoIntentResponseQuery"] = 10] = "OndewoIntentResponseQuery";
+    })(QueryType = FullTextSearchRequest.QueryType || (FullTextSearchRequest.QueryType = {}));
+})(FullTextSearchRequest || (FullTextSearchRequest = {}));
+/**
+ * Message implementation for ondewo.nlu.FullTextSearchResponse
+ */
+class FullTextSearchResponse {
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of FullTextSearchResponse to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        (this.response = _value.response
+            ? Object.keys(_value.response).reduce((r, k) => ({
+                ...r,
+                [k]: _value.response[k]
+                    ? new googleProtobuf003.Any(_value.response[k])
+                    : undefined
+            }), {})
+            : {}),
+            FullTextSearchResponse.refineValues(this);
+    }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new FullTextSearchResponse();
+        FullTextSearchResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.response = _instance.response || {};
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    const msg_1 = {};
+                    _reader.readMessage(msg_1, FullTextSearchResponse.ResponseEntry.deserializeBinaryFromReader);
+                    _instance.response = _instance.response || {};
+                    _instance.response[msg_1.key] = msg_1.value;
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        FullTextSearchResponse.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (!!_instance.response) {
+            const keys_1 = Object.keys(_instance.response);
+            if (keys_1.length) {
+                const repeated_1 = keys_1
+                    .map(key => ({ key: key, value: _instance.response[key] }))
+                    .reduce((r, v) => [...r, v], []);
+                _writer.writeRepeatedMessage(1, repeated_1, FullTextSearchResponse.ResponseEntry.serializeBinaryToWriter);
+            }
+        }
+    }
+    get response() {
+        return this._response;
+    }
+    set response(value) {
+        this._response = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        FullTextSearchResponse.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            response: this.response
+                ? Object.keys(this.response).reduce((r, k) => ({
+                    ...r,
+                    [k]: this.response[k] ? this.response[k].toObject() : undefined
+                }), {})
+                : {}
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            response: this.response
+                ? Object.keys(this.response).reduce((r, k) => ({
+                    ...r,
+                    [k]: this.response[k] ? this.response[k].toJSON() : null
+                }), {})
+                : {}
+        };
+    }
+}
+FullTextSearchResponse.id = 'ondewo.nlu.FullTextSearchResponse';
+(function (FullTextSearchResponse) {
+    /**
+     * Message implementation for ondewo.nlu.ResponseEntry
+     */
+    class ResponseEntry {
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of ResponseEntry to deeply clone from
+         */
+        constructor(_value) {
+            _value = _value || {};
+            this.key = _value.key;
+            this.value = _value.value
+                ? new googleProtobuf003.Any(_value.value)
+                : undefined;
+            ResponseEntry.refineValues(this);
+        }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes) {
+            const instance = new ResponseEntry();
+            ResponseEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+            return instance;
+        }
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance) {
+            _instance.key = _instance.key || '';
+            _instance.value = _instance.value || undefined;
+        }
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.key = _reader.readString();
+                        break;
+                    case 2:
+                        _instance.value = new googleProtobuf003.Any();
+                        _reader.readMessage(_instance.value, googleProtobuf003.Any.deserializeBinaryFromReader);
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            ResponseEntry.refineValues(_instance);
+        }
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance, _writer) {
+            if (_instance.key) {
+                _writer.writeString(1, _instance.key);
+            }
+            if (_instance.value) {
+                _writer.writeMessage(2, _instance.value, googleProtobuf003.Any.serializeBinaryToWriter);
+            }
+        }
+        get key() {
+            return this._key;
+        }
+        set key(value) {
+            this._key = value;
+        }
+        get value() {
+            return this._value;
+        }
+        set value(value) {
+            this._value = value;
+        }
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary() {
+            const writer = new BinaryWriter();
+            ResponseEntry.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        }
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject() {
+            return {
+                key: this.key,
+                value: this.value ? this.value.toObject() : undefined
+            };
+        }
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON() {
+            return this.toObject();
+        }
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(
+        // @ts-ignore
+        options) {
+            return {
+                key: this.key,
+                value: this.value ? this.value.toProtobufJSON(options) : null
+            };
+        }
+    }
+    ResponseEntry.id = 'ondewo.nlu.ResponseEntry';
+    FullTextSearchResponse.ResponseEntry = ResponseEntry;
+})(FullTextSearchResponse || (FullTextSearchResponse = {}));
 
 /* tslint:disable */
 /**
@@ -66270,6 +66703,24 @@ class AgentsClient {
                     requestClass: PlatformMapping,
                     responseClass: PlatformMapping
                 });
+            },
+            /**
+             * Unary call: /ondewo.nlu.Agents/GetFullTextSearch
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.FullTextSearchResponse>>
+             */
+            getFullTextSearch: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.nlu.Agents/GetFullTextSearch',
+                    requestData,
+                    requestMetadata,
+                    requestClass: FullTextSearchRequest,
+                    responseClass: FullTextSearchResponse
+                });
             }
         };
         this.client = clientFactory.createClient('ondewo.nlu.Agents', settings);
@@ -66608,6 +67059,18 @@ class AgentsClient {
     setPlatformMapping(requestData, requestMetadata = new GrpcMetadata()) {
         return this.$raw
             .setPlatformMapping(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Unary call @/ondewo.nlu.Agents/GetFullTextSearch
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.FullTextSearchResponse>
+     */
+    getFullTextSearch(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .getFullTextSearch(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
 }
@@ -70956,5 +71419,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.1.3", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { AddDataToUserLanguageModelRequest, AddSessionLabelsRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, Apodization, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BuildCacheRequest, CTCDecoding, Caching, CallType, CancelOperationRequest, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CommonServicesConfigs, CompositeInference, Context, ContextsClient, CreateAgentRequest, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateProjectConfigsRequest, CreateProjectRoleRequest, CreateServerRoleRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateUserLanguageModelRequest, CreateUserRequest, Credentials, CsiConfig, CtcAcousticModels, CustomHttpPattern, CustomPhonemizerProto, CustomPhonemizersClient, CustomPlatformInfo, DataEnrichmentConfig, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteContextRequest, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteOperationRequest, DeleteProjectConfigsRequest, DeleteProjectRoleRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionRequest, DeleteUserLanguageModelRequest, DeleteUserRequest, DeployProjectRequest, DetectIntentRequest, DetectIntentResponse, DetectedIntent, EndCallRequest, Endpoint, EntityDetected, EntityEnrichmentConfig, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileRequest, GetAudioFileResponse, GetContextRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFullConversationAudioFileRequest, GetFullConversationAudioFileResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectConfigsRequest, GetProjectConfigsResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionRequest, GetSessionReviewRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserProjectCountRequest, GetUserRequest, GetVoipCallInfoRequest, GetVoipCallInfoResponse, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, HiFiGan, HiFiGanTriton, Http, HttpRule, ImportAgentRequest, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, LanguageModelPipelineId, LanguageModels, LatLng, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIntentsRequest, ListIntentsResponse, ListOperationsRequest, ListOperationsResponse, ListParametersRequest, ListParametersResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserInfosResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVoipCallInfoRequest, ListVoipCallInfoResponse, Logging, LoginRequest, LoginResponse, Logmnse, Map, Matchbox, MbMelganTriton, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MinioConfig, Mode, ModelStatus, NLUConfig, NluCallbacks, NormalizeTextRequest, NormalizeTextResponse, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PlayWavFilesRequest, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectConfigs, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, PtFiles, Pyannote, QAClient, Quartznet, QuartznetTriton, QueryInput, QueryParameters, QueryResult, RabbitMqConfig, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, RegisterAccountRequest, RemoveSessionLabelsRequest, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, RestoreAgentRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2TConfig, S2TDescription, S2TGetServiceInfoResponse, S2TInference, S2TNormalization, S2tCallbacks, S2tPipelineId, SIPBaseConfig, SIPCallerConfig, ServerRole, ServerStatisticsClient, ServiceStatus, Session, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SetAgentStatusRequest, SetResourcesRequest, SipClient, SipStatus, SipStatusHistoryResponse, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallRequest, StartCallerRequest, StartCallersRequest, StartCallersResponse, StartListenerRequest, StartListenersRequest, StartListenersResponse, StartScheduledCallerRequest, StartScheduledCallersRequest, StartSessionRequest, StatResponse, Status, StopAllCallsRequest, StopCallsRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StringUpdate, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SConfig, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCallbacks, T2sPipelineId, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrackSessionStepRequest, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionReturnOptions, TransferCallRequest, TransferCallsRequest, UndeployProjectRequest, UpdateAgentRequest, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateProjectConfigsRequest, UpdateProjectRoleRequest, UpdateServerRoleRequest, UpdateUserRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, VoiceActivityDetection, VoipCallInfo, VoipCallInfoView, VoipSessionsClient, Wav2Vec, Wav2VecTriton, WebhookClient, WebhookRequest, WebhookResponse, Wiener, Word2VecEnrichmentConfig, WordNetAugEnrichmentConfig, WordTiming, XLNetAugEnrichmentConfig };
+export { AddDataToUserLanguageModelRequest, AddSessionLabelsRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, Apodization, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BuildCacheRequest, CTCDecoding, Caching, CallType, CancelOperationRequest, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CommonServicesConfigs, CompositeInference, Context, ContextsClient, CreateAgentRequest, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateProjectConfigsRequest, CreateProjectRoleRequest, CreateServerRoleRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateUserLanguageModelRequest, CreateUserRequest, Credentials, CsiConfig, CtcAcousticModels, CustomHttpPattern, CustomPhonemizerProto, CustomPhonemizersClient, CustomPlatformInfo, DataEnrichmentConfig, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteContextRequest, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteOperationRequest, DeleteProjectConfigsRequest, DeleteProjectRoleRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionRequest, DeleteUserLanguageModelRequest, DeleteUserRequest, DeployProjectRequest, DetectIntentRequest, DetectIntentResponse, DetectedIntent, EndCallRequest, Endpoint, EntityDetected, EntityEnrichmentConfig, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FullTextSearchRequest, FullTextSearchResponse, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_CUSTOM_PHONEMIZERS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_VOIP_SESSIONS_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileRequest, GetAudioFileResponse, GetContextRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFullConversationAudioFileRequest, GetFullConversationAudioFileResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectConfigsRequest, GetProjectConfigsResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionRequest, GetSessionReviewRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserProjectCountRequest, GetUserRequest, GetVoipCallInfoRequest, GetVoipCallInfoResponse, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, HiFiGan, HiFiGanTriton, Http, HttpRule, ImportAgentRequest, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, LanguageModelPipelineId, LanguageModels, LatLng, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIntentsRequest, ListIntentsResponse, ListOperationsRequest, ListOperationsResponse, ListParametersRequest, ListParametersResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserInfosResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVoipCallInfoRequest, ListVoipCallInfoResponse, Logging, LoginRequest, LoginResponse, Logmnse, Map, Matchbox, MbMelganTriton, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MinioConfig, Mode, ModelStatus, NLUConfig, NluCallbacks, NormalizeTextRequest, NormalizeTextResponse, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PlayWavFilesRequest, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectConfigs, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, PtFiles, Pyannote, QAClient, Quartznet, QuartznetTriton, QueryInput, QueryParameters, QueryResult, RabbitMqConfig, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, RegisterAccountRequest, RemoveSessionLabelsRequest, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, RestoreAgentRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2TConfig, S2TDescription, S2TGetServiceInfoResponse, S2TInference, S2TNormalization, S2tCallbacks, S2tPipelineId, SIPBaseConfig, SIPCallerConfig, ServerRole, ServerStatisticsClient, ServiceStatus, Session, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SetAgentStatusRequest, SetResourcesRequest, SipClient, SipStatus, SipStatusHistoryResponse, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallRequest, StartCallerRequest, StartCallersRequest, StartCallersResponse, StartListenerRequest, StartListenersRequest, StartListenersResponse, StartScheduledCallerRequest, StartScheduledCallersRequest, StartSessionRequest, StatResponse, Status, StopAllCallsRequest, StopCallsRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StringUpdate, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SConfig, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCallbacks, T2sPipelineId, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrackSessionStepRequest, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionReturnOptions, TransferCallRequest, TransferCallsRequest, UndeployProjectRequest, UpdateAgentRequest, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateProjectConfigsRequest, UpdateProjectRoleRequest, UpdateServerRoleRequest, UpdateUserRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, VoiceActivityDetection, VoipCallInfo, VoipCallInfoView, VoipSessionsClient, Wav2Vec, Wav2VecTriton, WebhookClient, WebhookRequest, WebhookResponse, Wiener, Word2VecEnrichmentConfig, WordNetAugEnrichmentConfig, WordTiming, XLNetAugEnrichmentConfig };
 //# sourceMappingURL=ondewo-vtsi-client-angular.mjs.map

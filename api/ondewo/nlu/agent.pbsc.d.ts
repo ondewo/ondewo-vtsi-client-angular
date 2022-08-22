@@ -241,6 +241,14 @@ export declare class AgentsClient {
          * @returns Observable<GrpcEvent<thisProto.PlatformMapping>>
          */
         setPlatformMapping: (requestData: thisProto.PlatformMapping, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.PlatformMapping>>;
+        /**
+         * Unary call: /ondewo.nlu.Agents/GetFullTextSearch
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.FullTextSearchResponse>>
+         */
+        getFullTextSearch: (requestData: thisProto.FullTextSearchRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.FullTextSearchResponse>>;
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
@@ -467,6 +475,14 @@ export declare class AgentsClient {
      * @returns Observable<thisProto.PlatformMapping>
      */
     setPlatformMapping(requestData: thisProto.PlatformMapping, requestMetadata?: GrpcMetadata): Observable<thisProto.PlatformMapping>;
+    /**
+     * Unary call @/ondewo.nlu.Agents/GetFullTextSearch
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.FullTextSearchResponse>
+     */
+    getFullTextSearch(requestData: thisProto.FullTextSearchRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.FullTextSearchResponse>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AgentsClient, [{ optional: true; }, null, null]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AgentsClient>;
 }
