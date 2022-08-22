@@ -2,6 +2,7 @@ import { GrpcClientFactory, GrpcEvent, GrpcMetadata } from '@ngx-grpc/common';
 import { GrpcHandler } from '@ngx-grpc/core';
 import { Observable } from 'rxjs';
 import * as thisProto from './voip.pb';
+import * as googleProtobuf003 from '@ngx-grpc/well-known-types';
 import * as i0 from "@angular/core";
 /**
  * Service client implementation for ondewo.vtsi.VoipSessions
@@ -16,109 +17,117 @@ export declare class VoipSessionsClient {
      */
     $raw: {
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/RunManifest
+         * Unary call: /ondewo.vtsi.VoipSessions/CreateProjectConfigs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.RunManifestResponse>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        runManifest: (requestData: thisProto.ManifestRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.RunManifestResponse>>;
+        createProjectConfigs: (requestData: thisProto.CreateProjectConfigsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/RemoveManifest
+         * Unary call: /ondewo.vtsi.VoipSessions/GetProjectConfigs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.RemoveManifestResponse>>
+         * @returns Observable<GrpcEvent<thisProto.GetProjectConfigsResponse>>
          */
-        removeManifest: (requestData: thisProto.ManifestRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.RemoveManifestResponse>>;
+        getProjectConfigs: (requestData: thisProto.GetProjectConfigsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetProjectConfigsResponse>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/GetManifestIDs
+         * Unary call: /ondewo.vtsi.VoipSessions/UpdateProjectConfigs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.GetManifestIDsResponse>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        getManifestIDs: (requestData: thisProto.GetManifestIDsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetManifestIDsResponse>>;
+        updateProjectConfigs: (requestData: thisProto.UpdateProjectConfigsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/StartCallInstance
+         * Unary call: /ondewo.vtsi.VoipSessions/DeleteProjectConfigs
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.StartCallInstanceResponse>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        startCallInstance: (requestData: thisProto.StartCallInstanceRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StartCallInstanceResponse>>;
+        deleteProjectConfigs: (requestData: thisProto.DeleteProjectConfigsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/StopCallInstance
+         * Unary call: /ondewo.vtsi.VoipSessions/DeployProject
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.StopCallInstanceResponse>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        stopCallInstance: (requestData: thisProto.StopCallInstanceRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StopCallInstanceResponse>>;
+        deployProject: (requestData: thisProto.DeployProjectRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/StartMultipleCallInstances
+         * Unary call: /ondewo.vtsi.VoipSessions/UndeployProject
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.StartMultipleCallInstancesResponse>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        startMultipleCallInstances: (requestData: thisProto.StartMultipleCallInstancesRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StartMultipleCallInstancesResponse>>;
+        undeployProject: (requestData: thisProto.UndeployProjectRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/GetCallIDs
+         * Unary call: /ondewo.vtsi.VoipSessions/StartListeners
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.GetCallIDsResponse>>
+         * @returns Observable<GrpcEvent<thisProto.StartListenersResponse>>
          */
-        getCallIDs: (requestData: thisProto.GetCallIDsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetCallIDsResponse>>;
+        startListeners: (requestData: thisProto.StartListenersRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StartListenersResponse>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/GetSessionID
+         * Unary call: /ondewo.vtsi.VoipSessions/StartCallers
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.GetSessionIDResponse>>
+         * @returns Observable<GrpcEvent<thisProto.StartCallersResponse>>
          */
-        getSessionID: (requestData: thisProto.GetSessionIDRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetSessionIDResponse>>;
+        startCallers: (requestData: thisProto.StartCallersRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.StartCallersResponse>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
+         * Unary call: /ondewo.vtsi.VoipSessions/StartScheduledCallers
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.ShutdownUnhealthyCallsResponse>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        shutdownUnhealthyCalls: (requestData: thisProto.ShutdownUnhealthyCallsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.ShutdownUnhealthyCallsResponse>>;
+        startScheduledCallers: (requestData: thisProto.StartScheduledCallersRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/GetManifestStatus
+         * Unary call: /ondewo.vtsi.VoipSessions/StopCalls
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.VoipManifestStatus>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        getManifestStatus: (requestData: thisProto.VoipManifestStatusRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.VoipManifestStatus>>;
+        stopCalls: (requestData: thisProto.StopCallsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/GetInstanceStatus
+         * Unary call: /ondewo.vtsi.VoipSessions/StopAllCalls
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.VoipStatus>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        getInstanceStatus: (requestData: thisProto.GetVoipStatusRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.VoipStatus>>;
+        stopAllCalls: (requestData: thisProto.StopAllCallsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/UpdateServicesStatus
+         * Unary call: /ondewo.vtsi.VoipSessions/TransferCalls
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.UpdateServicesStatusResponse>>
+         * @returns Observable<GrpcEvent<googleProtobuf003.Empty>>
          */
-        updateServicesStatus: (requestData: thisProto.UpdateServicesStatusRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.UpdateServicesStatusResponse>>;
+        transferCalls: (requestData: thisProto.TransferCallsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<googleProtobuf003.Empty>>;
         /**
-         * Unary call: /ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
+         * Unary call: /ondewo.vtsi.VoipSessions/GetVoipCallInfo
          *
          * @param requestMessage Request message
          * @param requestMetadata Request metadata
-         * @returns Observable<GrpcEvent<thisProto.DeployPreconditionResponse>>
+         * @returns Observable<GrpcEvent<thisProto.GetVoipCallInfoResponse>>
          */
-        deployPreconditionForWorkingSetup: (requestData: thisProto.DeployPreconditionRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.DeployPreconditionResponse>>;
+        getVoipCallInfo: (requestData: thisProto.GetVoipCallInfoRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.GetVoipCallInfoResponse>>;
+        /**
+         * Unary call: /ondewo.vtsi.VoipSessions/ListVoipCallInfo
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.ListVoipCallInfoResponse>>
+         */
+        listVoipCallInfo: (requestData: thisProto.ListVoipCallInfoRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<thisProto.ListVoipCallInfoResponse>>;
         /**
          * Unary call: /ondewo.vtsi.VoipSessions/GetAudioFile
          *
@@ -138,109 +147,117 @@ export declare class VoipSessionsClient {
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/RunManifest
+     * Unary call @/ondewo.vtsi.VoipSessions/CreateProjectConfigs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.RunManifestResponse>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    runManifest(requestData: thisProto.ManifestRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.RunManifestResponse>;
+    createProjectConfigs(requestData: thisProto.CreateProjectConfigsRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/RemoveManifest
+     * Unary call @/ondewo.vtsi.VoipSessions/GetProjectConfigs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.RemoveManifestResponse>
+     * @returns Observable<thisProto.GetProjectConfigsResponse>
      */
-    removeManifest(requestData: thisProto.ManifestRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.RemoveManifestResponse>;
+    getProjectConfigs(requestData: thisProto.GetProjectConfigsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetProjectConfigsResponse>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/GetManifestIDs
+     * Unary call @/ondewo.vtsi.VoipSessions/UpdateProjectConfigs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.GetManifestIDsResponse>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    getManifestIDs(requestData: thisProto.GetManifestIDsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetManifestIDsResponse>;
+    updateProjectConfigs(requestData: thisProto.UpdateProjectConfigsRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/StartCallInstance
+     * Unary call @/ondewo.vtsi.VoipSessions/DeleteProjectConfigs
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.StartCallInstanceResponse>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    startCallInstance(requestData: thisProto.StartCallInstanceRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StartCallInstanceResponse>;
+    deleteProjectConfigs(requestData: thisProto.DeleteProjectConfigsRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/StopCallInstance
+     * Unary call @/ondewo.vtsi.VoipSessions/DeployProject
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.StopCallInstanceResponse>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    stopCallInstance(requestData: thisProto.StopCallInstanceRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StopCallInstanceResponse>;
+    deployProject(requestData: thisProto.DeployProjectRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/StartMultipleCallInstances
+     * Unary call @/ondewo.vtsi.VoipSessions/UndeployProject
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.StartMultipleCallInstancesResponse>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    startMultipleCallInstances(requestData: thisProto.StartMultipleCallInstancesRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StartMultipleCallInstancesResponse>;
+    undeployProject(requestData: thisProto.UndeployProjectRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/GetCallIDs
+     * Unary call @/ondewo.vtsi.VoipSessions/StartListeners
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.GetCallIDsResponse>
+     * @returns Observable<thisProto.StartListenersResponse>
      */
-    getCallIDs(requestData: thisProto.GetCallIDsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetCallIDsResponse>;
+    startListeners(requestData: thisProto.StartListenersRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StartListenersResponse>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/GetSessionID
+     * Unary call @/ondewo.vtsi.VoipSessions/StartCallers
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.GetSessionIDResponse>
+     * @returns Observable<thisProto.StartCallersResponse>
      */
-    getSessionID(requestData: thisProto.GetSessionIDRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetSessionIDResponse>;
+    startCallers(requestData: thisProto.StartCallersRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.StartCallersResponse>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/ShutdownUnhealthyCalls
+     * Unary call @/ondewo.vtsi.VoipSessions/StartScheduledCallers
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.ShutdownUnhealthyCallsResponse>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    shutdownUnhealthyCalls(requestData: thisProto.ShutdownUnhealthyCallsRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.ShutdownUnhealthyCallsResponse>;
+    startScheduledCallers(requestData: thisProto.StartScheduledCallersRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/GetManifestStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/StopCalls
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.VoipManifestStatus>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    getManifestStatus(requestData: thisProto.VoipManifestStatusRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.VoipManifestStatus>;
+    stopCalls(requestData: thisProto.StopCallsRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/GetInstanceStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/StopAllCalls
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.VoipStatus>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    getInstanceStatus(requestData: thisProto.GetVoipStatusRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.VoipStatus>;
+    stopAllCalls(requestData: thisProto.StopAllCallsRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/UpdateServicesStatus
+     * Unary call @/ondewo.vtsi.VoipSessions/TransferCalls
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.UpdateServicesStatusResponse>
+     * @returns Observable<googleProtobuf003.Empty>
      */
-    updateServicesStatus(requestData: thisProto.UpdateServicesStatusRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.UpdateServicesStatusResponse>;
+    transferCalls(requestData: thisProto.TransferCallsRequest, requestMetadata?: GrpcMetadata): Observable<googleProtobuf003.Empty>;
     /**
-     * Unary call @/ondewo.vtsi.VoipSessions/DeployPreconditionForWorkingSetup
+     * Unary call @/ondewo.vtsi.VoipSessions/GetVoipCallInfo
      *
      * @param requestMessage Request message
      * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.DeployPreconditionResponse>
+     * @returns Observable<thisProto.GetVoipCallInfoResponse>
      */
-    deployPreconditionForWorkingSetup(requestData: thisProto.DeployPreconditionRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.DeployPreconditionResponse>;
+    getVoipCallInfo(requestData: thisProto.GetVoipCallInfoRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.GetVoipCallInfoResponse>;
+    /**
+     * Unary call @/ondewo.vtsi.VoipSessions/ListVoipCallInfo
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.ListVoipCallInfoResponse>
+     */
+    listVoipCallInfo(requestData: thisProto.ListVoipCallInfoRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.ListVoipCallInfoResponse>;
     /**
      * Unary call @/ondewo.vtsi.VoipSessions/GetAudioFile
      *
