@@ -9,7 +9,7 @@ export
 # 2 - Create Release Branch and push
 # 3 - Create Release Tag and push
 # 4 - GitHub Release
-# 5 - PyPI Release
+# 5 - NPM Release
 
 ########################################################
 # 		Variables
