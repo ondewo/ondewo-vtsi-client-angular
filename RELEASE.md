@@ -1,5 +1,12 @@
 # Release History
 *****************
+## Release ONDEWO VTSI Angular Client 3.0.0
+
+* Track version 3.0.0 of [ONDEWO VTSI API](https://github.com/ondewo/ondewo-vtsi-api/releases/3.0.0)
+* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Implemented automated release for GitHub and NPM
+* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Added pre-commit hooks and adjusted files to them
+
+*****************
 ## Release ONDEWO VTSI Angular Client 2.4.0
 
   * ONDEWO Natural Language Understanding (NLU) API Version [2.6.0](https://github.com/ondewo/ondewo-nlu-api/releases/2.6.0)
