@@ -122,14 +122,15 @@ release: ## Create Github and NPM Release
 	git add package-lock.json
 	git add package.json
 	git add Makefile
-	git add ondewo-proto-compiler
+	git add ${VTSI_APIS_DIR}
+	git add ${ONDEWO_PROTO_COMPILER_DIR}
 	git status
-# git commit -m "Preparing for Release ${ONDEWO_VTSI_VERSION}"
-# git push
-# make publish_npm_via_docker
-# make create_release_branch
-# make create_release_tag
-# make release_to_github_via_docker_image
+	git commit -m "Preparing for Release ${ONDEWO_VTSI_VERSION}"
+	git push
+	make publish_npm_via_docker
+	make create_release_branch
+	make create_release_tag
+	make release_to_github_via_docker_image
 	@echo "Finished Release"
 
 gh_release: build_utils_docker_image release_to_github_via_docker_image ## Builds Utils Image and Releases to Github
@@ -170,7 +171,7 @@ release_to_github_via_docker_image:  ## Release to Github via docker
 build_utils_docker_image:  ## Build utils docker image
 	docker build -f Dockerfile.utils -t ${IMAGE_UTILS_NAME} .
 
-build_and_publish_npm_via_docker: build build_utils_docker_image ## Builds Code, Docker-Image and Releases to NPM
+publish_npm_via_docker: build_utils_docker_image ## Builds Code, Docker-Image and Releases to NPM
 	docker run --rm \
 		-e NPM_AUTOMATION_TOKEN=${NPM_AUTOMATION_TOKEN} \
 		${IMAGE_UTILS_NAME} make docker_npm_release
@@ -199,8 +200,8 @@ run_release_with_devops: ## Runs the make release target with credentials from d
 spc: ## Checks if the Release Branch, Tag and Pypi version already exist
 	$(eval filtered_branches:= $(shell git branch --all | grep "release/${ONDEWO_VTSI_VERSION}"))
 	$(eval filtered_tags:= $(shell git tag --list | grep "${ONDEWO_VTSI_VERSION}"))
-# @if test "$(filtered_branches)" != ""; then echo "-- Test 1: Branch exists!!" & exit 1; else echo "-- Test 1: Branch is fine";fi
-# @if test "$(filtered_tags)" != ""; then echo "-- Test 2: Tag exists!!" & exit 1; else echo "-- Test 2: Tag is fine";fi
+	@if test "$(filtered_branches)" != ""; then echo "-- Test 1: Branch exists!!" & exit 1; else echo "-- Test 1: Branch is fine";fi
+	@if test "$(filtered_tags)" != ""; then echo "-- Test 2: Tag exists!!" & exit 1; else echo "-- Test 2: Tag is fine";fi
 
 
 ########################################################
