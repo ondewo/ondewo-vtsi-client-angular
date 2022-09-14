@@ -51,6 +51,9 @@ install_packages: ## Install npm packages
 install_precommit_hooks: ## Install precommit hooks
 	npx husky install
 
+run_precommit_hooks:
+	.husky/pre-commit
+
 prettier: ## Checks formatting with Prettier - Use PRETTIER_WRITE=-w to also automatically apply corrections where needed
 	node_modules/.bin/prettier --config .prettierrc --check --ignore-path .prettierignore $(PRETTIER_WRITE) ./
 
@@ -104,10 +107,30 @@ check_build: #Checks if all built proto-code is there
 
 release: ## Create Github and NPM Release
 	@echo "Start Release"
-	make build_and_publish_npm_via_docker
-	make create_release_branch
-	make create_release_tag
-	make release_to_github_via_docker_image
+	make install_precommit_hooks
+	make build
+	make check_build
+	make run_precommit_hooks
+	git status
+	git add api
+	git add esm2020
+	git add fesm2020
+	git add fesm2015
+	git add src
+	git add README.md
+	git add RELEASE.md
+	git add package-lock.json
+	git add package.json
+	git add Makefile
+	git add ondewo-proto-compiler
+	git status
+# git commit -m "Preparing for Release ${ONDEWO_VTSI_VERSION}"
+# git push
+# make publish_npm_via_docker
+# make create_release_branch
+# make create_release_tag
+# make release_to_github_via_docker_image
+	@echo "Finished Release"
 
 gh_release: build_utils_docker_image release_to_github_via_docker_image ## Builds Utils Image and Releases to Github
 
@@ -176,8 +199,8 @@ run_release_with_devops: ## Runs the make release target with credentials from d
 spc: ## Checks if the Release Branch, Tag and Pypi version already exist
 	$(eval filtered_branches:= $(shell git branch --all | grep "release/${ONDEWO_VTSI_VERSION}"))
 	$(eval filtered_tags:= $(shell git tag --list | grep "${ONDEWO_VTSI_VERSION}"))
-	@if test "$(filtered_branches)" != ""; then echo "-- Test 1: Branch exists!!" & exit 1; else echo "-- Test 1: Branch is fine";fi
-	@if test "$(filtered_tags)" != ""; then echo "-- Test 2: Tag exists!!" & exit 1; else echo "-- Test 2: Tag is fine";fi
+# @if test "$(filtered_branches)" != ""; then echo "-- Test 1: Branch exists!!" & exit 1; else echo "-- Test 1: Branch is fine";fi
+# @if test "$(filtered_tags)" != ""; then echo "-- Test 2: Tag exists!!" & exit 1; else echo "-- Test 2: Tag is fine";fi
 
 
 ########################################################
@@ -186,11 +209,11 @@ spc: ## Checks if the Release Branch, Tag and Pypi version already exist
 update_package: ## Updates Package Version in src/package.json
 	@sed -i "s/\"version\": \"[0-9]*.[0-9]*.[0-9]\"/\"version\": \"${ONDEWO_VTSI_VERSION}\"/g" src/package.json
 
-build: check_out_correct_submodule_versions build_compiler copy_proto_files_all_submodules update_package npm_run_build ## Build Code with Proto-Compiler
+build: check_out_correct_submodule_versions build_compiler update_package npm_run_build ## Build Code with Proto-Compiler
 	@echo "################### PROMT FOR CHANGING FILE OWNERSHIP FROM ROOT TO YOU ##########################"
 	@for f in `ls -la | grep root | cut -c 56-200`; \
 	do \
-		sudo chown `whoami`:`whoami` $$f && echo $$f; \
+		sudo chown -R `whoami`:`whoami` $$f && echo $$f; \
 	done
 	npm i eslint --save-dev
 	npm i prettier --save-dev
@@ -208,19 +231,6 @@ check_out_correct_submodule_versions: ## Fetches all Submodules and checksout sp
 	make -C ${VTSI_APIS_DIR} build
 	cp -R ${VTSI_APIS_DIR}/googleapis/google ${VTSI_APIS_DIR}/google
 	@echo "DONE checking out correct submodule versions."
-
-copy_proto_files_all_submodules: copy_proto_files_for_google_api ## Runs all "copy_proto_files_..." make targets
-
-copy_proto_files_for_google_api: ## Copys googeapi protos to build folder
-	@echo "START copying googleapis protos from submodules to build folder ..."
-	# TODO optimize to only generate the google protos used in vtsi
-	# -mkdir -p ${VTSI_APIS_DIR}/google/api
-	# -mkdir -p ${VTSI_APIS_DIR}/google/protobuf
-	# cp ${GOOGLE_PROTOS_DIR}/api/annotations.proto ${VTSI_APIS_DIR}/google/api/
-	# cp ${GOOGLE_PROTOS_DIR}/protobuf/struct.proto ${VTSI_APIS_DIR}/google/protobuf/
-	# cp ${GOOGLE_PROTOS_DIR}/protobuf/empty.proto ${VTSI_APIS_DIR}/google/protobuf/
-	# cp ${GOOGLE_PROTOS_DIR}/protobuf/field_mask.proto ${VTSI_APIS_DIR}/google/protobuf/
-	@echo "DONE copying googleapis protos from submodules to build folder."
 
 npm_run_build: ## Runs the build command in package.json
 	@echo "START npm run build ..."
