@@ -480,7 +480,7 @@ export class VoipSessionsClient {
 }
 VoipSessionsClient.ɵfac = i0.ɵɵngDeclareFactory({
 	minVersion: '12.0.0',
-	version: '14.2.0',
+	version: '14.2.5',
 	ngImport: i0,
 	type: VoipSessionsClient,
 	deps: [
@@ -492,14 +492,14 @@ VoipSessionsClient.ɵfac = i0.ɵɵngDeclareFactory({
 });
 VoipSessionsClient.ɵprov = i0.ɵɵngDeclareInjectable({
 	minVersion: '12.0.0',
-	version: '14.2.0',
+	version: '14.2.5',
 	ngImport: i0,
 	type: VoipSessionsClient,
 	providedIn: 'any'
 });
 i0.ɵɵngDeclareClassMetadata({
 	minVersion: '12.0.0',
-	version: '14.2.0',
+	version: '14.2.5',
 	ngImport: i0,
 	type: VoipSessionsClient,
 	decorators: [

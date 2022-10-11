@@ -1588,7 +1588,7 @@ export declare module SIPCallerConfig {
 		};
 	}
 	/**
-	 * Message implementation for ondewo.vtsi.HeadersEntry
+	 * Message implementation for ondewo.vtsi.SIPCallerConfig.HeadersEntry
 	 */
 	class HeadersEntry implements GrpcMessage {
 		static id: string;
