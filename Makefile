@@ -18,7 +18,7 @@ export
 ONDEWO_VTSI_VERSION = 5.0.0
 
 VTSI_API_GIT_BRANCH=tags/5.0.0
-ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.1.2
+ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.2.0
 ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
@@ -90,8 +90,8 @@ check_build: #Checks if all built proto-code is there
 		if test $$? != 0; then  echo "No Proto-Code for $${file} in api" & exit 1;fi; \
 		find esm2020 -iname "*pb*" | grep -q $${file}; \
 		if test $$? != 0; then  echo "No Proto-Code for $${file} in esm2020" & exit 1;fi; \
-		find fesm2015 -iname "*ondewo-vtsi-client-angular*" | wc -l | grep -q "2"; \
-		if test $$? != 0; then  echo "No Proto-Code for $${file} in fesm2015" & exit 1;fi; \
+		find fesm2022 -iname "*ondewo-vtsi-client-angular*" | wc -l | grep -q "2"; \
+		if test $$? != 0; then  echo "No Proto-Code for $${file} in fesm2022" & exit 1;fi; \
 		find fesm2020 -iname "*ondewo-vtsi-client-angular*" | wc -l | grep -q "2"; \
 		if test $$? != 0; then  echo "No Proto-Code for $${file} in fesm2020" & exit 1;fi; \
 	done
@@ -115,7 +115,7 @@ release: ## Create Github and NPM Release
 	git add api
 	git add esm2020
 	git add fesm2020
-	git add fesm2015
+	git add fesm2022
 	git add src
 	git add README.md
 	git add RELEASE.md
