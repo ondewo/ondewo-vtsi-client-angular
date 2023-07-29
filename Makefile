@@ -48,6 +48,7 @@ install_packages: ## Install npm packages
 	npm i
 
 install_precommit_hooks: ## Install precommit hooks
+	npm install eslint @typescript-eslint/eslint-plugin prettier
 	npx husky install
 
 run_precommit_hooks:
@@ -240,6 +241,7 @@ npm_run_build: ## Runs the build command in package.json
 	@echo "START npm run build ..."
 	cd src/ && npm run build && cd ..
 	@echo "DONE npm run build."
+	sudo chown $(USER):$(USER) . -R
 
 test-in-ondewo-aim: ## Runs test
 	@echo "START copying files to local AIM for testing ..."
