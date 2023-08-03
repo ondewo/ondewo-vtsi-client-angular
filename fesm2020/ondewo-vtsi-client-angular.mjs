@@ -49536,6 +49536,18 @@ var VtsiProjectStatus;
 	VtsiProjectStatus[(VtsiProjectStatus['DELETING'] = 6)] = 'DELETING';
 	VtsiProjectStatus[(VtsiProjectStatus['DELETED'] = 7)] = 'DELETED';
 })(VtsiProjectStatus || (VtsiProjectStatus = {}));
+var VtsiProjectSortingMode;
+(function (VtsiProjectSortingMode) {
+	VtsiProjectSortingMode[(VtsiProjectSortingMode['ASCENDING'] = 0)] = 'ASCENDING';
+	VtsiProjectSortingMode[(VtsiProjectSortingMode['DESCENDING'] = 1)] = 'DESCENDING';
+})(VtsiProjectSortingMode || (VtsiProjectSortingMode = {}));
+var VtsiProjectView;
+(function (VtsiProjectView) {
+	VtsiProjectView[(VtsiProjectView['VTSI_PROJECT_VIEW_UNSPECIFIED'] = 0)] = 'VTSI_PROJECT_VIEW_UNSPECIFIED';
+	VtsiProjectView[(VtsiProjectView['VTSI_PROJECT_VIEW_FULL'] = 1)] = 'VTSI_PROJECT_VIEW_FULL';
+	VtsiProjectView[(VtsiProjectView['VTSI_PROJECT_VIEW_SHALLOW'] = 2)] = 'VTSI_PROJECT_VIEW_SHALLOW';
+	VtsiProjectView[(VtsiProjectView['VTSI_PROJECT_VIEW_MINIMUM'] = 3)] = 'VTSI_PROJECT_VIEW_MINIMUM';
+})(VtsiProjectView || (VtsiProjectView = {}));
 /**
  * Message implementation for ondewo.vtsi.VtsiProject
  */
@@ -49556,6 +49568,9 @@ class VtsiProject {
 		this.createdAt = _value.createdAt ? new googleProtobuf003.Timestamp(_value.createdAt) : undefined;
 		this.modifiedBy = _value.modifiedBy;
 		this.modifiedAt = _value.modifiedAt ? new googleProtobuf003.Timestamp(_value.modifiedAt) : undefined;
+		this.activeCallers = _value.activeCallers;
+		this.activeListeners = _value.activeListeners;
+		this.asteriskPort = _value.asteriskPort;
 		VtsiProject.refineValues(this);
 	}
 	/**
@@ -49582,6 +49597,9 @@ class VtsiProject {
 		_instance.createdAt = _instance.createdAt || undefined;
 		_instance.modifiedBy = _instance.modifiedBy || '';
 		_instance.modifiedAt = _instance.modifiedAt || undefined;
+		_instance.activeCallers = _instance.activeCallers || 0;
+		_instance.activeListeners = _instance.activeListeners || 0;
+		_instance.asteriskPort = _instance.asteriskPort || 0;
 	}
 	/**
 	 * Deserializes / reads binary message into message instance using provided binary reader
@@ -49625,6 +49643,15 @@ class VtsiProject {
 					_instance.modifiedAt = new googleProtobuf003.Timestamp();
 					_reader.readMessage(_instance.modifiedAt, googleProtobuf003.Timestamp.deserializeBinaryFromReader);
 					break;
+				case 11:
+					_instance.activeCallers = _reader.readInt32();
+					break;
+				case 12:
+					_instance.activeListeners = _reader.readInt32();
+					break;
+				case 13:
+					_instance.asteriskPort = _reader.readInt32();
+					break;
 				default:
 					_reader.skipField();
 			}
@@ -49666,6 +49693,15 @@ class VtsiProject {
 		}
 		if (_instance.modifiedAt) {
 			_writer.writeMessage(10, _instance.modifiedAt, googleProtobuf003.Timestamp.serializeBinaryToWriter);
+		}
+		if (_instance.activeCallers) {
+			_writer.writeInt32(11, _instance.activeCallers);
+		}
+		if (_instance.activeListeners) {
+			_writer.writeInt32(12, _instance.activeListeners);
+		}
+		if (_instance.asteriskPort) {
+			_writer.writeInt32(13, _instance.asteriskPort);
 		}
 	}
 	get name() {
@@ -49728,6 +49764,24 @@ class VtsiProject {
 	set modifiedAt(value) {
 		this._modifiedAt = value;
 	}
+	get activeCallers() {
+		return this._activeCallers;
+	}
+	set activeCallers(value) {
+		this._activeCallers = value;
+	}
+	get activeListeners() {
+		return this._activeListeners;
+	}
+	set activeListeners(value) {
+		this._activeListeners = value;
+	}
+	get asteriskPort() {
+		return this._asteriskPort;
+	}
+	set asteriskPort(value) {
+		this._asteriskPort = value;
+	}
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -49751,7 +49805,10 @@ class VtsiProject {
 			createdBy: this.createdBy,
 			createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
 			modifiedBy: this.modifiedBy,
-			modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined
+			modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined,
+			activeCallers: this.activeCallers,
+			activeListeners: this.activeListeners,
+			asteriskPort: this.asteriskPort
 		};
 	}
 	/**
@@ -49782,7 +49839,10 @@ class VtsiProject {
 			createdBy: this.createdBy,
 			createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null,
 			modifiedBy: this.modifiedBy,
-			modifiedAt: this.modifiedAt ? this.modifiedAt.toProtobufJSON(options) : null
+			modifiedAt: this.modifiedAt ? this.modifiedAt.toProtobufJSON(options) : null,
+			activeCallers: this.activeCallers,
+			activeListeners: this.activeListeners,
+			asteriskPort: this.asteriskPort
 		};
 	}
 }
@@ -50640,6 +50700,397 @@ class GetVtsiProjectRequest {
 	}
 }
 GetVtsiProjectRequest.id = 'ondewo.vtsi.GetVtsiProjectRequest';
+/**
+ * Message implementation for ondewo.vtsi.ListVtsiProjectsRequest
+ */
+class ListVtsiProjectsRequest {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of ListVtsiProjectsRequest to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.vtsiProjectView = _value.vtsiProjectView;
+		this.pageToken = _value.pageToken;
+		this.vtsiProjectSorting = _value.vtsiProjectSorting ? new VtsiProjectSorting(_value.vtsiProjectSorting) : undefined;
+		ListVtsiProjectsRequest.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new ListVtsiProjectsRequest();
+		ListVtsiProjectsRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.vtsiProjectView = _instance.vtsiProjectView || 0;
+		_instance.pageToken = _instance.pageToken || '';
+		_instance.vtsiProjectSorting = _instance.vtsiProjectSorting || undefined;
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.vtsiProjectView = _reader.readEnum();
+					break;
+				case 2:
+					_instance.pageToken = _reader.readString();
+					break;
+				case 3:
+					_instance.vtsiProjectSorting = new VtsiProjectSorting();
+					_reader.readMessage(_instance.vtsiProjectSorting, VtsiProjectSorting.deserializeBinaryFromReader);
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		ListVtsiProjectsRequest.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.vtsiProjectView) {
+			_writer.writeEnum(1, _instance.vtsiProjectView);
+		}
+		if (_instance.pageToken) {
+			_writer.writeString(2, _instance.pageToken);
+		}
+		if (_instance.vtsiProjectSorting) {
+			_writer.writeMessage(3, _instance.vtsiProjectSorting, VtsiProjectSorting.serializeBinaryToWriter);
+		}
+	}
+	get vtsiProjectView() {
+		return this._vtsiProjectView;
+	}
+	set vtsiProjectView(value) {
+		this._vtsiProjectView = value;
+	}
+	get pageToken() {
+		return this._pageToken;
+	}
+	set pageToken(value) {
+		this._pageToken = value;
+	}
+	get vtsiProjectSorting() {
+		return this._vtsiProjectSorting;
+	}
+	set vtsiProjectSorting(value) {
+		this._vtsiProjectSorting = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		ListVtsiProjectsRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			vtsiProjectView: this.vtsiProjectView,
+			pageToken: this.pageToken,
+			vtsiProjectSorting: this.vtsiProjectSorting ? this.vtsiProjectSorting.toObject() : undefined
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			vtsiProjectView:
+				VtsiProjectView[this.vtsiProjectView === null || this.vtsiProjectView === undefined ? 0 : this.vtsiProjectView],
+			pageToken: this.pageToken,
+			vtsiProjectSorting: this.vtsiProjectSorting ? this.vtsiProjectSorting.toProtobufJSON(options) : null
+		};
+	}
+}
+ListVtsiProjectsRequest.id = 'ondewo.vtsi.ListVtsiProjectsRequest';
+/**
+ * Message implementation for ondewo.vtsi.ListVtsiProjectsResponse
+ */
+class ListVtsiProjectsResponse {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of ListVtsiProjectsResponse to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.vtsiProjects = (_value.vtsiProjects || []).map((m) => new VtsiProject(m));
+		this.nextPageToken = _value.nextPageToken;
+		ListVtsiProjectsResponse.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new ListVtsiProjectsResponse();
+		ListVtsiProjectsResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.vtsiProjects = _instance.vtsiProjects || [];
+		_instance.nextPageToken = _instance.nextPageToken || '';
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					const messageInitializer1 = new VtsiProject();
+					_reader.readMessage(messageInitializer1, VtsiProject.deserializeBinaryFromReader);
+					(_instance.vtsiProjects = _instance.vtsiProjects || []).push(messageInitializer1);
+					break;
+				case 2:
+					_instance.nextPageToken = _reader.readString();
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		ListVtsiProjectsResponse.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.vtsiProjects && _instance.vtsiProjects.length) {
+			_writer.writeRepeatedMessage(1, _instance.vtsiProjects, VtsiProject.serializeBinaryToWriter);
+		}
+		if (_instance.nextPageToken) {
+			_writer.writeString(2, _instance.nextPageToken);
+		}
+	}
+	get vtsiProjects() {
+		return this._vtsiProjects;
+	}
+	set vtsiProjects(value) {
+		this._vtsiProjects = value;
+	}
+	get nextPageToken() {
+		return this._nextPageToken;
+	}
+	set nextPageToken(value) {
+		this._nextPageToken = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		ListVtsiProjectsResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			vtsiProjects: (this.vtsiProjects || []).map((m) => m.toObject()),
+			nextPageToken: this.nextPageToken
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			vtsiProjects: (this.vtsiProjects || []).map((m) => m.toProtobufJSON(options)),
+			nextPageToken: this.nextPageToken
+		};
+	}
+}
+ListVtsiProjectsResponse.id = 'ondewo.vtsi.ListVtsiProjectsResponse';
+/**
+ * Message implementation for ondewo.vtsi.VtsiProjectSorting
+ */
+class VtsiProjectSorting {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of VtsiProjectSorting to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.sortingField = _value.sortingField;
+		this.sortingMode = _value.sortingMode;
+		VtsiProjectSorting.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new VtsiProjectSorting();
+		VtsiProjectSorting.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.sortingField = _instance.sortingField || 0;
+		_instance.sortingMode = _instance.sortingMode || 0;
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.sortingField = _reader.readEnum();
+					break;
+				case 2:
+					_instance.sortingMode = _reader.readEnum();
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		VtsiProjectSorting.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.sortingField) {
+			_writer.writeEnum(1, _instance.sortingField);
+		}
+		if (_instance.sortingMode) {
+			_writer.writeEnum(2, _instance.sortingMode);
+		}
+	}
+	get sortingField() {
+		return this._sortingField;
+	}
+	set sortingField(value) {
+		this._sortingField = value;
+	}
+	get sortingMode() {
+		return this._sortingMode;
+	}
+	set sortingMode(value) {
+		this._sortingMode = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		VtsiProjectSorting.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			sortingField: this.sortingField,
+			sortingMode: this.sortingMode
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			sortingField:
+				VtsiProjectSorting.VtsiProjectSortingField[
+					this.sortingField === null || this.sortingField === undefined ? 0 : this.sortingField
+				],
+			sortingMode:
+				VtsiProjectSortingMode[this.sortingMode === null || this.sortingMode === undefined ? 0 : this.sortingMode]
+		};
+	}
+}
+VtsiProjectSorting.id = 'ondewo.vtsi.VtsiProjectSorting';
+(function (VtsiProjectSorting) {
+	let VtsiProjectSortingField;
+	(function (VtsiProjectSortingField) {
+		VtsiProjectSortingField[(VtsiProjectSortingField['NO_VTSI_PROJECT_SORTING'] = 0)] = 'NO_VTSI_PROJECT_SORTING';
+		VtsiProjectSortingField[(VtsiProjectSortingField['SORT_VTSI_PROJECT_BY_NAME'] = 1)] = 'SORT_VTSI_PROJECT_BY_NAME';
+		VtsiProjectSortingField[(VtsiProjectSortingField['SORT_VTSI_PROJECT_BY_DISPLAY_NAME'] = 2)] =
+			'SORT_VTSI_PROJECT_BY_DISPLAY_NAME';
+		VtsiProjectSortingField[(VtsiProjectSortingField['SORT_VTSI_PROJECT_BY_CREATION_DATE'] = 3)] =
+			'SORT_VTSI_PROJECT_BY_CREATION_DATE';
+		VtsiProjectSortingField[(VtsiProjectSortingField['SORT_VTSI_PROJECT_BY_LAST_MODIFIED'] = 4)] =
+			'SORT_VTSI_PROJECT_BY_LAST_MODIFIED';
+	})(
+		(VtsiProjectSortingField =
+			VtsiProjectSorting.VtsiProjectSortingField || (VtsiProjectSorting.VtsiProjectSortingField = {}))
+	);
+})(VtsiProjectSorting || (VtsiProjectSorting = {}));
 /**
  * Message implementation for ondewo.vtsi.UpdateVtsiProjectRequest
  */
@@ -52145,6 +52596,24 @@ class ProjectsClient {
 					requestClass: UndeployVtsiProjectRequest,
 					responseClass: UndeployVtsiProjectResponse
 				});
+			},
+			/**
+			 * Unary call: /ondewo.vtsi.Projects/ListVtsiProjects
+			 *
+			 * @param requestMessage Request message
+			 * @param requestMetadata Request metadata
+			 * @returns Observable<GrpcEvent<thisProto.ListVtsiProjectsResponse>>
+			 */
+			listVtsiProjects: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: '/ondewo.vtsi.Projects/ListVtsiProjects',
+					requestData,
+					requestMetadata,
+					requestClass: ListVtsiProjectsRequest,
+					responseClass: ListVtsiProjectsResponse
+				});
 			}
 		};
 		this.client = clientFactory.createClient('ondewo.vtsi.Projects', settings);
@@ -52208,6 +52677,16 @@ class ProjectsClient {
 	 */
 	undeployVtsiProject(requestData, requestMetadata = new GrpcMetadata()) {
 		return this.$raw.undeployVtsiProject(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	/**
+	 * Unary call @/ondewo.vtsi.Projects/ListVtsiProjects
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.ListVtsiProjectsResponse>
+	 */
+	listVtsiProjects(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.listVtsiProjects(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
 	}
 }
 ProjectsClient.ɵfac = i0.ɵɵngDeclareFactory({
@@ -84443,6 +84922,8 @@ export {
 	ListUsersInProjectResponse,
 	ListUsersRequest,
 	ListUsersResponse,
+	ListVtsiProjectsRequest,
+	ListVtsiProjectsResponse,
 	Listener,
 	Logging,
 	LoginRequest,
@@ -84624,7 +85105,10 @@ export {
 	ValidateRegexResponse,
 	VoiceActivityDetection,
 	VtsiProject,
+	VtsiProjectSorting,
+	VtsiProjectSortingMode,
 	VtsiProjectStatus,
+	VtsiProjectView,
 	Wav2Vec,
 	Wav2VecTriton,
 	WebhookClient,

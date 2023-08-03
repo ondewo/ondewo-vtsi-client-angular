@@ -11,6 +11,16 @@ export declare enum VtsiProjectStatus {
 	DELETING = 6,
 	DELETED = 7
 }
+export declare enum VtsiProjectSortingMode {
+	ASCENDING = 0,
+	DESCENDING = 1
+}
+export declare enum VtsiProjectView {
+	VTSI_PROJECT_VIEW_UNSPECIFIED = 0,
+	VTSI_PROJECT_VIEW_FULL = 1,
+	VTSI_PROJECT_VIEW_SHALLOW = 2,
+	VTSI_PROJECT_VIEW_MINIMUM = 3
+}
 /**
  * Message implementation for ondewo.vtsi.VtsiProject
  */
@@ -48,6 +58,9 @@ export declare class VtsiProject implements GrpcMessage {
 	private _createdAt?;
 	private _modifiedBy;
 	private _modifiedAt?;
+	private _activeCallers;
+	private _activeListeners;
+	private _asteriskPort;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of VtsiProject to deeply clone from
@@ -73,6 +86,12 @@ export declare class VtsiProject implements GrpcMessage {
 	set modifiedBy(value: string);
 	get modifiedAt(): googleProtobuf001.Timestamp | undefined;
 	set modifiedAt(value: googleProtobuf001.Timestamp | undefined);
+	get activeCallers(): number;
+	set activeCallers(value: number);
+	get activeListeners(): number;
+	set activeListeners(value: number);
+	get asteriskPort(): number;
+	set asteriskPort(value: number);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -108,6 +127,9 @@ export declare module VtsiProject {
 		createdAt?: googleProtobuf001.Timestamp.AsObject;
 		modifiedBy: string;
 		modifiedAt?: googleProtobuf001.Timestamp.AsObject;
+		activeCallers: number;
+		activeListeners: number;
+		asteriskPort: number;
 	}
 	/**
 	 * Protobuf JSON representation for VtsiProject
@@ -123,6 +145,9 @@ export declare module VtsiProject {
 		createdAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
 		modifiedBy: string;
 		modifiedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+		activeCallers: number;
+		activeListeners: number;
+		asteriskPort: number;
 	}
 }
 /**
@@ -610,6 +635,240 @@ export declare module GetVtsiProjectRequest {
 	 */
 	interface AsProtobufJSON {
 		name: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.ListVtsiProjectsRequest
+ */
+export declare class ListVtsiProjectsRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): ListVtsiProjectsRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: ListVtsiProjectsRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: ListVtsiProjectsRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: ListVtsiProjectsRequest, _writer: BinaryWriter): void;
+	private _vtsiProjectView;
+	private _pageToken;
+	private _vtsiProjectSorting?;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of ListVtsiProjectsRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<ListVtsiProjectsRequest.AsObject>);
+	get vtsiProjectView(): VtsiProjectView;
+	set vtsiProjectView(value: VtsiProjectView);
+	get pageToken(): string;
+	set pageToken(value: string);
+	get vtsiProjectSorting(): VtsiProjectSorting | undefined;
+	set vtsiProjectSorting(value: VtsiProjectSorting | undefined);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): ListVtsiProjectsRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): ListVtsiProjectsRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): ListVtsiProjectsRequest.AsProtobufJSON;
+}
+export declare module ListVtsiProjectsRequest {
+	/**
+	 * Standard JavaScript object representation for ListVtsiProjectsRequest
+	 */
+	interface AsObject {
+		vtsiProjectView: VtsiProjectView;
+		pageToken: string;
+		vtsiProjectSorting?: VtsiProjectSorting.AsObject;
+	}
+	/**
+	 * Protobuf JSON representation for ListVtsiProjectsRequest
+	 */
+	interface AsProtobufJSON {
+		vtsiProjectView: string;
+		pageToken: string;
+		vtsiProjectSorting: VtsiProjectSorting.AsProtobufJSON | null;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.ListVtsiProjectsResponse
+ */
+export declare class ListVtsiProjectsResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): ListVtsiProjectsResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: ListVtsiProjectsResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: ListVtsiProjectsResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: ListVtsiProjectsResponse, _writer: BinaryWriter): void;
+	private _vtsiProjects?;
+	private _nextPageToken;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of ListVtsiProjectsResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<ListVtsiProjectsResponse.AsObject>);
+	get vtsiProjects(): VtsiProject[] | undefined;
+	set vtsiProjects(value: VtsiProject[] | undefined);
+	get nextPageToken(): string;
+	set nextPageToken(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): ListVtsiProjectsResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): ListVtsiProjectsResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): ListVtsiProjectsResponse.AsProtobufJSON;
+}
+export declare module ListVtsiProjectsResponse {
+	/**
+	 * Standard JavaScript object representation for ListVtsiProjectsResponse
+	 */
+	interface AsObject {
+		vtsiProjects?: VtsiProject.AsObject[];
+		nextPageToken: string;
+	}
+	/**
+	 * Protobuf JSON representation for ListVtsiProjectsResponse
+	 */
+	interface AsProtobufJSON {
+		vtsiProjects: VtsiProject.AsProtobufJSON[] | null;
+		nextPageToken: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.VtsiProjectSorting
+ */
+export declare class VtsiProjectSorting implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): VtsiProjectSorting;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: VtsiProjectSorting): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: VtsiProjectSorting, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: VtsiProjectSorting, _writer: BinaryWriter): void;
+	private _sortingField;
+	private _sortingMode;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of VtsiProjectSorting to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<VtsiProjectSorting.AsObject>);
+	get sortingField(): VtsiProjectSorting.VtsiProjectSortingField;
+	set sortingField(value: VtsiProjectSorting.VtsiProjectSortingField);
+	get sortingMode(): VtsiProjectSortingMode;
+	set sortingMode(value: VtsiProjectSortingMode);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): VtsiProjectSorting.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): VtsiProjectSorting.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): VtsiProjectSorting.AsProtobufJSON;
+}
+export declare module VtsiProjectSorting {
+	/**
+	 * Standard JavaScript object representation for VtsiProjectSorting
+	 */
+	interface AsObject {
+		sortingField: VtsiProjectSorting.VtsiProjectSortingField;
+		sortingMode: VtsiProjectSortingMode;
+	}
+	/**
+	 * Protobuf JSON representation for VtsiProjectSorting
+	 */
+	interface AsProtobufJSON {
+		sortingField: string;
+		sortingMode: string;
+	}
+	enum VtsiProjectSortingField {
+		NO_VTSI_PROJECT_SORTING = 0,
+		SORT_VTSI_PROJECT_BY_NAME = 1,
+		SORT_VTSI_PROJECT_BY_DISPLAY_NAME = 2,
+		SORT_VTSI_PROJECT_BY_CREATION_DATE = 3,
+		SORT_VTSI_PROJECT_BY_LAST_MODIFIED = 4
 	}
 }
 /**

@@ -81,6 +81,17 @@ export declare class ProjectsClient {
 			requestData: thisProto.UndeployVtsiProjectRequest,
 			requestMetadata?: GrpcMetadata
 		) => Observable<GrpcEvent<thisProto.UndeployVtsiProjectResponse>>;
+		/**
+		 * Unary call: /ondewo.vtsi.Projects/ListVtsiProjects
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.ListVtsiProjectsResponse>>
+		 */
+		listVtsiProjects: (
+			requestData: thisProto.ListVtsiProjectsRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.ListVtsiProjectsResponse>>;
 	};
 	constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
 	/**
@@ -149,6 +160,17 @@ export declare class ProjectsClient {
 		requestData: thisProto.UndeployVtsiProjectRequest,
 		requestMetadata?: GrpcMetadata
 	): Observable<thisProto.UndeployVtsiProjectResponse>;
+	/**
+	 * Unary call @/ondewo.vtsi.Projects/ListVtsiProjects
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.ListVtsiProjectsResponse>
+	 */
+	listVtsiProjects(
+		requestData: thisProto.ListVtsiProjectsRequest,
+		requestMetadata?: GrpcMetadata
+	): Observable<thisProto.ListVtsiProjectsResponse>;
 	static ɵfac: i0.ɵɵFactoryDeclaration<ProjectsClient, [{ optional: true }, null, null]>;
 	static ɵprov: i0.ɵɵInjectableDeclaration<ProjectsClient>;
 }

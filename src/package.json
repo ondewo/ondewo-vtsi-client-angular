@@ -1,6 +1,6 @@
 {
   "name": "@ondewo/vtsi-client-angular",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "description": "Ondewo voice telephone system integration client library for angular",
   "keywords": [
     "ondewo",
