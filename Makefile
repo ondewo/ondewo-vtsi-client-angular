@@ -15,9 +15,9 @@ export
 # 		Variables
 ########################################################
 
-ONDEWO_VTSI_VERSION = 6.3.0
+ONDEWO_VTSI_VERSION = 6.4.0
 
-VTSI_API_GIT_BRANCH=tags/6.3.0
+VTSI_API_GIT_BRANCH=tags/6.4.0
 ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.4.0
 ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api

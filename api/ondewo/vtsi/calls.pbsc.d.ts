@@ -38,6 +38,28 @@ export declare class CallsClient {
 			requestMetadata?: GrpcMetadata
 		) => Observable<GrpcEvent<thisProto.StartCallersResponse>>;
 		/**
+		 * Unary call: /ondewo.vtsi.Calls/ListCallers
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.ListCallersResponse>>
+		 */
+		listCallers: (
+			requestData: thisProto.ListCallersRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.ListCallersResponse>>;
+		/**
+		 * Unary call: /ondewo.vtsi.Calls/GetCaller
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.Caller>>
+		 */
+		getCaller: (
+			requestData: thisProto.GetCallerRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.Caller>>;
+		/**
 		 * Unary call: /ondewo.vtsi.Calls/StartListener
 		 *
 		 * @param requestMessage Request message
@@ -59,6 +81,28 @@ export declare class CallsClient {
 			requestData: thisProto.StartListenersRequest,
 			requestMetadata?: GrpcMetadata
 		) => Observable<GrpcEvent<thisProto.StartListenersResponse>>;
+		/**
+		 * Unary call: /ondewo.vtsi.Calls/ListListeners
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.ListListenersResponse>>
+		 */
+		listListeners: (
+			requestData: thisProto.ListListenersRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.ListListenersResponse>>;
+		/**
+		 * Unary call: /ondewo.vtsi.Calls/GetListener
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.Listener>>
+		 */
+		getListener: (
+			requestData: thisProto.GetListenerRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.Listener>>;
 		/**
 		 * Unary call: /ondewo.vtsi.Calls/StartScheduledCaller
 		 *
@@ -137,27 +181,27 @@ export declare class CallsClient {
 			requestMetadata?: GrpcMetadata
 		) => Observable<GrpcEvent<thisProto.TransferCallsResponse>>;
 		/**
-		 * Unary call: /ondewo.vtsi.Calls/GetCallInfo
+		 * Unary call: /ondewo.vtsi.Calls/GetCall
 		 *
 		 * @param requestMessage Request message
 		 * @param requestMetadata Request metadata
-		 * @returns Observable<GrpcEvent<thisProto.GetCallInfoResponse>>
+		 * @returns Observable<GrpcEvent<thisProto.Call>>
 		 */
-		getCallInfo: (
-			requestData: thisProto.GetCallInfoRequest,
+		getCall: (
+			requestData: thisProto.GetCallRequest,
 			requestMetadata?: GrpcMetadata
-		) => Observable<GrpcEvent<thisProto.GetCallInfoResponse>>;
+		) => Observable<GrpcEvent<thisProto.Call>>;
 		/**
-		 * Unary call: /ondewo.vtsi.Calls/ListCallInfo
+		 * Unary call: /ondewo.vtsi.Calls/ListCalls
 		 *
 		 * @param requestMessage Request message
 		 * @param requestMetadata Request metadata
-		 * @returns Observable<GrpcEvent<thisProto.ListCallInfoResponse>>
+		 * @returns Observable<GrpcEvent<thisProto.ListCallsResponse>>
 		 */
-		listCallInfo: (
-			requestData: thisProto.ListCallInfoRequest,
+		listCalls: (
+			requestData: thisProto.ListCallsRequest,
 			requestMetadata?: GrpcMetadata
-		) => Observable<GrpcEvent<thisProto.ListCallInfoResponse>>;
+		) => Observable<GrpcEvent<thisProto.ListCallsResponse>>;
 		/**
 		 * Unary call: /ondewo.vtsi.Calls/GetAudioFile
 		 *
@@ -205,6 +249,25 @@ export declare class CallsClient {
 		requestMetadata?: GrpcMetadata
 	): Observable<thisProto.StartCallersResponse>;
 	/**
+	 * Unary call @/ondewo.vtsi.Calls/ListCallers
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.ListCallersResponse>
+	 */
+	listCallers(
+		requestData: thisProto.ListCallersRequest,
+		requestMetadata?: GrpcMetadata
+	): Observable<thisProto.ListCallersResponse>;
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/GetCaller
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.Caller>
+	 */
+	getCaller(requestData: thisProto.GetCallerRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.Caller>;
+	/**
 	 * Unary call @/ondewo.vtsi.Calls/StartListener
 	 *
 	 * @param requestMessage Request message
@@ -226,6 +289,28 @@ export declare class CallsClient {
 		requestData: thisProto.StartListenersRequest,
 		requestMetadata?: GrpcMetadata
 	): Observable<thisProto.StartListenersResponse>;
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/ListListeners
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.ListListenersResponse>
+	 */
+	listListeners(
+		requestData: thisProto.ListListenersRequest,
+		requestMetadata?: GrpcMetadata
+	): Observable<thisProto.ListListenersResponse>;
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/GetListener
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.Listener>
+	 */
+	getListener(
+		requestData: thisProto.GetListenerRequest,
+		requestMetadata?: GrpcMetadata
+	): Observable<thisProto.Listener>;
 	/**
 	 * Unary call @/ondewo.vtsi.Calls/StartScheduledCaller
 	 *
@@ -304,27 +389,24 @@ export declare class CallsClient {
 		requestMetadata?: GrpcMetadata
 	): Observable<thisProto.TransferCallsResponse>;
 	/**
-	 * Unary call @/ondewo.vtsi.Calls/GetCallInfo
+	 * Unary call @/ondewo.vtsi.Calls/GetCall
 	 *
 	 * @param requestMessage Request message
 	 * @param requestMetadata Request metadata
-	 * @returns Observable<thisProto.GetCallInfoResponse>
+	 * @returns Observable<thisProto.Call>
 	 */
-	getCallInfo(
-		requestData: thisProto.GetCallInfoRequest,
-		requestMetadata?: GrpcMetadata
-	): Observable<thisProto.GetCallInfoResponse>;
+	getCall(requestData: thisProto.GetCallRequest, requestMetadata?: GrpcMetadata): Observable<thisProto.Call>;
 	/**
-	 * Unary call @/ondewo.vtsi.Calls/ListCallInfo
+	 * Unary call @/ondewo.vtsi.Calls/ListCalls
 	 *
 	 * @param requestMessage Request message
 	 * @param requestMetadata Request metadata
-	 * @returns Observable<thisProto.ListCallInfoResponse>
+	 * @returns Observable<thisProto.ListCallsResponse>
 	 */
-	listCallInfo(
-		requestData: thisProto.ListCallInfoRequest,
+	listCalls(
+		requestData: thisProto.ListCallsRequest,
 		requestMetadata?: GrpcMetadata
-	): Observable<thisProto.ListCallInfoResponse>;
+	): Observable<thisProto.ListCallsResponse>;
 	/**
 	 * Unary call @/ondewo.vtsi.Calls/GetAudioFile
 	 *

@@ -665,7 +665,7 @@ export declare class ListVtsiProjectsRequest implements GrpcMessage {
 	 */
 	static serializeBinaryToWriter(_instance: ListVtsiProjectsRequest, _writer: BinaryWriter): void;
 	private _vtsiProjectView;
-	private _pageToken;
+	private _pageToken?;
 	private _vtsiProjectSorting?;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -674,8 +674,8 @@ export declare class ListVtsiProjectsRequest implements GrpcMessage {
 	constructor(_value?: RecursivePartial<ListVtsiProjectsRequest.AsObject>);
 	get vtsiProjectView(): VtsiProjectView;
 	set vtsiProjectView(value: VtsiProjectView);
-	get pageToken(): string;
-	set pageToken(value: string);
+	get pageToken(): string | undefined;
+	set pageToken(value?: string);
 	get vtsiProjectSorting(): VtsiProjectSorting | undefined;
 	set vtsiProjectSorting(value: VtsiProjectSorting | undefined);
 	/**
@@ -704,7 +704,7 @@ export declare module ListVtsiProjectsRequest {
 	 */
 	interface AsObject {
 		vtsiProjectView: VtsiProjectView;
-		pageToken: string;
+		pageToken?: string;
 		vtsiProjectSorting?: VtsiProjectSorting.AsObject;
 	}
 	/**
@@ -712,7 +712,7 @@ export declare module ListVtsiProjectsRequest {
 	 */
 	interface AsProtobufJSON {
 		vtsiProjectView: string;
-		pageToken: string;
+		pageToken: string | null;
 		vtsiProjectSorting: VtsiProjectSorting.AsProtobufJSON | null;
 	}
 }
@@ -817,17 +817,17 @@ export declare class VtsiProjectSorting implements GrpcMessage {
 	 * @param _writer binary writer instance
 	 */
 	static serializeBinaryToWriter(_instance: VtsiProjectSorting, _writer: BinaryWriter): void;
-	private _sortingField;
-	private _sortingMode;
+	private _sortingField?;
+	private _sortingMode?;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of VtsiProjectSorting to deeply clone from
 	 */
 	constructor(_value?: RecursivePartial<VtsiProjectSorting.AsObject>);
-	get sortingField(): VtsiProjectSorting.VtsiProjectSortingField;
-	set sortingField(value: VtsiProjectSorting.VtsiProjectSortingField);
-	get sortingMode(): VtsiProjectSortingMode;
-	set sortingMode(value: VtsiProjectSortingMode);
+	get sortingField(): VtsiProjectSorting.VtsiProjectSortingField | undefined;
+	set sortingField(value?: VtsiProjectSorting.VtsiProjectSortingField);
+	get sortingMode(): VtsiProjectSortingMode | undefined;
+	set sortingMode(value?: VtsiProjectSortingMode);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -853,15 +853,15 @@ export declare module VtsiProjectSorting {
 	 * Standard JavaScript object representation for VtsiProjectSorting
 	 */
 	interface AsObject {
-		sortingField: VtsiProjectSorting.VtsiProjectSortingField;
-		sortingMode: VtsiProjectSortingMode;
+		sortingField?: VtsiProjectSorting.VtsiProjectSortingField;
+		sortingMode?: VtsiProjectSortingMode;
 	}
 	/**
 	 * Protobuf JSON representation for VtsiProjectSorting
 	 */
 	interface AsProtobufJSON {
-		sortingField: string;
-		sortingMode: string;
+		sortingField: string | null;
+		sortingMode: string | null;
 	}
 	enum VtsiProjectSortingField {
 		NO_VTSI_PROJECT_SORTING = 0,
