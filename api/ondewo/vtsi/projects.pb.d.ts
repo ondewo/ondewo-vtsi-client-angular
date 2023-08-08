@@ -61,6 +61,7 @@ export declare class VtsiProject implements GrpcMessage {
 	private _activeCallers;
 	private _activeListeners;
 	private _asteriskPort;
+	private _nluAgentNames;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of VtsiProject to deeply clone from
@@ -92,6 +93,8 @@ export declare class VtsiProject implements GrpcMessage {
 	set activeListeners(value: number);
 	get asteriskPort(): number;
 	set asteriskPort(value: number);
+	get nluAgentNames(): string[];
+	set nluAgentNames(value: string[]);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -130,6 +133,7 @@ export declare module VtsiProject {
 		activeCallers: number;
 		activeListeners: number;
 		asteriskPort: number;
+		nluAgentNames: string[];
 	}
 	/**
 	 * Protobuf JSON representation for VtsiProject
@@ -148,6 +152,7 @@ export declare module VtsiProject {
 		activeCallers: number;
 		activeListeners: number;
 		asteriskPort: number;
+		nluAgentNames: string[];
 	}
 }
 /**
@@ -667,6 +672,7 @@ export declare class ListVtsiProjectsRequest implements GrpcMessage {
 	private _vtsiProjectView;
 	private _pageToken;
 	private _vtsiProjectSorting?;
+	private _nluAgentNames;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of ListVtsiProjectsRequest to deeply clone from
@@ -678,6 +684,8 @@ export declare class ListVtsiProjectsRequest implements GrpcMessage {
 	set pageToken(value: string);
 	get vtsiProjectSorting(): VtsiProjectSorting | undefined;
 	set vtsiProjectSorting(value: VtsiProjectSorting | undefined);
+	get nluAgentNames(): string[];
+	set nluAgentNames(value: string[]);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -706,6 +714,7 @@ export declare module ListVtsiProjectsRequest {
 		vtsiProjectView: VtsiProjectView;
 		pageToken: string;
 		vtsiProjectSorting?: VtsiProjectSorting.AsObject;
+		nluAgentNames: string[];
 	}
 	/**
 	 * Protobuf JSON representation for ListVtsiProjectsRequest
@@ -714,6 +723,7 @@ export declare module ListVtsiProjectsRequest {
 		vtsiProjectView: string;
 		pageToken: string;
 		vtsiProjectSorting: VtsiProjectSorting.AsProtobufJSON | null;
+		nluAgentNames: string[];
 	}
 }
 /**

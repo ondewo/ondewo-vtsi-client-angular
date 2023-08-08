@@ -50307,6 +50307,7 @@ class VtsiProject {
 		this.activeCallers = _value.activeCallers;
 		this.activeListeners = _value.activeListeners;
 		this.asteriskPort = _value.asteriskPort;
+		this.nluAgentNames = (_value.nluAgentNames || []).slice();
 		VtsiProject.refineValues(this);
 	}
 	/**
@@ -50336,6 +50337,7 @@ class VtsiProject {
 		_instance.activeCallers = _instance.activeCallers || 0;
 		_instance.activeListeners = _instance.activeListeners || 0;
 		_instance.asteriskPort = _instance.asteriskPort || 0;
+		_instance.nluAgentNames = _instance.nluAgentNames || [];
 	}
 	/**
 	 * Deserializes / reads binary message into message instance using provided binary reader
@@ -50388,6 +50390,9 @@ class VtsiProject {
 				case 13:
 					_instance.asteriskPort = _reader.readInt32();
 					break;
+				case 14:
+					(_instance.nluAgentNames = _instance.nluAgentNames || []).push(_reader.readString());
+					break;
 				default:
 					_reader.skipField();
 			}
@@ -50438,6 +50443,9 @@ class VtsiProject {
 		}
 		if (_instance.asteriskPort) {
 			_writer.writeInt32(13, _instance.asteriskPort);
+		}
+		if (_instance.nluAgentNames && _instance.nluAgentNames.length) {
+			_writer.writeRepeatedString(14, _instance.nluAgentNames);
 		}
 	}
 	get name() {
@@ -50518,6 +50526,12 @@ class VtsiProject {
 	set asteriskPort(value) {
 		this._asteriskPort = value;
 	}
+	get nluAgentNames() {
+		return this._nluAgentNames;
+	}
+	set nluAgentNames(value) {
+		this._nluAgentNames = value;
+	}
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -50544,7 +50558,8 @@ class VtsiProject {
 			modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined,
 			activeCallers: this.activeCallers,
 			activeListeners: this.activeListeners,
-			asteriskPort: this.asteriskPort
+			asteriskPort: this.asteriskPort,
+			nluAgentNames: (this.nluAgentNames || []).slice()
 		};
 	}
 	/**
@@ -50578,7 +50593,8 @@ class VtsiProject {
 			modifiedAt: this.modifiedAt ? this.modifiedAt.toProtobufJSON(options) : null,
 			activeCallers: this.activeCallers,
 			activeListeners: this.activeListeners,
-			asteriskPort: this.asteriskPort
+			asteriskPort: this.asteriskPort,
+			nluAgentNames: (this.nluAgentNames || []).slice()
 		};
 	}
 }
@@ -51449,6 +51465,7 @@ class ListVtsiProjectsRequest {
 		this.vtsiProjectView = _value.vtsiProjectView;
 		this.pageToken = _value.pageToken;
 		this.vtsiProjectSorting = _value.vtsiProjectSorting ? new VtsiProjectSorting(_value.vtsiProjectSorting) : undefined;
+		this.nluAgentNames = (_value.nluAgentNames || []).slice();
 		ListVtsiProjectsRequest.refineValues(this);
 	}
 	/**
@@ -51468,6 +51485,7 @@ class ListVtsiProjectsRequest {
 		_instance.vtsiProjectView = _instance.vtsiProjectView || 0;
 		_instance.pageToken = _instance.pageToken || '';
 		_instance.vtsiProjectSorting = _instance.vtsiProjectSorting || undefined;
+		_instance.nluAgentNames = _instance.nluAgentNames || [];
 	}
 	/**
 	 * Deserializes / reads binary message into message instance using provided binary reader
@@ -51487,6 +51505,9 @@ class ListVtsiProjectsRequest {
 				case 3:
 					_instance.vtsiProjectSorting = new VtsiProjectSorting();
 					_reader.readMessage(_instance.vtsiProjectSorting, VtsiProjectSorting.deserializeBinaryFromReader);
+					break;
+				case 4:
+					(_instance.nluAgentNames = _instance.nluAgentNames || []).push(_reader.readString());
 					break;
 				default:
 					_reader.skipField();
@@ -51509,6 +51530,9 @@ class ListVtsiProjectsRequest {
 		if (_instance.vtsiProjectSorting) {
 			_writer.writeMessage(3, _instance.vtsiProjectSorting, VtsiProjectSorting.serializeBinaryToWriter);
 		}
+		if (_instance.nluAgentNames && _instance.nluAgentNames.length) {
+			_writer.writeRepeatedString(4, _instance.nluAgentNames);
+		}
 	}
 	get vtsiProjectView() {
 		return this._vtsiProjectView;
@@ -51528,6 +51552,12 @@ class ListVtsiProjectsRequest {
 	set vtsiProjectSorting(value) {
 		this._vtsiProjectSorting = value;
 	}
+	get nluAgentNames() {
+		return this._nluAgentNames;
+	}
+	set nluAgentNames(value) {
+		this._nluAgentNames = value;
+	}
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -51544,7 +51574,8 @@ class ListVtsiProjectsRequest {
 		return {
 			vtsiProjectView: this.vtsiProjectView,
 			pageToken: this.pageToken,
-			vtsiProjectSorting: this.vtsiProjectSorting ? this.vtsiProjectSorting.toObject() : undefined
+			vtsiProjectSorting: this.vtsiProjectSorting ? this.vtsiProjectSorting.toObject() : undefined,
+			nluAgentNames: (this.nluAgentNames || []).slice()
 		};
 	}
 	/**
@@ -51566,7 +51597,8 @@ class ListVtsiProjectsRequest {
 			vtsiProjectView:
 				VtsiProjectView[this.vtsiProjectView === null || this.vtsiProjectView === undefined ? 0 : this.vtsiProjectView],
 			pageToken: this.pageToken,
-			vtsiProjectSorting: this.vtsiProjectSorting ? this.vtsiProjectSorting.toProtobufJSON(options) : null
+			vtsiProjectSorting: this.vtsiProjectSorting ? this.vtsiProjectSorting.toProtobufJSON(options) : null,
+			nluAgentNames: (this.nluAgentNames || []).slice()
 		};
 	}
 }
