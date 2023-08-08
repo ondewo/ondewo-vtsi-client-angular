@@ -48,7 +48,6 @@
 		"tslib": "^2.3.0"
 	},
 	"devDependencies": {
-		"@ngx-grpc/well-known-types": ">=3.1.1",
 		"@typescript-eslint/eslint-plugin": "^6.3.0",
 		"eslint": "^8.46.0",
 		"husky": "^8.0.3",

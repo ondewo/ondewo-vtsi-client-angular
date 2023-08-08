@@ -3183,7 +3183,7 @@ export declare class ScheduledCaller implements GrpcMessage {
 	 * @param instance message instance
 	 */
 	static deserializeBinary(bytes: ByteSource): ScheduledCaller;
-	/**install_precommit_hooks
+	/**
 	 * Check all the properties and set default protobuf values if necessary
 	 * @param _instance message instance
 	 */
