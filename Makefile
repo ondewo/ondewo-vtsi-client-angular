@@ -15,10 +15,10 @@ export
 # 		Variables
 ########################################################
 
-ONDEWO_VTSI_VERSION = 6.4.0
+ONDEWO_VTSI_VERSION = 6.4.1
 
 VTSI_API_GIT_BRANCH=tags/6.4.0
-ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.4.0
+ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.6.0
 ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
@@ -231,10 +231,11 @@ check_out_correct_submodule_versions: ## Fetches all Submodules and checksout sp
 	git submodule update --init --recursive
 	git -C ${VTSI_APIS_DIR} fetch --all
 	git -C ${VTSI_APIS_DIR} checkout ${VTSI_API_GIT_BRANCH}
+	-git -C ${VTSI_APIS_DIR} pull
 	git -C ${ONDEWO_PROTO_COMPILER_DIR} fetch --all
 	git -C ${ONDEWO_PROTO_COMPILER_DIR} checkout ${ONDEWO_PROTO_COMPILER_GIT_BRANCH}
+	-git -C ${ONDEWO_PROTO_COMPILER_DIR} pull
 	make -C ${VTSI_APIS_DIR} build
-	#cp -R ${VTSI_APIS_DIR}/googleapis/google ${VTSI_APIS_DIR}/google
 	@echo "DONE checking out correct submodule versions."
 
 npm_run_build: ## Runs the build command in package.json
