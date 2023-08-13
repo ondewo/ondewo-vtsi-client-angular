@@ -572,6 +572,7 @@ export declare class SipStatus implements GrpcMessage {
 	private _description;
 	private _exceptionName;
 	private _exceptionTraceback;
+	private _nluSessionName;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of SipStatus to deeply clone from
@@ -597,6 +598,8 @@ export declare class SipStatus implements GrpcMessage {
 	set exceptionName(value: string);
 	get exceptionTraceback(): string;
 	set exceptionTraceback(value: string);
+	get nluSessionName(): string;
+	set nluSessionName(value: string);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -633,6 +636,7 @@ export declare module SipStatus {
 		description: string;
 		exceptionName: string;
 		exceptionTraceback: string;
+		nluSessionName: string;
 	}
 	/**
 	 * Protobuf JSON representation for SipStatus
@@ -649,6 +653,7 @@ export declare module SipStatus {
 		description: string;
 		exceptionName: string;
 		exceptionTraceback: string;
+		nluSessionName: string;
 	}
 	enum StatusType {
 		NO_SESSION = 0,

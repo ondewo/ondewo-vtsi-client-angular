@@ -601,6 +601,7 @@ export declare class GetVtsiProjectRequest implements GrpcMessage {
 	 */
 	static serializeBinaryToWriter(_instance: GetVtsiProjectRequest, _writer: BinaryWriter): void;
 	private _name;
+	private _vtsiProjectView;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of GetVtsiProjectRequest to deeply clone from
@@ -608,6 +609,8 @@ export declare class GetVtsiProjectRequest implements GrpcMessage {
 	constructor(_value?: RecursivePartial<GetVtsiProjectRequest.AsObject>);
 	get name(): string;
 	set name(value: string);
+	get vtsiProjectView(): VtsiProjectView;
+	set vtsiProjectView(value: VtsiProjectView);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -634,12 +637,14 @@ export declare module GetVtsiProjectRequest {
 	 */
 	interface AsObject {
 		name: string;
+		vtsiProjectView: VtsiProjectView;
 	}
 	/**
 	 * Protobuf JSON representation for GetVtsiProjectRequest
 	 */
 	interface AsProtobufJSON {
 		name: string;
+		vtsiProjectView: string;
 	}
 }
 /**

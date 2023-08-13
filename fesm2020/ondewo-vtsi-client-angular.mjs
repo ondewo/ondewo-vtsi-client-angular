@@ -898,6 +898,7 @@ class SipStatus {
 			(this.description = _value.description);
 		this.exceptionName = _value.exceptionName;
 		this.exceptionTraceback = _value.exceptionTraceback;
+		this.nluSessionName = _value.nluSessionName;
 		SipStatus.refineValues(this);
 	}
 	/**
@@ -923,6 +924,7 @@ class SipStatus {
 		_instance.description = _instance.description || '';
 		_instance.exceptionName = _instance.exceptionName || '';
 		_instance.exceptionTraceback = _instance.exceptionTraceback || '';
+		_instance.nluSessionName = _instance.nluSessionName || '';
 	}
 	/**
 	 * Deserializes / reads binary message into message instance using provided binary reader
@@ -963,6 +965,9 @@ class SipStatus {
 					break;
 				case 9:
 					_instance.exceptionTraceback = _reader.readString();
+					break;
+				case 10:
+					_instance.nluSessionName = _reader.readString();
 					break;
 				default:
 					_reader.skipField();
@@ -1008,6 +1013,9 @@ class SipStatus {
 		}
 		if (_instance.exceptionTraceback) {
 			_writer.writeString(9, _instance.exceptionTraceback);
+		}
+		if (_instance.nluSessionName) {
+			_writer.writeString(10, _instance.nluSessionName);
 		}
 	}
 	get accountName() {
@@ -1064,6 +1072,12 @@ class SipStatus {
 	set exceptionTraceback(value) {
 		this._exceptionTraceback = value;
 	}
+	get nluSessionName() {
+		return this._nluSessionName;
+	}
+	set nluSessionName(value) {
+		this._nluSessionName = value;
+	}
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -1086,7 +1100,8 @@ class SipStatus {
 			headers: this.headers ? Object.keys(this.headers).reduce((r, k) => ({ ...r, [k]: this.headers[k] }), {}) : {},
 			description: this.description,
 			exceptionName: this.exceptionName,
-			exceptionTraceback: this.exceptionTraceback
+			exceptionTraceback: this.exceptionTraceback,
+			nluSessionName: this.nluSessionName
 		};
 	}
 	/**
@@ -1113,7 +1128,8 @@ class SipStatus {
 			headers: this.headers ? Object.keys(this.headers).reduce((r, k) => ({ ...r, [k]: this.headers[k] }), {}) : {},
 			description: this.description,
 			exceptionName: this.exceptionName,
-			exceptionTraceback: this.exceptionTraceback
+			exceptionTraceback: this.exceptionTraceback,
+			nluSessionName: this.nluSessionName
 		};
 	}
 }
@@ -42021,6 +42037,7 @@ var CallType;
 	CallType[(CallType['BOTH'] = 0)] = 'BOTH';
 	CallType[(CallType['LISTENER'] = 1)] = 'LISTENER';
 	CallType[(CallType['CALLER'] = 2)] = 'CALLER';
+	CallType[(CallType['SCHEDULED_CALLER'] = 3)] = 'SCHEDULED_CALLER';
 })(CallType || (CallType = {}));
 /**
  * Message implementation for ondewo.vtsi.BaseServiceConfig
@@ -46908,6 +46925,886 @@ class GetListenerRequest {
 }
 GetListenerRequest.id = 'ondewo.vtsi.GetListenerRequest';
 /**
+ * Message implementation for ondewo.vtsi.DeleteListenerRequest
+ */
+class DeleteListenerRequest {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteListenerRequest to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		DeleteListenerRequest.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new DeleteListenerRequest();
+		DeleteListenerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.name = _instance.name || '';
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		DeleteListenerRequest.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) {
+			_writer.writeString(1, _instance.name);
+		}
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteListenerRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			name: this.name
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			name: this.name
+		};
+	}
+}
+DeleteListenerRequest.id = 'ondewo.vtsi.DeleteListenerRequest';
+/**
+ * Message implementation for ondewo.vtsi.DeleteListenerResponse
+ */
+class DeleteListenerResponse {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteListenerResponse to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.errorMessage = _value.errorMessage;
+		DeleteListenerResponse.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new DeleteListenerResponse();
+		DeleteListenerResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.name = _instance.name || '';
+		_instance.errorMessage = _instance.errorMessage || '';
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.errorMessage = _reader.readString();
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		DeleteListenerResponse.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) {
+			_writer.writeString(1, _instance.name);
+		}
+		if (_instance.errorMessage) {
+			_writer.writeString(2, _instance.errorMessage);
+		}
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get errorMessage() {
+		return this._errorMessage;
+	}
+	set errorMessage(value) {
+		this._errorMessage = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteListenerResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			name: this.name,
+			errorMessage: this.errorMessage
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			name: this.name,
+			errorMessage: this.errorMessage
+		};
+	}
+}
+DeleteListenerResponse.id = 'ondewo.vtsi.DeleteListenerResponse';
+/**
+ * Message implementation for ondewo.vtsi.DeleteListenersRequest
+ */
+class DeleteListenersRequest {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteListenersRequest to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.names = (_value.names || []).slice();
+		DeleteListenersRequest.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new DeleteListenersRequest();
+		DeleteListenersRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.names = _instance.names || [];
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					(_instance.names = _instance.names || []).push(_reader.readString());
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		DeleteListenersRequest.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.names && _instance.names.length) {
+			_writer.writeRepeatedString(1, _instance.names);
+		}
+	}
+	get names() {
+		return this._names;
+	}
+	set names(value) {
+		this._names = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteListenersRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			names: (this.names || []).slice()
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			names: (this.names || []).slice()
+		};
+	}
+}
+DeleteListenersRequest.id = 'ondewo.vtsi.DeleteListenersRequest';
+/**
+ * Message implementation for ondewo.vtsi.DeleteListenersResponse
+ */
+class DeleteListenersResponse {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteListenersResponse to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.deleteListenerResponses = (_value.deleteListenerResponses || []).map((m) => new DeleteListenerResponse(m));
+		this.errorMessage = _value.errorMessage;
+		DeleteListenersResponse.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new DeleteListenersResponse();
+		DeleteListenersResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.deleteListenerResponses = _instance.deleteListenerResponses || [];
+		_instance.errorMessage = _instance.errorMessage || '';
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					const messageInitializer1 = new DeleteListenerResponse();
+					_reader.readMessage(messageInitializer1, DeleteListenerResponse.deserializeBinaryFromReader);
+					(_instance.deleteListenerResponses = _instance.deleteListenerResponses || []).push(messageInitializer1);
+					break;
+				case 2:
+					_instance.errorMessage = _reader.readString();
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		DeleteListenersResponse.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.deleteListenerResponses && _instance.deleteListenerResponses.length) {
+			_writer.writeRepeatedMessage(
+				1,
+				_instance.deleteListenerResponses,
+				DeleteListenerResponse.serializeBinaryToWriter
+			);
+		}
+		if (_instance.errorMessage) {
+			_writer.writeString(2, _instance.errorMessage);
+		}
+	}
+	get deleteListenerResponses() {
+		return this._deleteListenerResponses;
+	}
+	set deleteListenerResponses(value) {
+		this._deleteListenerResponses = value;
+	}
+	get errorMessage() {
+		return this._errorMessage;
+	}
+	set errorMessage(value) {
+		this._errorMessage = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteListenersResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			deleteListenerResponses: (this.deleteListenerResponses || []).map((m) => m.toObject()),
+			errorMessage: this.errorMessage
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			deleteListenerResponses: (this.deleteListenerResponses || []).map((m) => m.toProtobufJSON(options)),
+			errorMessage: this.errorMessage
+		};
+	}
+}
+DeleteListenersResponse.id = 'ondewo.vtsi.DeleteListenersResponse';
+/**
+ * Message implementation for ondewo.vtsi.DeleteCallerRequest
+ */
+class DeleteCallerRequest {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteCallerRequest to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		DeleteCallerRequest.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new DeleteCallerRequest();
+		DeleteCallerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.name = _instance.name || '';
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		DeleteCallerRequest.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) {
+			_writer.writeString(1, _instance.name);
+		}
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteCallerRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			name: this.name
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			name: this.name
+		};
+	}
+}
+DeleteCallerRequest.id = 'ondewo.vtsi.DeleteCallerRequest';
+/**
+ * Message implementation for ondewo.vtsi.DeleteCallerResponse
+ */
+class DeleteCallerResponse {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteCallerResponse to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.errorMessage = _value.errorMessage;
+		DeleteCallerResponse.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new DeleteCallerResponse();
+		DeleteCallerResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.name = _instance.name || '';
+		_instance.errorMessage = _instance.errorMessage || '';
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.errorMessage = _reader.readString();
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		DeleteCallerResponse.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) {
+			_writer.writeString(1, _instance.name);
+		}
+		if (_instance.errorMessage) {
+			_writer.writeString(2, _instance.errorMessage);
+		}
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get errorMessage() {
+		return this._errorMessage;
+	}
+	set errorMessage(value) {
+		this._errorMessage = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteCallerResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			name: this.name,
+			errorMessage: this.errorMessage
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			name: this.name,
+			errorMessage: this.errorMessage
+		};
+	}
+}
+DeleteCallerResponse.id = 'ondewo.vtsi.DeleteCallerResponse';
+/**
+ * Message implementation for ondewo.vtsi.DeleteCallersRequest
+ */
+class DeleteCallersRequest {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteCallersRequest to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.names = (_value.names || []).slice();
+		DeleteCallersRequest.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new DeleteCallersRequest();
+		DeleteCallersRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.names = _instance.names || [];
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					(_instance.names = _instance.names || []).push(_reader.readString());
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		DeleteCallersRequest.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.names && _instance.names.length) {
+			_writer.writeRepeatedString(1, _instance.names);
+		}
+	}
+	get names() {
+		return this._names;
+	}
+	set names(value) {
+		this._names = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteCallersRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			names: (this.names || []).slice()
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			names: (this.names || []).slice()
+		};
+	}
+}
+DeleteCallersRequest.id = 'ondewo.vtsi.DeleteCallersRequest';
+/**
+ * Message implementation for ondewo.vtsi.DeleteCallersResponse
+ */
+class DeleteCallersResponse {
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteCallersResponse to deeply clone from
+	 */
+	constructor(_value) {
+		_value = _value || {};
+		this.deleteCallerResponses = (_value.deleteCallerResponses || []).map((m) => new DeleteCallerResponse(m));
+		this.errorMessage = _value.errorMessage;
+		DeleteCallersResponse.refineValues(this);
+	}
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes) {
+		const instance = new DeleteCallersResponse();
+		DeleteCallersResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance) {
+		_instance.deleteCallerResponses = _instance.deleteCallerResponses || [];
+		_instance.errorMessage = _instance.errorMessage || '';
+	}
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					const messageInitializer1 = new DeleteCallerResponse();
+					_reader.readMessage(messageInitializer1, DeleteCallerResponse.deserializeBinaryFromReader);
+					(_instance.deleteCallerResponses = _instance.deleteCallerResponses || []).push(messageInitializer1);
+					break;
+				case 2:
+					_instance.errorMessage = _reader.readString();
+					break;
+				default:
+					_reader.skipField();
+			}
+		}
+		DeleteCallersResponse.refineValues(_instance);
+	}
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.deleteCallerResponses && _instance.deleteCallerResponses.length) {
+			_writer.writeRepeatedMessage(1, _instance.deleteCallerResponses, DeleteCallerResponse.serializeBinaryToWriter);
+		}
+		if (_instance.errorMessage) {
+			_writer.writeString(2, _instance.errorMessage);
+		}
+	}
+	get deleteCallerResponses() {
+		return this._deleteCallerResponses;
+	}
+	set deleteCallerResponses(value) {
+		this._deleteCallerResponses = value;
+	}
+	get errorMessage() {
+		return this._errorMessage;
+	}
+	set errorMessage(value) {
+		this._errorMessage = value;
+	}
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteCallersResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject() {
+		return {
+			deleteCallerResponses: (this.deleteCallerResponses || []).map((m) => m.toObject()),
+			errorMessage: this.errorMessage
+		};
+	}
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON() {
+		return this.toObject();
+	}
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(
+		// @ts-ignore
+		options
+	) {
+		return {
+			deleteCallerResponses: (this.deleteCallerResponses || []).map((m) => m.toProtobufJSON(options)),
+			errorMessage: this.errorMessage
+		};
+	}
+}
+DeleteCallersResponse.id = 'ondewo.vtsi.DeleteCallersResponse';
+/**
  * Message implementation for ondewo.vtsi.StartScheduledCallerRequest
  */
 class StartScheduledCallerRequest {
@@ -48880,6 +49777,7 @@ class Call {
 			: undefined;
 		this.sipPort = _value.sipPort;
 		this.csiPort = _value.csiPort;
+		this.nluSessionName = _value.nluSessionName;
 		Call.refineValues(this);
 	}
 	/**
@@ -48912,6 +49810,7 @@ class Call {
 		_instance.commonServicesConfig = _instance.commonServicesConfig || undefined;
 		_instance.sipPort = _instance.sipPort || 0;
 		_instance.csiPort = _instance.csiPort || 0;
+		_instance.nluSessionName = _instance.nluSessionName || '';
 	}
 	/**
 	 * Deserializes / reads binary message into message instance using provided binary reader
@@ -48976,6 +49875,9 @@ class Call {
 				case 16:
 					_instance.csiPort = _reader.readInt32();
 					break;
+				case 17:
+					_instance.nluSessionName = _reader.readString();
+					break;
 				default:
 					_reader.skipField();
 			}
@@ -49035,6 +49937,9 @@ class Call {
 		}
 		if (_instance.csiPort) {
 			_writer.writeInt32(16, _instance.csiPort);
+		}
+		if (_instance.nluSessionName) {
+			_writer.writeString(17, _instance.nluSessionName);
 		}
 	}
 	get name() {
@@ -49133,6 +50038,12 @@ class Call {
 	set csiPort(value) {
 		this._csiPort = value;
 	}
+	get nluSessionName() {
+		return this._nluSessionName;
+	}
+	set nluSessionName(value) {
+		this._nluSessionName = value;
+	}
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -49162,7 +50073,8 @@ class Call {
 			vtsiProjectName: this.vtsiProjectName,
 			commonServicesConfig: this.commonServicesConfig ? this.commonServicesConfig.toObject() : undefined,
 			sipPort: this.sipPort,
-			csiPort: this.csiPort
+			csiPort: this.csiPort,
+			nluSessionName: this.nluSessionName
 		};
 	}
 	/**
@@ -49197,7 +50109,8 @@ class Call {
 			vtsiProjectName: this.vtsiProjectName,
 			commonServicesConfig: this.commonServicesConfig ? this.commonServicesConfig.toProtobufJSON(options) : null,
 			sipPort: this.sipPort,
-			csiPort: this.csiPort
+			csiPort: this.csiPort,
+			nluSessionName: this.nluSessionName
 		};
 	}
 }
@@ -51362,6 +52275,7 @@ class GetVtsiProjectRequest {
 	constructor(_value) {
 		_value = _value || {};
 		this.name = _value.name;
+		this.vtsiProjectView = _value.vtsiProjectView;
 		GetVtsiProjectRequest.refineValues(this);
 	}
 	/**
@@ -51379,6 +52293,7 @@ class GetVtsiProjectRequest {
 	 */
 	static refineValues(_instance) {
 		_instance.name = _instance.name || '';
+		_instance.vtsiProjectView = _instance.vtsiProjectView || 0;
 	}
 	/**
 	 * Deserializes / reads binary message into message instance using provided binary reader
@@ -51391,6 +52306,9 @@ class GetVtsiProjectRequest {
 			switch (_reader.getFieldNumber()) {
 				case 1:
 					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.vtsiProjectView = _reader.readEnum();
 					break;
 				default:
 					_reader.skipField();
@@ -51407,12 +52325,21 @@ class GetVtsiProjectRequest {
 		if (_instance.name) {
 			_writer.writeString(1, _instance.name);
 		}
+		if (_instance.vtsiProjectView) {
+			_writer.writeEnum(2, _instance.vtsiProjectView);
+		}
 	}
 	get name() {
 		return this._name;
 	}
 	set name(value) {
 		this._name = value;
+	}
+	get vtsiProjectView() {
+		return this._vtsiProjectView;
+	}
+	set vtsiProjectView(value) {
+		this._vtsiProjectView = value;
 	}
 	/**
 	 * Serialize message to binary data
@@ -51428,7 +52355,8 @@ class GetVtsiProjectRequest {
 	 */
 	toObject() {
 		return {
-			name: this.name
+			name: this.name,
+			vtsiProjectView: this.vtsiProjectView
 		};
 	}
 	/**
@@ -51447,7 +52375,9 @@ class GetVtsiProjectRequest {
 		options
 	) {
 		return {
-			name: this.name
+			name: this.name,
+			vtsiProjectView:
+				VtsiProjectView[this.vtsiProjectView === null || this.vtsiProjectView === undefined ? 0 : this.vtsiProjectView]
 		};
 	}
 }
@@ -52826,6 +53756,42 @@ class CallsClient {
 				});
 			},
 			/**
+			 * Unary call: /ondewo.vtsi.Calls/DeleteCaller
+			 *
+			 * @param requestMessage Request message
+			 * @param requestMetadata Request metadata
+			 * @returns Observable<GrpcEvent<thisProto.DeleteCallerResponse>>
+			 */
+			deleteCaller: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: '/ondewo.vtsi.Calls/DeleteCaller',
+					requestData,
+					requestMetadata,
+					requestClass: DeleteCallerRequest,
+					responseClass: DeleteCallerResponse
+				});
+			},
+			/**
+			 * Unary call: /ondewo.vtsi.Calls/DeleteCallers
+			 *
+			 * @param requestMessage Request message
+			 * @param requestMetadata Request metadata
+			 * @returns Observable<GrpcEvent<thisProto.DeleteCallersResponse>>
+			 */
+			deleteCallers: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: '/ondewo.vtsi.Calls/DeleteCallers',
+					requestData,
+					requestMetadata,
+					requestClass: DeleteCallersRequest,
+					responseClass: DeleteCallersResponse
+				});
+			},
+			/**
 			 * Unary call: /ondewo.vtsi.Calls/StartListener
 			 *
 			 * @param requestMessage Request message
@@ -52895,6 +53861,42 @@ class CallsClient {
 					requestMetadata,
 					requestClass: GetListenerRequest,
 					responseClass: Listener
+				});
+			},
+			/**
+			 * Unary call: /ondewo.vtsi.Calls/DeleteListener
+			 *
+			 * @param requestMessage Request message
+			 * @param requestMetadata Request metadata
+			 * @returns Observable<GrpcEvent<thisProto.DeleteListenerResponse>>
+			 */
+			deleteListener: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: '/ondewo.vtsi.Calls/DeleteListener',
+					requestData,
+					requestMetadata,
+					requestClass: DeleteListenerRequest,
+					responseClass: DeleteListenerResponse
+				});
+			},
+			/**
+			 * Unary call: /ondewo.vtsi.Calls/DeleteListeners
+			 *
+			 * @param requestMessage Request message
+			 * @param requestMetadata Request metadata
+			 * @returns Observable<GrpcEvent<thisProto.DeleteListenersResponse>>
+			 */
+			deleteListeners: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: '/ondewo.vtsi.Calls/DeleteListeners',
+					requestData,
+					requestMetadata,
+					requestClass: DeleteListenersRequest,
+					responseClass: DeleteListenersResponse
 				});
 			},
 			/**
@@ -53139,6 +54141,26 @@ class CallsClient {
 		return this.$raw.getCaller(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
 	}
 	/**
+	 * Unary call @/ondewo.vtsi.Calls/DeleteCaller
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.DeleteCallerResponse>
+	 */
+	deleteCaller(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.deleteCaller(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/DeleteCallers
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.DeleteCallersResponse>
+	 */
+	deleteCallers(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.deleteCallers(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	/**
 	 * Unary call @/ondewo.vtsi.Calls/StartListener
 	 *
 	 * @param requestMessage Request message
@@ -53177,6 +54199,26 @@ class CallsClient {
 	 */
 	getListener(requestData, requestMetadata = new GrpcMetadata()) {
 		return this.$raw.getListener(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/DeleteListener
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.DeleteListenerResponse>
+	 */
+	deleteListener(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.deleteListener(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/DeleteListeners
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.DeleteListenersResponse>
+	 */
+	deleteListeners(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.deleteListeners(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
 	}
 	/**
 	 * Unary call @/ondewo.vtsi.Calls/StartScheduledCaller
@@ -85568,11 +86610,19 @@ export {
 	DefaultServerRole,
 	DeleteAgentRequest,
 	DeleteAllContextsRequest,
+	DeleteCallerRequest,
+	DeleteCallerResponse,
+	DeleteCallersRequest,
+	DeleteCallersResponse,
 	DeleteContextRequest,
 	DeleteEntityRequest,
 	DeleteEntityStatus,
 	DeleteEntityTypeRequest,
 	DeleteIntentRequest,
+	DeleteListenerRequest,
+	DeleteListenerResponse,
+	DeleteListenersRequest,
+	DeleteListenersResponse,
 	DeleteOperationRequest,
 	DeleteProjectRoleRequest,
 	DeleteResourcesRequest,

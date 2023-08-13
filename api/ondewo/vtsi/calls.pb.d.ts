@@ -13,7 +13,8 @@ export declare enum CallView {
 export declare enum CallType {
 	BOTH = 0,
 	LISTENER = 1,
-	CALLER = 2
+	CALLER = 2,
+	SCHEDULED_CALLER = 3
 }
 /**
  * Message implementation for ondewo.vtsi.BaseServiceConfig
@@ -2868,6 +2869,578 @@ export declare module GetListenerRequest {
 	}
 }
 /**
+ * Message implementation for ondewo.vtsi.DeleteListenerRequest
+ */
+export declare class DeleteListenerRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): DeleteListenerRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: DeleteListenerRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: DeleteListenerRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: DeleteListenerRequest, _writer: BinaryWriter): void;
+	private _name;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteListenerRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<DeleteListenerRequest.AsObject>);
+	get name(): string;
+	set name(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): DeleteListenerRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): DeleteListenerRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): DeleteListenerRequest.AsProtobufJSON;
+}
+export declare module DeleteListenerRequest {
+	/**
+	 * Standard JavaScript object representation for DeleteListenerRequest
+	 */
+	interface AsObject {
+		name: string;
+	}
+	/**
+	 * Protobuf JSON representation for DeleteListenerRequest
+	 */
+	interface AsProtobufJSON {
+		name: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.DeleteListenerResponse
+ */
+export declare class DeleteListenerResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): DeleteListenerResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: DeleteListenerResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: DeleteListenerResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: DeleteListenerResponse, _writer: BinaryWriter): void;
+	private _name;
+	private _errorMessage;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteListenerResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<DeleteListenerResponse.AsObject>);
+	get name(): string;
+	set name(value: string);
+	get errorMessage(): string;
+	set errorMessage(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): DeleteListenerResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): DeleteListenerResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): DeleteListenerResponse.AsProtobufJSON;
+}
+export declare module DeleteListenerResponse {
+	/**
+	 * Standard JavaScript object representation for DeleteListenerResponse
+	 */
+	interface AsObject {
+		name: string;
+		errorMessage: string;
+	}
+	/**
+	 * Protobuf JSON representation for DeleteListenerResponse
+	 */
+	interface AsProtobufJSON {
+		name: string;
+		errorMessage: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.DeleteListenersRequest
+ */
+export declare class DeleteListenersRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): DeleteListenersRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: DeleteListenersRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: DeleteListenersRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: DeleteListenersRequest, _writer: BinaryWriter): void;
+	private _names;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteListenersRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<DeleteListenersRequest.AsObject>);
+	get names(): string[];
+	set names(value: string[]);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): DeleteListenersRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): DeleteListenersRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): DeleteListenersRequest.AsProtobufJSON;
+}
+export declare module DeleteListenersRequest {
+	/**
+	 * Standard JavaScript object representation for DeleteListenersRequest
+	 */
+	interface AsObject {
+		names: string[];
+	}
+	/**
+	 * Protobuf JSON representation for DeleteListenersRequest
+	 */
+	interface AsProtobufJSON {
+		names: string[];
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.DeleteListenersResponse
+ */
+export declare class DeleteListenersResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): DeleteListenersResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: DeleteListenersResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: DeleteListenersResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: DeleteListenersResponse, _writer: BinaryWriter): void;
+	private _deleteListenerResponses?;
+	private _errorMessage;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteListenersResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<DeleteListenersResponse.AsObject>);
+	get deleteListenerResponses(): DeleteListenerResponse[] | undefined;
+	set deleteListenerResponses(value: DeleteListenerResponse[] | undefined);
+	get errorMessage(): string;
+	set errorMessage(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): DeleteListenersResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): DeleteListenersResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): DeleteListenersResponse.AsProtobufJSON;
+}
+export declare module DeleteListenersResponse {
+	/**
+	 * Standard JavaScript object representation for DeleteListenersResponse
+	 */
+	interface AsObject {
+		deleteListenerResponses?: DeleteListenerResponse.AsObject[];
+		errorMessage: string;
+	}
+	/**
+	 * Protobuf JSON representation for DeleteListenersResponse
+	 */
+	interface AsProtobufJSON {
+		deleteListenerResponses: DeleteListenerResponse.AsProtobufJSON[] | null;
+		errorMessage: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.DeleteCallerRequest
+ */
+export declare class DeleteCallerRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): DeleteCallerRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: DeleteCallerRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: DeleteCallerRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: DeleteCallerRequest, _writer: BinaryWriter): void;
+	private _name;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteCallerRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<DeleteCallerRequest.AsObject>);
+	get name(): string;
+	set name(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): DeleteCallerRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): DeleteCallerRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): DeleteCallerRequest.AsProtobufJSON;
+}
+export declare module DeleteCallerRequest {
+	/**
+	 * Standard JavaScript object representation for DeleteCallerRequest
+	 */
+	interface AsObject {
+		name: string;
+	}
+	/**
+	 * Protobuf JSON representation for DeleteCallerRequest
+	 */
+	interface AsProtobufJSON {
+		name: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.DeleteCallerResponse
+ */
+export declare class DeleteCallerResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): DeleteCallerResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: DeleteCallerResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: DeleteCallerResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: DeleteCallerResponse, _writer: BinaryWriter): void;
+	private _name;
+	private _errorMessage;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteCallerResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<DeleteCallerResponse.AsObject>);
+	get name(): string;
+	set name(value: string);
+	get errorMessage(): string;
+	set errorMessage(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): DeleteCallerResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): DeleteCallerResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): DeleteCallerResponse.AsProtobufJSON;
+}
+export declare module DeleteCallerResponse {
+	/**
+	 * Standard JavaScript object representation for DeleteCallerResponse
+	 */
+	interface AsObject {
+		name: string;
+		errorMessage: string;
+	}
+	/**
+	 * Protobuf JSON representation for DeleteCallerResponse
+	 */
+	interface AsProtobufJSON {
+		name: string;
+		errorMessage: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.DeleteCallersRequest
+ */
+export declare class DeleteCallersRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): DeleteCallersRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: DeleteCallersRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: DeleteCallersRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: DeleteCallersRequest, _writer: BinaryWriter): void;
+	private _names;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteCallersRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<DeleteCallersRequest.AsObject>);
+	get names(): string[];
+	set names(value: string[]);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): DeleteCallersRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): DeleteCallersRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): DeleteCallersRequest.AsProtobufJSON;
+}
+export declare module DeleteCallersRequest {
+	/**
+	 * Standard JavaScript object representation for DeleteCallersRequest
+	 */
+	interface AsObject {
+		names: string[];
+	}
+	/**
+	 * Protobuf JSON representation for DeleteCallersRequest
+	 */
+	interface AsProtobufJSON {
+		names: string[];
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.DeleteCallersResponse
+ */
+export declare class DeleteCallersResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): DeleteCallersResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: DeleteCallersResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: DeleteCallersResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: DeleteCallersResponse, _writer: BinaryWriter): void;
+	private _deleteCallerResponses?;
+	private _errorMessage;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of DeleteCallersResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<DeleteCallersResponse.AsObject>);
+	get deleteCallerResponses(): DeleteCallerResponse[] | undefined;
+	set deleteCallerResponses(value: DeleteCallerResponse[] | undefined);
+	get errorMessage(): string;
+	set errorMessage(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): DeleteCallersResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): DeleteCallersResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): DeleteCallersResponse.AsProtobufJSON;
+}
+export declare module DeleteCallersResponse {
+	/**
+	 * Standard JavaScript object representation for DeleteCallersResponse
+	 */
+	interface AsObject {
+		deleteCallerResponses?: DeleteCallerResponse.AsObject[];
+		errorMessage: string;
+	}
+	/**
+	 * Protobuf JSON representation for DeleteCallersResponse
+	 */
+	interface AsProtobufJSON {
+		deleteCallerResponses: DeleteCallerResponse.AsProtobufJSON[] | null;
+		errorMessage: string;
+	}
+}
+/**
  * Message implementation for ondewo.vtsi.StartScheduledCallerRequest
  */
 export declare class StartScheduledCallerRequest implements GrpcMessage {
@@ -4070,6 +4643,7 @@ export declare class Call implements GrpcMessage {
 	private _commonServicesConfig?;
 	private _sipPort;
 	private _csiPort;
+	private _nluSessionName;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of Call to deeply clone from
@@ -4107,6 +4681,8 @@ export declare class Call implements GrpcMessage {
 	set sipPort(value: number);
 	get csiPort(): number;
 	set csiPort(value: number);
+	get nluSessionName(): string;
+	set nluSessionName(value: string);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -4148,6 +4724,7 @@ export declare module Call {
 		commonServicesConfig?: CommonServicesConfig.AsObject;
 		sipPort: number;
 		csiPort: number;
+		nluSessionName: string;
 	}
 	/**
 	 * Protobuf JSON representation for Call
@@ -4169,6 +4746,7 @@ export declare module Call {
 		commonServicesConfig: CommonServicesConfig.AsProtobufJSON | null;
 		sipPort: number;
 		csiPort: number;
+		nluSessionName: string;
 	}
 }
 /**
