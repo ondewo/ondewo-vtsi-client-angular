@@ -124,7 +124,7 @@ release: ## Create Github and NPM Release
 	git add ${VTSI_APIS_DIR}
 	git add ${ONDEWO_PROTO_COMPILER_DIR}
 	git status
-	git commit -m "Preparing for Release ${ONDEWO_VTSI_VERSION}"
+	-git commit -m "Preparing for Release ${ONDEWO_VTSI_VERSION}"
 	git push
 	make publish_npm_via_docker
 	make create_release_branch
