@@ -1,6 +1,13 @@
 # Release History
 
 ***************** 
+## Release ONDEWO VTSI Angular Client 6.6.1
+ 
+### Improvements 
+ * Optimized for Angular 16 (esm2022 and fesm2022)
+ * Tracking API Version [6.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
+
+***************** 
 ## Release ONDEWO VTSI Angular Client 6.6.0 
  
 ### Improvements 

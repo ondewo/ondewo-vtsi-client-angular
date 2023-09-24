@@ -121,7 +121,7 @@ npm
 │           ├── voip.pbconf.d.ts
 │           ├── voip.pb.d.ts
 │           └── voip.pbsc.d.ts
-├── esm2020
+├── esm2022
 │   ├── api
 │   │   ├── google
 │   │   │   ├── api
@@ -162,10 +162,7 @@ npm
 │   │           └── voip.pbsc.mjs
 │   ├── ondewo-vtsi-client-angular.mjs
 │   └── public-api.mjs
-├── fesm2015
-│   ├── ondewo-vtsi-client-angular.mjs
-│   └── ondewo-vtsi-client-angular.mjs.map
-├── fesm2020
+├── fesm2022
 │   ├── ondewo-vtsi-client-angular.mjs
 │   └── ondewo-vtsi-client-angular.mjs.map
 ├── index.d.ts

@@ -15,10 +15,10 @@ export
 # 		Variables
 ########################################################
 
-ONDEWO_VTSI_VERSION = 6.6.0
+ONDEWO_VTSI_VERSION=6.6.1
 
 VTSI_API_GIT_BRANCH=tags/6.6.0
-ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.6.0
+ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/4.7.0
 ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
@@ -113,10 +113,8 @@ release: ## Create Github and NPM Release
 	make run_precommit_hooks
 	git status
 	git add api
-	-git add esm2022
-	-git add esm2020
-	-git add fesm2020
-	-git add fesm2022
+	git add esm2022
+	git add fesm2022
 	git add src
 	git add README.md
 	git add RELEASE.md
