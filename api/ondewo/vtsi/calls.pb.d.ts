@@ -11,6 +11,11 @@ export declare enum CallView {
 	SHALLOW = 1,
 	FULL = 2
 }
+export declare enum CallStatus {
+	CALL_STATUS_UNSPECIFIED = 0,
+	CALL_STATUS_ACTIVE = 1,
+	CALL_STATUS_INACTIVE = 2
+}
 export declare enum CallType {
 	BOTH = 0,
 	LISTENER = 1,
@@ -205,6 +210,7 @@ export declare class NluVtsiConfig implements GrpcMessage {
 	private _initialIntent;
 	private _contexts?;
 	private _httpBasicAuthToken;
+	private _platform;
 	private _authentication;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -227,6 +233,8 @@ export declare class NluVtsiConfig implements GrpcMessage {
 	set contexts(value: ondewoNlu006.Context[] | undefined);
 	get httpBasicAuthToken(): string;
 	set httpBasicAuthToken(value: string);
+	get platform(): ondewoNlu010.Intent.Message.Platform;
+	set platform(value: ondewoNlu010.Intent.Message.Platform);
 	get authentication(): NluVtsiConfig.AuthenticationCase;
 	/**
 	 * Serialize message to binary data
@@ -261,6 +269,7 @@ export declare module NluVtsiConfig {
 		initialIntent: string;
 		contexts?: ondewoNlu006.Context.AsObject[];
 		httpBasicAuthToken: string;
+		platform: ondewoNlu010.Intent.Message.Platform;
 	}
 	/**
 	 * Protobuf JSON representation for NluVtsiConfig
@@ -274,6 +283,7 @@ export declare module NluVtsiConfig {
 		initialIntent: string;
 		contexts: ondewoNlu006.Context.AsProtobufJSON[] | null;
 		httpBasicAuthToken: string;
+		platform: string;
 	}
 	enum AuthenticationCase {
 		none = 0,
@@ -2354,6 +2364,7 @@ export declare class ListCallersRequest implements GrpcMessage {
 	static serializeBinaryToWriter(_instance: ListCallersRequest, _writer: BinaryWriter): void;
 	private _vtsiProjectName;
 	private _pageToken;
+	private _callView;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of ListCallersRequest to deeply clone from
@@ -2363,6 +2374,8 @@ export declare class ListCallersRequest implements GrpcMessage {
 	set vtsiProjectName(value: string);
 	get pageToken(): string;
 	set pageToken(value: string);
+	get callView(): CallView;
+	set callView(value: CallView);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -2390,6 +2403,7 @@ export declare module ListCallersRequest {
 	interface AsObject {
 		vtsiProjectName: string;
 		pageToken: string;
+		callView: CallView;
 	}
 	/**
 	 * Protobuf JSON representation for ListCallersRequest
@@ -2397,6 +2411,7 @@ export declare module ListCallersRequest {
 	interface AsProtobufJSON {
 		vtsiProjectName: string;
 		pageToken: string;
+		callView: string;
 	}
 }
 /**
@@ -2497,6 +2512,7 @@ export declare class GetCallerRequest implements GrpcMessage {
 	static serializeBinaryToWriter(_instance: GetCallerRequest, _writer: BinaryWriter): void;
 	private _vtsiProjectName;
 	private _name;
+	private _callView;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of GetCallerRequest to deeply clone from
@@ -2506,6 +2522,8 @@ export declare class GetCallerRequest implements GrpcMessage {
 	set vtsiProjectName(value: string);
 	get name(): string;
 	set name(value: string);
+	get callView(): CallView;
+	set callView(value: CallView);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -2533,6 +2551,7 @@ export declare module GetCallerRequest {
 	interface AsObject {
 		vtsiProjectName: string;
 		name: string;
+		callView: CallView;
 	}
 	/**
 	 * Protobuf JSON representation for GetCallerRequest
@@ -2540,6 +2559,7 @@ export declare module GetCallerRequest {
 	interface AsProtobufJSON {
 		vtsiProjectName: string;
 		name: string;
+		callView: string;
 	}
 }
 /**
@@ -2571,6 +2591,7 @@ export declare class ListListenersRequest implements GrpcMessage {
 	static serializeBinaryToWriter(_instance: ListListenersRequest, _writer: BinaryWriter): void;
 	private _vtsiProjectName;
 	private _pageToken;
+	private _callView;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of ListListenersRequest to deeply clone from
@@ -2580,6 +2601,8 @@ export declare class ListListenersRequest implements GrpcMessage {
 	set vtsiProjectName(value: string);
 	get pageToken(): string;
 	set pageToken(value: string);
+	get callView(): CallView;
+	set callView(value: CallView);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -2607,6 +2630,7 @@ export declare module ListListenersRequest {
 	interface AsObject {
 		vtsiProjectName: string;
 		pageToken: string;
+		callView: CallView;
 	}
 	/**
 	 * Protobuf JSON representation for ListListenersRequest
@@ -2614,6 +2638,7 @@ export declare module ListListenersRequest {
 	interface AsProtobufJSON {
 		vtsiProjectName: string;
 		pageToken: string;
+		callView: string;
 	}
 }
 /**
@@ -2719,6 +2744,7 @@ export declare class GetListenerRequest implements GrpcMessage {
 	static serializeBinaryToWriter(_instance: GetListenerRequest, _writer: BinaryWriter): void;
 	private _vtsiProjectName;
 	private _name;
+	private _callView;
 	/**
 	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
 	 * @param _value initial values object or instance of GetListenerRequest to deeply clone from
@@ -2728,6 +2754,8 @@ export declare class GetListenerRequest implements GrpcMessage {
 	set vtsiProjectName(value: string);
 	get name(): string;
 	set name(value: string);
+	get callView(): CallView;
+	set callView(value: CallView);
 	/**
 	 * Serialize message to binary data
 	 * @param instance message instance
@@ -2755,6 +2783,7 @@ export declare module GetListenerRequest {
 	interface AsObject {
 		vtsiProjectName: string;
 		name: string;
+		callView: CallView;
 	}
 	/**
 	 * Protobuf JSON representation for GetListenerRequest
@@ -2762,6 +2791,579 @@ export declare module GetListenerRequest {
 	interface AsProtobufJSON {
 		vtsiProjectName: string;
 		name: string;
+		callView: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.StopListenerRequest
+ */
+export declare class StopListenerRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): StopListenerRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: StopListenerRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: StopListenerRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: StopListenerRequest, _writer: BinaryWriter): void;
+	private _name;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of StopListenerRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<StopListenerRequest.AsObject>);
+	get name(): string;
+	set name(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): StopListenerRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): StopListenerRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): StopListenerRequest.AsProtobufJSON;
+}
+export declare module StopListenerRequest {
+	/**
+	 * Standard JavaScript object representation for StopListenerRequest
+	 */
+	interface AsObject {
+		name: string;
+	}
+	/**
+	 * Protobuf JSON representation for StopListenerRequest
+	 */
+	interface AsProtobufJSON {
+		name: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.StopListenerResponse
+ */
+export declare class StopListenerResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): StopListenerResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: StopListenerResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: StopListenerResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: StopListenerResponse, _writer: BinaryWriter): void;
+	private _name;
+	private _errorMessage;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of StopListenerResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<StopListenerResponse.AsObject>);
+	get name(): string;
+	set name(value: string);
+	get errorMessage(): string;
+	set errorMessage(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): StopListenerResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): StopListenerResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): StopListenerResponse.AsProtobufJSON;
+}
+export declare module StopListenerResponse {
+	/**
+	 * Standard JavaScript object representation for StopListenerResponse
+	 */
+	interface AsObject {
+		name: string;
+		errorMessage: string;
+	}
+	/**
+	 * Protobuf JSON representation for StopListenerResponse
+	 */
+	interface AsProtobufJSON {
+		name: string;
+		errorMessage: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.StopListenersRequest
+ */
+export declare class StopListenersRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): StopListenersRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: StopListenersRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: StopListenersRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: StopListenersRequest, _writer: BinaryWriter): void;
+	private _names;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of StopListenersRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<StopListenersRequest.AsObject>);
+	get names(): string[];
+	set names(value: string[]);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): StopListenersRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): StopListenersRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): StopListenersRequest.AsProtobufJSON;
+}
+export declare module StopListenersRequest {
+	/**
+	 * Standard JavaScript object representation for StopListenersRequest
+	 */
+	interface AsObject {
+		names: string[];
+	}
+	/**
+	 * Protobuf JSON representation for StopListenersRequest
+	 */
+	interface AsProtobufJSON {
+		names: string[];
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.StopListenersResponse
+ */
+export declare class StopListenersResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): StopListenersResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: StopListenersResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: StopListenersResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: StopListenersResponse, _writer: BinaryWriter): void;
+	private _stopListenerResponses?;
+	private _errorMessage;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of StopListenersResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<StopListenersResponse.AsObject>);
+	get stopListenerResponses(): StopListenerResponse[] | undefined;
+	set stopListenerResponses(value: StopListenerResponse[] | undefined);
+	get errorMessage(): string;
+	set errorMessage(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): StopListenersResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): StopListenersResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): StopListenersResponse.AsProtobufJSON;
+}
+export declare module StopListenersResponse {
+	/**
+	 * Standard JavaScript object representation for StopListenersResponse
+	 */
+	interface AsObject {
+		stopListenerResponses?: StopListenerResponse.AsObject[];
+		errorMessage: string;
+	}
+	/**
+	 * Protobuf JSON representation for StopListenersResponse
+	 */
+	interface AsProtobufJSON {
+		stopListenerResponses: StopListenerResponse.AsProtobufJSON[] | null;
+		errorMessage: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.StopCallerRequest
+ */
+export declare class StopCallerRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): StopCallerRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: StopCallerRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: StopCallerRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: StopCallerRequest, _writer: BinaryWriter): void;
+	private _name;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of StopCallerRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<StopCallerRequest.AsObject>);
+	get name(): string;
+	set name(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): StopCallerRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): StopCallerRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): StopCallerRequest.AsProtobufJSON;
+}
+export declare module StopCallerRequest {
+	/**
+	 * Standard JavaScript object representation for StopCallerRequest
+	 */
+	interface AsObject {
+		name: string;
+	}
+	/**
+	 * Protobuf JSON representation for StopCallerRequest
+	 */
+	interface AsProtobufJSON {
+		name: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.StopCallerResponse
+ */
+export declare class StopCallerResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): StopCallerResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: StopCallerResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: StopCallerResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: StopCallerResponse, _writer: BinaryWriter): void;
+	private _name;
+	private _errorMessage;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of StopCallerResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<StopCallerResponse.AsObject>);
+	get name(): string;
+	set name(value: string);
+	get errorMessage(): string;
+	set errorMessage(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): StopCallerResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): StopCallerResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): StopCallerResponse.AsProtobufJSON;
+}
+export declare module StopCallerResponse {
+	/**
+	 * Standard JavaScript object representation for StopCallerResponse
+	 */
+	interface AsObject {
+		name: string;
+		errorMessage: string;
+	}
+	/**
+	 * Protobuf JSON representation for StopCallerResponse
+	 */
+	interface AsProtobufJSON {
+		name: string;
+		errorMessage: string;
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.StopCallersRequest
+ */
+export declare class StopCallersRequest implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): StopCallersRequest;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: StopCallersRequest): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: StopCallersRequest, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: StopCallersRequest, _writer: BinaryWriter): void;
+	private _names;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of StopCallersRequest to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<StopCallersRequest.AsObject>);
+	get names(): string[];
+	set names(value: string[]);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): StopCallersRequest.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): StopCallersRequest.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): StopCallersRequest.AsProtobufJSON;
+}
+export declare module StopCallersRequest {
+	/**
+	 * Standard JavaScript object representation for StopCallersRequest
+	 */
+	interface AsObject {
+		names: string[];
+	}
+	/**
+	 * Protobuf JSON representation for StopCallersRequest
+	 */
+	interface AsProtobufJSON {
+		names: string[];
+	}
+}
+/**
+ * Message implementation for ondewo.vtsi.StopCallersResponse
+ */
+export declare class StopCallersResponse implements GrpcMessage {
+	static id: string;
+	/**
+	 * Deserialize binary data to message
+	 * @param instance message instance
+	 */
+	static deserializeBinary(bytes: ByteSource): StopCallersResponse;
+	/**
+	 * Check all the properties and set default protobuf values if necessary
+	 * @param _instance message instance
+	 */
+	static refineValues(_instance: StopCallersResponse): void;
+	/**
+	 * Deserializes / reads binary message into message instance using provided binary reader
+	 * @param _instance message instance
+	 * @param _reader binary reader instance
+	 */
+	static deserializeBinaryFromReader(_instance: StopCallersResponse, _reader: BinaryReader): void;
+	/**
+	 * Serializes a message to binary format using provided binary reader
+	 * @param _instance message instance
+	 * @param _writer binary writer instance
+	 */
+	static serializeBinaryToWriter(_instance: StopCallersResponse, _writer: BinaryWriter): void;
+	private _stopCallerResponses?;
+	private _errorMessage;
+	/**
+	 * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+	 * @param _value initial values object or instance of StopCallersResponse to deeply clone from
+	 */
+	constructor(_value?: RecursivePartial<StopCallersResponse.AsObject>);
+	get stopCallerResponses(): StopCallerResponse[] | undefined;
+	set stopCallerResponses(value: StopCallerResponse[] | undefined);
+	get errorMessage(): string;
+	set errorMessage(value: string);
+	/**
+	 * Serialize message to binary data
+	 * @param instance message instance
+	 */
+	serializeBinary(): any;
+	/**
+	 * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+	 */
+	toObject(): StopCallersResponse.AsObject;
+	/**
+	 * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+	 */
+	toJSON(): StopCallersResponse.AsObject;
+	/**
+	 * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+	 * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+	 * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+	 */
+	toProtobufJSON(options?: ToProtobufJSONOptions): StopCallersResponse.AsProtobufJSON;
+}
+export declare module StopCallersResponse {
+	/**
+	 * Standard JavaScript object representation for StopCallersResponse
+	 */
+	interface AsObject {
+		stopCallerResponses?: StopCallerResponse.AsObject[];
+		errorMessage: string;
+	}
+	/**
+	 * Protobuf JSON representation for StopCallersResponse
+	 */
+	interface AsProtobufJSON {
+		stopCallerResponses: StopCallerResponse.AsProtobufJSON[] | null;
+		errorMessage: string;
 	}
 }
 /**
@@ -4686,7 +5288,7 @@ export declare class CallFilter implements GrpcMessage {
 	private _csiPorts;
 	private _callTypes;
 	private _sipStatusTypes;
-	private _active;
+	private _callStatus;
 	private _startTime?;
 	private _endTime?;
 	private _durationInSMin;
@@ -4715,8 +5317,8 @@ export declare class CallFilter implements GrpcMessage {
 	set callTypes(value: CallType[]);
 	get sipStatusTypes(): ondewoSip013.SipStatus.StatusType[];
 	set sipStatusTypes(value: ondewoSip013.SipStatus.StatusType[]);
-	get active(): boolean;
-	set active(value: boolean);
+	get callStatus(): CallStatus;
+	set callStatus(value: CallStatus);
 	get startTime(): googleProtobuf005.Timestamp | undefined;
 	set startTime(value: googleProtobuf005.Timestamp | undefined);
 	get endTime(): googleProtobuf005.Timestamp | undefined;
@@ -4761,7 +5363,7 @@ export declare module CallFilter {
 		csiPorts: string[];
 		callTypes: CallType[];
 		sipStatusTypes: ondewoSip013.SipStatus.StatusType[];
-		active: boolean;
+		callStatus: CallStatus;
 		startTime?: googleProtobuf005.Timestamp.AsObject;
 		endTime?: googleProtobuf005.Timestamp.AsObject;
 		durationInSMin: number;
@@ -4781,7 +5383,7 @@ export declare module CallFilter {
 		csiPorts: string[];
 		callTypes: string[];
 		sipStatusTypes: string[];
-		active: boolean;
+		callStatus: string;
 		startTime: googleProtobuf005.Timestamp.AsProtobufJSON | null;
 		endTime: googleProtobuf005.Timestamp.AsProtobufJSON | null;
 		durationInSMin: number;

@@ -82,6 +82,28 @@ export declare class CallsClient {
 			requestMetadata?: GrpcMetadata
 		) => Observable<GrpcEvent<thisProto.DeleteCallersResponse>>;
 		/**
+		 * Unary call: /ondewo.vtsi.Calls/StopCaller
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.StopCallerResponse>>
+		 */
+		stopCaller: (
+			requestData: thisProto.StopCallerRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.StopCallerResponse>>;
+		/**
+		 * Unary call: /ondewo.vtsi.Calls/StopCallers
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.StopCallersResponse>>
+		 */
+		stopCallers: (
+			requestData: thisProto.StopCallersRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.StopCallersResponse>>;
+		/**
 		 * Unary call: /ondewo.vtsi.Calls/StartListener
 		 *
 		 * @param requestMessage Request message
@@ -103,6 +125,28 @@ export declare class CallsClient {
 			requestData: thisProto.StartListenersRequest,
 			requestMetadata?: GrpcMetadata
 		) => Observable<GrpcEvent<thisProto.StartListenersResponse>>;
+		/**
+		 * Unary call: /ondewo.vtsi.Calls/StopListener
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.StopListenerResponse>>
+		 */
+		stopListener: (
+			requestData: thisProto.StopListenerRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.StopListenerResponse>>;
+		/**
+		 * Unary call: /ondewo.vtsi.Calls/StopListeners
+		 *
+		 * @param requestMessage Request message
+		 * @param requestMetadata Request metadata
+		 * @returns Observable<GrpcEvent<thisProto.StopListenersResponse>>
+		 */
+		stopListeners: (
+			requestData: thisProto.StopListenersRequest,
+			requestMetadata?: GrpcMetadata
+		) => Observable<GrpcEvent<thisProto.StopListenersResponse>>;
 		/**
 		 * Unary call: /ondewo.vtsi.Calls/ListListeners
 		 *
@@ -312,6 +356,28 @@ export declare class CallsClient {
 		requestMetadata?: GrpcMetadata
 	): Observable<thisProto.DeleteCallersResponse>;
 	/**
+	 * Unary call @/ondewo.vtsi.Calls/StopCaller
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.StopCallerResponse>
+	 */
+	stopCaller(
+		requestData: thisProto.StopCallerRequest,
+		requestMetadata?: GrpcMetadata
+	): Observable<thisProto.StopCallerResponse>;
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/StopCallers
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.StopCallersResponse>
+	 */
+	stopCallers(
+		requestData: thisProto.StopCallersRequest,
+		requestMetadata?: GrpcMetadata
+	): Observable<thisProto.StopCallersResponse>;
+	/**
 	 * Unary call @/ondewo.vtsi.Calls/StartListener
 	 *
 	 * @param requestMessage Request message
@@ -333,6 +399,28 @@ export declare class CallsClient {
 		requestData: thisProto.StartListenersRequest,
 		requestMetadata?: GrpcMetadata
 	): Observable<thisProto.StartListenersResponse>;
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/StopListener
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.StopListenerResponse>
+	 */
+	stopListener(
+		requestData: thisProto.StopListenerRequest,
+		requestMetadata?: GrpcMetadata
+	): Observable<thisProto.StopListenerResponse>;
+	/**
+	 * Unary call @/ondewo.vtsi.Calls/StopListeners
+	 *
+	 * @param requestMessage Request message
+	 * @param requestMetadata Request metadata
+	 * @returns Observable<thisProto.StopListenersResponse>
+	 */
+	stopListeners(
+		requestData: thisProto.StopListenersRequest,
+		requestMetadata?: GrpcMetadata
+	): Observable<thisProto.StopListenersResponse>;
 	/**
 	 * Unary call @/ondewo.vtsi.Calls/ListListeners
 	 *
