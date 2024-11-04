@@ -1,12 +1,15 @@
-ondewo-vtsi-api/*
-.idea
-.isort.cfg
-.mypy_cache
-*.egg-info
-grpc_cert
-npm
-node_modules
-.vscode
+# release automation
 ondewo-devops-accounts
+build_check.*
 build_check.txt
 build_check_temp.txt
+
+npm
+.idea/
+.vscode/
+node_modules
+
+ondewo-vtsi-api/*
+
+.isort.cfg
+grpc_cert
