@@ -113,9 +113,8 @@ release: ## Create Github and NPM Release
 	git add src
 	git add README.md
 	git add RELEASE.md
-	git add ondewo-vtsi-client-angular.d.ts
-	git add ondewo-vtsi-client-angular.d.ts.map
-	git add ondewo-vtsi-client-angular.metadata.json
+	git add public-api.d.ts
+	git add public-api.d.ts.map
 	git add package-lock.json
 	git add package.json
 	-git add tsconfig.json
