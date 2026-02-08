@@ -17,7 +17,7 @@ export
 ONDEWO_VTSI_VERSION = 8.1.0
 
 VTSI_API_GIT_BRANCH=tags/8.1.0
-ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/5.3.0
+ONDEWO_PROTO_COMPILER_GIT_BRANCH=feature/OND221-2588-Upgrade-to-Angular-21
 ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
@@ -243,7 +243,7 @@ check_out_correct_submodule_versions: ## Fetches all Submodules and checksout sp
 npm_run_build: ## Runs the build command in package.json
 	@echo "START npm run build ..."
 	cd src/ && npm run build && cd ..
-	sudo chown $(USER):$(USER) . -R
+	sudo chown -R $(USER):$(shell id -gn) .
 	@echo "DONE npm run build."
 
 npm_run_generate: ## Runs test
