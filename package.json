@@ -45,9 +45,12 @@
 		"@eslint/eslintrc": "^3.2.0",
 		"@eslint/js": "^9.15.0",
 		"@typescript-eslint/eslint-plugin": "^8.15.0",
+		"@typescript-eslint/parser": "^8.56.0",
+		"@typescript-eslint/typescript-estree": "^8.56.0",
 		"eslint": "^9.15.0",
 		"global": "^4.4.0",
 		"husky": "^9.1.7",
-		"prettier": "^3.3.3"
+		"prettier": "^3.3.3",
+		"typescript": "^5.9.3"
 	}
 }
