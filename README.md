@@ -100,6 +100,34 @@ bootstrapApplication(AppComponent, {
 That is all the wiring required: every VTSI service client request now carries `authorization: Bearer <token>`
 whenever a token is available, and is sent unchanged when it is not.
 
+### 3. Call a VTSI RPC
+
+With the auth wired up, calling an RPC is just injecting the generated `@ngx-grpc` service client and subscribing to
+the returned `Observable` — the bearer token is attached transparently, so the consumer never touches it. A minimal,
+compiling end-to-end example (inject the client, build the request, call a representative unary RPC, map the response)
+lives in [`src/lib/examples/vtsi-calls.example.ts`](src/lib/examples/vtsi-calls.example.ts), with a mock-based unit
+test in [`vtsi-calls.example.spec.ts`](src/lib/examples/vtsi-calls.example.spec.ts):
+
+```ts
+import { Injectable } from "@angular/core";
+import { map, Observable } from "rxjs";
+import { CallsClient } from "@ondewo/vtsi-client-angular";
+import { Caller, ListCallersRequest, ListCallersResponse } from "@ondewo/vtsi-client-angular";
+
+@Injectable({ providedIn: "root" })
+export class VtsiCallsService {
+  constructor(private readonly callsClient: CallsClient) {}
+
+  listCallers(vtsiProjectName: string): Observable<Caller[]> {
+    // page_token defaults to page_size-10 on the server; ask for all callers.
+    const request = new ListCallersRequest({ vtsiProjectName, pageToken: "page_size-10000" });
+    return this.callsClient
+      .listCallers(request)
+      .pipe(map((response: ListCallersResponse) => response.callers ?? []));
+  }
+}
+```
+
 ## Package structure
 
 ```
