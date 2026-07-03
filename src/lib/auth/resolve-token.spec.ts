@@ -23,9 +23,9 @@ import {
 const TOKEN: string = "eyJhbGciOi.payload.signature";
 
 describe("constants", (): void => {
-  /** The header name must be lower-cased (HTTP/2 + gRPC-web metadata convention). */
-  it("uses a lower-case authorization header name", (): void => {
-    expect(AUTHORIZATION_HEADER).toBe("authorization");
+  /** The header name is the canonical capitalized `Authorization`. */
+  it("uses the canonical Authorization header name", (): void => {
+    expect(AUTHORIZATION_HEADER).toBe("Authorization");
   });
 
   /** The scheme prefix must be the canonical `"Bearer "` (note the trailing space). */
