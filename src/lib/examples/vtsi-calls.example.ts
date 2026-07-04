@@ -13,9 +13,8 @@
  * Authentication is intentionally invisible here: the consumer never touches a
  * token. Once `provideOndewoVtsiAuth(...)` is wired at bootstrap (see the
  * package README), the {@link AuthGrpcInterceptor} attaches the current Keycloak
- * access token as `authorization: Bearer <token>` to every request this client
- * sends. This is the current, bearer-only auth model — there is no `cai-token`,
- * HTTP-basic, or `login()` step.
+ * access token as an `Authorization: Bearer <token>` credential to every request
+ * this client sends. A Keycloak bearer token is the only supported credential.
  */
 import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
