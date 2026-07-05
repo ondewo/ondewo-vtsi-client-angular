@@ -44,90 +44,6 @@ cd ondewo-vtsi-client-angular                                      ## Change int
 make setup_developer_environment_locally                          ## Install dependencies
 ```
 
-## Authentication (Keycloak bearer token)
-
-The hand-written auth surface lives in [`src/lib/auth/`](src/lib/auth) and attaches the consumer's current
-Keycloak access token as an `Authorization: Bearer <token>` credential to every outgoing gRPC-web and HTTP
-request. This library performs **no** OAuth/OIDC flow itself — it never sees a password and never stores a
-token. Acquiring and refreshing the token is the responsibility of `keycloak-js` / `keycloak-angular` in the
-host application; this client only reads the current token through a `TokenProvider` and forwards it.
-
-### 1. Implement a `TokenProvider` backed by `keycloak-js`
-
-```ts
-import { Injectable } from "@angular/core";
-import Keycloak from "keycloak-js";
-import { TokenProvider, TokenResult } from "@ondewo/vtsi-client-angular";
-
-@Injectable({ providedIn: "root" })
-export class KeycloakTokenProvider implements TokenProvider {
-  constructor(private readonly keycloak: Keycloak) {}
-
-  // Refresh the token if it expires within 30s, then return the current one.
-  // Returning a Promise lets the interceptor await the refresh before sending.
-  getToken(): TokenResult {
-    return this.keycloak
-      .updateToken(30)
-      .then(() => this.keycloak.token ?? null)
-      .catch(() => null);
-  }
-}
-```
-
-`getToken()` may return a `string`, `null` (unauthenticated — the request is sent without an `Authorization`
-header), a `Promise<string | null>`, or an `Observable<string | null>`. With `keycloak-angular` you would
-instead inject `KeycloakService` and call `this.keycloakService.getToken()`.
-
-### 2. Register the provider and the interceptors
-
-```ts
-import { bootstrapApplication } from "@angular/platform-browser";
-import { provideHttpClient, withInterceptors } from "@angular/common/http";
-import { authHttpInterceptor, provideOndewoVtsiAuth } from "@ondewo/vtsi-client-angular";
-import { KeycloakTokenProvider } from "./keycloak-token-provider";
-
-bootstrapApplication(AppComponent, {
-  providers: [
-    // Binds TOKEN_PROVIDER to your implementation and registers the
-    // @ngx-grpc AuthGrpcInterceptor for all generated *.pbsc.ts clients.
-    provideOndewoVtsiAuth(KeycloakTokenProvider),
-    // For plain HTTP requests, also register the functional HTTP interceptor.
-    provideHttpClient(withInterceptors([authHttpInterceptor]))
-  ]
-});
-```
-
-That is all the wiring required: every VTSI service client request now carries `authorization: Bearer <token>`
-whenever a token is available, and is sent unchanged when it is not.
-
-### 3. Call a VTSI RPC
-
-With the auth wired up, calling an RPC is just injecting the generated `@ngx-grpc` service client and subscribing to
-the returned `Observable` — the bearer token is attached transparently, so the consumer never touches it. A minimal,
-compiling end-to-end example (inject the client, build the request, call a representative unary RPC, map the response)
-lives in [`src/lib/examples/vtsi-calls.example.ts`](src/lib/examples/vtsi-calls.example.ts), with a mock-based unit
-test in [`vtsi-calls.example.spec.ts`](src/lib/examples/vtsi-calls.example.spec.ts):
-
-```ts
-import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
-import { CallsClient } from "@ondewo/vtsi-client-angular";
-import { Caller, ListCallersRequest, ListCallersResponse } from "@ondewo/vtsi-client-angular";
-
-@Injectable({ providedIn: "root" })
-export class VtsiCallsService {
-  constructor(private readonly callsClient: CallsClient) {}
-
-  listCallers(vtsiProjectName: string): Observable<Caller[]> {
-    // page_token defaults to page_size-10 on the server; ask for all callers.
-    const request = new ListCallersRequest({ vtsiProjectName, pageToken: "page_size-10000" });
-    return this.callsClient
-      .listCallers(request)
-      .pipe(map((response: ListCallersResponse) => response.callers ?? []));
-  }
-}
-```
-
 ## Package structure
 
 ```
@@ -255,7 +171,7 @@ npm
 └── README.md
 ```
 
-[comment]: <> (START OF GITHUB README)
+[comment]: <> 'START OF GITHUB README'
 
 ## Build
 
@@ -307,4 +223,4 @@ TODO after PR merge:
 
 > :warning: The Release Automation checks if the build has created all the proto-code files, but it does not check the code-integrity. Please build and test the generated code prior to starting the release process.
 
-[comment]: <> (END OF GITHUB README)
+[comment]: <> 'END OF GITHUB README'
