@@ -326,6 +326,46 @@ describe("KeycloakTokenProvider", (): void => {
     });
   });
 
+  describe("keycloakVerifySsl (browser no-op, config -> provider parity)", (): void => {
+    /** Omitting the field defaults the stored flag to verification-ON (secure). */
+    it("defaults the stored flag to true when keycloakVerifySsl is omitted", (): void => {
+      const { provider } = build(refreshTokenConfig());
+      expect(provider.keycloakVerifySsl).toBe(true);
+    });
+
+    /** An explicit true is stored as true. */
+    it("stores an explicit keycloakVerifySsl: true as true", (): void => {
+      const { provider } = build(refreshTokenConfig({ keycloakVerifySsl: true }));
+      expect(provider.keycloakVerifySsl).toBe(true);
+    });
+
+    /** An explicit false is threaded from config through to the provider field. */
+    it("stores keycloakVerifySsl: false as false (threaded config -> provider)", (): void => {
+      const { provider } = build(refreshTokenConfig({ keycloakVerifySsl: false }));
+      expect(provider.keycloakVerifySsl).toBe(false);
+    });
+
+    /**
+     * The flag is inert at the transport layer: with keycloakVerifySsl: false the
+     * provider issues the SAME single POST (same URL and body) and logs in exactly
+     * as with the field omitted — proving it is a no-op, not wired to TLS.
+     */
+    it("does not alter or break the token request when keycloakVerifySsl is false", async (): Promise<void> => {
+      const { http, provider } = build(refreshTokenConfig({ keycloakVerifySsl: false }));
+      http.responses.push({ kind: "ok", body: { access_token: "at-1", refresh_token: "rt-1", expires_in: 300 } });
+
+      await provider.initialize();
+
+      expect(http.calls).toHaveLength(1);
+      expect(http.calls[0].url).toBe(TOKEN_ENDPOINT);
+      expect(http.calls[0].body).toContain("grant_type=refresh_token");
+      expect(http.calls[0].body).toContain("client_id=" + CLIENT_ID);
+      expect(http.calls[0].body).toContain("refresh_token=offline-rt-0");
+      expect(provider.getToken()).toBe("at-1");
+      provider.ngOnDestroy();
+    });
+  });
+
   describe("bounded deadline (tokenExpirationInS)", (): void => {
     /** The scheduled delay is clamped to the remaining time before the deadline. */
     it("clamps the refresh delay to the remaining deadline", async (): Promise<void> => {
