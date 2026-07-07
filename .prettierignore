@@ -14,3 +14,9 @@ ondewo-vtsi-api
 ondewo-vtsi-client-angular.d.ts
 ondewo-vtsi-client-angular.d.ts.map
 ondewo-vtsi-client-angular.metadata.json
+package-lock.json
+package.json
+npm/
+dist/
+.test-build/
+.test-build-examples/
