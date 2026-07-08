@@ -4,3 +4,4 @@ echo "$PATH"
 set -e
 make eslint
 make prettier PRETTIER_WRITE=-w
+pre-commit run
