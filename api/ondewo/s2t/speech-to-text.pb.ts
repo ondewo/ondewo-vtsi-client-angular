@@ -5988,6 +5988,7 @@ export class AcousticModels implements GrpcMessage {
       _instance.s2tCloudServiceGoogle || undefined;
     _instance.s2tCloudServiceMicrosoft =
       _instance.s2tCloudServiceMicrosoft || undefined;
+    _instance.parakeet = _instance.parakeet || undefined;
   }
 
   /**
@@ -6060,6 +6061,13 @@ export class AcousticModels implements GrpcMessage {
           _reader.readMessage(
             _instance.s2tCloudServiceMicrosoft,
             S2tCloudServiceMicrosoft.deserializeBinaryFromReader
+          );
+          break;
+        case 10:
+          _instance.parakeet = new Parakeet();
+          _reader.readMessage(
+            _instance.parakeet,
+            Parakeet.deserializeBinaryFromReader
           );
           break;
         default:
@@ -6138,6 +6146,13 @@ export class AcousticModels implements GrpcMessage {
         S2tCloudServiceMicrosoft.serializeBinaryToWriter
       );
     }
+    if (_instance.parakeet) {
+      _writer.writeMessage(
+        10,
+        _instance.parakeet as any,
+        Parakeet.serializeBinaryToWriter
+      );
+    }
   }
 
   private _type: string;
@@ -6149,6 +6164,7 @@ export class AcousticModels implements GrpcMessage {
   private _s2tCloudServiceDeepgram?: S2tCloudServiceDeepgram;
   private _s2tCloudServiceGoogle?: S2tCloudServiceGoogle;
   private _s2tCloudServiceMicrosoft?: S2tCloudServiceMicrosoft;
+  private _parakeet?: Parakeet;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -6177,6 +6193,7 @@ export class AcousticModels implements GrpcMessage {
     this.s2tCloudServiceMicrosoft = _value.s2tCloudServiceMicrosoft
       ? new S2tCloudServiceMicrosoft(_value.s2tCloudServiceMicrosoft)
       : undefined;
+    this.parakeet = _value.parakeet ? new Parakeet(_value.parakeet) : undefined;
     AcousticModels.refineValues(this);
   }
   get type(): string {
@@ -6233,6 +6250,12 @@ export class AcousticModels implements GrpcMessage {
   set s2tCloudServiceMicrosoft(value: S2tCloudServiceMicrosoft | undefined) {
     this._s2tCloudServiceMicrosoft = value;
   }
+  get parakeet(): Parakeet | undefined {
+    return this._parakeet;
+  }
+  set parakeet(value: Parakeet | undefined) {
+    this._parakeet = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -6269,7 +6292,8 @@ export class AcousticModels implements GrpcMessage {
         : undefined,
       s2tCloudServiceMicrosoft: this.s2tCloudServiceMicrosoft
         ? this.s2tCloudServiceMicrosoft.toObject()
-        : undefined
+        : undefined,
+      parakeet: this.parakeet ? this.parakeet.toObject() : undefined
     };
   }
 
@@ -6310,7 +6334,8 @@ export class AcousticModels implements GrpcMessage {
         : null,
       s2tCloudServiceMicrosoft: this.s2tCloudServiceMicrosoft
         ? this.s2tCloudServiceMicrosoft.toProtobufJSON(options)
-        : null
+        : null,
+      parakeet: this.parakeet ? this.parakeet.toProtobufJSON(options) : null
     };
   }
 }
@@ -6328,6 +6353,7 @@ export module AcousticModels {
     s2tCloudServiceDeepgram?: S2tCloudServiceDeepgram.AsObject;
     s2tCloudServiceGoogle?: S2tCloudServiceGoogle.AsObject;
     s2tCloudServiceMicrosoft?: S2tCloudServiceMicrosoft.AsObject;
+    parakeet?: Parakeet.AsObject;
   }
 
   /**
@@ -6343,6 +6369,7 @@ export module AcousticModels {
     s2tCloudServiceDeepgram: S2tCloudServiceDeepgram.AsProtobufJSON | null;
     s2tCloudServiceGoogle: S2tCloudServiceGoogle.AsProtobufJSON | null;
     s2tCloudServiceMicrosoft: S2tCloudServiceMicrosoft.AsProtobufJSON | null;
+    parakeet: Parakeet.AsProtobufJSON | null;
   }
 }
 
@@ -8109,6 +8136,215 @@ export module Wav2VecTriton {
    */
   export interface AsProtobufJSON {
     processorPath: string;
+    tritonModelName: string;
+    tritonModelVersion: string;
+    checkStatusTimeout: string;
+    tritonServerHost: string;
+    tritonServerPort: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.s2t.Parakeet
+ */
+export class Parakeet implements GrpcMessage {
+  static id = 'ondewo.s2t.Parakeet';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new Parakeet();
+    Parakeet.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: Parakeet) {
+    _instance.tritonModelName = _instance.tritonModelName || '';
+    _instance.tritonModelVersion = _instance.tritonModelVersion || '';
+    _instance.checkStatusTimeout = _instance.checkStatusTimeout || '0';
+    _instance.tritonServerHost = _instance.tritonServerHost || '';
+    _instance.tritonServerPort = _instance.tritonServerPort || '0';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: Parakeet,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.tritonModelName = _reader.readString();
+          break;
+        case 2:
+          _instance.tritonModelVersion = _reader.readString();
+          break;
+        case 3:
+          _instance.checkStatusTimeout = _reader.readInt64String();
+          break;
+        case 4:
+          _instance.tritonServerHost = _reader.readString();
+          break;
+        case 5:
+          _instance.tritonServerPort = _reader.readInt64String();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    Parakeet.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: Parakeet, _writer: BinaryWriter) {
+    if (_instance.tritonModelName) {
+      _writer.writeString(1, _instance.tritonModelName);
+    }
+    if (_instance.tritonModelVersion) {
+      _writer.writeString(2, _instance.tritonModelVersion);
+    }
+    if (_instance.checkStatusTimeout) {
+      _writer.writeInt64String(3, _instance.checkStatusTimeout);
+    }
+    if (_instance.tritonServerHost) {
+      _writer.writeString(4, _instance.tritonServerHost);
+    }
+    if (_instance.tritonServerPort) {
+      _writer.writeInt64String(5, _instance.tritonServerPort);
+    }
+  }
+
+  private _tritonModelName: string;
+  private _tritonModelVersion: string;
+  private _checkStatusTimeout: string;
+  private _tritonServerHost: string;
+  private _tritonServerPort: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of Parakeet to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<Parakeet.AsObject>) {
+    _value = _value || {};
+    this.tritonModelName = _value.tritonModelName;
+    this.tritonModelVersion = _value.tritonModelVersion;
+    this.checkStatusTimeout = _value.checkStatusTimeout;
+    this.tritonServerHost = _value.tritonServerHost;
+    this.tritonServerPort = _value.tritonServerPort;
+    Parakeet.refineValues(this);
+  }
+  get tritonModelName(): string {
+    return this._tritonModelName;
+  }
+  set tritonModelName(value: string) {
+    this._tritonModelName = value;
+  }
+  get tritonModelVersion(): string {
+    return this._tritonModelVersion;
+  }
+  set tritonModelVersion(value: string) {
+    this._tritonModelVersion = value;
+  }
+  get checkStatusTimeout(): string {
+    return this._checkStatusTimeout;
+  }
+  set checkStatusTimeout(value: string) {
+    this._checkStatusTimeout = value;
+  }
+  get tritonServerHost(): string {
+    return this._tritonServerHost;
+  }
+  set tritonServerHost(value: string) {
+    this._tritonServerHost = value;
+  }
+  get tritonServerPort(): string {
+    return this._tritonServerPort;
+  }
+  set tritonServerPort(value: string) {
+    this._tritonServerPort = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    Parakeet.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): Parakeet.AsObject {
+    return {
+      tritonModelName: this.tritonModelName,
+      tritonModelVersion: this.tritonModelVersion,
+      checkStatusTimeout: this.checkStatusTimeout,
+      tritonServerHost: this.tritonServerHost,
+      tritonServerPort: this.tritonServerPort
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): Parakeet.AsProtobufJSON {
+    return {
+      tritonModelName: this.tritonModelName,
+      tritonModelVersion: this.tritonModelVersion,
+      checkStatusTimeout: this.checkStatusTimeout,
+      tritonServerHost: this.tritonServerHost,
+      tritonServerPort: this.tritonServerPort
+    };
+  }
+}
+export module Parakeet {
+  /**
+   * Standard JavaScript object representation for Parakeet
+   */
+  export interface AsObject {
+    tritonModelName: string;
+    tritonModelVersion: string;
+    checkStatusTimeout: string;
+    tritonServerHost: string;
+    tritonServerPort: string;
+  }
+
+  /**
+   * Protobuf JSON representation for Parakeet
+   */
+  export interface AsProtobufJSON {
     tritonModelName: string;
     tritonModelVersion: string;
     checkStatusTimeout: string;
@@ -12273,6 +12509,7 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
   static refineValues(_instance: S2tLlmPostProcessingTranslationOptions) {
     _instance.active = _instance.active || false;
     _instance.language = _instance.language || '';
+    _instance.prompt = _instance.prompt || '';
   }
 
   /**
@@ -12293,6 +12530,9 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
           break;
         case 2:
           _instance.language = _reader.readString();
+          break;
+        case 3:
+          _instance.prompt = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -12317,10 +12557,14 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
     if (_instance.language) {
       _writer.writeString(2, _instance.language);
     }
+    if (_instance.prompt) {
+      _writer.writeString(3, _instance.prompt);
+    }
   }
 
   private _active: boolean;
   private _language: string;
+  private _prompt: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -12332,6 +12576,7 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
     _value = _value || {};
     this.active = _value.active;
     this.language = _value.language;
+    this.prompt = _value.prompt;
     S2tLlmPostProcessingTranslationOptions.refineValues(this);
   }
   get active(): boolean {
@@ -12345,6 +12590,12 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
   }
   set language(value: string) {
     this._language = value;
+  }
+  get prompt(): string {
+    return this._prompt;
+  }
+  set prompt(value: string) {
+    this._prompt = value;
   }
 
   /**
@@ -12366,7 +12617,8 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
   toObject(): S2tLlmPostProcessingTranslationOptions.AsObject {
     return {
       active: this.active,
-      language: this.language
+      language: this.language,
+      prompt: this.prompt
     };
   }
 
@@ -12388,7 +12640,8 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
   ): S2tLlmPostProcessingTranslationOptions.AsProtobufJSON {
     return {
       active: this.active,
-      language: this.language
+      language: this.language,
+      prompt: this.prompt
     };
   }
 }
@@ -12399,6 +12652,7 @@ export module S2tLlmPostProcessingTranslationOptions {
   export interface AsObject {
     active: boolean;
     language: string;
+    prompt: string;
   }
 
   /**
@@ -12407,6 +12661,7 @@ export module S2tLlmPostProcessingTranslationOptions {
   export interface AsProtobufJSON {
     active: boolean;
     language: string;
+    prompt: string;
   }
 }
 
@@ -13106,6 +13361,7 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
    */
   static refineValues(_instance: S2tLlmPostProcessingSummarizationOptions) {
     _instance.active = _instance.active || false;
+    _instance.prompt = _instance.prompt || '';
     _instance.minChars = _instance.minChars || 0;
     _instance.maxChars = _instance.maxChars || 0;
   }
@@ -13127,9 +13383,12 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
           _instance.active = _reader.readBool();
           break;
         case 2:
-          _instance.minChars = _reader.readInt32();
+          _instance.prompt = _reader.readString();
           break;
         case 3:
+          _instance.minChars = _reader.readInt32();
+          break;
+        case 4:
           _instance.maxChars = _reader.readInt32();
           break;
         default:
@@ -13152,15 +13411,19 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
     if (_instance.active) {
       _writer.writeBool(1, _instance.active);
     }
+    if (_instance.prompt) {
+      _writer.writeString(2, _instance.prompt);
+    }
     if (_instance.minChars) {
-      _writer.writeInt32(2, _instance.minChars);
+      _writer.writeInt32(3, _instance.minChars);
     }
     if (_instance.maxChars) {
-      _writer.writeInt32(3, _instance.maxChars);
+      _writer.writeInt32(4, _instance.maxChars);
     }
   }
 
   private _active: boolean;
+  private _prompt: string;
   private _minChars: number;
   private _maxChars: number;
 
@@ -13173,6 +13436,7 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
   ) {
     _value = _value || {};
     this.active = _value.active;
+    this.prompt = _value.prompt;
     this.minChars = _value.minChars;
     this.maxChars = _value.maxChars;
     S2tLlmPostProcessingSummarizationOptions.refineValues(this);
@@ -13182,6 +13446,12 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
   }
   set active(value: boolean) {
     this._active = value;
+  }
+  get prompt(): string {
+    return this._prompt;
+  }
+  set prompt(value: string) {
+    this._prompt = value;
   }
   get minChars(): number {
     return this._minChars;
@@ -13215,6 +13485,7 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
   toObject(): S2tLlmPostProcessingSummarizationOptions.AsObject {
     return {
       active: this.active,
+      prompt: this.prompt,
       minChars: this.minChars,
       maxChars: this.maxChars
     };
@@ -13238,6 +13509,7 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
   ): S2tLlmPostProcessingSummarizationOptions.AsProtobufJSON {
     return {
       active: this.active,
+      prompt: this.prompt,
       minChars: this.minChars,
       maxChars: this.maxChars
     };
@@ -13249,6 +13521,7 @@ export module S2tLlmPostProcessingSummarizationOptions {
    */
   export interface AsObject {
     active: boolean;
+    prompt: string;
     minChars: number;
     maxChars: number;
   }
@@ -13258,6 +13531,7 @@ export module S2tLlmPostProcessingSummarizationOptions {
    */
   export interface AsProtobufJSON {
     active: boolean;
+    prompt: string;
     minChars: number;
     maxChars: number;
   }

@@ -20,6 +20,13 @@ jobs:
         with:
           submodules: false
 
+      - name: Check out the ondewo-vtsi-api submodule
+        # Deliberately not `submodules: recursive` on the checkout above: ondewo-proto-compiler is
+        # an SSH remote no runner can clone. This one is public HTTPS, and it is the reference the
+        # build-config specs compare the generated api/ stubs against — without it they can only
+        # report SKIPPED.
+        run: git submodule update --init src/ondewo-vtsi-api
+
       - name: Set up Node.js 20
         uses: actions/setup-node@v5
         with:

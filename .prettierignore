@@ -20,3 +20,11 @@ npm/
 dist/
 .test-build/
 .test-build-examples/
+
+# Codegen output, like api/ and fesm2022/ above: index.d.ts is ng-packagr's 3.8 MB rollup of the
+# typings and public-api.ts is the generated barrel. `.husky/pre-commit` runs prettier in WRITE
+# mode, so anything missing here is reformatted on every commit and no longer matches what the
+# codegen emits. coverage/ is jest's report — untracked, and enough to fail `make prettier`.
+index.d.ts
+public-api.ts
+coverage/
