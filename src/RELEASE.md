@@ -10,6 +10,13 @@
   ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
 * Added the generated client for `ondewo/vtsi/logs.proto` (container log capture and streaming)
 * Added Keycloak bearer authentication for the VTSI Angular SDK
+* Added the optional field `asterisk_version` to `AsteriskConfigs`. It carries the docker image tag of the
+  ONDEWO Asterisk image a VTSI project should start (e.g. `alpine-3.18-18.20.2`), so the Asterisk version is a
+  per-project setting instead of a server-wide one. Leaving it unset keeps the server default
+  (`ONDEWO_VTSI_ASTERISK_IMAGE_TAG`); an empty string is rejected
+* Note that ngx-grpc flattens the field's explicit presence into a plain `asteriskVersion: string` that is
+  written to the wire only when non-empty. An Angular caller can therefore send a tag or send nothing, and
+  cannot send the empty string — which is harmless, because the empty string is the value the server rejects
 
 *****************
 

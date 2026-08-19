@@ -953,6 +953,7 @@ export class AsteriskConfigs implements GrpcMessage {
    */
   static refineValues(_instance: AsteriskConfigs) {
     _instance.asteriskPort = _instance.asteriskPort || 0;
+    _instance.asteriskVersion = _instance.asteriskVersion || '';
   }
 
   /**
@@ -987,6 +988,9 @@ export class AsteriskConfigs implements GrpcMessage {
           break;
         case 4:
           _instance.asteriskPort = _reader.readInt32();
+          break;
+        case 5:
+          _instance.asteriskVersion = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -1028,12 +1032,16 @@ export class AsteriskConfigs implements GrpcMessage {
     if (_instance.asteriskPort) {
       _writer.writeInt32(4, _instance.asteriskPort);
     }
+    if (_instance.asteriskVersion) {
+      _writer.writeString(5, _instance.asteriskVersion);
+    }
   }
 
   private _asteriskConfigsVariables?: AsteriskConfigsVariables;
   private _asteriskConfigsFiles?: AsteriskConfigsFiles;
   private _asteriskConfigsTargetDirectoryName: string;
   private _asteriskPort: number;
+  private _asteriskVersion: string;
 
   private _asteriskConfigsOneof: AsteriskConfigs.AsteriskConfigsOneofCase =
     AsteriskConfigs.AsteriskConfigsOneofCase.none;
@@ -1053,6 +1061,7 @@ export class AsteriskConfigs implements GrpcMessage {
     this.asteriskConfigsTargetDirectoryName =
       _value.asteriskConfigsTargetDirectoryName;
     this.asteriskPort = _value.asteriskPort;
+    this.asteriskVersion = _value.asteriskVersion;
     AsteriskConfigs.refineValues(this);
   }
   get asteriskConfigsVariables(): AsteriskConfigsVariables | undefined {
@@ -1094,6 +1103,12 @@ export class AsteriskConfigs implements GrpcMessage {
   set asteriskPort(value: number) {
     this._asteriskPort = value;
   }
+  get asteriskVersion(): string {
+    return this._asteriskVersion;
+  }
+  set asteriskVersion(value: string) {
+    this._asteriskVersion = value;
+  }
   get asteriskConfigsOneof() {
     return this._asteriskConfigsOneof;
   }
@@ -1121,7 +1136,8 @@ export class AsteriskConfigs implements GrpcMessage {
         : undefined,
       asteriskConfigsTargetDirectoryName: this
         .asteriskConfigsTargetDirectoryName,
-      asteriskPort: this.asteriskPort
+      asteriskPort: this.asteriskPort,
+      asteriskVersion: this.asteriskVersion
     };
   }
 
@@ -1153,7 +1169,8 @@ export class AsteriskConfigs implements GrpcMessage {
         this.asteriskConfigsTargetDirectoryName === undefined
           ? null
           : this.asteriskConfigsTargetDirectoryName,
-      asteriskPort: this.asteriskPort
+      asteriskPort: this.asteriskPort,
+      asteriskVersion: this.asteriskVersion
     };
   }
 }
@@ -1166,6 +1183,7 @@ export module AsteriskConfigs {
     asteriskConfigsFiles?: AsteriskConfigsFiles.AsObject;
     asteriskConfigsTargetDirectoryName: string;
     asteriskPort: number;
+    asteriskVersion: string;
   }
 
   /**
@@ -1176,6 +1194,7 @@ export module AsteriskConfigs {
     asteriskConfigsFiles: AsteriskConfigsFiles.AsProtobufJSON | null;
     asteriskConfigsTargetDirectoryName: string | null;
     asteriskPort: number;
+    asteriskVersion: string;
   }
   export enum AsteriskConfigsOneofCase {
     none = 0,

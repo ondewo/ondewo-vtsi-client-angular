@@ -90423,6 +90423,7 @@ declare class AsteriskConfigs implements GrpcMessage {
     private _asteriskConfigsFiles?;
     private _asteriskConfigsTargetDirectoryName;
     private _asteriskPort;
+    private _asteriskVersion;
     private _asteriskConfigsOneof;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -90437,6 +90438,8 @@ declare class AsteriskConfigs implements GrpcMessage {
     set asteriskConfigsTargetDirectoryName(value: string);
     get asteriskPort(): number;
     set asteriskPort(value: number);
+    get asteriskVersion(): string;
+    set asteriskVersion(value: string);
     get asteriskConfigsOneof(): AsteriskConfigs.AsteriskConfigsOneofCase;
     /**
      * Serialize message to binary data
@@ -90467,6 +90470,7 @@ declare namespace AsteriskConfigs {
         asteriskConfigsFiles?: AsteriskConfigsFiles.AsObject;
         asteriskConfigsTargetDirectoryName: string;
         asteriskPort: number;
+        asteriskVersion: string;
     }
     /**
      * Protobuf JSON representation for AsteriskConfigs
@@ -90476,6 +90480,7 @@ declare namespace AsteriskConfigs {
         asteriskConfigsFiles: AsteriskConfigsFiles.AsProtobufJSON | null;
         asteriskConfigsTargetDirectoryName: string | null;
         asteriskPort: number;
+        asteriskVersion: string;
     }
     enum AsteriskConfigsOneofCase {
         none = 0,
