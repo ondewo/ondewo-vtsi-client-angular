@@ -114,6 +114,18 @@ These bit us during the 6.14.0 release. Keep them in mind when releasing.
 - `install_dependencies` must `git checkout -- package.json package-lock.json` then `npm install --include=dev` — the release runs under `NODE_ENV=production` (drops devDeps) and the build minimises root `package.json`, so `rxjs`/`@angular`/`@ngx-grpc` must be force-resolved or the type-aware eslint fails only at release time.
 - A type assertion that the **non-strict** release `tsconfig.json` calls "unnecessary" is **required** by the **strict** jest `tsconfig.spec.json` — keep the `eslint-disable` on it; removing it red-greens one toolchain while breaking the other.
 
+## `optional` proto3 scalars: ngx-grpc FLATTENS presence, and that is a real difference
+
+`AsteriskConfigs.asterisk_version` is the first field here declared `optional string` upstream. The python and jspb clients expose real presence (`HasField` / `hasAsteriskVersion()`); **ngx-grpc does not**. The generated class has a plain `asteriskVersion: string`, `refineValues` coerces `undefined` to `''` in the constructor, and `writeToBinary` emits the field only when it is truthy.
+
+The consequence, asserted in `tests/asterisk-version.spec.ts` rather than assumed: an Angular caller can send a tag or send nothing, and **cannot send the empty string** — an empty value encodes identically to an absent one. That is harmless for this field, because the empty string is exactly the value the VTSI server rejects. It will not be harmless for the next `optional` field that needs the third state, so check this before assuming an Angular client can express one.
+
+## The two commit-msg hooks must run in this order
+
+`.pre-commit-config.yaml` lists `conventional-pre-commit` **before** `giticket`, and the order is the whole point. pre-commit runs hooks in file order, and `giticket` rewrites the subject to `[OND211-2418] <subject>`, which is not a valid Conventional Commit. With `giticket` first the validator is handed the prefix the other hook just added and rejects it, so **no conforming commit message exists at all** — one hook failing on the other hook's output. The only escapes were `--no-verify` or renaming the branch away from its ticket, and this repo's history shows the result: subjects that carry no ticket prefix at all.
+
+This repo had the wrong order until the `asterisk_version` regeneration commit fixed it. Type the plain subject (`feat(vtsi): …`), let the validator see exactly that, and let `giticket` decorate it afterwards. Never write the `[TICKET]` prefix yourself — that yields `[OND211-2418] [OND211-2418] …`.
+
 ## Pre-commit (chained into husky) + the release gotchas
 
 This repo now runs the pre-commit framework (markdownlint-cli2, pre-commit-hooks, giticket, conventional-commit) **alongside** husky's eslint/prettier. Hard-won rules:
