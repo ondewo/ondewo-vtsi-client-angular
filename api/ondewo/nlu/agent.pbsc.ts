@@ -35,10 +35,12 @@ import * as googleProtobuf011 from '@ngx-grpc/well-known-types';
 import * as googleRpc012 from '../../google/rpc/status.pb';
 import * as ondewoNlu013 from '../../ondewo/nlu/operation-metadata.pb';
 import * as googleType014 from '../../google/type/latlng.pb';
-import * as ondewoNlu015 from '../../ondewo/nlu/intent.pb';
+import * as ondewoNlu015 from '../../ondewo/nlu/ccai-project.pb';
 import * as ondewoNlu016 from '../../ondewo/nlu/entity-type.pb';
-import * as ondewoNlu017 from '../../ondewo/nlu/user.pb';
-import * as ondewoNlu018 from '../../ondewo/nlu/session.pb';
+import * as ondewoNlu017 from '../../ondewo/nlu/intent.pb';
+import * as ondewoNlu018 from '../../ondewo/nlu/llm-evaluation.pb';
+import * as ondewoNlu019 from '../../ondewo/nlu/user.pb';
+import * as ondewoNlu020 from '../../ondewo/nlu/session.pb';
 import { GRPC_AGENTS_CLIENT_SETTINGS } from './agent.pbconf';
 /**
  * Service client implementation for ondewo.nlu.Agents
@@ -537,6 +539,29 @@ export class AgentsClient {
       });
     },
     /**
+     * Unary call: /ondewo.nlu.Agents/GetSessionsStatisticsTimeSeries
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.GetSessionsStatisticsTimeSeriesResponse>>
+     */
+    getSessionsStatisticsTimeSeries: (
+      requestData: thisProto.GetSessionsStatisticsTimeSeriesRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<
+      GrpcEvent<thisProto.GetSessionsStatisticsTimeSeriesResponse>
+    > => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.nlu.Agents/GetSessionsStatisticsTimeSeries',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.GetSessionsStatisticsTimeSeriesRequest,
+        responseClass: thisProto.GetSessionsStatisticsTimeSeriesResponse
+      });
+    },
+    /**
      * Unary call: /ondewo.nlu.Agents/SetAgentStatus
      *
      * @param requestMessage Request message
@@ -923,6 +948,92 @@ export class AgentsClient {
         requestClass: thisProto.ReindexAgentRequest,
         responseClass: ondewoNlu008.Operation
       });
+    },
+    /**
+     * Unary call: /ondewo.nlu.Agents/CreateProjectTechnicalUser
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.CreateProjectTechnicalUserResponse>>
+     */
+    createProjectTechnicalUser: (
+      requestData: thisProto.CreateProjectTechnicalUserRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.CreateProjectTechnicalUserResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.nlu.Agents/CreateProjectTechnicalUser',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.CreateProjectTechnicalUserRequest,
+        responseClass: thisProto.CreateProjectTechnicalUserResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.nlu.Agents/ListProjectTechnicalUsers
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.ListProjectTechnicalUsersResponse>>
+     */
+    listProjectTechnicalUsers: (
+      requestData: thisProto.ListProjectTechnicalUsersRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.ListProjectTechnicalUsersResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.nlu.Agents/ListProjectTechnicalUsers',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.ListProjectTechnicalUsersRequest,
+        responseClass: thisProto.ListProjectTechnicalUsersResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.nlu.Agents/DeleteProjectTechnicalUser
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<googleProtobuf009.Empty>>
+     */
+    deleteProjectTechnicalUser: (
+      requestData: thisProto.DeleteProjectTechnicalUserRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<googleProtobuf009.Empty>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.nlu.Agents/DeleteProjectTechnicalUser',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.DeleteProjectTechnicalUserRequest,
+        responseClass: googleProtobuf009.Empty
+      });
+    },
+    /**
+     * Unary call: /ondewo.nlu.Agents/RotateProjectTechnicalUserPassword
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.RotateProjectTechnicalUserPasswordResponse>>
+     */
+    rotateProjectTechnicalUserPassword: (
+      requestData: thisProto.RotateProjectTechnicalUserPasswordRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<
+      GrpcEvent<thisProto.RotateProjectTechnicalUserPasswordResponse>
+    > => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.nlu.Agents/RotateProjectTechnicalUserPassword',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.RotateProjectTechnicalUserPasswordRequest,
+        responseClass: thisProto.RotateProjectTechnicalUserPasswordResponse
+      });
     }
   };
 
@@ -1303,6 +1414,22 @@ export class AgentsClient {
   }
 
   /**
+   * Unary call @/ondewo.nlu.Agents/GetSessionsStatisticsTimeSeries
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.GetSessionsStatisticsTimeSeriesResponse>
+   */
+  getSessionsStatisticsTimeSeries(
+    requestData: thisProto.GetSessionsStatisticsTimeSeriesRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.GetSessionsStatisticsTimeSeriesResponse> {
+    return this.$raw
+      .getSessionsStatisticsTimeSeries(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
    * Unary call @/ondewo.nlu.Agents/SetAgentStatus
    *
    * @param requestMessage Request message
@@ -1587,6 +1714,70 @@ export class AgentsClient {
   ): Observable<ondewoNlu008.Operation> {
     return this.$raw
       .reindexAgent(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.nlu.Agents/CreateProjectTechnicalUser
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.CreateProjectTechnicalUserResponse>
+   */
+  createProjectTechnicalUser(
+    requestData: thisProto.CreateProjectTechnicalUserRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.CreateProjectTechnicalUserResponse> {
+    return this.$raw
+      .createProjectTechnicalUser(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.nlu.Agents/ListProjectTechnicalUsers
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.ListProjectTechnicalUsersResponse>
+   */
+  listProjectTechnicalUsers(
+    requestData: thisProto.ListProjectTechnicalUsersRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.ListProjectTechnicalUsersResponse> {
+    return this.$raw
+      .listProjectTechnicalUsers(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.nlu.Agents/DeleteProjectTechnicalUser
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<googleProtobuf009.Empty>
+   */
+  deleteProjectTechnicalUser(
+    requestData: thisProto.DeleteProjectTechnicalUserRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<googleProtobuf009.Empty> {
+    return this.$raw
+      .deleteProjectTechnicalUser(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.nlu.Agents/RotateProjectTechnicalUserPassword
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.RotateProjectTechnicalUserPasswordResponse>
+   */
+  rotateProjectTechnicalUserPassword(
+    requestData: thisProto.RotateProjectTechnicalUserPasswordRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.RotateProjectTechnicalUserPasswordResponse> {
+    return this.$raw
+      .rotateProjectTechnicalUserPassword(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 }

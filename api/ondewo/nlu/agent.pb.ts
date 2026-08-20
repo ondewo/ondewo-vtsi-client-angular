@@ -26,10 +26,12 @@ import * as googleProtobuf011 from '@ngx-grpc/well-known-types';
 import * as googleRpc012 from '../../google/rpc/status.pb';
 import * as ondewoNlu013 from '../../ondewo/nlu/operation-metadata.pb';
 import * as googleType014 from '../../google/type/latlng.pb';
-import * as ondewoNlu015 from '../../ondewo/nlu/intent.pb';
+import * as ondewoNlu015 from '../../ondewo/nlu/ccai-project.pb';
 import * as ondewoNlu016 from '../../ondewo/nlu/entity-type.pb';
-import * as ondewoNlu017 from '../../ondewo/nlu/user.pb';
-import * as ondewoNlu018 from '../../ondewo/nlu/session.pb';
+import * as ondewoNlu017 from '../../ondewo/nlu/intent.pb';
+import * as ondewoNlu018 from '../../ondewo/nlu/llm-evaluation.pb';
+import * as ondewoNlu019 from '../../ondewo/nlu/user.pb';
+import * as ondewoNlu020 from '../../ondewo/nlu/session.pb';
 export enum AgentView {
   AGENT_VIEW_UNSPECIFIED = 0,
   AGENT_VIEW_FULL = 1,
@@ -46,7 +48,28 @@ export enum ReportType {
   INTENT_PER_LANGUAGE = 1,
   ENTITY_PER_LANGUAGE = 2,
   ENTITY_COLLISION = 3,
-  INTENT_GENERAL = 4
+  INTENT_GENERAL = 4,
+  AGENT_LLM_TOKEN_USAGE = 5,
+  AGENT_LLM_MODELS_USED = 6,
+  AGENT_LLM_PROVIDERS_USED = 7,
+  AGENT_LLM_CCAI_SERVICES_USED = 8,
+  AGENT_LLM_AGENTS_USED = 9,
+  AGENT_LLM_ERRORS = 10,
+  AGENT_LLM_CACHE_EFFICIENCY = 11,
+  AGENT_LLM_REASONING_EFFORT = 12,
+  AGENT_LLM_TOP_X_TOOLS = 13,
+  AGENT_LLM_LEAST_X_TOOLS = 14,
+  AGENT_LLM_LATENCY = 15,
+  AGENT_LLM_FINISH_REASONS = 16,
+  AGENT_LLM_TOTAL_STATISTICS = 17,
+  AGENT_LLM_INPUT_TOKEN_USAGE = 18,
+  AGENT_LLM_OUTPUT_TOKEN_USAGE = 19,
+  AGENT_LLM_THINKING_TOKEN_USAGE = 20,
+  AGENT_LLM_TOOL_CALL_TOKEN_USAGE = 21,
+  AGENT_LLM_TOP_X_MODELS = 22,
+  AGENT_LLM_TOP_X_CCAI_SERVICE_PROVIDERS = 23,
+  AGENT_LLM_TOP_X_AGENT_NAMES = 24,
+  AGENT_LLM_SAFETY = 25
 }
 export enum SessionsReportType {
   SESSIONS = 0,
@@ -66,7 +89,31 @@ export enum SessionsReportType {
   SESSION_LEAST_X_USERS = 14,
   SESSION_LEAST_X_LABELS = 15,
   SESSION_LEAST_X_TAGS = 16,
-  TOTAL_STATISTICS = 17
+  TOTAL_STATISTICS = 17,
+  SESSION_LLM_TOKEN_USAGE = 18,
+  SESSION_LLM_TOOL_CALLS = 19,
+  SESSION_LLM_THINKING = 20,
+  SESSION_LLM_FINISH_REASONS = 21,
+  SESSION_LLM_LATENCY = 22,
+  SESSION_LLM_RAG_METRICS = 23,
+  SESSION_LLM_MODELS_USED = 24,
+  SESSION_LLM_PROVIDERS_USED = 25,
+  SESSION_LLM_CCAI_SERVICES_USED = 26,
+  SESSION_LLM_AGENTS_USED = 27,
+  SESSION_LLM_ERRORS = 28,
+  SESSION_LLM_CACHE_EFFICIENCY = 29,
+  SESSION_LLM_REASONING_EFFORT = 30,
+  SESSION_LLM_TOP_X_TOOLS = 31,
+  SESSION_LLM_LEAST_X_TOOLS = 32,
+  SESSION_LLM_TOTAL_STATISTICS = 33,
+  SESSION_LLM_INPUT_TOKEN_USAGE = 34,
+  SESSION_LLM_OUTPUT_TOKEN_USAGE = 35,
+  SESSION_LLM_THINKING_TOKEN_USAGE = 36,
+  SESSION_LLM_TOOL_CALL_TOKEN_USAGE = 37,
+  SESSION_LLM_TOP_X_MODELS = 38,
+  SESSION_LLM_TOP_X_CCAI_SERVICE_PROVIDERS = 39,
+  SESSION_LLM_TOP_X_AGENT_NAMES = 40,
+  SESSION_LLM_SAFETY = 41
 }
 export enum ReportFormat {
   CSV = 0,
@@ -542,10 +589,10 @@ export class AgentWithOwner implements GrpcMessage {
           );
           break;
         case 2:
-          _instance.owner = new ondewoNlu017.User();
+          _instance.owner = new ondewoNlu019.User();
           _reader.readMessage(
             _instance.owner,
-            ondewoNlu017.User.deserializeBinaryFromReader
+            ondewoNlu019.User.deserializeBinaryFromReader
           );
           break;
         default:
@@ -576,13 +623,13 @@ export class AgentWithOwner implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.owner as any,
-        ondewoNlu017.User.serializeBinaryToWriter
+        ondewoNlu019.User.serializeBinaryToWriter
       );
     }
   }
 
   private _agent?: Agent;
-  private _owner?: ondewoNlu017.User;
+  private _owner?: ondewoNlu019.User;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -591,7 +638,7 @@ export class AgentWithOwner implements GrpcMessage {
   constructor(_value?: RecursivePartial<AgentWithOwner.AsObject>) {
     _value = _value || {};
     this.agent = _value.agent ? new Agent(_value.agent) : undefined;
-    this.owner = _value.owner ? new ondewoNlu017.User(_value.owner) : undefined;
+    this.owner = _value.owner ? new ondewoNlu019.User(_value.owner) : undefined;
     AgentWithOwner.refineValues(this);
   }
   get agent(): Agent | undefined {
@@ -600,10 +647,10 @@ export class AgentWithOwner implements GrpcMessage {
   set agent(value: Agent | undefined) {
     this._agent = value;
   }
-  get owner(): ondewoNlu017.User | undefined {
+  get owner(): ondewoNlu019.User | undefined {
     return this._owner;
   }
-  set owner(value: ondewoNlu017.User | undefined) {
+  set owner(value: ondewoNlu019.User | undefined) {
     this._owner = value;
   }
 
@@ -655,7 +702,7 @@ export module AgentWithOwner {
    */
   export interface AsObject {
     agent?: Agent.AsObject;
-    owner?: ondewoNlu017.User.AsObject;
+    owner?: ondewoNlu019.User.AsObject;
   }
 
   /**
@@ -663,7 +710,7 @@ export module AgentWithOwner {
    */
   export interface AsProtobufJSON {
     agent: Agent.AsProtobufJSON | null;
-    owner: ondewoNlu017.User.AsProtobufJSON | null;
+    owner: ondewoNlu019.User.AsProtobufJSON | null;
   }
 }
 
@@ -3139,7 +3186,7 @@ export class ExportBenchmarkAgentResponse implements GrpcMessage {
 
   private _agentContent: Uint8Array;
   private _trainingPhrases: {
-    [prop: string]: ondewoNlu015.ListTrainingPhrasesResponse;
+    [prop: string]: ondewoNlu017.ListTrainingPhrasesResponse;
   };
 
   /**
@@ -3156,7 +3203,7 @@ export class ExportBenchmarkAgentResponse implements GrpcMessage {
           (r, k) => ({
             ...r,
             [k]: _value!.trainingPhrases![k]
-              ? new ondewoNlu015.ListTrainingPhrasesResponse(
+              ? new ondewoNlu017.ListTrainingPhrasesResponse(
                   _value!.trainingPhrases![k]
                 )
               : undefined
@@ -3173,12 +3220,12 @@ export class ExportBenchmarkAgentResponse implements GrpcMessage {
     this._agentContent = value;
   }
   get trainingPhrases(): {
-    [prop: string]: ondewoNlu015.ListTrainingPhrasesResponse;
+    [prop: string]: ondewoNlu017.ListTrainingPhrasesResponse;
   } {
     return this._trainingPhrases;
   }
   set trainingPhrases(value: {
-    [prop: string]: ondewoNlu015.ListTrainingPhrasesResponse;
+    [prop: string]: ondewoNlu017.ListTrainingPhrasesResponse;
   }) {
     this._trainingPhrases = value;
   }
@@ -3256,7 +3303,7 @@ export module ExportBenchmarkAgentResponse {
   export interface AsObject {
     agentContent: Uint8Array;
     trainingPhrases: {
-      [prop: string]: ondewoNlu015.ListTrainingPhrasesResponse;
+      [prop: string]: ondewoNlu017.ListTrainingPhrasesResponse;
     };
   }
 
@@ -3266,7 +3313,7 @@ export module ExportBenchmarkAgentResponse {
   export interface AsProtobufJSON {
     agentContent: string;
     trainingPhrases: {
-      [prop: string]: ondewoNlu015.ListTrainingPhrasesResponse;
+      [prop: string]: ondewoNlu017.ListTrainingPhrasesResponse;
     };
   }
 
@@ -3315,10 +3362,10 @@ export module ExportBenchmarkAgentResponse {
             _instance.key = _reader.readString();
             break;
           case 2:
-            _instance.value = new ondewoNlu015.ListTrainingPhrasesResponse();
+            _instance.value = new ondewoNlu017.ListTrainingPhrasesResponse();
             _reader.readMessage(
               _instance.value,
-              ondewoNlu015.ListTrainingPhrasesResponse
+              ondewoNlu017.ListTrainingPhrasesResponse
                 .deserializeBinaryFromReader
             );
             break;
@@ -3346,13 +3393,13 @@ export module ExportBenchmarkAgentResponse {
         _writer.writeMessage(
           2,
           _instance.value as any,
-          ondewoNlu015.ListTrainingPhrasesResponse.serializeBinaryToWriter
+          ondewoNlu017.ListTrainingPhrasesResponse.serializeBinaryToWriter
         );
       }
     }
 
     private _key: string;
-    private _value?: ondewoNlu015.ListTrainingPhrasesResponse;
+    private _value?: ondewoNlu017.ListTrainingPhrasesResponse;
 
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3362,7 +3409,7 @@ export module ExportBenchmarkAgentResponse {
       _value = _value || {};
       this.key = _value.key;
       this.value = _value.value
-        ? new ondewoNlu015.ListTrainingPhrasesResponse(_value.value)
+        ? new ondewoNlu017.ListTrainingPhrasesResponse(_value.value)
         : undefined;
       TrainingPhrasesEntry.refineValues(this);
     }
@@ -3372,10 +3419,10 @@ export module ExportBenchmarkAgentResponse {
     set key(value: string) {
       this._key = value;
     }
-    get value(): ondewoNlu015.ListTrainingPhrasesResponse | undefined {
+    get value(): ondewoNlu017.ListTrainingPhrasesResponse | undefined {
       return this._value;
     }
-    set value(value: ondewoNlu015.ListTrainingPhrasesResponse | undefined) {
+    set value(value: ondewoNlu017.ListTrainingPhrasesResponse | undefined) {
       this._value = value;
     }
 
@@ -3427,7 +3474,7 @@ export module ExportBenchmarkAgentResponse {
      */
     export interface AsObject {
       key: string;
-      value?: ondewoNlu015.ListTrainingPhrasesResponse.AsObject;
+      value?: ondewoNlu017.ListTrainingPhrasesResponse.AsObject;
     }
 
     /**
@@ -3435,7 +3482,7 @@ export module ExportBenchmarkAgentResponse {
      */
     export interface AsProtobufJSON {
       key: string;
-      value: ondewoNlu015.ListTrainingPhrasesResponse.AsProtobufJSON | null;
+      value: ondewoNlu017.ListTrainingPhrasesResponse.AsProtobufJSON | null;
     }
   }
 }
@@ -4628,6 +4675,13 @@ export class GetAgentStatisticsRequest implements GrpcMessage {
     _instance.format = _instance.format || 0;
     _instance.languageCode = _instance.languageCode || '';
     _instance.type = _instance.type || 0;
+    _instance.llmModelFilter = _instance.llmModelFilter || [];
+    _instance.llmProviderFilter = _instance.llmProviderFilter || [];
+    _instance.llmAgentNameFilter = _instance.llmAgentNameFilter || [];
+    _instance.llmGroupBys = _instance.llmGroupBys || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.llmCcaiServiceProviderFilter =
+      _instance.llmCcaiServiceProviderFilter || [];
   }
 
   /**
@@ -4654,6 +4708,37 @@ export class GetAgentStatisticsRequest implements GrpcMessage {
           break;
         case 4:
           _instance.type = _reader.readEnum();
+          break;
+        case 5:
+          (_instance.llmModelFilter = _instance.llmModelFilter || []).push(
+            _reader.readString()
+          );
+          break;
+        case 6:
+          (_instance.llmProviderFilter =
+            _instance.llmProviderFilter || []).push(_reader.readString());
+          break;
+        case 7:
+          (_instance.llmAgentNameFilter =
+            _instance.llmAgentNameFilter || []).push(_reader.readString());
+          break;
+        case 8:
+          (_instance.llmGroupBys = _instance.llmGroupBys || []).push(
+            _reader.readString()
+          );
+          break;
+        case 9:
+          _instance.fieldMask = new googleProtobuf002.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf002.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 10:
+          _reader.readPackableEnumInto(
+            (_instance.llmCcaiServiceProviderFilter =
+              _instance.llmCcaiServiceProviderFilter || [])
+          );
           break;
         default:
           _reader.skipField();
@@ -4684,12 +4769,43 @@ export class GetAgentStatisticsRequest implements GrpcMessage {
     if (_instance.type) {
       _writer.writeEnum(4, _instance.type);
     }
+    if (_instance.llmModelFilter && _instance.llmModelFilter.length) {
+      _writer.writeRepeatedString(5, _instance.llmModelFilter);
+    }
+    if (_instance.llmProviderFilter && _instance.llmProviderFilter.length) {
+      _writer.writeRepeatedString(6, _instance.llmProviderFilter);
+    }
+    if (_instance.llmAgentNameFilter && _instance.llmAgentNameFilter.length) {
+      _writer.writeRepeatedString(7, _instance.llmAgentNameFilter);
+    }
+    if (_instance.llmGroupBys && _instance.llmGroupBys.length) {
+      _writer.writeRepeatedString(8, _instance.llmGroupBys);
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        9,
+        _instance.fieldMask as any,
+        googleProtobuf002.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (
+      _instance.llmCcaiServiceProviderFilter &&
+      _instance.llmCcaiServiceProviderFilter.length
+    ) {
+      _writer.writePackedEnum(10, _instance.llmCcaiServiceProviderFilter);
+    }
   }
 
   private _parent: string;
   private _format: ReportFormat;
   private _languageCode: string;
   private _type: ReportType;
+  private _llmModelFilter: string[];
+  private _llmProviderFilter: string[];
+  private _llmAgentNameFilter: string[];
+  private _llmGroupBys: string[];
+  private _fieldMask?: googleProtobuf002.FieldMask;
+  private _llmCcaiServiceProviderFilter: ondewoNlu015.CcaiServiceProvider[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -4701,6 +4817,16 @@ export class GetAgentStatisticsRequest implements GrpcMessage {
     this.format = _value.format;
     this.languageCode = _value.languageCode;
     this.type = _value.type;
+    this.llmModelFilter = (_value.llmModelFilter || []).slice();
+    this.llmProviderFilter = (_value.llmProviderFilter || []).slice();
+    this.llmAgentNameFilter = (_value.llmAgentNameFilter || []).slice();
+    this.llmGroupBys = (_value.llmGroupBys || []).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf002.FieldMask(_value.fieldMask)
+      : undefined;
+    this.llmCcaiServiceProviderFilter = (
+      _value.llmCcaiServiceProviderFilter || []
+    ).slice();
     GetAgentStatisticsRequest.refineValues(this);
   }
   get parent(): string {
@@ -4727,6 +4853,42 @@ export class GetAgentStatisticsRequest implements GrpcMessage {
   set type(value: ReportType) {
     this._type = value;
   }
+  get llmModelFilter(): string[] {
+    return this._llmModelFilter;
+  }
+  set llmModelFilter(value: string[]) {
+    this._llmModelFilter = value;
+  }
+  get llmProviderFilter(): string[] {
+    return this._llmProviderFilter;
+  }
+  set llmProviderFilter(value: string[]) {
+    this._llmProviderFilter = value;
+  }
+  get llmAgentNameFilter(): string[] {
+    return this._llmAgentNameFilter;
+  }
+  set llmAgentNameFilter(value: string[]) {
+    this._llmAgentNameFilter = value;
+  }
+  get llmGroupBys(): string[] {
+    return this._llmGroupBys;
+  }
+  set llmGroupBys(value: string[]) {
+    this._llmGroupBys = value;
+  }
+  get fieldMask(): googleProtobuf002.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf002.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get llmCcaiServiceProviderFilter(): ondewoNlu015.CcaiServiceProvider[] {
+    return this._llmCcaiServiceProviderFilter;
+  }
+  set llmCcaiServiceProviderFilter(value: ondewoNlu015.CcaiServiceProvider[]) {
+    this._llmCcaiServiceProviderFilter = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -4746,7 +4908,15 @@ export class GetAgentStatisticsRequest implements GrpcMessage {
       parent: this.parent,
       format: this.format,
       languageCode: this.languageCode,
-      type: this.type
+      type: this.type,
+      llmModelFilter: (this.llmModelFilter || []).slice(),
+      llmProviderFilter: (this.llmProviderFilter || []).slice(),
+      llmAgentNameFilter: (this.llmAgentNameFilter || []).slice(),
+      llmGroupBys: (this.llmGroupBys || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      llmCcaiServiceProviderFilter: (
+        this.llmCcaiServiceProviderFilter || []
+      ).slice()
     };
   }
 
@@ -4776,7 +4946,15 @@ export class GetAgentStatisticsRequest implements GrpcMessage {
       type:
         ReportType[
           this.type === null || this.type === undefined ? 0 : this.type
-        ]
+        ],
+      llmModelFilter: (this.llmModelFilter || []).slice(),
+      llmProviderFilter: (this.llmProviderFilter || []).slice(),
+      llmAgentNameFilter: (this.llmAgentNameFilter || []).slice(),
+      llmGroupBys: (this.llmGroupBys || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      llmCcaiServiceProviderFilter: (
+        this.llmCcaiServiceProviderFilter || []
+      ).map(v => ondewoNlu015.CcaiServiceProvider[v])
     };
   }
 }
@@ -4789,6 +4967,12 @@ export module GetAgentStatisticsRequest {
     format: ReportFormat;
     languageCode: string;
     type: ReportType;
+    llmModelFilter: string[];
+    llmProviderFilter: string[];
+    llmAgentNameFilter: string[];
+    llmGroupBys: string[];
+    fieldMask?: googleProtobuf002.FieldMask.AsObject;
+    llmCcaiServiceProviderFilter: ondewoNlu015.CcaiServiceProvider[];
   }
 
   /**
@@ -4799,6 +4983,12 @@ export module GetAgentStatisticsRequest {
     format: string;
     languageCode: string;
     type: string;
+    llmModelFilter: string[];
+    llmProviderFilter: string[];
+    llmAgentNameFilter: string[];
+    llmGroupBys: string[];
+    fieldMask: googleProtobuf002.FieldMask.AsProtobufJSON | null;
+    llmCcaiServiceProviderFilter: string[];
   }
 }
 
@@ -4829,6 +5019,7 @@ export class GetAgentStatisticsResponse implements GrpcMessage {
     _instance.reports = _instance.reports || new Uint8Array();
     _instance.format = _instance.format || 0;
     _instance.type = _instance.type || 0;
+    _instance.llmTelemetryReport = _instance.llmTelemetryReport || undefined;
   }
 
   /**
@@ -4852,6 +5043,13 @@ export class GetAgentStatisticsResponse implements GrpcMessage {
           break;
         case 3:
           _instance.type = _reader.readEnum();
+          break;
+        case 4:
+          _instance.llmTelemetryReport = new ondewoNlu020.LlmTelemetryReport();
+          _reader.readMessage(
+            _instance.llmTelemetryReport,
+            ondewoNlu020.LlmTelemetryReport.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -4879,11 +5077,19 @@ export class GetAgentStatisticsResponse implements GrpcMessage {
     if (_instance.type) {
       _writer.writeEnum(3, _instance.type);
     }
+    if (_instance.llmTelemetryReport) {
+      _writer.writeMessage(
+        4,
+        _instance.llmTelemetryReport as any,
+        ondewoNlu020.LlmTelemetryReport.serializeBinaryToWriter
+      );
+    }
   }
 
   private _reports: Uint8Array;
   private _format: ReportFormat;
   private _type: ReportType;
+  private _llmTelemetryReport?: ondewoNlu020.LlmTelemetryReport;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -4894,6 +5100,9 @@ export class GetAgentStatisticsResponse implements GrpcMessage {
     this.reports = _value.reports;
     this.format = _value.format;
     this.type = _value.type;
+    this.llmTelemetryReport = _value.llmTelemetryReport
+      ? new ondewoNlu020.LlmTelemetryReport(_value.llmTelemetryReport)
+      : undefined;
     GetAgentStatisticsResponse.refineValues(this);
   }
   get reports(): Uint8Array {
@@ -4914,6 +5123,12 @@ export class GetAgentStatisticsResponse implements GrpcMessage {
   set type(value: ReportType) {
     this._type = value;
   }
+  get llmTelemetryReport(): ondewoNlu020.LlmTelemetryReport | undefined {
+    return this._llmTelemetryReport;
+  }
+  set llmTelemetryReport(value: ondewoNlu020.LlmTelemetryReport | undefined) {
+    this._llmTelemetryReport = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -4932,7 +5147,10 @@ export class GetAgentStatisticsResponse implements GrpcMessage {
     return {
       reports: this.reports ? this.reports.subarray(0) : new Uint8Array(),
       format: this.format,
-      type: this.type
+      type: this.type,
+      llmTelemetryReport: this.llmTelemetryReport
+        ? this.llmTelemetryReport.toObject()
+        : undefined
     };
   }
 
@@ -4961,7 +5179,10 @@ export class GetAgentStatisticsResponse implements GrpcMessage {
       type:
         ReportType[
           this.type === null || this.type === undefined ? 0 : this.type
-        ]
+        ],
+      llmTelemetryReport: this.llmTelemetryReport
+        ? this.llmTelemetryReport.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -4973,6 +5194,7 @@ export module GetAgentStatisticsResponse {
     reports: Uint8Array;
     format: ReportFormat;
     type: ReportType;
+    llmTelemetryReport?: ondewoNlu020.LlmTelemetryReport.AsObject;
   }
 
   /**
@@ -4982,6 +5204,7 @@ export module GetAgentStatisticsResponse {
     reports: string;
     format: string;
     type: string;
+    llmTelemetryReport: ondewoNlu020.LlmTelemetryReport.AsProtobufJSON | null;
   }
 }
 
@@ -5019,6 +5242,12 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
     _instance.orderBys = _instance.orderBys || [];
     _instance.fieldMask = _instance.fieldMask || undefined;
     _instance.sqlQuery = _instance.sqlQuery || '';
+    _instance.llmModelFilter = _instance.llmModelFilter || [];
+    _instance.llmProviderFilter = _instance.llmProviderFilter || [];
+    _instance.llmAgentNameFilter = _instance.llmAgentNameFilter || [];
+    _instance.llmToolNameFilter = _instance.llmToolNameFilter || [];
+    _instance.llmCcaiServiceProviderFilter =
+      _instance.llmCcaiServiceProviderFilter || [];
   }
 
   /**
@@ -5044,17 +5273,17 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
           _instance.type = _reader.readEnum();
           break;
         case 4:
-          _instance.sessionFilter = new ondewoNlu018.SessionFilter();
+          _instance.sessionFilter = new ondewoNlu020.SessionFilter();
           _reader.readMessage(
             _instance.sessionFilter,
-            ondewoNlu018.SessionFilter.deserializeBinaryFromReader
+            ondewoNlu020.SessionFilter.deserializeBinaryFromReader
           );
           break;
         case 5:
-          const messageInitializer5 = new ondewoNlu018.ContextFilter();
+          const messageInitializer5 = new ondewoNlu020.ContextFilter();
           _reader.readMessage(
             messageInitializer5,
-            ondewoNlu018.ContextFilter.deserializeBinaryFromReader
+            ondewoNlu020.ContextFilter.deserializeBinaryFromReader
           );
           (_instance.contextFilters = _instance.contextFilters || []).push(
             messageInitializer5
@@ -5082,6 +5311,29 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
           break;
         case 10:
           _instance.sqlQuery = _reader.readString();
+          break;
+        case 11:
+          (_instance.llmModelFilter = _instance.llmModelFilter || []).push(
+            _reader.readString()
+          );
+          break;
+        case 12:
+          (_instance.llmProviderFilter =
+            _instance.llmProviderFilter || []).push(_reader.readString());
+          break;
+        case 13:
+          (_instance.llmAgentNameFilter =
+            _instance.llmAgentNameFilter || []).push(_reader.readString());
+          break;
+        case 14:
+          (_instance.llmToolNameFilter =
+            _instance.llmToolNameFilter || []).push(_reader.readString());
+          break;
+        case 15:
+          _reader.readPackableEnumInto(
+            (_instance.llmCcaiServiceProviderFilter =
+              _instance.llmCcaiServiceProviderFilter || [])
+          );
           break;
         default:
           _reader.skipField();
@@ -5113,14 +5365,14 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
       _writer.writeMessage(
         4,
         _instance.sessionFilter as any,
-        ondewoNlu018.SessionFilter.serializeBinaryToWriter
+        ondewoNlu020.SessionFilter.serializeBinaryToWriter
       );
     }
     if (_instance.contextFilters && _instance.contextFilters.length) {
       _writer.writeRepeatedMessage(
         5,
         _instance.contextFilters as any,
-        ondewoNlu018.ContextFilter.serializeBinaryToWriter
+        ondewoNlu020.ContextFilter.serializeBinaryToWriter
       );
     }
     if (_instance.limit) {
@@ -5142,18 +5394,41 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
     if (_instance.sqlQuery) {
       _writer.writeString(10, _instance.sqlQuery);
     }
+    if (_instance.llmModelFilter && _instance.llmModelFilter.length) {
+      _writer.writeRepeatedString(11, _instance.llmModelFilter);
+    }
+    if (_instance.llmProviderFilter && _instance.llmProviderFilter.length) {
+      _writer.writeRepeatedString(12, _instance.llmProviderFilter);
+    }
+    if (_instance.llmAgentNameFilter && _instance.llmAgentNameFilter.length) {
+      _writer.writeRepeatedString(13, _instance.llmAgentNameFilter);
+    }
+    if (_instance.llmToolNameFilter && _instance.llmToolNameFilter.length) {
+      _writer.writeRepeatedString(14, _instance.llmToolNameFilter);
+    }
+    if (
+      _instance.llmCcaiServiceProviderFilter &&
+      _instance.llmCcaiServiceProviderFilter.length
+    ) {
+      _writer.writePackedEnum(15, _instance.llmCcaiServiceProviderFilter);
+    }
   }
 
   private _parent: string;
   private _format: ReportFormat;
   private _type: SessionsReportType;
-  private _sessionFilter?: ondewoNlu018.SessionFilter;
-  private _contextFilters?: ondewoNlu018.ContextFilter[];
+  private _sessionFilter?: ondewoNlu020.SessionFilter;
+  private _contextFilters?: ondewoNlu020.ContextFilter[];
   private _limit: number;
   private _groupBys: string[];
   private _orderBys: string[];
   private _fieldMask?: googleProtobuf002.FieldMask;
   private _sqlQuery: string;
+  private _llmModelFilter: string[];
+  private _llmProviderFilter: string[];
+  private _llmAgentNameFilter: string[];
+  private _llmToolNameFilter: string[];
+  private _llmCcaiServiceProviderFilter: ondewoNlu015.CcaiServiceProvider[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -5167,10 +5442,10 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
     this.format = _value.format;
     this.type = _value.type;
     this.sessionFilter = _value.sessionFilter
-      ? new ondewoNlu018.SessionFilter(_value.sessionFilter)
+      ? new ondewoNlu020.SessionFilter(_value.sessionFilter)
       : undefined;
     this.contextFilters = (_value.contextFilters || []).map(
-      m => new ondewoNlu018.ContextFilter(m)
+      m => new ondewoNlu020.ContextFilter(m)
     );
     this.limit = _value.limit;
     this.groupBys = (_value.groupBys || []).slice();
@@ -5179,6 +5454,13 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
       ? new googleProtobuf002.FieldMask(_value.fieldMask)
       : undefined;
     this.sqlQuery = _value.sqlQuery;
+    this.llmModelFilter = (_value.llmModelFilter || []).slice();
+    this.llmProviderFilter = (_value.llmProviderFilter || []).slice();
+    this.llmAgentNameFilter = (_value.llmAgentNameFilter || []).slice();
+    this.llmToolNameFilter = (_value.llmToolNameFilter || []).slice();
+    this.llmCcaiServiceProviderFilter = (
+      _value.llmCcaiServiceProviderFilter || []
+    ).slice();
     GetSessionsStatisticsRequest.refineValues(this);
   }
   get parent(): string {
@@ -5199,16 +5481,16 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
   set type(value: SessionsReportType) {
     this._type = value;
   }
-  get sessionFilter(): ondewoNlu018.SessionFilter | undefined {
+  get sessionFilter(): ondewoNlu020.SessionFilter | undefined {
     return this._sessionFilter;
   }
-  set sessionFilter(value: ondewoNlu018.SessionFilter | undefined) {
+  set sessionFilter(value: ondewoNlu020.SessionFilter | undefined) {
     this._sessionFilter = value;
   }
-  get contextFilters(): ondewoNlu018.ContextFilter[] | undefined {
+  get contextFilters(): ondewoNlu020.ContextFilter[] | undefined {
     return this._contextFilters;
   }
-  set contextFilters(value: ondewoNlu018.ContextFilter[] | undefined) {
+  set contextFilters(value: ondewoNlu020.ContextFilter[] | undefined) {
     this._contextFilters = value;
   }
   get limit(): number {
@@ -5241,6 +5523,36 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
   set sqlQuery(value: string) {
     this._sqlQuery = value;
   }
+  get llmModelFilter(): string[] {
+    return this._llmModelFilter;
+  }
+  set llmModelFilter(value: string[]) {
+    this._llmModelFilter = value;
+  }
+  get llmProviderFilter(): string[] {
+    return this._llmProviderFilter;
+  }
+  set llmProviderFilter(value: string[]) {
+    this._llmProviderFilter = value;
+  }
+  get llmAgentNameFilter(): string[] {
+    return this._llmAgentNameFilter;
+  }
+  set llmAgentNameFilter(value: string[]) {
+    this._llmAgentNameFilter = value;
+  }
+  get llmToolNameFilter(): string[] {
+    return this._llmToolNameFilter;
+  }
+  set llmToolNameFilter(value: string[]) {
+    this._llmToolNameFilter = value;
+  }
+  get llmCcaiServiceProviderFilter(): ondewoNlu015.CcaiServiceProvider[] {
+    return this._llmCcaiServiceProviderFilter;
+  }
+  set llmCcaiServiceProviderFilter(value: ondewoNlu015.CcaiServiceProvider[]) {
+    this._llmCcaiServiceProviderFilter = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -5268,7 +5580,14 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
       groupBys: (this.groupBys || []).slice(),
       orderBys: (this.orderBys || []).slice(),
       fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
-      sqlQuery: this.sqlQuery
+      sqlQuery: this.sqlQuery,
+      llmModelFilter: (this.llmModelFilter || []).slice(),
+      llmProviderFilter: (this.llmProviderFilter || []).slice(),
+      llmAgentNameFilter: (this.llmAgentNameFilter || []).slice(),
+      llmToolNameFilter: (this.llmToolNameFilter || []).slice(),
+      llmCcaiServiceProviderFilter: (
+        this.llmCcaiServiceProviderFilter || []
+      ).slice()
     };
   }
 
@@ -5308,7 +5627,14 @@ export class GetSessionsStatisticsRequest implements GrpcMessage {
       groupBys: (this.groupBys || []).slice(),
       orderBys: (this.orderBys || []).slice(),
       fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
-      sqlQuery: this.sqlQuery
+      sqlQuery: this.sqlQuery,
+      llmModelFilter: (this.llmModelFilter || []).slice(),
+      llmProviderFilter: (this.llmProviderFilter || []).slice(),
+      llmAgentNameFilter: (this.llmAgentNameFilter || []).slice(),
+      llmToolNameFilter: (this.llmToolNameFilter || []).slice(),
+      llmCcaiServiceProviderFilter: (
+        this.llmCcaiServiceProviderFilter || []
+      ).map(v => ondewoNlu015.CcaiServiceProvider[v])
     };
   }
 }
@@ -5320,13 +5646,18 @@ export module GetSessionsStatisticsRequest {
     parent: string;
     format: ReportFormat;
     type: SessionsReportType;
-    sessionFilter?: ondewoNlu018.SessionFilter.AsObject;
-    contextFilters?: ondewoNlu018.ContextFilter.AsObject[];
+    sessionFilter?: ondewoNlu020.SessionFilter.AsObject;
+    contextFilters?: ondewoNlu020.ContextFilter.AsObject[];
     limit: number;
     groupBys: string[];
     orderBys: string[];
     fieldMask?: googleProtobuf002.FieldMask.AsObject;
     sqlQuery: string;
+    llmModelFilter: string[];
+    llmProviderFilter: string[];
+    llmAgentNameFilter: string[];
+    llmToolNameFilter: string[];
+    llmCcaiServiceProviderFilter: ondewoNlu015.CcaiServiceProvider[];
   }
 
   /**
@@ -5336,13 +5667,18 @@ export module GetSessionsStatisticsRequest {
     parent: string;
     format: string;
     type: string;
-    sessionFilter: ondewoNlu018.SessionFilter.AsProtobufJSON | null;
-    contextFilters: ondewoNlu018.ContextFilter.AsProtobufJSON[] | null;
+    sessionFilter: ondewoNlu020.SessionFilter.AsProtobufJSON | null;
+    contextFilters: ondewoNlu020.ContextFilter.AsProtobufJSON[] | null;
     limit: number;
     groupBys: string[];
     orderBys: string[];
     fieldMask: googleProtobuf002.FieldMask.AsProtobufJSON | null;
     sqlQuery: string;
+    llmModelFilter: string[];
+    llmProviderFilter: string[];
+    llmAgentNameFilter: string[];
+    llmToolNameFilter: string[];
+    llmCcaiServiceProviderFilter: string[];
   }
 }
 
@@ -5373,6 +5709,7 @@ export class GetSessionsStatisticsResponse implements GrpcMessage {
     _instance.reports = _instance.reports || new Uint8Array();
     _instance.format = _instance.format || 0;
     _instance.type = _instance.type || 0;
+    _instance.llmTelemetryReport = _instance.llmTelemetryReport || undefined;
   }
 
   /**
@@ -5396,6 +5733,13 @@ export class GetSessionsStatisticsResponse implements GrpcMessage {
           break;
         case 3:
           _instance.type = _reader.readEnum();
+          break;
+        case 4:
+          _instance.llmTelemetryReport = new ondewoNlu020.LlmTelemetryReport();
+          _reader.readMessage(
+            _instance.llmTelemetryReport,
+            ondewoNlu020.LlmTelemetryReport.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -5423,11 +5767,19 @@ export class GetSessionsStatisticsResponse implements GrpcMessage {
     if (_instance.type) {
       _writer.writeEnum(3, _instance.type);
     }
+    if (_instance.llmTelemetryReport) {
+      _writer.writeMessage(
+        4,
+        _instance.llmTelemetryReport as any,
+        ondewoNlu020.LlmTelemetryReport.serializeBinaryToWriter
+      );
+    }
   }
 
   private _reports: Uint8Array;
   private _format: ReportFormat;
   private _type: SessionsReportType;
+  private _llmTelemetryReport?: ondewoNlu020.LlmTelemetryReport;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -5440,6 +5792,9 @@ export class GetSessionsStatisticsResponse implements GrpcMessage {
     this.reports = _value.reports;
     this.format = _value.format;
     this.type = _value.type;
+    this.llmTelemetryReport = _value.llmTelemetryReport
+      ? new ondewoNlu020.LlmTelemetryReport(_value.llmTelemetryReport)
+      : undefined;
     GetSessionsStatisticsResponse.refineValues(this);
   }
   get reports(): Uint8Array {
@@ -5460,6 +5815,12 @@ export class GetSessionsStatisticsResponse implements GrpcMessage {
   set type(value: SessionsReportType) {
     this._type = value;
   }
+  get llmTelemetryReport(): ondewoNlu020.LlmTelemetryReport | undefined {
+    return this._llmTelemetryReport;
+  }
+  set llmTelemetryReport(value: ondewoNlu020.LlmTelemetryReport | undefined) {
+    this._llmTelemetryReport = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -5478,7 +5839,10 @@ export class GetSessionsStatisticsResponse implements GrpcMessage {
     return {
       reports: this.reports ? this.reports.subarray(0) : new Uint8Array(),
       format: this.format,
-      type: this.type
+      type: this.type,
+      llmTelemetryReport: this.llmTelemetryReport
+        ? this.llmTelemetryReport.toObject()
+        : undefined
     };
   }
 
@@ -5507,7 +5871,10 @@ export class GetSessionsStatisticsResponse implements GrpcMessage {
       type:
         SessionsReportType[
           this.type === null || this.type === undefined ? 0 : this.type
-        ]
+        ],
+      llmTelemetryReport: this.llmTelemetryReport
+        ? this.llmTelemetryReport.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -5519,6 +5886,7 @@ export module GetSessionsStatisticsResponse {
     reports: Uint8Array;
     format: ReportFormat;
     type: SessionsReportType;
+    llmTelemetryReport?: ondewoNlu020.LlmTelemetryReport.AsObject;
   }
 
   /**
@@ -5528,6 +5896,792 @@ export module GetSessionsStatisticsResponse {
     reports: string;
     format: string;
     type: string;
+    llmTelemetryReport: ondewoNlu020.LlmTelemetryReport.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.GetSessionsStatisticsTimeSeriesRequest
+ */
+export class GetSessionsStatisticsTimeSeriesRequest implements GrpcMessage {
+  static id = 'ondewo.nlu.GetSessionsStatisticsTimeSeriesRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new GetSessionsStatisticsTimeSeriesRequest();
+    GetSessionsStatisticsTimeSeriesRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: GetSessionsStatisticsTimeSeriesRequest) {
+    _instance.parent = _instance.parent || '';
+    _instance.type = _instance.type || 0;
+    _instance.sessionFilter = _instance.sessionFilter || undefined;
+    _instance.bucketWidthSeconds = _instance.bucketWidthSeconds || 0;
+    _instance.maxBuckets = _instance.maxBuckets || 0;
+    _instance.llmModelFilter = _instance.llmModelFilter || [];
+    _instance.llmProviderFilter = _instance.llmProviderFilter || [];
+    _instance.llmAgentNameFilter = _instance.llmAgentNameFilter || [];
+    _instance.llmToolNameFilter = _instance.llmToolNameFilter || [];
+    _instance.llmCcaiServiceProviderFilter =
+      _instance.llmCcaiServiceProviderFilter || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: GetSessionsStatisticsTimeSeriesRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.parent = _reader.readString();
+          break;
+        case 2:
+          _instance.type = _reader.readEnum();
+          break;
+        case 3:
+          _instance.sessionFilter = new ondewoNlu020.SessionFilter();
+          _reader.readMessage(
+            _instance.sessionFilter,
+            ondewoNlu020.SessionFilter.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.bucketWidthSeconds = _reader.readInt32();
+          break;
+        case 5:
+          _instance.maxBuckets = _reader.readInt32();
+          break;
+        case 6:
+          (_instance.llmModelFilter = _instance.llmModelFilter || []).push(
+            _reader.readString()
+          );
+          break;
+        case 7:
+          (_instance.llmProviderFilter =
+            _instance.llmProviderFilter || []).push(_reader.readString());
+          break;
+        case 8:
+          (_instance.llmAgentNameFilter =
+            _instance.llmAgentNameFilter || []).push(_reader.readString());
+          break;
+        case 9:
+          (_instance.llmToolNameFilter =
+            _instance.llmToolNameFilter || []).push(_reader.readString());
+          break;
+        case 10:
+          _reader.readPackableEnumInto(
+            (_instance.llmCcaiServiceProviderFilter =
+              _instance.llmCcaiServiceProviderFilter || [])
+          );
+          break;
+        case 11:
+          _instance.fieldMask = new googleProtobuf002.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf002.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    GetSessionsStatisticsTimeSeriesRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: GetSessionsStatisticsTimeSeriesRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.parent) {
+      _writer.writeString(1, _instance.parent);
+    }
+    if (_instance.type) {
+      _writer.writeEnum(2, _instance.type);
+    }
+    if (_instance.sessionFilter) {
+      _writer.writeMessage(
+        3,
+        _instance.sessionFilter as any,
+        ondewoNlu020.SessionFilter.serializeBinaryToWriter
+      );
+    }
+    if (_instance.bucketWidthSeconds) {
+      _writer.writeInt32(4, _instance.bucketWidthSeconds);
+    }
+    if (_instance.maxBuckets) {
+      _writer.writeInt32(5, _instance.maxBuckets);
+    }
+    if (_instance.llmModelFilter && _instance.llmModelFilter.length) {
+      _writer.writeRepeatedString(6, _instance.llmModelFilter);
+    }
+    if (_instance.llmProviderFilter && _instance.llmProviderFilter.length) {
+      _writer.writeRepeatedString(7, _instance.llmProviderFilter);
+    }
+    if (_instance.llmAgentNameFilter && _instance.llmAgentNameFilter.length) {
+      _writer.writeRepeatedString(8, _instance.llmAgentNameFilter);
+    }
+    if (_instance.llmToolNameFilter && _instance.llmToolNameFilter.length) {
+      _writer.writeRepeatedString(9, _instance.llmToolNameFilter);
+    }
+    if (
+      _instance.llmCcaiServiceProviderFilter &&
+      _instance.llmCcaiServiceProviderFilter.length
+    ) {
+      _writer.writePackedEnum(10, _instance.llmCcaiServiceProviderFilter);
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        11,
+        _instance.fieldMask as any,
+        googleProtobuf002.FieldMask.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _parent: string;
+  private _type: SessionsReportType;
+  private _sessionFilter?: ondewoNlu020.SessionFilter;
+  private _bucketWidthSeconds: number;
+  private _maxBuckets: number;
+  private _llmModelFilter: string[];
+  private _llmProviderFilter: string[];
+  private _llmAgentNameFilter: string[];
+  private _llmToolNameFilter: string[];
+  private _llmCcaiServiceProviderFilter: ondewoNlu015.CcaiServiceProvider[];
+  private _fieldMask?: googleProtobuf002.FieldMask;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of GetSessionsStatisticsTimeSeriesRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<GetSessionsStatisticsTimeSeriesRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.parent = _value.parent;
+    this.type = _value.type;
+    this.sessionFilter = _value.sessionFilter
+      ? new ondewoNlu020.SessionFilter(_value.sessionFilter)
+      : undefined;
+    this.bucketWidthSeconds = _value.bucketWidthSeconds;
+    this.maxBuckets = _value.maxBuckets;
+    this.llmModelFilter = (_value.llmModelFilter || []).slice();
+    this.llmProviderFilter = (_value.llmProviderFilter || []).slice();
+    this.llmAgentNameFilter = (_value.llmAgentNameFilter || []).slice();
+    this.llmToolNameFilter = (_value.llmToolNameFilter || []).slice();
+    this.llmCcaiServiceProviderFilter = (
+      _value.llmCcaiServiceProviderFilter || []
+    ).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf002.FieldMask(_value.fieldMask)
+      : undefined;
+    GetSessionsStatisticsTimeSeriesRequest.refineValues(this);
+  }
+  get parent(): string {
+    return this._parent;
+  }
+  set parent(value: string) {
+    this._parent = value;
+  }
+  get type(): SessionsReportType {
+    return this._type;
+  }
+  set type(value: SessionsReportType) {
+    this._type = value;
+  }
+  get sessionFilter(): ondewoNlu020.SessionFilter | undefined {
+    return this._sessionFilter;
+  }
+  set sessionFilter(value: ondewoNlu020.SessionFilter | undefined) {
+    this._sessionFilter = value;
+  }
+  get bucketWidthSeconds(): number {
+    return this._bucketWidthSeconds;
+  }
+  set bucketWidthSeconds(value: number) {
+    this._bucketWidthSeconds = value;
+  }
+  get maxBuckets(): number {
+    return this._maxBuckets;
+  }
+  set maxBuckets(value: number) {
+    this._maxBuckets = value;
+  }
+  get llmModelFilter(): string[] {
+    return this._llmModelFilter;
+  }
+  set llmModelFilter(value: string[]) {
+    this._llmModelFilter = value;
+  }
+  get llmProviderFilter(): string[] {
+    return this._llmProviderFilter;
+  }
+  set llmProviderFilter(value: string[]) {
+    this._llmProviderFilter = value;
+  }
+  get llmAgentNameFilter(): string[] {
+    return this._llmAgentNameFilter;
+  }
+  set llmAgentNameFilter(value: string[]) {
+    this._llmAgentNameFilter = value;
+  }
+  get llmToolNameFilter(): string[] {
+    return this._llmToolNameFilter;
+  }
+  set llmToolNameFilter(value: string[]) {
+    this._llmToolNameFilter = value;
+  }
+  get llmCcaiServiceProviderFilter(): ondewoNlu015.CcaiServiceProvider[] {
+    return this._llmCcaiServiceProviderFilter;
+  }
+  set llmCcaiServiceProviderFilter(value: ondewoNlu015.CcaiServiceProvider[]) {
+    this._llmCcaiServiceProviderFilter = value;
+  }
+  get fieldMask(): googleProtobuf002.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf002.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    GetSessionsStatisticsTimeSeriesRequest.serializeBinaryToWriter(
+      this,
+      writer
+    );
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): GetSessionsStatisticsTimeSeriesRequest.AsObject {
+    return {
+      parent: this.parent,
+      type: this.type,
+      sessionFilter: this.sessionFilter
+        ? this.sessionFilter.toObject()
+        : undefined,
+      bucketWidthSeconds: this.bucketWidthSeconds,
+      maxBuckets: this.maxBuckets,
+      llmModelFilter: (this.llmModelFilter || []).slice(),
+      llmProviderFilter: (this.llmProviderFilter || []).slice(),
+      llmAgentNameFilter: (this.llmAgentNameFilter || []).slice(),
+      llmToolNameFilter: (this.llmToolNameFilter || []).slice(),
+      llmCcaiServiceProviderFilter: (
+        this.llmCcaiServiceProviderFilter || []
+      ).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): GetSessionsStatisticsTimeSeriesRequest.AsProtobufJSON {
+    return {
+      parent: this.parent,
+      type:
+        SessionsReportType[
+          this.type === null || this.type === undefined ? 0 : this.type
+        ],
+      sessionFilter: this.sessionFilter
+        ? this.sessionFilter.toProtobufJSON(options)
+        : null,
+      bucketWidthSeconds: this.bucketWidthSeconds,
+      maxBuckets: this.maxBuckets,
+      llmModelFilter: (this.llmModelFilter || []).slice(),
+      llmProviderFilter: (this.llmProviderFilter || []).slice(),
+      llmAgentNameFilter: (this.llmAgentNameFilter || []).slice(),
+      llmToolNameFilter: (this.llmToolNameFilter || []).slice(),
+      llmCcaiServiceProviderFilter: (
+        this.llmCcaiServiceProviderFilter || []
+      ).map(v => ondewoNlu015.CcaiServiceProvider[v]),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
+    };
+  }
+}
+export module GetSessionsStatisticsTimeSeriesRequest {
+  /**
+   * Standard JavaScript object representation for GetSessionsStatisticsTimeSeriesRequest
+   */
+  export interface AsObject {
+    parent: string;
+    type: SessionsReportType;
+    sessionFilter?: ondewoNlu020.SessionFilter.AsObject;
+    bucketWidthSeconds: number;
+    maxBuckets: number;
+    llmModelFilter: string[];
+    llmProviderFilter: string[];
+    llmAgentNameFilter: string[];
+    llmToolNameFilter: string[];
+    llmCcaiServiceProviderFilter: ondewoNlu015.CcaiServiceProvider[];
+    fieldMask?: googleProtobuf002.FieldMask.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for GetSessionsStatisticsTimeSeriesRequest
+   */
+  export interface AsProtobufJSON {
+    parent: string;
+    type: string;
+    sessionFilter: ondewoNlu020.SessionFilter.AsProtobufJSON | null;
+    bucketWidthSeconds: number;
+    maxBuckets: number;
+    llmModelFilter: string[];
+    llmProviderFilter: string[];
+    llmAgentNameFilter: string[];
+    llmToolNameFilter: string[];
+    llmCcaiServiceProviderFilter: string[];
+    fieldMask: googleProtobuf002.FieldMask.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.LlmTelemetryTimeSeriesBucket
+ */
+export class LlmTelemetryTimeSeriesBucket implements GrpcMessage {
+  static id = 'ondewo.nlu.LlmTelemetryTimeSeriesBucket';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new LlmTelemetryTimeSeriesBucket();
+    LlmTelemetryTimeSeriesBucket.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: LlmTelemetryTimeSeriesBucket) {
+    _instance.bucketStart = _instance.bucketStart || undefined;
+    _instance.bucketEnd = _instance.bucketEnd || undefined;
+    _instance.llmTelemetryReport = _instance.llmTelemetryReport || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: LlmTelemetryTimeSeriesBucket,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.bucketStart = new googleProtobuf004.Timestamp();
+          _reader.readMessage(
+            _instance.bucketStart,
+            googleProtobuf004.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 2:
+          _instance.bucketEnd = new googleProtobuf004.Timestamp();
+          _reader.readMessage(
+            _instance.bucketEnd,
+            googleProtobuf004.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.llmTelemetryReport = new ondewoNlu020.LlmTelemetryReport();
+          _reader.readMessage(
+            _instance.llmTelemetryReport,
+            ondewoNlu020.LlmTelemetryReport.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    LlmTelemetryTimeSeriesBucket.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: LlmTelemetryTimeSeriesBucket,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.bucketStart) {
+      _writer.writeMessage(
+        1,
+        _instance.bucketStart as any,
+        googleProtobuf004.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.bucketEnd) {
+      _writer.writeMessage(
+        2,
+        _instance.bucketEnd as any,
+        googleProtobuf004.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.llmTelemetryReport) {
+      _writer.writeMessage(
+        3,
+        _instance.llmTelemetryReport as any,
+        ondewoNlu020.LlmTelemetryReport.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _bucketStart?: googleProtobuf004.Timestamp;
+  private _bucketEnd?: googleProtobuf004.Timestamp;
+  private _llmTelemetryReport?: ondewoNlu020.LlmTelemetryReport;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of LlmTelemetryTimeSeriesBucket to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<LlmTelemetryTimeSeriesBucket.AsObject>
+  ) {
+    _value = _value || {};
+    this.bucketStart = _value.bucketStart
+      ? new googleProtobuf004.Timestamp(_value.bucketStart)
+      : undefined;
+    this.bucketEnd = _value.bucketEnd
+      ? new googleProtobuf004.Timestamp(_value.bucketEnd)
+      : undefined;
+    this.llmTelemetryReport = _value.llmTelemetryReport
+      ? new ondewoNlu020.LlmTelemetryReport(_value.llmTelemetryReport)
+      : undefined;
+    LlmTelemetryTimeSeriesBucket.refineValues(this);
+  }
+  get bucketStart(): googleProtobuf004.Timestamp | undefined {
+    return this._bucketStart;
+  }
+  set bucketStart(value: googleProtobuf004.Timestamp | undefined) {
+    this._bucketStart = value;
+  }
+  get bucketEnd(): googleProtobuf004.Timestamp | undefined {
+    return this._bucketEnd;
+  }
+  set bucketEnd(value: googleProtobuf004.Timestamp | undefined) {
+    this._bucketEnd = value;
+  }
+  get llmTelemetryReport(): ondewoNlu020.LlmTelemetryReport | undefined {
+    return this._llmTelemetryReport;
+  }
+  set llmTelemetryReport(value: ondewoNlu020.LlmTelemetryReport | undefined) {
+    this._llmTelemetryReport = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    LlmTelemetryTimeSeriesBucket.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): LlmTelemetryTimeSeriesBucket.AsObject {
+    return {
+      bucketStart: this.bucketStart ? this.bucketStart.toObject() : undefined,
+      bucketEnd: this.bucketEnd ? this.bucketEnd.toObject() : undefined,
+      llmTelemetryReport: this.llmTelemetryReport
+        ? this.llmTelemetryReport.toObject()
+        : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): LlmTelemetryTimeSeriesBucket.AsProtobufJSON {
+    return {
+      bucketStart: this.bucketStart
+        ? this.bucketStart.toProtobufJSON(options)
+        : null,
+      bucketEnd: this.bucketEnd ? this.bucketEnd.toProtobufJSON(options) : null,
+      llmTelemetryReport: this.llmTelemetryReport
+        ? this.llmTelemetryReport.toProtobufJSON(options)
+        : null
+    };
+  }
+}
+export module LlmTelemetryTimeSeriesBucket {
+  /**
+   * Standard JavaScript object representation for LlmTelemetryTimeSeriesBucket
+   */
+  export interface AsObject {
+    bucketStart?: googleProtobuf004.Timestamp.AsObject;
+    bucketEnd?: googleProtobuf004.Timestamp.AsObject;
+    llmTelemetryReport?: ondewoNlu020.LlmTelemetryReport.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for LlmTelemetryTimeSeriesBucket
+   */
+  export interface AsProtobufJSON {
+    bucketStart: googleProtobuf004.Timestamp.AsProtobufJSON | null;
+    bucketEnd: googleProtobuf004.Timestamp.AsProtobufJSON | null;
+    llmTelemetryReport: ondewoNlu020.LlmTelemetryReport.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.GetSessionsStatisticsTimeSeriesResponse
+ */
+export class GetSessionsStatisticsTimeSeriesResponse implements GrpcMessage {
+  static id = 'ondewo.nlu.GetSessionsStatisticsTimeSeriesResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new GetSessionsStatisticsTimeSeriesResponse();
+    GetSessionsStatisticsTimeSeriesResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: GetSessionsStatisticsTimeSeriesResponse) {
+    _instance.llmTelemetryTimeSeriesBuckets =
+      _instance.llmTelemetryTimeSeriesBuckets || [];
+    _instance.bucketWidthSeconds = _instance.bucketWidthSeconds || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: GetSessionsStatisticsTimeSeriesResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          const messageInitializer1 = new LlmTelemetryTimeSeriesBucket();
+          _reader.readMessage(
+            messageInitializer1,
+            LlmTelemetryTimeSeriesBucket.deserializeBinaryFromReader
+          );
+          (_instance.llmTelemetryTimeSeriesBuckets =
+            _instance.llmTelemetryTimeSeriesBuckets || []).push(
+            messageInitializer1
+          );
+          break;
+        case 2:
+          _instance.bucketWidthSeconds = _reader.readInt32();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    GetSessionsStatisticsTimeSeriesResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: GetSessionsStatisticsTimeSeriesResponse,
+    _writer: BinaryWriter
+  ) {
+    if (
+      _instance.llmTelemetryTimeSeriesBuckets &&
+      _instance.llmTelemetryTimeSeriesBuckets.length
+    ) {
+      _writer.writeRepeatedMessage(
+        1,
+        _instance.llmTelemetryTimeSeriesBuckets as any,
+        LlmTelemetryTimeSeriesBucket.serializeBinaryToWriter
+      );
+    }
+    if (_instance.bucketWidthSeconds) {
+      _writer.writeInt32(2, _instance.bucketWidthSeconds);
+    }
+  }
+
+  private _llmTelemetryTimeSeriesBuckets?: LlmTelemetryTimeSeriesBucket[];
+  private _bucketWidthSeconds: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of GetSessionsStatisticsTimeSeriesResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<GetSessionsStatisticsTimeSeriesResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.llmTelemetryTimeSeriesBuckets = (
+      _value.llmTelemetryTimeSeriesBuckets || []
+    ).map(m => new LlmTelemetryTimeSeriesBucket(m));
+    this.bucketWidthSeconds = _value.bucketWidthSeconds;
+    GetSessionsStatisticsTimeSeriesResponse.refineValues(this);
+  }
+  get llmTelemetryTimeSeriesBuckets():
+    | LlmTelemetryTimeSeriesBucket[]
+    | undefined {
+    return this._llmTelemetryTimeSeriesBuckets;
+  }
+  set llmTelemetryTimeSeriesBuckets(
+    value: LlmTelemetryTimeSeriesBucket[] | undefined
+  ) {
+    this._llmTelemetryTimeSeriesBuckets = value;
+  }
+  get bucketWidthSeconds(): number {
+    return this._bucketWidthSeconds;
+  }
+  set bucketWidthSeconds(value: number) {
+    this._bucketWidthSeconds = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    GetSessionsStatisticsTimeSeriesResponse.serializeBinaryToWriter(
+      this,
+      writer
+    );
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): GetSessionsStatisticsTimeSeriesResponse.AsObject {
+    return {
+      llmTelemetryTimeSeriesBuckets: (
+        this.llmTelemetryTimeSeriesBuckets || []
+      ).map(m => m.toObject()),
+      bucketWidthSeconds: this.bucketWidthSeconds
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): GetSessionsStatisticsTimeSeriesResponse.AsProtobufJSON {
+    return {
+      llmTelemetryTimeSeriesBuckets: (
+        this.llmTelemetryTimeSeriesBuckets || []
+      ).map(m => m.toProtobufJSON(options)),
+      bucketWidthSeconds: this.bucketWidthSeconds
+    };
+  }
+}
+export module GetSessionsStatisticsTimeSeriesResponse {
+  /**
+   * Standard JavaScript object representation for GetSessionsStatisticsTimeSeriesResponse
+   */
+  export interface AsObject {
+    llmTelemetryTimeSeriesBuckets?: LlmTelemetryTimeSeriesBucket.AsObject[];
+    bucketWidthSeconds: number;
+  }
+
+  /**
+   * Protobuf JSON representation for GetSessionsStatisticsTimeSeriesResponse
+   */
+  export interface AsProtobufJSON {
+    llmTelemetryTimeSeriesBuckets:
+      | LlmTelemetryTimeSeriesBucket.AsProtobufJSON[]
+      | null;
+    bucketWidthSeconds: number;
   }
 }
 
@@ -6101,10 +7255,10 @@ export class UserInProject implements GrpcMessage {
           _instance.parent = _reader.readString();
           break;
         case 2:
-          _instance.user = new ondewoNlu017.User();
+          _instance.user = new ondewoNlu019.User();
           _reader.readMessage(
             _instance.user,
-            ondewoNlu017.User.deserializeBinaryFromReader
+            ondewoNlu019.User.deserializeBinaryFromReader
           );
           break;
         case 3:
@@ -6134,7 +7288,7 @@ export class UserInProject implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.user as any,
-        ondewoNlu017.User.serializeBinaryToWriter
+        ondewoNlu019.User.serializeBinaryToWriter
       );
     }
     if (_instance.roleId) {
@@ -6143,7 +7297,7 @@ export class UserInProject implements GrpcMessage {
   }
 
   private _parent: string;
-  private _user?: ondewoNlu017.User;
+  private _user?: ondewoNlu019.User;
   private _roleId: number;
 
   /**
@@ -6153,7 +7307,7 @@ export class UserInProject implements GrpcMessage {
   constructor(_value?: RecursivePartial<UserInProject.AsObject>) {
     _value = _value || {};
     this.parent = _value.parent;
-    this.user = _value.user ? new ondewoNlu017.User(_value.user) : undefined;
+    this.user = _value.user ? new ondewoNlu019.User(_value.user) : undefined;
     this.roleId = _value.roleId;
     UserInProject.refineValues(this);
   }
@@ -6163,10 +7317,10 @@ export class UserInProject implements GrpcMessage {
   set parent(value: string) {
     this._parent = value;
   }
-  get user(): ondewoNlu017.User | undefined {
+  get user(): ondewoNlu019.User | undefined {
     return this._user;
   }
-  set user(value: ondewoNlu017.User | undefined) {
+  set user(value: ondewoNlu019.User | undefined) {
     this._user = value;
   }
   get roleId(): number {
@@ -6226,7 +7380,7 @@ export module UserInProject {
    */
   export interface AsObject {
     parent: string;
-    user?: ondewoNlu017.User.AsObject;
+    user?: ondewoNlu019.User.AsObject;
     roleId: number;
   }
 
@@ -6235,7 +7389,7 @@ export module UserInProject {
    */
   export interface AsProtobufJSON {
     parent: string;
-    user: ondewoNlu017.User.AsProtobufJSON | null;
+    user: ondewoNlu019.User.AsProtobufJSON | null;
     roleId: number;
   }
 }
@@ -8814,7 +9968,7 @@ export class CustomPlatformInfo implements GrpcMessage {
     }
   }
 
-  private _platform: ondewoNlu015.Intent.Message.Platform;
+  private _platform: ondewoNlu017.Intent.Message.Platform;
   private _displayName: string;
   private _position: number;
   private _createdAt?: googleProtobuf004.Timestamp;
@@ -8841,10 +9995,10 @@ export class CustomPlatformInfo implements GrpcMessage {
     this.modifiedBy = _value.modifiedBy;
     CustomPlatformInfo.refineValues(this);
   }
-  get platform(): ondewoNlu015.Intent.Message.Platform {
+  get platform(): ondewoNlu017.Intent.Message.Platform {
     return this._platform;
   }
-  set platform(value: ondewoNlu015.Intent.Message.Platform) {
+  set platform(value: ondewoNlu017.Intent.Message.Platform) {
     this._platform = value;
   }
   get displayName(): string {
@@ -8927,7 +10081,7 @@ export class CustomPlatformInfo implements GrpcMessage {
   ): CustomPlatformInfo.AsProtobufJSON {
     return {
       platform:
-        ondewoNlu015.Intent.Message.Platform[
+        ondewoNlu017.Intent.Message.Platform[
           this.platform === null || this.platform === undefined
             ? 0
             : this.platform
@@ -8948,7 +10102,7 @@ export module CustomPlatformInfo {
    * Standard JavaScript object representation for CustomPlatformInfo
    */
   export interface AsObject {
-    platform: ondewoNlu015.Intent.Message.Platform;
+    platform: ondewoNlu017.Intent.Message.Platform;
     displayName: string;
     position: number;
     createdAt?: googleProtobuf004.Timestamp.AsObject;
@@ -15817,5 +16971,1394 @@ export module ReindexAgentRequest {
     parent: string;
     branchName: string;
     indexTypes: string[];
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.CreateProjectTechnicalUserRequest
+ */
+export class CreateProjectTechnicalUserRequest implements GrpcMessage {
+  static id = 'ondewo.nlu.CreateProjectTechnicalUserRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CreateProjectTechnicalUserRequest();
+    CreateProjectTechnicalUserRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CreateProjectTechnicalUserRequest) {
+    _instance.parent = _instance.parent || '';
+    _instance.name = _instance.name || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CreateProjectTechnicalUserRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.parent = _reader.readString();
+          break;
+        case 2:
+          _instance.name = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CreateProjectTechnicalUserRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CreateProjectTechnicalUserRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.parent) {
+      _writer.writeString(1, _instance.parent);
+    }
+    if (_instance.name) {
+      _writer.writeString(2, _instance.name);
+    }
+  }
+
+  private _parent: string;
+  private _name: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CreateProjectTechnicalUserRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<CreateProjectTechnicalUserRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.parent = _value.parent;
+    this.name = _value.name;
+    CreateProjectTechnicalUserRequest.refineValues(this);
+  }
+  get parent(): string {
+    return this._parent;
+  }
+  set parent(value: string) {
+    this._parent = value;
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CreateProjectTechnicalUserRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CreateProjectTechnicalUserRequest.AsObject {
+    return {
+      parent: this.parent,
+      name: this.name
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CreateProjectTechnicalUserRequest.AsProtobufJSON {
+    return {
+      parent: this.parent,
+      name: this.name
+    };
+  }
+}
+export module CreateProjectTechnicalUserRequest {
+  /**
+   * Standard JavaScript object representation for CreateProjectTechnicalUserRequest
+   */
+  export interface AsObject {
+    parent: string;
+    name: string;
+  }
+
+  /**
+   * Protobuf JSON representation for CreateProjectTechnicalUserRequest
+   */
+  export interface AsProtobufJSON {
+    parent: string;
+    name: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.CreateProjectTechnicalUserResponse
+ */
+export class CreateProjectTechnicalUserResponse implements GrpcMessage {
+  static id = 'ondewo.nlu.CreateProjectTechnicalUserResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CreateProjectTechnicalUserResponse();
+    CreateProjectTechnicalUserResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CreateProjectTechnicalUserResponse) {
+    _instance.userId = _instance.userId || '';
+    _instance.username = _instance.username || '';
+    _instance.password = _instance.password || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CreateProjectTechnicalUserResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.userId = _reader.readString();
+          break;
+        case 2:
+          _instance.username = _reader.readString();
+          break;
+        case 3:
+          _instance.password = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CreateProjectTechnicalUserResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CreateProjectTechnicalUserResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.userId) {
+      _writer.writeString(1, _instance.userId);
+    }
+    if (_instance.username) {
+      _writer.writeString(2, _instance.username);
+    }
+    if (_instance.password) {
+      _writer.writeString(3, _instance.password);
+    }
+  }
+
+  private _userId: string;
+  private _username: string;
+  private _password: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CreateProjectTechnicalUserResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<CreateProjectTechnicalUserResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.userId = _value.userId;
+    this.username = _value.username;
+    this.password = _value.password;
+    CreateProjectTechnicalUserResponse.refineValues(this);
+  }
+  get userId(): string {
+    return this._userId;
+  }
+  set userId(value: string) {
+    this._userId = value;
+  }
+  get username(): string {
+    return this._username;
+  }
+  set username(value: string) {
+    this._username = value;
+  }
+  get password(): string {
+    return this._password;
+  }
+  set password(value: string) {
+    this._password = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CreateProjectTechnicalUserResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CreateProjectTechnicalUserResponse.AsObject {
+    return {
+      userId: this.userId,
+      username: this.username,
+      password: this.password
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CreateProjectTechnicalUserResponse.AsProtobufJSON {
+    return {
+      userId: this.userId,
+      username: this.username,
+      password: this.password
+    };
+  }
+}
+export module CreateProjectTechnicalUserResponse {
+  /**
+   * Standard JavaScript object representation for CreateProjectTechnicalUserResponse
+   */
+  export interface AsObject {
+    userId: string;
+    username: string;
+    password: string;
+  }
+
+  /**
+   * Protobuf JSON representation for CreateProjectTechnicalUserResponse
+   */
+  export interface AsProtobufJSON {
+    userId: string;
+    username: string;
+    password: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.ListProjectTechnicalUsersRequest
+ */
+export class ListProjectTechnicalUsersRequest implements GrpcMessage {
+  static id = 'ondewo.nlu.ListProjectTechnicalUsersRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new ListProjectTechnicalUsersRequest();
+    ListProjectTechnicalUsersRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: ListProjectTechnicalUsersRequest) {
+    _instance.parent = _instance.parent || '';
+    _instance.pageToken = _instance.pageToken || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: ListProjectTechnicalUsersRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.parent = _reader.readString();
+          break;
+        case 2:
+          _instance.pageToken = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    ListProjectTechnicalUsersRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: ListProjectTechnicalUsersRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.parent) {
+      _writer.writeString(1, _instance.parent);
+    }
+    if (_instance.pageToken) {
+      _writer.writeString(2, _instance.pageToken);
+    }
+  }
+
+  private _parent: string;
+  private _pageToken: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of ListProjectTechnicalUsersRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<ListProjectTechnicalUsersRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.parent = _value.parent;
+    this.pageToken = _value.pageToken;
+    ListProjectTechnicalUsersRequest.refineValues(this);
+  }
+  get parent(): string {
+    return this._parent;
+  }
+  set parent(value: string) {
+    this._parent = value;
+  }
+  get pageToken(): string {
+    return this._pageToken;
+  }
+  set pageToken(value: string) {
+    this._pageToken = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    ListProjectTechnicalUsersRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): ListProjectTechnicalUsersRequest.AsObject {
+    return {
+      parent: this.parent,
+      pageToken: this.pageToken
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): ListProjectTechnicalUsersRequest.AsProtobufJSON {
+    return {
+      parent: this.parent,
+      pageToken: this.pageToken
+    };
+  }
+}
+export module ListProjectTechnicalUsersRequest {
+  /**
+   * Standard JavaScript object representation for ListProjectTechnicalUsersRequest
+   */
+  export interface AsObject {
+    parent: string;
+    pageToken: string;
+  }
+
+  /**
+   * Protobuf JSON representation for ListProjectTechnicalUsersRequest
+   */
+  export interface AsProtobufJSON {
+    parent: string;
+    pageToken: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.ProjectTechnicalUser
+ */
+export class ProjectTechnicalUser implements GrpcMessage {
+  static id = 'ondewo.nlu.ProjectTechnicalUser';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new ProjectTechnicalUser();
+    ProjectTechnicalUser.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: ProjectTechnicalUser) {
+    _instance.userId = _instance.userId || '';
+    _instance.username = _instance.username || '';
+    _instance.createdAt = _instance.createdAt || undefined;
+    _instance.createdBy = _instance.createdBy || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: ProjectTechnicalUser,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.userId = _reader.readString();
+          break;
+        case 2:
+          _instance.username = _reader.readString();
+          break;
+        case 3:
+          _instance.createdAt = new googleProtobuf004.Timestamp();
+          _reader.readMessage(
+            _instance.createdAt,
+            googleProtobuf004.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.createdBy = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    ProjectTechnicalUser.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: ProjectTechnicalUser,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.userId) {
+      _writer.writeString(1, _instance.userId);
+    }
+    if (_instance.username) {
+      _writer.writeString(2, _instance.username);
+    }
+    if (_instance.createdAt) {
+      _writer.writeMessage(
+        3,
+        _instance.createdAt as any,
+        googleProtobuf004.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.createdBy) {
+      _writer.writeString(4, _instance.createdBy);
+    }
+  }
+
+  private _userId: string;
+  private _username: string;
+  private _createdAt?: googleProtobuf004.Timestamp;
+  private _createdBy: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of ProjectTechnicalUser to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<ProjectTechnicalUser.AsObject>) {
+    _value = _value || {};
+    this.userId = _value.userId;
+    this.username = _value.username;
+    this.createdAt = _value.createdAt
+      ? new googleProtobuf004.Timestamp(_value.createdAt)
+      : undefined;
+    this.createdBy = _value.createdBy;
+    ProjectTechnicalUser.refineValues(this);
+  }
+  get userId(): string {
+    return this._userId;
+  }
+  set userId(value: string) {
+    this._userId = value;
+  }
+  get username(): string {
+    return this._username;
+  }
+  set username(value: string) {
+    this._username = value;
+  }
+  get createdAt(): googleProtobuf004.Timestamp | undefined {
+    return this._createdAt;
+  }
+  set createdAt(value: googleProtobuf004.Timestamp | undefined) {
+    this._createdAt = value;
+  }
+  get createdBy(): string {
+    return this._createdBy;
+  }
+  set createdBy(value: string) {
+    this._createdBy = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    ProjectTechnicalUser.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): ProjectTechnicalUser.AsObject {
+    return {
+      userId: this.userId,
+      username: this.username,
+      createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
+      createdBy: this.createdBy
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): ProjectTechnicalUser.AsProtobufJSON {
+    return {
+      userId: this.userId,
+      username: this.username,
+      createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null,
+      createdBy: this.createdBy
+    };
+  }
+}
+export module ProjectTechnicalUser {
+  /**
+   * Standard JavaScript object representation for ProjectTechnicalUser
+   */
+  export interface AsObject {
+    userId: string;
+    username: string;
+    createdAt?: googleProtobuf004.Timestamp.AsObject;
+    createdBy: string;
+  }
+
+  /**
+   * Protobuf JSON representation for ProjectTechnicalUser
+   */
+  export interface AsProtobufJSON {
+    userId: string;
+    username: string;
+    createdAt: googleProtobuf004.Timestamp.AsProtobufJSON | null;
+    createdBy: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.ListProjectTechnicalUsersResponse
+ */
+export class ListProjectTechnicalUsersResponse implements GrpcMessage {
+  static id = 'ondewo.nlu.ListProjectTechnicalUsersResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new ListProjectTechnicalUsersResponse();
+    ListProjectTechnicalUsersResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: ListProjectTechnicalUsersResponse) {
+    _instance.technicalUsers = _instance.technicalUsers || [];
+    _instance.nextPageToken = _instance.nextPageToken || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: ListProjectTechnicalUsersResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          const messageInitializer1 = new ProjectTechnicalUser();
+          _reader.readMessage(
+            messageInitializer1,
+            ProjectTechnicalUser.deserializeBinaryFromReader
+          );
+          (_instance.technicalUsers = _instance.technicalUsers || []).push(
+            messageInitializer1
+          );
+          break;
+        case 2:
+          _instance.nextPageToken = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    ListProjectTechnicalUsersResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: ListProjectTechnicalUsersResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.technicalUsers && _instance.technicalUsers.length) {
+      _writer.writeRepeatedMessage(
+        1,
+        _instance.technicalUsers as any,
+        ProjectTechnicalUser.serializeBinaryToWriter
+      );
+    }
+    if (_instance.nextPageToken) {
+      _writer.writeString(2, _instance.nextPageToken);
+    }
+  }
+
+  private _technicalUsers?: ProjectTechnicalUser[];
+  private _nextPageToken: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of ListProjectTechnicalUsersResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<ListProjectTechnicalUsersResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.technicalUsers = (_value.technicalUsers || []).map(
+      m => new ProjectTechnicalUser(m)
+    );
+    this.nextPageToken = _value.nextPageToken;
+    ListProjectTechnicalUsersResponse.refineValues(this);
+  }
+  get technicalUsers(): ProjectTechnicalUser[] | undefined {
+    return this._technicalUsers;
+  }
+  set technicalUsers(value: ProjectTechnicalUser[] | undefined) {
+    this._technicalUsers = value;
+  }
+  get nextPageToken(): string {
+    return this._nextPageToken;
+  }
+  set nextPageToken(value: string) {
+    this._nextPageToken = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    ListProjectTechnicalUsersResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): ListProjectTechnicalUsersResponse.AsObject {
+    return {
+      technicalUsers: (this.technicalUsers || []).map(m => m.toObject()),
+      nextPageToken: this.nextPageToken
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): ListProjectTechnicalUsersResponse.AsProtobufJSON {
+    return {
+      technicalUsers: (this.technicalUsers || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      nextPageToken: this.nextPageToken
+    };
+  }
+}
+export module ListProjectTechnicalUsersResponse {
+  /**
+   * Standard JavaScript object representation for ListProjectTechnicalUsersResponse
+   */
+  export interface AsObject {
+    technicalUsers?: ProjectTechnicalUser.AsObject[];
+    nextPageToken: string;
+  }
+
+  /**
+   * Protobuf JSON representation for ListProjectTechnicalUsersResponse
+   */
+  export interface AsProtobufJSON {
+    technicalUsers: ProjectTechnicalUser.AsProtobufJSON[] | null;
+    nextPageToken: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.DeleteProjectTechnicalUserRequest
+ */
+export class DeleteProjectTechnicalUserRequest implements GrpcMessage {
+  static id = 'ondewo.nlu.DeleteProjectTechnicalUserRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new DeleteProjectTechnicalUserRequest();
+    DeleteProjectTechnicalUserRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: DeleteProjectTechnicalUserRequest) {
+    _instance.parent = _instance.parent || '';
+    _instance.userId = _instance.userId || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: DeleteProjectTechnicalUserRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.parent = _reader.readString();
+          break;
+        case 2:
+          _instance.userId = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    DeleteProjectTechnicalUserRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: DeleteProjectTechnicalUserRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.parent) {
+      _writer.writeString(1, _instance.parent);
+    }
+    if (_instance.userId) {
+      _writer.writeString(2, _instance.userId);
+    }
+  }
+
+  private _parent: string;
+  private _userId: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of DeleteProjectTechnicalUserRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<DeleteProjectTechnicalUserRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.parent = _value.parent;
+    this.userId = _value.userId;
+    DeleteProjectTechnicalUserRequest.refineValues(this);
+  }
+  get parent(): string {
+    return this._parent;
+  }
+  set parent(value: string) {
+    this._parent = value;
+  }
+  get userId(): string {
+    return this._userId;
+  }
+  set userId(value: string) {
+    this._userId = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    DeleteProjectTechnicalUserRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): DeleteProjectTechnicalUserRequest.AsObject {
+    return {
+      parent: this.parent,
+      userId: this.userId
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): DeleteProjectTechnicalUserRequest.AsProtobufJSON {
+    return {
+      parent: this.parent,
+      userId: this.userId
+    };
+  }
+}
+export module DeleteProjectTechnicalUserRequest {
+  /**
+   * Standard JavaScript object representation for DeleteProjectTechnicalUserRequest
+   */
+  export interface AsObject {
+    parent: string;
+    userId: string;
+  }
+
+  /**
+   * Protobuf JSON representation for DeleteProjectTechnicalUserRequest
+   */
+  export interface AsProtobufJSON {
+    parent: string;
+    userId: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.RotateProjectTechnicalUserPasswordRequest
+ */
+export class RotateProjectTechnicalUserPasswordRequest implements GrpcMessage {
+  static id = 'ondewo.nlu.RotateProjectTechnicalUserPasswordRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new RotateProjectTechnicalUserPasswordRequest();
+    RotateProjectTechnicalUserPasswordRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: RotateProjectTechnicalUserPasswordRequest) {
+    _instance.parent = _instance.parent || '';
+    _instance.userId = _instance.userId || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: RotateProjectTechnicalUserPasswordRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.parent = _reader.readString();
+          break;
+        case 2:
+          _instance.userId = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    RotateProjectTechnicalUserPasswordRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: RotateProjectTechnicalUserPasswordRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.parent) {
+      _writer.writeString(1, _instance.parent);
+    }
+    if (_instance.userId) {
+      _writer.writeString(2, _instance.userId);
+    }
+  }
+
+  private _parent: string;
+  private _userId: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of RotateProjectTechnicalUserPasswordRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<
+      RotateProjectTechnicalUserPasswordRequest.AsObject
+    >
+  ) {
+    _value = _value || {};
+    this.parent = _value.parent;
+    this.userId = _value.userId;
+    RotateProjectTechnicalUserPasswordRequest.refineValues(this);
+  }
+  get parent(): string {
+    return this._parent;
+  }
+  set parent(value: string) {
+    this._parent = value;
+  }
+  get userId(): string {
+    return this._userId;
+  }
+  set userId(value: string) {
+    this._userId = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    RotateProjectTechnicalUserPasswordRequest.serializeBinaryToWriter(
+      this,
+      writer
+    );
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): RotateProjectTechnicalUserPasswordRequest.AsObject {
+    return {
+      parent: this.parent,
+      userId: this.userId
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): RotateProjectTechnicalUserPasswordRequest.AsProtobufJSON {
+    return {
+      parent: this.parent,
+      userId: this.userId
+    };
+  }
+}
+export module RotateProjectTechnicalUserPasswordRequest {
+  /**
+   * Standard JavaScript object representation for RotateProjectTechnicalUserPasswordRequest
+   */
+  export interface AsObject {
+    parent: string;
+    userId: string;
+  }
+
+  /**
+   * Protobuf JSON representation for RotateProjectTechnicalUserPasswordRequest
+   */
+  export interface AsProtobufJSON {
+    parent: string;
+    userId: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.RotateProjectTechnicalUserPasswordResponse
+ */
+export class RotateProjectTechnicalUserPasswordResponse implements GrpcMessage {
+  static id = 'ondewo.nlu.RotateProjectTechnicalUserPasswordResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new RotateProjectTechnicalUserPasswordResponse();
+    RotateProjectTechnicalUserPasswordResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: RotateProjectTechnicalUserPasswordResponse) {
+    _instance.userId = _instance.userId || '';
+    _instance.username = _instance.username || '';
+    _instance.password = _instance.password || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: RotateProjectTechnicalUserPasswordResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.userId = _reader.readString();
+          break;
+        case 2:
+          _instance.username = _reader.readString();
+          break;
+        case 3:
+          _instance.password = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    RotateProjectTechnicalUserPasswordResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: RotateProjectTechnicalUserPasswordResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.userId) {
+      _writer.writeString(1, _instance.userId);
+    }
+    if (_instance.username) {
+      _writer.writeString(2, _instance.username);
+    }
+    if (_instance.password) {
+      _writer.writeString(3, _instance.password);
+    }
+  }
+
+  private _userId: string;
+  private _username: string;
+  private _password: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of RotateProjectTechnicalUserPasswordResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<
+      RotateProjectTechnicalUserPasswordResponse.AsObject
+    >
+  ) {
+    _value = _value || {};
+    this.userId = _value.userId;
+    this.username = _value.username;
+    this.password = _value.password;
+    RotateProjectTechnicalUserPasswordResponse.refineValues(this);
+  }
+  get userId(): string {
+    return this._userId;
+  }
+  set userId(value: string) {
+    this._userId = value;
+  }
+  get username(): string {
+    return this._username;
+  }
+  set username(value: string) {
+    this._username = value;
+  }
+  get password(): string {
+    return this._password;
+  }
+  set password(value: string) {
+    this._password = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    RotateProjectTechnicalUserPasswordResponse.serializeBinaryToWriter(
+      this,
+      writer
+    );
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): RotateProjectTechnicalUserPasswordResponse.AsObject {
+    return {
+      userId: this.userId,
+      username: this.username,
+      password: this.password
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): RotateProjectTechnicalUserPasswordResponse.AsProtobufJSON {
+    return {
+      userId: this.userId,
+      username: this.username,
+      password: this.password
+    };
+  }
+}
+export module RotateProjectTechnicalUserPasswordResponse {
+  /**
+   * Standard JavaScript object representation for RotateProjectTechnicalUserPasswordResponse
+   */
+  export interface AsObject {
+    userId: string;
+    username: string;
+    password: string;
+  }
+
+  /**
+   * Protobuf JSON representation for RotateProjectTechnicalUserPasswordResponse
+   */
+  export interface AsProtobufJSON {
+    userId: string;
+    username: string;
+    password: string;
   }
 }

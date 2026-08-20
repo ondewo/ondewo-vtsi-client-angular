@@ -14,10 +14,12 @@ export
 # 		Variables
 ########################################################
 
-ONDEWO_VTSI_VERSION=8.2.0
+ONDEWO_VTSI_VERSION=8.3.0
 
 VTSI_API_GIT_BRANCH=OND211-2418-add-keycloak-for-2-fa
-ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/5.10.0
+# Must name the tag the committed ondewo-proto-compiler submodule points at, otherwise
+# check_out_correct_submodule_versions checks the submodule BACK to the older tag.
+ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/5.12.0
 ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
@@ -114,8 +116,13 @@ release: ## Create Github and NPM Release
 	git add src
 	git add README.md
 	git add RELEASE.md
-	git add public-api.d.ts
-	git add public-api.d.ts.map
+	# public-api.d.ts / public-api.d.ts.map are NOT staged: the codegen container deletes both
+	# (`rm -rf public-api.d.ts` in compile-proto-2-angular.sh) and emits the barrel as
+	# public-api.ts plus the flattened typings entry point index.d.ts, which `typings` points at.
+	# `git add` on a path that does not exist is fatal, and an unstaged index.d.ts would publish
+	# typings to npm that were never committed.
+	git add public-api.ts
+	git add index.d.ts
 	git add package-lock.json
 	git add package.json
 	-git add tsconfig.json
@@ -204,8 +211,12 @@ spc: ## Checks if the Release Branch, Tag and Pypi version already exist
 ########################################################
 # Build
 
-update_package: ## Updates Package Version in src/package.json
-	@perl -i -pe "s/\"version\": \"[0-9]*.[0-9]*.[0-9]\"/\"version\": \"${ONDEWO_VTSI_VERSION}\"/g" src/package.json
+update_package: ## Updates Package Version in src/package.json and in the committed root package.json
+	@perl -i -pe "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"${ONDEWO_VTSI_VERSION}\"/g" src/package.json
+	# The root manifest carries the version too, and it is the one a consumer installing this repo
+	# by commit hash actually reads. It cannot simply be generated: install_dependencies restores
+	# it with `git checkout --` (see there), so it is stamped here from the same single source.
+	@perl -i -pe "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"${ONDEWO_VTSI_VERSION}\"/g" package.json
 
 build: check_out_correct_submodule_versions build_compiler update_package npm_run_build ## Build Code with Proto-Compiler
 	@echo "################### PROMPT FOR CHANGING FILE OWNERSHIP FROM ROOT TO YOU ##########################"
@@ -220,7 +231,13 @@ build: check_out_correct_submodule_versions build_compiler update_package npm_ru
 	make install_dependencies
 
 install_dependencies:
+	# Deliberate: ng-packagr writes a generated root manifest over this one during npm_run_build,
+	# and that generated manifest carries no devDependencies and no test scripts. Restoring the
+	# committed file puts the tooling back — but it also reverts the version bump, which is why
+	# update_package runs again immediately below, BEFORE npm install regenerates the lockfile.
+	# Re-stamping after the install would leave package-lock.json on the previous version.
 	git checkout -- package.json package-lock.json 2>/dev/null || true
+	make update_package
 	rm -rf node_modules && npm install --include=dev --legacy-peer-deps
 	@for pkg in \
 		typescript \
@@ -252,7 +269,12 @@ check_out_correct_submodule_versions: ## Fetches all Submodules and checksout sp
 	git -C ${ONDEWO_PROTO_COMPILER_DIR} fetch --all
 	git -C ${ONDEWO_PROTO_COMPILER_DIR} checkout ${ONDEWO_PROTO_COMPILER_GIT_BRANCH}
 	-git -C ${ONDEWO_PROTO_COMPILER_DIR} pull
-	make -C ${VTSI_APIS_DIR} build
+	# NOT `make -C ${VTSI_APIS_DIR} build`: that target is an ondewo-vtsi-api RELEASE step which
+	# commits the assembled protos and pushes them, so building a client would mutate a shared
+	# repository — and it aborts the whole build where the push cannot authenticate. These two
+	# targets are the read-only half of it: check out the pinned api submodules and copy the
+	# nlu/s2t/t2s/sip protos into ondewo/, which is all the codegen needs.
+	make -C ${VTSI_APIS_DIR} init_submodules checkout_defined_submodule_versions
 	@echo "DONE checking out correct submodule versions."
 
 npm_run_build: ## Runs the build command in package.json

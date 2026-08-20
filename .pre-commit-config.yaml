@@ -12,7 +12,6 @@
 #   ondewo-proto-compiler/   git submodule
 #   src/ondewo-vtsi-api/     git submodule (generated proto api)
 #   index.d.ts               generated rollup type defs (2.5MB)
-#   public-api.d.ts.map      generated source map
 #   package-lock.json        npm lockfile
 #   *_pb.* / *_grpc_pb.* / *_pb2* generated proto stubs anywhere
 exclude: |
@@ -25,7 +24,6 @@ exclude: |
     ^ondewo-proto-compiler/|
     ^src/ondewo-vtsi-api/|
     ^index\.d\.ts$|
-    ^public-api\.d\.ts\.map$|
     ^package-lock\.json$|
     _pb\.(js|d\.ts)$|
     _grpc_pb\.(js|d\.ts)$|
@@ -35,7 +33,6 @@ exclude: |
 fail_fast: false
 
 repos:
-
   - repo: https://github.com/DavidAnson/markdownlint-cli2
     rev: v0.23.0
     hooks:
@@ -45,8 +42,8 @@ repos:
     rev: v6.0.0
     hooks:
       - id: check-added-large-files
-        args: [ maxkb=1024 ]
-      - id: check-json          # validate (does NOT reformat) json/package.json
+        args: [maxkb=1024]
+      - id: check-json # validate (does NOT reformat) json/package.json
       - id: check-yaml
       - id: check-xml
       - id: check-merge-conflict
@@ -56,16 +53,23 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
 
-  - repo: https://github.com/milin/giticket
-    rev: '1.92'
-    hooks:
-      - id: giticket
-        args: [ '--regex=(?:(?:feature|bugfix|support|hotfix)/)?(OND[0-9]{3}-[0-9]{1,5})[_-][\w-]+',
-                '--format=[{ticket}] {commit_msg}',
-                '--mode=regex_match' ]
-
+  # ORDER IS LOAD-BEARING: conventional-pre-commit validates the subject the author typed,
+  # and giticket then prepends `[<ticket>]` to the already-validated subject. Running giticket
+  # first makes every commit fail, because upstream conventional-pre-commit does not accept a
+  # non-conforming leading prefix.
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v4.4.0
     hooks:
       - id: conventional-pre-commit
-        stages: [ commit-msg ]
+        stages: [commit-msg]
+
+  - repo: https://github.com/milin/giticket
+    rev: '1.92'
+    hooks:
+      - id: giticket
+        args:
+          [
+            '--regex=(?:(?:feature|bugfix|support|hotfix)/)?(OND[0-9]{3}-[0-9]{1,5})[_-][\w-]+',
+            '--format=[{ticket}] {commit_msg}',
+            '--mode=regex_match'
+          ]

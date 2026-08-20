@@ -1,96 +1,130 @@
 # Release History
 
-***************** 
-## Release ONDEWO VTSI Angular Client 8.2.0 
- 
-### Improvements 
- * Tracking API Version [8.2.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.2.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
+*****************
 
+## Release ONDEWO VTSI Angular Client 8.3.0
 
-***************** 
-## Release ONDEWO VTSI Angular Client 8.1.0 
- 
-### Improvements 
- * Tracking API Version [8.1.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.1.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
+### Improvements
 
-
-***************** 
-## Release ONDEWO VTSI Angular Client 8.0.0 
- 
-### Improvements 
- * Tracking API Version [8.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 7.0.0 
- 
-### Improvements 
- * Tracking API Version [7.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/7.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 6.9.0 
- 
-### Improvements 
- * Tracking API Version [6.9.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.9.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 6.8.0 
- 
-### Improvements 
- * Tracking API Version [6.8.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.8.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 6.6.1
- 
-### Improvements 
- * Optimized for Angular 16 (esm2022 and fesm2022)
- * Tracking API Version [6.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-***************** 
-## Release ONDEWO VTSI Angular Client 6.6.0 
- 
-### Improvements 
- * Tracking API Version [6.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 6.5.0 
- 
-### Improvements 
- * Tracking API Version [6.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 6.4.0 
- 
-### Improvements 
- * Tracking API Version [6.4.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.4.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 6.3.0 
- 
-### Improvements 
- * Tracking API Version [6.3.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.3.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 6.2.0 
- 
-### Improvements 
- * Tracking API Version [6.2.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.2.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
-
-
-***************** 
-## Release ONDEWO VTSI Angular Client 5.0.0 
- 
-### Improvements 
- * Tracking API Version [5.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/5.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
+* Tracking API Version [8.3.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.3.0)
+  ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+* Added the generated client for `ondewo/vtsi/logs.proto` (container log capture and streaming)
+* Added Keycloak bearer authentication for the VTSI Angular SDK
+* Added the optional field `asterisk_version` to `AsteriskConfigs`. It carries the docker image tag of the
+  ONDEWO Asterisk image a VTSI project should start (e.g. `alpine-3.18-18.20.2`), so the Asterisk version is a
+  per-project setting instead of a server-wide one. Leaving it unset keeps the server default
+  (`ONDEWO_VTSI_ASTERISK_IMAGE_TAG`); an empty string is rejected
+* Note that ngx-grpc flattens the field's explicit presence into a plain `asteriskVersion: string` that is
+  written to the wire only when non-empty. An Angular caller can therefore send a tag or send nothing, and
+  cannot send the empty string — which is harmless, because the empty string is the value the server rejects
 
 *****************
+
+## Release ONDEWO VTSI Angular Client 8.2.0
+
+### Improvements
+
+* Tracking API Version [8.2.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.2.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 8.1.0
+
+### Improvements
+
+* Tracking API Version [8.1.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.1.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 8.0.0
+
+### Improvements
+
+* Tracking API Version [8.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 7.0.0
+
+### Improvements
+
+* Tracking API Version [7.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/7.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 6.9.0
+
+### Improvements
+
+* Tracking API Version [6.9.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.9.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 6.8.0
+
+### Improvements
+
+* Tracking API Version [6.8.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.8.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 6.6.1
+
+### Improvements
+
+* Optimized for Angular 16 (esm2022 and fesm2022)
+* Tracking API Version [6.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 6.6.0
+
+### Improvements
+
+* Tracking API Version [6.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 6.5.0
+
+### Improvements
+
+* Tracking API Version [6.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 6.4.0
+
+### Improvements
+
+* Tracking API Version [6.4.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.4.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 6.3.0
+
+### Improvements
+
+* Tracking API Version [6.3.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.3.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 6.2.0
+
+### Improvements
+
+* Tracking API Version [6.2.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.2.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 5.0.0
+
+### Improvements
+
+* Tracking API Version [5.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/5.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 4.0.0
 
 * Track version 4.0.0 of [ONDEWO VTSI API](https://github.com/ondewo/ondewo-vtsi-api/releases/4.0.0)
@@ -98,22 +132,25 @@
 * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Added pre-commit hooks and adjusted files to them
 
 *****************
+
 ## Release ONDEWO VTSI Angular Client 2.4.0
 
-  * ONDEWO Natural Language Understanding (NLU) API Version [2.6.0](https://github.com/ondewo/ondewo-nlu-api/releases/2.6.0)
-  * ONDEWO SIP (SIP) API Version [1.2.0](https://github.com/ondewo/ondewo-sip-api/releases/1.2.0)
-  * ONDEWO Speech-2-Text (S2T) API Version [3.1.1](https://github.com/ondewo/ondewo-s2t-api/releases/3.1.1)
-  * ONDEWO Text-2-Speech (S2T) API Version [4.0.2](https://github.com/ondewo/ondewo-t2s-api/releases/4.0.2)
-  * ONDEWO VOIP Telephone Integration (VOIP) API Version [2.3.0](https://github.com/ondewo/ondewo-vtsi-api/releases/2.2.0)
+* ONDEWO Natural Language Understanding (NLU) API Version [2.6.0](https://github.com/ondewo/ondewo-nlu-api/releases/2.6.0)
+* ONDEWO SIP (SIP) API Version [1.2.0](https://github.com/ondewo/ondewo-sip-api/releases/1.2.0)
+* ONDEWO Speech-2-Text (S2T) API Version [3.1.1](https://github.com/ondewo/ondewo-s2t-api/releases/3.1.1)
+* ONDEWO Text-2-Speech (S2T) API Version [4.0.2](https://github.com/ondewo/ondewo-t2s-api/releases/4.0.2)
+* ONDEWO VOIP Telephone Integration (VOIP) API Version [2.3.0](https://github.com/ondewo/ondewo-vtsi-api/releases/2.2.0)
 
 *****************
+
 ## Release ONDEWO VTSI Angular Client 2.3.0
 
-  * ONDEWO Natural Language Understanding (NLU) API Version [2.6.0](https://github.com/ondewo/ondewo-nlu-api/releases/2.6.0)
-  * ONDEWO SIP (SIP) API Version [1.2.0](https://github.com/ondewo/ondewo-sip-api/releases/1.2.0)
-  * ONDEWO Speech-2-Text (S2T) API Version [3.1.1](https://github.com/ondewo/ondewo-s2t-api/releases/3.1.1)
-  * ONDEWO Text-2-Speech (S2T) API Version [3.0.0](https://github.com/ondewo/ondewo-t2s-api/releases/3.0.0)
-  * ONDEWO VOIP Telephone Integration (VOIP) API Version [2.3.0](https://github.com/ondewo/ondewo-vtsi-api/releases/2.2.0)
+* ONDEWO Natural Language Understanding (NLU) API Version [2.6.0](https://github.com/ondewo/ondewo-nlu-api/releases/2.6.0)
+* ONDEWO SIP (SIP) API Version [1.2.0](https://github.com/ondewo/ondewo-sip-api/releases/1.2.0)
+* ONDEWO Speech-2-Text (S2T) API Version [3.1.1](https://github.com/ondewo/ondewo-s2t-api/releases/3.1.1)
+* ONDEWO Text-2-Speech (S2T) API Version [3.0.0](https://github.com/ondewo/ondewo-t2s-api/releases/3.0.0)
+* ONDEWO VOIP Telephone Integration (VOIP) API Version [2.3.0](https://github.com/ondewo/ondewo-vtsi-api/releases/2.2.0)
+
 ## Release ONDEWO VTSI Angular Client 2.2.1
 
 * Upgraded to Angular >= 13.x.x and ngx-grpc >=3.0.0
