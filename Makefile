@@ -32,7 +32,7 @@ IMAGE_UTILS_NAME=ondewo-vtsi-client-utils-angular:${ONDEWO_VTSI_VERSION}
 PRETTIER_WRITE?=
 
 CURRENT_RELEASE_NOTES=`cat RELEASE.md \
-	| perl -ne 'print if /Release ONDEWO VTSI Angular Client ${ONDEWO_VTSI_VERSION}/../\*\*/'`
+	| perl -ne 'print if /Release ONDEWO VTSI Angular Client ${ONDEWO_VTSI_VERSION}/../^\*{5}/'`
 
 GH_REPO="https://github.com/ondewo/ondewo-vtsi-client-angular"
 DEVOPS_ACCOUNT_GIT="ondewo-devops-accounts"
