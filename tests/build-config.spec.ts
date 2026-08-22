@@ -411,19 +411,73 @@ describe('generated api surface', (): void => {
 		expect(missing).toEqual([]);
 	});
 
-	/** The reverse direction: a barrel left over from a previous API exports files that are gone. */
+	/**
+	 * The reverse direction: a barrel left over from a previous API exports files that are gone.
+	 *
+	 * A barrel entry is either a single module (`./api/....pb`) or a directory with an
+	 * `index.ts` (`./src/auth`, the hand-written surface) — both spellings must resolve.
+	 */
 	it('exports no stub that does not exist on disk', (): void => {
 		const barrel: string = fs.readFileSync(PUBLIC_API_TS, 'utf8');
 		const dangling: string[] = [];
 		const pattern: RegExp = /from\s+'\.\/(.+?)';/g;
 		let matched: RegExpExecArray | null = pattern.exec(barrel);
 		while (matched !== null) {
-			if (!fs.existsSync(path.join(REPO_ROOT, `${matched[1]}.ts`))) {
-				dangling.push(matched[1]);
+			const barrelEntry: string = matched[1];
+			const resolves: boolean =
+				fs.existsSync(path.join(REPO_ROOT, `${barrelEntry}.ts`)) ||
+				fs.existsSync(path.join(REPO_ROOT, barrelEntry, 'index.ts'));
+			if (!resolves) {
+				dangling.push(barrelEntry);
 			}
 			matched = pattern.exec(barrel);
 		}
 		expect(dangling).toEqual([]);
+	});
+});
+
+describe('the hand-written auth surface survives the codegen', (): void => {
+	/**
+	 * The defect this pins, which cost the whole 8.4.0 angular release: the auth sources used to
+	 * live in `src/lib/auth`. `lib` is ng-packagr's `dest`, and ng-packagr deletes `dest`
+	 * recursively before it compiles anything (`package.transform.js`: `rmdir(dest, { recursive:
+	 * true })`). Inside the codegen container the barrel generator saw `lib/auth/index.ts` and
+	 * emitted `export * from './lib/auth';`, then ng-packagr deleted the directory and tsc failed
+	 * the entry point with `TS2307: Cannot find module './lib/auth'`. Nothing here survives on a
+	 * developer machine either — the mount is copied into the image first — so a local build
+	 * cannot disagree with a release build about this.
+	 *
+	 * `dest` is read from the compiler's own default `ng-package.json` (this repo ships no
+	 * `src/ng-package.json`, so that default is what the container uses) rather than hard-coded,
+	 * so the assertion follows the compiler if it ever moves the output directory.
+	 */
+	itWithCompiler('keeps the auth barrel out of the directory ng-packagr deletes', (): void => {
+		const ngPackage: Record<string, unknown> = readJson(
+			path.join(COMPILER_SUBMODULE, 'angular', 'image-data', 'default-lib-files', 'ng-package.json')
+		);
+		const destroyed: string = path.join(REPO_ROOT, 'src', ngPackage.dest as string);
+		const barrel: string = path.join(REPO_ROOT, 'src', 'auth', 'index.ts');
+		expect(fs.existsSync(barrel)).toBe(true);
+		expect(path.relative(destroyed, barrel).startsWith('..')).toBe(true);
+	});
+
+	/**
+	 * The property the move exists to protect: the auth API is part of the published package.
+	 * Asserted against the packaging output rather than the sources, because being compiled is
+	 * exactly what was missing — ng-packagr rolls the entry point's transitive closure into
+	 * `index.d.ts`, so a symbol absent from there is unimportable by a consumer however complete
+	 * the sources are. `npm/` exists only after a local `make build`.
+	 */
+	itWithBuildOutput('ships the auth surface in the packaged typings', (): void => {
+		const typings: string = fs.readFileSync(path.join(NPM_PUBLISH_DIR, 'index.d.ts'), 'utf8');
+		const missing: string[] = [
+			'provideOndewoVtsiAuth',
+			'AuthGrpcInterceptor',
+			'authHttpInterceptor',
+			'KeycloakTokenProvider',
+			'TOKEN_PROVIDER'
+		].filter((symbol: string): boolean => !typings.includes(symbol));
+		expect(missing).toEqual([]);
 	});
 });
 

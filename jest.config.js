@@ -1,7 +1,10 @@
 /**
  * Jest configuration for the hand-written Keycloak bearer-auth surface (Angular 20, ESM).
  * Uses jest-preset-angular so Angular/rxjs/@ngx-grpc ESM is transformed correctly; coverage is
- * gated on src/lib/auth only (every generated protobuf/gRPC-web stub is excluded).
+ * gated on src/auth only (every generated protobuf/gRPC-web stub is excluded).
+ *
+ * The auth sources live in src/auth, NOT src/lib/auth: `lib` is ng-packagr's `dest` and it is
+ * deleted before the library is compiled (see tests/build-config.spec.ts).
  */
 const GENERATED_STUB_PATTERNS = [
 	'\\.pb\\.ts$',
@@ -16,13 +19,13 @@ const GENERATED_STUB_PATTERNS = [
 module.exports = {
 	preset: 'jest-preset-angular',
 	setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-	roots: ['<rootDir>/src/lib/auth', '<rootDir>/src/lib/examples', '<rootDir>/tests'],
+	roots: ['<rootDir>/src/auth', '<rootDir>/src/lib/examples', '<rootDir>/tests'],
 	testMatch: ['**/*.spec.ts'],
 	moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
 	collectCoverage: true,
 	coverageDirectory: '<rootDir>/coverage',
 	coverageReporters: ['text', 'text-summary', 'lcov'],
-	collectCoverageFrom: ['src/lib/auth/**/*.ts', '!src/lib/auth/**/*.spec.ts'],
+	collectCoverageFrom: ['src/auth/**/*.ts', '!src/auth/**/*.spec.ts'],
 	coveragePathIgnorePatterns: [
 		'/node_modules/',
 		'/src/ondewo-vtsi-api/',
