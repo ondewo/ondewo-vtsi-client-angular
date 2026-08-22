@@ -2,6 +2,22 @@
 
 *****************
 
+## Release ONDEWO VTSI Angular Client 8.4.0
+
+### Improvements
+
+* Tracking API Version [8.4.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.4.0)
+  ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+* Added the field `next_page_token` to `ListCallersResponse`, exposed as `nextPageToken`. It carries the token
+  that fetches the next page of callers and is empty when the list has no further results, matching
+  `ListListenersResponse` and `ListCallsResponse`
+* The hand-written Keycloak auth surface (`provideOndewoVtsiAuth`, `AuthGrpcInterceptor`, `authHttpInterceptor`,
+  `KeycloakTokenProvider`, `TOKEN_PROVIDER`, `resolveToken`) is now exported from the package entry point and is
+  part of the published bundle and typings. It was added to the repository for 8.3.0 but no release before this
+  one shipped an importable auth symbol
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 8.3.0
 
 ### Improvements

@@ -73,4 +73,5 @@ export * from './api/ondewo/vtsi/logs.pbsc';
 export * from './api/ondewo/vtsi/projects.pb';
 export * from './api/ondewo/vtsi/projects.pbconf';
 export * from './api/ondewo/vtsi/projects.pbsc';
+export * from './src/auth';
 export { ReasoningEffort } from './api/ondewo/nlu/session.pb';

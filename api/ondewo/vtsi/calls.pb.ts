@@ -7171,6 +7171,7 @@ export class ListCallersResponse implements GrpcMessage {
    */
   static refineValues(_instance: ListCallersResponse) {
     _instance.callers = _instance.callers || [];
+    _instance.nextPageToken = _instance.nextPageToken || '';
   }
 
   /**
@@ -7196,6 +7197,9 @@ export class ListCallersResponse implements GrpcMessage {
             messageInitializer1
           );
           break;
+        case 2:
+          _instance.nextPageToken = _reader.readString();
+          break;
         default:
           _reader.skipField();
       }
@@ -7220,9 +7224,13 @@ export class ListCallersResponse implements GrpcMessage {
         Caller.serializeBinaryToWriter
       );
     }
+    if (_instance.nextPageToken) {
+      _writer.writeString(2, _instance.nextPageToken);
+    }
   }
 
   private _callers?: Caller[];
+  private _nextPageToken: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -7231,6 +7239,7 @@ export class ListCallersResponse implements GrpcMessage {
   constructor(_value?: RecursivePartial<ListCallersResponse.AsObject>) {
     _value = _value || {};
     this.callers = (_value.callers || []).map(m => new Caller(m));
+    this.nextPageToken = _value.nextPageToken;
     ListCallersResponse.refineValues(this);
   }
   get callers(): Caller[] | undefined {
@@ -7238,6 +7247,12 @@ export class ListCallersResponse implements GrpcMessage {
   }
   set callers(value: Caller[] | undefined) {
     this._callers = value;
+  }
+  get nextPageToken(): string {
+    return this._nextPageToken;
+  }
+  set nextPageToken(value: string) {
+    this._nextPageToken = value;
   }
 
   /**
@@ -7255,7 +7270,8 @@ export class ListCallersResponse implements GrpcMessage {
    */
   toObject(): ListCallersResponse.AsObject {
     return {
-      callers: (this.callers || []).map(m => m.toObject())
+      callers: (this.callers || []).map(m => m.toObject()),
+      nextPageToken: this.nextPageToken
     };
   }
 
@@ -7276,7 +7292,8 @@ export class ListCallersResponse implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): ListCallersResponse.AsProtobufJSON {
     return {
-      callers: (this.callers || []).map(m => m.toProtobufJSON(options))
+      callers: (this.callers || []).map(m => m.toProtobufJSON(options)),
+      nextPageToken: this.nextPageToken
     };
   }
 }
@@ -7286,6 +7303,7 @@ export module ListCallersResponse {
    */
   export interface AsObject {
     callers?: Caller.AsObject[];
+    nextPageToken: string;
   }
 
   /**
@@ -7293,6 +7311,7 @@ export module ListCallersResponse {
    */
   export interface AsProtobufJSON {
     callers: Caller.AsProtobufJSON[] | null;
+    nextPageToken: string;
   }
 }
 
