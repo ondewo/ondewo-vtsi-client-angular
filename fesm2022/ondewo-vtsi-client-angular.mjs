@@ -95487,10 +95487,10 @@ class AgentsClient {
             .rotateProjectTechnicalUserPassword(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AgentsClient, deps: [{ token: GRPC_AGENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AgentsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AgentsClient, deps: [{ token: GRPC_AGENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AgentsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AgentsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AgentsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -101363,10 +101363,10 @@ class AiServicesClient {
             .listLlmModels(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AiServicesClient, deps: [{ token: GRPC_AI_SERVICES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AiServicesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AiServicesClient, deps: [{ token: GRPC_AI_SERVICES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AiServicesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AiServicesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AiServicesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -101592,10 +101592,10 @@ class CcaiProjectsClient {
             .getCcaiService(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: CcaiProjectsClient, deps: [{ token: GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: CcaiProjectsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: CcaiProjectsClient, deps: [{ token: GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: CcaiProjectsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: CcaiProjectsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: CcaiProjectsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -101821,10 +101821,10 @@ class ContextsClient {
             .deleteAllContexts(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ContextsClient, deps: [{ token: GRPC_CONTEXTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ContextsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ContextsClient, deps: [{ token: GRPC_CONTEXTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ContextsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ContextsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ContextsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -102350,10 +102350,10 @@ class EntityTypesClient {
             .listEntities(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: EntityTypesClient, deps: [{ token: GRPC_ENTITY_TYPES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: EntityTypesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: EntityTypesClient, deps: [{ token: GRPC_ENTITY_TYPES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: EntityTypesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: EntityTypesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: EntityTypesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -103209,10 +103209,10 @@ class IntentsClient {
             .listTrainingPhrasesofIntentsWithEnrichment(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: IntentsClient, deps: [{ token: GRPC_INTENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: IntentsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: IntentsClient, deps: [{ token: GRPC_INTENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: IntentsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: IntentsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: IntentsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -105418,10 +105418,10 @@ class LlmEvaluationsClient {
             .llmEvaluationPromoteAnnotationQueueItem(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: LlmEvaluationsClient, deps: [{ token: GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: LlmEvaluationsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: LlmEvaluationsClient, deps: [{ token: GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: LlmEvaluationsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: LlmEvaluationsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: LlmEvaluationsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -105707,10 +105707,10 @@ class OperationsClient {
             .listRemoteOperationContainers(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: OperationsClient, deps: [{ token: GRPC_OPERATIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: OperationsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: OperationsClient, deps: [{ token: GRPC_OPERATIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: OperationsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: OperationsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: OperationsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -105906,10 +105906,10 @@ class ProjectRolesClient {
             .listProjectRoles(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectRolesClient, deps: [{ token: GRPC_PROJECT_ROLES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectRolesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectRolesClient, deps: [{ token: GRPC_PROJECT_ROLES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectRolesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectRolesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectRolesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -106652,10 +106652,10 @@ class ProjectStatisticsClient {
             .getEntitySynonymCount(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectStatisticsClient, deps: [{ token: GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectStatisticsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectStatisticsClient, deps: [{ token: GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectStatisticsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectStatisticsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectStatisticsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -120670,10 +120670,10 @@ class RagsClient {
             .ragGetCrawlerRunLogs(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: RagsClient, deps: [{ token: GRPC_RAGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: RagsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: RagsClient, deps: [{ token: GRPC_RAGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: RagsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: RagsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: RagsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -120911,10 +120911,10 @@ class ServerStatisticsClient {
             .getUserCount(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ServerStatisticsClient, deps: [{ token: GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ServerStatisticsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ServerStatisticsClient, deps: [{ token: GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ServerStatisticsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ServerStatisticsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ServerStatisticsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -122460,10 +122460,10 @@ class SessionsClient {
             .listAudioFiles(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: SessionsClient, deps: [{ token: GRPC_SESSIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: SessionsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: SessionsClient, deps: [{ token: GRPC_SESSIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: SessionsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: SessionsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: SessionsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -123289,10 +123289,10 @@ class UsersClient {
             .deleteAllUserPreferences(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: UsersClient, deps: [{ token: GRPC_USERS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: UsersClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: UsersClient, deps: [{ token: GRPC_USERS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: UsersClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: UsersClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: UsersClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -126876,10 +126876,10 @@ class UtilitiesClient {
             .addTrainingPhrasesFromCSV(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: UtilitiesClient, deps: [{ token: GRPC_UTILITIES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: UtilitiesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: UtilitiesClient, deps: [{ token: GRPC_UTILITIES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: UtilitiesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: UtilitiesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: UtilitiesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -128694,10 +128694,10 @@ class WebhookClient {
             .deleteSessionEntityType(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: WebhookClient, deps: [{ token: GRPC_WEBHOOK_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: WebhookClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: WebhookClient, deps: [{ token: GRPC_WEBHOOK_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: WebhookClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: WebhookClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: WebhookClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -130460,10 +130460,10 @@ class QAClient {
             .getProjectConfig(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: QAClient, deps: [{ token: GRPC_QA_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: QAClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: QAClient, deps: [{ token: GRPC_QA_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: QAClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: QAClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: QAClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -142183,10 +142183,10 @@ class Speech2TextClient {
             .listS2tNormalizationPipelines(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: Speech2TextClient, deps: [{ token: GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: Speech2TextClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: Speech2TextClient, deps: [{ token: GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: Speech2TextClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: Speech2TextClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: Speech2TextClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -144054,10 +144054,10 @@ class SipClient {
             .sipUnMute(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: SipClient, deps: [{ token: GRPC_SIP_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: SipClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: SipClient, deps: [{ token: GRPC_SIP_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: SipClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: SipClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: SipClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -153848,10 +153848,10 @@ class Text2SpeechClient {
             .voiceCloning(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: Text2SpeechClient, deps: [{ token: GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: Text2SpeechClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: Text2SpeechClient, deps: [{ token: GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: Text2SpeechClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: Text2SpeechClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: Text2SpeechClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -153864,6 +153864,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImpo
                     args: [GRPC_CLIENT_FACTORY]
                 }] }, { type: i1.GrpcHandler }] });
 
+var ScheduledCallerStatus;
+(function (ScheduledCallerStatus) {
+    ScheduledCallerStatus[ScheduledCallerStatus["SCHEDULED_CALLER_STATUS_UNSPECIFIED"] = 0] = "SCHEDULED_CALLER_STATUS_UNSPECIFIED";
+    ScheduledCallerStatus[ScheduledCallerStatus["SCHEDULED_CALLER_STATUS_PENDING"] = 1] = "SCHEDULED_CALLER_STATUS_PENDING";
+    ScheduledCallerStatus[ScheduledCallerStatus["SCHEDULED_CALLER_STATUS_FIRING"] = 2] = "SCHEDULED_CALLER_STATUS_FIRING";
+    ScheduledCallerStatus[ScheduledCallerStatus["SCHEDULED_CALLER_STATUS_DONE"] = 3] = "SCHEDULED_CALLER_STATUS_DONE";
+    ScheduledCallerStatus[ScheduledCallerStatus["SCHEDULED_CALLER_STATUS_FAILED"] = 4] = "SCHEDULED_CALLER_STATUS_FAILED";
+    ScheduledCallerStatus[ScheduledCallerStatus["SCHEDULED_CALLER_STATUS_CANCELLED"] = 5] = "SCHEDULED_CALLER_STATUS_CANCELLED";
+})(ScheduledCallerStatus || (ScheduledCallerStatus = {}));
 var CallView;
 (function (CallView) {
     CallView[CallView["MINIMUM"] = 0] = "MINIMUM";
@@ -162013,6 +162022,12 @@ class ScheduledCaller {
         _instance.commonServicesConfig =
             _instance.commonServicesConfig || undefined;
         _instance.scheduledTime = _instance.scheduledTime || undefined;
+        _instance.sipCallerConfig = _instance.sipCallerConfig || undefined;
+        _instance.status = _instance.status || 0;
+        _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+        _instance.createdAt = _instance.createdAt || undefined;
+        _instance.firedAt = _instance.firedAt || undefined;
+        _instance.errorMessage = _instance.errorMessage || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -162042,6 +162057,27 @@ class ScheduledCaller {
                     _instance.scheduledTime = new googleProtobuf005.Timestamp();
                     _reader.readMessage(_instance.scheduledTime, googleProtobuf005.Timestamp.deserializeBinaryFromReader);
                     break;
+                case 6:
+                    _instance.sipCallerConfig = new SipCallerConfig();
+                    _reader.readMessage(_instance.sipCallerConfig, SipCallerConfig.deserializeBinaryFromReader);
+                    break;
+                case 7:
+                    _instance.status = _reader.readEnum();
+                    break;
+                case 8:
+                    _instance.vtsiProjectName = _reader.readString();
+                    break;
+                case 9:
+                    _instance.createdAt = new googleProtobuf005.Timestamp();
+                    _reader.readMessage(_instance.createdAt, googleProtobuf005.Timestamp.deserializeBinaryFromReader);
+                    break;
+                case 10:
+                    _instance.firedAt = new googleProtobuf005.Timestamp();
+                    _reader.readMessage(_instance.firedAt, googleProtobuf005.Timestamp.deserializeBinaryFromReader);
+                    break;
+                case 11:
+                    _instance.errorMessage = _reader.readString();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -162069,6 +162105,24 @@ class ScheduledCaller {
         if (_instance.scheduledTime) {
             _writer.writeMessage(5, _instance.scheduledTime, googleProtobuf005.Timestamp.serializeBinaryToWriter);
         }
+        if (_instance.sipCallerConfig) {
+            _writer.writeMessage(6, _instance.sipCallerConfig, SipCallerConfig.serializeBinaryToWriter);
+        }
+        if (_instance.status) {
+            _writer.writeEnum(7, _instance.status);
+        }
+        if (_instance.vtsiProjectName) {
+            _writer.writeString(8, _instance.vtsiProjectName);
+        }
+        if (_instance.createdAt) {
+            _writer.writeMessage(9, _instance.createdAt, googleProtobuf005.Timestamp.serializeBinaryToWriter);
+        }
+        if (_instance.firedAt) {
+            _writer.writeMessage(10, _instance.firedAt, googleProtobuf005.Timestamp.serializeBinaryToWriter);
+        }
+        if (_instance.errorMessage) {
+            _writer.writeString(11, _instance.errorMessage);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -162087,6 +162141,18 @@ class ScheduledCaller {
         this.scheduledTime = _value.scheduledTime
             ? new googleProtobuf005.Timestamp(_value.scheduledTime)
             : undefined;
+        this.sipCallerConfig = _value.sipCallerConfig
+            ? new SipCallerConfig(_value.sipCallerConfig)
+            : undefined;
+        this.status = _value.status;
+        this.vtsiProjectName = _value.vtsiProjectName;
+        this.createdAt = _value.createdAt
+            ? new googleProtobuf005.Timestamp(_value.createdAt)
+            : undefined;
+        this.firedAt = _value.firedAt
+            ? new googleProtobuf005.Timestamp(_value.firedAt)
+            : undefined;
+        this.errorMessage = _value.errorMessage;
         ScheduledCaller.refineValues(this);
     }
     get name() {
@@ -162119,6 +162185,42 @@ class ScheduledCaller {
     set scheduledTime(value) {
         this._scheduledTime = value;
     }
+    get sipCallerConfig() {
+        return this._sipCallerConfig;
+    }
+    set sipCallerConfig(value) {
+        this._sipCallerConfig = value;
+    }
+    get status() {
+        return this._status;
+    }
+    set status(value) {
+        this._status = value;
+    }
+    get vtsiProjectName() {
+        return this._vtsiProjectName;
+    }
+    set vtsiProjectName(value) {
+        this._vtsiProjectName = value;
+    }
+    get createdAt() {
+        return this._createdAt;
+    }
+    set createdAt(value) {
+        this._createdAt = value;
+    }
+    get firedAt() {
+        return this._firedAt;
+    }
+    set firedAt(value) {
+        this._firedAt = value;
+    }
+    get errorMessage() {
+        return this._errorMessage;
+    }
+    set errorMessage(value) {
+        this._errorMessage = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -162141,7 +162243,15 @@ class ScheduledCaller {
                 : undefined,
             scheduledTime: this.scheduledTime
                 ? this.scheduledTime.toObject()
-                : undefined
+                : undefined,
+            sipCallerConfig: this.sipCallerConfig
+                ? this.sipCallerConfig.toObject()
+                : undefined,
+            status: this.status,
+            vtsiProjectName: this.vtsiProjectName,
+            createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
+            firedAt: this.firedAt ? this.firedAt.toObject() : undefined,
+            errorMessage: this.errorMessage
         };
     }
     /**
@@ -162167,7 +162277,686 @@ class ScheduledCaller {
                 : null,
             scheduledTime: this.scheduledTime
                 ? this.scheduledTime.toProtobufJSON(options)
-                : null
+                : null,
+            sipCallerConfig: this.sipCallerConfig
+                ? this.sipCallerConfig.toProtobufJSON(options)
+                : null,
+            status: ScheduledCallerStatus[this.status === null || this.status === undefined ? 0 : this.status],
+            vtsiProjectName: this.vtsiProjectName,
+            createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null,
+            firedAt: this.firedAt ? this.firedAt.toProtobufJSON(options) : null,
+            errorMessage: this.errorMessage
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.GetScheduledCallerRequest
+ */
+class GetScheduledCallerRequest {
+    static { this.id = 'ondewo.vtsi.GetScheduledCallerRequest'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new GetScheduledCallerRequest();
+        GetScheduledCallerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+        _instance.name = _instance.name || '';
+        _instance.callView = _instance.callView || 0;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.vtsiProjectName = _reader.readString();
+                    break;
+                case 2:
+                    _instance.name = _reader.readString();
+                    break;
+                case 3:
+                    _instance.callView = _reader.readEnum();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        GetScheduledCallerRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.vtsiProjectName) {
+            _writer.writeString(1, _instance.vtsiProjectName);
+        }
+        if (_instance.name) {
+            _writer.writeString(2, _instance.name);
+        }
+        if (_instance.callView) {
+            _writer.writeEnum(3, _instance.callView);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of GetScheduledCallerRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.vtsiProjectName = _value.vtsiProjectName;
+        this.name = _value.name;
+        this.callView = _value.callView;
+        GetScheduledCallerRequest.refineValues(this);
+    }
+    get vtsiProjectName() {
+        return this._vtsiProjectName;
+    }
+    set vtsiProjectName(value) {
+        this._vtsiProjectName = value;
+    }
+    get name() {
+        return this._name;
+    }
+    set name(value) {
+        this._name = value;
+    }
+    get callView() {
+        return this._callView;
+    }
+    set callView(value) {
+        this._callView = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        GetScheduledCallerRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            name: this.name,
+            callView: this.callView
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            name: this.name,
+            callView: CallView[this.callView === null || this.callView === undefined
+                ? 0
+                : this.callView]
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.ListScheduledCallersRequest
+ */
+class ListScheduledCallersRequest {
+    static { this.id = 'ondewo.vtsi.ListScheduledCallersRequest'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new ListScheduledCallersRequest();
+        ListScheduledCallersRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+        _instance.pageToken = _instance.pageToken || '';
+        _instance.callView = _instance.callView || 0;
+        _instance.statuses = _instance.statuses || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.vtsiProjectName = _reader.readString();
+                    break;
+                case 2:
+                    _instance.pageToken = _reader.readString();
+                    break;
+                case 3:
+                    _instance.callView = _reader.readEnum();
+                    break;
+                case 4:
+                    _reader.readPackableEnumInto((_instance.statuses = _instance.statuses || []));
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        ListScheduledCallersRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.vtsiProjectName) {
+            _writer.writeString(1, _instance.vtsiProjectName);
+        }
+        if (_instance.pageToken) {
+            _writer.writeString(2, _instance.pageToken);
+        }
+        if (_instance.callView) {
+            _writer.writeEnum(3, _instance.callView);
+        }
+        if (_instance.statuses && _instance.statuses.length) {
+            _writer.writePackedEnum(4, _instance.statuses);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of ListScheduledCallersRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.vtsiProjectName = _value.vtsiProjectName;
+        this.pageToken = _value.pageToken;
+        this.callView = _value.callView;
+        this.statuses = (_value.statuses || []).slice();
+        ListScheduledCallersRequest.refineValues(this);
+    }
+    get vtsiProjectName() {
+        return this._vtsiProjectName;
+    }
+    set vtsiProjectName(value) {
+        this._vtsiProjectName = value;
+    }
+    get pageToken() {
+        return this._pageToken;
+    }
+    set pageToken(value) {
+        this._pageToken = value;
+    }
+    get callView() {
+        return this._callView;
+    }
+    set callView(value) {
+        this._callView = value;
+    }
+    get statuses() {
+        return this._statuses;
+    }
+    set statuses(value) {
+        this._statuses = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        ListScheduledCallersRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            pageToken: this.pageToken,
+            callView: this.callView,
+            statuses: (this.statuses || []).slice()
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            pageToken: this.pageToken,
+            callView: CallView[this.callView === null || this.callView === undefined
+                ? 0
+                : this.callView],
+            statuses: (this.statuses || []).map(v => ScheduledCallerStatus[v])
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.ListScheduledCallersResponse
+ */
+class ListScheduledCallersResponse {
+    static { this.id = 'ondewo.vtsi.ListScheduledCallersResponse'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new ListScheduledCallersResponse();
+        ListScheduledCallersResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.scheduledCallers = _instance.scheduledCallers || [];
+        _instance.nextPageToken = _instance.nextPageToken || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    const messageInitializer1 = new ScheduledCaller();
+                    _reader.readMessage(messageInitializer1, ScheduledCaller.deserializeBinaryFromReader);
+                    (_instance.scheduledCallers = _instance.scheduledCallers || []).push(messageInitializer1);
+                    break;
+                case 2:
+                    _instance.nextPageToken = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        ListScheduledCallersResponse.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.scheduledCallers && _instance.scheduledCallers.length) {
+            _writer.writeRepeatedMessage(1, _instance.scheduledCallers, ScheduledCaller.serializeBinaryToWriter);
+        }
+        if (_instance.nextPageToken) {
+            _writer.writeString(2, _instance.nextPageToken);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of ListScheduledCallersResponse to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.scheduledCallers = (_value.scheduledCallers || []).map(m => new ScheduledCaller(m));
+        this.nextPageToken = _value.nextPageToken;
+        ListScheduledCallersResponse.refineValues(this);
+    }
+    get scheduledCallers() {
+        return this._scheduledCallers;
+    }
+    set scheduledCallers(value) {
+        this._scheduledCallers = value;
+    }
+    get nextPageToken() {
+        return this._nextPageToken;
+    }
+    set nextPageToken(value) {
+        this._nextPageToken = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        ListScheduledCallersResponse.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            scheduledCallers: (this.scheduledCallers || []).map(m => m.toObject()),
+            nextPageToken: this.nextPageToken
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            scheduledCallers: (this.scheduledCallers || []).map(m => m.toProtobufJSON(options)),
+            nextPageToken: this.nextPageToken
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.CancelScheduledCallerRequest
+ */
+class CancelScheduledCallerRequest {
+    static { this.id = 'ondewo.vtsi.CancelScheduledCallerRequest'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new CancelScheduledCallerRequest();
+        CancelScheduledCallerRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+        _instance.name = _instance.name || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.vtsiProjectName = _reader.readString();
+                    break;
+                case 2:
+                    _instance.name = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        CancelScheduledCallerRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.vtsiProjectName) {
+            _writer.writeString(1, _instance.vtsiProjectName);
+        }
+        if (_instance.name) {
+            _writer.writeString(2, _instance.name);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CancelScheduledCallerRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.vtsiProjectName = _value.vtsiProjectName;
+        this.name = _value.name;
+        CancelScheduledCallerRequest.refineValues(this);
+    }
+    get vtsiProjectName() {
+        return this._vtsiProjectName;
+    }
+    set vtsiProjectName(value) {
+        this._vtsiProjectName = value;
+    }
+    get name() {
+        return this._name;
+    }
+    set name(value) {
+        this._name = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        CancelScheduledCallerRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            name: this.name
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            name: this.name
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.CancelScheduledCallerResponse
+ */
+class CancelScheduledCallerResponse {
+    static { this.id = 'ondewo.vtsi.CancelScheduledCallerResponse'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new CancelScheduledCallerResponse();
+        CancelScheduledCallerResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.name = _instance.name || '';
+        _instance.status = _instance.status || 0;
+        _instance.cancelled = _instance.cancelled || false;
+        _instance.errorMessage = _instance.errorMessage || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.name = _reader.readString();
+                    break;
+                case 2:
+                    _instance.status = _reader.readEnum();
+                    break;
+                case 3:
+                    _instance.cancelled = _reader.readBool();
+                    break;
+                case 4:
+                    _instance.errorMessage = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        CancelScheduledCallerResponse.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.name) {
+            _writer.writeString(1, _instance.name);
+        }
+        if (_instance.status) {
+            _writer.writeEnum(2, _instance.status);
+        }
+        if (_instance.cancelled) {
+            _writer.writeBool(3, _instance.cancelled);
+        }
+        if (_instance.errorMessage) {
+            _writer.writeString(4, _instance.errorMessage);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CancelScheduledCallerResponse to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.name = _value.name;
+        this.status = _value.status;
+        this.cancelled = _value.cancelled;
+        this.errorMessage = _value.errorMessage;
+        CancelScheduledCallerResponse.refineValues(this);
+    }
+    get name() {
+        return this._name;
+    }
+    set name(value) {
+        this._name = value;
+    }
+    get status() {
+        return this._status;
+    }
+    set status(value) {
+        this._status = value;
+    }
+    get cancelled() {
+        return this._cancelled;
+    }
+    set cancelled(value) {
+        this._cancelled = value;
+    }
+    get errorMessage() {
+        return this._errorMessage;
+    }
+    set errorMessage(value) {
+        this._errorMessage = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        CancelScheduledCallerResponse.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            name: this.name,
+            status: this.status,
+            cancelled: this.cancelled,
+            errorMessage: this.errorMessage
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            name: this.name,
+            status: ScheduledCallerStatus[this.status === null || this.status === undefined ? 0 : this.status],
+            cancelled: this.cancelled,
+            errorMessage: this.errorMessage
         };
     }
 }
@@ -165109,6 +165898,60 @@ class CallsClient {
                 });
             },
             /**
+             * Unary call: /ondewo.vtsi.Calls/GetScheduledCaller
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.ScheduledCaller>>
+             */
+            getScheduledCaller: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.vtsi.Calls/GetScheduledCaller',
+                    requestData,
+                    requestMetadata,
+                    requestClass: GetScheduledCallerRequest,
+                    responseClass: ScheduledCaller
+                });
+            },
+            /**
+             * Unary call: /ondewo.vtsi.Calls/ListScheduledCallers
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.ListScheduledCallersResponse>>
+             */
+            listScheduledCallers: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.vtsi.Calls/ListScheduledCallers',
+                    requestData,
+                    requestMetadata,
+                    requestClass: ListScheduledCallersRequest,
+                    responseClass: ListScheduledCallersResponse
+                });
+            },
+            /**
+             * Unary call: /ondewo.vtsi.Calls/CancelScheduledCaller
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.CancelScheduledCallerResponse>>
+             */
+            cancelScheduledCaller: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.vtsi.Calls/CancelScheduledCaller',
+                    requestData,
+                    requestMetadata,
+                    requestClass: CancelScheduledCallerRequest,
+                    responseClass: CancelScheduledCallerResponse
+                });
+            },
+            /**
              * Unary call: /ondewo.vtsi.Calls/StopCall
              *
              * @param requestMessage Request message
@@ -165454,6 +166297,42 @@ class CallsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
+     * Unary call @/ondewo.vtsi.Calls/GetScheduledCaller
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.ScheduledCaller>
+     */
+    getScheduledCaller(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .getScheduledCaller(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Unary call @/ondewo.vtsi.Calls/ListScheduledCallers
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.ListScheduledCallersResponse>
+     */
+    listScheduledCallers(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .listScheduledCallers(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Unary call @/ondewo.vtsi.Calls/CancelScheduledCaller
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.CancelScheduledCallerResponse>
+     */
+    cancelScheduledCaller(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .cancelScheduledCaller(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
      * Unary call @/ondewo.vtsi.Calls/StopCall
      *
      * @param requestMessage Request message
@@ -165537,10 +166416,10 @@ class CallsClient {
             .listCalls(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: CallsClient, deps: [{ token: GRPC_CALLS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: CallsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: CallsClient, deps: [{ token: GRPC_CALLS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: CallsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: CallsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: CallsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -168618,10 +169497,10 @@ class LogsClient {
             .deleteCallLogs(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: LogsClient, deps: [{ token: GRPC_LOGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: LogsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: LogsClient, deps: [{ token: GRPC_LOGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: LogsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: LogsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: LogsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -171449,10 +172328,10 @@ class ProjectsClient {
             .listVtsiProjects(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectsClient, deps: [{ token: GRPC_PROJECTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectsClient, deps: [{ token: GRPC_PROJECTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: ProjectsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: ProjectsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -171803,10 +172682,10 @@ class KeycloakTokenProvider {
             throw new KeycloakAuthenticationError("KeycloakTokenProviderConfig requires either a refreshToken or both username and password");
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: KeycloakTokenProvider, deps: [{ token: i1$1.HttpClient }, { token: KEYCLOAK_TOKEN_PROVIDER_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: KeycloakTokenProvider, providedIn: "root" }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: KeycloakTokenProvider, deps: [{ token: i1$1.HttpClient }, { token: KEYCLOAK_TOKEN_PROVIDER_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: KeycloakTokenProvider, providedIn: "root" }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: KeycloakTokenProvider, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: KeycloakTokenProvider, decorators: [{
             type: Injectable,
             args: [{ providedIn: "root" }]
         }], ctorParameters: () => [{ type: i1$1.HttpClient }, { type: undefined, decorators: [{
@@ -171992,10 +172871,10 @@ class AuthGrpcInterceptor {
             return next.handle(request);
         }));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AuthGrpcInterceptor, deps: [{ token: TOKEN_PROVIDER }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AuthGrpcInterceptor }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AuthGrpcInterceptor, deps: [{ token: TOKEN_PROVIDER }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AuthGrpcInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.29", ngImport: i0, type: AuthGrpcInterceptor, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.30", ngImport: i0, type: AuthGrpcInterceptor, decorators: [{
             type: Injectable
         }], ctorParameters: () => [{ type: undefined, decorators: [{
                     type: Inject,
@@ -172053,5 +172932,5 @@ function provideOndewoVtsiAuth(tokenProvider) {
  * Generated bundle index. Do not edit.
  */
 
-export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BuildCacheRequest, Caching, Call, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallStatus, CallType, CallView, Caller, CallsClient, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, Credentials, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DocumentFileResource, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallerRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiProjectRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptionHandlingConfig, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, Listener, LlmAgentUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogSeverity, LogSource, LogStreamChannel, Logging, Logmnse, LogsClient, MIN_REFRESH_DELAY_IN_S, Map, MbMelganTriton, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort$1 as ReasoningEffort, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallerConfig, SipClient, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipTransferCallRequest, SoftTimeoutConfig, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallLogsRequest, StreamCallLogsResponse, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TurnDetectionConfig, TurnDetectionOptions, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateUserRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiProject, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, Wav2Vec, Wav2VecTriton, WebhookClient, WebhookRequest, WebhookResponse, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, authHttpInterceptor, buildBearerValue, provideOndewoVtsiAuth, resolveBearerValue, resolveToken };
+export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BuildCacheRequest, Caching, Call, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallStatus, CallType, CallView, Caller, CallsClient, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, Credentials, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DocumentFileResource, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallerRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiProjectRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptionHandlingConfig, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, Listener, LlmAgentUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogSeverity, LogSource, LogStreamChannel, Logging, Logmnse, LogsClient, MIN_REFRESH_DELAY_IN_S, Map, MbMelganTriton, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort$1 as ReasoningEffort, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallerConfig, SipClient, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipTransferCallRequest, SoftTimeoutConfig, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallLogsRequest, StreamCallLogsResponse, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TurnDetectionConfig, TurnDetectionOptions, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateUserRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiProject, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, Wav2Vec, Wav2VecTriton, WebhookClient, WebhookRequest, WebhookResponse, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, authHttpInterceptor, buildBearerValue, provideOndewoVtsiAuth, resolveBearerValue, resolveToken };
 //# sourceMappingURL=ondewo-vtsi-client-angular.mjs.map

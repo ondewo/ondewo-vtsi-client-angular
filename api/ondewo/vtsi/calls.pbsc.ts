@@ -427,6 +427,69 @@ export class CallsClient {
       });
     },
     /**
+     * Unary call: /ondewo.vtsi.Calls/GetScheduledCaller
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.ScheduledCaller>>
+     */
+    getScheduledCaller: (
+      requestData: thisProto.GetScheduledCallerRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.ScheduledCaller>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/GetScheduledCaller',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.GetScheduledCallerRequest,
+        responseClass: thisProto.ScheduledCaller
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/ListScheduledCallers
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.ListScheduledCallersResponse>>
+     */
+    listScheduledCallers: (
+      requestData: thisProto.ListScheduledCallersRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.ListScheduledCallersResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/ListScheduledCallers',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.ListScheduledCallersRequest,
+        responseClass: thisProto.ListScheduledCallersResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/CancelScheduledCaller
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.CancelScheduledCallerResponse>>
+     */
+    cancelScheduledCaller: (
+      requestData: thisProto.CancelScheduledCallerRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.CancelScheduledCallerResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/CancelScheduledCaller',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.CancelScheduledCallerRequest,
+        responseClass: thisProto.CancelScheduledCallerResponse
+      });
+    },
+    /**
      * Unary call: /ondewo.vtsi.Calls/StopCall
      *
      * @param requestMessage Request message
@@ -868,6 +931,54 @@ export class CallsClient {
   ): Observable<thisProto.StartScheduledCallersResponse> {
     return this.$raw
       .startScheduledCallers(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/GetScheduledCaller
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.ScheduledCaller>
+   */
+  getScheduledCaller(
+    requestData: thisProto.GetScheduledCallerRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.ScheduledCaller> {
+    return this.$raw
+      .getScheduledCaller(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/ListScheduledCallers
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.ListScheduledCallersResponse>
+   */
+  listScheduledCallers(
+    requestData: thisProto.ListScheduledCallersRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.ListScheduledCallersResponse> {
+    return this.$raw
+      .listScheduledCallers(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/CancelScheduledCaller
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.CancelScheduledCallerResponse>
+   */
+  cancelScheduledCaller(
+    requestData: thisProto.CancelScheduledCallerRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.CancelScheduledCallerResponse> {
+    return this.$raw
+      .cancelScheduledCaller(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 

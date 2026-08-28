@@ -24,6 +24,14 @@ import * as ondewoNlu010 from '../../ondewo/nlu/intent.pb';
 import * as ondewoS2t011 from '../../ondewo/s2t/speech-to-text.pb';
 import * as ondewoT2s012 from '../../ondewo/t2s/text-to-speech.pb';
 import * as ondewoSip013 from '../../ondewo/sip/sip.pb';
+export enum ScheduledCallerStatus {
+  SCHEDULED_CALLER_STATUS_UNSPECIFIED = 0,
+  SCHEDULED_CALLER_STATUS_PENDING = 1,
+  SCHEDULED_CALLER_STATUS_FIRING = 2,
+  SCHEDULED_CALLER_STATUS_DONE = 3,
+  SCHEDULED_CALLER_STATUS_FAILED = 4,
+  SCHEDULED_CALLER_STATUS_CANCELLED = 5
+}
 export enum CallView {
   MINIMUM = 0,
   SHALLOW = 1,
@@ -11270,6 +11278,12 @@ export class ScheduledCaller implements GrpcMessage {
     _instance.commonServicesConfig =
       _instance.commonServicesConfig || undefined;
     _instance.scheduledTime = _instance.scheduledTime || undefined;
+    _instance.sipCallerConfig = _instance.sipCallerConfig || undefined;
+    _instance.status = _instance.status || 0;
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.createdAt = _instance.createdAt || undefined;
+    _instance.firedAt = _instance.firedAt || undefined;
+    _instance.errorMessage = _instance.errorMessage || '';
   }
 
   /**
@@ -11311,6 +11325,36 @@ export class ScheduledCaller implements GrpcMessage {
             _instance.scheduledTime,
             googleProtobuf005.Timestamp.deserializeBinaryFromReader
           );
+          break;
+        case 6:
+          _instance.sipCallerConfig = new SipCallerConfig();
+          _reader.readMessage(
+            _instance.sipCallerConfig,
+            SipCallerConfig.deserializeBinaryFromReader
+          );
+          break;
+        case 7:
+          _instance.status = _reader.readEnum();
+          break;
+        case 8:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 9:
+          _instance.createdAt = new googleProtobuf005.Timestamp();
+          _reader.readMessage(
+            _instance.createdAt,
+            googleProtobuf005.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 10:
+          _instance.firedAt = new googleProtobuf005.Timestamp();
+          _reader.readMessage(
+            _instance.firedAt,
+            googleProtobuf005.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 11:
+          _instance.errorMessage = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -11356,6 +11400,36 @@ export class ScheduledCaller implements GrpcMessage {
         googleProtobuf005.Timestamp.serializeBinaryToWriter
       );
     }
+    if (_instance.sipCallerConfig) {
+      _writer.writeMessage(
+        6,
+        _instance.sipCallerConfig as any,
+        SipCallerConfig.serializeBinaryToWriter
+      );
+    }
+    if (_instance.status) {
+      _writer.writeEnum(7, _instance.status);
+    }
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(8, _instance.vtsiProjectName);
+    }
+    if (_instance.createdAt) {
+      _writer.writeMessage(
+        9,
+        _instance.createdAt as any,
+        googleProtobuf005.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.firedAt) {
+      _writer.writeMessage(
+        10,
+        _instance.firedAt as any,
+        googleProtobuf005.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(11, _instance.errorMessage);
+    }
   }
 
   private _name: string;
@@ -11363,6 +11437,12 @@ export class ScheduledCaller implements GrpcMessage {
   private _sipConfig?: SipBaseConfig;
   private _commonServicesConfig?: CommonServicesConfig;
   private _scheduledTime?: googleProtobuf005.Timestamp;
+  private _sipCallerConfig?: SipCallerConfig;
+  private _status: ScheduledCallerStatus;
+  private _vtsiProjectName: string;
+  private _createdAt?: googleProtobuf005.Timestamp;
+  private _firedAt?: googleProtobuf005.Timestamp;
+  private _errorMessage: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -11381,6 +11461,18 @@ export class ScheduledCaller implements GrpcMessage {
     this.scheduledTime = _value.scheduledTime
       ? new googleProtobuf005.Timestamp(_value.scheduledTime)
       : undefined;
+    this.sipCallerConfig = _value.sipCallerConfig
+      ? new SipCallerConfig(_value.sipCallerConfig)
+      : undefined;
+    this.status = _value.status;
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.createdAt = _value.createdAt
+      ? new googleProtobuf005.Timestamp(_value.createdAt)
+      : undefined;
+    this.firedAt = _value.firedAt
+      ? new googleProtobuf005.Timestamp(_value.firedAt)
+      : undefined;
+    this.errorMessage = _value.errorMessage;
     ScheduledCaller.refineValues(this);
   }
   get name(): string {
@@ -11413,6 +11505,42 @@ export class ScheduledCaller implements GrpcMessage {
   set scheduledTime(value: googleProtobuf005.Timestamp | undefined) {
     this._scheduledTime = value;
   }
+  get sipCallerConfig(): SipCallerConfig | undefined {
+    return this._sipCallerConfig;
+  }
+  set sipCallerConfig(value: SipCallerConfig | undefined) {
+    this._sipCallerConfig = value;
+  }
+  get status(): ScheduledCallerStatus {
+    return this._status;
+  }
+  set status(value: ScheduledCallerStatus) {
+    this._status = value;
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get createdAt(): googleProtobuf005.Timestamp | undefined {
+    return this._createdAt;
+  }
+  set createdAt(value: googleProtobuf005.Timestamp | undefined) {
+    this._createdAt = value;
+  }
+  get firedAt(): googleProtobuf005.Timestamp | undefined {
+    return this._firedAt;
+  }
+  set firedAt(value: googleProtobuf005.Timestamp | undefined) {
+    this._firedAt = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -11437,7 +11565,15 @@ export class ScheduledCaller implements GrpcMessage {
         : undefined,
       scheduledTime: this.scheduledTime
         ? this.scheduledTime.toObject()
-        : undefined
+        : undefined,
+      sipCallerConfig: this.sipCallerConfig
+        ? this.sipCallerConfig.toObject()
+        : undefined,
+      status: this.status,
+      vtsiProjectName: this.vtsiProjectName,
+      createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
+      firedAt: this.firedAt ? this.firedAt.toObject() : undefined,
+      errorMessage: this.errorMessage
     };
   }
 
@@ -11466,7 +11602,18 @@ export class ScheduledCaller implements GrpcMessage {
         : null,
       scheduledTime: this.scheduledTime
         ? this.scheduledTime.toProtobufJSON(options)
-        : null
+        : null,
+      sipCallerConfig: this.sipCallerConfig
+        ? this.sipCallerConfig.toProtobufJSON(options)
+        : null,
+      status:
+        ScheduledCallerStatus[
+          this.status === null || this.status === undefined ? 0 : this.status
+        ],
+      vtsiProjectName: this.vtsiProjectName,
+      createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null,
+      firedAt: this.firedAt ? this.firedAt.toProtobufJSON(options) : null,
+      errorMessage: this.errorMessage
     };
   }
 }
@@ -11480,6 +11627,12 @@ export module ScheduledCaller {
     sipConfig?: SipBaseConfig.AsObject;
     commonServicesConfig?: CommonServicesConfig.AsObject;
     scheduledTime?: googleProtobuf005.Timestamp.AsObject;
+    sipCallerConfig?: SipCallerConfig.AsObject;
+    status: ScheduledCallerStatus;
+    vtsiProjectName: string;
+    createdAt?: googleProtobuf005.Timestamp.AsObject;
+    firedAt?: googleProtobuf005.Timestamp.AsObject;
+    errorMessage: string;
   }
 
   /**
@@ -11491,6 +11644,933 @@ export module ScheduledCaller {
     sipConfig: SipBaseConfig.AsProtobufJSON | null;
     commonServicesConfig: CommonServicesConfig.AsProtobufJSON | null;
     scheduledTime: googleProtobuf005.Timestamp.AsProtobufJSON | null;
+    sipCallerConfig: SipCallerConfig.AsProtobufJSON | null;
+    status: string;
+    vtsiProjectName: string;
+    createdAt: googleProtobuf005.Timestamp.AsProtobufJSON | null;
+    firedAt: googleProtobuf005.Timestamp.AsProtobufJSON | null;
+    errorMessage: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.GetScheduledCallerRequest
+ */
+export class GetScheduledCallerRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.GetScheduledCallerRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new GetScheduledCallerRequest();
+    GetScheduledCallerRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: GetScheduledCallerRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.name = _instance.name || '';
+    _instance.callView = _instance.callView || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: GetScheduledCallerRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.name = _reader.readString();
+          break;
+        case 3:
+          _instance.callView = _reader.readEnum();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    GetScheduledCallerRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: GetScheduledCallerRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.name) {
+      _writer.writeString(2, _instance.name);
+    }
+    if (_instance.callView) {
+      _writer.writeEnum(3, _instance.callView);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _name: string;
+  private _callView: CallView;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of GetScheduledCallerRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<GetScheduledCallerRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.name = _value.name;
+    this.callView = _value.callView;
+    GetScheduledCallerRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+  get callView(): CallView {
+    return this._callView;
+  }
+  set callView(value: CallView) {
+    this._callView = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    GetScheduledCallerRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): GetScheduledCallerRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      name: this.name,
+      callView: this.callView
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): GetScheduledCallerRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      name: this.name,
+      callView:
+        CallView[
+          this.callView === null || this.callView === undefined
+            ? 0
+            : this.callView
+        ]
+    };
+  }
+}
+export module GetScheduledCallerRequest {
+  /**
+   * Standard JavaScript object representation for GetScheduledCallerRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    name: string;
+    callView: CallView;
+  }
+
+  /**
+   * Protobuf JSON representation for GetScheduledCallerRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    name: string;
+    callView: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.ListScheduledCallersRequest
+ */
+export class ListScheduledCallersRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.ListScheduledCallersRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new ListScheduledCallersRequest();
+    ListScheduledCallersRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: ListScheduledCallersRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.pageToken = _instance.pageToken || '';
+    _instance.callView = _instance.callView || 0;
+    _instance.statuses = _instance.statuses || [];
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: ListScheduledCallersRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.pageToken = _reader.readString();
+          break;
+        case 3:
+          _instance.callView = _reader.readEnum();
+          break;
+        case 4:
+          _reader.readPackableEnumInto(
+            (_instance.statuses = _instance.statuses || [])
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    ListScheduledCallersRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: ListScheduledCallersRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.pageToken) {
+      _writer.writeString(2, _instance.pageToken);
+    }
+    if (_instance.callView) {
+      _writer.writeEnum(3, _instance.callView);
+    }
+    if (_instance.statuses && _instance.statuses.length) {
+      _writer.writePackedEnum(4, _instance.statuses);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _pageToken: string;
+  private _callView: CallView;
+  private _statuses: ScheduledCallerStatus[];
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of ListScheduledCallersRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<ListScheduledCallersRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.pageToken = _value.pageToken;
+    this.callView = _value.callView;
+    this.statuses = (_value.statuses || []).slice();
+    ListScheduledCallersRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get pageToken(): string {
+    return this._pageToken;
+  }
+  set pageToken(value: string) {
+    this._pageToken = value;
+  }
+  get callView(): CallView {
+    return this._callView;
+  }
+  set callView(value: CallView) {
+    this._callView = value;
+  }
+  get statuses(): ScheduledCallerStatus[] {
+    return this._statuses;
+  }
+  set statuses(value: ScheduledCallerStatus[]) {
+    this._statuses = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    ListScheduledCallersRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): ListScheduledCallersRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      pageToken: this.pageToken,
+      callView: this.callView,
+      statuses: (this.statuses || []).slice()
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): ListScheduledCallersRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      pageToken: this.pageToken,
+      callView:
+        CallView[
+          this.callView === null || this.callView === undefined
+            ? 0
+            : this.callView
+        ],
+      statuses: (this.statuses || []).map(v => ScheduledCallerStatus[v])
+    };
+  }
+}
+export module ListScheduledCallersRequest {
+  /**
+   * Standard JavaScript object representation for ListScheduledCallersRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    pageToken: string;
+    callView: CallView;
+    statuses: ScheduledCallerStatus[];
+  }
+
+  /**
+   * Protobuf JSON representation for ListScheduledCallersRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    pageToken: string;
+    callView: string;
+    statuses: string[];
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.ListScheduledCallersResponse
+ */
+export class ListScheduledCallersResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.ListScheduledCallersResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new ListScheduledCallersResponse();
+    ListScheduledCallersResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: ListScheduledCallersResponse) {
+    _instance.scheduledCallers = _instance.scheduledCallers || [];
+    _instance.nextPageToken = _instance.nextPageToken || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: ListScheduledCallersResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          const messageInitializer1 = new ScheduledCaller();
+          _reader.readMessage(
+            messageInitializer1,
+            ScheduledCaller.deserializeBinaryFromReader
+          );
+          (_instance.scheduledCallers = _instance.scheduledCallers || []).push(
+            messageInitializer1
+          );
+          break;
+        case 2:
+          _instance.nextPageToken = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    ListScheduledCallersResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: ListScheduledCallersResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.scheduledCallers && _instance.scheduledCallers.length) {
+      _writer.writeRepeatedMessage(
+        1,
+        _instance.scheduledCallers as any,
+        ScheduledCaller.serializeBinaryToWriter
+      );
+    }
+    if (_instance.nextPageToken) {
+      _writer.writeString(2, _instance.nextPageToken);
+    }
+  }
+
+  private _scheduledCallers?: ScheduledCaller[];
+  private _nextPageToken: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of ListScheduledCallersResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<ListScheduledCallersResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.scheduledCallers = (_value.scheduledCallers || []).map(
+      m => new ScheduledCaller(m)
+    );
+    this.nextPageToken = _value.nextPageToken;
+    ListScheduledCallersResponse.refineValues(this);
+  }
+  get scheduledCallers(): ScheduledCaller[] | undefined {
+    return this._scheduledCallers;
+  }
+  set scheduledCallers(value: ScheduledCaller[] | undefined) {
+    this._scheduledCallers = value;
+  }
+  get nextPageToken(): string {
+    return this._nextPageToken;
+  }
+  set nextPageToken(value: string) {
+    this._nextPageToken = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    ListScheduledCallersResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): ListScheduledCallersResponse.AsObject {
+    return {
+      scheduledCallers: (this.scheduledCallers || []).map(m => m.toObject()),
+      nextPageToken: this.nextPageToken
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): ListScheduledCallersResponse.AsProtobufJSON {
+    return {
+      scheduledCallers: (this.scheduledCallers || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      nextPageToken: this.nextPageToken
+    };
+  }
+}
+export module ListScheduledCallersResponse {
+  /**
+   * Standard JavaScript object representation for ListScheduledCallersResponse
+   */
+  export interface AsObject {
+    scheduledCallers?: ScheduledCaller.AsObject[];
+    nextPageToken: string;
+  }
+
+  /**
+   * Protobuf JSON representation for ListScheduledCallersResponse
+   */
+  export interface AsProtobufJSON {
+    scheduledCallers: ScheduledCaller.AsProtobufJSON[] | null;
+    nextPageToken: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.CancelScheduledCallerRequest
+ */
+export class CancelScheduledCallerRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.CancelScheduledCallerRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CancelScheduledCallerRequest();
+    CancelScheduledCallerRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CancelScheduledCallerRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.name = _instance.name || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CancelScheduledCallerRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.name = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CancelScheduledCallerRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CancelScheduledCallerRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.name) {
+      _writer.writeString(2, _instance.name);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _name: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CancelScheduledCallerRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<CancelScheduledCallerRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.name = _value.name;
+    CancelScheduledCallerRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CancelScheduledCallerRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CancelScheduledCallerRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      name: this.name
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CancelScheduledCallerRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      name: this.name
+    };
+  }
+}
+export module CancelScheduledCallerRequest {
+  /**
+   * Standard JavaScript object representation for CancelScheduledCallerRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    name: string;
+  }
+
+  /**
+   * Protobuf JSON representation for CancelScheduledCallerRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    name: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.CancelScheduledCallerResponse
+ */
+export class CancelScheduledCallerResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.CancelScheduledCallerResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CancelScheduledCallerResponse();
+    CancelScheduledCallerResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CancelScheduledCallerResponse) {
+    _instance.name = _instance.name || '';
+    _instance.status = _instance.status || 0;
+    _instance.cancelled = _instance.cancelled || false;
+    _instance.errorMessage = _instance.errorMessage || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CancelScheduledCallerResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.status = _reader.readEnum();
+          break;
+        case 3:
+          _instance.cancelled = _reader.readBool();
+          break;
+        case 4:
+          _instance.errorMessage = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CancelScheduledCallerResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CancelScheduledCallerResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.name) {
+      _writer.writeString(1, _instance.name);
+    }
+    if (_instance.status) {
+      _writer.writeEnum(2, _instance.status);
+    }
+    if (_instance.cancelled) {
+      _writer.writeBool(3, _instance.cancelled);
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(4, _instance.errorMessage);
+    }
+  }
+
+  private _name: string;
+  private _status: ScheduledCallerStatus;
+  private _cancelled: boolean;
+  private _errorMessage: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CancelScheduledCallerResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<CancelScheduledCallerResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.name = _value.name;
+    this.status = _value.status;
+    this.cancelled = _value.cancelled;
+    this.errorMessage = _value.errorMessage;
+    CancelScheduledCallerResponse.refineValues(this);
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+  get status(): ScheduledCallerStatus {
+    return this._status;
+  }
+  set status(value: ScheduledCallerStatus) {
+    this._status = value;
+  }
+  get cancelled(): boolean {
+    return this._cancelled;
+  }
+  set cancelled(value: boolean) {
+    this._cancelled = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CancelScheduledCallerResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CancelScheduledCallerResponse.AsObject {
+    return {
+      name: this.name,
+      status: this.status,
+      cancelled: this.cancelled,
+      errorMessage: this.errorMessage
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CancelScheduledCallerResponse.AsProtobufJSON {
+    return {
+      name: this.name,
+      status:
+        ScheduledCallerStatus[
+          this.status === null || this.status === undefined ? 0 : this.status
+        ],
+      cancelled: this.cancelled,
+      errorMessage: this.errorMessage
+    };
+  }
+}
+export module CancelScheduledCallerResponse {
+  /**
+   * Standard JavaScript object representation for CancelScheduledCallerResponse
+   */
+  export interface AsObject {
+    name: string;
+    status: ScheduledCallerStatus;
+    cancelled: boolean;
+    errorMessage: string;
+  }
+
+  /**
+   * Protobuf JSON representation for CancelScheduledCallerResponse
+   */
+  export interface AsProtobufJSON {
+    name: string;
+    status: string;
+    cancelled: boolean;
+    errorMessage: string;
   }
 }
 
