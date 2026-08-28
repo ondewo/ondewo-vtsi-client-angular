@@ -411,7 +411,6 @@ export class NluVtsiConfig implements GrpcMessage {
     _instance.initialIntent = _instance.initialIntent || '';
     _instance.contexts = _instance.contexts || [];
     _instance.httpBasicAuthToken = _instance.httpBasicAuthToken || '';
-    _instance.platform = _instance.platform || 0;
   }
 
   /**
@@ -522,7 +521,7 @@ export class NluVtsiConfig implements GrpcMessage {
     if (_instance.httpBasicAuthToken) {
       _writer.writeString(8, _instance.httpBasicAuthToken);
     }
-    if (_instance.platform) {
+    if (_instance.platform !== undefined && _instance.platform !== null) {
       _writer.writeEnum(9, _instance.platform);
     }
   }
@@ -1802,10 +1801,6 @@ export class TurnDetectionConfig implements GrpcMessage {
    */
   static refineValues(_instance: TurnDetectionConfig) {
     _instance.mode = _instance.mode || 0;
-    _instance.minEndpointingDelaySeconds =
-      _instance.minEndpointingDelaySeconds || 0;
-    _instance.maxEndpointingDelaySeconds =
-      _instance.maxEndpointingDelaySeconds || 0;
     _instance.turnEagerness = _instance.turnEagerness || 0;
     _instance.turnDetectionSystemPrompt =
       _instance.turnDetectionSystemPrompt || '';
@@ -1863,10 +1858,16 @@ export class TurnDetectionConfig implements GrpcMessage {
     if (_instance.mode) {
       _writer.writeEnum(1, _instance.mode);
     }
-    if (_instance.minEndpointingDelaySeconds) {
+    if (
+      _instance.minEndpointingDelaySeconds !== undefined &&
+      _instance.minEndpointingDelaySeconds !== null
+    ) {
       _writer.writeFloat(2, _instance.minEndpointingDelaySeconds);
     }
-    if (_instance.maxEndpointingDelaySeconds) {
+    if (
+      _instance.maxEndpointingDelaySeconds !== undefined &&
+      _instance.maxEndpointingDelaySeconds !== null
+    ) {
       _writer.writeFloat(3, _instance.maxEndpointingDelaySeconds);
     }
     if (_instance.turnEagerness) {
@@ -2058,17 +2059,6 @@ export class InterruptionHandlingConfig implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: InterruptionHandlingConfig) {
-    _instance.enabled = _instance.enabled || false;
-    _instance.minInterruptionDurationSeconds =
-      _instance.minInterruptionDurationSeconds || 0;
-    _instance.minInterruptionWords = _instance.minInterruptionWords || 0;
-    _instance.falseInterruptionTimeoutSeconds =
-      _instance.falseInterruptionTimeoutSeconds || 0;
-    _instance.resumeAfterFalseInterruption =
-      _instance.resumeAfterFalseInterruption || false;
-    _instance.backoffSeconds = _instance.backoffSeconds || 0;
-    _instance.firstMessageProtectedSeconds =
-      _instance.firstMessageProtectedSeconds || 0;
     _instance.transcribeOnDisabledInterruptions =
       _instance.transcribeOnDisabledInterruptions || false;
   }
@@ -2127,25 +2117,43 @@ export class InterruptionHandlingConfig implements GrpcMessage {
     _instance: InterruptionHandlingConfig,
     _writer: BinaryWriter
   ) {
-    if (_instance.enabled) {
+    if (_instance.enabled !== undefined && _instance.enabled !== null) {
       _writer.writeBool(1, _instance.enabled);
     }
-    if (_instance.minInterruptionDurationSeconds) {
+    if (
+      _instance.minInterruptionDurationSeconds !== undefined &&
+      _instance.minInterruptionDurationSeconds !== null
+    ) {
       _writer.writeFloat(2, _instance.minInterruptionDurationSeconds);
     }
-    if (_instance.minInterruptionWords) {
+    if (
+      _instance.minInterruptionWords !== undefined &&
+      _instance.minInterruptionWords !== null
+    ) {
       _writer.writeInt32(3, _instance.minInterruptionWords);
     }
-    if (_instance.falseInterruptionTimeoutSeconds) {
+    if (
+      _instance.falseInterruptionTimeoutSeconds !== undefined &&
+      _instance.falseInterruptionTimeoutSeconds !== null
+    ) {
       _writer.writeFloat(4, _instance.falseInterruptionTimeoutSeconds);
     }
-    if (_instance.resumeAfterFalseInterruption) {
+    if (
+      _instance.resumeAfterFalseInterruption !== undefined &&
+      _instance.resumeAfterFalseInterruption !== null
+    ) {
       _writer.writeBool(5, _instance.resumeAfterFalseInterruption);
     }
-    if (_instance.backoffSeconds) {
+    if (
+      _instance.backoffSeconds !== undefined &&
+      _instance.backoffSeconds !== null
+    ) {
       _writer.writeFloat(6, _instance.backoffSeconds);
     }
-    if (_instance.firstMessageProtectedSeconds) {
+    if (
+      _instance.firstMessageProtectedSeconds !== undefined &&
+      _instance.firstMessageProtectedSeconds !== null
+    ) {
       _writer.writeFloat(7, _instance.firstMessageProtectedSeconds);
     }
     if (_instance.transcribeOnDisabledInterruptions) {
@@ -2337,14 +2345,7 @@ export class ResponseTimingConfig implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: ResponseTimingConfig) {
-    _instance.turnTimeoutSeconds = _instance.turnTimeoutSeconds || 0;
-    _instance.silenceEndCallTimeoutSeconds =
-      _instance.silenceEndCallTimeoutSeconds || 0;
     _instance.softTimeoutConfig = _instance.softTimeoutConfig || undefined;
-    _instance.preemptiveGenerationEnabled =
-      _instance.preemptiveGenerationEnabled || false;
-    _instance.t2sChunkedStreamingEnabled =
-      _instance.t2sChunkedStreamingEnabled || false;
   }
 
   /**
@@ -2396,10 +2397,16 @@ export class ResponseTimingConfig implements GrpcMessage {
     _instance: ResponseTimingConfig,
     _writer: BinaryWriter
   ) {
-    if (_instance.turnTimeoutSeconds) {
+    if (
+      _instance.turnTimeoutSeconds !== undefined &&
+      _instance.turnTimeoutSeconds !== null
+    ) {
       _writer.writeFloat(1, _instance.turnTimeoutSeconds);
     }
-    if (_instance.silenceEndCallTimeoutSeconds) {
+    if (
+      _instance.silenceEndCallTimeoutSeconds !== undefined &&
+      _instance.silenceEndCallTimeoutSeconds !== null
+    ) {
       _writer.writeFloat(2, _instance.silenceEndCallTimeoutSeconds);
     }
     if (_instance.softTimeoutConfig) {
@@ -2409,10 +2416,16 @@ export class ResponseTimingConfig implements GrpcMessage {
         SoftTimeoutConfig.serializeBinaryToWriter
       );
     }
-    if (_instance.preemptiveGenerationEnabled) {
+    if (
+      _instance.preemptiveGenerationEnabled !== undefined &&
+      _instance.preemptiveGenerationEnabled !== null
+    ) {
       _writer.writeBool(4, _instance.preemptiveGenerationEnabled);
     }
-    if (_instance.t2sChunkedStreamingEnabled) {
+    if (
+      _instance.t2sChunkedStreamingEnabled !== undefined &&
+      _instance.t2sChunkedStreamingEnabled !== null
+    ) {
       _writer.writeBool(5, _instance.t2sChunkedStreamingEnabled);
     }
   }
@@ -2569,9 +2582,7 @@ export class SoftTimeoutConfig implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: SoftTimeoutConfig) {
-    _instance.timeoutSeconds = _instance.timeoutSeconds || 0;
     _instance.messages = _instance.messages || [];
-    _instance.maxPerGeneration = _instance.maxPerGeneration || 0;
   }
 
   /**
@@ -2615,13 +2626,19 @@ export class SoftTimeoutConfig implements GrpcMessage {
     _instance: SoftTimeoutConfig,
     _writer: BinaryWriter
   ) {
-    if (_instance.timeoutSeconds) {
+    if (
+      _instance.timeoutSeconds !== undefined &&
+      _instance.timeoutSeconds !== null
+    ) {
       _writer.writeFloat(1, _instance.timeoutSeconds);
     }
     if (_instance.messages && _instance.messages.length) {
       _writer.writeRepeatedString(2, _instance.messages);
     }
-    if (_instance.maxPerGeneration) {
+    if (
+      _instance.maxPerGeneration !== undefined &&
+      _instance.maxPerGeneration !== null
+    ) {
       _writer.writeInt32(3, _instance.maxPerGeneration);
     }
   }
@@ -3275,8 +3292,6 @@ export class CsiVtsiConfig implements GrpcMessage {
     _instance.audioObjectStoreConfig =
       _instance.audioObjectStoreConfig || undefined;
     _instance.messageBrokerConfig = _instance.messageBrokerConfig || undefined;
-    _instance.activateControlMessages =
-      _instance.activateControlMessages || false;
   }
 
   /**
@@ -3382,7 +3397,10 @@ export class CsiVtsiConfig implements GrpcMessage {
         MessageBrokerConfig.serializeBinaryToWriter
       );
     }
-    if (_instance.activateControlMessages) {
+    if (
+      _instance.activateControlMessages !== undefined &&
+      _instance.activateControlMessages !== null
+    ) {
       _writer.writeBool(6, _instance.activateControlMessages);
     }
   }
@@ -6997,8 +7015,6 @@ export class ListCallersRequest implements GrpcMessage {
    */
   static refineValues(_instance: ListCallersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
-    _instance.pageToken = _instance.pageToken || '';
-    _instance.callView = _instance.callView || 0;
   }
 
   /**
@@ -7043,10 +7059,10 @@ export class ListCallersRequest implements GrpcMessage {
     if (_instance.vtsiProjectName) {
       _writer.writeString(1, _instance.vtsiProjectName);
     }
-    if (_instance.pageToken) {
+    if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(2, _instance.pageToken);
     }
-    if (_instance.callView) {
+    if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
   }
@@ -7349,7 +7365,6 @@ export class GetCallerRequest implements GrpcMessage {
   static refineValues(_instance: GetCallerRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.name = _instance.name || '';
-    _instance.callView = _instance.callView || 0;
   }
 
   /**
@@ -7397,7 +7412,7 @@ export class GetCallerRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(2, _instance.name);
     }
-    if (_instance.callView) {
+    if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
   }
@@ -7530,8 +7545,6 @@ export class ListListenersRequest implements GrpcMessage {
    */
   static refineValues(_instance: ListListenersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
-    _instance.pageToken = _instance.pageToken || '';
-    _instance.callView = _instance.callView || 0;
   }
 
   /**
@@ -7576,10 +7589,10 @@ export class ListListenersRequest implements GrpcMessage {
     if (_instance.vtsiProjectName) {
       _writer.writeString(1, _instance.vtsiProjectName);
     }
-    if (_instance.pageToken) {
+    if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(2, _instance.pageToken);
     }
-    if (_instance.callView) {
+    if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
   }
@@ -7882,7 +7895,6 @@ export class GetListenerRequest implements GrpcMessage {
   static refineValues(_instance: GetListenerRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.name = _instance.name || '';
-    _instance.callView = _instance.callView || 0;
   }
 
   /**
@@ -7930,7 +7942,7 @@ export class GetListenerRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(2, _instance.name);
     }
-    if (_instance.callView) {
+    if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
   }
@@ -11679,7 +11691,6 @@ export class GetScheduledCallerRequest implements GrpcMessage {
   static refineValues(_instance: GetScheduledCallerRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.name = _instance.name || '';
-    _instance.callView = _instance.callView || 0;
   }
 
   /**
@@ -11727,7 +11738,7 @@ export class GetScheduledCallerRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(2, _instance.name);
     }
-    if (_instance.callView) {
+    if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
   }
@@ -11860,8 +11871,6 @@ export class ListScheduledCallersRequest implements GrpcMessage {
    */
   static refineValues(_instance: ListScheduledCallersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
-    _instance.pageToken = _instance.pageToken || '';
-    _instance.callView = _instance.callView || 0;
     _instance.statuses = _instance.statuses || [];
   }
 
@@ -11912,10 +11921,10 @@ export class ListScheduledCallersRequest implements GrpcMessage {
     if (_instance.vtsiProjectName) {
       _writer.writeString(1, _instance.vtsiProjectName);
     }
-    if (_instance.pageToken) {
+    if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(2, _instance.pageToken);
     }
-    if (_instance.callView) {
+    if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
     if (_instance.statuses && _instance.statuses.length) {
@@ -14152,7 +14161,6 @@ export class GetCallRequest implements GrpcMessage {
   static refineValues(_instance: GetCallRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callName = _instance.callName || '';
-    _instance.callView = _instance.callView || 0;
   }
 
   /**
@@ -14200,7 +14208,7 @@ export class GetCallRequest implements GrpcMessage {
     if (_instance.callName) {
       _writer.writeString(2, _instance.callName);
     }
-    if (_instance.callView) {
+    if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
   }
@@ -14344,10 +14352,6 @@ export class Call implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.commonServicesConfig =
       _instance.commonServicesConfig || undefined;
-    _instance.sipPort = _instance.sipPort || 0;
-    _instance.csiPort = _instance.csiPort || 0;
-    _instance.nluSessionName = _instance.nluSessionName || '';
-    _instance.platforms = _instance.platforms || 0;
   }
 
   /**
@@ -14518,16 +14522,19 @@ export class Call implements GrpcMessage {
         CommonServicesConfig.serializeBinaryToWriter
       );
     }
-    if (_instance.sipPort) {
+    if (_instance.sipPort !== undefined && _instance.sipPort !== null) {
       _writer.writeInt32(15, _instance.sipPort);
     }
-    if (_instance.csiPort) {
+    if (_instance.csiPort !== undefined && _instance.csiPort !== null) {
       _writer.writeInt32(16, _instance.csiPort);
     }
-    if (_instance.nluSessionName) {
+    if (
+      _instance.nluSessionName !== undefined &&
+      _instance.nluSessionName !== null
+    ) {
       _writer.writeString(17, _instance.nluSessionName);
     }
-    if (_instance.platforms) {
+    if (_instance.platforms !== undefined && _instance.platforms !== null) {
       _writer.writeEnum(18, _instance.platforms);
     }
   }
@@ -14881,11 +14888,8 @@ export class CallFilter implements GrpcMessage {
     _instance.csiPorts = _instance.csiPorts || [];
     _instance.callTypes = _instance.callTypes || [];
     _instance.sipStatusTypes = _instance.sipStatusTypes || [];
-    _instance.callStatus = _instance.callStatus || 0;
     _instance.startTime = _instance.startTime || undefined;
     _instance.endTime = _instance.endTime || undefined;
-    _instance.durationInSMin = _instance.durationInSMin || 0;
-    _instance.durationInSMax = _instance.durationInSMax || 0;
     _instance.platforms = _instance.platforms || [];
   }
 
@@ -15016,7 +15020,7 @@ export class CallFilter implements GrpcMessage {
     if (_instance.sipStatusTypes && _instance.sipStatusTypes.length) {
       _writer.writePackedEnum(9, _instance.sipStatusTypes);
     }
-    if (_instance.callStatus) {
+    if (_instance.callStatus !== undefined && _instance.callStatus !== null) {
       _writer.writeEnum(10, _instance.callStatus);
     }
     if (_instance.startTime) {
@@ -15033,10 +15037,16 @@ export class CallFilter implements GrpcMessage {
         googleProtobuf005.Timestamp.serializeBinaryToWriter
       );
     }
-    if (_instance.durationInSMin) {
+    if (
+      _instance.durationInSMin !== undefined &&
+      _instance.durationInSMin !== null
+    ) {
       _writer.writeFloat(13, _instance.durationInSMin);
     }
-    if (_instance.durationInSMax) {
+    if (
+      _instance.durationInSMax !== undefined &&
+      _instance.durationInSMax !== null
+    ) {
       _writer.writeFloat(14, _instance.durationInSMax);
     }
     if (_instance.platforms && _instance.platforms.length) {
@@ -15324,9 +15334,7 @@ export class ListCallsRequest implements GrpcMessage {
    */
   static refineValues(_instance: ListCallsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
-    _instance.callView = _instance.callView || 0;
     _instance.callFilter = _instance.callFilter || undefined;
-    _instance.pageToken = _instance.pageToken || '';
   }
 
   /**
@@ -15378,7 +15386,7 @@ export class ListCallsRequest implements GrpcMessage {
     if (_instance.vtsiProjectName) {
       _writer.writeString(1, _instance.vtsiProjectName);
     }
-    if (_instance.callView) {
+    if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(2, _instance.callView);
     }
     if (_instance.callFilter) {
@@ -15388,7 +15396,7 @@ export class ListCallsRequest implements GrpcMessage {
         CallFilter.serializeBinaryToWriter
       );
     }
-    if (_instance.pageToken) {
+    if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(4, _instance.pageToken);
     }
   }

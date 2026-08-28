@@ -982,7 +982,6 @@ class Comment {
         _instance.modifiedAt = _instance.modifiedAt || undefined;
         _instance.createdBy = _instance.createdBy || '';
         _instance.modifiedBy = _instance.modifiedBy || '';
-        _instance.isResolved = _instance.isResolved || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -1065,7 +1064,7 @@ class Comment {
         if (_instance.modifiedBy) {
             _writer.writeString(9, _instance.modifiedBy);
         }
-        if (_instance.isResolved) {
+        if (_instance.isResolved !== undefined && _instance.isResolved !== null) {
             _writer.writeBool(10, _instance.isResolved);
         }
     }
@@ -7532,7 +7531,6 @@ class Context {
         _instance.name = _instance.name || '';
         _instance.lifespanCount = _instance.lifespanCount || 0;
         _instance.parameters = _instance.parameters || {};
-        _instance.lifespanTime = _instance.lifespanTime || 0;
         _instance.createdAt = _instance.createdAt || undefined;
         _instance.modifiedAt = _instance.modifiedAt || undefined;
         _instance.createdBy = _instance.createdBy || '';
@@ -7604,7 +7602,8 @@ class Context {
                 _writer.writeRepeatedMessage(3, repeated_3, Context.ParametersEntry.serializeBinaryToWriter);
             }
         }
-        if (_instance.lifespanTime) {
+        if (_instance.lifespanTime !== undefined &&
+            _instance.lifespanTime !== null) {
             _writer.writeFloat(4, _instance.lifespanTime);
         }
         if (_instance.createdAt) {
@@ -29495,7 +29494,6 @@ class LlmEvaluationFeedback {
         _instance.name = _instance.name || '';
         _instance.displayName = _instance.displayName || '';
         _instance.criterion = _instance.criterion || '';
-        _instance.score = _instance.score || 0;
         _instance.categoricalValue = _instance.categoricalValue || '';
         _instance.comment = _instance.comment || '';
         _instance.annotatorUserId = _instance.annotatorUserId || '';
@@ -29590,7 +29588,7 @@ class LlmEvaluationFeedback {
         if (_instance.criterion) {
             _writer.writeString(3, _instance.criterion);
         }
-        if (_instance.score) {
+        if (_instance.score !== undefined && _instance.score !== null) {
             _writer.writeDouble(4, _instance.score);
         }
         if (_instance.categoricalValue) {
@@ -35398,8 +35396,6 @@ class LlmEvaluationReleaseGateThresholds {
      */
     static refineValues(_instance) {
         _instance.minPassRate = _instance.minPassRate || 0;
-        _instance.maxRegressionPerCriterion =
-            _instance.maxRegressionPerCriterion || 0;
         _instance.maxP95LatencySeconds = _instance.maxP95LatencySeconds || 0;
         _instance.acceptanceMustPass = _instance.acceptanceMustPass || false;
     }
@@ -35440,7 +35436,8 @@ class LlmEvaluationReleaseGateThresholds {
         if (_instance.minPassRate) {
             _writer.writeDouble(1, _instance.minPassRate);
         }
-        if (_instance.maxRegressionPerCriterion) {
+        if (_instance.maxRegressionPerCriterion !== undefined &&
+            _instance.maxRegressionPerCriterion !== null) {
             _writer.writeDouble(2, _instance.maxRegressionPerCriterion);
         }
         if (_instance.maxP95LatencySeconds) {
@@ -35550,8 +35547,6 @@ class LlmEvaluationReleaseGateSafetyConfig {
         _instance.enabled = _instance.enabled || false;
         _instance.adversarialDatasetName = _instance.adversarialDatasetName || '';
         _instance.evaluatorNames = _instance.evaluatorNames || [];
-        _instance.maxToxicity = _instance.maxToxicity || 0;
-        _instance.maxBias = _instance.maxBias || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -35599,10 +35594,10 @@ class LlmEvaluationReleaseGateSafetyConfig {
         if (_instance.evaluatorNames && _instance.evaluatorNames.length) {
             _writer.writeRepeatedString(3, _instance.evaluatorNames);
         }
-        if (_instance.maxToxicity) {
+        if (_instance.maxToxicity !== undefined && _instance.maxToxicity !== null) {
             _writer.writeDouble(4, _instance.maxToxicity);
         }
-        if (_instance.maxBias) {
+        if (_instance.maxBias !== undefined && _instance.maxBias !== null) {
             _writer.writeDouble(5, _instance.maxBias);
         }
     }
@@ -49059,7 +49054,6 @@ class LlmEvaluationOnlineConfig {
         _instance.sampleRate = _instance.sampleRate || 0;
         _instance.enabled = _instance.enabled || false;
         _instance.targetDatasetName = _instance.targetDatasetName || '';
-        _instance.failThreshold = _instance.failThreshold || 0;
         _instance.settleSeconds = _instance.settleSeconds || 0;
         _instance.requireTelemetry = _instance.requireTelemetry || false;
         _instance.llmEvaluationOnlineSessionFilter =
@@ -49177,7 +49171,8 @@ class LlmEvaluationOnlineConfig {
         if (_instance.targetDatasetName) {
             _writer.writeString(7, _instance.targetDatasetName);
         }
-        if (_instance.failThreshold) {
+        if (_instance.failThreshold !== undefined &&
+            _instance.failThreshold !== null) {
             _writer.writeDouble(8, _instance.failThreshold);
         }
         if (_instance.settleSeconds) {
@@ -54564,14 +54559,7 @@ class LlmTelemetry {
         _instance.baseUrl = _instance.baseUrl || '';
         _instance.defaultHeaders = _instance.defaultHeaders || undefined;
         _instance.defaultQuery = _instance.defaultQuery || undefined;
-        _instance.frequencyPenalty = _instance.frequencyPenalty || 0;
         _instance.openaiMetadata = _instance.openaiMetadata || undefined;
-        _instance.presencePenalty = _instance.presencePenalty || 0;
-        _instance.reasoningEffort = _instance.reasoningEffort || 0;
-        _instance.user = _instance.user || '';
-        _instance.timeout = _instance.timeout || 0;
-        _instance.strictResponseValidation =
-            _instance.strictResponseValidation || false;
         _instance.extraHeaders = _instance.extraHeaders || undefined;
         _instance.extraQuery = _instance.extraQuery || undefined;
         _instance.extraBody = _instance.extraBody || undefined;
@@ -54962,25 +54950,29 @@ class LlmTelemetry {
         if (_instance.defaultQuery) {
             _writer.writeMessage(49, _instance.defaultQuery, googleProtobuf005.Struct.serializeBinaryToWriter);
         }
-        if (_instance.frequencyPenalty) {
+        if (_instance.frequencyPenalty !== undefined &&
+            _instance.frequencyPenalty !== null) {
             _writer.writeFloat(50, _instance.frequencyPenalty);
         }
         if (_instance.openaiMetadata) {
             _writer.writeMessage(51, _instance.openaiMetadata, googleProtobuf005.Struct.serializeBinaryToWriter);
         }
-        if (_instance.presencePenalty) {
+        if (_instance.presencePenalty !== undefined &&
+            _instance.presencePenalty !== null) {
             _writer.writeFloat(52, _instance.presencePenalty);
         }
-        if (_instance.reasoningEffort) {
+        if (_instance.reasoningEffort !== undefined &&
+            _instance.reasoningEffort !== null) {
             _writer.writeEnum(53, _instance.reasoningEffort);
         }
-        if (_instance.user) {
+        if (_instance.user !== undefined && _instance.user !== null) {
             _writer.writeString(54, _instance.user);
         }
-        if (_instance.timeout) {
+        if (_instance.timeout !== undefined && _instance.timeout !== null) {
             _writer.writeFloat(55, _instance.timeout);
         }
-        if (_instance.strictResponseValidation) {
+        if (_instance.strictResponseValidation !== undefined &&
+            _instance.strictResponseValidation !== null) {
             _writer.writeBool(56, _instance.strictResponseValidation);
         }
         if (_instance.extraHeaders) {
@@ -70362,7 +70354,6 @@ class ListSessionCommentsRequest {
         _instance.sessionId = _instance.sessionId || '';
         _instance.pageToken = _instance.pageToken || '';
         _instance.fieldMask = _instance.fieldMask || undefined;
-        _instance.isResolved = _instance.isResolved || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -70408,7 +70399,7 @@ class ListSessionCommentsRequest {
         if (_instance.fieldMask) {
             _writer.writeMessage(3, _instance.fieldMask, googleProtobuf005.FieldMask.serializeBinaryToWriter);
         }
-        if (_instance.isResolved) {
+        if (_instance.isResolved !== undefined && _instance.isResolved !== null) {
             _writer.writeBool(4, _instance.isResolved);
         }
     }
@@ -70515,7 +70506,6 @@ class ListSessionCommentsOfAllSessionsRequest {
         _instance.sessionFilter = _instance.sessionFilter || undefined;
         _instance.pageToken = _instance.pageToken || '';
         _instance.fieldMask = _instance.fieldMask || undefined;
-        _instance.isResolved = _instance.isResolved || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -70568,7 +70558,7 @@ class ListSessionCommentsOfAllSessionsRequest {
         if (_instance.fieldMask) {
             _writer.writeMessage(4, _instance.fieldMask, googleProtobuf005.FieldMask.serializeBinaryToWriter);
         }
-        if (_instance.isResolved) {
+        if (_instance.isResolved !== undefined && _instance.isResolved !== null) {
             _writer.writeBool(5, _instance.isResolved);
         }
     }
@@ -70813,7 +70803,6 @@ class SessionFeedback {
             _instance.sessionStepLlmTelemetryId || '';
         _instance.rating = _instance.rating || 0;
         _instance.categoricalValue = _instance.categoricalValue || '';
-        _instance.score = _instance.score || 0;
         _instance.comment = _instance.comment || '';
         _instance.criterion = _instance.criterion || '';
         _instance.authorType = _instance.authorType || 0;
@@ -70929,7 +70918,7 @@ class SessionFeedback {
         if (_instance.categoricalValue) {
             _writer.writeString(7, _instance.categoricalValue);
         }
-        if (_instance.score) {
+        if (_instance.score !== undefined && _instance.score !== null) {
             _writer.writeFloat(8, _instance.score);
         }
         if (_instance.comment) {
@@ -72281,15 +72270,12 @@ class FeedbackFilter {
     static refineValues(_instance) {
         _instance.ratings = _instance.ratings || [];
         _instance.authorTypes = _instance.authorTypes || [];
-        _instance.hasComment = _instance.hasComment || false;
         _instance.earliest = _instance.earliest || undefined;
         _instance.latest = _instance.latest || undefined;
         _instance.criteria = _instance.criteria || [];
         _instance.languageCodes = _instance.languageCodes || [];
         _instance.annotatorUserIds = _instance.annotatorUserIds || [];
         _instance.originIds = _instance.originIds || [];
-        _instance.scoreMin = _instance.scoreMin || 0;
-        _instance.scoreMax = _instance.scoreMax || 0;
         _instance.scope = _instance.scope || 0;
     }
     /**
@@ -72358,7 +72344,7 @@ class FeedbackFilter {
         if (_instance.authorTypes && _instance.authorTypes.length) {
             _writer.writePackedEnum(2, _instance.authorTypes);
         }
-        if (_instance.hasComment) {
+        if (_instance.hasComment !== undefined && _instance.hasComment !== null) {
             _writer.writeBool(3, _instance.hasComment);
         }
         if (_instance.earliest) {
@@ -72379,10 +72365,10 @@ class FeedbackFilter {
         if (_instance.originIds && _instance.originIds.length) {
             _writer.writeRepeatedString(9, _instance.originIds);
         }
-        if (_instance.scoreMin) {
+        if (_instance.scoreMin !== undefined && _instance.scoreMin !== null) {
             _writer.writeFloat(10, _instance.scoreMin);
         }
-        if (_instance.scoreMax) {
+        if (_instance.scoreMax !== undefined && _instance.scoreMax !== null) {
             _writer.writeFloat(11, _instance.scoreMax);
         }
         if (_instance.scope) {
@@ -107267,15 +107253,11 @@ class RagParserConfig {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.autoKeywords = _instance.autoKeywords || 0;
-        _instance.autoQuestions = _instance.autoQuestions || 0;
         _instance.chunkTokenNum = _instance.chunkTokenNum || 0;
         _instance.delimiter = _instance.delimiter || '';
-        _instance.html4excel = _instance.html4excel || false;
         _instance.layoutRecognize = _instance.layoutRecognize || '';
         _instance.tagKbIds = _instance.tagKbIds || [];
         _instance.topnTags = _instance.topnTags || 0;
-        _instance.filenameEmbdWeight = _instance.filenameEmbdWeight || 0;
         _instance.taskPageSize = _instance.taskPageSize || 0;
         _instance.raptor = _instance.raptor || undefined;
         _instance.graphrag = _instance.graphrag || undefined;
@@ -107340,10 +107322,12 @@ class RagParserConfig {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.autoKeywords) {
+        if (_instance.autoKeywords !== undefined &&
+            _instance.autoKeywords !== null) {
             _writer.writeInt32(1, _instance.autoKeywords);
         }
-        if (_instance.autoQuestions) {
+        if (_instance.autoQuestions !== undefined &&
+            _instance.autoQuestions !== null) {
             _writer.writeInt32(2, _instance.autoQuestions);
         }
         if (_instance.chunkTokenNum) {
@@ -107352,7 +107336,7 @@ class RagParserConfig {
         if (_instance.delimiter) {
             _writer.writeString(4, _instance.delimiter);
         }
-        if (_instance.html4excel) {
+        if (_instance.html4excel !== undefined && _instance.html4excel !== null) {
             _writer.writeBool(5, _instance.html4excel);
         }
         if (_instance.layoutRecognize) {
@@ -107364,7 +107348,8 @@ class RagParserConfig {
         if (_instance.topnTags) {
             _writer.writeInt32(8, _instance.topnTags);
         }
-        if (_instance.filenameEmbdWeight) {
+        if (_instance.filenameEmbdWeight !== undefined &&
+            _instance.filenameEmbdWeight !== null) {
             _writer.writeFloat(9, _instance.filenameEmbdWeight);
         }
         if (_instance.taskPageSize) {
@@ -107550,12 +107535,9 @@ class RagRaptorConfig {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.useRaptor = _instance.useRaptor || false;
         _instance.prompt = _instance.prompt || '';
         _instance.maxToken = _instance.maxToken || 0;
-        _instance.threshold = _instance.threshold || 0;
         _instance.maxCluster = _instance.maxCluster || 0;
-        _instance.randomSeed = _instance.randomSeed || '0';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -107597,7 +107579,7 @@ class RagRaptorConfig {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.useRaptor) {
+        if (_instance.useRaptor !== undefined && _instance.useRaptor !== null) {
             _writer.writeBool(1, _instance.useRaptor);
         }
         if (_instance.prompt) {
@@ -107606,13 +107588,13 @@ class RagRaptorConfig {
         if (_instance.maxToken) {
             _writer.writeInt32(3, _instance.maxToken);
         }
-        if (_instance.threshold) {
+        if (_instance.threshold !== undefined && _instance.threshold !== null) {
             _writer.writeFloat(4, _instance.threshold);
         }
         if (_instance.maxCluster) {
             _writer.writeInt32(5, _instance.maxCluster);
         }
-        if (_instance.randomSeed) {
+        if (_instance.randomSeed !== undefined && _instance.randomSeed !== null) {
             _writer.writeInt64String(6, _instance.randomSeed);
         }
     }
@@ -107731,11 +107713,8 @@ class RagGraphRagConfig {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.useGraphrag = _instance.useGraphrag || false;
         _instance.entityTypes = _instance.entityTypes || [];
         _instance.method = _instance.method || 0;
-        _instance.community = _instance.community || false;
-        _instance.resolution = _instance.resolution || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -107774,7 +107753,7 @@ class RagGraphRagConfig {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.useGraphrag) {
+        if (_instance.useGraphrag !== undefined && _instance.useGraphrag !== null) {
             _writer.writeBool(1, _instance.useGraphrag);
         }
         if (_instance.entityTypes && _instance.entityTypes.length) {
@@ -107783,10 +107762,10 @@ class RagGraphRagConfig {
         if (_instance.method) {
             _writer.writeEnum(3, _instance.method);
         }
-        if (_instance.community) {
+        if (_instance.community !== undefined && _instance.community !== null) {
             _writer.writeBool(4, _instance.community);
         }
-        if (_instance.resolution) {
+        if (_instance.resolution !== undefined && _instance.resolution !== null) {
             _writer.writeBool(5, _instance.resolution);
         }
     }
@@ -107900,12 +107879,8 @@ class RagDataset {
         _instance.avatar = _instance.avatar || '';
         _instance.name = _instance.name || '';
         _instance.description = _instance.description || '';
-        _instance.documentCount = _instance.documentCount || 0;
-        _instance.tokenNum = _instance.tokenNum || 0;
-        _instance.chunkCount = _instance.chunkCount || 0;
         _instance.chunkMethod = _instance.chunkMethod || 0;
         _instance.parserConfig = _instance.parserConfig || undefined;
-        _instance.pagerank = _instance.pagerank || 0;
         _instance.parsingStatus = _instance.parsingStatus || undefined;
         _instance.createTime = _instance.createTime || undefined;
         _instance.updateTime = _instance.updateTime || undefined;
@@ -107992,13 +107967,14 @@ class RagDataset {
         if (_instance.description) {
             _writer.writeString(4, _instance.description);
         }
-        if (_instance.documentCount) {
+        if (_instance.documentCount !== undefined &&
+            _instance.documentCount !== null) {
             _writer.writeInt32(5, _instance.documentCount);
         }
-        if (_instance.tokenNum) {
+        if (_instance.tokenNum !== undefined && _instance.tokenNum !== null) {
             _writer.writeInt32(6, _instance.tokenNum);
         }
-        if (_instance.chunkCount) {
+        if (_instance.chunkCount !== undefined && _instance.chunkCount !== null) {
             _writer.writeInt32(7, _instance.chunkCount);
         }
         if (_instance.chunkMethod) {
@@ -108007,7 +107983,7 @@ class RagDataset {
         if (_instance.parserConfig) {
             _writer.writeMessage(9, _instance.parserConfig, RagParserConfig.serializeBinaryToWriter);
         }
-        if (_instance.pagerank) {
+        if (_instance.pagerank !== undefined && _instance.pagerank !== null) {
             _writer.writeInt32(10, _instance.pagerank);
         }
         if (_instance.parsingStatus) {
@@ -108401,11 +108377,8 @@ class RagUpdateDatasetRequest {
         _instance.languageCode = _instance.languageCode || '';
         _instance.datasetId = _instance.datasetId || '';
         _instance.name = _instance.name || '';
-        _instance.description = _instance.description || '';
-        _instance.avatar = _instance.avatar || '';
         _instance.chunkMethod = _instance.chunkMethod || 0;
         _instance.parserConfig = _instance.parserConfig || undefined;
-        _instance.pagerank = _instance.pagerank || 0;
         _instance.updateMask = _instance.updateMask || undefined;
         _instance.fieldMask = _instance.fieldMask || undefined;
         _instance.embeddingModelCcaiServiceName =
@@ -108484,10 +108457,10 @@ class RagUpdateDatasetRequest {
         if (_instance.name) {
             _writer.writeString(4, _instance.name);
         }
-        if (_instance.description) {
+        if (_instance.description !== undefined && _instance.description !== null) {
             _writer.writeString(5, _instance.description);
         }
-        if (_instance.avatar) {
+        if (_instance.avatar !== undefined && _instance.avatar !== null) {
             _writer.writeString(6, _instance.avatar);
         }
         if (_instance.chunkMethod) {
@@ -108496,7 +108469,7 @@ class RagUpdateDatasetRequest {
         if (_instance.parserConfig) {
             _writer.writeMessage(8, _instance.parserConfig, RagParserConfig.serializeBinaryToWriter);
         }
-        if (_instance.pagerank) {
+        if (_instance.pagerank !== undefined && _instance.pagerank !== null) {
             _writer.writeInt32(9, _instance.pagerank);
         }
         if (_instance.updateMask) {
@@ -108847,7 +108820,6 @@ class RagListDatasetsRequest {
         _instance.id = _instance.id || '';
         _instance.name = _instance.name || '';
         _instance.orderby = _instance.orderby || '';
-        _instance.desc = _instance.desc || false;
         _instance.sortingMode = _instance.sortingMode || 0;
         _instance.fieldMask = _instance.fieldMask || undefined;
     }
@@ -108919,7 +108891,7 @@ class RagListDatasetsRequest {
         if (_instance.orderby) {
             _writer.writeString(6, _instance.orderby);
         }
-        if (_instance.desc) {
+        if (_instance.desc !== undefined && _instance.desc !== null) {
             _writer.writeBool(7, _instance.desc);
         }
         if (_instance.sortingMode) {
@@ -109385,13 +109357,8 @@ class RagDocument {
         _instance.parserConfig = _instance.parserConfig || undefined;
         _instance.type = _instance.type || 0;
         _instance.name = _instance.name || '';
-        _instance.size = _instance.size || '0';
-        _instance.chunkCount = _instance.chunkCount || 0;
-        _instance.tokenCount = _instance.tokenCount || 0;
-        _instance.progress = _instance.progress || 0;
         _instance.progressMsg = _instance.progressMsg || '';
         _instance.processBeginAt = _instance.processBeginAt || undefined;
-        _instance.processDuration = _instance.processDuration || 0;
         _instance.metaFields = _instance.metaFields || undefined;
         _instance.run = _instance.run || 0;
         _instance.status = _instance.status || '';
@@ -109503,16 +109470,16 @@ class RagDocument {
         if (_instance.name) {
             _writer.writeString(7, _instance.name);
         }
-        if (_instance.size) {
+        if (_instance.size !== undefined && _instance.size !== null) {
             _writer.writeInt64String(8, _instance.size);
         }
-        if (_instance.chunkCount) {
+        if (_instance.chunkCount !== undefined && _instance.chunkCount !== null) {
             _writer.writeInt32(9, _instance.chunkCount);
         }
-        if (_instance.tokenCount) {
+        if (_instance.tokenCount !== undefined && _instance.tokenCount !== null) {
             _writer.writeInt32(10, _instance.tokenCount);
         }
-        if (_instance.progress) {
+        if (_instance.progress !== undefined && _instance.progress !== null) {
             _writer.writeFloat(11, _instance.progress);
         }
         if (_instance.progressMsg) {
@@ -109521,7 +109488,8 @@ class RagDocument {
         if (_instance.processBeginAt) {
             _writer.writeMessage(13, _instance.processBeginAt, googleProtobuf005.Timestamp.serializeBinaryToWriter);
         }
-        if (_instance.processDuration) {
+        if (_instance.processDuration !== undefined &&
+            _instance.processDuration !== null) {
             _writer.writeFloat(14, _instance.processDuration);
         }
         if (_instance.metaFields) {
@@ -109805,7 +109773,6 @@ class RagUpdateDocumentRequest {
         _instance.name = _instance.name || '';
         _instance.chunkMethod = _instance.chunkMethod || 0;
         _instance.parserConfig = _instance.parserConfig || undefined;
-        _instance.enabled = _instance.enabled || false;
         _instance.metaFields = _instance.metaFields || undefined;
         _instance.updateMask = _instance.updateMask || undefined;
         _instance.fieldMask = _instance.fieldMask || undefined;
@@ -109890,7 +109857,7 @@ class RagUpdateDocumentRequest {
         if (_instance.parserConfig) {
             _writer.writeMessage(7, _instance.parserConfig, RagParserConfig.serializeBinaryToWriter);
         }
-        if (_instance.enabled) {
+        if (_instance.enabled !== undefined && _instance.enabled !== null) {
             _writer.writeBool(8, _instance.enabled);
         }
         if (_instance.metaFields) {
@@ -110357,7 +110324,6 @@ class RagListDocumentsRequest {
         _instance.name = _instance.name || '';
         _instance.pageToken = _instance.pageToken || '';
         _instance.orderby = _instance.orderby || '';
-        _instance.desc = _instance.desc || false;
         _instance.keywords = _instance.keywords || '';
         _instance.suffix = _instance.suffix || [];
         _instance.runStatus = _instance.runStatus || [];
@@ -110462,7 +110428,7 @@ class RagListDocumentsRequest {
         if (_instance.orderby) {
             _writer.writeString(7, _instance.orderby);
         }
-        if (_instance.desc) {
+        if (_instance.desc !== undefined && _instance.desc !== null) {
             _writer.writeBool(8, _instance.desc);
         }
         if (_instance.keywords) {
@@ -111427,17 +111393,10 @@ class RagRetrievalRequest {
         _instance.pageToken = _instance.pageToken || '';
         _instance.question = _instance.question || '';
         _instance.documentIds = _instance.documentIds || [];
-        _instance.useKg = _instance.useKg || false;
         _instance.crossLanguages = _instance.crossLanguages || [];
         _instance.metadataCondition = _instance.metadataCondition || undefined;
-        _instance.similarityThreshold = _instance.similarityThreshold || 0;
-        _instance.vectorSimilarityWeight = _instance.vectorSimilarityWeight || 0;
         _instance.topK = _instance.topK || 0;
-        _instance.highlight = _instance.highlight || false;
-        _instance.keyword = _instance.keyword || false;
         _instance.fieldMask = _instance.fieldMask || undefined;
-        _instance.rerankModelCcaiServiceName =
-            _instance.rerankModelCcaiServiceName || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -111529,7 +111488,7 @@ class RagRetrievalRequest {
         if (_instance.documentIds && _instance.documentIds.length) {
             _writer.writeRepeatedString(6, _instance.documentIds);
         }
-        if (_instance.useKg) {
+        if (_instance.useKg !== undefined && _instance.useKg !== null) {
             _writer.writeBool(7, _instance.useKg);
         }
         if (_instance.crossLanguages && _instance.crossLanguages.length) {
@@ -111538,25 +111497,28 @@ class RagRetrievalRequest {
         if (_instance.metadataCondition) {
             _writer.writeMessage(9, _instance.metadataCondition, RagMetadataConditions.serializeBinaryToWriter);
         }
-        if (_instance.similarityThreshold) {
+        if (_instance.similarityThreshold !== undefined &&
+            _instance.similarityThreshold !== null) {
             _writer.writeFloat(10, _instance.similarityThreshold);
         }
-        if (_instance.vectorSimilarityWeight) {
+        if (_instance.vectorSimilarityWeight !== undefined &&
+            _instance.vectorSimilarityWeight !== null) {
             _writer.writeFloat(11, _instance.vectorSimilarityWeight);
         }
         if (_instance.topK) {
             _writer.writeInt32(12, _instance.topK);
         }
-        if (_instance.highlight) {
+        if (_instance.highlight !== undefined && _instance.highlight !== null) {
             _writer.writeBool(13, _instance.highlight);
         }
-        if (_instance.keyword) {
+        if (_instance.keyword !== undefined && _instance.keyword !== null) {
             _writer.writeBool(14, _instance.keyword);
         }
         if (_instance.fieldMask) {
             _writer.writeMessage(15, _instance.fieldMask, googleProtobuf005.FieldMask.serializeBinaryToWriter);
         }
-        if (_instance.rerankModelCcaiServiceName) {
+        if (_instance.rerankModelCcaiServiceName !== undefined &&
+            _instance.rerankModelCcaiServiceName !== null) {
             _writer.writeString(16, _instance.rerankModelCcaiServiceName);
         }
     }
@@ -111936,7 +111898,6 @@ class RagChunk {
         _instance.positions = _instance.positions || [];
         _instance.createTime = _instance.createTime || undefined;
         _instance.documentKeyword = _instance.documentKeyword || '';
-        _instance.similarity = _instance.similarity || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -112027,7 +111988,7 @@ class RagChunk {
         if (_instance.documentKeyword) {
             _writer.writeString(10, _instance.documentKeyword);
         }
-        if (_instance.similarity) {
+        if (_instance.similarity !== undefined && _instance.similarity !== null) {
             _writer.writeFloat(11, _instance.similarity);
         }
     }
@@ -112991,7 +112952,6 @@ class RagListCrawlersRequest {
         _instance.datasetName = _instance.datasetName || '';
         _instance.crawlerName = _instance.crawlerName || '';
         _instance.orderby = _instance.orderby || '';
-        _instance.sortingMode = _instance.sortingMode || 0;
         _instance.fieldMask = _instance.fieldMask || undefined;
     }
     /**
@@ -113059,7 +113019,7 @@ class RagListCrawlersRequest {
         if (_instance.orderby) {
             _writer.writeString(6, _instance.orderby);
         }
-        if (_instance.sortingMode) {
+        if (_instance.sortingMode !== undefined && _instance.sortingMode !== null) {
             _writer.writeEnum(7, _instance.sortingMode);
         }
         if (_instance.fieldMask) {
@@ -114939,7 +114899,6 @@ class RagCrawlerBrowserConfig {
     static refineValues(_instance) {
         _instance.crawlerHeaders = _instance.crawlerHeaders || [];
         _instance.crawlerCookies = _instance.crawlerCookies || [];
-        _instance.crawlerUserAgent = _instance.crawlerUserAgent || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -114982,7 +114941,8 @@ class RagCrawlerBrowserConfig {
         if (_instance.crawlerCookies && _instance.crawlerCookies.length) {
             _writer.writeRepeatedMessage(2, _instance.crawlerCookies, RagCrawlerCookie.serializeBinaryToWriter);
         }
-        if (_instance.crawlerUserAgent) {
+        if (_instance.crawlerUserAgent !== undefined &&
+            _instance.crawlerUserAgent !== null) {
             _writer.writeString(3, _instance.crawlerUserAgent);
         }
     }
@@ -115501,10 +115461,8 @@ class RagCrawlerDeepCrawlerConfig {
     static refineValues(_instance) {
         _instance.isActive = _instance.isActive || false;
         _instance.crawlStrategy = _instance.crawlStrategy || 0;
-        _instance.maxDepth = _instance.maxDepth || 0;
         _instance.maxPages = _instance.maxPages || 0;
         _instance.deepCrawlerFilters = _instance.deepCrawlerFilters || undefined;
-        _instance.normalizeUrlCase = _instance.normalizeUrlCase || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -115553,7 +115511,7 @@ class RagCrawlerDeepCrawlerConfig {
         if (_instance.crawlStrategy) {
             _writer.writeEnum(2, _instance.crawlStrategy);
         }
-        if (_instance.maxDepth) {
+        if (_instance.maxDepth !== undefined && _instance.maxDepth !== null) {
             _writer.writeInt32(3, _instance.maxDepth);
         }
         if (_instance.maxPages) {
@@ -115562,7 +115520,8 @@ class RagCrawlerDeepCrawlerConfig {
         if (_instance.deepCrawlerFilters) {
             _writer.writeMessage(5, _instance.deepCrawlerFilters, RagCrawlerFilters.serializeBinaryToWriter);
         }
-        if (_instance.normalizeUrlCase) {
+        if (_instance.normalizeUrlCase !== undefined &&
+            _instance.normalizeUrlCase !== null) {
             _writer.writeBool(6, _instance.normalizeUrlCase);
         }
     }
@@ -115689,7 +115648,6 @@ class RagCrawlerResultsConfig {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.injectFrontmatter = _instance.injectFrontmatter || false;
         _instance.metaDataExtractors = _instance.metaDataExtractors || [];
         _instance.contentScope = _instance.contentScope || undefined;
         _instance.densityPruning = _instance.densityPruning || undefined;
@@ -115733,7 +115691,8 @@ class RagCrawlerResultsConfig {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.injectFrontmatter) {
+        if (_instance.injectFrontmatter !== undefined &&
+            _instance.injectFrontmatter !== null) {
             _writer.writeBool(1, _instance.injectFrontmatter);
         }
         if (_instance.metaDataExtractors && _instance.metaDataExtractors.length) {
@@ -115972,10 +115931,6 @@ class RagCrawlerDensityPruning {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.isActive = _instance.isActive || false;
-        _instance.threshold = _instance.threshold || 0;
-        _instance.thresholdType = _instance.thresholdType || 0;
-        _instance.minWordThreshold = _instance.minWordThreshold || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -116011,16 +115966,18 @@ class RagCrawlerDensityPruning {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.isActive) {
+        if (_instance.isActive !== undefined && _instance.isActive !== null) {
             _writer.writeBool(1, _instance.isActive);
         }
-        if (_instance.threshold) {
+        if (_instance.threshold !== undefined && _instance.threshold !== null) {
             _writer.writeFloat(2, _instance.threshold);
         }
-        if (_instance.thresholdType) {
+        if (_instance.thresholdType !== undefined &&
+            _instance.thresholdType !== null) {
             _writer.writeEnum(3, _instance.thresholdType);
         }
-        if (_instance.minWordThreshold) {
+        if (_instance.minWordThreshold !== undefined &&
+            _instance.minWordThreshold !== null) {
             _writer.writeInt32(4, _instance.minWordThreshold);
         }
     }
@@ -116256,8 +116213,6 @@ class RagCrawlerRetryConfig {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.pageLoadTimeoutSeconds = _instance.pageLoadTimeoutSeconds || 0;
-        _instance.retryMaxAttempts = _instance.retryMaxAttempts || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -116287,10 +116242,12 @@ class RagCrawlerRetryConfig {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.pageLoadTimeoutSeconds) {
+        if (_instance.pageLoadTimeoutSeconds !== undefined &&
+            _instance.pageLoadTimeoutSeconds !== null) {
             _writer.writeInt32(1, _instance.pageLoadTimeoutSeconds);
         }
-        if (_instance.retryMaxAttempts) {
+        if (_instance.retryMaxAttempts !== undefined &&
+            _instance.retryMaxAttempts !== null) {
             _writer.writeInt32(2, _instance.retryMaxAttempts);
         }
     }
@@ -116373,7 +116330,6 @@ class RagCrawlerStatusFilter {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.isActive = _instance.isActive || false;
         _instance.acceptedStatusCodes = _instance.acceptedStatusCodes || [];
     }
     /**
@@ -116405,7 +116361,7 @@ class RagCrawlerStatusFilter {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.isActive) {
+        if (_instance.isActive !== undefined && _instance.isActive !== null) {
             _writer.writeBool(1, _instance.isActive);
         }
         if (_instance.acceptedStatusCodes && _instance.acceptedStatusCodes.length) {
@@ -116492,7 +116448,6 @@ class RagCrawlerContentResult {
      */
     static refineValues(_instance) {
         _instance.metadata = _instance.metadata || undefined;
-        _instance.markdown = _instance.markdown || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -116526,7 +116481,7 @@ class RagCrawlerContentResult {
         if (_instance.metadata) {
             _writer.writeMessage(1, _instance.metadata, googleProtobuf005.Struct.serializeBinaryToWriter);
         }
-        if (_instance.markdown) {
+        if (_instance.markdown !== undefined && _instance.markdown !== null) {
             _writer.writeString(2, _instance.markdown);
         }
     }
@@ -116612,8 +116567,6 @@ class RagCrawlerExecutionInfo {
      */
     static refineValues(_instance) {
         _instance.sslCertificate = _instance.sslCertificate || undefined;
-        _instance.success = _instance.success || false;
-        _instance.errorMessage = _instance.errorMessage || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -116650,10 +116603,11 @@ class RagCrawlerExecutionInfo {
         if (_instance.sslCertificate) {
             _writer.writeMessage(1, _instance.sslCertificate, googleProtobuf005.Struct.serializeBinaryToWriter);
         }
-        if (_instance.success) {
+        if (_instance.success !== undefined && _instance.success !== null) {
             _writer.writeBool(2, _instance.success);
         }
-        if (_instance.errorMessage) {
+        if (_instance.errorMessage !== undefined &&
+            _instance.errorMessage !== null) {
             _writer.writeString(3, _instance.errorMessage);
         }
     }
@@ -117264,7 +117218,6 @@ class RagListCrawlerRunsRequest {
         _instance.pageToken = _instance.pageToken || '';
         _instance.status = _instance.status || 0;
         _instance.orderby = _instance.orderby || '';
-        _instance.sortingMode = _instance.sortingMode || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -117327,7 +117280,7 @@ class RagListCrawlerRunsRequest {
         if (_instance.orderby) {
             _writer.writeString(6, _instance.orderby);
         }
-        if (_instance.sortingMode) {
+        if (_instance.sortingMode !== undefined && _instance.sortingMode !== null) {
             _writer.writeEnum(7, _instance.sortingMode);
         }
     }
@@ -118099,7 +118052,6 @@ class RagGetCrawlerResultsRequest {
         _instance.urlQuery = _instance.urlQuery || '';
         _instance.fieldMask = _instance.fieldMask || undefined;
         _instance.orderby = _instance.orderby || '';
-        _instance.sortingMode = _instance.sortingMode || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -118169,7 +118121,7 @@ class RagGetCrawlerResultsRequest {
         if (_instance.orderby) {
             _writer.writeString(7, _instance.orderby);
         }
-        if (_instance.sortingMode) {
+        if (_instance.sortingMode !== undefined && _instance.sortingMode !== null) {
             _writer.writeEnum(8, _instance.sortingMode);
         }
     }
@@ -118952,7 +118904,6 @@ class RagGetCrawlerAttachedDatasetsRequest {
         _instance.pageToken = _instance.pageToken || '';
         _instance.fieldMask = _instance.fieldMask || undefined;
         _instance.orderby = _instance.orderby || '';
-        _instance.sortingMode = _instance.sortingMode || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -119022,7 +118973,7 @@ class RagGetCrawlerAttachedDatasetsRequest {
         if (_instance.orderby) {
             _writer.writeString(7, _instance.orderby);
         }
-        if (_instance.sortingMode) {
+        if (_instance.sortingMode !== undefined && _instance.sortingMode !== null) {
             _writer.writeEnum(8, _instance.sortingMode);
         }
     }
@@ -119294,7 +119245,6 @@ class RagGetCrawlerRunLogsRequest {
         _instance.endTime = _instance.endTime || undefined;
         _instance.sourceUrlFilter = _instance.sourceUrlFilter || '';
         _instance.orderby = _instance.orderby || '';
-        _instance.sortingMode = _instance.sortingMode || 0;
         _instance.fieldMask = _instance.fieldMask || undefined;
     }
     /**
@@ -119400,7 +119350,7 @@ class RagGetCrawlerRunLogsRequest {
         if (_instance.orderby) {
             _writer.writeString(12, _instance.orderby);
         }
-        if (_instance.sortingMode) {
+        if (_instance.sortingMode !== undefined && _instance.sortingMode !== null) {
             _writer.writeEnum(13, _instance.sortingMode);
         }
         if (_instance.fieldMask) {
@@ -130544,8 +130494,6 @@ class TranscribeRequestConfig {
     static refineValues(_instance) {
         _instance.s2tPipelineId = _instance.s2tPipelineId || '';
         _instance.decoding = _instance.decoding || 0;
-        _instance.language = _instance.language || '';
-        _instance.task = _instance.task || '';
         _instance.s2tServiceConfig = _instance.s2tServiceConfig || undefined;
         _instance.s2tCloudProviderConfig =
             _instance.s2tCloudProviderConfig || undefined;
@@ -130632,10 +130580,10 @@ class TranscribeRequestConfig {
         if (_instance.returnOptions) {
             _writer.writeMessage(8, _instance.returnOptions, TranscriptionReturnOptions.serializeBinaryToWriter);
         }
-        if (_instance.language) {
+        if (_instance.language !== undefined && _instance.language !== null) {
             _writer.writeString(9, _instance.language);
         }
-        if (_instance.task) {
+        if (_instance.task !== undefined && _instance.task !== null) {
             _writer.writeString(10, _instance.task);
         }
         if (_instance.s2tServiceConfig) {
@@ -131087,11 +131035,6 @@ class S2tCloudProviderConfigAmazon {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.enablePartialResultsStabilization =
-            _instance.enablePartialResultsStabilization || false;
-        _instance.partialResultsStability = _instance.partialResultsStability || '';
-        _instance.languageModelName = _instance.languageModelName || '';
-        _instance.vocabularyName = _instance.vocabularyName || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -131127,16 +131070,20 @@ class S2tCloudProviderConfigAmazon {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.enablePartialResultsStabilization) {
+        if (_instance.enablePartialResultsStabilization !== undefined &&
+            _instance.enablePartialResultsStabilization !== null) {
             _writer.writeBool(1, _instance.enablePartialResultsStabilization);
         }
-        if (_instance.partialResultsStability) {
+        if (_instance.partialResultsStability !== undefined &&
+            _instance.partialResultsStability !== null) {
             _writer.writeString(2, _instance.partialResultsStability);
         }
-        if (_instance.languageModelName) {
+        if (_instance.languageModelName !== undefined &&
+            _instance.languageModelName !== null) {
             _writer.writeString(3, _instance.languageModelName);
         }
-        if (_instance.vocabularyName) {
+        if (_instance.vocabularyName !== undefined &&
+            _instance.vocabularyName !== null) {
             _writer.writeString(4, _instance.vocabularyName);
         }
     }
@@ -131238,11 +131185,6 @@ class S2tCloudProviderConfigDeepgram {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.punctuate = _instance.punctuate || false;
-        _instance.smartFormat = _instance.smartFormat || false;
-        _instance.numerals = _instance.numerals || false;
-        _instance.measurements = _instance.measurements || false;
-        _instance.dictation = _instance.dictation || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -131281,19 +131223,20 @@ class S2tCloudProviderConfigDeepgram {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.punctuate) {
+        if (_instance.punctuate !== undefined && _instance.punctuate !== null) {
             _writer.writeBool(1, _instance.punctuate);
         }
-        if (_instance.smartFormat) {
+        if (_instance.smartFormat !== undefined && _instance.smartFormat !== null) {
             _writer.writeBool(2, _instance.smartFormat);
         }
-        if (_instance.numerals) {
+        if (_instance.numerals !== undefined && _instance.numerals !== null) {
             _writer.writeBool(3, _instance.numerals);
         }
-        if (_instance.measurements) {
+        if (_instance.measurements !== undefined &&
+            _instance.measurements !== null) {
             _writer.writeBool(4, _instance.measurements);
         }
-        if (_instance.dictation) {
+        if (_instance.dictation !== undefined && _instance.dictation !== null) {
             _writer.writeBool(5, _instance.dictation);
         }
     }
@@ -131403,13 +131346,6 @@ class S2tCloudProviderConfigGoogle {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.enableAutomaticPunctuation =
-            _instance.enableAutomaticPunctuation || false;
-        _instance.enableWordTimeOffsets = _instance.enableWordTimeOffsets || false;
-        _instance.enableWordConfidence = _instance.enableWordConfidence || false;
-        _instance.transcriptNormalization =
-            _instance.transcriptNormalization || false;
-        _instance.maxAlternatives = _instance.maxAlternatives || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -131448,19 +131384,24 @@ class S2tCloudProviderConfigGoogle {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.enableAutomaticPunctuation) {
+        if (_instance.enableAutomaticPunctuation !== undefined &&
+            _instance.enableAutomaticPunctuation !== null) {
             _writer.writeBool(1, _instance.enableAutomaticPunctuation);
         }
-        if (_instance.enableWordTimeOffsets) {
+        if (_instance.enableWordTimeOffsets !== undefined &&
+            _instance.enableWordTimeOffsets !== null) {
             _writer.writeBool(2, _instance.enableWordTimeOffsets);
         }
-        if (_instance.enableWordConfidence) {
+        if (_instance.enableWordConfidence !== undefined &&
+            _instance.enableWordConfidence !== null) {
             _writer.writeBool(3, _instance.enableWordConfidence);
         }
-        if (_instance.transcriptNormalization) {
+        if (_instance.transcriptNormalization !== undefined &&
+            _instance.transcriptNormalization !== null) {
             _writer.writeBool(4, _instance.transcriptNormalization);
         }
-        if (_instance.maxAlternatives) {
+        if (_instance.maxAlternatives !== undefined &&
+            _instance.maxAlternatives !== null) {
             _writer.writeInt32(5, _instance.maxAlternatives);
         }
     }
@@ -131570,10 +131511,6 @@ class S2tCloudProviderConfigMicrosoft {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.useFastTranscriptionApi =
-            _instance.useFastTranscriptionApi || false;
-        _instance.useDetailedOutputFormat =
-            _instance.useDetailedOutputFormat || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -131603,10 +131540,12 @@ class S2tCloudProviderConfigMicrosoft {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.useFastTranscriptionApi) {
+        if (_instance.useFastTranscriptionApi !== undefined &&
+            _instance.useFastTranscriptionApi !== null) {
             _writer.writeBool(1, _instance.useFastTranscriptionApi);
         }
-        if (_instance.useDetailedOutputFormat) {
+        if (_instance.useDetailedOutputFormat !== undefined &&
+            _instance.useDetailedOutputFormat !== null) {
             _writer.writeBool(2, _instance.useDetailedOutputFormat);
         }
     }
@@ -137430,12 +137369,6 @@ class TurnDetectionOptions {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.active = _instance.active || false;
-        _instance.fullUtteranceDeployment =
-            _instance.fullUtteranceDeployment || false;
-        _instance.turnDetectionSystemPrompt =
-            _instance.turnDetectionSystemPrompt || '';
-        _instance.turnDetectionUserPrompt = _instance.turnDetectionUserPrompt || '';
         _instance.turnDetectionLlmOpenaiOptions =
             _instance.turnDetectionLlmOpenaiOptions || undefined;
     }
@@ -137477,16 +137410,19 @@ class TurnDetectionOptions {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.active) {
+        if (_instance.active !== undefined && _instance.active !== null) {
             _writer.writeBool(1, _instance.active);
         }
-        if (_instance.fullUtteranceDeployment) {
+        if (_instance.fullUtteranceDeployment !== undefined &&
+            _instance.fullUtteranceDeployment !== null) {
             _writer.writeBool(2, _instance.fullUtteranceDeployment);
         }
-        if (_instance.turnDetectionSystemPrompt) {
+        if (_instance.turnDetectionSystemPrompt !== undefined &&
+            _instance.turnDetectionSystemPrompt !== null) {
             _writer.writeString(3, _instance.turnDetectionSystemPrompt);
         }
-        if (_instance.turnDetectionUserPrompt) {
+        if (_instance.turnDetectionUserPrompt !== undefined &&
+            _instance.turnDetectionUserPrompt !== null) {
             _writer.writeString(4, _instance.turnDetectionUserPrompt);
         }
         if (_instance.turnDetectionLlmOpenaiOptions) {
@@ -137605,38 +137541,12 @@ class OpenaiLlmOptions {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.apiKey = _instance.apiKey || '';
-        _instance.organization = _instance.organization || '';
-        _instance.project = _instance.project || '';
-        _instance.webhookSecret = _instance.webhookSecret || '';
-        _instance.baseUrl = _instance.baseUrl || '';
-        _instance.websocketBaseUrl = _instance.websocketBaseUrl || '';
-        _instance.timeout = _instance.timeout || 0;
-        _instance.maxRetries = _instance.maxRetries || 0;
         _instance.defaultHeaders = _instance.defaultHeaders || {};
         _instance.defaultQuery = _instance.defaultQuery || undefined;
-        _instance.strictResponseValidation =
-            _instance.strictResponseValidation || false;
         _instance.model = _instance.model || '';
-        _instance.frequencyPenalty = _instance.frequencyPenalty || 0;
         _instance.logitBias = _instance.logitBias || {};
-        _instance.logprobs = _instance.logprobs || false;
-        _instance.maxCompletionTokens = _instance.maxCompletionTokens || 0;
-        _instance.maxTokens = _instance.maxTokens || 0;
         _instance.metadata = _instance.metadata || undefined;
-        _instance.n = _instance.n || 0;
-        _instance.presencePenalty = _instance.presencePenalty || 0;
-        _instance.promptCacheKey = _instance.promptCacheKey || '';
-        _instance.reasoningEffort = _instance.reasoningEffort || 0;
-        _instance.seed = _instance.seed || '0';
-        _instance.serviceTier = _instance.serviceTier || 0;
         _instance.stop = _instance.stop || [];
-        _instance.store = _instance.store || false;
-        _instance.temperature = _instance.temperature || 0;
-        _instance.topLogprobs = _instance.topLogprobs || 0;
-        _instance.topP = _instance.topP || 0;
-        _instance.user = _instance.user || '';
-        _instance.verbosity = _instance.verbosity || 0;
         _instance.extraHeaders = _instance.extraHeaders || undefined;
         _instance.extraQuery = _instance.extraQuery || undefined;
         _instance.extraBody = _instance.extraBody || undefined;
@@ -137776,28 +137686,31 @@ class OpenaiLlmOptions {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.apiKey) {
+        if (_instance.apiKey !== undefined && _instance.apiKey !== null) {
             _writer.writeString(1, _instance.apiKey);
         }
-        if (_instance.organization) {
+        if (_instance.organization !== undefined &&
+            _instance.organization !== null) {
             _writer.writeString(2, _instance.organization);
         }
-        if (_instance.project) {
+        if (_instance.project !== undefined && _instance.project !== null) {
             _writer.writeString(3, _instance.project);
         }
-        if (_instance.webhookSecret) {
+        if (_instance.webhookSecret !== undefined &&
+            _instance.webhookSecret !== null) {
             _writer.writeString(4, _instance.webhookSecret);
         }
-        if (_instance.baseUrl) {
+        if (_instance.baseUrl !== undefined && _instance.baseUrl !== null) {
             _writer.writeString(5, _instance.baseUrl);
         }
-        if (_instance.websocketBaseUrl) {
+        if (_instance.websocketBaseUrl !== undefined &&
+            _instance.websocketBaseUrl !== null) {
             _writer.writeString(6, _instance.websocketBaseUrl);
         }
-        if (_instance.timeout) {
+        if (_instance.timeout !== undefined && _instance.timeout !== null) {
             _writer.writeFloat(7, _instance.timeout);
         }
-        if (_instance.maxRetries) {
+        if (_instance.maxRetries !== undefined && _instance.maxRetries !== null) {
             _writer.writeInt32(8, _instance.maxRetries);
         }
         if (!!_instance.defaultHeaders) {
@@ -137815,13 +137728,15 @@ class OpenaiLlmOptions {
         if (_instance.defaultQuery) {
             _writer.writeMessage(10, _instance.defaultQuery, googleProtobuf005.Struct.serializeBinaryToWriter);
         }
-        if (_instance.strictResponseValidation) {
+        if (_instance.strictResponseValidation !== undefined &&
+            _instance.strictResponseValidation !== null) {
             _writer.writeBool(11, _instance.strictResponseValidation);
         }
         if (_instance.model) {
             _writer.writeString(12, _instance.model);
         }
-        if (_instance.frequencyPenalty) {
+        if (_instance.frequencyPenalty !== undefined &&
+            _instance.frequencyPenalty !== null) {
             _writer.writeFloat(13, _instance.frequencyPenalty);
         }
         if (!!_instance.logitBias) {
@@ -137833,55 +137748,59 @@ class OpenaiLlmOptions {
                 _writer.writeRepeatedMessage(14, repeated_14, OpenaiLlmOptions.LogitBiasEntry.serializeBinaryToWriter);
             }
         }
-        if (_instance.logprobs) {
+        if (_instance.logprobs !== undefined && _instance.logprobs !== null) {
             _writer.writeBool(15, _instance.logprobs);
         }
-        if (_instance.maxCompletionTokens) {
+        if (_instance.maxCompletionTokens !== undefined &&
+            _instance.maxCompletionTokens !== null) {
             _writer.writeInt32(16, _instance.maxCompletionTokens);
         }
-        if (_instance.maxTokens) {
+        if (_instance.maxTokens !== undefined && _instance.maxTokens !== null) {
             _writer.writeInt32(17, _instance.maxTokens);
         }
         if (_instance.metadata) {
             _writer.writeMessage(18, _instance.metadata, googleProtobuf005.Struct.serializeBinaryToWriter);
         }
-        if (_instance.n) {
+        if (_instance.n !== undefined && _instance.n !== null) {
             _writer.writeInt32(19, _instance.n);
         }
-        if (_instance.presencePenalty) {
+        if (_instance.presencePenalty !== undefined &&
+            _instance.presencePenalty !== null) {
             _writer.writeFloat(20, _instance.presencePenalty);
         }
-        if (_instance.promptCacheKey) {
+        if (_instance.promptCacheKey !== undefined &&
+            _instance.promptCacheKey !== null) {
             _writer.writeString(21, _instance.promptCacheKey);
         }
-        if (_instance.reasoningEffort) {
+        if (_instance.reasoningEffort !== undefined &&
+            _instance.reasoningEffort !== null) {
             _writer.writeEnum(22, _instance.reasoningEffort);
         }
-        if (_instance.seed) {
+        if (_instance.seed !== undefined && _instance.seed !== null) {
             _writer.writeInt64String(23, _instance.seed);
         }
-        if (_instance.serviceTier) {
+        if (_instance.serviceTier !== undefined && _instance.serviceTier !== null) {
             _writer.writeEnum(24, _instance.serviceTier);
         }
         if (_instance.stop && _instance.stop.length) {
             _writer.writeRepeatedString(25, _instance.stop);
         }
-        if (_instance.store) {
+        if (_instance.store !== undefined && _instance.store !== null) {
             _writer.writeBool(26, _instance.store);
         }
-        if (_instance.temperature) {
+        if (_instance.temperature !== undefined && _instance.temperature !== null) {
             _writer.writeFloat(27, _instance.temperature);
         }
-        if (_instance.topLogprobs) {
+        if (_instance.topLogprobs !== undefined && _instance.topLogprobs !== null) {
             _writer.writeInt32(28, _instance.topLogprobs);
         }
-        if (_instance.topP) {
+        if (_instance.topP !== undefined && _instance.topP !== null) {
             _writer.writeFloat(29, _instance.topP);
         }
-        if (_instance.user) {
+        if (_instance.user !== undefined && _instance.user !== null) {
             _writer.writeString(30, _instance.user);
         }
-        if (_instance.verbosity) {
+        if (_instance.verbosity !== undefined && _instance.verbosity !== null) {
             _writer.writeEnum(31, _instance.verbosity);
         }
         if (_instance.extraHeaders) {
@@ -139377,10 +139296,6 @@ class S2tLlmPostProcessing {
     static refineValues(_instance) {
         _instance.s2tLlmPostProcessingOpenaiOptions =
             _instance.s2tLlmPostProcessingOpenaiOptions || undefined;
-        _instance.s2tLlmPostProcessingSystemPrompt =
-            _instance.s2tLlmPostProcessingSystemPrompt || '';
-        _instance.s2tLlmPostProcessingEndingPrompt =
-            _instance.s2tLlmPostProcessingEndingPrompt || '';
         _instance.s2tLlmPostProcessingCasingOptions =
             _instance.s2tLlmPostProcessingCasingOptions || undefined;
         _instance.s2tLlmPostProcessingPunctuationOptions =
@@ -139471,10 +139386,12 @@ class S2tLlmPostProcessing {
         if (_instance.s2tLlmPostProcessingOpenaiOptions) {
             _writer.writeMessage(1, _instance.s2tLlmPostProcessingOpenaiOptions, OpenaiLlmOptions.serializeBinaryToWriter);
         }
-        if (_instance.s2tLlmPostProcessingSystemPrompt) {
+        if (_instance.s2tLlmPostProcessingSystemPrompt !== undefined &&
+            _instance.s2tLlmPostProcessingSystemPrompt !== null) {
             _writer.writeString(2, _instance.s2tLlmPostProcessingSystemPrompt);
         }
-        if (_instance.s2tLlmPostProcessingEndingPrompt) {
+        if (_instance.s2tLlmPostProcessingEndingPrompt !== undefined &&
+            _instance.s2tLlmPostProcessingEndingPrompt !== null) {
             _writer.writeString(3, _instance.s2tLlmPostProcessingEndingPrompt);
         }
         if (_instance.s2tLlmPostProcessingCasingOptions) {
@@ -139752,9 +139669,6 @@ class S2tLlmPostProcessingTranslationOptions {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.active = _instance.active || false;
-        _instance.language = _instance.language || '';
-        _instance.prompt = _instance.prompt || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -139787,13 +139701,13 @@ class S2tLlmPostProcessingTranslationOptions {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.active) {
+        if (_instance.active !== undefined && _instance.active !== null) {
             _writer.writeBool(1, _instance.active);
         }
-        if (_instance.language) {
+        if (_instance.language !== undefined && _instance.language !== null) {
             _writer.writeString(2, _instance.language);
         }
-        if (_instance.prompt) {
+        if (_instance.prompt !== undefined && _instance.prompt !== null) {
             _writer.writeString(3, _instance.prompt);
         }
     }
@@ -139885,7 +139799,6 @@ class S2tLlmPostProcessingInverseNormalizationOptions {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.active = _instance.active || false;
         _instance.email = _instance.email || undefined;
         _instance.phoneNumber = _instance.phoneNumber || undefined;
         _instance.dateAndTime = _instance.dateAndTime || undefined;
@@ -139943,7 +139856,7 @@ class S2tLlmPostProcessingInverseNormalizationOptions {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.active) {
+        if (_instance.active !== undefined && _instance.active !== null) {
             _writer.writeBool(1, _instance.active);
         }
         if (_instance.email) {
@@ -140113,7 +140026,6 @@ class S2tLlmPostProcessingNormalizationOptions {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.active = _instance.active || false;
         _instance.email = _instance.email || undefined;
         _instance.phoneNumber = _instance.phoneNumber || undefined;
         _instance.dateAndTime = _instance.dateAndTime || undefined;
@@ -140171,7 +140083,7 @@ class S2tLlmPostProcessingNormalizationOptions {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.active) {
+        if (_instance.active !== undefined && _instance.active !== null) {
             _writer.writeBool(1, _instance.active);
         }
         if (_instance.email) {
@@ -140341,10 +140253,6 @@ class S2tLlmPostProcessingSummarizationOptions {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.active = _instance.active || false;
-        _instance.prompt = _instance.prompt || '';
-        _instance.minChars = _instance.minChars || 0;
-        _instance.maxChars = _instance.maxChars || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -140380,16 +140288,16 @@ class S2tLlmPostProcessingSummarizationOptions {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.active) {
+        if (_instance.active !== undefined && _instance.active !== null) {
             _writer.writeBool(1, _instance.active);
         }
-        if (_instance.prompt) {
+        if (_instance.prompt !== undefined && _instance.prompt !== null) {
             _writer.writeString(2, _instance.prompt);
         }
-        if (_instance.minChars) {
+        if (_instance.minChars !== undefined && _instance.minChars !== null) {
             _writer.writeInt32(3, _instance.minChars);
         }
-        if (_instance.maxChars) {
+        if (_instance.maxChars !== undefined && _instance.maxChars !== null) {
             _writer.writeInt32(4, _instance.maxChars);
         }
     }
@@ -140490,8 +140398,6 @@ class S2tLlmPostProcessingSubTaskOptions {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.active = _instance.active || false;
-        _instance.prompt = _instance.prompt || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -140521,10 +140427,10 @@ class S2tLlmPostProcessingSubTaskOptions {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.active) {
+        if (_instance.active !== undefined && _instance.active !== null) {
             _writer.writeBool(1, _instance.active);
         }
-        if (_instance.prompt) {
+        if (_instance.prompt !== undefined && _instance.prompt !== null) {
             _writer.writeString(2, _instance.prompt);
         }
     }
@@ -144563,7 +144469,6 @@ class RequestConfig {
             _instance.t2sCloudProviderConfig || undefined;
         _instance.wordToPhonemeMapping =
             _instance.wordToPhonemeMapping || undefined;
-        _instance.instruction = _instance.instruction || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -144660,7 +144565,7 @@ class RequestConfig {
         if (_instance.wordToPhonemeMapping) {
             _writer.writeMessage(12, _instance.wordToPhonemeMapping, googleProtobuf005.Struct.serializeBinaryToWriter);
         }
-        if (_instance.instruction) {
+        if (_instance.instruction !== undefined && _instance.instruction !== null) {
             _writer.writeString(13, _instance.instruction);
         }
     }
@@ -154167,7 +154072,6 @@ class NluVtsiConfig {
         _instance.initialIntent = _instance.initialIntent || '';
         _instance.contexts = _instance.contexts || [];
         _instance.httpBasicAuthToken = _instance.httpBasicAuthToken || '';
-        _instance.platform = _instance.platform || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -154246,7 +154150,7 @@ class NluVtsiConfig {
         if (_instance.httpBasicAuthToken) {
             _writer.writeString(8, _instance.httpBasicAuthToken);
         }
-        if (_instance.platform) {
+        if (_instance.platform !== undefined && _instance.platform !== null) {
             _writer.writeEnum(9, _instance.platform);
         }
     }
@@ -155155,10 +155059,6 @@ class TurnDetectionConfig {
      */
     static refineValues(_instance) {
         _instance.mode = _instance.mode || 0;
-        _instance.minEndpointingDelaySeconds =
-            _instance.minEndpointingDelaySeconds || 0;
-        _instance.maxEndpointingDelaySeconds =
-            _instance.maxEndpointingDelaySeconds || 0;
         _instance.turnEagerness = _instance.turnEagerness || 0;
         _instance.turnDetectionSystemPrompt =
             _instance.turnDetectionSystemPrompt || '';
@@ -155207,10 +155107,12 @@ class TurnDetectionConfig {
         if (_instance.mode) {
             _writer.writeEnum(1, _instance.mode);
         }
-        if (_instance.minEndpointingDelaySeconds) {
+        if (_instance.minEndpointingDelaySeconds !== undefined &&
+            _instance.minEndpointingDelaySeconds !== null) {
             _writer.writeFloat(2, _instance.minEndpointingDelaySeconds);
         }
-        if (_instance.maxEndpointingDelaySeconds) {
+        if (_instance.maxEndpointingDelaySeconds !== undefined &&
+            _instance.maxEndpointingDelaySeconds !== null) {
             _writer.writeFloat(3, _instance.maxEndpointingDelaySeconds);
         }
         if (_instance.turnEagerness) {
@@ -155356,17 +155258,6 @@ class InterruptionHandlingConfig {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.enabled = _instance.enabled || false;
-        _instance.minInterruptionDurationSeconds =
-            _instance.minInterruptionDurationSeconds || 0;
-        _instance.minInterruptionWords = _instance.minInterruptionWords || 0;
-        _instance.falseInterruptionTimeoutSeconds =
-            _instance.falseInterruptionTimeoutSeconds || 0;
-        _instance.resumeAfterFalseInterruption =
-            _instance.resumeAfterFalseInterruption || false;
-        _instance.backoffSeconds = _instance.backoffSeconds || 0;
-        _instance.firstMessageProtectedSeconds =
-            _instance.firstMessageProtectedSeconds || 0;
         _instance.transcribeOnDisabledInterruptions =
             _instance.transcribeOnDisabledInterruptions || false;
     }
@@ -155416,25 +155307,31 @@ class InterruptionHandlingConfig {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.enabled) {
+        if (_instance.enabled !== undefined && _instance.enabled !== null) {
             _writer.writeBool(1, _instance.enabled);
         }
-        if (_instance.minInterruptionDurationSeconds) {
+        if (_instance.minInterruptionDurationSeconds !== undefined &&
+            _instance.minInterruptionDurationSeconds !== null) {
             _writer.writeFloat(2, _instance.minInterruptionDurationSeconds);
         }
-        if (_instance.minInterruptionWords) {
+        if (_instance.minInterruptionWords !== undefined &&
+            _instance.minInterruptionWords !== null) {
             _writer.writeInt32(3, _instance.minInterruptionWords);
         }
-        if (_instance.falseInterruptionTimeoutSeconds) {
+        if (_instance.falseInterruptionTimeoutSeconds !== undefined &&
+            _instance.falseInterruptionTimeoutSeconds !== null) {
             _writer.writeFloat(4, _instance.falseInterruptionTimeoutSeconds);
         }
-        if (_instance.resumeAfterFalseInterruption) {
+        if (_instance.resumeAfterFalseInterruption !== undefined &&
+            _instance.resumeAfterFalseInterruption !== null) {
             _writer.writeBool(5, _instance.resumeAfterFalseInterruption);
         }
-        if (_instance.backoffSeconds) {
+        if (_instance.backoffSeconds !== undefined &&
+            _instance.backoffSeconds !== null) {
             _writer.writeFloat(6, _instance.backoffSeconds);
         }
-        if (_instance.firstMessageProtectedSeconds) {
+        if (_instance.firstMessageProtectedSeconds !== undefined &&
+            _instance.firstMessageProtectedSeconds !== null) {
             _writer.writeFloat(7, _instance.firstMessageProtectedSeconds);
         }
         if (_instance.transcribeOnDisabledInterruptions) {
@@ -155576,14 +155473,7 @@ class ResponseTimingConfig {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.turnTimeoutSeconds = _instance.turnTimeoutSeconds || 0;
-        _instance.silenceEndCallTimeoutSeconds =
-            _instance.silenceEndCallTimeoutSeconds || 0;
         _instance.softTimeoutConfig = _instance.softTimeoutConfig || undefined;
-        _instance.preemptiveGenerationEnabled =
-            _instance.preemptiveGenerationEnabled || false;
-        _instance.t2sChunkedStreamingEnabled =
-            _instance.t2sChunkedStreamingEnabled || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -155623,19 +155513,23 @@ class ResponseTimingConfig {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.turnTimeoutSeconds) {
+        if (_instance.turnTimeoutSeconds !== undefined &&
+            _instance.turnTimeoutSeconds !== null) {
             _writer.writeFloat(1, _instance.turnTimeoutSeconds);
         }
-        if (_instance.silenceEndCallTimeoutSeconds) {
+        if (_instance.silenceEndCallTimeoutSeconds !== undefined &&
+            _instance.silenceEndCallTimeoutSeconds !== null) {
             _writer.writeFloat(2, _instance.silenceEndCallTimeoutSeconds);
         }
         if (_instance.softTimeoutConfig) {
             _writer.writeMessage(3, _instance.softTimeoutConfig, SoftTimeoutConfig.serializeBinaryToWriter);
         }
-        if (_instance.preemptiveGenerationEnabled) {
+        if (_instance.preemptiveGenerationEnabled !== undefined &&
+            _instance.preemptiveGenerationEnabled !== null) {
             _writer.writeBool(4, _instance.preemptiveGenerationEnabled);
         }
-        if (_instance.t2sChunkedStreamingEnabled) {
+        if (_instance.t2sChunkedStreamingEnabled !== undefined &&
+            _instance.t2sChunkedStreamingEnabled !== null) {
             _writer.writeBool(5, _instance.t2sChunkedStreamingEnabled);
         }
     }
@@ -155751,9 +155645,7 @@ class SoftTimeoutConfig {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.timeoutSeconds = _instance.timeoutSeconds || 0;
         _instance.messages = _instance.messages || [];
-        _instance.maxPerGeneration = _instance.maxPerGeneration || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -155786,13 +155678,15 @@ class SoftTimeoutConfig {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.timeoutSeconds) {
+        if (_instance.timeoutSeconds !== undefined &&
+            _instance.timeoutSeconds !== null) {
             _writer.writeFloat(1, _instance.timeoutSeconds);
         }
         if (_instance.messages && _instance.messages.length) {
             _writer.writeRepeatedString(2, _instance.messages);
         }
-        if (_instance.maxPerGeneration) {
+        if (_instance.maxPerGeneration !== undefined &&
+            _instance.maxPerGeneration !== null) {
             _writer.writeInt32(3, _instance.maxPerGeneration);
         }
     }
@@ -156266,8 +156160,6 @@ class CsiVtsiConfig {
         _instance.audioObjectStoreConfig =
             _instance.audioObjectStoreConfig || undefined;
         _instance.messageBrokerConfig = _instance.messageBrokerConfig || undefined;
-        _instance.activateControlMessages =
-            _instance.activateControlMessages || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -156329,7 +156221,8 @@ class CsiVtsiConfig {
         if (_instance.messageBrokerConfig) {
             _writer.writeMessage(5, _instance.messageBrokerConfig, MessageBrokerConfig.serializeBinaryToWriter);
         }
-        if (_instance.activateControlMessages) {
+        if (_instance.activateControlMessages !== undefined &&
+            _instance.activateControlMessages !== null) {
             _writer.writeBool(6, _instance.activateControlMessages);
         }
     }
@@ -158954,8 +158847,6 @@ class ListCallersRequest {
      */
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
-        _instance.pageToken = _instance.pageToken || '';
-        _instance.callView = _instance.callView || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -158991,10 +158882,10 @@ class ListCallersRequest {
         if (_instance.vtsiProjectName) {
             _writer.writeString(1, _instance.vtsiProjectName);
         }
-        if (_instance.pageToken) {
+        if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
             _writer.writeString(2, _instance.pageToken);
         }
-        if (_instance.callView) {
+        if (_instance.callView !== undefined && _instance.callView !== null) {
             _writer.writeEnum(3, _instance.callView);
         }
     }
@@ -159209,7 +159100,6 @@ class GetCallerRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.name = _instance.name || '';
-        _instance.callView = _instance.callView || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -159248,7 +159138,7 @@ class GetCallerRequest {
         if (_instance.name) {
             _writer.writeString(2, _instance.name);
         }
-        if (_instance.callView) {
+        if (_instance.callView !== undefined && _instance.callView !== null) {
             _writer.writeEnum(3, _instance.callView);
         }
     }
@@ -159343,8 +159233,6 @@ class ListListenersRequest {
      */
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
-        _instance.pageToken = _instance.pageToken || '';
-        _instance.callView = _instance.callView || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -159380,10 +159268,10 @@ class ListListenersRequest {
         if (_instance.vtsiProjectName) {
             _writer.writeString(1, _instance.vtsiProjectName);
         }
-        if (_instance.pageToken) {
+        if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
             _writer.writeString(2, _instance.pageToken);
         }
-        if (_instance.callView) {
+        if (_instance.callView !== undefined && _instance.callView !== null) {
             _writer.writeEnum(3, _instance.callView);
         }
     }
@@ -159598,7 +159486,6 @@ class GetListenerRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.name = _instance.name || '';
-        _instance.callView = _instance.callView || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -159637,7 +159524,7 @@ class GetListenerRequest {
         if (_instance.name) {
             _writer.writeString(2, _instance.name);
         }
-        if (_instance.callView) {
+        if (_instance.callView !== undefined && _instance.callView !== null) {
             _writer.writeEnum(3, _instance.callView);
         }
     }
@@ -162310,7 +162197,6 @@ class GetScheduledCallerRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.name = _instance.name || '';
-        _instance.callView = _instance.callView || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -162349,7 +162235,7 @@ class GetScheduledCallerRequest {
         if (_instance.name) {
             _writer.writeString(2, _instance.name);
         }
-        if (_instance.callView) {
+        if (_instance.callView !== undefined && _instance.callView !== null) {
             _writer.writeEnum(3, _instance.callView);
         }
     }
@@ -162444,8 +162330,6 @@ class ListScheduledCallersRequest {
      */
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
-        _instance.pageToken = _instance.pageToken || '';
-        _instance.callView = _instance.callView || 0;
         _instance.statuses = _instance.statuses || [];
     }
     /**
@@ -162485,10 +162369,10 @@ class ListScheduledCallersRequest {
         if (_instance.vtsiProjectName) {
             _writer.writeString(1, _instance.vtsiProjectName);
         }
-        if (_instance.pageToken) {
+        if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
             _writer.writeString(2, _instance.pageToken);
         }
-        if (_instance.callView) {
+        if (_instance.callView !== undefined && _instance.callView !== null) {
             _writer.writeEnum(3, _instance.callView);
         }
         if (_instance.statuses && _instance.statuses.length) {
@@ -164109,7 +163993,6 @@ class GetCallRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.callName = _instance.callName || '';
-        _instance.callView = _instance.callView || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -164148,7 +164031,7 @@ class GetCallRequest {
         if (_instance.callName) {
             _writer.writeString(2, _instance.callName);
         }
-        if (_instance.callView) {
+        if (_instance.callView !== undefined && _instance.callView !== null) {
             _writer.writeEnum(3, _instance.callView);
         }
     }
@@ -164257,10 +164140,6 @@ class Call {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.commonServicesConfig =
             _instance.commonServicesConfig || undefined;
-        _instance.sipPort = _instance.sipPort || 0;
-        _instance.csiPort = _instance.csiPort || 0;
-        _instance.nluSessionName = _instance.nluSessionName || '';
-        _instance.platforms = _instance.platforms || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -164386,16 +164265,17 @@ class Call {
         if (_instance.commonServicesConfig) {
             _writer.writeMessage(14, _instance.commonServicesConfig, CommonServicesConfig.serializeBinaryToWriter);
         }
-        if (_instance.sipPort) {
+        if (_instance.sipPort !== undefined && _instance.sipPort !== null) {
             _writer.writeInt32(15, _instance.sipPort);
         }
-        if (_instance.csiPort) {
+        if (_instance.csiPort !== undefined && _instance.csiPort !== null) {
             _writer.writeInt32(16, _instance.csiPort);
         }
-        if (_instance.nluSessionName) {
+        if (_instance.nluSessionName !== undefined &&
+            _instance.nluSessionName !== null) {
             _writer.writeString(17, _instance.nluSessionName);
         }
-        if (_instance.platforms) {
+        if (_instance.platforms !== undefined && _instance.platforms !== null) {
             _writer.writeEnum(18, _instance.platforms);
         }
     }
@@ -164661,11 +164541,8 @@ class CallFilter {
         _instance.csiPorts = _instance.csiPorts || [];
         _instance.callTypes = _instance.callTypes || [];
         _instance.sipStatusTypes = _instance.sipStatusTypes || [];
-        _instance.callStatus = _instance.callStatus || 0;
         _instance.startTime = _instance.startTime || undefined;
         _instance.endTime = _instance.endTime || undefined;
-        _instance.durationInSMin = _instance.durationInSMin || 0;
-        _instance.durationInSMax = _instance.durationInSMax || 0;
         _instance.platforms = _instance.platforms || [];
     }
     /**
@@ -164764,7 +164641,7 @@ class CallFilter {
         if (_instance.sipStatusTypes && _instance.sipStatusTypes.length) {
             _writer.writePackedEnum(9, _instance.sipStatusTypes);
         }
-        if (_instance.callStatus) {
+        if (_instance.callStatus !== undefined && _instance.callStatus !== null) {
             _writer.writeEnum(10, _instance.callStatus);
         }
         if (_instance.startTime) {
@@ -164773,10 +164650,12 @@ class CallFilter {
         if (_instance.endTime) {
             _writer.writeMessage(12, _instance.endTime, googleProtobuf005.Timestamp.serializeBinaryToWriter);
         }
-        if (_instance.durationInSMin) {
+        if (_instance.durationInSMin !== undefined &&
+            _instance.durationInSMin !== null) {
             _writer.writeFloat(13, _instance.durationInSMin);
         }
-        if (_instance.durationInSMax) {
+        if (_instance.durationInSMax !== undefined &&
+            _instance.durationInSMax !== null) {
             _writer.writeFloat(14, _instance.durationInSMax);
         }
         if (_instance.platforms && _instance.platforms.length) {
@@ -164986,9 +164865,7 @@ class ListCallsRequest {
      */
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
-        _instance.callView = _instance.callView || 0;
         _instance.callFilter = _instance.callFilter || undefined;
-        _instance.pageToken = _instance.pageToken || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -165028,13 +164905,13 @@ class ListCallsRequest {
         if (_instance.vtsiProjectName) {
             _writer.writeString(1, _instance.vtsiProjectName);
         }
-        if (_instance.callView) {
+        if (_instance.callView !== undefined && _instance.callView !== null) {
             _writer.writeEnum(2, _instance.callView);
         }
         if (_instance.callFilter) {
             _writer.writeMessage(3, _instance.callFilter, CallFilter.serializeBinaryToWriter);
         }
-        if (_instance.pageToken) {
+        if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
             _writer.writeString(4, _instance.pageToken);
         }
     }
@@ -166956,9 +166833,6 @@ class CallLogFilter {
         _instance.channels = _instance.channels || [];
         _instance.minLogLevel = _instance.minLogLevel || 0;
         _instance.logLevels = _instance.logLevels || [];
-        _instance.includeUnleveledLines = _instance.includeUnleveledLines || false;
-        _instance.text = _instance.text || '';
-        _instance.regex = _instance.regex || '';
         _instance.emitterPrefixes = _instance.emitterPrefixes || [];
         _instance.threadNames = _instance.threadNames || [];
         _instance.startTime = _instance.startTime || undefined;
@@ -167155,13 +167029,14 @@ class CallLogFilter {
         if (_instance.logLevels && _instance.logLevels.length) {
             _writer.writePackedEnum(24, _instance.logLevels);
         }
-        if (_instance.includeUnleveledLines) {
+        if (_instance.includeUnleveledLines !== undefined &&
+            _instance.includeUnleveledLines !== null) {
             _writer.writeBool(25, _instance.includeUnleveledLines);
         }
-        if (_instance.text) {
+        if (_instance.text !== undefined && _instance.text !== null) {
             _writer.writeString(26, _instance.text);
         }
-        if (_instance.regex) {
+        if (_instance.regex !== undefined && _instance.regex !== null) {
             _writer.writeString(27, _instance.regex);
         }
         if (_instance.emitterPrefixes && _instance.emitterPrefixes.length) {
@@ -167964,9 +167839,6 @@ class StreamCallLogsRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.filter = _instance.filter || undefined;
-        _instance.tailLines = _instance.tailLines || 0;
-        _instance.resumeToken = _instance.resumeToken || '';
-        _instance.afterSeq = _instance.afterSeq || '0';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -168012,13 +167884,13 @@ class StreamCallLogsRequest {
         if (_instance.filter) {
             _writer.writeMessage(2, _instance.filter, CallLogFilter.serializeBinaryToWriter);
         }
-        if (_instance.tailLines) {
+        if (_instance.tailLines !== undefined && _instance.tailLines !== null) {
             _writer.writeInt32(3, _instance.tailLines);
         }
-        if (_instance.resumeToken) {
+        if (_instance.resumeToken !== undefined && _instance.resumeToken !== null) {
             _writer.writeString(4, _instance.resumeToken);
         }
-        if (_instance.afterSeq) {
+        if (_instance.afterSeq !== undefined && _instance.afterSeq !== null) {
             _writer.writeInt64String(5, _instance.afterSeq);
         }
     }
@@ -168315,11 +168187,6 @@ class ListCallLogsRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.filter = _instance.filter || undefined;
-        _instance.maxLines = _instance.maxLines || 0;
-        _instance.beforeSeq = _instance.beforeSeq || '0';
-        _instance.afterSeq = _instance.afterSeq || '0';
-        _instance.resumeToken = _instance.resumeToken || '';
-        _instance.oldestFirst = _instance.oldestFirst || false;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -168371,19 +168238,19 @@ class ListCallLogsRequest {
         if (_instance.filter) {
             _writer.writeMessage(2, _instance.filter, CallLogFilter.serializeBinaryToWriter);
         }
-        if (_instance.maxLines) {
+        if (_instance.maxLines !== undefined && _instance.maxLines !== null) {
             _writer.writeInt32(3, _instance.maxLines);
         }
-        if (_instance.beforeSeq) {
+        if (_instance.beforeSeq !== undefined && _instance.beforeSeq !== null) {
             _writer.writeInt64String(4, _instance.beforeSeq);
         }
-        if (_instance.afterSeq) {
+        if (_instance.afterSeq !== undefined && _instance.afterSeq !== null) {
             _writer.writeInt64String(5, _instance.afterSeq);
         }
-        if (_instance.resumeToken) {
+        if (_instance.resumeToken !== undefined && _instance.resumeToken !== null) {
             _writer.writeString(6, _instance.resumeToken);
         }
-        if (_instance.oldestFirst) {
+        if (_instance.oldestFirst !== undefined && _instance.oldestFirst !== null) {
             _writer.writeBool(7, _instance.oldestFirst);
         }
     }
@@ -168846,7 +168713,6 @@ class ListCallLogStreamsRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.filter = _instance.filter || undefined;
-        _instance.pageToken = _instance.pageToken || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -168886,7 +168752,7 @@ class ListCallLogStreamsRequest {
         if (_instance.filter) {
             _writer.writeMessage(2, _instance.filter, CallLogFilter.serializeBinaryToWriter);
         }
-        if (_instance.pageToken) {
+        if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
             _writer.writeString(3, _instance.pageToken);
         }
     }
@@ -170246,7 +170112,6 @@ class AsteriskConfigs {
      */
     static refineValues(_instance) {
         _instance.asteriskPort = _instance.asteriskPort || 0;
-        _instance.asteriskVersion = _instance.asteriskVersion || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -170300,7 +170165,8 @@ class AsteriskConfigs {
         if (_instance.asteriskPort) {
             _writer.writeInt32(4, _instance.asteriskPort);
         }
-        if (_instance.asteriskVersion) {
+        if (_instance.asteriskVersion !== undefined &&
+            _instance.asteriskVersion !== null) {
             _writer.writeString(5, _instance.asteriskVersion);
         }
     }
@@ -170819,7 +170685,6 @@ class ListVtsiProjectsRequest {
      */
     static refineValues(_instance) {
         _instance.vtsiProjectView = _instance.vtsiProjectView || 0;
-        _instance.pageToken = _instance.pageToken || '';
         _instance.vtsiProjectSorting = _instance.vtsiProjectSorting || undefined;
         _instance.nluAgentNames = _instance.nluAgentNames || [];
     }
@@ -170861,7 +170726,7 @@ class ListVtsiProjectsRequest {
         if (_instance.vtsiProjectView) {
             _writer.writeEnum(1, _instance.vtsiProjectView);
         }
-        if (_instance.pageToken) {
+        if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
             _writer.writeString(2, _instance.pageToken);
         }
         if (_instance.vtsiProjectSorting) {
@@ -171095,8 +170960,6 @@ class VtsiProjectSorting {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.sortingField = _instance.sortingField || 0;
-        _instance.sortingMode = _instance.sortingMode || 0;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -171126,10 +170989,11 @@ class VtsiProjectSorting {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.sortingField) {
+        if (_instance.sortingField !== undefined &&
+            _instance.sortingField !== null) {
             _writer.writeEnum(1, _instance.sortingField);
         }
-        if (_instance.sortingMode) {
+        if (_instance.sortingMode !== undefined && _instance.sortingMode !== null) {
             _writer.writeEnum(2, _instance.sortingMode);
         }
     }
@@ -171227,6 +171091,7 @@ class UpdateVtsiProjectRequest {
      */
     static refineValues(_instance) {
         _instance.vtsiProject = _instance.vtsiProject || undefined;
+        _instance.updateMask = _instance.updateMask || undefined;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -171241,6 +171106,10 @@ class UpdateVtsiProjectRequest {
                 case 1:
                     _instance.vtsiProject = new VtsiProject();
                     _reader.readMessage(_instance.vtsiProject, VtsiProject.deserializeBinaryFromReader);
+                    break;
+                case 2:
+                    _instance.updateMask = new googleProtobuf005.FieldMask();
+                    _reader.readMessage(_instance.updateMask, googleProtobuf005.FieldMask.deserializeBinaryFromReader);
                     break;
                 default:
                     _reader.skipField();
@@ -171257,6 +171126,9 @@ class UpdateVtsiProjectRequest {
         if (_instance.vtsiProject) {
             _writer.writeMessage(1, _instance.vtsiProject, VtsiProject.serializeBinaryToWriter);
         }
+        if (_instance.updateMask) {
+            _writer.writeMessage(2, _instance.updateMask, googleProtobuf005.FieldMask.serializeBinaryToWriter);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -171267,6 +171139,9 @@ class UpdateVtsiProjectRequest {
         this.vtsiProject = _value.vtsiProject
             ? new VtsiProject(_value.vtsiProject)
             : undefined;
+        this.updateMask = _value.updateMask
+            ? new googleProtobuf005.FieldMask(_value.updateMask)
+            : undefined;
         UpdateVtsiProjectRequest.refineValues(this);
     }
     get vtsiProject() {
@@ -171274,6 +171149,12 @@ class UpdateVtsiProjectRequest {
     }
     set vtsiProject(value) {
         this._vtsiProject = value;
+    }
+    get updateMask() {
+        return this._updateMask;
+    }
+    set updateMask(value) {
+        this._updateMask = value;
     }
     /**
      * Serialize message to binary data
@@ -171289,7 +171170,8 @@ class UpdateVtsiProjectRequest {
      */
     toObject() {
         return {
-            vtsiProject: this.vtsiProject ? this.vtsiProject.toObject() : undefined
+            vtsiProject: this.vtsiProject ? this.vtsiProject.toObject() : undefined,
+            updateMask: this.updateMask ? this.updateMask.toObject() : undefined
         };
     }
     /**
@@ -171309,6 +171191,9 @@ class UpdateVtsiProjectRequest {
         return {
             vtsiProject: this.vtsiProject
                 ? this.vtsiProject.toProtobufJSON(options)
+                : null,
+            updateMask: this.updateMask
+                ? this.updateMask.toProtobufJSON(options)
                 : null
         };
     }

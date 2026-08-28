@@ -91465,6 +91465,7 @@ declare class UpdateVtsiProjectRequest implements GrpcMessage {
      */
     static serializeBinaryToWriter(_instance: UpdateVtsiProjectRequest, _writer: BinaryWriter): void;
     private _vtsiProject?;
+    private _updateMask?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of UpdateVtsiProjectRequest to deeply clone from
@@ -91472,6 +91473,8 @@ declare class UpdateVtsiProjectRequest implements GrpcMessage {
     constructor(_value?: RecursivePartial<UpdateVtsiProjectRequest.AsObject>);
     get vtsiProject(): VtsiProject | undefined;
     set vtsiProject(value: VtsiProject | undefined);
+    get updateMask(): googleProtobuf005.FieldMask | undefined;
+    set updateMask(value: googleProtobuf005.FieldMask | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -91498,12 +91501,14 @@ declare namespace UpdateVtsiProjectRequest {
      */
     interface AsObject {
         vtsiProject?: VtsiProject.AsObject;
+        updateMask?: googleProtobuf005.FieldMask.AsObject;
     }
     /**
      * Protobuf JSON representation for UpdateVtsiProjectRequest
      */
     interface AsProtobufJSON {
         vtsiProject: VtsiProject.AsProtobufJSON | null;
+        updateMask: googleProtobuf005.FieldMask.AsProtobufJSON | null;
     }
 }
 /**

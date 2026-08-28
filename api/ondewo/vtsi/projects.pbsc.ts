@@ -22,6 +22,7 @@ import { Observable } from 'rxjs';
 import * as thisProto from './projects.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
 import { GRPC_PROJECTS_CLIENT_SETTINGS } from './projects.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Projects

@@ -12,6 +12,7 @@ import {
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
 export enum VtsiProjectStatus {
   UNSPECIFIED = 0,
   UNDEPLOYED = 1,
@@ -110,20 +111,20 @@ export class VtsiProject implements GrpcMessage {
           _instance.createdBy = _reader.readString();
           break;
         case 8:
-          _instance.createdAt = new googleProtobuf001.Timestamp();
+          _instance.createdAt = new googleProtobuf002.Timestamp();
           _reader.readMessage(
             _instance.createdAt,
-            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+            googleProtobuf002.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 9:
           _instance.modifiedBy = _reader.readString();
           break;
         case 10:
-          _instance.modifiedAt = new googleProtobuf001.Timestamp();
+          _instance.modifiedAt = new googleProtobuf002.Timestamp();
           _reader.readMessage(
             _instance.modifiedAt,
-            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+            googleProtobuf002.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 11:
@@ -192,7 +193,7 @@ export class VtsiProject implements GrpcMessage {
       _writer.writeMessage(
         8,
         _instance.createdAt as any,
-        googleProtobuf001.Timestamp.serializeBinaryToWriter
+        googleProtobuf002.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.modifiedBy) {
@@ -202,7 +203,7 @@ export class VtsiProject implements GrpcMessage {
       _writer.writeMessage(
         10,
         _instance.modifiedAt as any,
-        googleProtobuf001.Timestamp.serializeBinaryToWriter
+        googleProtobuf002.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.activeCallers) {
@@ -232,9 +233,9 @@ export class VtsiProject implements GrpcMessage {
   private _asteriskConfigs?: AsteriskConfigs;
   private _vtsiProjectStatus: VtsiProjectStatus;
   private _createdBy: string;
-  private _createdAt?: googleProtobuf001.Timestamp;
+  private _createdAt?: googleProtobuf002.Timestamp;
   private _modifiedBy: string;
-  private _modifiedAt?: googleProtobuf001.Timestamp;
+  private _modifiedAt?: googleProtobuf002.Timestamp;
   private _activeCallers: number;
   private _activeListeners: number;
   private _asteriskPort: number;
@@ -258,11 +259,11 @@ export class VtsiProject implements GrpcMessage {
     this.vtsiProjectStatus = _value.vtsiProjectStatus;
     this.createdBy = _value.createdBy;
     this.createdAt = _value.createdAt
-      ? new googleProtobuf001.Timestamp(_value.createdAt)
+      ? new googleProtobuf002.Timestamp(_value.createdAt)
       : undefined;
     this.modifiedBy = _value.modifiedBy;
     this.modifiedAt = _value.modifiedAt
-      ? new googleProtobuf001.Timestamp(_value.modifiedAt)
+      ? new googleProtobuf002.Timestamp(_value.modifiedAt)
       : undefined;
     this.activeCallers = _value.activeCallers;
     this.activeListeners = _value.activeListeners;
@@ -314,10 +315,10 @@ export class VtsiProject implements GrpcMessage {
   set createdBy(value: string) {
     this._createdBy = value;
   }
-  get createdAt(): googleProtobuf001.Timestamp | undefined {
+  get createdAt(): googleProtobuf002.Timestamp | undefined {
     return this._createdAt;
   }
-  set createdAt(value: googleProtobuf001.Timestamp | undefined) {
+  set createdAt(value: googleProtobuf002.Timestamp | undefined) {
     this._createdAt = value;
   }
   get modifiedBy(): string {
@@ -326,10 +327,10 @@ export class VtsiProject implements GrpcMessage {
   set modifiedBy(value: string) {
     this._modifiedBy = value;
   }
-  get modifiedAt(): googleProtobuf001.Timestamp | undefined {
+  get modifiedAt(): googleProtobuf002.Timestamp | undefined {
     return this._modifiedAt;
   }
-  set modifiedAt(value: googleProtobuf001.Timestamp | undefined) {
+  set modifiedAt(value: googleProtobuf002.Timestamp | undefined) {
     this._modifiedAt = value;
   }
   get activeCallers(): number {
@@ -463,9 +464,9 @@ export module VtsiProject {
     asteriskConfigs?: AsteriskConfigs.AsObject;
     vtsiProjectStatus: VtsiProjectStatus;
     createdBy: string;
-    createdAt?: googleProtobuf001.Timestamp.AsObject;
+    createdAt?: googleProtobuf002.Timestamp.AsObject;
     modifiedBy: string;
-    modifiedAt?: googleProtobuf001.Timestamp.AsObject;
+    modifiedAt?: googleProtobuf002.Timestamp.AsObject;
     activeCallers: number;
     activeListeners: number;
     asteriskPort: number;
@@ -485,9 +486,9 @@ export module VtsiProject {
     asteriskConfigs: AsteriskConfigs.AsProtobufJSON | null;
     vtsiProjectStatus: string;
     createdBy: string;
-    createdAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    createdAt: googleProtobuf002.Timestamp.AsProtobufJSON | null;
     modifiedBy: string;
-    modifiedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    modifiedAt: googleProtobuf002.Timestamp.AsProtobufJSON | null;
     activeCallers: number;
     activeListeners: number;
     asteriskPort: number;
@@ -953,7 +954,6 @@ export class AsteriskConfigs implements GrpcMessage {
    */
   static refineValues(_instance: AsteriskConfigs) {
     _instance.asteriskPort = _instance.asteriskPort || 0;
-    _instance.asteriskVersion = _instance.asteriskVersion || '';
   }
 
   /**
@@ -1032,7 +1032,10 @@ export class AsteriskConfigs implements GrpcMessage {
     if (_instance.asteriskPort) {
       _writer.writeInt32(4, _instance.asteriskPort);
     }
-    if (_instance.asteriskVersion) {
+    if (
+      _instance.asteriskVersion !== undefined &&
+      _instance.asteriskVersion !== null
+    ) {
       _writer.writeString(5, _instance.asteriskVersion);
     }
   }
@@ -1732,7 +1735,6 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
    */
   static refineValues(_instance: ListVtsiProjectsRequest) {
     _instance.vtsiProjectView = _instance.vtsiProjectView || 0;
-    _instance.pageToken = _instance.pageToken || '';
     _instance.vtsiProjectSorting = _instance.vtsiProjectSorting || undefined;
     _instance.nluAgentNames = _instance.nluAgentNames || [];
   }
@@ -1788,7 +1790,7 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
     if (_instance.vtsiProjectView) {
       _writer.writeEnum(1, _instance.vtsiProjectView);
     }
-    if (_instance.pageToken) {
+    if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(2, _instance.pageToken);
     }
     if (_instance.vtsiProjectSorting) {
@@ -2121,8 +2123,6 @@ export class VtsiProjectSorting implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: VtsiProjectSorting) {
-    _instance.sortingField = _instance.sortingField || 0;
-    _instance.sortingMode = _instance.sortingMode || 0;
   }
 
   /**
@@ -2161,10 +2161,13 @@ export class VtsiProjectSorting implements GrpcMessage {
     _instance: VtsiProjectSorting,
     _writer: BinaryWriter
   ) {
-    if (_instance.sortingField) {
+    if (
+      _instance.sortingField !== undefined &&
+      _instance.sortingField !== null
+    ) {
       _writer.writeEnum(1, _instance.sortingField);
     }
-    if (_instance.sortingMode) {
+    if (_instance.sortingMode !== undefined && _instance.sortingMode !== null) {
       _writer.writeEnum(2, _instance.sortingMode);
     }
   }
@@ -2297,6 +2300,7 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
    */
   static refineValues(_instance: UpdateVtsiProjectRequest) {
     _instance.vtsiProject = _instance.vtsiProject || undefined;
+    _instance.updateMask = _instance.updateMask || undefined;
   }
 
   /**
@@ -2317,6 +2321,13 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
           _reader.readMessage(
             _instance.vtsiProject,
             VtsiProject.deserializeBinaryFromReader
+          );
+          break;
+        case 2:
+          _instance.updateMask = new googleProtobuf000.FieldMask();
+          _reader.readMessage(
+            _instance.updateMask,
+            googleProtobuf000.FieldMask.deserializeBinaryFromReader
           );
           break;
         default:
@@ -2343,9 +2354,17 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
         VtsiProject.serializeBinaryToWriter
       );
     }
+    if (_instance.updateMask) {
+      _writer.writeMessage(
+        2,
+        _instance.updateMask as any,
+        googleProtobuf000.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProject?: VtsiProject;
+  private _updateMask?: googleProtobuf000.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2356,6 +2375,9 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
     this.vtsiProject = _value.vtsiProject
       ? new VtsiProject(_value.vtsiProject)
       : undefined;
+    this.updateMask = _value.updateMask
+      ? new googleProtobuf000.FieldMask(_value.updateMask)
+      : undefined;
     UpdateVtsiProjectRequest.refineValues(this);
   }
   get vtsiProject(): VtsiProject | undefined {
@@ -2363,6 +2385,12 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
   }
   set vtsiProject(value: VtsiProject | undefined) {
     this._vtsiProject = value;
+  }
+  get updateMask(): googleProtobuf000.FieldMask | undefined {
+    return this._updateMask;
+  }
+  set updateMask(value: googleProtobuf000.FieldMask | undefined) {
+    this._updateMask = value;
   }
 
   /**
@@ -2380,7 +2408,8 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
    */
   toObject(): UpdateVtsiProjectRequest.AsObject {
     return {
-      vtsiProject: this.vtsiProject ? this.vtsiProject.toObject() : undefined
+      vtsiProject: this.vtsiProject ? this.vtsiProject.toObject() : undefined,
+      updateMask: this.updateMask ? this.updateMask.toObject() : undefined
     };
   }
 
@@ -2403,6 +2432,9 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
     return {
       vtsiProject: this.vtsiProject
         ? this.vtsiProject.toProtobufJSON(options)
+        : null,
+      updateMask: this.updateMask
+        ? this.updateMask.toProtobufJSON(options)
         : null
     };
   }
@@ -2413,6 +2445,7 @@ export module UpdateVtsiProjectRequest {
    */
   export interface AsObject {
     vtsiProject?: VtsiProject.AsObject;
+    updateMask?: googleProtobuf000.FieldMask.AsObject;
   }
 
   /**
@@ -2420,6 +2453,7 @@ export module UpdateVtsiProjectRequest {
    */
   export interface AsProtobufJSON {
     vtsiProject: VtsiProject.AsProtobufJSON | null;
+    updateMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
   }
 }
 

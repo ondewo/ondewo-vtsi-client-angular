@@ -76,8 +76,6 @@ export class TranscribeRequestConfig implements GrpcMessage {
     _instance.s2tPipelineId = _instance.s2tPipelineId || '';
     _instance.decoding = _instance.decoding || 0;
 
-    _instance.language = _instance.language || '';
-    _instance.task = _instance.task || '';
     _instance.s2tServiceConfig = _instance.s2tServiceConfig || undefined;
     _instance.s2tCloudProviderConfig =
       _instance.s2tCloudProviderConfig || undefined;
@@ -207,10 +205,10 @@ export class TranscribeRequestConfig implements GrpcMessage {
         TranscriptionReturnOptions.serializeBinaryToWriter
       );
     }
-    if (_instance.language) {
+    if (_instance.language !== undefined && _instance.language !== null) {
       _writer.writeString(9, _instance.language);
     }
-    if (_instance.task) {
+    if (_instance.task !== undefined && _instance.task !== null) {
       _writer.writeString(10, _instance.task);
     }
     if (_instance.s2tServiceConfig) {
@@ -823,11 +821,6 @@ export class S2tCloudProviderConfigAmazon implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: S2tCloudProviderConfigAmazon) {
-    _instance.enablePartialResultsStabilization =
-      _instance.enablePartialResultsStabilization || false;
-    _instance.partialResultsStability = _instance.partialResultsStability || '';
-    _instance.languageModelName = _instance.languageModelName || '';
-    _instance.vocabularyName = _instance.vocabularyName || '';
   }
 
   /**
@@ -872,16 +865,28 @@ export class S2tCloudProviderConfigAmazon implements GrpcMessage {
     _instance: S2tCloudProviderConfigAmazon,
     _writer: BinaryWriter
   ) {
-    if (_instance.enablePartialResultsStabilization) {
+    if (
+      _instance.enablePartialResultsStabilization !== undefined &&
+      _instance.enablePartialResultsStabilization !== null
+    ) {
       _writer.writeBool(1, _instance.enablePartialResultsStabilization);
     }
-    if (_instance.partialResultsStability) {
+    if (
+      _instance.partialResultsStability !== undefined &&
+      _instance.partialResultsStability !== null
+    ) {
       _writer.writeString(2, _instance.partialResultsStability);
     }
-    if (_instance.languageModelName) {
+    if (
+      _instance.languageModelName !== undefined &&
+      _instance.languageModelName !== null
+    ) {
       _writer.writeString(3, _instance.languageModelName);
     }
-    if (_instance.vocabularyName) {
+    if (
+      _instance.vocabularyName !== undefined &&
+      _instance.vocabularyName !== null
+    ) {
       _writer.writeString(4, _instance.vocabularyName);
     }
   }
@@ -1023,11 +1028,6 @@ export class S2tCloudProviderConfigDeepgram implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: S2tCloudProviderConfigDeepgram) {
-    _instance.punctuate = _instance.punctuate || false;
-    _instance.smartFormat = _instance.smartFormat || false;
-    _instance.numerals = _instance.numerals || false;
-    _instance.measurements = _instance.measurements || false;
-    _instance.dictation = _instance.dictation || false;
   }
 
   /**
@@ -1075,19 +1075,22 @@ export class S2tCloudProviderConfigDeepgram implements GrpcMessage {
     _instance: S2tCloudProviderConfigDeepgram,
     _writer: BinaryWriter
   ) {
-    if (_instance.punctuate) {
+    if (_instance.punctuate !== undefined && _instance.punctuate !== null) {
       _writer.writeBool(1, _instance.punctuate);
     }
-    if (_instance.smartFormat) {
+    if (_instance.smartFormat !== undefined && _instance.smartFormat !== null) {
       _writer.writeBool(2, _instance.smartFormat);
     }
-    if (_instance.numerals) {
+    if (_instance.numerals !== undefined && _instance.numerals !== null) {
       _writer.writeBool(3, _instance.numerals);
     }
-    if (_instance.measurements) {
+    if (
+      _instance.measurements !== undefined &&
+      _instance.measurements !== null
+    ) {
       _writer.writeBool(4, _instance.measurements);
     }
-    if (_instance.dictation) {
+    if (_instance.dictation !== undefined && _instance.dictation !== null) {
       _writer.writeBool(5, _instance.dictation);
     }
   }
@@ -1240,13 +1243,6 @@ export class S2tCloudProviderConfigGoogle implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: S2tCloudProviderConfigGoogle) {
-    _instance.enableAutomaticPunctuation =
-      _instance.enableAutomaticPunctuation || false;
-    _instance.enableWordTimeOffsets = _instance.enableWordTimeOffsets || false;
-    _instance.enableWordConfidence = _instance.enableWordConfidence || false;
-    _instance.transcriptNormalization =
-      _instance.transcriptNormalization || false;
-    _instance.maxAlternatives = _instance.maxAlternatives || 0;
   }
 
   /**
@@ -1294,19 +1290,34 @@ export class S2tCloudProviderConfigGoogle implements GrpcMessage {
     _instance: S2tCloudProviderConfigGoogle,
     _writer: BinaryWriter
   ) {
-    if (_instance.enableAutomaticPunctuation) {
+    if (
+      _instance.enableAutomaticPunctuation !== undefined &&
+      _instance.enableAutomaticPunctuation !== null
+    ) {
       _writer.writeBool(1, _instance.enableAutomaticPunctuation);
     }
-    if (_instance.enableWordTimeOffsets) {
+    if (
+      _instance.enableWordTimeOffsets !== undefined &&
+      _instance.enableWordTimeOffsets !== null
+    ) {
       _writer.writeBool(2, _instance.enableWordTimeOffsets);
     }
-    if (_instance.enableWordConfidence) {
+    if (
+      _instance.enableWordConfidence !== undefined &&
+      _instance.enableWordConfidence !== null
+    ) {
       _writer.writeBool(3, _instance.enableWordConfidence);
     }
-    if (_instance.transcriptNormalization) {
+    if (
+      _instance.transcriptNormalization !== undefined &&
+      _instance.transcriptNormalization !== null
+    ) {
       _writer.writeBool(4, _instance.transcriptNormalization);
     }
-    if (_instance.maxAlternatives) {
+    if (
+      _instance.maxAlternatives !== undefined &&
+      _instance.maxAlternatives !== null
+    ) {
       _writer.writeInt32(5, _instance.maxAlternatives);
     }
   }
@@ -1459,10 +1470,6 @@ export class S2tCloudProviderConfigMicrosoft implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: S2tCloudProviderConfigMicrosoft) {
-    _instance.useFastTranscriptionApi =
-      _instance.useFastTranscriptionApi || false;
-    _instance.useDetailedOutputFormat =
-      _instance.useDetailedOutputFormat || false;
   }
 
   /**
@@ -1501,10 +1508,16 @@ export class S2tCloudProviderConfigMicrosoft implements GrpcMessage {
     _instance: S2tCloudProviderConfigMicrosoft,
     _writer: BinaryWriter
   ) {
-    if (_instance.useFastTranscriptionApi) {
+    if (
+      _instance.useFastTranscriptionApi !== undefined &&
+      _instance.useFastTranscriptionApi !== null
+    ) {
       _writer.writeBool(1, _instance.useFastTranscriptionApi);
     }
-    if (_instance.useDetailedOutputFormat) {
+    if (
+      _instance.useDetailedOutputFormat !== undefined &&
+      _instance.useDetailedOutputFormat !== null
+    ) {
       _writer.writeBool(2, _instance.useDetailedOutputFormat);
     }
   }
@@ -9338,12 +9351,6 @@ export class TurnDetectionOptions implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: TurnDetectionOptions) {
-    _instance.active = _instance.active || false;
-    _instance.fullUtteranceDeployment =
-      _instance.fullUtteranceDeployment || false;
-    _instance.turnDetectionSystemPrompt =
-      _instance.turnDetectionSystemPrompt || '';
-    _instance.turnDetectionUserPrompt = _instance.turnDetectionUserPrompt || '';
     _instance.turnDetectionLlmOpenaiOptions =
       _instance.turnDetectionLlmOpenaiOptions || undefined;
   }
@@ -9397,16 +9404,25 @@ export class TurnDetectionOptions implements GrpcMessage {
     _instance: TurnDetectionOptions,
     _writer: BinaryWriter
   ) {
-    if (_instance.active) {
+    if (_instance.active !== undefined && _instance.active !== null) {
       _writer.writeBool(1, _instance.active);
     }
-    if (_instance.fullUtteranceDeployment) {
+    if (
+      _instance.fullUtteranceDeployment !== undefined &&
+      _instance.fullUtteranceDeployment !== null
+    ) {
       _writer.writeBool(2, _instance.fullUtteranceDeployment);
     }
-    if (_instance.turnDetectionSystemPrompt) {
+    if (
+      _instance.turnDetectionSystemPrompt !== undefined &&
+      _instance.turnDetectionSystemPrompt !== null
+    ) {
       _writer.writeString(3, _instance.turnDetectionSystemPrompt);
     }
-    if (_instance.turnDetectionUserPrompt) {
+    if (
+      _instance.turnDetectionUserPrompt !== undefined &&
+      _instance.turnDetectionUserPrompt !== null
+    ) {
       _writer.writeString(4, _instance.turnDetectionUserPrompt);
     }
     if (_instance.turnDetectionLlmOpenaiOptions) {
@@ -9570,38 +9586,12 @@ export class OpenaiLlmOptions implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: OpenaiLlmOptions) {
-    _instance.apiKey = _instance.apiKey || '';
-    _instance.organization = _instance.organization || '';
-    _instance.project = _instance.project || '';
-    _instance.webhookSecret = _instance.webhookSecret || '';
-    _instance.baseUrl = _instance.baseUrl || '';
-    _instance.websocketBaseUrl = _instance.websocketBaseUrl || '';
-    _instance.timeout = _instance.timeout || 0;
-    _instance.maxRetries = _instance.maxRetries || 0;
     _instance.defaultHeaders = _instance.defaultHeaders || {};
     _instance.defaultQuery = _instance.defaultQuery || undefined;
-    _instance.strictResponseValidation =
-      _instance.strictResponseValidation || false;
     _instance.model = _instance.model || '';
-    _instance.frequencyPenalty = _instance.frequencyPenalty || 0;
     _instance.logitBias = _instance.logitBias || {};
-    _instance.logprobs = _instance.logprobs || false;
-    _instance.maxCompletionTokens = _instance.maxCompletionTokens || 0;
-    _instance.maxTokens = _instance.maxTokens || 0;
     _instance.metadata = _instance.metadata || undefined;
-    _instance.n = _instance.n || 0;
-    _instance.presencePenalty = _instance.presencePenalty || 0;
-    _instance.promptCacheKey = _instance.promptCacheKey || '';
-    _instance.reasoningEffort = _instance.reasoningEffort || 0;
-    _instance.seed = _instance.seed || '0';
-    _instance.serviceTier = _instance.serviceTier || 0;
     _instance.stop = _instance.stop || [];
-    _instance.store = _instance.store || false;
-    _instance.temperature = _instance.temperature || 0;
-    _instance.topLogprobs = _instance.topLogprobs || 0;
-    _instance.topP = _instance.topP || 0;
-    _instance.user = _instance.user || '';
-    _instance.verbosity = _instance.verbosity || 0;
     _instance.extraHeaders = _instance.extraHeaders || undefined;
     _instance.extraQuery = _instance.extraQuery || undefined;
     _instance.extraBody = _instance.extraBody || undefined;
@@ -9771,28 +9761,37 @@ export class OpenaiLlmOptions implements GrpcMessage {
     _instance: OpenaiLlmOptions,
     _writer: BinaryWriter
   ) {
-    if (_instance.apiKey) {
+    if (_instance.apiKey !== undefined && _instance.apiKey !== null) {
       _writer.writeString(1, _instance.apiKey);
     }
-    if (_instance.organization) {
+    if (
+      _instance.organization !== undefined &&
+      _instance.organization !== null
+    ) {
       _writer.writeString(2, _instance.organization);
     }
-    if (_instance.project) {
+    if (_instance.project !== undefined && _instance.project !== null) {
       _writer.writeString(3, _instance.project);
     }
-    if (_instance.webhookSecret) {
+    if (
+      _instance.webhookSecret !== undefined &&
+      _instance.webhookSecret !== null
+    ) {
       _writer.writeString(4, _instance.webhookSecret);
     }
-    if (_instance.baseUrl) {
+    if (_instance.baseUrl !== undefined && _instance.baseUrl !== null) {
       _writer.writeString(5, _instance.baseUrl);
     }
-    if (_instance.websocketBaseUrl) {
+    if (
+      _instance.websocketBaseUrl !== undefined &&
+      _instance.websocketBaseUrl !== null
+    ) {
       _writer.writeString(6, _instance.websocketBaseUrl);
     }
-    if (_instance.timeout) {
+    if (_instance.timeout !== undefined && _instance.timeout !== null) {
       _writer.writeFloat(7, _instance.timeout);
     }
-    if (_instance.maxRetries) {
+    if (_instance.maxRetries !== undefined && _instance.maxRetries !== null) {
       _writer.writeInt32(8, _instance.maxRetries);
     }
     if (!!_instance.defaultHeaders) {
@@ -9820,13 +9819,19 @@ export class OpenaiLlmOptions implements GrpcMessage {
         googleProtobuf001.Struct.serializeBinaryToWriter
       );
     }
-    if (_instance.strictResponseValidation) {
+    if (
+      _instance.strictResponseValidation !== undefined &&
+      _instance.strictResponseValidation !== null
+    ) {
       _writer.writeBool(11, _instance.strictResponseValidation);
     }
     if (_instance.model) {
       _writer.writeString(12, _instance.model);
     }
-    if (_instance.frequencyPenalty) {
+    if (
+      _instance.frequencyPenalty !== undefined &&
+      _instance.frequencyPenalty !== null
+    ) {
       _writer.writeFloat(13, _instance.frequencyPenalty);
     }
     if (!!_instance.logitBias) {
@@ -9844,13 +9849,16 @@ export class OpenaiLlmOptions implements GrpcMessage {
         );
       }
     }
-    if (_instance.logprobs) {
+    if (_instance.logprobs !== undefined && _instance.logprobs !== null) {
       _writer.writeBool(15, _instance.logprobs);
     }
-    if (_instance.maxCompletionTokens) {
+    if (
+      _instance.maxCompletionTokens !== undefined &&
+      _instance.maxCompletionTokens !== null
+    ) {
       _writer.writeInt32(16, _instance.maxCompletionTokens);
     }
-    if (_instance.maxTokens) {
+    if (_instance.maxTokens !== undefined && _instance.maxTokens !== null) {
       _writer.writeInt32(17, _instance.maxTokens);
     }
     if (_instance.metadata) {
@@ -9860,43 +9868,52 @@ export class OpenaiLlmOptions implements GrpcMessage {
         googleProtobuf001.Struct.serializeBinaryToWriter
       );
     }
-    if (_instance.n) {
+    if (_instance.n !== undefined && _instance.n !== null) {
       _writer.writeInt32(19, _instance.n);
     }
-    if (_instance.presencePenalty) {
+    if (
+      _instance.presencePenalty !== undefined &&
+      _instance.presencePenalty !== null
+    ) {
       _writer.writeFloat(20, _instance.presencePenalty);
     }
-    if (_instance.promptCacheKey) {
+    if (
+      _instance.promptCacheKey !== undefined &&
+      _instance.promptCacheKey !== null
+    ) {
       _writer.writeString(21, _instance.promptCacheKey);
     }
-    if (_instance.reasoningEffort) {
+    if (
+      _instance.reasoningEffort !== undefined &&
+      _instance.reasoningEffort !== null
+    ) {
       _writer.writeEnum(22, _instance.reasoningEffort);
     }
-    if (_instance.seed) {
+    if (_instance.seed !== undefined && _instance.seed !== null) {
       _writer.writeInt64String(23, _instance.seed);
     }
-    if (_instance.serviceTier) {
+    if (_instance.serviceTier !== undefined && _instance.serviceTier !== null) {
       _writer.writeEnum(24, _instance.serviceTier);
     }
     if (_instance.stop && _instance.stop.length) {
       _writer.writeRepeatedString(25, _instance.stop);
     }
-    if (_instance.store) {
+    if (_instance.store !== undefined && _instance.store !== null) {
       _writer.writeBool(26, _instance.store);
     }
-    if (_instance.temperature) {
+    if (_instance.temperature !== undefined && _instance.temperature !== null) {
       _writer.writeFloat(27, _instance.temperature);
     }
-    if (_instance.topLogprobs) {
+    if (_instance.topLogprobs !== undefined && _instance.topLogprobs !== null) {
       _writer.writeInt32(28, _instance.topLogprobs);
     }
-    if (_instance.topP) {
+    if (_instance.topP !== undefined && _instance.topP !== null) {
       _writer.writeFloat(29, _instance.topP);
     }
-    if (_instance.user) {
+    if (_instance.user !== undefined && _instance.user !== null) {
       _writer.writeString(30, _instance.user);
     }
-    if (_instance.verbosity) {
+    if (_instance.verbosity !== undefined && _instance.verbosity !== null) {
       _writer.writeEnum(31, _instance.verbosity);
     }
     if (_instance.extraHeaders) {
@@ -11931,10 +11948,6 @@ export class S2tLlmPostProcessing implements GrpcMessage {
   static refineValues(_instance: S2tLlmPostProcessing) {
     _instance.s2tLlmPostProcessingOpenaiOptions =
       _instance.s2tLlmPostProcessingOpenaiOptions || undefined;
-    _instance.s2tLlmPostProcessingSystemPrompt =
-      _instance.s2tLlmPostProcessingSystemPrompt || '';
-    _instance.s2tLlmPostProcessingEndingPrompt =
-      _instance.s2tLlmPostProcessingEndingPrompt || '';
     _instance.s2tLlmPostProcessingCasingOptions =
       _instance.s2tLlmPostProcessingCasingOptions || undefined;
     _instance.s2tLlmPostProcessingPunctuationOptions =
@@ -12068,10 +12081,16 @@ export class S2tLlmPostProcessing implements GrpcMessage {
         OpenaiLlmOptions.serializeBinaryToWriter
       );
     }
-    if (_instance.s2tLlmPostProcessingSystemPrompt) {
+    if (
+      _instance.s2tLlmPostProcessingSystemPrompt !== undefined &&
+      _instance.s2tLlmPostProcessingSystemPrompt !== null
+    ) {
       _writer.writeString(2, _instance.s2tLlmPostProcessingSystemPrompt);
     }
-    if (_instance.s2tLlmPostProcessingEndingPrompt) {
+    if (
+      _instance.s2tLlmPostProcessingEndingPrompt !== undefined &&
+      _instance.s2tLlmPostProcessingEndingPrompt !== null
+    ) {
       _writer.writeString(3, _instance.s2tLlmPostProcessingEndingPrompt);
     }
     if (_instance.s2tLlmPostProcessingCasingOptions) {
@@ -12507,9 +12526,6 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: S2tLlmPostProcessingTranslationOptions) {
-    _instance.active = _instance.active || false;
-    _instance.language = _instance.language || '';
-    _instance.prompt = _instance.prompt || '';
   }
 
   /**
@@ -12551,13 +12567,13 @@ export class S2tLlmPostProcessingTranslationOptions implements GrpcMessage {
     _instance: S2tLlmPostProcessingTranslationOptions,
     _writer: BinaryWriter
   ) {
-    if (_instance.active) {
+    if (_instance.active !== undefined && _instance.active !== null) {
       _writer.writeBool(1, _instance.active);
     }
-    if (_instance.language) {
+    if (_instance.language !== undefined && _instance.language !== null) {
       _writer.writeString(2, _instance.language);
     }
-    if (_instance.prompt) {
+    if (_instance.prompt !== undefined && _instance.prompt !== null) {
       _writer.writeString(3, _instance.prompt);
     }
   }
@@ -12692,7 +12708,6 @@ export class S2tLlmPostProcessingInverseNormalizationOptions
   static refineValues(
     _instance: S2tLlmPostProcessingInverseNormalizationOptions
   ) {
-    _instance.active = _instance.active || false;
     _instance.email = _instance.email || undefined;
     _instance.phoneNumber = _instance.phoneNumber || undefined;
     _instance.dateAndTime = _instance.dateAndTime || undefined;
@@ -12777,7 +12792,7 @@ export class S2tLlmPostProcessingInverseNormalizationOptions
     _instance: S2tLlmPostProcessingInverseNormalizationOptions,
     _writer: BinaryWriter
   ) {
-    if (_instance.active) {
+    if (_instance.active !== undefined && _instance.active !== null) {
       _writer.writeBool(1, _instance.active);
     }
     if (_instance.email) {
@@ -13027,7 +13042,6 @@ export class S2tLlmPostProcessingNormalizationOptions implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: S2tLlmPostProcessingNormalizationOptions) {
-    _instance.active = _instance.active || false;
     _instance.email = _instance.email || undefined;
     _instance.phoneNumber = _instance.phoneNumber || undefined;
     _instance.dateAndTime = _instance.dateAndTime || undefined;
@@ -13112,7 +13126,7 @@ export class S2tLlmPostProcessingNormalizationOptions implements GrpcMessage {
     _instance: S2tLlmPostProcessingNormalizationOptions,
     _writer: BinaryWriter
   ) {
-    if (_instance.active) {
+    if (_instance.active !== undefined && _instance.active !== null) {
       _writer.writeBool(1, _instance.active);
     }
     if (_instance.email) {
@@ -13360,10 +13374,6 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: S2tLlmPostProcessingSummarizationOptions) {
-    _instance.active = _instance.active || false;
-    _instance.prompt = _instance.prompt || '';
-    _instance.minChars = _instance.minChars || 0;
-    _instance.maxChars = _instance.maxChars || 0;
   }
 
   /**
@@ -13408,16 +13418,16 @@ export class S2tLlmPostProcessingSummarizationOptions implements GrpcMessage {
     _instance: S2tLlmPostProcessingSummarizationOptions,
     _writer: BinaryWriter
   ) {
-    if (_instance.active) {
+    if (_instance.active !== undefined && _instance.active !== null) {
       _writer.writeBool(1, _instance.active);
     }
-    if (_instance.prompt) {
+    if (_instance.prompt !== undefined && _instance.prompt !== null) {
       _writer.writeString(2, _instance.prompt);
     }
-    if (_instance.minChars) {
+    if (_instance.minChars !== undefined && _instance.minChars !== null) {
       _writer.writeInt32(3, _instance.minChars);
     }
-    if (_instance.maxChars) {
+    if (_instance.maxChars !== undefined && _instance.maxChars !== null) {
       _writer.writeInt32(4, _instance.maxChars);
     }
   }
@@ -13561,8 +13571,6 @@ export class S2tLlmPostProcessingSubTaskOptions implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: S2tLlmPostProcessingSubTaskOptions) {
-    _instance.active = _instance.active || false;
-    _instance.prompt = _instance.prompt || '';
   }
 
   /**
@@ -13601,10 +13609,10 @@ export class S2tLlmPostProcessingSubTaskOptions implements GrpcMessage {
     _instance: S2tLlmPostProcessingSubTaskOptions,
     _writer: BinaryWriter
   ) {
-    if (_instance.active) {
+    if (_instance.active !== undefined && _instance.active !== null) {
       _writer.writeBool(1, _instance.active);
     }
-    if (_instance.prompt) {
+    if (_instance.prompt !== undefined && _instance.prompt !== null) {
       _writer.writeString(2, _instance.prompt);
     }
   }

@@ -681,9 +681,6 @@ export class CallLogFilter implements GrpcMessage {
     _instance.channels = _instance.channels || [];
     _instance.minLogLevel = _instance.minLogLevel || 0;
     _instance.logLevels = _instance.logLevels || [];
-    _instance.includeUnleveledLines = _instance.includeUnleveledLines || false;
-    _instance.text = _instance.text || '';
-    _instance.regex = _instance.regex || '';
     _instance.emitterPrefixes = _instance.emitterPrefixes || [];
     _instance.threadNames = _instance.threadNames || [];
     _instance.startTime = _instance.startTime || undefined;
@@ -952,13 +949,16 @@ export class CallLogFilter implements GrpcMessage {
     if (_instance.logLevels && _instance.logLevels.length) {
       _writer.writePackedEnum(24, _instance.logLevels);
     }
-    if (_instance.includeUnleveledLines) {
+    if (
+      _instance.includeUnleveledLines !== undefined &&
+      _instance.includeUnleveledLines !== null
+    ) {
       _writer.writeBool(25, _instance.includeUnleveledLines);
     }
-    if (_instance.text) {
+    if (_instance.text !== undefined && _instance.text !== null) {
       _writer.writeString(26, _instance.text);
     }
-    if (_instance.regex) {
+    if (_instance.regex !== undefined && _instance.regex !== null) {
       _writer.writeString(27, _instance.regex);
     }
     if (_instance.emitterPrefixes && _instance.emitterPrefixes.length) {
@@ -2014,9 +2014,6 @@ export class StreamCallLogsRequest implements GrpcMessage {
   static refineValues(_instance: StreamCallLogsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.filter = _instance.filter || undefined;
-    _instance.tailLines = _instance.tailLines || 0;
-    _instance.resumeToken = _instance.resumeToken || '';
-    _instance.afterSeq = _instance.afterSeq || '0';
   }
 
   /**
@@ -2078,13 +2075,13 @@ export class StreamCallLogsRequest implements GrpcMessage {
         CallLogFilter.serializeBinaryToWriter
       );
     }
-    if (_instance.tailLines) {
+    if (_instance.tailLines !== undefined && _instance.tailLines !== null) {
       _writer.writeInt32(3, _instance.tailLines);
     }
-    if (_instance.resumeToken) {
+    if (_instance.resumeToken !== undefined && _instance.resumeToken !== null) {
       _writer.writeString(4, _instance.resumeToken);
     }
-    if (_instance.afterSeq) {
+    if (_instance.afterSeq !== undefined && _instance.afterSeq !== null) {
       _writer.writeInt64String(5, _instance.afterSeq);
     }
   }
@@ -2487,11 +2484,6 @@ export class ListCallLogsRequest implements GrpcMessage {
   static refineValues(_instance: ListCallLogsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.filter = _instance.filter || undefined;
-    _instance.maxLines = _instance.maxLines || 0;
-    _instance.beforeSeq = _instance.beforeSeq || '0';
-    _instance.afterSeq = _instance.afterSeq || '0';
-    _instance.resumeToken = _instance.resumeToken || '';
-    _instance.oldestFirst = _instance.oldestFirst || false;
   }
 
   /**
@@ -2559,19 +2551,19 @@ export class ListCallLogsRequest implements GrpcMessage {
         CallLogFilter.serializeBinaryToWriter
       );
     }
-    if (_instance.maxLines) {
+    if (_instance.maxLines !== undefined && _instance.maxLines !== null) {
       _writer.writeInt32(3, _instance.maxLines);
     }
-    if (_instance.beforeSeq) {
+    if (_instance.beforeSeq !== undefined && _instance.beforeSeq !== null) {
       _writer.writeInt64String(4, _instance.beforeSeq);
     }
-    if (_instance.afterSeq) {
+    if (_instance.afterSeq !== undefined && _instance.afterSeq !== null) {
       _writer.writeInt64String(5, _instance.afterSeq);
     }
-    if (_instance.resumeToken) {
+    if (_instance.resumeToken !== undefined && _instance.resumeToken !== null) {
       _writer.writeString(6, _instance.resumeToken);
     }
-    if (_instance.oldestFirst) {
+    if (_instance.oldestFirst !== undefined && _instance.oldestFirst !== null) {
       _writer.writeBool(7, _instance.oldestFirst);
     }
   }
@@ -3194,7 +3186,6 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
   static refineValues(_instance: ListCallLogStreamsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.filter = _instance.filter || undefined;
-    _instance.pageToken = _instance.pageToken || '';
   }
 
   /**
@@ -3250,7 +3241,7 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
         CallLogFilter.serializeBinaryToWriter
       );
     }
-    if (_instance.pageToken) {
+    if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(3, _instance.pageToken);
     }
   }
