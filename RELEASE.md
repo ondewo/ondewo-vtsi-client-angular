@@ -2,6 +2,22 @@
 
 *****************
 
+## Release ONDEWO VTSI Angular Client 8.6.0
+
+### Improvements
+
+* Tracking API Version [8.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 8.5.0
+
+### Improvements
+
+* Tracking API Version [8.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 8.4.0
 
 ### Improvements
@@ -33,6 +49,30 @@
 * Note that ngx-grpc flattens the field's explicit presence into a plain `asteriskVersion: string` that is
   written to the wire only when non-empty. An Angular caller can therefore send a tag or send nothing, and
   cannot send the empty string — which is harmless, because the empty string is the value the server rejects
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 8.2.0
+
+### Improvements
+
+* Tracking API Version [8.2.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.2.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 8.1.0
+
+### Improvements
+
+* Tracking API Version [8.1.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.1.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 8.0.0
+
+### Improvements
+
+* Tracking API Version [8.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
 
 *****************
 

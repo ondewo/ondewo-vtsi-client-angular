@@ -1,25 +1,28 @@
 # Release History
 
-***************** 
-## Release ONDEWO VTSI Angular Client 8.6.0 
- 
-### Improvements 
- * Tracking API Version [8.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
+*****************
 
+## Release ONDEWO VTSI Angular Client 8.6.0
 
-***************** 
-## Release ONDEWO VTSI Angular Client 8.5.0 
- 
-### Improvements 
- * Tracking API Version [8.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
+### Improvements
 
+* Tracking API Version [8.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
 
-***************** 
-## Release ONDEWO VTSI Angular Client 8.4.0 
- 
-### Improvements 
- * Tracking API Version [8.4.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.4.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ) 
+*****************
 
+## Release ONDEWO VTSI Angular Client 8.5.0
+
+### Improvements
+
+* Tracking API Version [8.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
+## Release ONDEWO VTSI Angular Client 8.4.0
+
+### Improvements
+
+* Tracking API Version [8.4.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/8.4.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
 
 *****************
 
