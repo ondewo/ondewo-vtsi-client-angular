@@ -6292,6 +6292,7 @@ export class RagRetrievalRequest implements GrpcMessage {
     _instance.metadataCondition = _instance.metadataCondition || undefined;
     _instance.topK = _instance.topK || 0;
     _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.rerankCandidates = _instance.rerankCandidates || 0;
   }
 
   /**
@@ -6368,6 +6369,15 @@ export class RagRetrievalRequest implements GrpcMessage {
           break;
         case 16:
           _instance.rerankModelCcaiServiceName = _reader.readString();
+          break;
+        case 17:
+          _instance.rerankCandidates = _reader.readInt32();
+          break;
+        case 18:
+          _instance.dedupThreshold = _reader.readFloat();
+          break;
+        case 19:
+          _instance.dedupBeforeRerank = _reader.readBool();
           break;
         default:
           _reader.skipField();
@@ -6451,6 +6461,21 @@ export class RagRetrievalRequest implements GrpcMessage {
     ) {
       _writer.writeString(16, _instance.rerankModelCcaiServiceName);
     }
+    if (_instance.rerankCandidates) {
+      _writer.writeInt32(17, _instance.rerankCandidates);
+    }
+    if (
+      _instance.dedupThreshold !== undefined &&
+      _instance.dedupThreshold !== null
+    ) {
+      _writer.writeFloat(18, _instance.dedupThreshold);
+    }
+    if (
+      _instance.dedupBeforeRerank !== undefined &&
+      _instance.dedupBeforeRerank !== null
+    ) {
+      _writer.writeBool(19, _instance.dedupBeforeRerank);
+    }
   }
 
   private _parent: string;
@@ -6469,6 +6494,9 @@ export class RagRetrievalRequest implements GrpcMessage {
   private _keyword: boolean;
   private _fieldMask?: googleProtobuf000.FieldMask;
   private _rerankModelCcaiServiceName: string;
+  private _rerankCandidates: number;
+  private _dedupThreshold: number;
+  private _dedupBeforeRerank: boolean;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -6496,6 +6524,9 @@ export class RagRetrievalRequest implements GrpcMessage {
       ? new googleProtobuf000.FieldMask(_value.fieldMask)
       : undefined;
     this.rerankModelCcaiServiceName = _value.rerankModelCcaiServiceName;
+    this.rerankCandidates = _value.rerankCandidates;
+    this.dedupThreshold = _value.dedupThreshold;
+    this.dedupBeforeRerank = _value.dedupBeforeRerank;
     RagRetrievalRequest.refineValues(this);
   }
   get parent(): string {
@@ -6594,6 +6625,24 @@ export class RagRetrievalRequest implements GrpcMessage {
   set rerankModelCcaiServiceName(value: string) {
     this._rerankModelCcaiServiceName = value;
   }
+  get rerankCandidates(): number {
+    return this._rerankCandidates;
+  }
+  set rerankCandidates(value: number) {
+    this._rerankCandidates = value;
+  }
+  get dedupThreshold(): number {
+    return this._dedupThreshold;
+  }
+  set dedupThreshold(value: number) {
+    this._dedupThreshold = value;
+  }
+  get dedupBeforeRerank(): boolean {
+    return this._dedupBeforeRerank;
+  }
+  set dedupBeforeRerank(value: boolean) {
+    this._dedupBeforeRerank = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -6627,7 +6676,10 @@ export class RagRetrievalRequest implements GrpcMessage {
       highlight: this.highlight,
       keyword: this.keyword,
       fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
-      rerankModelCcaiServiceName: this.rerankModelCcaiServiceName
+      rerankModelCcaiServiceName: this.rerankModelCcaiServiceName,
+      rerankCandidates: this.rerankCandidates,
+      dedupThreshold: this.dedupThreshold,
+      dedupBeforeRerank: this.dedupBeforeRerank
     };
   }
 
@@ -6665,7 +6717,10 @@ export class RagRetrievalRequest implements GrpcMessage {
       highlight: this.highlight,
       keyword: this.keyword,
       fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
-      rerankModelCcaiServiceName: this.rerankModelCcaiServiceName
+      rerankModelCcaiServiceName: this.rerankModelCcaiServiceName,
+      rerankCandidates: this.rerankCandidates,
+      dedupThreshold: this.dedupThreshold,
+      dedupBeforeRerank: this.dedupBeforeRerank
     };
   }
 }
@@ -6690,6 +6745,9 @@ export module RagRetrievalRequest {
     keyword: boolean;
     fieldMask?: googleProtobuf000.FieldMask.AsObject;
     rerankModelCcaiServiceName: string;
+    rerankCandidates: number;
+    dedupThreshold: number;
+    dedupBeforeRerank: boolean;
   }
 
   /**
@@ -6712,6 +6770,9 @@ export module RagRetrievalRequest {
     keyword: boolean;
     fieldMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
     rerankModelCcaiServiceName: string;
+    rerankCandidates: number;
+    dedupThreshold: number;
+    dedupBeforeRerank: boolean;
   }
 }
 
@@ -11577,6 +11638,7 @@ export class RagCrawlerConfig implements GrpcMessage {
     _instance.deepCrawlerConfig = _instance.deepCrawlerConfig || undefined;
     _instance.outputConfig = _instance.outputConfig || undefined;
     _instance.statusFilter = _instance.statusFilter || undefined;
+    _instance.incrementalConfig = _instance.incrementalConfig || undefined;
   }
 
   /**
@@ -11618,6 +11680,13 @@ export class RagCrawlerConfig implements GrpcMessage {
           _reader.readMessage(
             _instance.statusFilter,
             RagCrawlerStatusFilter.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.incrementalConfig = new RagCrawlerIncrementalConfig();
+          _reader.readMessage(
+            _instance.incrementalConfig,
+            RagCrawlerIncrementalConfig.deserializeBinaryFromReader
           );
           break;
         default:
@@ -11665,12 +11734,20 @@ export class RagCrawlerConfig implements GrpcMessage {
         RagCrawlerStatusFilter.serializeBinaryToWriter
       );
     }
+    if (_instance.incrementalConfig) {
+      _writer.writeMessage(
+        5,
+        _instance.incrementalConfig as any,
+        RagCrawlerIncrementalConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _concurrencyConfig?: RagCrawlerConcurrencyConfig;
   private _deepCrawlerConfig?: RagCrawlerDeepCrawlerConfig;
   private _outputConfig?: RagCrawlerResultsConfig;
   private _statusFilter?: RagCrawlerStatusFilter;
+  private _incrementalConfig?: RagCrawlerIncrementalConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -11689,6 +11766,9 @@ export class RagCrawlerConfig implements GrpcMessage {
       : undefined;
     this.statusFilter = _value.statusFilter
       ? new RagCrawlerStatusFilter(_value.statusFilter)
+      : undefined;
+    this.incrementalConfig = _value.incrementalConfig
+      ? new RagCrawlerIncrementalConfig(_value.incrementalConfig)
       : undefined;
     RagCrawlerConfig.refineValues(this);
   }
@@ -11716,6 +11796,12 @@ export class RagCrawlerConfig implements GrpcMessage {
   set statusFilter(value: RagCrawlerStatusFilter | undefined) {
     this._statusFilter = value;
   }
+  get incrementalConfig(): RagCrawlerIncrementalConfig | undefined {
+    return this._incrementalConfig;
+  }
+  set incrementalConfig(value: RagCrawlerIncrementalConfig | undefined) {
+    this._incrementalConfig = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -11741,7 +11827,12 @@ export class RagCrawlerConfig implements GrpcMessage {
       outputConfig: this.outputConfig
         ? this.outputConfig.toObject()
         : undefined,
-      statusFilter: this.statusFilter ? this.statusFilter.toObject() : undefined
+      statusFilter: this.statusFilter
+        ? this.statusFilter.toObject()
+        : undefined,
+      incrementalConfig: this.incrementalConfig
+        ? this.incrementalConfig.toObject()
+        : undefined
     };
   }
 
@@ -11773,6 +11864,9 @@ export class RagCrawlerConfig implements GrpcMessage {
         : null,
       statusFilter: this.statusFilter
         ? this.statusFilter.toProtobufJSON(options)
+        : null,
+      incrementalConfig: this.incrementalConfig
+        ? this.incrementalConfig.toProtobufJSON(options)
         : null
     };
   }
@@ -11786,6 +11880,7 @@ export module RagCrawlerConfig {
     deepCrawlerConfig?: RagCrawlerDeepCrawlerConfig.AsObject;
     outputConfig?: RagCrawlerResultsConfig.AsObject;
     statusFilter?: RagCrawlerStatusFilter.AsObject;
+    incrementalConfig?: RagCrawlerIncrementalConfig.AsObject;
   }
 
   /**
@@ -11796,6 +11891,7 @@ export module RagCrawlerConfig {
     deepCrawlerConfig: RagCrawlerDeepCrawlerConfig.AsProtobufJSON | null;
     outputConfig: RagCrawlerResultsConfig.AsProtobufJSON | null;
     statusFilter: RagCrawlerStatusFilter.AsProtobufJSON | null;
+    incrementalConfig: RagCrawlerIncrementalConfig.AsProtobufJSON | null;
   }
 }
 
@@ -12080,6 +12176,7 @@ export class RagCrawlerResultsConfig implements GrpcMessage {
     _instance.metaDataExtractors = _instance.metaDataExtractors || [];
     _instance.contentScope = _instance.contentScope || undefined;
     _instance.densityPruning = _instance.densityPruning || undefined;
+    _instance.discoveryOnlyUrlRegex = _instance.discoveryOnlyUrlRegex || [];
   }
 
   /**
@@ -12120,6 +12217,10 @@ export class RagCrawlerResultsConfig implements GrpcMessage {
             _instance.densityPruning,
             RagCrawlerDensityPruning.deserializeBinaryFromReader
           );
+          break;
+        case 5:
+          (_instance.discoveryOnlyUrlRegex =
+            _instance.discoveryOnlyUrlRegex || []).push(_reader.readString());
           break;
         default:
           _reader.skipField();
@@ -12165,12 +12266,19 @@ export class RagCrawlerResultsConfig implements GrpcMessage {
         RagCrawlerDensityPruning.serializeBinaryToWriter
       );
     }
+    if (
+      _instance.discoveryOnlyUrlRegex &&
+      _instance.discoveryOnlyUrlRegex.length
+    ) {
+      _writer.writeRepeatedString(5, _instance.discoveryOnlyUrlRegex);
+    }
   }
 
   private _injectFrontmatter: boolean;
   private _metaDataExtractors?: RagCrawlerMetaDataExtractor[];
   private _contentScope?: RagCrawlerContentScope;
   private _densityPruning?: RagCrawlerDensityPruning;
+  private _discoveryOnlyUrlRegex: string[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -12188,6 +12296,7 @@ export class RagCrawlerResultsConfig implements GrpcMessage {
     this.densityPruning = _value.densityPruning
       ? new RagCrawlerDensityPruning(_value.densityPruning)
       : undefined;
+    this.discoveryOnlyUrlRegex = (_value.discoveryOnlyUrlRegex || []).slice();
     RagCrawlerResultsConfig.refineValues(this);
   }
   get injectFrontmatter(): boolean {
@@ -12214,6 +12323,12 @@ export class RagCrawlerResultsConfig implements GrpcMessage {
   set densityPruning(value: RagCrawlerDensityPruning | undefined) {
     this._densityPruning = value;
   }
+  get discoveryOnlyUrlRegex(): string[] {
+    return this._discoveryOnlyUrlRegex;
+  }
+  set discoveryOnlyUrlRegex(value: string[]) {
+    this._discoveryOnlyUrlRegex = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -12239,7 +12354,8 @@ export class RagCrawlerResultsConfig implements GrpcMessage {
         : undefined,
       densityPruning: this.densityPruning
         ? this.densityPruning.toObject()
-        : undefined
+        : undefined,
+      discoveryOnlyUrlRegex: (this.discoveryOnlyUrlRegex || []).slice()
     };
   }
 
@@ -12269,7 +12385,8 @@ export class RagCrawlerResultsConfig implements GrpcMessage {
         : null,
       densityPruning: this.densityPruning
         ? this.densityPruning.toProtobufJSON(options)
-        : null
+        : null,
+      discoveryOnlyUrlRegex: (this.discoveryOnlyUrlRegex || []).slice()
     };
   }
 }
@@ -12282,6 +12399,7 @@ export module RagCrawlerResultsConfig {
     metaDataExtractors?: RagCrawlerMetaDataExtractor.AsObject[];
     contentScope?: RagCrawlerContentScope.AsObject;
     densityPruning?: RagCrawlerDensityPruning.AsObject;
+    discoveryOnlyUrlRegex: string[];
   }
 
   /**
@@ -12292,6 +12410,7 @@ export module RagCrawlerResultsConfig {
     metaDataExtractors: RagCrawlerMetaDataExtractor.AsProtobufJSON[] | null;
     contentScope: RagCrawlerContentScope.AsProtobufJSON | null;
     densityPruning: RagCrawlerDensityPruning.AsProtobufJSON | null;
+    discoveryOnlyUrlRegex: string[];
   }
 }
 
@@ -12885,6 +13004,12 @@ export class RagCrawlerRetryConfig implements GrpcMessage {
         case 2:
           _instance.retryMaxAttempts = _reader.readInt32();
           break;
+        case 3:
+          _instance.retryBackoffSeconds = _reader.readFloat();
+          break;
+        case 4:
+          _instance.maxStallSeconds = _reader.readInt32();
+          break;
         default:
           _reader.skipField();
       }
@@ -12914,10 +13039,24 @@ export class RagCrawlerRetryConfig implements GrpcMessage {
     ) {
       _writer.writeInt32(2, _instance.retryMaxAttempts);
     }
+    if (
+      _instance.retryBackoffSeconds !== undefined &&
+      _instance.retryBackoffSeconds !== null
+    ) {
+      _writer.writeFloat(3, _instance.retryBackoffSeconds);
+    }
+    if (
+      _instance.maxStallSeconds !== undefined &&
+      _instance.maxStallSeconds !== null
+    ) {
+      _writer.writeInt32(4, _instance.maxStallSeconds);
+    }
   }
 
   private _pageLoadTimeoutSeconds: number;
   private _retryMaxAttempts: number;
+  private _retryBackoffSeconds: number;
+  private _maxStallSeconds: number;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -12927,6 +13066,8 @@ export class RagCrawlerRetryConfig implements GrpcMessage {
     _value = _value || {};
     this.pageLoadTimeoutSeconds = _value.pageLoadTimeoutSeconds;
     this.retryMaxAttempts = _value.retryMaxAttempts;
+    this.retryBackoffSeconds = _value.retryBackoffSeconds;
+    this.maxStallSeconds = _value.maxStallSeconds;
     RagCrawlerRetryConfig.refineValues(this);
   }
   get pageLoadTimeoutSeconds(): number {
@@ -12940,6 +13081,18 @@ export class RagCrawlerRetryConfig implements GrpcMessage {
   }
   set retryMaxAttempts(value: number) {
     this._retryMaxAttempts = value;
+  }
+  get retryBackoffSeconds(): number {
+    return this._retryBackoffSeconds;
+  }
+  set retryBackoffSeconds(value: number) {
+    this._retryBackoffSeconds = value;
+  }
+  get maxStallSeconds(): number {
+    return this._maxStallSeconds;
+  }
+  set maxStallSeconds(value: number) {
+    this._maxStallSeconds = value;
   }
 
   /**
@@ -12958,7 +13111,9 @@ export class RagCrawlerRetryConfig implements GrpcMessage {
   toObject(): RagCrawlerRetryConfig.AsObject {
     return {
       pageLoadTimeoutSeconds: this.pageLoadTimeoutSeconds,
-      retryMaxAttempts: this.retryMaxAttempts
+      retryMaxAttempts: this.retryMaxAttempts,
+      retryBackoffSeconds: this.retryBackoffSeconds,
+      maxStallSeconds: this.maxStallSeconds
     };
   }
 
@@ -12980,7 +13135,9 @@ export class RagCrawlerRetryConfig implements GrpcMessage {
   ): RagCrawlerRetryConfig.AsProtobufJSON {
     return {
       pageLoadTimeoutSeconds: this.pageLoadTimeoutSeconds,
-      retryMaxAttempts: this.retryMaxAttempts
+      retryMaxAttempts: this.retryMaxAttempts,
+      retryBackoffSeconds: this.retryBackoffSeconds,
+      maxStallSeconds: this.maxStallSeconds
     };
   }
 }
@@ -12991,6 +13148,8 @@ export module RagCrawlerRetryConfig {
   export interface AsObject {
     pageLoadTimeoutSeconds: number;
     retryMaxAttempts: number;
+    retryBackoffSeconds: number;
+    maxStallSeconds: number;
   }
 
   /**
@@ -12999,6 +13158,8 @@ export module RagCrawlerRetryConfig {
   export interface AsProtobufJSON {
     pageLoadTimeoutSeconds: number;
     retryMaxAttempts: number;
+    retryBackoffSeconds: number;
+    maxStallSeconds: number;
   }
 }
 
@@ -13159,6 +13320,163 @@ export module RagCrawlerStatusFilter {
   export interface AsProtobufJSON {
     isActive: boolean;
     acceptedStatusCodes: number[];
+  }
+}
+
+/**
+ * Message implementation for ondewo.nlu.RagCrawlerIncrementalConfig
+ */
+export class RagCrawlerIncrementalConfig implements GrpcMessage {
+  static id = 'ondewo.nlu.RagCrawlerIncrementalConfig';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new RagCrawlerIncrementalConfig();
+    RagCrawlerIncrementalConfig.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: RagCrawlerIncrementalConfig) {
+    _instance.isActive = _instance.isActive || false;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: RagCrawlerIncrementalConfig,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.isActive = _reader.readBool();
+          break;
+        case 2:
+          _instance.maxAgeDays = _reader.readInt32();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    RagCrawlerIncrementalConfig.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: RagCrawlerIncrementalConfig,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.isActive) {
+      _writer.writeBool(1, _instance.isActive);
+    }
+    if (_instance.maxAgeDays !== undefined && _instance.maxAgeDays !== null) {
+      _writer.writeInt32(2, _instance.maxAgeDays);
+    }
+  }
+
+  private _isActive: boolean;
+  private _maxAgeDays: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of RagCrawlerIncrementalConfig to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<RagCrawlerIncrementalConfig.AsObject>) {
+    _value = _value || {};
+    this.isActive = _value.isActive;
+    this.maxAgeDays = _value.maxAgeDays;
+    RagCrawlerIncrementalConfig.refineValues(this);
+  }
+  get isActive(): boolean {
+    return this._isActive;
+  }
+  set isActive(value: boolean) {
+    this._isActive = value;
+  }
+  get maxAgeDays(): number {
+    return this._maxAgeDays;
+  }
+  set maxAgeDays(value: number) {
+    this._maxAgeDays = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    RagCrawlerIncrementalConfig.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): RagCrawlerIncrementalConfig.AsObject {
+    return {
+      isActive: this.isActive,
+      maxAgeDays: this.maxAgeDays
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): RagCrawlerIncrementalConfig.AsProtobufJSON {
+    return {
+      isActive: this.isActive,
+      maxAgeDays: this.maxAgeDays
+    };
+  }
+}
+export module RagCrawlerIncrementalConfig {
+  /**
+   * Standard JavaScript object representation for RagCrawlerIncrementalConfig
+   */
+  export interface AsObject {
+    isActive: boolean;
+    maxAgeDays: number;
+  }
+
+  /**
+   * Protobuf JSON representation for RagCrawlerIncrementalConfig
+   */
+  export interface AsProtobufJSON {
+    isActive: boolean;
+    maxAgeDays: number;
   }
 }
 
