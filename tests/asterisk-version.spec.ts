@@ -36,10 +36,15 @@ describe('AsteriskConfigs.asteriskVersion', () => {
 		expect(configs.asteriskVersion).toBe(ASTERISK_VERSION);
 	});
 
-	it('defaults to the empty string when the caller says nothing', () => {
-		// `refineValues` runs in the constructor and coerces undefined to ''. This is the presence
-		// flattening described in the file docstring, asserted rather than assumed.
-		expect(makeConfigs().asteriskVersion).toBe('');
+	it('is left UNDEFINED when the caller says nothing, rather than coerced to an empty string', () => {
+		// This REVERSED at 8.6.0 and the old expectation ('') is the reason this suite went red.
+		// The client's `ondewo-proto-compiler` submodule moved from tags/5.13.0 to tags/5.14.0, and
+		// `refineValues` stopped coercing the field: 8.5.0 ran
+		// `_instance.asteriskVersion = _instance.asteriskVersion || '';` and 8.6.0 touches only
+		// `asteriskPort`. So the runtime no longer erases the difference between "omitted" and "''",
+		// which is precisely what the server needs -- an unset tag means "use
+		// ONDEWO_VTSI_ASTERISK_IMAGE_TAG", an empty one is a caller error.
+		expect(makeConfigs().asteriskVersion).toBeUndefined();
 	});
 
 	it('survives a binary round trip', () => {
@@ -48,11 +53,23 @@ describe('AsteriskConfigs.asteriskVersion', () => {
 		expect(received.asteriskVersion).toBe(ASTERISK_VERSION);
 	});
 
-	it('is omitted from the wire when it is empty, so an empty tag reaches the server as unset', () => {
-		// The server treats an explicitly empty tag as a caller error and an absent one as "use the
-		// default". Because ngx-grpc only writes a truthy value, an Angular caller cannot produce the
-		// former — the two encode identically.
-		expect(makeConfigs('').serializeBinary()).toEqual(makeConfigs().serializeBinary());
+	it('puts an EMPTY tag on the wire, so the server can refuse it instead of silently defaulting', () => {
+		// The second half of the 8.6.0 change, and the other reason this suite went red. The write
+		// guard moved from TRUTHY to PRESENCE -- 8.5.0 wrote `if (_instance.asteriskVersion) {`,
+		// 8.6.0 writes `if (_instance.asteriskVersion !== undefined && ... !== null) {`. An Angular
+		// caller setting '' therefore emits field 5 with length 0 where 8.5.0 emitted nothing at all.
+		//
+		// This is the CORRECT direction: ondewo-vtsi refuses an empty docker tag with
+		// INVALID_ARGUMENT (Validators.validate_semantic_version), and it can only do that if the
+		// empty value actually reaches it. Flattening the two encodings hid a caller error.
+		const unset: Uint8Array = makeConfigs().serializeBinary();
+		const empty: Uint8Array = makeConfigs('').serializeBinary();
+		expect(Array.from(empty)).not.toEqual(Array.from(unset));
+
+		// Measured: the difference is exactly the two bytes 0x2a 0x00 -- field 5, wire type 2,
+		// length 0 -- appended to the unset encoding. Asserting the bytes rather than "they differ"
+		// keeps the test honest about WHAT is on the wire.
+		expect(Array.from(empty)).toEqual([...Array.from(unset), 0x2a, 0x00]);
 	});
 
 	it('appears in both object projections', () => {
