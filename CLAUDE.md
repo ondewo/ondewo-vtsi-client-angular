@@ -115,11 +115,55 @@ These bit us during the 6.14.0 release. Keep them in mind when releasing.
 - `install_dependencies` must `git checkout -- package.json package-lock.json` then `npm install --include=dev` — the release runs under `NODE_ENV=production` (drops devDeps) and the build minimises root `package.json`, so `rxjs`/`@angular`/`@ngx-grpc` must be force-resolved or the type-aware eslint fails only at release time.
 - A type assertion that the **non-strict** release `tsconfig.json` calls "unnecessary" is **required** by the **strict** jest `tsconfig.spec.json` — keep the `eslint-disable` on it; removing it red-greens one toolchain while breaking the other.
 
-## `optional` proto3 scalars: ngx-grpc FLATTENS presence, and that is a real difference
+## `optional` proto3 scalars: presence survives ON THE WIRE, never in the declared type
 
-`AsteriskConfigs.asterisk_version` is the first field here declared `optional string` upstream. The python and jspb clients expose real presence (`HasField` / `hasAsteriskVersion()`); **ngx-grpc does not**. The generated class has a plain `asteriskVersion: string`, `refineValues` coerces `undefined` to `''` in the constructor, and `writeToBinary` emits the field only when it is truthy.
+**This section said the opposite until 2026-09-15, and the old claim is now false in every clause.**
+It stated that ngx-grpc flattens presence, that `refineValues` coerces `undefined` to `''`, and that
+the writer emits the field only when it is truthy — therefore that an Angular caller "cannot send the
+empty string". That described the stubs this repository shipped up to 8.5.0. It stopped being true at
+8.6.0 and it is not true of the committed stubs. Anyone still reasoning from it will conclude a caller
+error is unreachable when it is reachable, and will stop looking for the pin that makes the difference.
 
-The consequence, asserted in `tests/asterisk-version.spec.ts` rather than assumed: an Angular caller can send a tag or send nothing, and **cannot send the empty string** — an empty value encodes identically to an absent one. That is harmless for this field, because the empty string is exactly the value the VTSI server rejects. It will not be harmless for the next `optional` field that needs the third state, so check this before assuming an Angular client can express one.
+**Why it changed.** The angular codegen STRIPS the `optional` keyword from every `.proto` before
+protoc-gen-ng runs (`compile-proto-2-stubs.sh`), so the plugin never sees it and cannot emit presence on
+its own. `ondewo-proto-compiler` **5.14.0** added `angular/image-data/fix-proto3-optional-presence.ts`,
+which replays the `proto3_optional` flags out of a descriptor set taken BEFORE that strip and rewrites
+exactly those fields. So presence here is a property of the COMPILER PIN, not of ngx-grpc.
+
+**What that restores, read off the committed stubs** (`AsteriskConfigs`, `api/ondewo/vtsi/projects.pb.ts`):
+
+- `refineValues` no longer touches the field. It coerces only `asteriskPort`, so an unset
+  `asteriskVersion` really holds `undefined` instead of being rewritten to `''`.
+- `serializeBinaryToWriter` guards on PRESENCE, not on truthiness: the emitted condition tests
+  `_instance.asteriskVersion !== undefined` and `!== null`. An explicitly empty tag is therefore
+  written as field 5, wire type 2, length 0 — the two bytes `0x2a 0x00`.
+
+So an Angular caller **can** send the empty string, and ondewo-vtsi refuses it with `INVALID_ARGUMENT`
+(`Validators.validate_semantic_version`) — which is the whole point: a caller error reaches the server
+as a caller error instead of being silently served as the `ONDEWO_VTSI_ASTERISK_IMAGE_TAG` default.
+
+**What it does NOT restore is the TypeScript surface, and that half of the old claim was always right.**
+There is no `hasAsteriskVersion()` / `clearAsteriskVersion()` pair, and the declared type of the getter,
+of `AsObject` and of `AsProtobufJSON` is a non-nullable `string` that the runtime contradicts for an
+unset field. Typed caller code cannot branch on presence without lying to the compiler.
+
+**Consequences for anyone touching this repository:**
+
+- **Assert presence on BYTES, never on the getter or `toObject()`.** They are the unsound surface. The
+  sibling nodejs client is worse — `getPageToken()` returns `""` for both states — so a byte assertion
+  is also the only one that ports across the SDK family. `tests/asterisk-version.spec.ts` (one field's
+  full contract) and `tests/proto3-presence.spec.ts` (the property across `int32`, `int64`, `string` and
+  `bool`, in two messages) both do this; `tests/wire-format.ts` is the shared tag reader.
+- **The floor is a merge gate.** `ONDEWO_PROTO_COMPILER_GIT_BRANCH` below `tags/5.14.0` silently removes
+  presence again: the build succeeds, every other spec passes, and the only symptom is a caller error
+  served as a default. `tests/build-config.spec.ts` fails on a pin below the floor.
+- **This is no longer one field.** The pinned `ondewo-vtsi-api` 8.7.0 declares **65** proto3 optional
+  fields (`projects.proto` 5, `calls.proto` 43, `logs.proto` 17) — `ListVtsiProjectsRequest.page_token`,
+  the `CallLogFilter` text/regex/time fields, `tail_lines`, `after_seq`, `before_seq` and the rest. A
+  regression below the floor moves all of them at once.
+- **A field WITHOUT the `optional` keyword still flattens, correctly.** `ListCallLogsRequest.vtsi_project_name`
+  is a plain proto3 `string` and is still written under a truthiness guard, so `''` and "said nothing"
+  encode identically. That is the contrast that makes the presence claim non-vacuous, and it is asserted.
 
 ## The two commit-msg hooks must run in this order
 
