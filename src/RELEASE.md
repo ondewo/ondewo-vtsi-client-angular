@@ -2,6 +2,44 @@
 
 *****************
 
+## Release ONDEWO VTSI Angular Client 9.0.0
+
+### Improvements
+
+* **Correction, carried forward rather than back-edited: an Angular caller CAN send the empty string, and has
+  been able to since 8.6.0.** The 8.3.0 entry below records the opposite -- that ngx-grpc flattens
+  `AsteriskConfigs.asterisk_version`'s explicit presence and that a caller "cannot send the empty string". That
+  was accurate for the stubs 8.3.0 through 8.5.0 shipped, so it is left exactly as published; it has been false
+  of every release from 8.6.0 onwards and should not be relied on
+* **8.6.0 changed the wire behaviour of every `optional` scalar and enum field and said nothing about it.** Its
+  entry reads only "Tracking API Version 8.6.0", but that release also moved
+  `ONDEWO_PROTO_COMPILER_GIT_BRANCH` from `tags/5.13.0` to `tags/5.14.0`. The angular pipeline strips the
+  `optional` keyword from every `.proto` before `protoc-gen-ng` runs, so the plugin cannot see it; 5.14.0 added
+  `fix-proto3-optional-presence.ts`, which replays the `proto3_optional` flags out of a descriptor set taken
+  before that strip and rewrites exactly those fields
+* What that changed, measured on the committed stubs rather than assumed: **194 fields across 74 messages** in
+  the re-exported surface, **52 of them in `ondewo/vtsi` itself** (`calls` 36, `logs` 12, `projects` 4), the rest
+  in the vendored `ondewo/nlu`, `ondewo/s2t` and `ondewo/t2s` copies. For each, `refineValues` no longer coerces
+  the field to its type's zero value, and the writer guards on presence
+  (`!== undefined && !== null`) instead of on truthiness. So a caller who explicitly sends `0`, `''`, `false` or
+  `'0'` now has that reach the server as an instruction, where before it was dropped and the server applied its
+  own default. For `asterisk_version` that is the whole point: an empty tag is now transmitted and ondewo-vtsi
+  refuses it with `INVALID_ARGUMENT`, instead of the caller's error being silently served as
+  `ONDEWO_VTSI_ASTERISK_IMAGE_TAG`
+* **What did NOT change is the declared TypeScript surface, and that half of the old note still stands.** There
+  is no `hasAsteriskVersion()` / `clearAsteriskVersion()` pair, and the declared type of the getter, of
+  `AsObject` and of `AsProtobufJSON` is non-nullable -- which the runtime contradicts for an unset field, where
+  it reads `undefined`. Presence is expressible over the wire but not in the types, so consumer code that must
+  branch on it cannot do so from the declaration alone
+* Guarded from here on, because none of the above is visible in a build that succeeds:
+  `tests/build-config.spec.ts` fails a proto-compiler pin below `tags/5.14.0` (a branch pin is refused unless
+  `ONDEWO_ALLOW_UNRELEASED_PROTO_COMPILER_PIN` is set, which neither the release nor CI sets),
+  `tests/asterisk-version.spec.ts` and `tests/proto3-presence.spec.ts` assert the encoding byte for byte across
+  `int32`, `int64`, `string` and `bool`, and `make release` now runs `make test` before it commits, pushes or
+  publishes anything
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 8.7.0
 
 ### Improvements
