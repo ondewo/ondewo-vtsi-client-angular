@@ -27,6 +27,7 @@
  * Every byte sequence asserted here was measured against the committed stubs, not derived by hand.
  */
 import { AsteriskConfigs } from '../api/ondewo/vtsi/projects.pb';
+import { fieldNumbersOnTheWire } from './wire-format';
 
 /** A real ONDEWO Asterisk image tag, so the value is representative rather than a placeholder. */
 const ASTERISK_VERSION: string = 'alpine-3.18-18.20.2';
@@ -46,67 +47,6 @@ function makeConfigs(asteriskVersion?: string): AsteriskConfigs {
 		configs.asteriskVersion = asteriskVersion;
 	}
 	return configs;
-}
-
-/**
- * Read back the field number of every field present in a serialized message, in wire order.
- *
- * Presence is a question about the encoding, so it has to be answered by parsing the tags rather
- * than by searching for a byte: `0x2a` is field 5's tag AND the ASCII `*`, so a substring search
- * would answer "present" for an absent field whose neighbour's value happens to contain one.
- *
- * The reader throws on anything it does not model — an unknown wire type, a truncated varint, a
- * length that runs past the end. An inspection that cannot parse its input must fail, never return
- * a short list that reads as "the field is absent" (ondewo-vtsi CLAUDE.md section 11).
- *
- * @param encoded the output of `serializeBinary()`
- * @returns the field number of each field on the wire, in the order they were written
- * @throws Error when the encoding is truncated or uses a wire type this reader does not model
- */
-function fieldNumbersOnTheWire(encoded: Uint8Array): number[] {
-	const fieldNumbers: number[] = [];
-	let offset: number = 0;
-	const readVarint: () => number = (): number => {
-		let value: number = 0;
-		// A running multiplier rather than a bit shift: a protobuf varint can carry more than 32 bits,
-		// and `<<` would silently truncate one.
-		let multiplier: number = 1;
-		for (;;) {
-			if (offset >= encoded.length) {
-				throw new Error(`truncated varint: the encoding ends mid-field at offset ${offset}`);
-			}
-			const byte: number = encoded[offset];
-			offset += 1;
-			value += (byte & 0x7f) * multiplier;
-			if ((byte & 0x80) === 0) {
-				return value;
-			}
-			multiplier *= 128;
-		}
-	};
-	while (offset < encoded.length) {
-		const tag: number = readVarint();
-		fieldNumbers.push(Math.floor(tag / 8));
-		const wireType: number = tag % 8;
-		if (wireType === 0) {
-			readVarint();
-		} else if (wireType === 1) {
-			offset += 8;
-		} else if (wireType === 2) {
-			// The length must be read into a local before the seek: `offset += readVarint()` captures
-			// the PRE-call `offset`, discarding the bytes the varint itself consumed.
-			const length: number = readVarint();
-			offset += length;
-		} else if (wireType === 5) {
-			offset += 4;
-		} else {
-			throw new Error(`unsupported protobuf wire type ${wireType} at offset ${offset}`);
-		}
-		if (offset > encoded.length) {
-			throw new Error(`field length runs past the end of the encoding at offset ${offset}`);
-		}
-	}
-	return fieldNumbers;
 }
 
 describe('AsteriskConfigs.asteriskVersion', () => {
