@@ -17,7 +17,7 @@
   `optional` keyword from every `.proto` before `protoc-gen-ng` runs, so the plugin cannot see it; 5.14.0 added
   `fix-proto3-optional-presence.ts`, which replays the `proto3_optional` flags out of a descriptor set taken
   before that strip and rewrites exactly those fields
-* What that changed, measured on the committed stubs rather than assumed: **194 fields across 74 messages** in
+* What that changed, measured on the committed stubs rather than assumed: **194 fields across 75 messages** in
   the re-exported surface, **52 of them in `ondewo/vtsi` itself** (`calls` 36, `logs` 12, `projects` 4), the rest
   in the vendored `ondewo/nlu`, `ondewo/s2t` and `ondewo/t2s` copies. For each, `refineValues` no longer coerces
   the field to its type's zero value, and the writer guards on presence
