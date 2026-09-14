@@ -38,6 +38,23 @@ GH_REPO="https://github.com/ondewo/ondewo-vtsi-client-angular"
 DEVOPS_ACCOUNT_GIT="ondewo-devops-accounts"
 DEVOPS_ACCOUNT_DIR="./${DEVOPS_ACCOUNT_GIT}"
 .DEFAULT_GOAL := help
+
+# Every target in this file is a command, and none of them writes a file named after itself. Without
+# this declaration make STATS each target name first, and a file or directory that happens to share
+# one makes make consider the target up to date, run NOTHING and report success -- so a stray `test/`
+# in the repository root silently turns the release's own `make test` gate into a no-op, and a
+# `build/` lets `make build` publish stubs it never regenerated. Neither shows up in the recipe text,
+# which is why tests/build-config.spec.ts asserts phoniness rather than only reading the recipes.
+# Kept exhaustive rather than scoped to the gate: that spec derives the expected set from the targets
+# defined below, so a target added later is covered on the day it is added.
+.PHONY: setup_developer_environment_locally install_packages run_precommit_hooks install_precommit_hooks
+.PHONY: prettier eslint test print_variables help makefile_chapters check_build
+.PHONY: release gh_release npm_release create_release_branch create_release_tag login_to_gh build_gh_release
+.PHONY: push_to_gh build_compiler release_to_github_via_docker_image build_utils_docker_image
+.PHONY: publish_npm_via_docker docker_npm_release
+.PHONY: ondewo_release clone_devops_accounts run_release_with_devops spc
+.PHONY: update_package build install_dependencies check_out_correct_submodule_versions
+.PHONY: npm_run_build npm_run_generate test-in-ondewo-aim test-in-ondewo-aim-copy-only
 ########################################################
 #       ONDEWO Standard Make Targets
 ########################################################

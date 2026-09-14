@@ -529,6 +529,84 @@ describe('the release path reaches the jest suites', (): void => {
 });
 
 /**
+ * Every target this Makefile defines, in file order.
+ *
+ * A target header is a line starting in column 0 with a name followed by `:`. `:=` is excluded so a
+ * variable assignment is never read as a target, and the leading character class excludes make's own
+ * special targets (`.PHONY`, `.DEFAULT_GOAL`), which are declarations rather than commands.
+ *
+ * @param makefilePath absolute path of the Makefile to read
+ * @returns the defined target names
+ */
+function makefileTargets(makefilePath: string): string[] {
+	return fs
+		.readFileSync(makefilePath, 'utf8')
+		.split('\n')
+		.map((line: string): RegExpExecArray | null => /^([A-Za-z0-9_][A-Za-z0-9_.-]*):(?!=)/.exec(line))
+		.filter((matched: RegExpExecArray | null): matched is RegExpExecArray => matched !== null)
+		.map((matched: RegExpExecArray): string => matched[1]);
+}
+
+/**
+ * Every name declared `.PHONY` in this Makefile.
+ *
+ * make accumulates the prerequisites of repeated `.PHONY:` lines, so all of them are unioned rather
+ * than only the first.
+ *
+ * @param makefilePath absolute path of the Makefile to read
+ * @returns the declared phony target names
+ */
+function phonyTargets(makefilePath: string): string[] {
+	return fs
+		.readFileSync(makefilePath, 'utf8')
+		.split('\n')
+		.filter((line: string): boolean => /^\.PHONY:/.test(line))
+		.flatMap((line: string): string[] =>
+			line
+				.replace(/^\.PHONY:/, '')
+				.trim()
+				.split(/\s+/)
+		)
+		.filter((name: string): boolean => name !== '');
+}
+
+/**
+ * Phoniness is the one property of a target that its recipe TEXT cannot express, which is why it
+ * needs its own block: every assertion above reads what a recipe says, and a target make never runs
+ * still says exactly what it always said.
+ *
+ * Without `.PHONY`, make stats the target name first. A file or directory that happens to share it
+ * makes make consider the target up to date, run NOTHING and exit 0 — measured on this Makefile with
+ * a `test` file in the repository root: without the declaration `make test` answers
+ * `make: 'test' is up to date.` and the release's own gate is disarmed while the release still
+ * reports success; with it, the jest command runs.
+ */
+describe('the Makefile targets are phony', (): void => {
+	/**
+	 * The named regression: `test` is the whole release gate, and `tests/` one character away from it
+	 * already exists, so the colliding name is not hypothetical.
+	 */
+	it('declares the release gate phony', (): void => {
+		expect(phonyTargets(MAKEFILE)).toContain(TEST_TARGET);
+	});
+
+	/**
+	 * And the property rather than the instance: no target in this Makefile writes a file named after
+	 * itself, so every one of them is a command and must be declared. Derived from the file, so a
+	 * target added later is covered on the day it is added rather than on the day it silently no-ops.
+	 */
+	it('declares every target it defines phony', (): void => {
+		const targets: string[] = makefileTargets(MAKEFILE);
+		// Non-vacuity: a parser that resolved nothing would otherwise report an empty difference as a
+		// clean bill of health (CLAUDE.md: an empty inspection must never read as a pass).
+		expect(targets).toEqual(expect.arrayContaining([TEST_TARGET, 'release', 'build', 'check_build']));
+
+		const declared: string[] = phonyTargets(MAKEFILE);
+		expect(targets.filter((target: string): boolean => !declared.includes(target))).toStrictEqual([]);
+	});
+});
+
+/**
  * Read the npm scripts of the library source manifest (`src/package.json`).
  *
  * @returns the `scripts` block, script name to command line
