@@ -60,7 +60,16 @@ prettier: ## Checks formatting with Prettier - Use PRETTIER_WRITE=-w to also aut
 eslint: ## Checks Code Logic and Typing
 	./node_modules/.bin/eslint --config eslint.config.mjs .
 
-TEST: ## Prints some important variables
+test: ## Runs the jest suites (auth surface + build-config + proto3 presence guards)
+	# Invoked from `release` between check_build and the publish, which is the ONLY path that
+	# reaches these guards on a release: `.husky/pre-commit` runs eslint/prettier/pre-commit and no
+	# jest, the release commits with --no-verify, and the GitHub Actions job does not run on every
+	# branch. A guard that runs nowhere is not a guard (CLAUDE.md, tests/build-config.spec.ts).
+	# node_modules/.bin rather than npx: npx would try to FETCH jest when the local install is
+	# missing, turning a broken environment into a slow one instead of a red one.
+	./node_modules/.bin/jest --config jest.config.js --ci
+
+print_variables: ## Prints some important variables
 	@echo "Release Notes: \n \n$(CURRENT_RELEASE_NOTES)"
 	@echo "GH Token: \t $(if $(GITHUB_GH_TOKEN),<set>,<unset>)"
 	@echo "NPM Name: \t $(NPM_USERNAME)"
@@ -108,6 +117,11 @@ release: ## Create Github and NPM Release
 	make install_precommit_hooks
 	make build
 	make check_build
+	# AFTER check_build, so the suites read the stubs this release actually generated, and BEFORE
+	# the commit/push/publish below, so a regressed proto-compiler pin or a lost proto3 presence
+	# stops the release instead of shipping. `build` ends in `install_dependencies`, which restores
+	# the committed root manifest and reinstalls devDependencies, so jest is on disk at this point.
+	make test
 	make run_precommit_hooks
 	git status
 	git add api

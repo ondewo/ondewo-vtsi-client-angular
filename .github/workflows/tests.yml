@@ -2,12 +2,21 @@ name: tests
 
 on:
   push:
+    # Deliberately wide. Until 2026-09-15 this listed `master` and `OND211-**` only, so every
+    # branch outside one ticket prefix -- `feature/**`, `bugfix/**` and every other OND ticket --
+    # pushed with NO CI at all, and the guards in tests/ could only be reached by a PR to master.
+    # `*` does not match `/`, so `OND*` covers a bare ticket branch and the prefixed forms are
+    # listed on their own.
     branches:
       - master
-      - 'OND211-**'
+      - 'OND*'
+      - 'feature/**'
+      - 'bugfix/**'
+      - 'release/**'
   pull_request:
     branches:
       - master
+      - 'release/**'
 
 jobs:
   auth-unit-tests:

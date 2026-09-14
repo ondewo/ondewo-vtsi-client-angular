@@ -407,6 +407,62 @@ describe('proto-compiler pin', (): void => {
 });
 
 /**
+ * The Makefile target every jest suite in this repository is reached through.
+ *
+ * Its absence is the reason this whole directory was advisory until 2026-09-15: nothing in the
+ * release path ran jest. `TEST:` only echoed variables, `.husky/pre-commit` (which
+ * `make run_precommit_hooks` invokes) runs eslint, prettier and the pre-commit framework and no
+ * jest, and the release's own `git commit` passes `--no-verify` anyway. So the proto-compiler floor
+ * and the two presence suites gated a PR to master and nothing else — and the GitHub Actions job
+ * that gates that PR did not run on most branches either.
+ */
+const TEST_TARGET: string = 'test';
+
+describe('the release path reaches the jest suites', (): void => {
+	/**
+	 * The target has to exist and has to invoke jest. Asserting it "exists" alone would pass on a
+	 * target that echoes, which is exactly the state this replaced.
+	 */
+	it('defines a make target that runs jest', (): void => {
+		const recipe: string = readMakefileRecipe(MAKEFILE, TEST_TARGET);
+		expect(recipe).toContain('jest');
+		expect(recipe).toContain('--config jest.config.js');
+	});
+
+	/**
+	 * And `release` has to call it. A gate that exists but is never invoked is the same defect one
+	 * level up, and it is the one this repository actually had.
+	 */
+	it('invokes that target from release, before anything is committed, pushed or published', (): void => {
+		const recipe: string = readMakefileRecipe(MAKEFILE, 'release');
+		const lines: string[] = recipe.split('\n');
+		const runsTests: number = lines.findIndex((line: string): boolean => /^\s*make\s+test\s*$/.test(line));
+		expect(runsTests).toBeGreaterThan(-1);
+
+		// Ordering is the whole value: running the suites after the publish would report a regression
+		// that has already shipped. Every irreversible step must come after the tests.
+		for (const irreversible of ['git commit', 'git push', 'make publish_npm_via_docker', 'make create_release_tag']) {
+			const at: number = lines.findIndex((line: string): boolean => line.includes(irreversible));
+			expect({ step: irreversible, afterTests: at > runsTests }).toStrictEqual({
+				step: irreversible,
+				afterTests: true
+			});
+		}
+	});
+
+	/**
+	 * `make test` must not be neutered by a leading `-`, which tells make to ignore the recipe's exit
+	 * status. The release already uses that deliberately on `git commit` and on `git add tsconfig.json`,
+	 * so the character is in the file and one keystroke away from the wrong line (CLAUDE.md: `|| true`
+	 * on a build step converts a broken gate into a silent pass).
+	 */
+	it('does not let the release ignore a failing suite', (): void => {
+		const recipe: string = readMakefileRecipe(MAKEFILE, 'release');
+		expect(recipe).not.toMatch(/^\s*-\s*make\s+test\s*$/m);
+	});
+});
+
+/**
  * Read the npm scripts of the library source manifest (`src/package.json`).
  *
  * @returns the `scripts` block, script name to command line
