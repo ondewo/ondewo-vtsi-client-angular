@@ -336,22 +336,30 @@ describe('building the client does not mutate the api repository', (): void => {
 const MINIMUM_PROTO_COMPILER_VERSION: readonly number[] = [5, 14, 0];
 
 /**
- * Parse `ONDEWO_PROTO_COMPILER_GIT_BRANCH` into a comparable `[major, minor, patch]`.
+ * Opt-in for a compiler pin that names a BRANCH instead of a released tag.
  *
- * A branch name is rejected rather than tolerated: the committed stubs in `api/` must be
- * reproducible from the pin, and a branch resolves to whatever it pointed at when the last
- * `make build` ran.
+ * `check_out_correct_submodule_versions` hard-checks-out `ONDEWO_PROTO_COMPILER_GIT_BRANCH`, and the
+ * Makefile's own comment beside it records that these `*_GIT_BRANCH` variables have legitimately
+ * held a real branch during feature work (`=master`, `=develop`, `=OND211-2418-…`). A guard that
+ * refuses that outright contradicts the documented workflow and gets edited away rather than obeyed.
  *
- * @param pin the raw value of the Makefile variable
- * @returns the three version components of the released tag it names
- * @throws Error when the pin is not a released `tags/<major>.<minor>.<patch>` reference
+ * So a branch pin is ALLOWED, but only when a developer says so by name — and saying so does not
+ * delete the question, it moves it (see the floor case below). Nothing sets this variable in the
+ * release path or in CI, which is the property that matters: `make release` runs `make test`, so a
+ * branch pin still stops a release, and a released artefact still cannot be built from a moving ref.
  */
-function parseProtoCompilerPin(pin: string): number[] {
+const UNRELEASED_PIN_ESCAPE: string = 'ONDEWO_ALLOW_UNRELEASED_PROTO_COMPILER_PIN';
+
+/**
+ * Parse a compiler pin that names a released tag.
+ *
+ * @param pin the raw value of `ONDEWO_PROTO_COMPILER_GIT_BRANCH`
+ * @returns the three version components, or `null` when the pin does not name a released tag
+ */
+function parseReleasedProtoCompilerPin(pin: string): number[] | null {
 	const matched: RegExpExecArray | null = /^tags\/(\d+)\.(\d+)\.(\d+)$/.exec(pin);
 	if (matched === null) {
-		throw new Error(
-			`ONDEWO_PROTO_COMPILER_GIT_BRANCH must name a released tag as tags/<major>.<minor>.<patch>, got "${pin}"`
-		);
+		return null;
 	}
 	return [Number(matched[1]), Number(matched[2]), Number(matched[3])];
 }
@@ -372,37 +380,95 @@ function compareVersionTriples(left: readonly number[], right: readonly number[]
 	return 0;
 }
 
+/**
+ * The version of the `ondewo-proto-compiler` actually checked out in the working tree.
+ *
+ * @returns the three version components, or `null` when the submodule is not on disk
+ */
+function checkedOutCompilerVersion(): number[] | null {
+	const manifest: string = path.join(COMPILER_SUBMODULE, 'angular', 'image-data', 'package.json');
+	if (!fs.existsSync(manifest)) {
+		return null;
+	}
+	const parsed: Record<string, unknown> = readJson(manifest);
+	return parseReleasedProtoCompilerPin(`tags/${parsed.version as string}`);
+}
+
+/** The raw pin, read once so the collection-time skip decision below can use it. */
+const PROTO_COMPILER_PIN: string = readMakefileVariable(MAKEFILE, 'ONDEWO_PROTO_COMPILER_GIT_BRANCH');
+
+/** Whether a developer has consciously opted into an unreleased (branch) compiler pin. */
+const UNRELEASED_PIN_ALLOWED: boolean = (process.env[UNRELEASED_PIN_ESCAPE] ?? '') !== '';
+
+/**
+ * Runs only when the pin names a tag there is something to compare, AND the compiler is on disk.
+ *
+ * A branch pin names no tag, so the equality below has no question to ask — reported as a visible
+ * SKIPPED line rather than as a vacuous pass or as a second red for a cause the floor case owns.
+ */
+const itWithComparablePin: jest.It =
+	parseReleasedProtoCompilerPin(PROTO_COMPILER_PIN) === null ? it.skip : itWithCompiler;
+
 describe('proto-compiler pin', (): void => {
 	/**
-	 * THE guard, and it must never skip. The equality check below can only run where the compiler
-	 * submodule is checked out, which is nowhere that gates a merge: the GitHub Actions job checks
-	 * out with `submodules: false` and `ondewo-proto-compiler` is an SSH remote no runner can
-	 * clone, so `itWithCompiler` reports SKIPPED in CI and a regressed pin merges green.
+	 * THE guard, and it must never skip. The equality case below can only run where the compiler
+	 * submodule is checked out, which until 2026-09-15 was nowhere that gated a merge: the GitHub
+	 * Actions job checks out with `submodules: false` and `ondewo-proto-compiler` is an SSH remote
+	 * no runner can clone, so `itWithCompiler` reports SKIPPED in CI and a regressed pin merged green.
 	 *
 	 * This case reads the Makefile alone, so it runs in every environment, and it asserts the one
-	 * property the generated stubs' presence semantics depend on: the pin is a released tag, and it
-	 * is not older than the release that restored proto3 explicit presence.
+	 * property the generated stubs' presence semantics depend on: the compiler is not older than the
+	 * release that restored proto3 explicit presence.
+	 *
+	 * A BRANCH pin is unanswerable from the Makefile alone, and an unanswerable question must never
+	 * read as a pass. It is refused unless the escape is set, and when it is set the question moves
+	 * to the only artefact that can still answer it — the compiler actually checked out — rather than
+	 * being dropped. Refusing to answer is a failure there too.
 	 */
-	it('pins a released proto-compiler tag no older than the one that restored proto3 presence', (): void => {
-		const pin: string = readMakefileVariable(MAKEFILE, 'ONDEWO_PROTO_COMPILER_GIT_BRANCH');
-		expect(compareVersionTriples(parseProtoCompilerPin(pin), MINIMUM_PROTO_COMPILER_VERSION)).toBeGreaterThanOrEqual(0);
+	it('pins a proto-compiler no older than the release that restored proto3 presence', (): void => {
+		const released: number[] | null = parseReleasedProtoCompilerPin(PROTO_COMPILER_PIN);
+		if (released !== null) {
+			expect(compareVersionTriples(released, MINIMUM_PROTO_COMPILER_VERSION)).toBeGreaterThanOrEqual(0);
+			return;
+		}
+		if (!UNRELEASED_PIN_ALLOWED) {
+			throw new Error(
+				`ONDEWO_PROTO_COMPILER_GIT_BRANCH is "${PROTO_COMPILER_PIN}", which names no released tag, so the ` +
+					`generated stubs in api/ cannot be reproduced from it and the ${MINIMUM_PROTO_COMPILER_VERSION.join('.')} ` +
+					`presence floor cannot be checked. Pin tags/<major>.<minor>.<patch>, or set ${UNRELEASED_PIN_ESCAPE}=1 ` +
+					`to work against a branch locally — the release and CI never set it, so a branch pin cannot ship.`
+			);
+		}
+		const onDisk: number[] | null = checkedOutCompilerVersion();
+		if (onDisk === null) {
+			throw new Error(
+				`${UNRELEASED_PIN_ESCAPE} is set for the branch pin "${PROTO_COMPILER_PIN}", but ondewo-proto-compiler ` +
+					`is not checked out, so the presence floor cannot be checked against anything. Check the submodule ` +
+					`out, or pin a released tag. The escape moves the question; it does not remove it.`
+			);
+		}
+		expect(compareVersionTriples(onDisk, MINIMUM_PROTO_COMPILER_VERSION)).toBeGreaterThanOrEqual(0);
 	});
 
 	/**
 	 * A local-only SUPPLEMENT to the floor above, not a merge gate — it needs the compiler submodule
-	 * on disk and therefore skips wherever that submodule is absent, CI included.
+	 * on disk and therefore skips wherever that submodule is absent, CI included. It is kept rather
+	 * than deleted because it covers a defect the floor cannot see: a pin and a pointer that are BOTH
+	 * at or above 5.14.0 but disagree with each other (`=tags/5.14.0` against a 5.15.0 pointer) still
+	 * makes `make build` check the compiler BACK and leave a dirty submodule pointer behind — the
+	 * 5.10.0-against-5.12.0 bug recorded in CLAUDE.md, which cost a release's worth of stubs.
 	 *
-	 * `check_out_correct_submodule_versions` hard-checks-out this ref. If it lags behind the
-	 * committed submodule pointer the build silently downgrades the compiler and dirties the
-	 * pointer; if it runs ahead, the repository ships a pointer nobody generated with.
+	 * **A failure here has TWO causes and this check cannot tell them apart**, because it reads the
+	 * submodule as CHECKED OUT rather than as COMMITTED (the suite is deliberately git-free). Either
+	 * the pin genuinely disagrees with the committed pointer, or your working tree is simply behind
+	 * one — merging a branch that moves both does not update the checkout. Run
+	 * `git submodule update --init --recursive` first; if it still fails, it is the pin.
 	 */
-	itWithCompiler('agrees with the tag the committed ondewo-proto-compiler submodule points at', (): void => {
+	itWithComparablePin('agrees with the tag the committed ondewo-proto-compiler submodule points at', (): void => {
 		const compilerPackage: Record<string, unknown> = readJson(
 			path.join(COMPILER_SUBMODULE, 'angular', 'image-data', 'package.json')
 		);
-		expect(readMakefileVariable(MAKEFILE, 'ONDEWO_PROTO_COMPILER_GIT_BRANCH')).toBe(
-			`tags/${compilerPackage.version as string}`
-		);
+		expect(PROTO_COMPILER_PIN).toBe(`tags/${compilerPackage.version as string}`);
 	});
 });
 
