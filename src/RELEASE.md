@@ -25,6 +25,12 @@
   softphone accounts on its TLS ports
   This regeneration also brings the rest of the unreleased 9.0.0 API surface since 8.7.0 (answering
   machine detection, SIP trunk TLS verification, the re-vendored `ondewo/sip`)
+* Server behaviour documented by ondewo-vtsi-api 9.0.0 (no wire change): `updateWebhook` -- moving a
+  webhook's `url` to another origin (scheme, host or port) while custom headers are stored requires re-sending
+  `customHeaders` with their real values (or an empty map) in the same request, and the masked value is refused
+  there; `BaseServiceConfig.grpcCert` is required for the S2T, NLU and T2S configs of a call unless the VTSI
+  server runs with `ONDEWO_VTSI_ALLOW_INSECURE_UPSTREAM=True` (lab and CI only), and an empty one is refused with
+  `FAILED_PRECONDITION` (`UPSTREAM_TLS_REQUIRED`)
 * **Correction, carried forward rather than back-edited: an Angular caller CAN send the empty string, and has
   been able to since 8.6.0.** The 8.3.0 entry below records the opposite -- that ngx-grpc flattens
   `AsteriskConfigs.asterisk_version`'s explicit presence and that a caller "cannot send the empty string". That
