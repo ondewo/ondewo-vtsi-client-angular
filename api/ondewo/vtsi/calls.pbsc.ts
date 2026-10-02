@@ -30,10 +30,12 @@ import * as ondewoNlu006 from '../../ondewo/nlu/context.pb';
 import * as ondewoNlu007 from '../../ondewo/nlu/common.pb';
 import * as ondewoNlu008 from '../../ondewo/nlu/operations.pb';
 import * as googleProtobuf009 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu010 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t011 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s012 from '../../ondewo/t2s/text-to-speech.pb';
-import * as ondewoSip013 from '../../ondewo/sip/sip.pb';
+import * as googleProtobuf010 from '@ngx-grpc/well-known-types';
+import * as ondewoSip011 from '../../ondewo/sip/sip.pb';
+import * as ondewoNlu012 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t013 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s014 from '../../ondewo/t2s/text-to-speech.pb';
+import * as ondewoVtsi015 from '../../ondewo/vtsi/campaigns.pb';
 import { GRPC_CALLS_CLIENT_SETTINGS } from './calls.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Calls
@@ -635,6 +637,69 @@ export class CallsClient {
         requestClass: thisProto.ListCallsRequest,
         responseClass: thisProto.ListCallsResponse
       });
+    },
+    /**
+     * Server streaming: /ondewo.vtsi.Calls/StreamCallerStatus
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>>
+     */
+    streamCallerStatus: (
+      requestData: thisProto.StreamCallerStatusRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.serverStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/StreamCallerStatus',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.StreamCallerStatusRequest,
+        responseClass: thisProto.StreamCallResourceStatusResponse
+      });
+    },
+    /**
+     * Server streaming: /ondewo.vtsi.Calls/StreamListenerStatus
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>>
+     */
+    streamListenerStatus: (
+      requestData: thisProto.StreamListenerStatusRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.serverStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/StreamListenerStatus',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.StreamListenerStatusRequest,
+        responseClass: thisProto.StreamCallResourceStatusResponse
+      });
+    },
+    /**
+     * Server streaming: /ondewo.vtsi.Calls/StreamScheduledCallerStatus
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>>
+     */
+    streamScheduledCallerStatus: (
+      requestData: thisProto.StreamScheduledCallerStatusRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.serverStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/StreamScheduledCallerStatus',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.StreamScheduledCallerStatusRequest,
+        responseClass: thisProto.StreamCallResourceStatusResponse
+      });
     }
   };
 
@@ -1091,6 +1156,54 @@ export class CallsClient {
   ): Observable<thisProto.ListCallsResponse> {
     return this.$raw
       .listCalls(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Server streaming @/ondewo.vtsi.Calls/StreamCallerStatus
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallResourceStatusResponse>
+   */
+  streamCallerStatus(
+    requestData: thisProto.StreamCallerStatusRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallResourceStatusResponse> {
+    return this.$raw
+      .streamCallerStatus(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Server streaming @/ondewo.vtsi.Calls/StreamListenerStatus
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallResourceStatusResponse>
+   */
+  streamListenerStatus(
+    requestData: thisProto.StreamListenerStatusRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallResourceStatusResponse> {
+    return this.$raw
+      .streamListenerStatus(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Server streaming @/ondewo.vtsi.Calls/StreamScheduledCallerStatus
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallResourceStatusResponse>
+   */
+  streamScheduledCallerStatus(
+    requestData: thisProto.StreamScheduledCallerStatusRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallResourceStatusResponse> {
+    return this.$raw
+      .streamScheduledCallerStatus(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 }

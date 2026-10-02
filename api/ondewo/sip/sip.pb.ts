@@ -38,6 +38,8 @@ export class SipEndCallRequest implements GrpcMessage {
    */
   static refineValues(_instance: SipEndCallRequest) {
     _instance.hardHangup = _instance.hardHangup || false;
+    _instance.endReason = _instance.endReason || 0;
+    _instance.amdResult = _instance.amdResult || undefined;
   }
 
   /**
@@ -55,6 +57,16 @@ export class SipEndCallRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.hardHangup = _reader.readBool();
+          break;
+        case 2:
+          _instance.endReason = _reader.readEnum();
+          break;
+        case 3:
+          _instance.amdResult = new AnsweringMachineDetectionResult();
+          _reader.readMessage(
+            _instance.amdResult,
+            AnsweringMachineDetectionResult.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -76,9 +88,21 @@ export class SipEndCallRequest implements GrpcMessage {
     if (_instance.hardHangup) {
       _writer.writeBool(1, _instance.hardHangup);
     }
+    if (_instance.endReason) {
+      _writer.writeEnum(2, _instance.endReason);
+    }
+    if (_instance.amdResult) {
+      _writer.writeMessage(
+        3,
+        _instance.amdResult as any,
+        AnsweringMachineDetectionResult.serializeBinaryToWriter
+      );
+    }
   }
 
   private _hardHangup: boolean;
+  private _endReason: SipEndCallRequest.EndCallReason;
+  private _amdResult?: AnsweringMachineDetectionResult;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -87,6 +111,10 @@ export class SipEndCallRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<SipEndCallRequest.AsObject>) {
     _value = _value || {};
     this.hardHangup = _value.hardHangup;
+    this.endReason = _value.endReason;
+    this.amdResult = _value.amdResult
+      ? new AnsweringMachineDetectionResult(_value.amdResult)
+      : undefined;
     SipEndCallRequest.refineValues(this);
   }
   get hardHangup(): boolean {
@@ -94,6 +122,18 @@ export class SipEndCallRequest implements GrpcMessage {
   }
   set hardHangup(value: boolean) {
     this._hardHangup = value;
+  }
+  get endReason(): SipEndCallRequest.EndCallReason {
+    return this._endReason;
+  }
+  set endReason(value: SipEndCallRequest.EndCallReason) {
+    this._endReason = value;
+  }
+  get amdResult(): AnsweringMachineDetectionResult | undefined {
+    return this._amdResult;
+  }
+  set amdResult(value: AnsweringMachineDetectionResult | undefined) {
+    this._amdResult = value;
   }
 
   /**
@@ -111,7 +151,9 @@ export class SipEndCallRequest implements GrpcMessage {
    */
   toObject(): SipEndCallRequest.AsObject {
     return {
-      hardHangup: this.hardHangup
+      hardHangup: this.hardHangup,
+      endReason: this.endReason,
+      amdResult: this.amdResult ? this.amdResult.toObject() : undefined
     };
   }
 
@@ -132,7 +174,14 @@ export class SipEndCallRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): SipEndCallRequest.AsProtobufJSON {
     return {
-      hardHangup: this.hardHangup
+      hardHangup: this.hardHangup,
+      endReason:
+        SipEndCallRequest.EndCallReason[
+          this.endReason === null || this.endReason === undefined
+            ? 0
+            : this.endReason
+        ],
+      amdResult: this.amdResult ? this.amdResult.toProtobufJSON(options) : null
     };
   }
 }
@@ -142,6 +191,8 @@ export module SipEndCallRequest {
    */
   export interface AsObject {
     hardHangup: boolean;
+    endReason: SipEndCallRequest.EndCallReason;
+    amdResult?: AnsweringMachineDetectionResult.AsObject;
   }
 
   /**
@@ -149,6 +200,483 @@ export module SipEndCallRequest {
    */
   export interface AsProtobufJSON {
     hardHangup: boolean;
+    endReason: string;
+    amdResult: AnsweringMachineDetectionResult.AsProtobufJSON | null;
+  }
+  export enum EndCallReason {
+    END_CALL_REASON_UNSPECIFIED = 0,
+    ANSWERING_MACHINE = 1,
+    ANSWERING_MACHINE_VOICE_MESSAGE_LEFT = 2
+  }
+}
+
+/**
+ * Message implementation for ondewo.sip.SipReportAnsweringMachineDetectedRequest
+ */
+export class SipReportAnsweringMachineDetectedRequest implements GrpcMessage {
+  static id = 'ondewo.sip.SipReportAnsweringMachineDetectedRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new SipReportAnsweringMachineDetectedRequest();
+    SipReportAnsweringMachineDetectedRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: SipReportAnsweringMachineDetectedRequest) {
+    _instance.amdResult = _instance.amdResult || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: SipReportAnsweringMachineDetectedRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.amdResult = new AnsweringMachineDetectionResult();
+          _reader.readMessage(
+            _instance.amdResult,
+            AnsweringMachineDetectionResult.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    SipReportAnsweringMachineDetectedRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: SipReportAnsweringMachineDetectedRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.amdResult) {
+      _writer.writeMessage(
+        1,
+        _instance.amdResult as any,
+        AnsweringMachineDetectionResult.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _amdResult?: AnsweringMachineDetectionResult;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of SipReportAnsweringMachineDetectedRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<SipReportAnsweringMachineDetectedRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.amdResult = _value.amdResult
+      ? new AnsweringMachineDetectionResult(_value.amdResult)
+      : undefined;
+    SipReportAnsweringMachineDetectedRequest.refineValues(this);
+  }
+  get amdResult(): AnsweringMachineDetectionResult | undefined {
+    return this._amdResult;
+  }
+  set amdResult(value: AnsweringMachineDetectionResult | undefined) {
+    this._amdResult = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    SipReportAnsweringMachineDetectedRequest.serializeBinaryToWriter(
+      this,
+      writer
+    );
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): SipReportAnsweringMachineDetectedRequest.AsObject {
+    return {
+      amdResult: this.amdResult ? this.amdResult.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): SipReportAnsweringMachineDetectedRequest.AsProtobufJSON {
+    return {
+      amdResult: this.amdResult ? this.amdResult.toProtobufJSON(options) : null
+    };
+  }
+}
+export module SipReportAnsweringMachineDetectedRequest {
+  /**
+   * Standard JavaScript object representation for SipReportAnsweringMachineDetectedRequest
+   */
+  export interface AsObject {
+    amdResult?: AnsweringMachineDetectionResult.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for SipReportAnsweringMachineDetectedRequest
+   */
+  export interface AsProtobufJSON {
+    amdResult: AnsweringMachineDetectionResult.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.sip.AnsweringMachineDetectionResult
+ */
+export class AnsweringMachineDetectionResult implements GrpcMessage {
+  static id = 'ondewo.sip.AnsweringMachineDetectionResult';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new AnsweringMachineDetectionResult();
+    AnsweringMachineDetectionResult.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: AnsweringMachineDetectionResult) {
+    _instance.verdict = _instance.verdict || 0;
+    _instance.cause = _instance.cause || 0;
+    _instance.confidence = _instance.confidence || 0;
+    _instance.decisionMs = _instance.decisionMs || 0;
+    _instance.ruleId = _instance.ruleId || '';
+    _instance.matchedCueIds = _instance.matchedCueIds || [];
+    _instance.actionTaken = _instance.actionTaken || 0;
+    _instance.callId = _instance.callId || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: AnsweringMachineDetectionResult,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.verdict = _reader.readEnum();
+          break;
+        case 2:
+          _instance.cause = _reader.readEnum();
+          break;
+        case 3:
+          _instance.confidence = _reader.readFloat();
+          break;
+        case 4:
+          _instance.decisionMs = _reader.readInt32();
+          break;
+        case 5:
+          _instance.ruleId = _reader.readString();
+          break;
+        case 6:
+          (_instance.matchedCueIds = _instance.matchedCueIds || []).push(
+            _reader.readString()
+          );
+          break;
+        case 7:
+          _instance.actionTaken = _reader.readEnum();
+          break;
+        case 8:
+          _instance.callId = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    AnsweringMachineDetectionResult.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: AnsweringMachineDetectionResult,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.verdict) {
+      _writer.writeEnum(1, _instance.verdict);
+    }
+    if (_instance.cause) {
+      _writer.writeEnum(2, _instance.cause);
+    }
+    if (_instance.confidence) {
+      _writer.writeFloat(3, _instance.confidence);
+    }
+    if (_instance.decisionMs) {
+      _writer.writeInt32(4, _instance.decisionMs);
+    }
+    if (_instance.ruleId) {
+      _writer.writeString(5, _instance.ruleId);
+    }
+    if (_instance.matchedCueIds && _instance.matchedCueIds.length) {
+      _writer.writeRepeatedString(6, _instance.matchedCueIds);
+    }
+    if (_instance.actionTaken) {
+      _writer.writeEnum(7, _instance.actionTaken);
+    }
+    if (_instance.callId) {
+      _writer.writeString(8, _instance.callId);
+    }
+  }
+
+  private _verdict: AnsweringMachineDetectionResult.Verdict;
+  private _cause: AnsweringMachineDetectionResult.Cause;
+  private _confidence: number;
+  private _decisionMs: number;
+  private _ruleId: string;
+  private _matchedCueIds: string[];
+  private _actionTaken: AnsweringMachineDetectionResult.ActionTaken;
+  private _callId: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of AnsweringMachineDetectionResult to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<AnsweringMachineDetectionResult.AsObject>
+  ) {
+    _value = _value || {};
+    this.verdict = _value.verdict;
+    this.cause = _value.cause;
+    this.confidence = _value.confidence;
+    this.decisionMs = _value.decisionMs;
+    this.ruleId = _value.ruleId;
+    this.matchedCueIds = (_value.matchedCueIds || []).slice();
+    this.actionTaken = _value.actionTaken;
+    this.callId = _value.callId;
+    AnsweringMachineDetectionResult.refineValues(this);
+  }
+  get verdict(): AnsweringMachineDetectionResult.Verdict {
+    return this._verdict;
+  }
+  set verdict(value: AnsweringMachineDetectionResult.Verdict) {
+    this._verdict = value;
+  }
+  get cause(): AnsweringMachineDetectionResult.Cause {
+    return this._cause;
+  }
+  set cause(value: AnsweringMachineDetectionResult.Cause) {
+    this._cause = value;
+  }
+  get confidence(): number {
+    return this._confidence;
+  }
+  set confidence(value: number) {
+    this._confidence = value;
+  }
+  get decisionMs(): number {
+    return this._decisionMs;
+  }
+  set decisionMs(value: number) {
+    this._decisionMs = value;
+  }
+  get ruleId(): string {
+    return this._ruleId;
+  }
+  set ruleId(value: string) {
+    this._ruleId = value;
+  }
+  get matchedCueIds(): string[] {
+    return this._matchedCueIds;
+  }
+  set matchedCueIds(value: string[]) {
+    this._matchedCueIds = value;
+  }
+  get actionTaken(): AnsweringMachineDetectionResult.ActionTaken {
+    return this._actionTaken;
+  }
+  set actionTaken(value: AnsweringMachineDetectionResult.ActionTaken) {
+    this._actionTaken = value;
+  }
+  get callId(): string {
+    return this._callId;
+  }
+  set callId(value: string) {
+    this._callId = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    AnsweringMachineDetectionResult.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): AnsweringMachineDetectionResult.AsObject {
+    return {
+      verdict: this.verdict,
+      cause: this.cause,
+      confidence: this.confidence,
+      decisionMs: this.decisionMs,
+      ruleId: this.ruleId,
+      matchedCueIds: (this.matchedCueIds || []).slice(),
+      actionTaken: this.actionTaken,
+      callId: this.callId
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): AnsweringMachineDetectionResult.AsProtobufJSON {
+    return {
+      verdict:
+        AnsweringMachineDetectionResult.Verdict[
+          this.verdict === null || this.verdict === undefined ? 0 : this.verdict
+        ],
+      cause:
+        AnsweringMachineDetectionResult.Cause[
+          this.cause === null || this.cause === undefined ? 0 : this.cause
+        ],
+      confidence: this.confidence,
+      decisionMs: this.decisionMs,
+      ruleId: this.ruleId,
+      matchedCueIds: (this.matchedCueIds || []).slice(),
+      actionTaken:
+        AnsweringMachineDetectionResult.ActionTaken[
+          this.actionTaken === null || this.actionTaken === undefined
+            ? 0
+            : this.actionTaken
+        ],
+      callId: this.callId
+    };
+  }
+}
+export module AnsweringMachineDetectionResult {
+  /**
+   * Standard JavaScript object representation for AnsweringMachineDetectionResult
+   */
+  export interface AsObject {
+    verdict: AnsweringMachineDetectionResult.Verdict;
+    cause: AnsweringMachineDetectionResult.Cause;
+    confidence: number;
+    decisionMs: number;
+    ruleId: string;
+    matchedCueIds: string[];
+    actionTaken: AnsweringMachineDetectionResult.ActionTaken;
+    callId: string;
+  }
+
+  /**
+   * Protobuf JSON representation for AnsweringMachineDetectionResult
+   */
+  export interface AsProtobufJSON {
+    verdict: string;
+    cause: string;
+    confidence: number;
+    decisionMs: number;
+    ruleId: string;
+    matchedCueIds: string[];
+    actionTaken: string;
+    callId: string;
+  }
+  export enum Verdict {
+    VERDICT_UNSPECIFIED = 0,
+    HUMAN = 1,
+    MACHINE = 2,
+    IVR = 3,
+    FAX = 4,
+    NETWORK_ANNOUNCEMENT = 5,
+    CALL_SCREENING = 6,
+    NO_SPEECH = 7,
+    UNKNOWN = 8
+  }
+  export enum Cause {
+    CAUSE_UNSPECIFIED = 0,
+    CADENCE = 1,
+    KEYWORD = 2,
+    BEEP = 3,
+    TONE = 4,
+    CADENCE_AND_KEYWORD = 5,
+    CADENCE_AND_BEEP = 6,
+    TIMEOUT = 7,
+    SILENCE = 8
+  }
+  export enum ActionTaken {
+    ACTION_TAKEN_UNSPECIFIED = 0,
+    HUNG_UP = 1,
+    CONTINUED = 2,
+    DETECT_ONLY = 3,
+    LEFT_VOICE_MESSAGE = 4
   }
 }
 
@@ -1235,6 +1763,7 @@ export class SipStatus implements GrpcMessage {
     _instance.exceptionName = _instance.exceptionName || '';
     _instance.exceptionTraceback = _instance.exceptionTraceback || '';
     _instance.nluSessionName = _instance.nluSessionName || '';
+    _instance.amdResult = _instance.amdResult || undefined;
   }
 
   /**
@@ -1289,6 +1818,13 @@ export class SipStatus implements GrpcMessage {
           break;
         case 10:
           _instance.nluSessionName = _reader.readString();
+          break;
+        case 11:
+          _instance.amdResult = new AnsweringMachineDetectionResult();
+          _reader.readMessage(
+            _instance.amdResult,
+            AnsweringMachineDetectionResult.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -1350,6 +1886,13 @@ export class SipStatus implements GrpcMessage {
     if (_instance.nluSessionName) {
       _writer.writeString(10, _instance.nluSessionName);
     }
+    if (_instance.amdResult) {
+      _writer.writeMessage(
+        11,
+        _instance.amdResult as any,
+        AnsweringMachineDetectionResult.serializeBinaryToWriter
+      );
+    }
   }
 
   private _accountName: string;
@@ -1362,6 +1905,7 @@ export class SipStatus implements GrpcMessage {
   private _exceptionName: string;
   private _exceptionTraceback: string;
   private _nluSessionName: string;
+  private _amdResult?: AnsweringMachineDetectionResult;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1386,6 +1930,9 @@ export class SipStatus implements GrpcMessage {
     this.exceptionName = _value.exceptionName;
     this.exceptionTraceback = _value.exceptionTraceback;
     this.nluSessionName = _value.nluSessionName;
+    this.amdResult = _value.amdResult
+      ? new AnsweringMachineDetectionResult(_value.amdResult)
+      : undefined;
     SipStatus.refineValues(this);
   }
   get accountName(): string {
@@ -1448,6 +1995,12 @@ export class SipStatus implements GrpcMessage {
   set nluSessionName(value: string) {
     this._nluSessionName = value;
   }
+  get amdResult(): AnsweringMachineDetectionResult | undefined {
+    return this._amdResult;
+  }
+  set amdResult(value: AnsweringMachineDetectionResult | undefined) {
+    this._amdResult = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -1478,7 +2031,8 @@ export class SipStatus implements GrpcMessage {
       description: this.description,
       exceptionName: this.exceptionName,
       exceptionTraceback: this.exceptionTraceback,
-      nluSessionName: this.nluSessionName
+      nluSessionName: this.nluSessionName,
+      amdResult: this.amdResult ? this.amdResult.toObject() : undefined
     };
   }
 
@@ -1518,7 +2072,8 @@ export class SipStatus implements GrpcMessage {
       description: this.description,
       exceptionName: this.exceptionName,
       exceptionTraceback: this.exceptionTraceback,
-      nluSessionName: this.nluSessionName
+      nluSessionName: this.nluSessionName,
+      amdResult: this.amdResult ? this.amdResult.toProtobufJSON(options) : null
     };
   }
 }
@@ -1537,6 +2092,7 @@ export module SipStatus {
     exceptionName: string;
     exceptionTraceback: string;
     nluSessionName: string;
+    amdResult?: AnsweringMachineDetectionResult.AsObject;
   }
 
   /**
@@ -1553,6 +2109,7 @@ export module SipStatus {
     exceptionName: string;
     exceptionTraceback: string;
     nluSessionName: string;
+    amdResult: AnsweringMachineDetectionResult.AsProtobufJSON | null;
   }
   export enum StatusType {
     NO_SESSION = 0,
@@ -1576,7 +2133,8 @@ export module SipStatus {
     MICROPHONE_MUTED = 18,
     MICROPHONE_UNMUTED = 19,
     MICROPHONE_WAV_FILES_PLAYED = 20,
-    NO_ONGOING_CALL = 21
+    NO_ONGOING_CALL = 21,
+    OUTGOING_CALL_ANSWERING_MACHINE_DETECTED = 22
   }
   /**
    * Message implementation for ondewo.sip.SipStatus.HeadersEntry

@@ -6,6 +6,19 @@
 
 ### Improvements
 
+* Built against ondewo-vtsi-api 9.0.0 (unreleased, `7ac2e28` on `feature/OND233-367-pjsip-migration-and-ssl-call-`).
+  New services: `CampaignsClient` (`ondewo/vtsi/campaigns.proto`) -- campaign CRUD, `StartCampaign`,
+  `StopCampaign`, `HardStopCampaign`, `ResumeCampaign`, `GetCampaignStatistics`, `ListCampaignCalls` and
+  the server-streaming `StreamCampaignStatus`; campaigns carry a display name, `max_parallel_calls` and
+  per-campaign retries (`max_attempts`, `retry_delay`). `EventsClient` (`ondewo/vtsi/events.proto`) --
+  the `VtsiEvent` enum, CRUD for event subscriptions and webhooks per VTSI project (custom header values
+  are write-only), `TestWebhook` and the server-streaming `SubscribeVtsiEvents`. `SoftphonesClient`
+  (`ondewo/vtsi/softphones.proto`) is generated for the first time as well
+* `CallsClient` gains the server-streaming `StreamCallerStatus`, `StreamListenerStatus` and
+  `StreamScheduledCallerStatus`; `StartCallers` / `StartScheduledCallers` accept a `campaign_assignment`
+  and return the campaign and its campaign call names, and `ScheduledCaller` carries `campaign_name`.
+  This regeneration also brings the rest of the unreleased 9.0.0 API surface since 8.7.0 (answering
+  machine detection, SIP trunk TLS verification, the re-vendored `ondewo/sip`)
 * **Correction, carried forward rather than back-edited: an Angular caller CAN send the empty string, and has
   been able to since 8.6.0.** The 8.3.0 entry below records the opposite -- that ngx-grpc flattens
   `AsteriskConfigs.asterisk_version`'s explicit presence and that a caller "cannot send the empty string". That

@@ -266,6 +266,27 @@ export class SipClient {
         requestClass: googleProtobuf000.Empty,
         responseClass: thisProto.SipStatus
       });
+    },
+    /**
+     * Unary call: /ondewo.sip.Sip/SipReportAnsweringMachineDetected
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.SipStatus>>
+     */
+    sipReportAnsweringMachineDetected: (
+      requestData: thisProto.SipReportAnsweringMachineDetectedRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.SipStatus>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.sip.Sip/SipReportAnsweringMachineDetected',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.SipReportAnsweringMachineDetectedRequest,
+        responseClass: thisProto.SipStatus
+      });
     }
   };
 
@@ -450,6 +471,22 @@ export class SipClient {
   ): Observable<thisProto.SipStatus> {
     return this.$raw
       .sipUnMute(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.sip.Sip/SipReportAnsweringMachineDetected
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.SipStatus>
+   */
+  sipReportAnsweringMachineDetected(
+    requestData: thisProto.SipReportAnsweringMachineDetectedRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.SipStatus> {
+    return this.$raw
+      .sipReportAnsweringMachineDetected(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 }

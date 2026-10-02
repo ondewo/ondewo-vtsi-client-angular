@@ -30,8 +30,9 @@ import * as ondewoNlu006 from '../../ondewo/nlu/intent.pb';
 import * as ondewoS2t007 from '../../ondewo/s2t/speech-to-text.pb';
 import * as ondewoT2s008 from '../../ondewo/t2s/text-to-speech.pb';
 import * as ondewoSip009 from '../../ondewo/sip/sip.pb';
-import * as ondewoNlu010 from '../../ondewo/nlu/common.pb';
-import * as ondewoVtsi011 from '../../ondewo/vtsi/calls.pb';
+import * as ondewoVtsi010 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoNlu011 from '../../ondewo/nlu/common.pb';
+import * as ondewoVtsi012 from '../../ondewo/vtsi/calls.pb';
 import { GRPC_LOGS_CLIENT_SETTINGS } from './logs.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Logs
