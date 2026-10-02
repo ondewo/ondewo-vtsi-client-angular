@@ -535,6 +535,7 @@ export class AsteriskConfigsVariables implements GrpcMessage {
     _instance.transferNumberHost = _instance.transferNumberHost || '';
     _instance.sipTrunkPhoneNumber = _instance.sipTrunkPhoneNumber || '';
     _instance.sipTrunkTransport = _instance.sipTrunkTransport || 0;
+    _instance.softphonePermitCidrs = _instance.softphonePermitCidrs || [];
   }
 
   /**
@@ -579,6 +580,10 @@ export class AsteriskConfigsVariables implements GrpcMessage {
           break;
         case 10:
           _instance.sipTrunkVerifyServer = _reader.readBool();
+          break;
+        case 11:
+          (_instance.softphonePermitCidrs =
+            _instance.softphonePermitCidrs || []).push(_reader.readString());
           break;
         default:
           _reader.skipField();
@@ -636,6 +641,12 @@ export class AsteriskConfigsVariables implements GrpcMessage {
     ) {
       _writer.writeBool(10, _instance.sipTrunkVerifyServer);
     }
+    if (
+      _instance.softphonePermitCidrs &&
+      _instance.softphonePermitCidrs.length
+    ) {
+      _writer.writeRepeatedString(11, _instance.softphonePermitCidrs);
+    }
   }
 
   private _sipTrunkUsername: string;
@@ -648,6 +659,7 @@ export class AsteriskConfigsVariables implements GrpcMessage {
   private _sipTrunkSourceCidr: string;
   private _sipTrunkCaCertificatesPem: string;
   private _sipTrunkVerifyServer: boolean;
+  private _softphonePermitCidrs: string[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -665,6 +677,7 @@ export class AsteriskConfigsVariables implements GrpcMessage {
     this.sipTrunkSourceCidr = _value.sipTrunkSourceCidr;
     this.sipTrunkCaCertificatesPem = _value.sipTrunkCaCertificatesPem;
     this.sipTrunkVerifyServer = _value.sipTrunkVerifyServer;
+    this.softphonePermitCidrs = (_value.softphonePermitCidrs || []).slice();
     AsteriskConfigsVariables.refineValues(this);
   }
   get sipTrunkUsername(): string {
@@ -727,6 +740,12 @@ export class AsteriskConfigsVariables implements GrpcMessage {
   set sipTrunkVerifyServer(value: boolean) {
     this._sipTrunkVerifyServer = value;
   }
+  get softphonePermitCidrs(): string[] {
+    return this._softphonePermitCidrs;
+  }
+  set softphonePermitCidrs(value: string[]) {
+    this._softphonePermitCidrs = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -752,7 +771,8 @@ export class AsteriskConfigsVariables implements GrpcMessage {
       sipTrunkTransport: this.sipTrunkTransport,
       sipTrunkSourceCidr: this.sipTrunkSourceCidr,
       sipTrunkCaCertificatesPem: this.sipTrunkCaCertificatesPem,
-      sipTrunkVerifyServer: this.sipTrunkVerifyServer
+      sipTrunkVerifyServer: this.sipTrunkVerifyServer,
+      softphonePermitCidrs: (this.softphonePermitCidrs || []).slice()
     };
   }
 
@@ -788,7 +808,8 @@ export class AsteriskConfigsVariables implements GrpcMessage {
         ],
       sipTrunkSourceCidr: this.sipTrunkSourceCidr,
       sipTrunkCaCertificatesPem: this.sipTrunkCaCertificatesPem,
-      sipTrunkVerifyServer: this.sipTrunkVerifyServer
+      sipTrunkVerifyServer: this.sipTrunkVerifyServer,
+      softphonePermitCidrs: (this.softphonePermitCidrs || []).slice()
     };
   }
 }
@@ -807,6 +828,7 @@ export module AsteriskConfigsVariables {
     sipTrunkSourceCidr: string;
     sipTrunkCaCertificatesPem: string;
     sipTrunkVerifyServer: boolean;
+    softphonePermitCidrs: string[];
   }
 
   /**
@@ -823,6 +845,7 @@ export module AsteriskConfigsVariables {
     sipTrunkSourceCidr: string;
     sipTrunkCaCertificatesPem: string;
     sipTrunkVerifyServer: boolean;
+    softphonePermitCidrs: string[];
   }
 }
 

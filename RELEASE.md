@@ -6,7 +6,7 @@
 
 ### Improvements
 
-* Built against ondewo-vtsi-api 9.0.0 (unreleased, `7ac2e28` on `feature/OND233-367-pjsip-migration-and-ssl-call-`).
+* Built against ondewo-vtsi-api 9.0.0 (unreleased, `cac5f44` on `feature/OND233-367-pjsip-migration-and-ssl-call-`).
   New services: `CampaignsClient` (`ondewo/vtsi/campaigns.proto`) -- campaign CRUD, `StartCampaign`,
   `StopCampaign`, `HardStopCampaign`, `ResumeCampaign`, `GetCampaignStatistics`, `ListCampaignCalls` and
   the server-streaming `StreamCampaignStatus`; campaigns carry a display name, `max_parallel_calls` and
@@ -15,8 +15,14 @@
   are write-only), `TestWebhook` and the server-streaming `SubscribeVtsiEvents`. `SoftphonesClient`
   (`ondewo/vtsi/softphones.proto`) is generated for the first time as well
 * `CallsClient` gains the server-streaming `StreamCallerStatus`, `StreamListenerStatus` and
-  `StreamScheduledCallerStatus`; `StartCallers` / `StartScheduledCallers` accept a `campaign_assignment`
-  and return the campaign and its campaign call names, and `ScheduledCaller` carries `campaign_name`.
+  `StreamScheduledCallerStatus`, and the two campaign-enrollment RPCs `AddCallersToCampaign` /
+  `AddScheduledCallersToCampaign`, each with a required `campaign_assignment`, returning the campaign and
+  its campaign call names; `ScheduledCaller` carries `campaign_name`. Campaign enrollment is deliberately
+  NOT on `StartCallers` / `StartScheduledCallers` (those fields of the 9.0.0 development builds are
+  reserved): a server replica that predates the new RPCs answers `UNIMPLEMENTED` and starts nothing,
+  instead of ignoring the assignment and dialling every caller at once during a rolling update.
+  `AsteriskConfigsVariables` gains `softphone_permit_cidrs`, the source allow-list of a project's
+  softphone accounts on its TLS ports
   This regeneration also brings the rest of the unreleased 9.0.0 API surface since 8.7.0 (answering
   machine detection, SIP trunk TLS verification, the re-vendored `ondewo/sip`)
 * **Correction, carried forward rather than back-edited: an Angular caller CAN send the empty string, and has

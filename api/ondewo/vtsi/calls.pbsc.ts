@@ -429,6 +429,50 @@ export class CallsClient {
       });
     },
     /**
+     * Unary call: /ondewo.vtsi.Calls/AddCallersToCampaign
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.AddCallersToCampaignResponse>>
+     */
+    addCallersToCampaign: (
+      requestData: thisProto.AddCallersToCampaignRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.AddCallersToCampaignResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/AddCallersToCampaign',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.AddCallersToCampaignRequest,
+        responseClass: thisProto.AddCallersToCampaignResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/AddScheduledCallersToCampaign
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.AddScheduledCallersToCampaignResponse>>
+     */
+    addScheduledCallersToCampaign: (
+      requestData: thisProto.AddScheduledCallersToCampaignRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<
+      GrpcEvent<thisProto.AddScheduledCallersToCampaignResponse>
+    > => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/AddScheduledCallersToCampaign',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.AddScheduledCallersToCampaignRequest,
+        responseClass: thisProto.AddScheduledCallersToCampaignResponse
+      });
+    },
+    /**
      * Unary call: /ondewo.vtsi.Calls/GetScheduledCaller
      *
      * @param requestMessage Request message
@@ -996,6 +1040,38 @@ export class CallsClient {
   ): Observable<thisProto.StartScheduledCallersResponse> {
     return this.$raw
       .startScheduledCallers(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/AddCallersToCampaign
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.AddCallersToCampaignResponse>
+   */
+  addCallersToCampaign(
+    requestData: thisProto.AddCallersToCampaignRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.AddCallersToCampaignResponse> {
+    return this.$raw
+      .addCallersToCampaign(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/AddScheduledCallersToCampaign
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.AddScheduledCallersToCampaignResponse>
+   */
+  addScheduledCallersToCampaign(
+    requestData: thisProto.AddScheduledCallersToCampaignRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.AddScheduledCallersToCampaignResponse> {
+    return this.$raw
+      .addScheduledCallersToCampaign(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 

@@ -7271,7 +7271,6 @@ export class StartCallersRequest implements GrpcMessage {
   static refineValues(_instance: StartCallersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callerRequests = _instance.callerRequests || [];
-    _instance.campaignAssignment = _instance.campaignAssignment || undefined;
   }
 
   /**
@@ -7298,13 +7297,6 @@ export class StartCallersRequest implements GrpcMessage {
           );
           (_instance.callerRequests = _instance.callerRequests || []).push(
             messageInitializer2
-          );
-          break;
-        case 3:
-          _instance.campaignAssignment = new ondewoVtsi015.CampaignAssignment();
-          _reader.readMessage(
-            _instance.campaignAssignment,
-            ondewoVtsi015.CampaignAssignment.deserializeBinaryFromReader
           );
           break;
         default:
@@ -7334,18 +7326,10 @@ export class StartCallersRequest implements GrpcMessage {
         StartCallerRequest.serializeBinaryToWriter
       );
     }
-    if (_instance.campaignAssignment) {
-      _writer.writeMessage(
-        3,
-        _instance.campaignAssignment as any,
-        ondewoVtsi015.CampaignAssignment.serializeBinaryToWriter
-      );
-    }
   }
 
   private _vtsiProjectName: string;
   private _callerRequests?: StartCallerRequest[];
-  private _campaignAssignment?: ondewoVtsi015.CampaignAssignment;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -7357,9 +7341,6 @@ export class StartCallersRequest implements GrpcMessage {
     this.callerRequests = (_value.callerRequests || []).map(
       m => new StartCallerRequest(m)
     );
-    this.campaignAssignment = _value.campaignAssignment
-      ? new ondewoVtsi015.CampaignAssignment(_value.campaignAssignment)
-      : undefined;
     StartCallersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -7373,12 +7354,6 @@ export class StartCallersRequest implements GrpcMessage {
   }
   set callerRequests(value: StartCallerRequest[] | undefined) {
     this._callerRequests = value;
-  }
-  get campaignAssignment(): ondewoVtsi015.CampaignAssignment | undefined {
-    return this._campaignAssignment;
-  }
-  set campaignAssignment(value: ondewoVtsi015.CampaignAssignment | undefined) {
-    this._campaignAssignment = value;
   }
 
   /**
@@ -7397,10 +7372,7 @@ export class StartCallersRequest implements GrpcMessage {
   toObject(): StartCallersRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      callerRequests: (this.callerRequests || []).map(m => m.toObject()),
-      campaignAssignment: this.campaignAssignment
-        ? this.campaignAssignment.toObject()
-        : undefined
+      callerRequests: (this.callerRequests || []).map(m => m.toObject())
     };
   }
 
@@ -7424,10 +7396,7 @@ export class StartCallersRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       callerRequests: (this.callerRequests || []).map(m =>
         m.toProtobufJSON(options)
-      ),
-      campaignAssignment: this.campaignAssignment
-        ? this.campaignAssignment.toProtobufJSON(options)
-        : null
+      )
     };
   }
 }
@@ -7438,7 +7407,6 @@ export module StartCallersRequest {
   export interface AsObject {
     vtsiProjectName: string;
     callerRequests?: StartCallerRequest.AsObject[];
-    campaignAssignment?: ondewoVtsi015.CampaignAssignment.AsObject;
   }
 
   /**
@@ -7447,7 +7415,6 @@ export module StartCallersRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     callerRequests: StartCallerRequest.AsProtobufJSON[] | null;
-    campaignAssignment: ondewoVtsi015.CampaignAssignment.AsProtobufJSON | null;
   }
 }
 
@@ -7478,8 +7445,6 @@ export class StartCallersResponse implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callerResponses = _instance.callerResponses || [];
     _instance.errorMessage = _instance.errorMessage || '';
-    _instance.campaign = _instance.campaign || undefined;
-    _instance.campaignCallNames = _instance.campaignCallNames || [];
   }
 
   /**
@@ -7511,17 +7476,6 @@ export class StartCallersResponse implements GrpcMessage {
         case 3:
           _instance.errorMessage = _reader.readString();
           break;
-        case 4:
-          _instance.campaign = new ondewoVtsi015.Campaign();
-          _reader.readMessage(
-            _instance.campaign,
-            ondewoVtsi015.Campaign.deserializeBinaryFromReader
-          );
-          break;
-        case 5:
-          (_instance.campaignCallNames =
-            _instance.campaignCallNames || []).push(_reader.readString());
-          break;
         default:
           _reader.skipField();
       }
@@ -7552,23 +7506,11 @@ export class StartCallersResponse implements GrpcMessage {
     if (_instance.errorMessage) {
       _writer.writeString(3, _instance.errorMessage);
     }
-    if (_instance.campaign) {
-      _writer.writeMessage(
-        4,
-        _instance.campaign as any,
-        ondewoVtsi015.Campaign.serializeBinaryToWriter
-      );
-    }
-    if (_instance.campaignCallNames && _instance.campaignCallNames.length) {
-      _writer.writeRepeatedString(5, _instance.campaignCallNames);
-    }
   }
 
   private _vtsiProjectName: string;
   private _callerResponses?: StartCallerResponse[];
   private _errorMessage: string;
-  private _campaign?: ondewoVtsi015.Campaign;
-  private _campaignCallNames: string[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -7581,10 +7523,6 @@ export class StartCallersResponse implements GrpcMessage {
       m => new StartCallerResponse(m)
     );
     this.errorMessage = _value.errorMessage;
-    this.campaign = _value.campaign
-      ? new ondewoVtsi015.Campaign(_value.campaign)
-      : undefined;
-    this.campaignCallNames = (_value.campaignCallNames || []).slice();
     StartCallersResponse.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -7605,18 +7543,6 @@ export class StartCallersResponse implements GrpcMessage {
   set errorMessage(value: string) {
     this._errorMessage = value;
   }
-  get campaign(): ondewoVtsi015.Campaign | undefined {
-    return this._campaign;
-  }
-  set campaign(value: ondewoVtsi015.Campaign | undefined) {
-    this._campaign = value;
-  }
-  get campaignCallNames(): string[] {
-    return this._campaignCallNames;
-  }
-  set campaignCallNames(value: string[]) {
-    this._campaignCallNames = value;
-  }
 
   /**
    * Serialize message to binary data
@@ -7635,9 +7561,7 @@ export class StartCallersResponse implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       callerResponses: (this.callerResponses || []).map(m => m.toObject()),
-      errorMessage: this.errorMessage,
-      campaign: this.campaign ? this.campaign.toObject() : undefined,
-      campaignCallNames: (this.campaignCallNames || []).slice()
+      errorMessage: this.errorMessage
     };
   }
 
@@ -7662,9 +7586,7 @@ export class StartCallersResponse implements GrpcMessage {
       callerResponses: (this.callerResponses || []).map(m =>
         m.toProtobufJSON(options)
       ),
-      errorMessage: this.errorMessage,
-      campaign: this.campaign ? this.campaign.toProtobufJSON(options) : null,
-      campaignCallNames: (this.campaignCallNames || []).slice()
+      errorMessage: this.errorMessage
     };
   }
 }
@@ -7676,8 +7598,6 @@ export module StartCallersResponse {
     vtsiProjectName: string;
     callerResponses?: StartCallerResponse.AsObject[];
     errorMessage: string;
-    campaign?: ondewoVtsi015.Campaign.AsObject;
-    campaignCallNames: string[];
   }
 
   /**
@@ -7687,8 +7607,6 @@ export module StartCallersResponse {
     vtsiProjectName: string;
     callerResponses: StartCallerResponse.AsProtobufJSON[] | null;
     errorMessage: string;
-    campaign: ondewoVtsi015.Campaign.AsProtobufJSON | null;
-    campaignCallNames: string[];
   }
 }
 
@@ -11428,7 +11346,6 @@ export class StartScheduledCallersRequest implements GrpcMessage {
   static refineValues(_instance: StartScheduledCallersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.scheduledCallerRequests = _instance.scheduledCallerRequests || [];
-    _instance.campaignAssignment = _instance.campaignAssignment || undefined;
   }
 
   /**
@@ -11455,13 +11372,6 @@ export class StartScheduledCallersRequest implements GrpcMessage {
           );
           (_instance.scheduledCallerRequests =
             _instance.scheduledCallerRequests || []).push(messageInitializer2);
-          break;
-        case 3:
-          _instance.campaignAssignment = new ondewoVtsi015.CampaignAssignment();
-          _reader.readMessage(
-            _instance.campaignAssignment,
-            ondewoVtsi015.CampaignAssignment.deserializeBinaryFromReader
-          );
           break;
         default:
           _reader.skipField();
@@ -11493,18 +11403,10 @@ export class StartScheduledCallersRequest implements GrpcMessage {
         StartScheduledCallerRequest.serializeBinaryToWriter
       );
     }
-    if (_instance.campaignAssignment) {
-      _writer.writeMessage(
-        3,
-        _instance.campaignAssignment as any,
-        ondewoVtsi015.CampaignAssignment.serializeBinaryToWriter
-      );
-    }
   }
 
   private _vtsiProjectName: string;
   private _scheduledCallerRequests?: StartScheduledCallerRequest[];
-  private _campaignAssignment?: ondewoVtsi015.CampaignAssignment;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -11518,9 +11420,6 @@ export class StartScheduledCallersRequest implements GrpcMessage {
     this.scheduledCallerRequests = (_value.scheduledCallerRequests || []).map(
       m => new StartScheduledCallerRequest(m)
     );
-    this.campaignAssignment = _value.campaignAssignment
-      ? new ondewoVtsi015.CampaignAssignment(_value.campaignAssignment)
-      : undefined;
     StartScheduledCallersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -11536,12 +11435,6 @@ export class StartScheduledCallersRequest implements GrpcMessage {
     value: StartScheduledCallerRequest[] | undefined
   ) {
     this._scheduledCallerRequests = value;
-  }
-  get campaignAssignment(): ondewoVtsi015.CampaignAssignment | undefined {
-    return this._campaignAssignment;
-  }
-  set campaignAssignment(value: ondewoVtsi015.CampaignAssignment | undefined) {
-    this._campaignAssignment = value;
   }
 
   /**
@@ -11562,10 +11455,7 @@ export class StartScheduledCallersRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m =>
         m.toObject()
-      ),
-      campaignAssignment: this.campaignAssignment
-        ? this.campaignAssignment.toObject()
-        : undefined
+      )
     };
   }
 
@@ -11589,10 +11479,7 @@ export class StartScheduledCallersRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m =>
         m.toProtobufJSON(options)
-      ),
-      campaignAssignment: this.campaignAssignment
-        ? this.campaignAssignment.toProtobufJSON(options)
-        : null
+      )
     };
   }
 }
@@ -11603,7 +11490,6 @@ export module StartScheduledCallersRequest {
   export interface AsObject {
     vtsiProjectName: string;
     scheduledCallerRequests?: StartScheduledCallerRequest.AsObject[];
-    campaignAssignment?: ondewoVtsi015.CampaignAssignment.AsObject;
   }
 
   /**
@@ -11614,7 +11500,6 @@ export module StartScheduledCallersRequest {
     scheduledCallerRequests:
       | StartScheduledCallerRequest.AsProtobufJSON[]
       | null;
-    campaignAssignment: ondewoVtsi015.CampaignAssignment.AsProtobufJSON | null;
   }
 }
 
@@ -11645,6 +11530,394 @@ export class StartScheduledCallersResponse implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.scheduledCallerResponses =
       _instance.scheduledCallerResponses || [];
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: StartScheduledCallersResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new StartScheduledCallerResponse();
+          _reader.readMessage(
+            messageInitializer2,
+            StartScheduledCallerResponse.deserializeBinaryFromReader
+          );
+          (_instance.scheduledCallerResponses =
+            _instance.scheduledCallerResponses || []).push(messageInitializer2);
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    StartScheduledCallersResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: StartScheduledCallersResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (
+      _instance.scheduledCallerResponses &&
+      _instance.scheduledCallerResponses.length
+    ) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.scheduledCallerResponses as any,
+        StartScheduledCallerResponse.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _scheduledCallerResponses?: StartScheduledCallerResponse[];
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of StartScheduledCallersResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<StartScheduledCallersResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.scheduledCallerResponses = (_value.scheduledCallerResponses || []).map(
+      m => new StartScheduledCallerResponse(m)
+    );
+    StartScheduledCallersResponse.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get scheduledCallerResponses(): StartScheduledCallerResponse[] | undefined {
+    return this._scheduledCallerResponses;
+  }
+  set scheduledCallerResponses(
+    value: StartScheduledCallerResponse[] | undefined
+  ) {
+    this._scheduledCallerResponses = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    StartScheduledCallersResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): StartScheduledCallersResponse.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      scheduledCallerResponses: (this.scheduledCallerResponses || []).map(m =>
+        m.toObject()
+      )
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): StartScheduledCallersResponse.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      scheduledCallerResponses: (this.scheduledCallerResponses || []).map(m =>
+        m.toProtobufJSON(options)
+      )
+    };
+  }
+}
+export module StartScheduledCallersResponse {
+  /**
+   * Standard JavaScript object representation for StartScheduledCallersResponse
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    scheduledCallerResponses?: StartScheduledCallerResponse.AsObject[];
+  }
+
+  /**
+   * Protobuf JSON representation for StartScheduledCallersResponse
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    scheduledCallerResponses:
+      | StartScheduledCallerResponse.AsProtobufJSON[]
+      | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.AddCallersToCampaignRequest
+ */
+export class AddCallersToCampaignRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.AddCallersToCampaignRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new AddCallersToCampaignRequest();
+    AddCallersToCampaignRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: AddCallersToCampaignRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.callerRequests = _instance.callerRequests || [];
+    _instance.campaignAssignment = _instance.campaignAssignment || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: AddCallersToCampaignRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new StartCallerRequest();
+          _reader.readMessage(
+            messageInitializer2,
+            StartCallerRequest.deserializeBinaryFromReader
+          );
+          (_instance.callerRequests = _instance.callerRequests || []).push(
+            messageInitializer2
+          );
+          break;
+        case 3:
+          _instance.campaignAssignment = new ondewoVtsi015.CampaignAssignment();
+          _reader.readMessage(
+            _instance.campaignAssignment,
+            ondewoVtsi015.CampaignAssignment.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    AddCallersToCampaignRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: AddCallersToCampaignRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.callerRequests && _instance.callerRequests.length) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.callerRequests as any,
+        StartCallerRequest.serializeBinaryToWriter
+      );
+    }
+    if (_instance.campaignAssignment) {
+      _writer.writeMessage(
+        3,
+        _instance.campaignAssignment as any,
+        ondewoVtsi015.CampaignAssignment.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _callerRequests?: StartCallerRequest[];
+  private _campaignAssignment?: ondewoVtsi015.CampaignAssignment;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of AddCallersToCampaignRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<AddCallersToCampaignRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.callerRequests = (_value.callerRequests || []).map(
+      m => new StartCallerRequest(m)
+    );
+    this.campaignAssignment = _value.campaignAssignment
+      ? new ondewoVtsi015.CampaignAssignment(_value.campaignAssignment)
+      : undefined;
+    AddCallersToCampaignRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get callerRequests(): StartCallerRequest[] | undefined {
+    return this._callerRequests;
+  }
+  set callerRequests(value: StartCallerRequest[] | undefined) {
+    this._callerRequests = value;
+  }
+  get campaignAssignment(): ondewoVtsi015.CampaignAssignment | undefined {
+    return this._campaignAssignment;
+  }
+  set campaignAssignment(value: ondewoVtsi015.CampaignAssignment | undefined) {
+    this._campaignAssignment = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    AddCallersToCampaignRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): AddCallersToCampaignRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      callerRequests: (this.callerRequests || []).map(m => m.toObject()),
+      campaignAssignment: this.campaignAssignment
+        ? this.campaignAssignment.toObject()
+        : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): AddCallersToCampaignRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      callerRequests: (this.callerRequests || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      campaignAssignment: this.campaignAssignment
+        ? this.campaignAssignment.toProtobufJSON(options)
+        : null
+    };
+  }
+}
+export module AddCallersToCampaignRequest {
+  /**
+   * Standard JavaScript object representation for AddCallersToCampaignRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    callerRequests?: StartCallerRequest.AsObject[];
+    campaignAssignment?: ondewoVtsi015.CampaignAssignment.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for AddCallersToCampaignRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    callerRequests: StartCallerRequest.AsProtobufJSON[] | null;
+    campaignAssignment: ondewoVtsi015.CampaignAssignment.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.AddCallersToCampaignResponse
+ */
+export class AddCallersToCampaignResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.AddCallersToCampaignResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new AddCallersToCampaignResponse();
+    AddCallersToCampaignResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: AddCallersToCampaignResponse) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.campaign = _instance.campaign || undefined;
     _instance.campaignCallNames = _instance.campaignCallNames || [];
   }
@@ -11655,7 +11928,415 @@ export class StartScheduledCallersResponse implements GrpcMessage {
    * @param _reader binary reader instance
    */
   static deserializeBinaryFromReader(
-    _instance: StartScheduledCallersResponse,
+    _instance: AddCallersToCampaignResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.campaign = new ondewoVtsi015.Campaign();
+          _reader.readMessage(
+            _instance.campaign,
+            ondewoVtsi015.Campaign.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          (_instance.campaignCallNames =
+            _instance.campaignCallNames || []).push(_reader.readString());
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    AddCallersToCampaignResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: AddCallersToCampaignResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.campaign) {
+      _writer.writeMessage(
+        2,
+        _instance.campaign as any,
+        ondewoVtsi015.Campaign.serializeBinaryToWriter
+      );
+    }
+    if (_instance.campaignCallNames && _instance.campaignCallNames.length) {
+      _writer.writeRepeatedString(3, _instance.campaignCallNames);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _campaign?: ondewoVtsi015.Campaign;
+  private _campaignCallNames: string[];
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of AddCallersToCampaignResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<AddCallersToCampaignResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.campaign = _value.campaign
+      ? new ondewoVtsi015.Campaign(_value.campaign)
+      : undefined;
+    this.campaignCallNames = (_value.campaignCallNames || []).slice();
+    AddCallersToCampaignResponse.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get campaign(): ondewoVtsi015.Campaign | undefined {
+    return this._campaign;
+  }
+  set campaign(value: ondewoVtsi015.Campaign | undefined) {
+    this._campaign = value;
+  }
+  get campaignCallNames(): string[] {
+    return this._campaignCallNames;
+  }
+  set campaignCallNames(value: string[]) {
+    this._campaignCallNames = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    AddCallersToCampaignResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): AddCallersToCampaignResponse.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      campaign: this.campaign ? this.campaign.toObject() : undefined,
+      campaignCallNames: (this.campaignCallNames || []).slice()
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): AddCallersToCampaignResponse.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      campaign: this.campaign ? this.campaign.toProtobufJSON(options) : null,
+      campaignCallNames: (this.campaignCallNames || []).slice()
+    };
+  }
+}
+export module AddCallersToCampaignResponse {
+  /**
+   * Standard JavaScript object representation for AddCallersToCampaignResponse
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    campaign?: ondewoVtsi015.Campaign.AsObject;
+    campaignCallNames: string[];
+  }
+
+  /**
+   * Protobuf JSON representation for AddCallersToCampaignResponse
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    campaign: ondewoVtsi015.Campaign.AsProtobufJSON | null;
+    campaignCallNames: string[];
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.AddScheduledCallersToCampaignRequest
+ */
+export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.AddScheduledCallersToCampaignRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new AddScheduledCallersToCampaignRequest();
+    AddScheduledCallersToCampaignRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: AddScheduledCallersToCampaignRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.scheduledCallerRequests = _instance.scheduledCallerRequests || [];
+    _instance.campaignAssignment = _instance.campaignAssignment || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: AddScheduledCallersToCampaignRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new StartScheduledCallerRequest();
+          _reader.readMessage(
+            messageInitializer2,
+            StartScheduledCallerRequest.deserializeBinaryFromReader
+          );
+          (_instance.scheduledCallerRequests =
+            _instance.scheduledCallerRequests || []).push(messageInitializer2);
+          break;
+        case 3:
+          _instance.campaignAssignment = new ondewoVtsi015.CampaignAssignment();
+          _reader.readMessage(
+            _instance.campaignAssignment,
+            ondewoVtsi015.CampaignAssignment.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    AddScheduledCallersToCampaignRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: AddScheduledCallersToCampaignRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (
+      _instance.scheduledCallerRequests &&
+      _instance.scheduledCallerRequests.length
+    ) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.scheduledCallerRequests as any,
+        StartScheduledCallerRequest.serializeBinaryToWriter
+      );
+    }
+    if (_instance.campaignAssignment) {
+      _writer.writeMessage(
+        3,
+        _instance.campaignAssignment as any,
+        ondewoVtsi015.CampaignAssignment.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _scheduledCallerRequests?: StartScheduledCallerRequest[];
+  private _campaignAssignment?: ondewoVtsi015.CampaignAssignment;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of AddScheduledCallersToCampaignRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<AddScheduledCallersToCampaignRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.scheduledCallerRequests = (_value.scheduledCallerRequests || []).map(
+      m => new StartScheduledCallerRequest(m)
+    );
+    this.campaignAssignment = _value.campaignAssignment
+      ? new ondewoVtsi015.CampaignAssignment(_value.campaignAssignment)
+      : undefined;
+    AddScheduledCallersToCampaignRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get scheduledCallerRequests(): StartScheduledCallerRequest[] | undefined {
+    return this._scheduledCallerRequests;
+  }
+  set scheduledCallerRequests(
+    value: StartScheduledCallerRequest[] | undefined
+  ) {
+    this._scheduledCallerRequests = value;
+  }
+  get campaignAssignment(): ondewoVtsi015.CampaignAssignment | undefined {
+    return this._campaignAssignment;
+  }
+  set campaignAssignment(value: ondewoVtsi015.CampaignAssignment | undefined) {
+    this._campaignAssignment = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    AddScheduledCallersToCampaignRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): AddScheduledCallersToCampaignRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m =>
+        m.toObject()
+      ),
+      campaignAssignment: this.campaignAssignment
+        ? this.campaignAssignment.toObject()
+        : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): AddScheduledCallersToCampaignRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      campaignAssignment: this.campaignAssignment
+        ? this.campaignAssignment.toProtobufJSON(options)
+        : null
+    };
+  }
+}
+export module AddScheduledCallersToCampaignRequest {
+  /**
+   * Standard JavaScript object representation for AddScheduledCallersToCampaignRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    scheduledCallerRequests?: StartScheduledCallerRequest.AsObject[];
+    campaignAssignment?: ondewoVtsi015.CampaignAssignment.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for AddScheduledCallersToCampaignRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    scheduledCallerRequests:
+      | StartScheduledCallerRequest.AsProtobufJSON[]
+      | null;
+    campaignAssignment: ondewoVtsi015.CampaignAssignment.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.AddScheduledCallersToCampaignResponse
+ */
+export class AddScheduledCallersToCampaignResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.AddScheduledCallersToCampaignResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new AddScheduledCallersToCampaignResponse();
+    AddScheduledCallersToCampaignResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: AddScheduledCallersToCampaignResponse) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.scheduledCallerResponses =
+      _instance.scheduledCallerResponses || [];
+    _instance.campaign = _instance.campaign || undefined;
+    _instance.campaignCallNames = _instance.campaignCallNames || [];
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: AddScheduledCallersToCampaignResponse,
     _reader: BinaryReader
   ) {
     while (_reader.nextField()) {
@@ -11690,7 +12371,7 @@ export class StartScheduledCallersResponse implements GrpcMessage {
       }
     }
 
-    StartScheduledCallersResponse.refineValues(_instance);
+    AddScheduledCallersToCampaignResponse.refineValues(_instance);
   }
 
   /**
@@ -11699,7 +12380,7 @@ export class StartScheduledCallersResponse implements GrpcMessage {
    * @param _writer binary writer instance
    */
   static serializeBinaryToWriter(
-    _instance: StartScheduledCallersResponse,
+    _instance: AddScheduledCallersToCampaignResponse,
     _writer: BinaryWriter
   ) {
     if (_instance.vtsiProjectName) {
@@ -11734,10 +12415,10 @@ export class StartScheduledCallersResponse implements GrpcMessage {
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of StartScheduledCallersResponse to deeply clone from
+   * @param _value initial values object or instance of AddScheduledCallersToCampaignResponse to deeply clone from
    */
   constructor(
-    _value?: RecursivePartial<StartScheduledCallersResponse.AsObject>
+    _value?: RecursivePartial<AddScheduledCallersToCampaignResponse.AsObject>
   ) {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
@@ -11748,7 +12429,7 @@ export class StartScheduledCallersResponse implements GrpcMessage {
       ? new ondewoVtsi015.Campaign(_value.campaign)
       : undefined;
     this.campaignCallNames = (_value.campaignCallNames || []).slice();
-    StartScheduledCallersResponse.refineValues(this);
+    AddScheduledCallersToCampaignResponse.refineValues(this);
   }
   get vtsiProjectName(): string {
     return this._vtsiProjectName;
@@ -11783,14 +12464,14 @@ export class StartScheduledCallersResponse implements GrpcMessage {
    */
   serializeBinary() {
     const writer = new BinaryWriter();
-    StartScheduledCallersResponse.serializeBinaryToWriter(this, writer);
+    AddScheduledCallersToCampaignResponse.serializeBinaryToWriter(this, writer);
     return writer.getResultBuffer();
   }
 
   /**
    * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
    */
-  toObject(): StartScheduledCallersResponse.AsObject {
+  toObject(): AddScheduledCallersToCampaignResponse.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
       scheduledCallerResponses: (this.scheduledCallerResponses || []).map(m =>
@@ -11816,7 +12497,7 @@ export class StartScheduledCallersResponse implements GrpcMessage {
   toProtobufJSON(
     // @ts-ignore
     options?: ToProtobufJSONOptions
-  ): StartScheduledCallersResponse.AsProtobufJSON {
+  ): AddScheduledCallersToCampaignResponse.AsProtobufJSON {
     return {
       vtsiProjectName: this.vtsiProjectName,
       scheduledCallerResponses: (this.scheduledCallerResponses || []).map(m =>
@@ -11827,9 +12508,9 @@ export class StartScheduledCallersResponse implements GrpcMessage {
     };
   }
 }
-export module StartScheduledCallersResponse {
+export module AddScheduledCallersToCampaignResponse {
   /**
-   * Standard JavaScript object representation for StartScheduledCallersResponse
+   * Standard JavaScript object representation for AddScheduledCallersToCampaignResponse
    */
   export interface AsObject {
     vtsiProjectName: string;
@@ -11839,7 +12520,7 @@ export module StartScheduledCallersResponse {
   }
 
   /**
-   * Protobuf JSON representation for StartScheduledCallersResponse
+   * Protobuf JSON representation for AddScheduledCallersToCampaignResponse
    */
   export interface AsProtobufJSON {
     vtsiProjectName: string;
