@@ -6,7 +6,7 @@
 
 ### Improvements
 
-* Built against ondewo-vtsi-api 9.0.0 (unreleased, `cac5f44` on `feature/OND233-367-pjsip-migration-and-ssl-call-`).
+* Built against ondewo-vtsi-api 9.0.0 (unreleased, `8ae9487` on `feature/OND233-367-request-idempotency-key`).
   New services: `CampaignsClient` (`ondewo/vtsi/campaigns.proto`) -- campaign CRUD, `StartCampaign`,
   `StopCampaign`, `HardStopCampaign`, `ResumeCampaign`, `GetCampaignStatistics`, `ListCampaignCalls` and
   the server-streaming `StreamCampaignStatus`; campaigns carry a display name, `max_parallel_calls` and
@@ -25,6 +25,14 @@
   softphone accounts on its TLS ports
   This regeneration also brings the rest of the unreleased 9.0.0 API surface since 8.7.0 (answering
   machine detection, SIP trunk TLS verification, the re-vendored `ondewo/sip`)
+* `StartCallersRequest`, `StartListenersRequest`, `StartScheduledCallersRequest`, `AddCallersToCampaignRequest`
+  and `AddScheduledCallersToCampaignRequest` gain `idempotencyKey`, an optional client idempotency key (at most 255
+  printable ASCII characters, no whitespace; empty means no deduplication -- it is a plain proto3 `string`, so `''`
+  is not sent). A retry with the same key returns the first successful attempt's response, on whichever server
+  replica it lands. The key is scoped to the VTSI project and the RPC and retained for 24 h by default; the same
+  key with a different request is refused with `INVALID_ARGUMENT`, a retry while the first attempt is still
+  running gets `ABORTED` (retry later), a failed first attempt stores nothing, and a replayed response carries no
+  `commonServicesConfig`. The single-resource RPCs take no key -- send a batch of one
 * Server behaviour documented by ondewo-vtsi-api 9.0.0 (no wire change): `updateWebhook` -- moving a
   webhook's `url` to another origin (scheme, host or port) while custom headers are stored requires re-sending
   `customHeaders` with their real values (or an empty map) in the same request, and the masked value is refused

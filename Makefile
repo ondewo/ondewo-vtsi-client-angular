@@ -16,7 +16,7 @@ export
 
 ONDEWO_VTSI_VERSION=9.0.0
 
-VTSI_API_GIT_BRANCH=cac5f44fe1d1c5a8cad1974b7e5abe39e6a1029a
+VTSI_API_GIT_BRANCH=8ae9487f47304983f9a81dc825764b3addcdcfe5
 # Must name the tag the committed ondewo-proto-compiler submodule points at, otherwise
 # check_out_correct_submodule_versions checks the submodule BACK to the older tag.
 ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/5.14.0

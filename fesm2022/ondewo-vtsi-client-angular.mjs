@@ -163842,6 +163842,7 @@ class StartListenersRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.listenerRequests = _instance.listenerRequests || [];
+        _instance.idempotencyKey = _instance.idempotencyKey || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -163861,6 +163862,9 @@ class StartListenersRequest {
                     _reader.readMessage(messageInitializer2, StartListenerRequest.deserializeBinaryFromReader);
                     (_instance.listenerRequests = _instance.listenerRequests || []).push(messageInitializer2);
                     break;
+                case 3:
+                    _instance.idempotencyKey = _reader.readString();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -163879,6 +163883,9 @@ class StartListenersRequest {
         if (_instance.listenerRequests && _instance.listenerRequests.length) {
             _writer.writeRepeatedMessage(2, _instance.listenerRequests, StartListenerRequest.serializeBinaryToWriter);
         }
+        if (_instance.idempotencyKey) {
+            _writer.writeString(3, _instance.idempotencyKey);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -163888,6 +163895,7 @@ class StartListenersRequest {
         _value = _value || {};
         this.vtsiProjectName = _value.vtsiProjectName;
         this.listenerRequests = (_value.listenerRequests || []).map(m => new StartListenerRequest(m));
+        this.idempotencyKey = _value.idempotencyKey;
         StartListenersRequest.refineValues(this);
     }
     get vtsiProjectName() {
@@ -163901,6 +163909,12 @@ class StartListenersRequest {
     }
     set listenerRequests(value) {
         this._listenerRequests = value;
+    }
+    get idempotencyKey() {
+        return this._idempotencyKey;
+    }
+    set idempotencyKey(value) {
+        this._idempotencyKey = value;
     }
     /**
      * Serialize message to binary data
@@ -163917,7 +163931,8 @@ class StartListenersRequest {
     toObject() {
         return {
             vtsiProjectName: this.vtsiProjectName,
-            listenerRequests: (this.listenerRequests || []).map(m => m.toObject())
+            listenerRequests: (this.listenerRequests || []).map(m => m.toObject()),
+            idempotencyKey: this.idempotencyKey
         };
     }
     /**
@@ -163936,7 +163951,8 @@ class StartListenersRequest {
     options) {
         return {
             vtsiProjectName: this.vtsiProjectName,
-            listenerRequests: (this.listenerRequests || []).map(m => m.toProtobufJSON(options))
+            listenerRequests: (this.listenerRequests || []).map(m => m.toProtobufJSON(options)),
+            idempotencyKey: this.idempotencyKey
         };
     }
 }
@@ -164379,6 +164395,7 @@ class StartCallersRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.callerRequests = _instance.callerRequests || [];
+        _instance.idempotencyKey = _instance.idempotencyKey || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -164398,6 +164415,9 @@ class StartCallersRequest {
                     _reader.readMessage(messageInitializer2, StartCallerRequest.deserializeBinaryFromReader);
                     (_instance.callerRequests = _instance.callerRequests || []).push(messageInitializer2);
                     break;
+                case 4:
+                    _instance.idempotencyKey = _reader.readString();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -164416,6 +164436,9 @@ class StartCallersRequest {
         if (_instance.callerRequests && _instance.callerRequests.length) {
             _writer.writeRepeatedMessage(2, _instance.callerRequests, StartCallerRequest.serializeBinaryToWriter);
         }
+        if (_instance.idempotencyKey) {
+            _writer.writeString(4, _instance.idempotencyKey);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -164425,6 +164448,7 @@ class StartCallersRequest {
         _value = _value || {};
         this.vtsiProjectName = _value.vtsiProjectName;
         this.callerRequests = (_value.callerRequests || []).map(m => new StartCallerRequest(m));
+        this.idempotencyKey = _value.idempotencyKey;
         StartCallersRequest.refineValues(this);
     }
     get vtsiProjectName() {
@@ -164438,6 +164462,12 @@ class StartCallersRequest {
     }
     set callerRequests(value) {
         this._callerRequests = value;
+    }
+    get idempotencyKey() {
+        return this._idempotencyKey;
+    }
+    set idempotencyKey(value) {
+        this._idempotencyKey = value;
     }
     /**
      * Serialize message to binary data
@@ -164454,7 +164484,8 @@ class StartCallersRequest {
     toObject() {
         return {
             vtsiProjectName: this.vtsiProjectName,
-            callerRequests: (this.callerRequests || []).map(m => m.toObject())
+            callerRequests: (this.callerRequests || []).map(m => m.toObject()),
+            idempotencyKey: this.idempotencyKey
         };
     }
     /**
@@ -164473,7 +164504,8 @@ class StartCallersRequest {
     options) {
         return {
             vtsiProjectName: this.vtsiProjectName,
-            callerRequests: (this.callerRequests || []).map(m => m.toProtobufJSON(options))
+            callerRequests: (this.callerRequests || []).map(m => m.toProtobufJSON(options)),
+            idempotencyKey: this.idempotencyKey
         };
     }
 }
@@ -167307,6 +167339,7 @@ class StartScheduledCallersRequest {
     static refineValues(_instance) {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.scheduledCallerRequests = _instance.scheduledCallerRequests || [];
+        _instance.idempotencyKey = _instance.idempotencyKey || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -167327,6 +167360,9 @@ class StartScheduledCallersRequest {
                     (_instance.scheduledCallerRequests =
                         _instance.scheduledCallerRequests || []).push(messageInitializer2);
                     break;
+                case 4:
+                    _instance.idempotencyKey = _reader.readString();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -167346,6 +167382,9 @@ class StartScheduledCallersRequest {
             _instance.scheduledCallerRequests.length) {
             _writer.writeRepeatedMessage(2, _instance.scheduledCallerRequests, StartScheduledCallerRequest.serializeBinaryToWriter);
         }
+        if (_instance.idempotencyKey) {
+            _writer.writeString(4, _instance.idempotencyKey);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -167355,6 +167394,7 @@ class StartScheduledCallersRequest {
         _value = _value || {};
         this.vtsiProjectName = _value.vtsiProjectName;
         this.scheduledCallerRequests = (_value.scheduledCallerRequests || []).map(m => new StartScheduledCallerRequest(m));
+        this.idempotencyKey = _value.idempotencyKey;
         StartScheduledCallersRequest.refineValues(this);
     }
     get vtsiProjectName() {
@@ -167368,6 +167408,12 @@ class StartScheduledCallersRequest {
     }
     set scheduledCallerRequests(value) {
         this._scheduledCallerRequests = value;
+    }
+    get idempotencyKey() {
+        return this._idempotencyKey;
+    }
+    set idempotencyKey(value) {
+        this._idempotencyKey = value;
     }
     /**
      * Serialize message to binary data
@@ -167384,7 +167430,8 @@ class StartScheduledCallersRequest {
     toObject() {
         return {
             vtsiProjectName: this.vtsiProjectName,
-            scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m => m.toObject())
+            scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m => m.toObject()),
+            idempotencyKey: this.idempotencyKey
         };
     }
     /**
@@ -167403,7 +167450,8 @@ class StartScheduledCallersRequest {
     options) {
         return {
             vtsiProjectName: this.vtsiProjectName,
-            scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m => m.toProtobufJSON(options))
+            scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m => m.toProtobufJSON(options)),
+            idempotencyKey: this.idempotencyKey
         };
     }
 }
@@ -167551,6 +167599,7 @@ class AddCallersToCampaignRequest {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.callerRequests = _instance.callerRequests || [];
         _instance.campaignAssignment = _instance.campaignAssignment || undefined;
+        _instance.idempotencyKey = _instance.idempotencyKey || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -167574,6 +167623,9 @@ class AddCallersToCampaignRequest {
                     _instance.campaignAssignment = new CampaignAssignment();
                     _reader.readMessage(_instance.campaignAssignment, CampaignAssignment.deserializeBinaryFromReader);
                     break;
+                case 4:
+                    _instance.idempotencyKey = _reader.readString();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -167595,6 +167647,9 @@ class AddCallersToCampaignRequest {
         if (_instance.campaignAssignment) {
             _writer.writeMessage(3, _instance.campaignAssignment, CampaignAssignment.serializeBinaryToWriter);
         }
+        if (_instance.idempotencyKey) {
+            _writer.writeString(4, _instance.idempotencyKey);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -167607,6 +167662,7 @@ class AddCallersToCampaignRequest {
         this.campaignAssignment = _value.campaignAssignment
             ? new CampaignAssignment(_value.campaignAssignment)
             : undefined;
+        this.idempotencyKey = _value.idempotencyKey;
         AddCallersToCampaignRequest.refineValues(this);
     }
     get vtsiProjectName() {
@@ -167627,6 +167683,12 @@ class AddCallersToCampaignRequest {
     set campaignAssignment(value) {
         this._campaignAssignment = value;
     }
+    get idempotencyKey() {
+        return this._idempotencyKey;
+    }
+    set idempotencyKey(value) {
+        this._idempotencyKey = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -167645,7 +167707,8 @@ class AddCallersToCampaignRequest {
             callerRequests: (this.callerRequests || []).map(m => m.toObject()),
             campaignAssignment: this.campaignAssignment
                 ? this.campaignAssignment.toObject()
-                : undefined
+                : undefined,
+            idempotencyKey: this.idempotencyKey
         };
     }
     /**
@@ -167667,7 +167730,8 @@ class AddCallersToCampaignRequest {
             callerRequests: (this.callerRequests || []).map(m => m.toProtobufJSON(options)),
             campaignAssignment: this.campaignAssignment
                 ? this.campaignAssignment.toProtobufJSON(options)
-                : null
+                : null,
+            idempotencyKey: this.idempotencyKey
         };
     }
 }
@@ -167830,6 +167894,7 @@ class AddScheduledCallersToCampaignRequest {
         _instance.vtsiProjectName = _instance.vtsiProjectName || '';
         _instance.scheduledCallerRequests = _instance.scheduledCallerRequests || [];
         _instance.campaignAssignment = _instance.campaignAssignment || undefined;
+        _instance.idempotencyKey = _instance.idempotencyKey || '';
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -167854,6 +167919,9 @@ class AddScheduledCallersToCampaignRequest {
                     _instance.campaignAssignment = new CampaignAssignment();
                     _reader.readMessage(_instance.campaignAssignment, CampaignAssignment.deserializeBinaryFromReader);
                     break;
+                case 4:
+                    _instance.idempotencyKey = _reader.readString();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -167876,6 +167944,9 @@ class AddScheduledCallersToCampaignRequest {
         if (_instance.campaignAssignment) {
             _writer.writeMessage(3, _instance.campaignAssignment, CampaignAssignment.serializeBinaryToWriter);
         }
+        if (_instance.idempotencyKey) {
+            _writer.writeString(4, _instance.idempotencyKey);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -167888,6 +167959,7 @@ class AddScheduledCallersToCampaignRequest {
         this.campaignAssignment = _value.campaignAssignment
             ? new CampaignAssignment(_value.campaignAssignment)
             : undefined;
+        this.idempotencyKey = _value.idempotencyKey;
         AddScheduledCallersToCampaignRequest.refineValues(this);
     }
     get vtsiProjectName() {
@@ -167908,6 +167980,12 @@ class AddScheduledCallersToCampaignRequest {
     set campaignAssignment(value) {
         this._campaignAssignment = value;
     }
+    get idempotencyKey() {
+        return this._idempotencyKey;
+    }
+    set idempotencyKey(value) {
+        this._idempotencyKey = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -167926,7 +168004,8 @@ class AddScheduledCallersToCampaignRequest {
             scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m => m.toObject()),
             campaignAssignment: this.campaignAssignment
                 ? this.campaignAssignment.toObject()
-                : undefined
+                : undefined,
+            idempotencyKey: this.idempotencyKey
         };
     }
     /**
@@ -167948,7 +168027,8 @@ class AddScheduledCallersToCampaignRequest {
             scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m => m.toProtobufJSON(options)),
             campaignAssignment: this.campaignAssignment
                 ? this.campaignAssignment.toProtobufJSON(options)
-                : null
+                : null,
+            idempotencyKey: this.idempotencyKey
         };
     }
 }

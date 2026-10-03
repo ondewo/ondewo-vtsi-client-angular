@@ -6516,6 +6516,7 @@ export class StartListenersRequest implements GrpcMessage {
   static refineValues(_instance: StartListenersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.listenerRequests = _instance.listenerRequests || [];
+    _instance.idempotencyKey = _instance.idempotencyKey || '';
   }
 
   /**
@@ -6544,6 +6545,9 @@ export class StartListenersRequest implements GrpcMessage {
             messageInitializer2
           );
           break;
+        case 3:
+          _instance.idempotencyKey = _reader.readString();
+          break;
         default:
           _reader.skipField();
       }
@@ -6571,10 +6575,14 @@ export class StartListenersRequest implements GrpcMessage {
         StartListenerRequest.serializeBinaryToWriter
       );
     }
+    if (_instance.idempotencyKey) {
+      _writer.writeString(3, _instance.idempotencyKey);
+    }
   }
 
   private _vtsiProjectName: string;
   private _listenerRequests?: StartListenerRequest[];
+  private _idempotencyKey: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -6586,6 +6594,7 @@ export class StartListenersRequest implements GrpcMessage {
     this.listenerRequests = (_value.listenerRequests || []).map(
       m => new StartListenerRequest(m)
     );
+    this.idempotencyKey = _value.idempotencyKey;
     StartListenersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -6599,6 +6608,12 @@ export class StartListenersRequest implements GrpcMessage {
   }
   set listenerRequests(value: StartListenerRequest[] | undefined) {
     this._listenerRequests = value;
+  }
+  get idempotencyKey(): string {
+    return this._idempotencyKey;
+  }
+  set idempotencyKey(value: string) {
+    this._idempotencyKey = value;
   }
 
   /**
@@ -6617,7 +6632,8 @@ export class StartListenersRequest implements GrpcMessage {
   toObject(): StartListenersRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      listenerRequests: (this.listenerRequests || []).map(m => m.toObject())
+      listenerRequests: (this.listenerRequests || []).map(m => m.toObject()),
+      idempotencyKey: this.idempotencyKey
     };
   }
 
@@ -6641,7 +6657,8 @@ export class StartListenersRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       listenerRequests: (this.listenerRequests || []).map(m =>
         m.toProtobufJSON(options)
-      )
+      ),
+      idempotencyKey: this.idempotencyKey
     };
   }
 }
@@ -6652,6 +6669,7 @@ export module StartListenersRequest {
   export interface AsObject {
     vtsiProjectName: string;
     listenerRequests?: StartListenerRequest.AsObject[];
+    idempotencyKey: string;
   }
 
   /**
@@ -6660,6 +6678,7 @@ export module StartListenersRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     listenerRequests: StartListenerRequest.AsProtobufJSON[] | null;
+    idempotencyKey: string;
   }
 }
 
@@ -7271,6 +7290,7 @@ export class StartCallersRequest implements GrpcMessage {
   static refineValues(_instance: StartCallersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callerRequests = _instance.callerRequests || [];
+    _instance.idempotencyKey = _instance.idempotencyKey || '';
   }
 
   /**
@@ -7299,6 +7319,9 @@ export class StartCallersRequest implements GrpcMessage {
             messageInitializer2
           );
           break;
+        case 4:
+          _instance.idempotencyKey = _reader.readString();
+          break;
         default:
           _reader.skipField();
       }
@@ -7326,10 +7349,14 @@ export class StartCallersRequest implements GrpcMessage {
         StartCallerRequest.serializeBinaryToWriter
       );
     }
+    if (_instance.idempotencyKey) {
+      _writer.writeString(4, _instance.idempotencyKey);
+    }
   }
 
   private _vtsiProjectName: string;
   private _callerRequests?: StartCallerRequest[];
+  private _idempotencyKey: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -7341,6 +7368,7 @@ export class StartCallersRequest implements GrpcMessage {
     this.callerRequests = (_value.callerRequests || []).map(
       m => new StartCallerRequest(m)
     );
+    this.idempotencyKey = _value.idempotencyKey;
     StartCallersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -7354,6 +7382,12 @@ export class StartCallersRequest implements GrpcMessage {
   }
   set callerRequests(value: StartCallerRequest[] | undefined) {
     this._callerRequests = value;
+  }
+  get idempotencyKey(): string {
+    return this._idempotencyKey;
+  }
+  set idempotencyKey(value: string) {
+    this._idempotencyKey = value;
   }
 
   /**
@@ -7372,7 +7406,8 @@ export class StartCallersRequest implements GrpcMessage {
   toObject(): StartCallersRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      callerRequests: (this.callerRequests || []).map(m => m.toObject())
+      callerRequests: (this.callerRequests || []).map(m => m.toObject()),
+      idempotencyKey: this.idempotencyKey
     };
   }
 
@@ -7396,7 +7431,8 @@ export class StartCallersRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       callerRequests: (this.callerRequests || []).map(m =>
         m.toProtobufJSON(options)
-      )
+      ),
+      idempotencyKey: this.idempotencyKey
     };
   }
 }
@@ -7407,6 +7443,7 @@ export module StartCallersRequest {
   export interface AsObject {
     vtsiProjectName: string;
     callerRequests?: StartCallerRequest.AsObject[];
+    idempotencyKey: string;
   }
 
   /**
@@ -7415,6 +7452,7 @@ export module StartCallersRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     callerRequests: StartCallerRequest.AsProtobufJSON[] | null;
+    idempotencyKey: string;
   }
 }
 
@@ -11346,6 +11384,7 @@ export class StartScheduledCallersRequest implements GrpcMessage {
   static refineValues(_instance: StartScheduledCallersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.scheduledCallerRequests = _instance.scheduledCallerRequests || [];
+    _instance.idempotencyKey = _instance.idempotencyKey || '';
   }
 
   /**
@@ -11372,6 +11411,9 @@ export class StartScheduledCallersRequest implements GrpcMessage {
           );
           (_instance.scheduledCallerRequests =
             _instance.scheduledCallerRequests || []).push(messageInitializer2);
+          break;
+        case 4:
+          _instance.idempotencyKey = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -11403,10 +11445,14 @@ export class StartScheduledCallersRequest implements GrpcMessage {
         StartScheduledCallerRequest.serializeBinaryToWriter
       );
     }
+    if (_instance.idempotencyKey) {
+      _writer.writeString(4, _instance.idempotencyKey);
+    }
   }
 
   private _vtsiProjectName: string;
   private _scheduledCallerRequests?: StartScheduledCallerRequest[];
+  private _idempotencyKey: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -11420,6 +11466,7 @@ export class StartScheduledCallersRequest implements GrpcMessage {
     this.scheduledCallerRequests = (_value.scheduledCallerRequests || []).map(
       m => new StartScheduledCallerRequest(m)
     );
+    this.idempotencyKey = _value.idempotencyKey;
     StartScheduledCallersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -11435,6 +11482,12 @@ export class StartScheduledCallersRequest implements GrpcMessage {
     value: StartScheduledCallerRequest[] | undefined
   ) {
     this._scheduledCallerRequests = value;
+  }
+  get idempotencyKey(): string {
+    return this._idempotencyKey;
+  }
+  set idempotencyKey(value: string) {
+    this._idempotencyKey = value;
   }
 
   /**
@@ -11455,7 +11508,8 @@ export class StartScheduledCallersRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m =>
         m.toObject()
-      )
+      ),
+      idempotencyKey: this.idempotencyKey
     };
   }
 
@@ -11479,7 +11533,8 @@ export class StartScheduledCallersRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m =>
         m.toProtobufJSON(options)
-      )
+      ),
+      idempotencyKey: this.idempotencyKey
     };
   }
 }
@@ -11490,6 +11545,7 @@ export module StartScheduledCallersRequest {
   export interface AsObject {
     vtsiProjectName: string;
     scheduledCallerRequests?: StartScheduledCallerRequest.AsObject[];
+    idempotencyKey: string;
   }
 
   /**
@@ -11500,6 +11556,7 @@ export module StartScheduledCallersRequest {
     scheduledCallerRequests:
       | StartScheduledCallerRequest.AsProtobufJSON[]
       | null;
+    idempotencyKey: string;
   }
 }
 
@@ -11714,6 +11771,7 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callerRequests = _instance.callerRequests || [];
     _instance.campaignAssignment = _instance.campaignAssignment || undefined;
+    _instance.idempotencyKey = _instance.idempotencyKey || '';
   }
 
   /**
@@ -11749,6 +11807,9 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
             ondewoVtsi015.CampaignAssignment.deserializeBinaryFromReader
           );
           break;
+        case 4:
+          _instance.idempotencyKey = _reader.readString();
+          break;
         default:
           _reader.skipField();
       }
@@ -11783,11 +11844,15 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
         ondewoVtsi015.CampaignAssignment.serializeBinaryToWriter
       );
     }
+    if (_instance.idempotencyKey) {
+      _writer.writeString(4, _instance.idempotencyKey);
+    }
   }
 
   private _vtsiProjectName: string;
   private _callerRequests?: StartCallerRequest[];
   private _campaignAssignment?: ondewoVtsi015.CampaignAssignment;
+  private _idempotencyKey: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -11802,6 +11867,7 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
     this.campaignAssignment = _value.campaignAssignment
       ? new ondewoVtsi015.CampaignAssignment(_value.campaignAssignment)
       : undefined;
+    this.idempotencyKey = _value.idempotencyKey;
     AddCallersToCampaignRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -11821,6 +11887,12 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
   }
   set campaignAssignment(value: ondewoVtsi015.CampaignAssignment | undefined) {
     this._campaignAssignment = value;
+  }
+  get idempotencyKey(): string {
+    return this._idempotencyKey;
+  }
+  set idempotencyKey(value: string) {
+    this._idempotencyKey = value;
   }
 
   /**
@@ -11842,7 +11914,8 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
       callerRequests: (this.callerRequests || []).map(m => m.toObject()),
       campaignAssignment: this.campaignAssignment
         ? this.campaignAssignment.toObject()
-        : undefined
+        : undefined,
+      idempotencyKey: this.idempotencyKey
     };
   }
 
@@ -11869,7 +11942,8 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
       ),
       campaignAssignment: this.campaignAssignment
         ? this.campaignAssignment.toProtobufJSON(options)
-        : null
+        : null,
+      idempotencyKey: this.idempotencyKey
     };
   }
 }
@@ -11881,6 +11955,7 @@ export module AddCallersToCampaignRequest {
     vtsiProjectName: string;
     callerRequests?: StartCallerRequest.AsObject[];
     campaignAssignment?: ondewoVtsi015.CampaignAssignment.AsObject;
+    idempotencyKey: string;
   }
 
   /**
@@ -11890,6 +11965,7 @@ export module AddCallersToCampaignRequest {
     vtsiProjectName: string;
     callerRequests: StartCallerRequest.AsProtobufJSON[] | null;
     campaignAssignment: ondewoVtsi015.CampaignAssignment.AsProtobufJSON | null;
+    idempotencyKey: string;
   }
 }
 
@@ -12110,6 +12186,7 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.scheduledCallerRequests = _instance.scheduledCallerRequests || [];
     _instance.campaignAssignment = _instance.campaignAssignment || undefined;
+    _instance.idempotencyKey = _instance.idempotencyKey || '';
   }
 
   /**
@@ -12143,6 +12220,9 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
             _instance.campaignAssignment,
             ondewoVtsi015.CampaignAssignment.deserializeBinaryFromReader
           );
+          break;
+        case 4:
+          _instance.idempotencyKey = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -12181,11 +12261,15 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
         ondewoVtsi015.CampaignAssignment.serializeBinaryToWriter
       );
     }
+    if (_instance.idempotencyKey) {
+      _writer.writeString(4, _instance.idempotencyKey);
+    }
   }
 
   private _vtsiProjectName: string;
   private _scheduledCallerRequests?: StartScheduledCallerRequest[];
   private _campaignAssignment?: ondewoVtsi015.CampaignAssignment;
+  private _idempotencyKey: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -12202,6 +12286,7 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
     this.campaignAssignment = _value.campaignAssignment
       ? new ondewoVtsi015.CampaignAssignment(_value.campaignAssignment)
       : undefined;
+    this.idempotencyKey = _value.idempotencyKey;
     AddScheduledCallersToCampaignRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -12223,6 +12308,12 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
   }
   set campaignAssignment(value: ondewoVtsi015.CampaignAssignment | undefined) {
     this._campaignAssignment = value;
+  }
+  get idempotencyKey(): string {
+    return this._idempotencyKey;
+  }
+  set idempotencyKey(value: string) {
+    this._idempotencyKey = value;
   }
 
   /**
@@ -12246,7 +12337,8 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
       ),
       campaignAssignment: this.campaignAssignment
         ? this.campaignAssignment.toObject()
-        : undefined
+        : undefined,
+      idempotencyKey: this.idempotencyKey
     };
   }
 
@@ -12273,7 +12365,8 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
       ),
       campaignAssignment: this.campaignAssignment
         ? this.campaignAssignment.toProtobufJSON(options)
-        : null
+        : null,
+      idempotencyKey: this.idempotencyKey
     };
   }
 }
@@ -12285,6 +12378,7 @@ export module AddScheduledCallersToCampaignRequest {
     vtsiProjectName: string;
     scheduledCallerRequests?: StartScheduledCallerRequest.AsObject[];
     campaignAssignment?: ondewoVtsi015.CampaignAssignment.AsObject;
+    idempotencyKey: string;
   }
 
   /**
@@ -12296,6 +12390,7 @@ export module AddScheduledCallersToCampaignRequest {
       | StartScheduledCallerRequest.AsProtobufJSON[]
       | null;
     campaignAssignment: ondewoVtsi015.CampaignAssignment.AsProtobufJSON | null;
+    idempotencyKey: string;
   }
 }
 

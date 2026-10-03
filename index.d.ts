@@ -87237,6 +87237,7 @@ declare class StartListenersRequest implements GrpcMessage {
     static serializeBinaryToWriter(_instance: StartListenersRequest, _writer: BinaryWriter): void;
     private _vtsiProjectName;
     private _listenerRequests?;
+    private _idempotencyKey;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of StartListenersRequest to deeply clone from
@@ -87246,6 +87247,8 @@ declare class StartListenersRequest implements GrpcMessage {
     set vtsiProjectName(value: string);
     get listenerRequests(): StartListenerRequest[] | undefined;
     set listenerRequests(value: StartListenerRequest[] | undefined);
+    get idempotencyKey(): string;
+    set idempotencyKey(value: string);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -87273,6 +87276,7 @@ declare namespace StartListenersRequest {
     interface AsObject {
         vtsiProjectName: string;
         listenerRequests?: StartListenerRequest.AsObject[];
+        idempotencyKey: string;
     }
     /**
      * Protobuf JSON representation for StartListenersRequest
@@ -87280,6 +87284,7 @@ declare namespace StartListenersRequest {
     interface AsProtobufJSON {
         vtsiProjectName: string;
         listenerRequests: StartListenerRequest.AsProtobufJSON[] | null;
+        idempotencyKey: string;
     }
 }
 /**
@@ -87548,6 +87553,7 @@ declare class StartCallersRequest implements GrpcMessage {
     static serializeBinaryToWriter(_instance: StartCallersRequest, _writer: BinaryWriter): void;
     private _vtsiProjectName;
     private _callerRequests?;
+    private _idempotencyKey;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of StartCallersRequest to deeply clone from
@@ -87557,6 +87563,8 @@ declare class StartCallersRequest implements GrpcMessage {
     set vtsiProjectName(value: string);
     get callerRequests(): StartCallerRequest[] | undefined;
     set callerRequests(value: StartCallerRequest[] | undefined);
+    get idempotencyKey(): string;
+    set idempotencyKey(value: string);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -87584,6 +87592,7 @@ declare namespace StartCallersRequest {
     interface AsObject {
         vtsiProjectName: string;
         callerRequests?: StartCallerRequest.AsObject[];
+        idempotencyKey: string;
     }
     /**
      * Protobuf JSON representation for StartCallersRequest
@@ -87591,6 +87600,7 @@ declare namespace StartCallersRequest {
     interface AsProtobufJSON {
         vtsiProjectName: string;
         callerRequests: StartCallerRequest.AsProtobufJSON[] | null;
+        idempotencyKey: string;
     }
 }
 /**
@@ -89388,6 +89398,7 @@ declare class StartScheduledCallersRequest implements GrpcMessage {
     static serializeBinaryToWriter(_instance: StartScheduledCallersRequest, _writer: BinaryWriter): void;
     private _vtsiProjectName;
     private _scheduledCallerRequests?;
+    private _idempotencyKey;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of StartScheduledCallersRequest to deeply clone from
@@ -89397,6 +89408,8 @@ declare class StartScheduledCallersRequest implements GrpcMessage {
     set vtsiProjectName(value: string);
     get scheduledCallerRequests(): StartScheduledCallerRequest[] | undefined;
     set scheduledCallerRequests(value: StartScheduledCallerRequest[] | undefined);
+    get idempotencyKey(): string;
+    set idempotencyKey(value: string);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -89424,6 +89437,7 @@ declare namespace StartScheduledCallersRequest {
     interface AsObject {
         vtsiProjectName: string;
         scheduledCallerRequests?: StartScheduledCallerRequest.AsObject[];
+        idempotencyKey: string;
     }
     /**
      * Protobuf JSON representation for StartScheduledCallersRequest
@@ -89431,6 +89445,7 @@ declare namespace StartScheduledCallersRequest {
     interface AsProtobufJSON {
         vtsiProjectName: string;
         scheduledCallerRequests: StartScheduledCallerRequest.AsProtobufJSON[] | null;
+        idempotencyKey: string;
     }
 }
 /**
@@ -89537,6 +89552,7 @@ declare class AddCallersToCampaignRequest implements GrpcMessage {
     private _vtsiProjectName;
     private _callerRequests?;
     private _campaignAssignment?;
+    private _idempotencyKey;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of AddCallersToCampaignRequest to deeply clone from
@@ -89548,6 +89564,8 @@ declare class AddCallersToCampaignRequest implements GrpcMessage {
     set callerRequests(value: StartCallerRequest[] | undefined);
     get campaignAssignment(): CampaignAssignment | undefined;
     set campaignAssignment(value: CampaignAssignment | undefined);
+    get idempotencyKey(): string;
+    set idempotencyKey(value: string);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -89576,6 +89594,7 @@ declare namespace AddCallersToCampaignRequest {
         vtsiProjectName: string;
         callerRequests?: StartCallerRequest.AsObject[];
         campaignAssignment?: CampaignAssignment.AsObject;
+        idempotencyKey: string;
     }
     /**
      * Protobuf JSON representation for AddCallersToCampaignRequest
@@ -89584,6 +89603,7 @@ declare namespace AddCallersToCampaignRequest {
         vtsiProjectName: string;
         callerRequests: StartCallerRequest.AsProtobufJSON[] | null;
         campaignAssignment: CampaignAssignment.AsProtobufJSON | null;
+        idempotencyKey: string;
     }
 }
 /**
@@ -89695,6 +89715,7 @@ declare class AddScheduledCallersToCampaignRequest implements GrpcMessage {
     private _vtsiProjectName;
     private _scheduledCallerRequests?;
     private _campaignAssignment?;
+    private _idempotencyKey;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of AddScheduledCallersToCampaignRequest to deeply clone from
@@ -89706,6 +89727,8 @@ declare class AddScheduledCallersToCampaignRequest implements GrpcMessage {
     set scheduledCallerRequests(value: StartScheduledCallerRequest[] | undefined);
     get campaignAssignment(): CampaignAssignment | undefined;
     set campaignAssignment(value: CampaignAssignment | undefined);
+    get idempotencyKey(): string;
+    set idempotencyKey(value: string);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -89734,6 +89757,7 @@ declare namespace AddScheduledCallersToCampaignRequest {
         vtsiProjectName: string;
         scheduledCallerRequests?: StartScheduledCallerRequest.AsObject[];
         campaignAssignment?: CampaignAssignment.AsObject;
+        idempotencyKey: string;
     }
     /**
      * Protobuf JSON representation for AddScheduledCallersToCampaignRequest
@@ -89742,6 +89766,7 @@ declare namespace AddScheduledCallersToCampaignRequest {
         vtsiProjectName: string;
         scheduledCallerRequests: StartScheduledCallerRequest.AsProtobufJSON[] | null;
         campaignAssignment: CampaignAssignment.AsProtobufJSON | null;
+        idempotencyKey: string;
     }
 }
 /**
