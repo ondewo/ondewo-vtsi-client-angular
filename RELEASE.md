@@ -154,6 +154,14 @@
 
 *****************
 
+## Release ONDEWO VTSI Angular Client 6.4.1
+
+### Bug fixes
+
+* Library generation with new ondewo-proto-compiler 4.5.0 fixes typescript optional value import issue on setters
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 6.4.0
 
 ### Improvements
@@ -176,6 +184,7 @@
 ### Improvements
 
 * Tracking API Version [6.2.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/6.2.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+* [[OND233-323]](https://ondewo.atlassian.net/browse/OND233-323) - Updated Sip API 5.0.0
 
 *****************
 
@@ -287,4 +296,8 @@
 
 ### Improvements
 
+* First Release
+* Release on [NPM](https://www.npmjs.com/package/@ondewo/vtsi-client-angular)
 * Track version 0.3.0 of [ONDEWO VTSI API](https://github.com/ondewo/ondewo-vtsi-api/releases/0.3.0)
+
+*****************
