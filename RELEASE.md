@@ -30,6 +30,9 @@
 * A jest spec pins the release-notes slice: the Makefile's slice command, the spelling of every heading, the closing
   `*****` separators, one section per version, non-empty notes for the released version, and `src/RELEASE.md`
   identical to `RELEASE.md`.
+* The build-config spec compares the client version with the `ondewo-vtsi-api` version on major.minor only (SDK
+  major.minor == API major.minor; client-only changes ship as patch releases): 8.7.1 on API 8.7.0 passes, a
+  different major or minor still fails. It used to require the exact API version.
 
 ### Documentation
 
@@ -41,6 +44,9 @@
 * Generated with ondewo-proto-compiler 5.15.2 (8.7.0 was generated with 5.14.0).
 * The `asteriskVersion` tests assert the behaviour the generated client has had since 8.6.0: an unset field is
   `undefined`, and `''` is encoded as an empty field 5.
+* The release recipes hand the GitHub and npm tokens to docker, npm and the release sub-make through the
+  environment only, never on a process command line (`docker run -e NAME`, `${NPM_AUTOMATION_TOKEN}` in `.npmrc`,
+  anchored loading from the devops-accounts files); a jest spec pins it.
 
 *****************
 
