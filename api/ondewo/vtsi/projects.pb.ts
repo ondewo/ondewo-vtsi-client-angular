@@ -23,6 +23,12 @@ export enum VtsiProjectStatus {
   DELETING = 6,
   DELETED = 7
 }
+export enum SipTrunkTransport {
+  SIP_TRUNK_TRANSPORT_UNSPECIFIED = 0,
+  SIP_TRUNK_TRANSPORT_TLS = 1,
+  SIP_TRUNK_TRANSPORT_UDP = 2,
+  SIP_TRUNK_TRANSPORT_TCP = 3
+}
 export enum VtsiProjectSortingMode {
   ASCENDING = 0,
   DESCENDING = 1
@@ -70,6 +76,8 @@ export class VtsiProject implements GrpcMessage {
     _instance.nluAgentNames = _instance.nluAgentNames || [];
     _instance.deployedCallers = _instance.deployedCallers || 0;
     _instance.deployedListeners = _instance.deployedListeners || 0;
+    _instance.transferPhoneNumberAllowlist =
+      _instance.transferPhoneNumberAllowlist || [];
   }
 
   /**
@@ -146,6 +154,12 @@ export class VtsiProject implements GrpcMessage {
           break;
         case 16:
           _instance.deployedListeners = _reader.readInt32();
+          break;
+        case 17:
+          (_instance.transferPhoneNumberAllowlist =
+            _instance.transferPhoneNumberAllowlist || []).push(
+            _reader.readString()
+          );
           break;
         default:
           _reader.skipField();
@@ -224,6 +238,12 @@ export class VtsiProject implements GrpcMessage {
     if (_instance.deployedListeners) {
       _writer.writeInt32(16, _instance.deployedListeners);
     }
+    if (
+      _instance.transferPhoneNumberAllowlist &&
+      _instance.transferPhoneNumberAllowlist.length
+    ) {
+      _writer.writeRepeatedString(17, _instance.transferPhoneNumberAllowlist);
+    }
   }
 
   private _name: string;
@@ -242,6 +262,7 @@ export class VtsiProject implements GrpcMessage {
   private _nluAgentNames: string[];
   private _deployedCallers: number;
   private _deployedListeners: number;
+  private _transferPhoneNumberAllowlist: string[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -271,6 +292,9 @@ export class VtsiProject implements GrpcMessage {
     this.nluAgentNames = (_value.nluAgentNames || []).slice();
     this.deployedCallers = _value.deployedCallers;
     this.deployedListeners = _value.deployedListeners;
+    this.transferPhoneNumberAllowlist = (
+      _value.transferPhoneNumberAllowlist || []
+    ).slice();
     VtsiProject.refineValues(this);
   }
   get name(): string {
@@ -369,6 +393,12 @@ export class VtsiProject implements GrpcMessage {
   set deployedListeners(value: number) {
     this._deployedListeners = value;
   }
+  get transferPhoneNumberAllowlist(): string[] {
+    return this._transferPhoneNumberAllowlist;
+  }
+  set transferPhoneNumberAllowlist(value: string[]) {
+    this._transferPhoneNumberAllowlist = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -402,7 +432,10 @@ export class VtsiProject implements GrpcMessage {
       asteriskPort: this.asteriskPort,
       nluAgentNames: (this.nluAgentNames || []).slice(),
       deployedCallers: this.deployedCallers,
-      deployedListeners: this.deployedListeners
+      deployedListeners: this.deployedListeners,
+      transferPhoneNumberAllowlist: (
+        this.transferPhoneNumberAllowlist || []
+      ).slice()
     };
   }
 
@@ -448,7 +481,10 @@ export class VtsiProject implements GrpcMessage {
       asteriskPort: this.asteriskPort,
       nluAgentNames: (this.nluAgentNames || []).slice(),
       deployedCallers: this.deployedCallers,
-      deployedListeners: this.deployedListeners
+      deployedListeners: this.deployedListeners,
+      transferPhoneNumberAllowlist: (
+        this.transferPhoneNumberAllowlist || []
+      ).slice()
     };
   }
 }
@@ -473,6 +509,7 @@ export module VtsiProject {
     nluAgentNames: string[];
     deployedCallers: number;
     deployedListeners: number;
+    transferPhoneNumberAllowlist: string[];
   }
 
   /**
@@ -495,6 +532,7 @@ export module VtsiProject {
     nluAgentNames: string[];
     deployedCallers: number;
     deployedListeners: number;
+    transferPhoneNumberAllowlist: string[];
   }
 }
 
@@ -528,6 +566,8 @@ export class AsteriskConfigsVariables implements GrpcMessage {
     _instance.transferNumber = _instance.transferNumber || '';
     _instance.transferNumberHost = _instance.transferNumberHost || '';
     _instance.sipTrunkPhoneNumber = _instance.sipTrunkPhoneNumber || '';
+    _instance.sipTrunkTransport = _instance.sipTrunkTransport || 0;
+    _instance.softphonePermitCidrs = _instance.softphonePermitCidrs || [];
   }
 
   /**
@@ -560,6 +600,22 @@ export class AsteriskConfigsVariables implements GrpcMessage {
           break;
         case 6:
           _instance.sipTrunkPhoneNumber = _reader.readString();
+          break;
+        case 7:
+          _instance.sipTrunkTransport = _reader.readEnum();
+          break;
+        case 8:
+          _instance.sipTrunkSourceCidr = _reader.readString();
+          break;
+        case 9:
+          _instance.sipTrunkCaCertificatesPem = _reader.readString();
+          break;
+        case 10:
+          _instance.sipTrunkVerifyServer = _reader.readBool();
+          break;
+        case 11:
+          (_instance.softphonePermitCidrs =
+            _instance.softphonePermitCidrs || []).push(_reader.readString());
           break;
         default:
           _reader.skipField();
@@ -596,6 +652,33 @@ export class AsteriskConfigsVariables implements GrpcMessage {
     if (_instance.sipTrunkPhoneNumber) {
       _writer.writeString(6, _instance.sipTrunkPhoneNumber);
     }
+    if (_instance.sipTrunkTransport) {
+      _writer.writeEnum(7, _instance.sipTrunkTransport);
+    }
+    if (
+      _instance.sipTrunkSourceCidr !== undefined &&
+      _instance.sipTrunkSourceCidr !== null
+    ) {
+      _writer.writeString(8, _instance.sipTrunkSourceCidr);
+    }
+    if (
+      _instance.sipTrunkCaCertificatesPem !== undefined &&
+      _instance.sipTrunkCaCertificatesPem !== null
+    ) {
+      _writer.writeString(9, _instance.sipTrunkCaCertificatesPem);
+    }
+    if (
+      _instance.sipTrunkVerifyServer !== undefined &&
+      _instance.sipTrunkVerifyServer !== null
+    ) {
+      _writer.writeBool(10, _instance.sipTrunkVerifyServer);
+    }
+    if (
+      _instance.softphonePermitCidrs &&
+      _instance.softphonePermitCidrs.length
+    ) {
+      _writer.writeRepeatedString(11, _instance.softphonePermitCidrs);
+    }
   }
 
   private _sipTrunkUsername: string;
@@ -604,6 +687,11 @@ export class AsteriskConfigsVariables implements GrpcMessage {
   private _transferNumber: string;
   private _transferNumberHost: string;
   private _sipTrunkPhoneNumber: string;
+  private _sipTrunkTransport: SipTrunkTransport;
+  private _sipTrunkSourceCidr: string;
+  private _sipTrunkCaCertificatesPem: string;
+  private _sipTrunkVerifyServer: boolean;
+  private _softphonePermitCidrs: string[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -617,6 +705,11 @@ export class AsteriskConfigsVariables implements GrpcMessage {
     this.transferNumber = _value.transferNumber;
     this.transferNumberHost = _value.transferNumberHost;
     this.sipTrunkPhoneNumber = _value.sipTrunkPhoneNumber;
+    this.sipTrunkTransport = _value.sipTrunkTransport;
+    this.sipTrunkSourceCidr = _value.sipTrunkSourceCidr;
+    this.sipTrunkCaCertificatesPem = _value.sipTrunkCaCertificatesPem;
+    this.sipTrunkVerifyServer = _value.sipTrunkVerifyServer;
+    this.softphonePermitCidrs = (_value.softphonePermitCidrs || []).slice();
     AsteriskConfigsVariables.refineValues(this);
   }
   get sipTrunkUsername(): string {
@@ -655,6 +748,36 @@ export class AsteriskConfigsVariables implements GrpcMessage {
   set sipTrunkPhoneNumber(value: string) {
     this._sipTrunkPhoneNumber = value;
   }
+  get sipTrunkTransport(): SipTrunkTransport {
+    return this._sipTrunkTransport;
+  }
+  set sipTrunkTransport(value: SipTrunkTransport) {
+    this._sipTrunkTransport = value;
+  }
+  get sipTrunkSourceCidr(): string {
+    return this._sipTrunkSourceCidr;
+  }
+  set sipTrunkSourceCidr(value: string) {
+    this._sipTrunkSourceCidr = value;
+  }
+  get sipTrunkCaCertificatesPem(): string {
+    return this._sipTrunkCaCertificatesPem;
+  }
+  set sipTrunkCaCertificatesPem(value: string) {
+    this._sipTrunkCaCertificatesPem = value;
+  }
+  get sipTrunkVerifyServer(): boolean {
+    return this._sipTrunkVerifyServer;
+  }
+  set sipTrunkVerifyServer(value: boolean) {
+    this._sipTrunkVerifyServer = value;
+  }
+  get softphonePermitCidrs(): string[] {
+    return this._softphonePermitCidrs;
+  }
+  set softphonePermitCidrs(value: string[]) {
+    this._softphonePermitCidrs = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -676,7 +799,12 @@ export class AsteriskConfigsVariables implements GrpcMessage {
       sipTrunkHost: this.sipTrunkHost,
       transferNumber: this.transferNumber,
       transferNumberHost: this.transferNumberHost,
-      sipTrunkPhoneNumber: this.sipTrunkPhoneNumber
+      sipTrunkPhoneNumber: this.sipTrunkPhoneNumber,
+      sipTrunkTransport: this.sipTrunkTransport,
+      sipTrunkSourceCidr: this.sipTrunkSourceCidr,
+      sipTrunkCaCertificatesPem: this.sipTrunkCaCertificatesPem,
+      sipTrunkVerifyServer: this.sipTrunkVerifyServer,
+      softphonePermitCidrs: (this.softphonePermitCidrs || []).slice()
     };
   }
 
@@ -702,7 +830,18 @@ export class AsteriskConfigsVariables implements GrpcMessage {
       sipTrunkHost: this.sipTrunkHost,
       transferNumber: this.transferNumber,
       transferNumberHost: this.transferNumberHost,
-      sipTrunkPhoneNumber: this.sipTrunkPhoneNumber
+      sipTrunkPhoneNumber: this.sipTrunkPhoneNumber,
+      sipTrunkTransport:
+        SipTrunkTransport[
+          this.sipTrunkTransport === null ||
+          this.sipTrunkTransport === undefined
+            ? 0
+            : this.sipTrunkTransport
+        ],
+      sipTrunkSourceCidr: this.sipTrunkSourceCidr,
+      sipTrunkCaCertificatesPem: this.sipTrunkCaCertificatesPem,
+      sipTrunkVerifyServer: this.sipTrunkVerifyServer,
+      softphonePermitCidrs: (this.softphonePermitCidrs || []).slice()
     };
   }
 }
@@ -717,6 +856,11 @@ export module AsteriskConfigsVariables {
     transferNumber: string;
     transferNumberHost: string;
     sipTrunkPhoneNumber: string;
+    sipTrunkTransport: SipTrunkTransport;
+    sipTrunkSourceCidr: string;
+    sipTrunkCaCertificatesPem: string;
+    sipTrunkVerifyServer: boolean;
+    softphonePermitCidrs: string[];
   }
 
   /**
@@ -729,6 +873,11 @@ export module AsteriskConfigsVariables {
     transferNumber: string;
     transferNumberHost: string;
     sipTrunkPhoneNumber: string;
+    sipTrunkTransport: string;
+    sipTrunkSourceCidr: string;
+    sipTrunkCaCertificatesPem: string;
+    sipTrunkVerifyServer: boolean;
+    softphonePermitCidrs: string[];
   }
 }
 
@@ -756,7 +905,7 @@ export class AsteriskConfigsFiles implements GrpcMessage {
    * @param _instance message instance
    */
   static refineValues(_instance: AsteriskConfigsFiles) {
-    _instance.sipConfFileString = _instance.sipConfFileString || '';
+    _instance.pjsipConfFileString = _instance.pjsipConfFileString || '';
     _instance.extensionsConfFileString =
       _instance.extensionsConfFileString || '';
     _instance.queuesConfFileString = _instance.queuesConfFileString || '';
@@ -777,7 +926,7 @@ export class AsteriskConfigsFiles implements GrpcMessage {
 
       switch (_reader.getFieldNumber()) {
         case 1:
-          _instance.sipConfFileString = _reader.readString();
+          _instance.pjsipConfFileString = _reader.readString();
           break;
         case 2:
           _instance.extensionsConfFileString = _reader.readString();
@@ -805,8 +954,8 @@ export class AsteriskConfigsFiles implements GrpcMessage {
     _instance: AsteriskConfigsFiles,
     _writer: BinaryWriter
   ) {
-    if (_instance.sipConfFileString) {
-      _writer.writeString(1, _instance.sipConfFileString);
+    if (_instance.pjsipConfFileString) {
+      _writer.writeString(1, _instance.pjsipConfFileString);
     }
     if (_instance.extensionsConfFileString) {
       _writer.writeString(2, _instance.extensionsConfFileString);
@@ -819,7 +968,7 @@ export class AsteriskConfigsFiles implements GrpcMessage {
     }
   }
 
-  private _sipConfFileString: string;
+  private _pjsipConfFileString: string;
   private _extensionsConfFileString: string;
   private _queuesConfFileString: string;
   private _modulesConfFileString: string;
@@ -830,17 +979,17 @@ export class AsteriskConfigsFiles implements GrpcMessage {
    */
   constructor(_value?: RecursivePartial<AsteriskConfigsFiles.AsObject>) {
     _value = _value || {};
-    this.sipConfFileString = _value.sipConfFileString;
+    this.pjsipConfFileString = _value.pjsipConfFileString;
     this.extensionsConfFileString = _value.extensionsConfFileString;
     this.queuesConfFileString = _value.queuesConfFileString;
     this.modulesConfFileString = _value.modulesConfFileString;
     AsteriskConfigsFiles.refineValues(this);
   }
-  get sipConfFileString(): string {
-    return this._sipConfFileString;
+  get pjsipConfFileString(): string {
+    return this._pjsipConfFileString;
   }
-  set sipConfFileString(value: string) {
-    this._sipConfFileString = value;
+  set pjsipConfFileString(value: string) {
+    this._pjsipConfFileString = value;
   }
   get extensionsConfFileString(): string {
     return this._extensionsConfFileString;
@@ -876,7 +1025,7 @@ export class AsteriskConfigsFiles implements GrpcMessage {
    */
   toObject(): AsteriskConfigsFiles.AsObject {
     return {
-      sipConfFileString: this.sipConfFileString,
+      pjsipConfFileString: this.pjsipConfFileString,
       extensionsConfFileString: this.extensionsConfFileString,
       queuesConfFileString: this.queuesConfFileString,
       modulesConfFileString: this.modulesConfFileString
@@ -900,7 +1049,7 @@ export class AsteriskConfigsFiles implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): AsteriskConfigsFiles.AsProtobufJSON {
     return {
-      sipConfFileString: this.sipConfFileString,
+      pjsipConfFileString: this.pjsipConfFileString,
       extensionsConfFileString: this.extensionsConfFileString,
       queuesConfFileString: this.queuesConfFileString,
       modulesConfFileString: this.modulesConfFileString
@@ -912,7 +1061,7 @@ export module AsteriskConfigsFiles {
    * Standard JavaScript object representation for AsteriskConfigsFiles
    */
   export interface AsObject {
-    sipConfFileString: string;
+    pjsipConfFileString: string;
     extensionsConfFileString: string;
     queuesConfFileString: string;
     modulesConfFileString: string;
@@ -922,7 +1071,7 @@ export module AsteriskConfigsFiles {
    * Protobuf JSON representation for AsteriskConfigsFiles
    */
   export interface AsProtobufJSON {
-    sipConfFileString: string;
+    pjsipConfFileString: string;
     extensionsConfFileString: string;
     queuesConfFileString: string;
     modulesConfFileString: string;
