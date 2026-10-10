@@ -2,6 +2,44 @@
 
 *****************
 
+## Release ONDEWO VTSI Angular Client 9.0.0
+
+### Breaking Changes
+
+* Tracking API Version [9.0.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.0.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ), a major release: binary wire-compatible in both directions, source-breaking.
+* `AsteriskConfigsFiles.sipConfFileString` is renamed to `pjsipConfFileString` (same field number and type; the JSON key moves from `sipConfFileString` to `pjsipConfFileString`).
+  **Migration:** rename every `sipConfFileString` property access, constructor key and `toObject()` / `toJSON()` key in your code to `pjsipConfFileString`.
+* Eleven scalars in `ondewo/vtsi/calls.proto` gained explicit presence (`optional`):
+  `InterruptionHandlingConfig.transcribeOnDisabledInterruptions`, `TurnDetectionConfig.turnDetectionSystemPrompt` and
+  `.turnDetectionUserPrompt`, `AudioObjectStorageConfig.activateAudioObjectStorage`,
+  `AudioObjectStorageServicesActivationConfig.activateS2t` / `.activateT2s`, `MessageBrokerConfig.activateMessageBroker`
+  and `MessageBrokerServicesActivationConfig.activateS2t` / `.activateNlu` / `.activateT2s` / `.activateSip`.
+  The TypeScript types do not change, but the generated messages no longer default these fields to `false` / `""`:
+  an unset field now reads as `undefined`, and a value you set explicitly, including `false` or `""`, is now sent.
+  **Migration:** compare with `=== true` / `=== false` (or check `=== undefined`) instead of relying on a falsy
+  default, and set a field only when you mean to send that value.
+
+### New Features
+
+* New services, each with its injectable client and settings token exported from the package entry point:
+  * `Softphones` (`SoftphonesClient`, `GRPC_SOFTPHONES_CLIENT_SETTINGS`, `ondewo/vtsi/softphones.proto`): SIP accounts for humans on a softphone - `createSoftphoneAccount`, `getSoftphoneAccount`, `updateSoftphoneAccount`, `deleteSoftphoneAccount`, `listSoftphoneAccounts`, `rotateSoftphoneCredentials`, `listSoftphoneCertificates`, `getSoftphoneCertificate`, `revokeSoftphoneCertificate`, `getSoftphoneProvisioning`. Secrets are returned only by create and rotate.
+  * `Campaigns` (`CampaignsClient`, `GRPC_CAMPAIGNS_CLIENT_SETTINGS`, `ondewo/vtsi/campaigns.proto`): outbound call campaigns with a parallel-call limit and retries - CRUD, `startCampaign` / `stopCampaign` / `hardStopCampaign` / `resumeCampaign`, `getCampaignStatistics`, `listCampaignCalls` and the server stream `streamCampaignStatus`.
+  * `Events` (`EventsClient`, `GRPC_EVENTS_CLIENT_SETTINGS`, `ondewo/vtsi/events.proto`): VTSI event subscriptions and webhooks (CRUD, `testWebhook`) and the server stream `subscribeVtsiEvents`.
+* `CallsClient` gains `addCallersToCampaign`, `addScheduledCallersToCampaign`, the status streams `streamCallerStatus` / `streamListenerStatus` / `streamScheduledCallerStatus`, and call control: `inviteToCall`, `removeCallParticipant`, `setCallMediaControl`, `listenCallAudio` (server stream) and `streamCallAudio` (bidirectional; the gRPC-web protocol a browser speaks carries no client or bidirectional streams, so browsers use `listenCallAudio`).
+* Calls: answering machine detection config (`AnsweringMachineDetectionConfig`, `AmdAction`, `AmdSensitivity`), `Call.redialRecommended` / `redialReason` / `answeringMachineDetectionEndDescription` / `mediaControl` / `participants` / `lastTransfer` / `sipCallId`, client `idempotencyKey` on the five batch-creating requests, typed transfers (`TransferCallRequest.target` / `mode` / `headers` / `ringTimeoutS`, `TransferCallResponse.outcome`).
+* Projects: `AsteriskConfigsVariables.sipTrunkTransport`, `sipTrunkSourceCidr`, `sipTrunkCaCertificatesPem`, `sipTrunkVerifyServer` and `softphonePermitCidrs`; `VtsiProject.transferPhoneNumberAllowlist`.
+* The vendored `ondewo/sip` protos move to sip-api 5.5.0 (answering machine detection, call id, media control and call audio on `SipClient`); nlu, s2t and t2s are unchanged.
+
+### Tests
+
+* `tests/build-config.spec.ts` pins that `SoftphonesClient`, `CampaignsClient` and `EventsClient` and their settings tokens are declared and exported by `index.d.ts`, and covers 9.0.x against API 9.0.0 in the major.minor comparison.
+
+### Build
+
+* Generated with ondewo-proto-compiler 5.15.5 (8.7.1 was generated with 5.15.2).
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 8.7.1
 
 ### Improvements

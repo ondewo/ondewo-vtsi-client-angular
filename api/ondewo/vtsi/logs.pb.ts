@@ -20,8 +20,9 @@ import * as ondewoNlu006 from '../../ondewo/nlu/intent.pb';
 import * as ondewoS2t007 from '../../ondewo/s2t/speech-to-text.pb';
 import * as ondewoT2s008 from '../../ondewo/t2s/text-to-speech.pb';
 import * as ondewoSip009 from '../../ondewo/sip/sip.pb';
-import * as ondewoNlu010 from '../../ondewo/nlu/common.pb';
-import * as ondewoVtsi011 from '../../ondewo/vtsi/calls.pb';
+import * as ondewoVtsi010 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoNlu011 from '../../ondewo/nlu/common.pb';
+import * as ondewoVtsi012 from '../../ondewo/vtsi/calls.pb';
 export enum LogSource {
   LOG_SOURCE_UNSPECIFIED = 0,
   LOG_SOURCE_SIP = 1,
@@ -223,7 +224,7 @@ export class CallLogEntry implements GrpcMessage {
   private _seq: string;
   private _timestamp?: googleProtobuf002.Timestamp;
   private _timestampIsExact: boolean;
-  private _level: ondewoNlu010.LogSeverity;
+  private _level: ondewoNlu011.LogSeverity;
   private _message: string;
   private _containerId: string;
   private _containerName: string;
@@ -279,10 +280,10 @@ export class CallLogEntry implements GrpcMessage {
   set timestampIsExact(value: boolean) {
     this._timestampIsExact = value;
   }
-  get level(): ondewoNlu010.LogSeverity {
+  get level(): ondewoNlu011.LogSeverity {
     return this._level;
   }
-  set level(value: ondewoNlu010.LogSeverity) {
+  set level(value: ondewoNlu011.LogSeverity) {
     this._level = value;
   }
   get message(): string {
@@ -406,7 +407,7 @@ export class CallLogEntry implements GrpcMessage {
       timestamp: this.timestamp ? this.timestamp.toProtobufJSON(options) : null,
       timestampIsExact: this.timestampIsExact,
       level:
-        ondewoNlu010.LogSeverity[
+        ondewoNlu011.LogSeverity[
           this.level === null || this.level === undefined ? 0 : this.level
         ],
       message: this.message,
@@ -439,7 +440,7 @@ export module CallLogEntry {
     seq: string;
     timestamp?: googleProtobuf002.Timestamp.AsObject;
     timestampIsExact: boolean;
-    level: ondewoNlu010.LogSeverity;
+    level: ondewoNlu011.LogSeverity;
     message: string;
     containerId: string;
     containerName: string;
@@ -1001,12 +1002,12 @@ export class CallLogFilter implements GrpcMessage {
   private _nluSessionNames: string[];
   private _nluSessionUuids: string[];
   private _nluProjectUuids: string[];
-  private _callTypes: ondewoVtsi011.CallType[];
+  private _callTypes: ondewoVtsi012.CallType[];
   private _sipHeaders?: SipHeaderFilter[];
   private _logSources: LogSource[];
   private _channels: LogStreamChannel[];
-  private _minLogLevel: ondewoNlu010.LogSeverity;
-  private _logLevels: ondewoNlu010.LogSeverity[];
+  private _minLogLevel: ondewoNlu011.LogSeverity;
+  private _logLevels: ondewoNlu011.LogSeverity[];
   private _includeUnleveledLines: boolean;
   private _text: string;
   private _regex: string;
@@ -1168,10 +1169,10 @@ export class CallLogFilter implements GrpcMessage {
   set nluProjectUuids(value: string[]) {
     this._nluProjectUuids = value;
   }
-  get callTypes(): ondewoVtsi011.CallType[] {
+  get callTypes(): ondewoVtsi012.CallType[] {
     return this._callTypes;
   }
-  set callTypes(value: ondewoVtsi011.CallType[]) {
+  set callTypes(value: ondewoVtsi012.CallType[]) {
     this._callTypes = value;
   }
   get sipHeaders(): SipHeaderFilter[] | undefined {
@@ -1192,16 +1193,16 @@ export class CallLogFilter implements GrpcMessage {
   set channels(value: LogStreamChannel[]) {
     this._channels = value;
   }
-  get minLogLevel(): ondewoNlu010.LogSeverity {
+  get minLogLevel(): ondewoNlu011.LogSeverity {
     return this._minLogLevel;
   }
-  set minLogLevel(value: ondewoNlu010.LogSeverity) {
+  set minLogLevel(value: ondewoNlu011.LogSeverity) {
     this._minLogLevel = value;
   }
-  get logLevels(): ondewoNlu010.LogSeverity[] {
+  get logLevels(): ondewoNlu011.LogSeverity[] {
     return this._logLevels;
   }
-  set logLevels(value: ondewoNlu010.LogSeverity[]) {
+  set logLevels(value: ondewoNlu011.LogSeverity[]) {
     this._logLevels = value;
   }
   get includeUnleveledLines(): boolean {
@@ -1331,17 +1332,17 @@ export class CallLogFilter implements GrpcMessage {
       nluSessionNames: (this.nluSessionNames || []).slice(),
       nluSessionUuids: (this.nluSessionUuids || []).slice(),
       nluProjectUuids: (this.nluProjectUuids || []).slice(),
-      callTypes: (this.callTypes || []).map(v => ondewoVtsi011.CallType[v]),
+      callTypes: (this.callTypes || []).map(v => ondewoVtsi012.CallType[v]),
       sipHeaders: (this.sipHeaders || []).map(m => m.toProtobufJSON(options)),
       logSources: (this.logSources || []).map(v => LogSource[v]),
       channels: (this.channels || []).map(v => LogStreamChannel[v]),
       minLogLevel:
-        ondewoNlu010.LogSeverity[
+        ondewoNlu011.LogSeverity[
           this.minLogLevel === null || this.minLogLevel === undefined
             ? 0
             : this.minLogLevel
         ],
-      logLevels: (this.logLevels || []).map(v => ondewoNlu010.LogSeverity[v]),
+      logLevels: (this.logLevels || []).map(v => ondewoNlu011.LogSeverity[v]),
       includeUnleveledLines: this.includeUnleveledLines,
       text: this.text,
       regex: this.regex,
@@ -1375,12 +1376,12 @@ export module CallLogFilter {
     nluSessionNames: string[];
     nluSessionUuids: string[];
     nluProjectUuids: string[];
-    callTypes: ondewoVtsi011.CallType[];
+    callTypes: ondewoVtsi012.CallType[];
     sipHeaders?: SipHeaderFilter.AsObject[];
     logSources: LogSource[];
     channels: LogStreamChannel[];
-    minLogLevel: ondewoNlu010.LogSeverity;
-    logLevels: ondewoNlu010.LogSeverity[];
+    minLogLevel: ondewoNlu011.LogSeverity;
+    logLevels: ondewoNlu011.LogSeverity[];
     includeUnleveledLines: boolean;
     text: string;
     regex: string;
@@ -1655,7 +1656,7 @@ export class CallLogStream implements GrpcMessage {
   private _channel: LogStreamChannel;
   private _projectId: string;
   private _voipCallName: string;
-  private _callType: ondewoVtsi011.CallType;
+  private _callType: ondewoVtsi012.CallType;
   private _sipAccount: string;
   private _sipPort: number;
   private _csiPort: number;
@@ -1740,10 +1741,10 @@ export class CallLogStream implements GrpcMessage {
   set voipCallName(value: string) {
     this._voipCallName = value;
   }
-  get callType(): ondewoVtsi011.CallType {
+  get callType(): ondewoVtsi012.CallType {
     return this._callType;
   }
-  set callType(value: ondewoVtsi011.CallType) {
+  set callType(value: ondewoVtsi012.CallType) {
     this._callType = value;
   }
   get sipAccount(): string {
@@ -1901,7 +1902,7 @@ export class CallLogStream implements GrpcMessage {
       projectId: this.projectId,
       voipCallName: this.voipCallName,
       callType:
-        ondewoVtsi011.CallType[
+        ondewoVtsi012.CallType[
           this.callType === null || this.callType === undefined
             ? 0
             : this.callType
@@ -1943,7 +1944,7 @@ export module CallLogStream {
     channel: LogStreamChannel;
     projectId: string;
     voipCallName: string;
-    callType: ondewoVtsi011.CallType;
+    callType: ondewoVtsi012.CallType;
     sipAccount: string;
     sipPort: number;
     csiPort: number;

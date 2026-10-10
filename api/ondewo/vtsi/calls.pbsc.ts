@@ -30,10 +30,12 @@ import * as ondewoNlu006 from '../../ondewo/nlu/context.pb';
 import * as ondewoNlu007 from '../../ondewo/nlu/common.pb';
 import * as ondewoNlu008 from '../../ondewo/nlu/operations.pb';
 import * as googleProtobuf009 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu010 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t011 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s012 from '../../ondewo/t2s/text-to-speech.pb';
-import * as ondewoSip013 from '../../ondewo/sip/sip.pb';
+import * as googleProtobuf010 from '@ngx-grpc/well-known-types';
+import * as ondewoSip011 from '../../ondewo/sip/sip.pb';
+import * as ondewoNlu012 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t013 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s014 from '../../ondewo/t2s/text-to-speech.pb';
+import * as ondewoVtsi015 from '../../ondewo/vtsi/campaigns.pb';
 import { GRPC_CALLS_CLIENT_SETTINGS } from './calls.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Calls
@@ -427,6 +429,50 @@ export class CallsClient {
       });
     },
     /**
+     * Unary call: /ondewo.vtsi.Calls/AddCallersToCampaign
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.AddCallersToCampaignResponse>>
+     */
+    addCallersToCampaign: (
+      requestData: thisProto.AddCallersToCampaignRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.AddCallersToCampaignResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/AddCallersToCampaign',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.AddCallersToCampaignRequest,
+        responseClass: thisProto.AddCallersToCampaignResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/AddScheduledCallersToCampaign
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.AddScheduledCallersToCampaignResponse>>
+     */
+    addScheduledCallersToCampaign: (
+      requestData: thisProto.AddScheduledCallersToCampaignRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<
+      GrpcEvent<thisProto.AddScheduledCallersToCampaignResponse>
+    > => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/AddScheduledCallersToCampaign',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.AddScheduledCallersToCampaignRequest,
+        responseClass: thisProto.AddScheduledCallersToCampaignResponse
+      });
+    },
+    /**
      * Unary call: /ondewo.vtsi.Calls/GetScheduledCaller
      *
      * @param requestMessage Request message
@@ -634,6 +680,174 @@ export class CallsClient {
         requestMetadata,
         requestClass: thisProto.ListCallsRequest,
         responseClass: thisProto.ListCallsResponse
+      });
+    },
+    /**
+     * Server streaming: /ondewo.vtsi.Calls/StreamCallerStatus
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>>
+     */
+    streamCallerStatus: (
+      requestData: thisProto.StreamCallerStatusRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.serverStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/StreamCallerStatus',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.StreamCallerStatusRequest,
+        responseClass: thisProto.StreamCallResourceStatusResponse
+      });
+    },
+    /**
+     * Server streaming: /ondewo.vtsi.Calls/StreamListenerStatus
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>>
+     */
+    streamListenerStatus: (
+      requestData: thisProto.StreamListenerStatusRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.serverStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/StreamListenerStatus',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.StreamListenerStatusRequest,
+        responseClass: thisProto.StreamCallResourceStatusResponse
+      });
+    },
+    /**
+     * Server streaming: /ondewo.vtsi.Calls/StreamScheduledCallerStatus
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>>
+     */
+    streamScheduledCallerStatus: (
+      requestData: thisProto.StreamScheduledCallerStatusRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallResourceStatusResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.serverStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/StreamScheduledCallerStatus',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.StreamScheduledCallerStatusRequest,
+        responseClass: thisProto.StreamCallResourceStatusResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/InviteToCall
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.InviteToCallResponse>>
+     */
+    inviteToCall: (
+      requestData: thisProto.InviteToCallRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.InviteToCallResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/InviteToCall',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.InviteToCallRequest,
+        responseClass: thisProto.InviteToCallResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/RemoveCallParticipant
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.RemoveCallParticipantResponse>>
+     */
+    removeCallParticipant: (
+      requestData: thisProto.RemoveCallParticipantRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.RemoveCallParticipantResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/RemoveCallParticipant',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.RemoveCallParticipantRequest,
+        responseClass: thisProto.RemoveCallParticipantResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/SetCallMediaControl
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.SetCallMediaControlResponse>>
+     */
+    setCallMediaControl: (
+      requestData: thisProto.SetCallMediaControlRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.SetCallMediaControlResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/SetCallMediaControl',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.SetCallMediaControlRequest,
+        responseClass: thisProto.SetCallMediaControlResponse
+      });
+    },
+    /**
+     * Bidirectional streaming: /ondewo.vtsi.Calls/StreamCallAudio
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallAudioResponse>>
+     */
+    streamCallAudio: (
+      requestData: Observable<thisProto.StreamCallAudioRequest>,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallAudioResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.bidiStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/StreamCallAudio',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.StreamCallAudioRequest,
+        responseClass: thisProto.StreamCallAudioResponse
+      });
+    },
+    /**
+     * Server streaming: /ondewo.vtsi.Calls/ListenCallAudio
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallAudioResponse>>
+     */
+    listenCallAudio: (
+      requestData: thisProto.ListenCallAudioRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallAudioResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.serverStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/ListenCallAudio',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.ListenCallAudioRequest,
+        responseClass: thisProto.StreamCallAudioResponse
       });
     }
   };
@@ -935,6 +1149,38 @@ export class CallsClient {
   }
 
   /**
+   * Unary call @/ondewo.vtsi.Calls/AddCallersToCampaign
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.AddCallersToCampaignResponse>
+   */
+  addCallersToCampaign(
+    requestData: thisProto.AddCallersToCampaignRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.AddCallersToCampaignResponse> {
+    return this.$raw
+      .addCallersToCampaign(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/AddScheduledCallersToCampaign
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.AddScheduledCallersToCampaignResponse>
+   */
+  addScheduledCallersToCampaign(
+    requestData: thisProto.AddScheduledCallersToCampaignRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.AddScheduledCallersToCampaignResponse> {
+    return this.$raw
+      .addScheduledCallersToCampaign(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
    * Unary call @/ondewo.vtsi.Calls/GetScheduledCaller
    *
    * @param requestMessage Request message
@@ -1091,6 +1337,134 @@ export class CallsClient {
   ): Observable<thisProto.ListCallsResponse> {
     return this.$raw
       .listCalls(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Server streaming @/ondewo.vtsi.Calls/StreamCallerStatus
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallResourceStatusResponse>
+   */
+  streamCallerStatus(
+    requestData: thisProto.StreamCallerStatusRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallResourceStatusResponse> {
+    return this.$raw
+      .streamCallerStatus(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Server streaming @/ondewo.vtsi.Calls/StreamListenerStatus
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallResourceStatusResponse>
+   */
+  streamListenerStatus(
+    requestData: thisProto.StreamListenerStatusRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallResourceStatusResponse> {
+    return this.$raw
+      .streamListenerStatus(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Server streaming @/ondewo.vtsi.Calls/StreamScheduledCallerStatus
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallResourceStatusResponse>
+   */
+  streamScheduledCallerStatus(
+    requestData: thisProto.StreamScheduledCallerStatusRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallResourceStatusResponse> {
+    return this.$raw
+      .streamScheduledCallerStatus(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/InviteToCall
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.InviteToCallResponse>
+   */
+  inviteToCall(
+    requestData: thisProto.InviteToCallRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.InviteToCallResponse> {
+    return this.$raw
+      .inviteToCall(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/RemoveCallParticipant
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.RemoveCallParticipantResponse>
+   */
+  removeCallParticipant(
+    requestData: thisProto.RemoveCallParticipantRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.RemoveCallParticipantResponse> {
+    return this.$raw
+      .removeCallParticipant(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/SetCallMediaControl
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.SetCallMediaControlResponse>
+   */
+  setCallMediaControl(
+    requestData: thisProto.SetCallMediaControlRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.SetCallMediaControlResponse> {
+    return this.$raw
+      .setCallMediaControl(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Bidirectional streaming @/ondewo.vtsi.Calls/StreamCallAudio
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallAudioResponse>
+   */
+  streamCallAudio(
+    requestData: Observable<thisProto.StreamCallAudioRequest>,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallAudioResponse> {
+    return this.$raw
+      .streamCallAudio(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Server streaming @/ondewo.vtsi.Calls/ListenCallAudio
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallAudioResponse>
+   */
+  listenCallAudio(
+    requestData: thisProto.ListenCallAudioRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallAudioResponse> {
+    return this.$raw
+      .listenCallAudio(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 }

@@ -216,6 +216,9 @@ describe('Makefile version pins', (): void => {
 		['8.7.1', '8.7.0', true],
 		['8.7.0', '8.7.0', true],
 		['8.7.0', '8.7.3', true],
+		['9.0.0', '9.0.0', true],
+		['9.0.1', '9.0.0', true],
+		['9.0.0', '8.7.0', false],
 		['8.8.0', '8.7.0', false],
 		['8.6.9', '8.7.0', false],
 		['9.7.0', '8.7.0', false]
@@ -468,6 +471,28 @@ describe('generated api surface', (): void => {
 		}
 		expect(dangling).toEqual([]);
 	});
+
+	/**
+	 * API 9.0.0 added three services in three new files (`softphones.proto`, `campaigns.proto`,
+	 * `events.proto`). `index.d.ts` is the typings entry point npm consumers resolve, so each
+	 * service's injectable client and its settings token must be declared AND exported there, not
+	 * only generated on disk.
+	 */
+	it.each([
+		['Softphones', 'SoftphonesClient', 'GRPC_SOFTPHONES_CLIENT_SETTINGS'],
+		['Campaigns', 'CampaignsClient', 'GRPC_CAMPAIGNS_CLIENT_SETTINGS'],
+		['Events', 'EventsClient', 'GRPC_EVENTS_CLIENT_SETTINGS']
+	])(
+		'exposes the ondewo.vtsi.%s service as %s and %s in the typings entry point',
+		(service: string, client: string, settings: string): void => {
+			const typings: string = fs.readFileSync(path.join(REPO_ROOT, 'index.d.ts'), 'utf8');
+			expect(typings).toMatch(new RegExp(`declare class ${client}\\b`));
+			expect(typings).toMatch(new RegExp(`declare const ${settings}\\b`));
+			expect(typings).toContain(`/ondewo.vtsi.${service}/`);
+			const exported: string[] = (/^export \{ (.*) \};$/m.exec(typings)?.[1] ?? '').split(', ');
+			expect(exported).toEqual(expect.arrayContaining([client, settings]));
+		}
+	);
 });
 
 describe('the hand-written auth surface survives the codegen', (): void => {
