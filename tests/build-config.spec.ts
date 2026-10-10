@@ -4,9 +4,10 @@
  * These are hermetic file-system assertions — no docker, no network, no git — that pin the
  * invariants an interrupted or mis-pinned `make build` silently breaks:
  *
- * 1. The version the client publishes must be the version of the `ondewo-vtsi-api` submodule the
- *    stubs in `api/` were generated from, and it must be the same number in all three places that
- *    carry it (`Makefile`, `src/package.json`, root `package.json`).
+ * 1. The version the client publishes must carry the major.minor of the `ondewo-vtsi-api` submodule
+ *    the stubs in `api/` were generated from (client-only changes ship as patch releases), and it
+ *    must be the same number in all three places that carry it (`Makefile`, `src/package.json`,
+ *    root `package.json`).
  * 2. `ONDEWO_PROTO_COMPILER_GIT_BRANCH` must name the tag the committed `ondewo-proto-compiler`
  *    submodule actually points at. When it lags behind, `make build` checks the submodule *back*
  *    to the older tag, generating with a compiler the repository does not ship and leaving a dirty
@@ -94,6 +95,20 @@ function readMakefileVariable(makefilePath: string, name: string): string {
 		throw new Error(`${name} is not assigned in ${makefilePath}`);
 	}
 	return matched[1].trim();
+}
+
+/**
+ * Reduce a `major.minor.patch` version to the `major.minor` an SDK shares with its API.
+ *
+ * @param version a `major.minor.patch` version
+ * @returns its `major.minor`
+ */
+function majorMinor(version: string): string {
+	const matched: RegExpExecArray | null = /^(\d+)\.(\d+)\.\d+$/.exec(version);
+	if (matched === null) {
+		throw new Error(`${version} is not a major.minor.patch version`);
+	}
+	return `${matched[1]}.${matched[2]}`;
 }
 
 /**
@@ -187,13 +202,32 @@ function pinnedOndewoProtos(): string[] {
 
 describe('Makefile version pins', (): void => {
 	/**
-	 * The client tracks the API one-to-one; the api/ stubs on disk were generated from the
-	 * submodule that is checked out, so shipping a different number mislabels them.
+	 * Every ONDEWO SDK shares major.minor with its API; the api/ stubs on disk were generated from
+	 * the submodule that is checked out, so a different major or minor mislabels them. The patch
+	 * number is the client's own: client-only changes ship as patch releases.
 	 */
-	itWithApi('pins the client version to the version of the ondewo-vtsi-api submodule it generates from', (): void => {
+	itWithApi('pins the client major.minor to the ondewo-vtsi-api submodule it generates from', (): void => {
 		const clientVersion: string = readMakefileVariable(MAKEFILE, 'ONDEWO_VTSI_VERSION');
 		const apiVersion: string = readMakefileVariable(path.join(API_SUBMODULE, 'Makefile'), 'ONDEWO_VTSI_API_VERSION');
-		expect(clientVersion).toBe(apiVersion);
+		expect(majorMinor(clientVersion)).toBe(majorMinor(apiVersion));
+	});
+
+	it.each([
+		['8.7.1', '8.7.0', true],
+		['8.7.0', '8.7.0', true],
+		['8.7.0', '8.7.3', true],
+		['8.8.0', '8.7.0', false],
+		['8.6.9', '8.7.0', false],
+		['9.7.0', '8.7.0', false]
+	])(
+		'compares client %s with api %s on major.minor only (match: %s)',
+		(client: string, api: string, matches: boolean): void => {
+			expect(majorMinor(client) === majorMinor(api)).toBe(matches);
+		}
+	);
+
+	it('refuses a version that is not major.minor.patch', (): void => {
+		expect((): string => majorMinor('8.7')).toThrow('8.7 is not a major.minor.patch version');
 	});
 
 	/** `make update_package` writes this file from the Makefile variable; they must agree. */
