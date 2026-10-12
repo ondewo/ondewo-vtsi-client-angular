@@ -5,6 +5,9 @@ on:
     branches:
       - master
       - 'OND211-**'
+      - 'release/**'
+    tags:
+      - '*'
   pull_request:
     branches:
       - master
@@ -12,11 +15,11 @@ on:
 jobs:
   auth-unit-tests:
     name: Keycloak auth surface unit tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           submodules: false
 
@@ -27,10 +30,10 @@ jobs:
         # report SKIPPED.
         run: git submodule update --init src/ondewo-vtsi-api
 
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v5
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund --legacy-peer-deps

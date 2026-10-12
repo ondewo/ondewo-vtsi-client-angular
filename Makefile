@@ -109,6 +109,12 @@ release: ## Create Github and NPM Release
 	make build
 	make check_build
 	make run_precommit_hooks
+	# The release target writes the new entry into src/RELEASE.md; the GitHub release body and
+	# tests/release-notes.spec.ts read the root RELEASE.md, which must be the same file.
+	cp src/RELEASE.md RELEASE.md
+	# Nothing is pushed or published unless the suite is green (9.1.0 shipped with a red suite).
+	npm install --no-audit --no-fund --legacy-peer-deps
+	npx jest --config jest.config.js --ci
 	git status
 	git add api
 	git add fesm2022
@@ -158,6 +164,7 @@ login_to_gh: ## Login to Github CLI with Access Token
 	@printf '%s\n' "$${GITHUB_GH_TOKEN}" | gh auth login -p ssh --with-token
 
 build_gh_release: ## Generate Github Release with CLI
+	@test -n "$(CURRENT_RELEASE_NOTES)" || { echo "ERROR: no 'Release ONDEWO VTSI Angular Client $(ONDEWO_VTSI_VERSION)' section in RELEASE.md"; exit 1; }
 	gh release create --repo $(GH_REPO) "$(ONDEWO_VTSI_VERSION)" -n "$(CURRENT_RELEASE_NOTES)" -t "Release ${ONDEWO_VTSI_VERSION}"
 
 ########################################################
