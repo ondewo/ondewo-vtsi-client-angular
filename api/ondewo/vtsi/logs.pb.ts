@@ -7,20 +7,21 @@
 import {
   GrpcMessage,
   RecursivePartial,
-  ToProtobufJSONOptions
+  ToProtobufJSONOptions,
+  uint8ArrayToBase64
 } from '@ngx-grpc/common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
-import * as googleApi003 from '../../google/api/annotations.pb';
-import * as googleProtobuf004 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu005 from '../../ondewo/nlu/context.pb';
-import * as ondewoNlu006 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t007 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s008 from '../../ondewo/t2s/text-to-speech.pb';
-import * as ondewoSip009 from '../../ondewo/sip/sip.pb';
-import * as ondewoVtsi010 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoNlu003 from '../../ondewo/nlu/intent.pb';
+import * as ondewoSip004 from '../../ondewo/sip/sip.pb';
+import * as ondewoVtsi005 from '../../ondewo/vtsi/call-configs.pb';
+import * as ondewoVtsi006 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoVtsi007 from '../../ondewo/vtsi/projects.pb';
+import * as ondewoNlu008 from '../../ondewo/nlu/context.pb';
+import * as ondewoS2t009 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s010 from '../../ondewo/t2s/text-to-speech.pb';
 import * as ondewoNlu011 from '../../ondewo/nlu/common.pb';
 import * as ondewoVtsi012 from '../../ondewo/vtsi/calls.pb';
 export enum LogSource {
@@ -52,6 +53,20 @@ export enum CallLogFilterField {
   CALL_LOG_FILTER_FIELD_EMITTER_PREFIXES = 5,
   CALL_LOG_FILTER_FIELD_THREAD_NAMES = 6,
   CALL_LOG_FILTER_FIELD_SIP_HEADERS = 7
+}
+export enum LogStreamEndReason {
+  LOG_STREAM_END_REASON_UNSPECIFIED = 0,
+  LOG_STREAM_END_REASON_ALL_CAPTURES_TERMINATED = 1,
+  LOG_STREAM_END_REASON_MAX_DURATION = 2,
+  LOG_STREAM_END_REASON_SERVER_SHUTDOWN = 3,
+  LOG_STREAM_END_REASON_PERMISSION_REVOKED = 4,
+  LOG_STREAM_END_REASON_CREDENTIALS_EXPIRED = 5
+}
+export enum LogExportFormat {
+  LOG_EXPORT_FORMAT_UNSPECIFIED = 0,
+  LOG_EXPORT_FORMAT_TEXT = 1,
+  LOG_EXPORT_FORMAT_NDJSON = 2,
+  LOG_EXPORT_FORMAT_CSV = 3
 }
 /**
  * Message implementation for ondewo.vtsi.CallLogEntry
@@ -686,6 +701,9 @@ export class CallLogFilter implements GrpcMessage {
     _instance.threadNames = _instance.threadNames || [];
     _instance.startTime = _instance.startTime || undefined;
     _instance.endTime = _instance.endTime || undefined;
+    _instance.sipPortNumbers = _instance.sipPortNumbers || [];
+    _instance.csiPortNumbers = _instance.csiPortNumbers || [];
+    _instance.asteriskPortNumbers = _instance.asteriskPortNumbers || [];
   }
 
   /**
@@ -857,6 +875,22 @@ export class CallLogFilter implements GrpcMessage {
             googleProtobuf002.Timestamp.deserializeBinaryFromReader
           );
           break;
+        case 32:
+          _reader.readPackableInt32Into(
+            (_instance.sipPortNumbers = _instance.sipPortNumbers || [])
+          );
+          break;
+        case 33:
+          _reader.readPackableInt32Into(
+            (_instance.csiPortNumbers = _instance.csiPortNumbers || [])
+          );
+          break;
+        case 34:
+          _reader.readPackableInt32Into(
+            (_instance.asteriskPortNumbers =
+              _instance.asteriskPortNumbers || [])
+          );
+          break;
         default:
           _reader.skipField();
       }
@@ -982,6 +1016,15 @@ export class CallLogFilter implements GrpcMessage {
         googleProtobuf002.Timestamp.serializeBinaryToWriter
       );
     }
+    if (_instance.sipPortNumbers && _instance.sipPortNumbers.length) {
+      _writer.writePackedInt32(32, _instance.sipPortNumbers);
+    }
+    if (_instance.csiPortNumbers && _instance.csiPortNumbers.length) {
+      _writer.writePackedInt32(33, _instance.csiPortNumbers);
+    }
+    if (_instance.asteriskPortNumbers && _instance.asteriskPortNumbers.length) {
+      _writer.writePackedInt32(34, _instance.asteriskPortNumbers);
+    }
   }
 
   private _callNames: string[];
@@ -1015,6 +1058,9 @@ export class CallLogFilter implements GrpcMessage {
   private _threadNames: string[];
   private _startTime?: googleProtobuf002.Timestamp;
   private _endTime?: googleProtobuf002.Timestamp;
+  private _sipPortNumbers: number[];
+  private _csiPortNumbers: number[];
+  private _asteriskPortNumbers: number[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1059,6 +1105,9 @@ export class CallLogFilter implements GrpcMessage {
     this.endTime = _value.endTime
       ? new googleProtobuf002.Timestamp(_value.endTime)
       : undefined;
+    this.sipPortNumbers = (_value.sipPortNumbers || []).slice();
+    this.csiPortNumbers = (_value.csiPortNumbers || []).slice();
+    this.asteriskPortNumbers = (_value.asteriskPortNumbers || []).slice();
     CallLogFilter.refineValues(this);
   }
   get callNames(): string[] {
@@ -1247,6 +1296,24 @@ export class CallLogFilter implements GrpcMessage {
   set endTime(value: googleProtobuf002.Timestamp | undefined) {
     this._endTime = value;
   }
+  get sipPortNumbers(): number[] {
+    return this._sipPortNumbers;
+  }
+  set sipPortNumbers(value: number[]) {
+    this._sipPortNumbers = value;
+  }
+  get csiPortNumbers(): number[] {
+    return this._csiPortNumbers;
+  }
+  set csiPortNumbers(value: number[]) {
+    this._csiPortNumbers = value;
+  }
+  get asteriskPortNumbers(): number[] {
+    return this._asteriskPortNumbers;
+  }
+  set asteriskPortNumbers(value: number[]) {
+    this._asteriskPortNumbers = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -1293,7 +1360,10 @@ export class CallLogFilter implements GrpcMessage {
       emitterPrefixes: (this.emitterPrefixes || []).slice(),
       threadNames: (this.threadNames || []).slice(),
       startTime: this.startTime ? this.startTime.toObject() : undefined,
-      endTime: this.endTime ? this.endTime.toObject() : undefined
+      endTime: this.endTime ? this.endTime.toObject() : undefined,
+      sipPortNumbers: (this.sipPortNumbers || []).slice(),
+      csiPortNumbers: (this.csiPortNumbers || []).slice(),
+      asteriskPortNumbers: (this.asteriskPortNumbers || []).slice()
     };
   }
 
@@ -1349,7 +1419,10 @@ export class CallLogFilter implements GrpcMessage {
       emitterPrefixes: (this.emitterPrefixes || []).slice(),
       threadNames: (this.threadNames || []).slice(),
       startTime: this.startTime ? this.startTime.toProtobufJSON(options) : null,
-      endTime: this.endTime ? this.endTime.toProtobufJSON(options) : null
+      endTime: this.endTime ? this.endTime.toProtobufJSON(options) : null,
+      sipPortNumbers: (this.sipPortNumbers || []).slice(),
+      csiPortNumbers: (this.csiPortNumbers || []).slice(),
+      asteriskPortNumbers: (this.asteriskPortNumbers || []).slice()
     };
   }
 }
@@ -1389,6 +1462,9 @@ export module CallLogFilter {
     threadNames: string[];
     startTime?: googleProtobuf002.Timestamp.AsObject;
     endTime?: googleProtobuf002.Timestamp.AsObject;
+    sipPortNumbers: number[];
+    csiPortNumbers: number[];
+    asteriskPortNumbers: number[];
   }
 
   /**
@@ -1426,6 +1502,9 @@ export module CallLogFilter {
     threadNames: string[];
     startTime: googleProtobuf002.Timestamp.AsProtobufJSON | null;
     endTime: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    sipPortNumbers: number[];
+    csiPortNumbers: number[];
+    asteriskPortNumbers: number[];
   }
 }
 
@@ -1474,6 +1553,7 @@ export class CallLogStream implements GrpcMessage {
     _instance.maxAvailableSeq = _instance.maxAvailableSeq || '0';
     _instance.lineCount = _instance.lineCount || '0';
     _instance.droppedLineCount = _instance.droppedLineCount || '0';
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
   }
 
   /**
@@ -1559,6 +1639,9 @@ export class CallLogStream implements GrpcMessage {
           break;
         case 21:
           _instance.droppedLineCount = _reader.readInt64String();
+          break;
+        case 22:
+          _instance.vtsiProjectName = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -1648,6 +1731,9 @@ export class CallLogStream implements GrpcMessage {
     if (_instance.droppedLineCount) {
       _writer.writeInt64String(21, _instance.droppedLineCount);
     }
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(22, _instance.vtsiProjectName);
+    }
   }
 
   private _name: string;
@@ -1671,6 +1757,7 @@ export class CallLogStream implements GrpcMessage {
   private _maxAvailableSeq: string;
   private _lineCount: string;
   private _droppedLineCount: string;
+  private _vtsiProjectName: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1703,6 +1790,7 @@ export class CallLogStream implements GrpcMessage {
     this.maxAvailableSeq = _value.maxAvailableSeq;
     this.lineCount = _value.lineCount;
     this.droppedLineCount = _value.droppedLineCount;
+    this.vtsiProjectName = _value.vtsiProjectName;
     CallLogStream.refineValues(this);
   }
   get name(): string {
@@ -1831,6 +1919,12 @@ export class CallLogStream implements GrpcMessage {
   set droppedLineCount(value: string) {
     this._droppedLineCount = value;
   }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -1871,7 +1965,8 @@ export class CallLogStream implements GrpcMessage {
       minAvailableSeq: this.minAvailableSeq,
       maxAvailableSeq: this.maxAvailableSeq,
       lineCount: this.lineCount,
-      droppedLineCount: this.droppedLineCount
+      droppedLineCount: this.droppedLineCount,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 
@@ -1929,7 +2024,8 @@ export class CallLogStream implements GrpcMessage {
       minAvailableSeq: this.minAvailableSeq,
       maxAvailableSeq: this.maxAvailableSeq,
       lineCount: this.lineCount,
-      droppedLineCount: this.droppedLineCount
+      droppedLineCount: this.droppedLineCount,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 }
@@ -1959,6 +2055,7 @@ export module CallLogStream {
     maxAvailableSeq: string;
     lineCount: string;
     droppedLineCount: string;
+    vtsiProjectName: string;
   }
 
   /**
@@ -1986,6 +2083,7 @@ export module CallLogStream {
     maxAvailableSeq: string;
     lineCount: string;
     droppedLineCount: string;
+    vtsiProjectName: string;
   }
 }
 
@@ -2239,6 +2337,7 @@ export class StreamCallLogsResponse implements GrpcMessage {
     _instance.droppedLineCount = _instance.droppedLineCount || '0';
     _instance.resumeToken = _instance.resumeToken || '';
     _instance.endReason = _instance.endReason || '';
+    _instance.endReasonCode = _instance.endReasonCode || 0;
   }
 
   /**
@@ -2279,6 +2378,9 @@ export class StreamCallLogsResponse implements GrpcMessage {
         case 6:
           _instance.endReason = _reader.readString();
           break;
+        case 7:
+          _instance.endReasonCode = _reader.readEnum();
+          break;
         default:
           _reader.skipField();
       }
@@ -2318,6 +2420,9 @@ export class StreamCallLogsResponse implements GrpcMessage {
     if (_instance.endReason) {
       _writer.writeString(6, _instance.endReason);
     }
+    if (_instance.endReasonCode) {
+      _writer.writeEnum(7, _instance.endReasonCode);
+    }
   }
 
   private _logEntries?: CallLogEntry[];
@@ -2326,6 +2431,7 @@ export class StreamCallLogsResponse implements GrpcMessage {
   private _droppedLineCount: string;
   private _resumeToken: string;
   private _endReason: string;
+  private _endReasonCode: LogStreamEndReason;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2339,6 +2445,7 @@ export class StreamCallLogsResponse implements GrpcMessage {
     this.droppedLineCount = _value.droppedLineCount;
     this.resumeToken = _value.resumeToken;
     this.endReason = _value.endReason;
+    this.endReasonCode = _value.endReasonCode;
     StreamCallLogsResponse.refineValues(this);
   }
   get logEntries(): CallLogEntry[] | undefined {
@@ -2377,6 +2484,12 @@ export class StreamCallLogsResponse implements GrpcMessage {
   set endReason(value: string) {
     this._endReason = value;
   }
+  get endReasonCode(): LogStreamEndReason {
+    return this._endReasonCode;
+  }
+  set endReasonCode(value: LogStreamEndReason) {
+    this._endReasonCode = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -2398,7 +2511,8 @@ export class StreamCallLogsResponse implements GrpcMessage {
       captureError: this.captureError,
       droppedLineCount: this.droppedLineCount,
       resumeToken: this.resumeToken,
-      endReason: this.endReason
+      endReason: this.endReason,
+      endReasonCode: this.endReasonCode
     };
   }
 
@@ -2429,7 +2543,13 @@ export class StreamCallLogsResponse implements GrpcMessage {
       captureError: this.captureError,
       droppedLineCount: this.droppedLineCount,
       resumeToken: this.resumeToken,
-      endReason: this.endReason
+      endReason: this.endReason,
+      endReasonCode:
+        LogStreamEndReason[
+          this.endReasonCode === null || this.endReasonCode === undefined
+            ? 0
+            : this.endReasonCode
+        ]
     };
   }
 }
@@ -2444,6 +2564,7 @@ export module StreamCallLogsResponse {
     droppedLineCount: string;
     resumeToken: string;
     endReason: string;
+    endReasonCode: LogStreamEndReason;
   }
 
   /**
@@ -2456,6 +2577,7 @@ export module StreamCallLogsResponse {
     droppedLineCount: string;
     resumeToken: string;
     endReason: string;
+    endReasonCode: string;
   }
 }
 
@@ -2485,6 +2607,8 @@ export class ListCallLogsRequest implements GrpcMessage {
   static refineValues(_instance: ListCallLogsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.filter = _instance.filter || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.includeCounts = _instance.includeCounts || false;
   }
 
   /**
@@ -2524,6 +2648,16 @@ export class ListCallLogsRequest implements GrpcMessage {
           break;
         case 7:
           _instance.oldestFirst = _reader.readBool();
+          break;
+        case 8:
+          _instance.fieldMask = new googleProtobuf000.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf000.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 9:
+          _instance.includeCounts = _reader.readBool();
           break;
         default:
           _reader.skipField();
@@ -2567,6 +2701,16 @@ export class ListCallLogsRequest implements GrpcMessage {
     if (_instance.oldestFirst !== undefined && _instance.oldestFirst !== null) {
       _writer.writeBool(7, _instance.oldestFirst);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        8,
+        _instance.fieldMask as any,
+        googleProtobuf000.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.includeCounts) {
+      _writer.writeBool(9, _instance.includeCounts);
+    }
   }
 
   private _vtsiProjectName: string;
@@ -2576,6 +2720,8 @@ export class ListCallLogsRequest implements GrpcMessage {
   private _afterSeq: string;
   private _resumeToken: string;
   private _oldestFirst: boolean;
+  private _fieldMask?: googleProtobuf000.FieldMask;
+  private _includeCounts: boolean;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2590,6 +2736,10 @@ export class ListCallLogsRequest implements GrpcMessage {
     this.afterSeq = _value.afterSeq;
     this.resumeToken = _value.resumeToken;
     this.oldestFirst = _value.oldestFirst;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf000.FieldMask(_value.fieldMask)
+      : undefined;
+    this.includeCounts = _value.includeCounts;
     ListCallLogsRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -2634,6 +2784,18 @@ export class ListCallLogsRequest implements GrpcMessage {
   set oldestFirst(value: boolean) {
     this._oldestFirst = value;
   }
+  get fieldMask(): googleProtobuf000.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf000.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get includeCounts(): boolean {
+    return this._includeCounts;
+  }
+  set includeCounts(value: boolean) {
+    this._includeCounts = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -2656,7 +2818,9 @@ export class ListCallLogsRequest implements GrpcMessage {
       beforeSeq: this.beforeSeq,
       afterSeq: this.afterSeq,
       resumeToken: this.resumeToken,
-      oldestFirst: this.oldestFirst
+      oldestFirst: this.oldestFirst,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      includeCounts: this.includeCounts
     };
   }
 
@@ -2683,7 +2847,9 @@ export class ListCallLogsRequest implements GrpcMessage {
       beforeSeq: this.beforeSeq,
       afterSeq: this.afterSeq,
       resumeToken: this.resumeToken,
-      oldestFirst: this.oldestFirst
+      oldestFirst: this.oldestFirst,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      includeCounts: this.includeCounts
     };
   }
 }
@@ -2699,6 +2865,8 @@ export module ListCallLogsRequest {
     afterSeq: string;
     resumeToken: string;
     oldestFirst: boolean;
+    fieldMask?: googleProtobuf000.FieldMask.AsObject;
+    includeCounts: boolean;
   }
 
   /**
@@ -2712,6 +2880,8 @@ export module ListCallLogsRequest {
     afterSeq: string;
     resumeToken: string;
     oldestFirst: boolean;
+    fieldMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
+    includeCounts: boolean;
   }
 }
 
@@ -2747,6 +2917,7 @@ export class ListCallLogsResponse implements GrpcMessage {
     _instance.hasMoreNewer = _instance.hasMoreNewer || false;
     _instance.nextResumeToken = _instance.nextResumeToken || '';
     _instance.scopeLimitedFilters = _instance.scopeLimitedFilters || [];
+    _instance.countByLevel = _instance.countByLevel || {};
   }
 
   /**
@@ -2796,6 +2967,18 @@ export class ListCallLogsResponse implements GrpcMessage {
               _instance.scopeLimitedFilters || [])
           );
           break;
+        case 9:
+          _instance.totalMatchingCount = _reader.readInt64String();
+          break;
+        case 10:
+          const msg_10 = {} as any;
+          _reader.readMessage(
+            msg_10,
+            ListCallLogsResponse.CountByLevelEntry.deserializeBinaryFromReader
+          );
+          _instance.countByLevel = _instance.countByLevel || {};
+          _instance.countByLevel[msg_10.key] = msg_10.value;
+          break;
         default:
           _reader.skipField();
       }
@@ -2841,6 +3024,30 @@ export class ListCallLogsResponse implements GrpcMessage {
     if (_instance.scopeLimitedFilters && _instance.scopeLimitedFilters.length) {
       _writer.writePackedEnum(8, _instance.scopeLimitedFilters);
     }
+    if (
+      _instance.totalMatchingCount !== undefined &&
+      _instance.totalMatchingCount !== null
+    ) {
+      _writer.writeInt64String(9, _instance.totalMatchingCount);
+    }
+    if (!!_instance.countByLevel) {
+      const keys_10 = Object.keys(_instance.countByLevel as any);
+
+      if (keys_10.length) {
+        const repeated_10 = keys_10
+          .map(key => ({
+            key: key,
+            value: (_instance.countByLevel as any)[key]
+          }))
+          .reduce((r, v) => [...r, v], [] as any[]);
+
+        _writer.writeRepeatedMessage(
+          10,
+          repeated_10,
+          ListCallLogsResponse.CountByLevelEntry.serializeBinaryToWriter
+        );
+      }
+    }
   }
 
   private _logEntries?: CallLogEntry[];
@@ -2851,6 +3058,8 @@ export class ListCallLogsResponse implements GrpcMessage {
   private _hasMoreNewer: boolean;
   private _nextResumeToken: string;
   private _scopeLimitedFilters: CallLogFilterField[];
+  private _totalMatchingCount: string;
+  private _countByLevel: { [prop: string]: string };
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2866,7 +3075,14 @@ export class ListCallLogsResponse implements GrpcMessage {
     this.hasMoreNewer = _value.hasMoreNewer;
     this.nextResumeToken = _value.nextResumeToken;
     this.scopeLimitedFilters = (_value.scopeLimitedFilters || []).slice();
-    ListCallLogsResponse.refineValues(this);
+    this.totalMatchingCount = _value.totalMatchingCount;
+    (this.countByLevel = _value!.countByLevel
+      ? Object.keys(_value!.countByLevel).reduce(
+          (r, k) => ({ ...r, [k]: _value!.countByLevel![k] }),
+          {}
+        )
+      : {}),
+      ListCallLogsResponse.refineValues(this);
   }
   get logEntries(): CallLogEntry[] | undefined {
     return this._logEntries;
@@ -2916,6 +3132,18 @@ export class ListCallLogsResponse implements GrpcMessage {
   set scopeLimitedFilters(value: CallLogFilterField[]) {
     this._scopeLimitedFilters = value;
   }
+  get totalMatchingCount(): string {
+    return this._totalMatchingCount;
+  }
+  set totalMatchingCount(value: string) {
+    this._totalMatchingCount = value;
+  }
+  get countByLevel(): { [prop: string]: string } {
+    return this._countByLevel;
+  }
+  set countByLevel(value: { [prop: string]: string }) {
+    this._countByLevel = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -2939,7 +3167,14 @@ export class ListCallLogsResponse implements GrpcMessage {
       hasMoreOlder: this.hasMoreOlder,
       hasMoreNewer: this.hasMoreNewer,
       nextResumeToken: this.nextResumeToken,
-      scopeLimitedFilters: (this.scopeLimitedFilters || []).slice()
+      scopeLimitedFilters: (this.scopeLimitedFilters || []).slice(),
+      totalMatchingCount: this.totalMatchingCount,
+      countByLevel: this.countByLevel
+        ? Object.keys(this.countByLevel).reduce(
+            (r, k) => ({ ...r, [k]: this.countByLevel![k] }),
+            {}
+          )
+        : {}
     };
   }
 
@@ -2969,7 +3204,14 @@ export class ListCallLogsResponse implements GrpcMessage {
       nextResumeToken: this.nextResumeToken,
       scopeLimitedFilters: (this.scopeLimitedFilters || []).map(
         v => CallLogFilterField[v]
-      )
+      ),
+      totalMatchingCount: this.totalMatchingCount,
+      countByLevel: this.countByLevel
+        ? Object.keys(this.countByLevel).reduce(
+            (r, k) => ({ ...r, [k]: this.countByLevel![k] }),
+            {}
+          )
+        : {}
     };
   }
 }
@@ -2986,6 +3228,8 @@ export module ListCallLogsResponse {
     hasMoreNewer: boolean;
     nextResumeToken: string;
     scopeLimitedFilters: CallLogFilterField[];
+    totalMatchingCount: string;
+    countByLevel: { [prop: string]: string };
   }
 
   /**
@@ -3000,6 +3244,166 @@ export module ListCallLogsResponse {
     hasMoreNewer: boolean;
     nextResumeToken: string;
     scopeLimitedFilters: string[];
+    totalMatchingCount: string;
+    countByLevel: { [prop: string]: string };
+  }
+
+  /**
+   * Message implementation for ondewo.vtsi.ListCallLogsResponse.CountByLevelEntry
+   */
+  export class CountByLevelEntry implements GrpcMessage {
+    static id = 'ondewo.vtsi.ListCallLogsResponse.CountByLevelEntry';
+
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource) {
+      const instance = new CountByLevelEntry();
+      CountByLevelEntry.deserializeBinaryFromReader(
+        instance,
+        new BinaryReader(bytes)
+      );
+      return instance;
+    }
+
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: CountByLevelEntry) {
+      _instance.key = _instance.key || '';
+      _instance.value = _instance.value || '0';
+    }
+
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(
+      _instance: CountByLevelEntry,
+      _reader: BinaryReader
+    ) {
+      while (_reader.nextField()) {
+        if (_reader.isEndGroup()) break;
+
+        switch (_reader.getFieldNumber()) {
+          case 1:
+            _instance.key = _reader.readString();
+            break;
+          case 2:
+            _instance.value = _reader.readInt64String();
+            break;
+          default:
+            _reader.skipField();
+        }
+      }
+
+      CountByLevelEntry.refineValues(_instance);
+    }
+
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(
+      _instance: CountByLevelEntry,
+      _writer: BinaryWriter
+    ) {
+      if (_instance.key) {
+        _writer.writeString(1, _instance.key);
+      }
+      if (_instance.value) {
+        _writer.writeInt64String(2, _instance.value);
+      }
+    }
+
+    private _key: string;
+    private _value: string;
+
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CountByLevelEntry to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<CountByLevelEntry.AsObject>) {
+      _value = _value || {};
+      this.key = _value.key;
+      this.value = _value.value;
+      CountByLevelEntry.refineValues(this);
+    }
+    get key(): string {
+      return this._key;
+    }
+    set key(value: string) {
+      this._key = value;
+    }
+    get value(): string {
+      return this._value;
+    }
+    set value(value: string) {
+      this._value = value;
+    }
+
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+      const writer = new BinaryWriter();
+      CountByLevelEntry.serializeBinaryToWriter(this, writer);
+      return writer.getResultBuffer();
+    }
+
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): CountByLevelEntry.AsObject {
+      return {
+        key: this.key,
+        value: this.value
+      };
+    }
+
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+      return this.toObject();
+    }
+
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+      // @ts-ignore
+      options?: ToProtobufJSONOptions
+    ): CountByLevelEntry.AsProtobufJSON {
+      return {
+        key: this.key,
+        value: this.value
+      };
+    }
+  }
+  export module CountByLevelEntry {
+    /**
+     * Standard JavaScript object representation for CountByLevelEntry
+     */
+    export interface AsObject {
+      key: string;
+      value: string;
+    }
+
+    /**
+     * Protobuf JSON representation for CountByLevelEntry
+     */
+    export interface AsProtobufJSON {
+      key: string;
+      value: string;
+    }
   }
 }
 
@@ -3029,6 +3433,7 @@ export class GetCallLogStreamRequest implements GrpcMessage {
   static refineValues(_instance: GetCallLogStreamRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -3049,6 +3454,13 @@ export class GetCallLogStreamRequest implements GrpcMessage {
           break;
         case 2:
           _instance.name = _reader.readString();
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf000.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf000.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -3073,10 +3485,18 @@ export class GetCallLogStreamRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(2, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf000.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _name: string;
+  private _fieldMask?: googleProtobuf000.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3086,6 +3506,9 @@ export class GetCallLogStreamRequest implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf000.FieldMask(_value.fieldMask)
+      : undefined;
     GetCallLogStreamRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -3099,6 +3522,12 @@ export class GetCallLogStreamRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf000.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf000.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -3117,7 +3546,8 @@ export class GetCallLogStreamRequest implements GrpcMessage {
   toObject(): GetCallLogStreamRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -3139,7 +3569,8 @@ export class GetCallLogStreamRequest implements GrpcMessage {
   ): GetCallLogStreamRequest.AsProtobufJSON {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -3150,6 +3581,7 @@ export module GetCallLogStreamRequest {
   export interface AsObject {
     vtsiProjectName: string;
     name: string;
+    fieldMask?: googleProtobuf000.FieldMask.AsObject;
   }
 
   /**
@@ -3158,6 +3590,7 @@ export module GetCallLogStreamRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     name: string;
+    fieldMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -3187,6 +3620,9 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
   static refineValues(_instance: ListCallLogStreamsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.filter = _instance.filter || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.pageSize = _instance.pageSize || 0;
+    _instance.captureStates = _instance.captureStates || [];
   }
 
   /**
@@ -3214,6 +3650,21 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
           break;
         case 3:
           _instance.pageToken = _reader.readString();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf000.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf000.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.pageSize = _reader.readInt32();
+          break;
+        case 6:
+          _reader.readPackableEnumInto(
+            (_instance.captureStates = _instance.captureStates || [])
+          );
           break;
         default:
           _reader.skipField();
@@ -3245,11 +3696,27 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
     if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(3, _instance.pageToken);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf000.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.pageSize) {
+      _writer.writeInt32(5, _instance.pageSize);
+    }
+    if (_instance.captureStates && _instance.captureStates.length) {
+      _writer.writePackedEnum(6, _instance.captureStates);
+    }
   }
 
   private _vtsiProjectName: string;
   private _filter?: CallLogFilter;
   private _pageToken: string;
+  private _fieldMask?: googleProtobuf000.FieldMask;
+  private _pageSize: number;
+  private _captureStates: LogCaptureState[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3260,6 +3727,11 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.filter = _value.filter ? new CallLogFilter(_value.filter) : undefined;
     this.pageToken = _value.pageToken;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf000.FieldMask(_value.fieldMask)
+      : undefined;
+    this.pageSize = _value.pageSize;
+    this.captureStates = (_value.captureStates || []).slice();
     ListCallLogStreamsRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -3280,6 +3752,24 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
   set pageToken(value: string) {
     this._pageToken = value;
   }
+  get fieldMask(): googleProtobuf000.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf000.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get pageSize(): number {
+    return this._pageSize;
+  }
+  set pageSize(value: number) {
+    this._pageSize = value;
+  }
+  get captureStates(): LogCaptureState[] {
+    return this._captureStates;
+  }
+  set captureStates(value: LogCaptureState[]) {
+    this._captureStates = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -3298,7 +3788,10 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       filter: this.filter ? this.filter.toObject() : undefined,
-      pageToken: this.pageToken
+      pageToken: this.pageToken,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      pageSize: this.pageSize,
+      captureStates: (this.captureStates || []).slice()
     };
   }
 
@@ -3321,7 +3814,10 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       filter: this.filter ? this.filter.toProtobufJSON(options) : null,
-      pageToken: this.pageToken
+      pageToken: this.pageToken,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      pageSize: this.pageSize,
+      captureStates: (this.captureStates || []).map(v => LogCaptureState[v])
     };
   }
 }
@@ -3333,6 +3829,9 @@ export module ListCallLogStreamsRequest {
     vtsiProjectName: string;
     filter?: CallLogFilter.AsObject;
     pageToken: string;
+    fieldMask?: googleProtobuf000.FieldMask.AsObject;
+    pageSize: number;
+    captureStates: LogCaptureState[];
   }
 
   /**
@@ -3342,6 +3841,9 @@ export module ListCallLogStreamsRequest {
     vtsiProjectName: string;
     filter: CallLogFilter.AsProtobufJSON | null;
     pageToken: string;
+    fieldMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
+    pageSize: number;
+    captureStates: string[];
   }
 }
 
@@ -3540,6 +4042,7 @@ export class DeleteCallLogsRequest implements GrpcMessage {
   static refineValues(_instance: DeleteCallLogsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.filter = _instance.filter || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
   }
 
   /**
@@ -3564,6 +4067,9 @@ export class DeleteCallLogsRequest implements GrpcMessage {
             _instance.filter,
             CallLogFilter.deserializeBinaryFromReader
           );
+          break;
+        case 3:
+          _instance.validateOnly = _reader.readBool();
           break;
         default:
           _reader.skipField();
@@ -3592,10 +4098,14 @@ export class DeleteCallLogsRequest implements GrpcMessage {
         CallLogFilter.serializeBinaryToWriter
       );
     }
+    if (_instance.validateOnly) {
+      _writer.writeBool(3, _instance.validateOnly);
+    }
   }
 
   private _vtsiProjectName: string;
   private _filter?: CallLogFilter;
+  private _validateOnly: boolean;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3605,6 +4115,7 @@ export class DeleteCallLogsRequest implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.filter = _value.filter ? new CallLogFilter(_value.filter) : undefined;
+    this.validateOnly = _value.validateOnly;
     DeleteCallLogsRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -3618,6 +4129,12 @@ export class DeleteCallLogsRequest implements GrpcMessage {
   }
   set filter(value: CallLogFilter | undefined) {
     this._filter = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
   }
 
   /**
@@ -3636,7 +4153,8 @@ export class DeleteCallLogsRequest implements GrpcMessage {
   toObject(): DeleteCallLogsRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      filter: this.filter ? this.filter.toObject() : undefined
+      filter: this.filter ? this.filter.toObject() : undefined,
+      validateOnly: this.validateOnly
     };
   }
 
@@ -3658,7 +4176,8 @@ export class DeleteCallLogsRequest implements GrpcMessage {
   ): DeleteCallLogsRequest.AsProtobufJSON {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      filter: this.filter ? this.filter.toProtobufJSON(options) : null
+      filter: this.filter ? this.filter.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
     };
   }
 }
@@ -3669,6 +4188,7 @@ export module DeleteCallLogsRequest {
   export interface AsObject {
     vtsiProjectName: string;
     filter?: CallLogFilter.AsObject;
+    validateOnly: boolean;
   }
 
   /**
@@ -3677,6 +4197,7 @@ export module DeleteCallLogsRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     filter: CallLogFilter.AsProtobufJSON | null;
+    validateOnly: boolean;
   }
 }
 
@@ -3835,5 +4356,408 @@ export module DeleteCallLogsResponse {
   export interface AsProtobufJSON {
     deletedLogEntryCount: string;
     deletedLogStreamCount: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.ExportCallLogsRequest
+ */
+export class ExportCallLogsRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.ExportCallLogsRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new ExportCallLogsRequest();
+    ExportCallLogsRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: ExportCallLogsRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.filter = _instance.filter || undefined;
+    _instance.format = _instance.format || 0;
+    _instance.includeMetadata = _instance.includeMetadata || false;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: ExportCallLogsRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.filter = new CallLogFilter();
+          _reader.readMessage(
+            _instance.filter,
+            CallLogFilter.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.format = _reader.readEnum();
+          break;
+        case 4:
+          _instance.includeMetadata = _reader.readBool();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    ExportCallLogsRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: ExportCallLogsRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.filter) {
+      _writer.writeMessage(
+        2,
+        _instance.filter as any,
+        CallLogFilter.serializeBinaryToWriter
+      );
+    }
+    if (_instance.format) {
+      _writer.writeEnum(3, _instance.format);
+    }
+    if (_instance.includeMetadata) {
+      _writer.writeBool(4, _instance.includeMetadata);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _filter?: CallLogFilter;
+  private _format: LogExportFormat;
+  private _includeMetadata: boolean;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of ExportCallLogsRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<ExportCallLogsRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.filter = _value.filter ? new CallLogFilter(_value.filter) : undefined;
+    this.format = _value.format;
+    this.includeMetadata = _value.includeMetadata;
+    ExportCallLogsRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get filter(): CallLogFilter | undefined {
+    return this._filter;
+  }
+  set filter(value: CallLogFilter | undefined) {
+    this._filter = value;
+  }
+  get format(): LogExportFormat {
+    return this._format;
+  }
+  set format(value: LogExportFormat) {
+    this._format = value;
+  }
+  get includeMetadata(): boolean {
+    return this._includeMetadata;
+  }
+  set includeMetadata(value: boolean) {
+    this._includeMetadata = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    ExportCallLogsRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): ExportCallLogsRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      filter: this.filter ? this.filter.toObject() : undefined,
+      format: this.format,
+      includeMetadata: this.includeMetadata
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): ExportCallLogsRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      filter: this.filter ? this.filter.toProtobufJSON(options) : null,
+      format:
+        LogExportFormat[
+          this.format === null || this.format === undefined ? 0 : this.format
+        ],
+      includeMetadata: this.includeMetadata
+    };
+  }
+}
+export module ExportCallLogsRequest {
+  /**
+   * Standard JavaScript object representation for ExportCallLogsRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    filter?: CallLogFilter.AsObject;
+    format: LogExportFormat;
+    includeMetadata: boolean;
+  }
+
+  /**
+   * Protobuf JSON representation for ExportCallLogsRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    filter: CallLogFilter.AsProtobufJSON | null;
+    format: string;
+    includeMetadata: boolean;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.ExportCallLogsResponse
+ */
+export class ExportCallLogsResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.ExportCallLogsResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new ExportCallLogsResponse();
+    ExportCallLogsResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: ExportCallLogsResponse) {
+    _instance.chunk = _instance.chunk || new Uint8Array();
+    _instance.entryCount = _instance.entryCount || '0';
+    _instance.last = _instance.last || false;
+    _instance.truncated = _instance.truncated || false;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: ExportCallLogsResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.chunk = _reader.readBytes();
+          break;
+        case 2:
+          _instance.entryCount = _reader.readInt64String();
+          break;
+        case 3:
+          _instance.last = _reader.readBool();
+          break;
+        case 4:
+          _instance.truncated = _reader.readBool();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    ExportCallLogsResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: ExportCallLogsResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.chunk && _instance.chunk.length) {
+      _writer.writeBytes(1, _instance.chunk);
+    }
+    if (_instance.entryCount) {
+      _writer.writeInt64String(2, _instance.entryCount);
+    }
+    if (_instance.last) {
+      _writer.writeBool(3, _instance.last);
+    }
+    if (_instance.truncated) {
+      _writer.writeBool(4, _instance.truncated);
+    }
+  }
+
+  private _chunk: Uint8Array;
+  private _entryCount: string;
+  private _last: boolean;
+  private _truncated: boolean;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of ExportCallLogsResponse to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<ExportCallLogsResponse.AsObject>) {
+    _value = _value || {};
+    this.chunk = _value.chunk;
+    this.entryCount = _value.entryCount;
+    this.last = _value.last;
+    this.truncated = _value.truncated;
+    ExportCallLogsResponse.refineValues(this);
+  }
+  get chunk(): Uint8Array {
+    return this._chunk;
+  }
+  set chunk(value: Uint8Array) {
+    this._chunk = value;
+  }
+  get entryCount(): string {
+    return this._entryCount;
+  }
+  set entryCount(value: string) {
+    this._entryCount = value;
+  }
+  get last(): boolean {
+    return this._last;
+  }
+  set last(value: boolean) {
+    this._last = value;
+  }
+  get truncated(): boolean {
+    return this._truncated;
+  }
+  set truncated(value: boolean) {
+    this._truncated = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    ExportCallLogsResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): ExportCallLogsResponse.AsObject {
+    return {
+      chunk: this.chunk ? this.chunk.subarray(0) : new Uint8Array(),
+      entryCount: this.entryCount,
+      last: this.last,
+      truncated: this.truncated
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): ExportCallLogsResponse.AsProtobufJSON {
+    return {
+      chunk: this.chunk ? uint8ArrayToBase64(this.chunk) : '',
+      entryCount: this.entryCount,
+      last: this.last,
+      truncated: this.truncated
+    };
+  }
+}
+export module ExportCallLogsResponse {
+  /**
+   * Standard JavaScript object representation for ExportCallLogsResponse
+   */
+  export interface AsObject {
+    chunk: Uint8Array;
+    entryCount: string;
+    last: boolean;
+    truncated: boolean;
+  }
+
+  /**
+   * Protobuf JSON representation for ExportCallLogsResponse
+   */
+  export interface AsProtobufJSON {
+    chunk: string;
+    entryCount: string;
+    last: boolean;
+    truncated: boolean;
   }
 }

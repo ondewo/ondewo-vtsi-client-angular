@@ -25,7 +25,8 @@ import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf003 from '@ngx-grpc/well-known-types';
 import * as ondewoSip004 from '../../ondewo/sip/sip.pb';
-import * as ondewoVtsi005 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoVtsi005 from '../../ondewo/vtsi/call-configs.pb';
+import * as ondewoVtsi006 from '../../ondewo/vtsi/campaigns.pb';
 import { GRPC_EVENTS_CLIENT_SETTINGS } from './events.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Events
@@ -272,6 +273,27 @@ export class EventsClient {
       });
     },
     /**
+     * Unary call: /ondewo.vtsi.Events/RedeliverWebhookEvents
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.RedeliverWebhookEventsResponse>>
+     */
+    redeliverWebhookEvents: (
+      requestData: thisProto.RedeliverWebhookEventsRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.RedeliverWebhookEventsResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Events/RedeliverWebhookEvents',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.RedeliverWebhookEventsRequest,
+        responseClass: thisProto.RedeliverWebhookEventsResponse
+      });
+    },
+    /**
      * Server streaming: /ondewo.vtsi.Events/SubscribeVtsiEvents
      *
      * @param requestMessage Request message
@@ -475,6 +497,22 @@ export class EventsClient {
   ): Observable<thisProto.TestWebhookResponse> {
     return this.$raw
       .testWebhook(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Events/RedeliverWebhookEvents
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.RedeliverWebhookEventsResponse>
+   */
+  redeliverWebhookEvents(
+    requestData: thisProto.RedeliverWebhookEventsRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.RedeliverWebhookEventsResponse> {
+    return this.$raw
+      .redeliverWebhookEvents(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 

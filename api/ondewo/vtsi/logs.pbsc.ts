@@ -23,14 +23,14 @@ import * as thisProto from './logs.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
-import * as googleApi003 from '../../google/api/annotations.pb';
-import * as googleProtobuf004 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu005 from '../../ondewo/nlu/context.pb';
-import * as ondewoNlu006 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t007 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s008 from '../../ondewo/t2s/text-to-speech.pb';
-import * as ondewoSip009 from '../../ondewo/sip/sip.pb';
-import * as ondewoVtsi010 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoNlu003 from '../../ondewo/nlu/intent.pb';
+import * as ondewoSip004 from '../../ondewo/sip/sip.pb';
+import * as ondewoVtsi005 from '../../ondewo/vtsi/call-configs.pb';
+import * as ondewoVtsi006 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoVtsi007 from '../../ondewo/vtsi/projects.pb';
+import * as ondewoNlu008 from '../../ondewo/nlu/context.pb';
+import * as ondewoS2t009 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s010 from '../../ondewo/t2s/text-to-speech.pb';
 import * as ondewoNlu011 from '../../ondewo/nlu/common.pb';
 import * as ondewoVtsi012 from '../../ondewo/vtsi/calls.pb';
 import { GRPC_LOGS_CLIENT_SETTINGS } from './logs.pbconf';
@@ -151,6 +151,27 @@ export class LogsClient {
         requestClass: thisProto.DeleteCallLogsRequest,
         responseClass: thisProto.DeleteCallLogsResponse
       });
+    },
+    /**
+     * Server streaming: /ondewo.vtsi.Logs/ExportCallLogs
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.ExportCallLogsResponse>>
+     */
+    exportCallLogs: (
+      requestData: thisProto.ExportCallLogsRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.ExportCallLogsResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.serverStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Logs/ExportCallLogs',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.ExportCallLogsRequest,
+        responseClass: thisProto.ExportCallLogsResponse
+      });
     }
   };
 
@@ -239,6 +260,22 @@ export class LogsClient {
   ): Observable<thisProto.DeleteCallLogsResponse> {
     return this.$raw
       .deleteCallLogs(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Server streaming @/ondewo.vtsi.Logs/ExportCallLogs
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.ExportCallLogsResponse>
+   */
+  exportCallLogs(
+    requestData: thisProto.ExportCallLogsRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.ExportCallLogsResponse> {
+    return this.$raw
+      .exportCallLogs(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 }

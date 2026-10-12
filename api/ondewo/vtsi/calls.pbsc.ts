@@ -20,22 +20,22 @@ import {
 } from '@ngx-grpc/core';
 import { Observable } from 'rxjs';
 import * as thisProto from './calls.pb';
-import * as googleApi000 from '../../google/api/http.pb';
-import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
-import * as googleApi002 from '../../google/api/annotations.pb';
-import * as googleProtobuf003 from '@ngx-grpc/well-known-types';
+import * as googleApi000 from '../../google/api/annotations.pb';
+import * as ondewoNlu001 from '../../ondewo/nlu/context.pb';
+import * as ondewoNlu002 from '../../ondewo/nlu/common.pb';
+import * as ondewoNlu003 from '../../ondewo/nlu/operations.pb';
 import * as googleProtobuf004 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf005 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu006 from '../../ondewo/nlu/context.pb';
-import * as ondewoNlu007 from '../../ondewo/nlu/common.pb';
-import * as ondewoNlu008 from '../../ondewo/nlu/operations.pb';
-import * as googleProtobuf009 from '@ngx-grpc/well-known-types';
-import * as googleProtobuf010 from '@ngx-grpc/well-known-types';
-import * as ondewoSip011 from '../../ondewo/sip/sip.pb';
-import * as ondewoNlu012 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t013 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s014 from '../../ondewo/t2s/text-to-speech.pb';
-import * as ondewoVtsi015 from '../../ondewo/vtsi/campaigns.pb';
+import * as googleProtobuf006 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf007 from '@ngx-grpc/well-known-types';
+import * as ondewoNlu008 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t009 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s010 from '../../ondewo/t2s/text-to-speech.pb';
+import * as googleProtobuf011 from '@ngx-grpc/well-known-types';
+import * as ondewoSip012 from '../../ondewo/sip/sip.pb';
+import * as ondewoVtsi013 from '../../ondewo/vtsi/call-configs.pb';
+import * as ondewoVtsi014 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoVtsi015 from '../../ondewo/vtsi/projects.pb';
 import { GRPC_CALLS_CLIENT_SETTINGS } from './calls.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Calls
@@ -132,6 +132,48 @@ export class CallsClient {
         requestMetadata,
         requestClass: thisProto.GetCallerRequest,
         responseClass: thisProto.Caller
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/UpdateCaller
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.UpdateCallerResponse>>
+     */
+    updateCaller: (
+      requestData: thisProto.UpdateCallerRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.UpdateCallerResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/UpdateCaller',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.UpdateCallerRequest,
+        responseClass: thisProto.UpdateCallerResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/UpdateCallers
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.UpdateCallersResponse>>
+     */
+    updateCallers: (
+      requestData: thisProto.UpdateCallersRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.UpdateCallersResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/UpdateCallers',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.UpdateCallersRequest,
+        responseClass: thisProto.UpdateCallersResponse
       });
     },
     /**
@@ -345,6 +387,48 @@ export class CallsClient {
       });
     },
     /**
+     * Unary call: /ondewo.vtsi.Calls/UpdateListener
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.UpdateListenerResponse>>
+     */
+    updateListener: (
+      requestData: thisProto.UpdateListenerRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.UpdateListenerResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/UpdateListener',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.UpdateListenerRequest,
+        responseClass: thisProto.UpdateListenerResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/UpdateListeners
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.UpdateListenersResponse>>
+     */
+    updateListeners: (
+      requestData: thisProto.UpdateListenersRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.UpdateListenersResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/UpdateListeners',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.UpdateListenersRequest,
+        responseClass: thisProto.UpdateListenersResponse
+      });
+    },
+    /**
      * Unary call: /ondewo.vtsi.Calls/DeleteListener
      *
      * @param requestMessage Request message
@@ -515,6 +599,27 @@ export class CallsClient {
       });
     },
     /**
+     * Unary call: /ondewo.vtsi.Calls/UpdateScheduledCaller
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.ScheduledCaller>>
+     */
+    updateScheduledCaller: (
+      requestData: thisProto.UpdateScheduledCallerRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.ScheduledCaller>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/UpdateScheduledCaller',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.UpdateScheduledCallerRequest,
+        responseClass: thisProto.ScheduledCaller
+      });
+    },
+    /**
      * Unary call: /ondewo.vtsi.Calls/CancelScheduledCaller
      *
      * @param requestMessage Request message
@@ -533,6 +638,48 @@ export class CallsClient {
         requestMetadata,
         requestClass: thisProto.CancelScheduledCallerRequest,
         responseClass: thisProto.CancelScheduledCallerResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/CancelScheduledCallers
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.CancelScheduledCallersResponse>>
+     */
+    cancelScheduledCallers: (
+      requestData: thisProto.CancelScheduledCallersRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.CancelScheduledCallersResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/CancelScheduledCallers',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.CancelScheduledCallersRequest,
+        responseClass: thisProto.CancelScheduledCallersResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/RetryScheduledCaller
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.ScheduledCaller>>
+     */
+    retryScheduledCaller: (
+      requestData: thisProto.RetryScheduledCallerRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.ScheduledCaller>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/RetryScheduledCaller',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.RetryScheduledCallerRequest,
+        responseClass: thisProto.ScheduledCaller
       });
     },
     /**
@@ -680,6 +827,69 @@ export class CallsClient {
         requestMetadata,
         requestClass: thisProto.ListCallsRequest,
         responseClass: thisProto.ListCallsResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/GetCallStatistics
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.CallStatistics>>
+     */
+    getCallStatistics: (
+      requestData: thisProto.GetCallStatisticsRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.CallStatistics>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/GetCallStatistics',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.GetCallStatisticsRequest,
+        responseClass: thisProto.CallStatistics
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/UpdateCall
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.UpdateCallResponse>>
+     */
+    updateCall: (
+      requestData: thisProto.UpdateCallRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.UpdateCallResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/UpdateCall',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.UpdateCallRequest,
+        responseClass: thisProto.UpdateCallResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Calls/UpdateCalls
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.UpdateCallsResponse>>
+     */
+    updateCalls: (
+      requestData: thisProto.UpdateCallsRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.UpdateCallsResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/UpdateCalls',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.UpdateCallsRequest,
+        responseClass: thisProto.UpdateCallsResponse
       });
     },
     /**
@@ -904,6 +1114,38 @@ export class CallsClient {
   }
 
   /**
+   * Unary call @/ondewo.vtsi.Calls/UpdateCaller
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.UpdateCallerResponse>
+   */
+  updateCaller(
+    requestData: thisProto.UpdateCallerRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.UpdateCallerResponse> {
+    return this.$raw
+      .updateCaller(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/UpdateCallers
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.UpdateCallersResponse>
+   */
+  updateCallers(
+    requestData: thisProto.UpdateCallersRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.UpdateCallersResponse> {
+    return this.$raw
+      .updateCallers(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
    * Unary call @/ondewo.vtsi.Calls/DeleteCaller
    *
    * @param requestMessage Request message
@@ -1064,6 +1306,38 @@ export class CallsClient {
   }
 
   /**
+   * Unary call @/ondewo.vtsi.Calls/UpdateListener
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.UpdateListenerResponse>
+   */
+  updateListener(
+    requestData: thisProto.UpdateListenerRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.UpdateListenerResponse> {
+    return this.$raw
+      .updateListener(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/UpdateListeners
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.UpdateListenersResponse>
+   */
+  updateListeners(
+    requestData: thisProto.UpdateListenersRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.UpdateListenersResponse> {
+    return this.$raw
+      .updateListeners(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
    * Unary call @/ondewo.vtsi.Calls/DeleteListener
    *
    * @param requestMessage Request message
@@ -1192,6 +1466,22 @@ export class CallsClient {
   }
 
   /**
+   * Unary call @/ondewo.vtsi.Calls/UpdateScheduledCaller
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.ScheduledCaller>
+   */
+  updateScheduledCaller(
+    requestData: thisProto.UpdateScheduledCallerRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.ScheduledCaller> {
+    return this.$raw
+      .updateScheduledCaller(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
    * Unary call @/ondewo.vtsi.Calls/CancelScheduledCaller
    *
    * @param requestMessage Request message
@@ -1204,6 +1494,38 @@ export class CallsClient {
   ): Observable<thisProto.CancelScheduledCallerResponse> {
     return this.$raw
       .cancelScheduledCaller(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/CancelScheduledCallers
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.CancelScheduledCallersResponse>
+   */
+  cancelScheduledCallers(
+    requestData: thisProto.CancelScheduledCallersRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.CancelScheduledCallersResponse> {
+    return this.$raw
+      .cancelScheduledCallers(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/RetryScheduledCaller
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.ScheduledCaller>
+   */
+  retryScheduledCaller(
+    requestData: thisProto.RetryScheduledCallerRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.ScheduledCaller> {
+    return this.$raw
+      .retryScheduledCaller(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 
@@ -1316,6 +1638,54 @@ export class CallsClient {
   ): Observable<thisProto.ListCallsResponse> {
     return this.$raw
       .listCalls(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/GetCallStatistics
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.CallStatistics>
+   */
+  getCallStatistics(
+    requestData: thisProto.GetCallStatisticsRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.CallStatistics> {
+    return this.$raw
+      .getCallStatistics(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/UpdateCall
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.UpdateCallResponse>
+   */
+  updateCall(
+    requestData: thisProto.UpdateCallRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.UpdateCallResponse> {
+    return this.$raw
+      .updateCall(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/UpdateCalls
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.UpdateCallsResponse>
+   */
+  updateCalls(
+    requestData: thisProto.UpdateCallsRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.UpdateCallsResponse> {
+    return this.$raw
+      .updateCalls(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 

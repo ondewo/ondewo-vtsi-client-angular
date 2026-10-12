@@ -13,8 +13,7 @@ import {
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
-import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
-import * as ondewoVtsi003 from '../../ondewo/vtsi/projects.pb';
+import * as ondewoVtsi002 from '../../ondewo/vtsi/projects.pb';
 export enum SoftphoneTransportSecurity {
   SOFTPHONE_TRANSPORT_SECURITY_UNSPECIFIED = 0,
   SOFTPHONE_TRANSPORT_SECURITY_CLIENT_CERTIFICATE = 1,
@@ -25,6 +24,13 @@ export enum SoftphoneCertificateStatus {
   SOFTPHONE_CERTIFICATE_STATUS_ACTIVE = 1,
   SOFTPHONE_CERTIFICATE_STATUS_SUPERSEDED = 2,
   SOFTPHONE_CERTIFICATE_STATUS_REVOKED = 3
+}
+export enum SoftphoneContactStatus {
+  SOFTPHONE_CONTACT_STATUS_UNSPECIFIED = 0,
+  SOFTPHONE_CONTACT_STATUS_AVAILABLE = 1,
+  SOFTPHONE_CONTACT_STATUS_UNAVAILABLE = 2,
+  SOFTPHONE_CONTACT_STATUS_NOT_QUALIFIED = 3,
+  SOFTPHONE_CONTACT_STATUS_UNKNOWN = 4
 }
 export enum SoftphoneSrtpMode {
   SOFTPHONE_SRTP_MODE_UNSPECIFIED = 0,
@@ -73,6 +79,9 @@ export class SoftphoneAccount implements GrpcMessage {
     _instance.createdAt = _instance.createdAt || undefined;
     _instance.modifiedBy = _instance.modifiedBy || '';
     _instance.modifiedAt = _instance.modifiedAt || undefined;
+    _instance.locked = _instance.locked || false;
+    _instance.lockedAt = _instance.lockedAt || undefined;
+    _instance.lockedReason = _instance.lockedReason || '';
   }
 
   /**
@@ -132,38 +141,51 @@ export class SoftphoneAccount implements GrpcMessage {
           _instance.currentCertificateSha256Fingerprint = _reader.readString();
           break;
         case 13:
-          _instance.currentCertificateExpireTime = new googleProtobuf002.Timestamp();
+          _instance.currentCertificateExpireTime = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.currentCertificateExpireTime,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 14:
-          _instance.sipPasswordSetAt = new googleProtobuf002.Timestamp();
+          _instance.sipPasswordSetAt = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.sipPasswordSetAt,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 15:
           _instance.createdBy = _reader.readString();
           break;
         case 16:
-          _instance.createdAt = new googleProtobuf002.Timestamp();
+          _instance.createdAt = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.createdAt,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 17:
           _instance.modifiedBy = _reader.readString();
           break;
         case 18:
-          _instance.modifiedAt = new googleProtobuf002.Timestamp();
+          _instance.modifiedAt = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.modifiedAt,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
+          break;
+        case 19:
+          _instance.locked = _reader.readBool();
+          break;
+        case 20:
+          _instance.lockedAt = new googleProtobuf001.Timestamp();
+          _reader.readMessage(
+            _instance.lockedAt,
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 21:
+          _instance.lockedReason = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -234,14 +256,14 @@ export class SoftphoneAccount implements GrpcMessage {
       _writer.writeMessage(
         13,
         _instance.currentCertificateExpireTime as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.sipPasswordSetAt) {
       _writer.writeMessage(
         14,
         _instance.sipPasswordSetAt as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.createdBy) {
@@ -251,7 +273,7 @@ export class SoftphoneAccount implements GrpcMessage {
       _writer.writeMessage(
         16,
         _instance.createdAt as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.modifiedBy) {
@@ -261,8 +283,21 @@ export class SoftphoneAccount implements GrpcMessage {
       _writer.writeMessage(
         18,
         _instance.modifiedAt as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
+    }
+    if (_instance.locked) {
+      _writer.writeBool(19, _instance.locked);
+    }
+    if (_instance.lockedAt) {
+      _writer.writeMessage(
+        20,
+        _instance.lockedAt as any,
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.lockedReason) {
+      _writer.writeString(21, _instance.lockedReason);
     }
   }
 
@@ -278,12 +313,15 @@ export class SoftphoneAccount implements GrpcMessage {
   private _allowedDestinations: string[];
   private _currentCertificateName: string;
   private _currentCertificateSha256Fingerprint: string;
-  private _currentCertificateExpireTime?: googleProtobuf002.Timestamp;
-  private _sipPasswordSetAt?: googleProtobuf002.Timestamp;
+  private _currentCertificateExpireTime?: googleProtobuf001.Timestamp;
+  private _sipPasswordSetAt?: googleProtobuf001.Timestamp;
   private _createdBy: string;
-  private _createdAt?: googleProtobuf002.Timestamp;
+  private _createdAt?: googleProtobuf001.Timestamp;
   private _modifiedBy: string;
-  private _modifiedAt?: googleProtobuf002.Timestamp;
+  private _modifiedAt?: googleProtobuf001.Timestamp;
+  private _locked: boolean;
+  private _lockedAt?: googleProtobuf001.Timestamp;
+  private _lockedReason: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -310,19 +348,24 @@ export class SoftphoneAccount implements GrpcMessage {
     this.currentCertificateSha256Fingerprint =
       _value.currentCertificateSha256Fingerprint;
     this.currentCertificateExpireTime = _value.currentCertificateExpireTime
-      ? new googleProtobuf002.Timestamp(_value.currentCertificateExpireTime)
+      ? new googleProtobuf001.Timestamp(_value.currentCertificateExpireTime)
       : undefined;
     this.sipPasswordSetAt = _value.sipPasswordSetAt
-      ? new googleProtobuf002.Timestamp(_value.sipPasswordSetAt)
+      ? new googleProtobuf001.Timestamp(_value.sipPasswordSetAt)
       : undefined;
     this.createdBy = _value.createdBy;
     this.createdAt = _value.createdAt
-      ? new googleProtobuf002.Timestamp(_value.createdAt)
+      ? new googleProtobuf001.Timestamp(_value.createdAt)
       : undefined;
     this.modifiedBy = _value.modifiedBy;
     this.modifiedAt = _value.modifiedAt
-      ? new googleProtobuf002.Timestamp(_value.modifiedAt)
+      ? new googleProtobuf001.Timestamp(_value.modifiedAt)
       : undefined;
+    this.locked = _value.locked;
+    this.lockedAt = _value.lockedAt
+      ? new googleProtobuf001.Timestamp(_value.lockedAt)
+      : undefined;
+    this.lockedReason = _value.lockedReason;
     SoftphoneAccount.refineValues(this);
   }
   get name(): string {
@@ -397,18 +440,18 @@ export class SoftphoneAccount implements GrpcMessage {
   set currentCertificateSha256Fingerprint(value: string) {
     this._currentCertificateSha256Fingerprint = value;
   }
-  get currentCertificateExpireTime(): googleProtobuf002.Timestamp | undefined {
+  get currentCertificateExpireTime(): googleProtobuf001.Timestamp | undefined {
     return this._currentCertificateExpireTime;
   }
   set currentCertificateExpireTime(
-    value: googleProtobuf002.Timestamp | undefined
+    value: googleProtobuf001.Timestamp | undefined
   ) {
     this._currentCertificateExpireTime = value;
   }
-  get sipPasswordSetAt(): googleProtobuf002.Timestamp | undefined {
+  get sipPasswordSetAt(): googleProtobuf001.Timestamp | undefined {
     return this._sipPasswordSetAt;
   }
-  set sipPasswordSetAt(value: googleProtobuf002.Timestamp | undefined) {
+  set sipPasswordSetAt(value: googleProtobuf001.Timestamp | undefined) {
     this._sipPasswordSetAt = value;
   }
   get createdBy(): string {
@@ -417,10 +460,10 @@ export class SoftphoneAccount implements GrpcMessage {
   set createdBy(value: string) {
     this._createdBy = value;
   }
-  get createdAt(): googleProtobuf002.Timestamp | undefined {
+  get createdAt(): googleProtobuf001.Timestamp | undefined {
     return this._createdAt;
   }
-  set createdAt(value: googleProtobuf002.Timestamp | undefined) {
+  set createdAt(value: googleProtobuf001.Timestamp | undefined) {
     this._createdAt = value;
   }
   get modifiedBy(): string {
@@ -429,11 +472,29 @@ export class SoftphoneAccount implements GrpcMessage {
   set modifiedBy(value: string) {
     this._modifiedBy = value;
   }
-  get modifiedAt(): googleProtobuf002.Timestamp | undefined {
+  get modifiedAt(): googleProtobuf001.Timestamp | undefined {
     return this._modifiedAt;
   }
-  set modifiedAt(value: googleProtobuf002.Timestamp | undefined) {
+  set modifiedAt(value: googleProtobuf001.Timestamp | undefined) {
     this._modifiedAt = value;
+  }
+  get locked(): boolean {
+    return this._locked;
+  }
+  set locked(value: boolean) {
+    this._locked = value;
+  }
+  get lockedAt(): googleProtobuf001.Timestamp | undefined {
+    return this._lockedAt;
+  }
+  set lockedAt(value: googleProtobuf001.Timestamp | undefined) {
+    this._lockedAt = value;
+  }
+  get lockedReason(): string {
+    return this._lockedReason;
+  }
+  set lockedReason(value: string) {
+    this._lockedReason = value;
   }
 
   /**
@@ -478,7 +539,10 @@ export class SoftphoneAccount implements GrpcMessage {
       createdBy: this.createdBy,
       createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
       modifiedBy: this.modifiedBy,
-      modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined
+      modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined,
+      locked: this.locked,
+      lockedAt: this.lockedAt ? this.lockedAt.toObject() : undefined,
+      lockedReason: this.lockedReason
     };
   }
 
@@ -534,7 +598,10 @@ export class SoftphoneAccount implements GrpcMessage {
       modifiedBy: this.modifiedBy,
       modifiedAt: this.modifiedAt
         ? this.modifiedAt.toProtobufJSON(options)
-        : null
+        : null,
+      locked: this.locked,
+      lockedAt: this.lockedAt ? this.lockedAt.toProtobufJSON(options) : null,
+      lockedReason: this.lockedReason
     };
   }
 }
@@ -555,12 +622,15 @@ export module SoftphoneAccount {
     allowedDestinations: string[];
     currentCertificateName: string;
     currentCertificateSha256Fingerprint: string;
-    currentCertificateExpireTime?: googleProtobuf002.Timestamp.AsObject;
-    sipPasswordSetAt?: googleProtobuf002.Timestamp.AsObject;
+    currentCertificateExpireTime?: googleProtobuf001.Timestamp.AsObject;
+    sipPasswordSetAt?: googleProtobuf001.Timestamp.AsObject;
     createdBy: string;
-    createdAt?: googleProtobuf002.Timestamp.AsObject;
+    createdAt?: googleProtobuf001.Timestamp.AsObject;
     modifiedBy: string;
-    modifiedAt?: googleProtobuf002.Timestamp.AsObject;
+    modifiedAt?: googleProtobuf001.Timestamp.AsObject;
+    locked: boolean;
+    lockedAt?: googleProtobuf001.Timestamp.AsObject;
+    lockedReason: string;
   }
 
   /**
@@ -579,12 +649,15 @@ export module SoftphoneAccount {
     allowedDestinations: string[];
     currentCertificateName: string;
     currentCertificateSha256Fingerprint: string;
-    currentCertificateExpireTime: googleProtobuf002.Timestamp.AsProtobufJSON | null;
-    sipPasswordSetAt: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    currentCertificateExpireTime: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    sipPasswordSetAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     createdBy: string;
-    createdAt: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    createdAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     modifiedBy: string;
-    modifiedAt: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    modifiedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    locked: boolean;
+    lockedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    lockedReason: string;
   }
 
   /**
@@ -828,44 +901,44 @@ export class SoftphoneCertificate implements GrpcMessage {
           _instance.subject = _reader.readString();
           break;
         case 9:
-          _instance.notBefore = new googleProtobuf002.Timestamp();
+          _instance.notBefore = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.notBefore,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 10:
-          _instance.notAfter = new googleProtobuf002.Timestamp();
+          _instance.notAfter = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.notAfter,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 11:
           _instance.createdBy = _reader.readString();
           break;
         case 12:
-          _instance.createdAt = new googleProtobuf002.Timestamp();
+          _instance.createdAt = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.createdAt,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 13:
-          _instance.supersededAt = new googleProtobuf002.Timestamp();
+          _instance.supersededAt = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.supersededAt,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 14:
           _instance.supersededByCertificateName = _reader.readString();
           break;
         case 15:
-          _instance.revokedAt = new googleProtobuf002.Timestamp();
+          _instance.revokedAt = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.revokedAt,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 16:
@@ -919,14 +992,14 @@ export class SoftphoneCertificate implements GrpcMessage {
       _writer.writeMessage(
         9,
         _instance.notBefore as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.notAfter) {
       _writer.writeMessage(
         10,
         _instance.notAfter as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.createdBy) {
@@ -936,14 +1009,14 @@ export class SoftphoneCertificate implements GrpcMessage {
       _writer.writeMessage(
         12,
         _instance.createdAt as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.supersededAt) {
       _writer.writeMessage(
         13,
         _instance.supersededAt as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.supersededByCertificateName) {
@@ -953,7 +1026,7 @@ export class SoftphoneCertificate implements GrpcMessage {
       _writer.writeMessage(
         15,
         _instance.revokedAt as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.revokedBy) {
@@ -972,13 +1045,13 @@ export class SoftphoneCertificate implements GrpcMessage {
   private _sha256Fingerprint: string;
   private _serialNumber: string;
   private _subject: string;
-  private _notBefore?: googleProtobuf002.Timestamp;
-  private _notAfter?: googleProtobuf002.Timestamp;
+  private _notBefore?: googleProtobuf001.Timestamp;
+  private _notAfter?: googleProtobuf001.Timestamp;
   private _createdBy: string;
-  private _createdAt?: googleProtobuf002.Timestamp;
-  private _supersededAt?: googleProtobuf002.Timestamp;
+  private _createdAt?: googleProtobuf001.Timestamp;
+  private _supersededAt?: googleProtobuf001.Timestamp;
   private _supersededByCertificateName: string;
-  private _revokedAt?: googleProtobuf002.Timestamp;
+  private _revokedAt?: googleProtobuf001.Timestamp;
   private _revokedBy: string;
   private _revocationReason: string;
 
@@ -997,21 +1070,21 @@ export class SoftphoneCertificate implements GrpcMessage {
     this.serialNumber = _value.serialNumber;
     this.subject = _value.subject;
     this.notBefore = _value.notBefore
-      ? new googleProtobuf002.Timestamp(_value.notBefore)
+      ? new googleProtobuf001.Timestamp(_value.notBefore)
       : undefined;
     this.notAfter = _value.notAfter
-      ? new googleProtobuf002.Timestamp(_value.notAfter)
+      ? new googleProtobuf001.Timestamp(_value.notAfter)
       : undefined;
     this.createdBy = _value.createdBy;
     this.createdAt = _value.createdAt
-      ? new googleProtobuf002.Timestamp(_value.createdAt)
+      ? new googleProtobuf001.Timestamp(_value.createdAt)
       : undefined;
     this.supersededAt = _value.supersededAt
-      ? new googleProtobuf002.Timestamp(_value.supersededAt)
+      ? new googleProtobuf001.Timestamp(_value.supersededAt)
       : undefined;
     this.supersededByCertificateName = _value.supersededByCertificateName;
     this.revokedAt = _value.revokedAt
-      ? new googleProtobuf002.Timestamp(_value.revokedAt)
+      ? new googleProtobuf001.Timestamp(_value.revokedAt)
       : undefined;
     this.revokedBy = _value.revokedBy;
     this.revocationReason = _value.revocationReason;
@@ -1065,16 +1138,16 @@ export class SoftphoneCertificate implements GrpcMessage {
   set subject(value: string) {
     this._subject = value;
   }
-  get notBefore(): googleProtobuf002.Timestamp | undefined {
+  get notBefore(): googleProtobuf001.Timestamp | undefined {
     return this._notBefore;
   }
-  set notBefore(value: googleProtobuf002.Timestamp | undefined) {
+  set notBefore(value: googleProtobuf001.Timestamp | undefined) {
     this._notBefore = value;
   }
-  get notAfter(): googleProtobuf002.Timestamp | undefined {
+  get notAfter(): googleProtobuf001.Timestamp | undefined {
     return this._notAfter;
   }
-  set notAfter(value: googleProtobuf002.Timestamp | undefined) {
+  set notAfter(value: googleProtobuf001.Timestamp | undefined) {
     this._notAfter = value;
   }
   get createdBy(): string {
@@ -1083,16 +1156,16 @@ export class SoftphoneCertificate implements GrpcMessage {
   set createdBy(value: string) {
     this._createdBy = value;
   }
-  get createdAt(): googleProtobuf002.Timestamp | undefined {
+  get createdAt(): googleProtobuf001.Timestamp | undefined {
     return this._createdAt;
   }
-  set createdAt(value: googleProtobuf002.Timestamp | undefined) {
+  set createdAt(value: googleProtobuf001.Timestamp | undefined) {
     this._createdAt = value;
   }
-  get supersededAt(): googleProtobuf002.Timestamp | undefined {
+  get supersededAt(): googleProtobuf001.Timestamp | undefined {
     return this._supersededAt;
   }
-  set supersededAt(value: googleProtobuf002.Timestamp | undefined) {
+  set supersededAt(value: googleProtobuf001.Timestamp | undefined) {
     this._supersededAt = value;
   }
   get supersededByCertificateName(): string {
@@ -1101,10 +1174,10 @@ export class SoftphoneCertificate implements GrpcMessage {
   set supersededByCertificateName(value: string) {
     this._supersededByCertificateName = value;
   }
-  get revokedAt(): googleProtobuf002.Timestamp | undefined {
+  get revokedAt(): googleProtobuf001.Timestamp | undefined {
     return this._revokedAt;
   }
-  set revokedAt(value: googleProtobuf002.Timestamp | undefined) {
+  set revokedAt(value: googleProtobuf001.Timestamp | undefined) {
     this._revokedAt = value;
   }
   get revokedBy(): string {
@@ -1212,13 +1285,13 @@ export module SoftphoneCertificate {
     sha256Fingerprint: string;
     serialNumber: string;
     subject: string;
-    notBefore?: googleProtobuf002.Timestamp.AsObject;
-    notAfter?: googleProtobuf002.Timestamp.AsObject;
+    notBefore?: googleProtobuf001.Timestamp.AsObject;
+    notAfter?: googleProtobuf001.Timestamp.AsObject;
     createdBy: string;
-    createdAt?: googleProtobuf002.Timestamp.AsObject;
-    supersededAt?: googleProtobuf002.Timestamp.AsObject;
+    createdAt?: googleProtobuf001.Timestamp.AsObject;
+    supersededAt?: googleProtobuf001.Timestamp.AsObject;
     supersededByCertificateName: string;
-    revokedAt?: googleProtobuf002.Timestamp.AsObject;
+    revokedAt?: googleProtobuf001.Timestamp.AsObject;
     revokedBy: string;
     revocationReason: string;
   }
@@ -1235,13 +1308,13 @@ export module SoftphoneCertificate {
     sha256Fingerprint: string;
     serialNumber: string;
     subject: string;
-    notBefore: googleProtobuf002.Timestamp.AsProtobufJSON | null;
-    notAfter: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    notBefore: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    notAfter: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     createdBy: string;
-    createdAt: googleProtobuf002.Timestamp.AsProtobufJSON | null;
-    supersededAt: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    createdAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    supersededAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     supersededByCertificateName: string;
-    revokedAt: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    revokedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     revokedBy: string;
     revocationReason: string;
   }
@@ -1576,10 +1649,10 @@ export class SoftphoneProvisioning implements GrpcMessage {
           _instance.clientCertificateSha256Fingerprint = _reader.readString();
           break;
         case 18:
-          _instance.clientCertificateExpireTime = new googleProtobuf002.Timestamp();
+          _instance.clientCertificateExpireTime = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.clientCertificateExpireTime,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 19:
@@ -1660,7 +1733,7 @@ export class SoftphoneProvisioning implements GrpcMessage {
       _writer.writeMessage(
         18,
         _instance.clientCertificateExpireTime as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.zoiperInstructions) {
@@ -1688,7 +1761,7 @@ export class SoftphoneProvisioning implements GrpcMessage {
   private _serverCertificateSha256Fingerprint: string;
   private _clientCertificateName: string;
   private _clientCertificateSha256Fingerprint: string;
-  private _clientCertificateExpireTime?: googleProtobuf002.Timestamp;
+  private _clientCertificateExpireTime?: googleProtobuf001.Timestamp;
   private _zoiperInstructions: string;
   private _clientCertificateSupportNote: string;
 
@@ -1718,7 +1791,7 @@ export class SoftphoneProvisioning implements GrpcMessage {
     this.clientCertificateSha256Fingerprint =
       _value.clientCertificateSha256Fingerprint;
     this.clientCertificateExpireTime = _value.clientCertificateExpireTime
-      ? new googleProtobuf002.Timestamp(_value.clientCertificateExpireTime)
+      ? new googleProtobuf001.Timestamp(_value.clientCertificateExpireTime)
       : undefined;
     this.zoiperInstructions = _value.zoiperInstructions;
     this.clientCertificateSupportNote = _value.clientCertificateSupportNote;
@@ -1826,11 +1899,11 @@ export class SoftphoneProvisioning implements GrpcMessage {
   set clientCertificateSha256Fingerprint(value: string) {
     this._clientCertificateSha256Fingerprint = value;
   }
-  get clientCertificateExpireTime(): googleProtobuf002.Timestamp | undefined {
+  get clientCertificateExpireTime(): googleProtobuf001.Timestamp | undefined {
     return this._clientCertificateExpireTime;
   }
   set clientCertificateExpireTime(
-    value: googleProtobuf002.Timestamp | undefined
+    value: googleProtobuf001.Timestamp | undefined
   ) {
     this._clientCertificateExpireTime = value;
   }
@@ -1966,7 +2039,7 @@ export module SoftphoneProvisioning {
     serverCertificateSha256Fingerprint: string;
     clientCertificateName: string;
     clientCertificateSha256Fingerprint: string;
-    clientCertificateExpireTime?: googleProtobuf002.Timestamp.AsObject;
+    clientCertificateExpireTime?: googleProtobuf001.Timestamp.AsObject;
     zoiperInstructions: string;
     clientCertificateSupportNote: string;
   }
@@ -1992,7 +2065,7 @@ export module SoftphoneProvisioning {
     serverCertificateSha256Fingerprint: string;
     clientCertificateName: string;
     clientCertificateSha256Fingerprint: string;
-    clientCertificateExpireTime: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    clientCertificateExpireTime: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     zoiperInstructions: string;
     clientCertificateSupportNote: string;
   }
@@ -2070,18 +2143,21 @@ export class SoftphoneAccountFilter implements GrpcMessage {
           _instance.sipUsernameContains = _reader.readString();
           break;
         case 6:
-          _instance.certificateExpiresBefore = new googleProtobuf002.Timestamp();
+          _instance.certificateExpiresBefore = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.certificateExpiresBefore,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 7:
-          _instance.certificateExpiresAfter = new googleProtobuf002.Timestamp();
+          _instance.certificateExpiresAfter = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.certificateExpiresAfter,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
+          break;
+        case 8:
+          _instance.locked = _reader.readBool();
           break;
         default:
           _reader.skipField();
@@ -2131,15 +2207,18 @@ export class SoftphoneAccountFilter implements GrpcMessage {
       _writer.writeMessage(
         6,
         _instance.certificateExpiresBefore as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.certificateExpiresAfter) {
       _writer.writeMessage(
         7,
         _instance.certificateExpiresAfter as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
+    }
+    if (_instance.locked !== undefined && _instance.locked !== null) {
+      _writer.writeBool(8, _instance.locked);
     }
   }
 
@@ -2148,8 +2227,9 @@ export class SoftphoneAccountFilter implements GrpcMessage {
   private _labels: { [prop: string]: string };
   private _displayNameContains: string;
   private _sipUsernameContains: string;
-  private _certificateExpiresBefore?: googleProtobuf002.Timestamp;
-  private _certificateExpiresAfter?: googleProtobuf002.Timestamp;
+  private _certificateExpiresBefore?: googleProtobuf001.Timestamp;
+  private _certificateExpiresAfter?: googleProtobuf001.Timestamp;
+  private _locked: boolean;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2168,11 +2248,12 @@ export class SoftphoneAccountFilter implements GrpcMessage {
       (this.displayNameContains = _value.displayNameContains);
     this.sipUsernameContains = _value.sipUsernameContains;
     this.certificateExpiresBefore = _value.certificateExpiresBefore
-      ? new googleProtobuf002.Timestamp(_value.certificateExpiresBefore)
+      ? new googleProtobuf001.Timestamp(_value.certificateExpiresBefore)
       : undefined;
     this.certificateExpiresAfter = _value.certificateExpiresAfter
-      ? new googleProtobuf002.Timestamp(_value.certificateExpiresAfter)
+      ? new googleProtobuf001.Timestamp(_value.certificateExpiresAfter)
       : undefined;
+    this.locked = _value.locked;
     SoftphoneAccountFilter.refineValues(this);
   }
   get transportSecurities(): SoftphoneTransportSecurity[] {
@@ -2205,17 +2286,23 @@ export class SoftphoneAccountFilter implements GrpcMessage {
   set sipUsernameContains(value: string) {
     this._sipUsernameContains = value;
   }
-  get certificateExpiresBefore(): googleProtobuf002.Timestamp | undefined {
+  get certificateExpiresBefore(): googleProtobuf001.Timestamp | undefined {
     return this._certificateExpiresBefore;
   }
-  set certificateExpiresBefore(value: googleProtobuf002.Timestamp | undefined) {
+  set certificateExpiresBefore(value: googleProtobuf001.Timestamp | undefined) {
     this._certificateExpiresBefore = value;
   }
-  get certificateExpiresAfter(): googleProtobuf002.Timestamp | undefined {
+  get certificateExpiresAfter(): googleProtobuf001.Timestamp | undefined {
     return this._certificateExpiresAfter;
   }
-  set certificateExpiresAfter(value: googleProtobuf002.Timestamp | undefined) {
+  set certificateExpiresAfter(value: googleProtobuf001.Timestamp | undefined) {
     this._certificateExpiresAfter = value;
+  }
+  get locked(): boolean {
+    return this._locked;
+  }
+  set locked(value: boolean) {
+    this._locked = value;
   }
 
   /**
@@ -2248,7 +2335,8 @@ export class SoftphoneAccountFilter implements GrpcMessage {
         : undefined,
       certificateExpiresAfter: this.certificateExpiresAfter
         ? this.certificateExpiresAfter.toObject()
-        : undefined
+        : undefined,
+      locked: this.locked
     };
   }
 
@@ -2286,7 +2374,8 @@ export class SoftphoneAccountFilter implements GrpcMessage {
         : null,
       certificateExpiresAfter: this.certificateExpiresAfter
         ? this.certificateExpiresAfter.toProtobufJSON(options)
-        : null
+        : null,
+      locked: this.locked
     };
   }
 }
@@ -2300,8 +2389,9 @@ export module SoftphoneAccountFilter {
     labels: { [prop: string]: string };
     displayNameContains: string;
     sipUsernameContains: string;
-    certificateExpiresBefore?: googleProtobuf002.Timestamp.AsObject;
-    certificateExpiresAfter?: googleProtobuf002.Timestamp.AsObject;
+    certificateExpiresBefore?: googleProtobuf001.Timestamp.AsObject;
+    certificateExpiresAfter?: googleProtobuf001.Timestamp.AsObject;
+    locked: boolean;
   }
 
   /**
@@ -2313,8 +2403,9 @@ export module SoftphoneAccountFilter {
     labels: { [prop: string]: string };
     displayNameContains: string;
     sipUsernameContains: string;
-    certificateExpiresBefore: googleProtobuf002.Timestamp.AsProtobufJSON | null;
-    certificateExpiresAfter: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    certificateExpiresBefore: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    certificateExpiresAfter: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    locked: boolean;
   }
 
   /**
@@ -2524,17 +2615,17 @@ export class SoftphoneCertificateFilter implements GrpcMessage {
           );
           break;
         case 2:
-          _instance.expiresBefore = new googleProtobuf002.Timestamp();
+          _instance.expiresBefore = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.expiresBefore,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 3:
-          _instance.expiresAfter = new googleProtobuf002.Timestamp();
+          _instance.expiresAfter = new googleProtobuf001.Timestamp();
           _reader.readMessage(
             _instance.expiresAfter,
-            googleProtobuf002.Timestamp.deserializeBinaryFromReader
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
           break;
         default:
@@ -2561,21 +2652,21 @@ export class SoftphoneCertificateFilter implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.expiresBefore as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.expiresAfter) {
       _writer.writeMessage(
         3,
         _instance.expiresAfter as any,
-        googleProtobuf002.Timestamp.serializeBinaryToWriter
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
   }
 
   private _statuses: SoftphoneCertificateStatus[];
-  private _expiresBefore?: googleProtobuf002.Timestamp;
-  private _expiresAfter?: googleProtobuf002.Timestamp;
+  private _expiresBefore?: googleProtobuf001.Timestamp;
+  private _expiresAfter?: googleProtobuf001.Timestamp;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2585,10 +2676,10 @@ export class SoftphoneCertificateFilter implements GrpcMessage {
     _value = _value || {};
     this.statuses = (_value.statuses || []).slice();
     this.expiresBefore = _value.expiresBefore
-      ? new googleProtobuf002.Timestamp(_value.expiresBefore)
+      ? new googleProtobuf001.Timestamp(_value.expiresBefore)
       : undefined;
     this.expiresAfter = _value.expiresAfter
-      ? new googleProtobuf002.Timestamp(_value.expiresAfter)
+      ? new googleProtobuf001.Timestamp(_value.expiresAfter)
       : undefined;
     SoftphoneCertificateFilter.refineValues(this);
   }
@@ -2598,16 +2689,16 @@ export class SoftphoneCertificateFilter implements GrpcMessage {
   set statuses(value: SoftphoneCertificateStatus[]) {
     this._statuses = value;
   }
-  get expiresBefore(): googleProtobuf002.Timestamp | undefined {
+  get expiresBefore(): googleProtobuf001.Timestamp | undefined {
     return this._expiresBefore;
   }
-  set expiresBefore(value: googleProtobuf002.Timestamp | undefined) {
+  set expiresBefore(value: googleProtobuf001.Timestamp | undefined) {
     this._expiresBefore = value;
   }
-  get expiresAfter(): googleProtobuf002.Timestamp | undefined {
+  get expiresAfter(): googleProtobuf001.Timestamp | undefined {
     return this._expiresAfter;
   }
-  set expiresAfter(value: googleProtobuf002.Timestamp | undefined) {
+  set expiresAfter(value: googleProtobuf001.Timestamp | undefined) {
     this._expiresAfter = value;
   }
 
@@ -2667,8 +2758,8 @@ export module SoftphoneCertificateFilter {
    */
   export interface AsObject {
     statuses: SoftphoneCertificateStatus[];
-    expiresBefore?: googleProtobuf002.Timestamp.AsObject;
-    expiresAfter?: googleProtobuf002.Timestamp.AsObject;
+    expiresBefore?: googleProtobuf001.Timestamp.AsObject;
+    expiresAfter?: googleProtobuf001.Timestamp.AsObject;
   }
 
   /**
@@ -2676,8 +2767,8 @@ export module SoftphoneCertificateFilter {
    */
   export interface AsProtobufJSON {
     statuses: string[];
-    expiresBefore: googleProtobuf002.Timestamp.AsProtobufJSON | null;
-    expiresAfter: googleProtobuf002.Timestamp.AsProtobufJSON | null;
+    expiresBefore: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    expiresAfter: googleProtobuf001.Timestamp.AsProtobufJSON | null;
   }
 }
 
@@ -2755,7 +2846,7 @@ export class SoftphoneAccountSorting implements GrpcMessage {
   }
 
   private _sortingField: SoftphoneAccountSorting.SoftphoneAccountSortingField;
-  private _sortingMode: ondewoVtsi003.VtsiProjectSortingMode;
+  private _sortingMode: ondewoVtsi002.VtsiProjectSortingMode;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2775,10 +2866,10 @@ export class SoftphoneAccountSorting implements GrpcMessage {
   ) {
     this._sortingField = value;
   }
-  get sortingMode(): ondewoVtsi003.VtsiProjectSortingMode {
+  get sortingMode(): ondewoVtsi002.VtsiProjectSortingMode {
     return this._sortingMode;
   }
-  set sortingMode(value: ondewoVtsi003.VtsiProjectSortingMode) {
+  set sortingMode(value: ondewoVtsi002.VtsiProjectSortingMode) {
     this._sortingMode = value;
   }
 
@@ -2826,7 +2917,7 @@ export class SoftphoneAccountSorting implements GrpcMessage {
             : this.sortingField
         ],
       sortingMode:
-        ondewoVtsi003.VtsiProjectSortingMode[
+        ondewoVtsi002.VtsiProjectSortingMode[
           this.sortingMode === null || this.sortingMode === undefined
             ? 0
             : this.sortingMode
@@ -2840,7 +2931,7 @@ export module SoftphoneAccountSorting {
    */
   export interface AsObject {
     sortingField: SoftphoneAccountSorting.SoftphoneAccountSortingField;
-    sortingMode: ondewoVtsi003.VtsiProjectSortingMode;
+    sortingMode: ondewoVtsi002.VtsiProjectSortingMode;
   }
 
   /**
@@ -2886,6 +2977,7 @@ export class CreateSoftphoneAccountRequest implements GrpcMessage {
   static refineValues(_instance: CreateSoftphoneAccountRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.softphoneAccount = _instance.softphoneAccount || undefined;
+    _instance.idempotencyKey = _instance.idempotencyKey || '';
   }
 
   /**
@@ -2910,6 +3002,9 @@ export class CreateSoftphoneAccountRequest implements GrpcMessage {
             _instance.softphoneAccount,
             SoftphoneAccount.deserializeBinaryFromReader
           );
+          break;
+        case 3:
+          _instance.idempotencyKey = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -2938,10 +3033,14 @@ export class CreateSoftphoneAccountRequest implements GrpcMessage {
         SoftphoneAccount.serializeBinaryToWriter
       );
     }
+    if (_instance.idempotencyKey) {
+      _writer.writeString(3, _instance.idempotencyKey);
+    }
   }
 
   private _vtsiProjectName: string;
   private _softphoneAccount?: SoftphoneAccount;
+  private _idempotencyKey: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2955,6 +3054,7 @@ export class CreateSoftphoneAccountRequest implements GrpcMessage {
     this.softphoneAccount = _value.softphoneAccount
       ? new SoftphoneAccount(_value.softphoneAccount)
       : undefined;
+    this.idempotencyKey = _value.idempotencyKey;
     CreateSoftphoneAccountRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -2968,6 +3068,12 @@ export class CreateSoftphoneAccountRequest implements GrpcMessage {
   }
   set softphoneAccount(value: SoftphoneAccount | undefined) {
     this._softphoneAccount = value;
+  }
+  get idempotencyKey(): string {
+    return this._idempotencyKey;
+  }
+  set idempotencyKey(value: string) {
+    this._idempotencyKey = value;
   }
 
   /**
@@ -2988,7 +3094,8 @@ export class CreateSoftphoneAccountRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       softphoneAccount: this.softphoneAccount
         ? this.softphoneAccount.toObject()
-        : undefined
+        : undefined,
+      idempotencyKey: this.idempotencyKey
     };
   }
 
@@ -3012,7 +3119,8 @@ export class CreateSoftphoneAccountRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       softphoneAccount: this.softphoneAccount
         ? this.softphoneAccount.toProtobufJSON(options)
-        : null
+        : null,
+      idempotencyKey: this.idempotencyKey
     };
   }
 }
@@ -3023,6 +3131,7 @@ export module CreateSoftphoneAccountRequest {
   export interface AsObject {
     vtsiProjectName: string;
     softphoneAccount?: SoftphoneAccount.AsObject;
+    idempotencyKey: string;
   }
 
   /**
@@ -3031,6 +3140,7 @@ export module CreateSoftphoneAccountRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     softphoneAccount: SoftphoneAccount.AsProtobufJSON | null;
+    idempotencyKey: string;
   }
 }
 
@@ -5614,5 +5724,624 @@ export module GetSoftphoneProvisioningRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.GetSoftphoneRegistrationRequest
+ */
+export class GetSoftphoneRegistrationRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.GetSoftphoneRegistrationRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new GetSoftphoneRegistrationRequest();
+    GetSoftphoneRegistrationRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: GetSoftphoneRegistrationRequest) {
+    _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: GetSoftphoneRegistrationRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf000.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf000.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    GetSoftphoneRegistrationRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: GetSoftphoneRegistrationRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.name) {
+      _writer.writeString(1, _instance.name);
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf000.FieldMask.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _name: string;
+  private _fieldMask?: googleProtobuf000.FieldMask;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of GetSoftphoneRegistrationRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<GetSoftphoneRegistrationRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf000.FieldMask(_value.fieldMask)
+      : undefined;
+    GetSoftphoneRegistrationRequest.refineValues(this);
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+  get fieldMask(): googleProtobuf000.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf000.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    GetSoftphoneRegistrationRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): GetSoftphoneRegistrationRequest.AsObject {
+    return {
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): GetSoftphoneRegistrationRequest.AsProtobufJSON {
+    return {
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
+    };
+  }
+}
+export module GetSoftphoneRegistrationRequest {
+  /**
+   * Standard JavaScript object representation for GetSoftphoneRegistrationRequest
+   */
+  export interface AsObject {
+    name: string;
+    fieldMask?: googleProtobuf000.FieldMask.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for GetSoftphoneRegistrationRequest
+   */
+  export interface AsProtobufJSON {
+    name: string;
+    fieldMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.SoftphoneRegistration
+ */
+export class SoftphoneRegistration implements GrpcMessage {
+  static id = 'ondewo.vtsi.SoftphoneRegistration';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new SoftphoneRegistration();
+    SoftphoneRegistration.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: SoftphoneRegistration) {
+    _instance.softphoneAccountName = _instance.softphoneAccountName || '';
+    _instance.contacts = _instance.contacts || [];
+    _instance.observedAt = _instance.observedAt || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: SoftphoneRegistration,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.softphoneAccountName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new SoftphoneContact();
+          _reader.readMessage(
+            messageInitializer2,
+            SoftphoneContact.deserializeBinaryFromReader
+          );
+          (_instance.contacts = _instance.contacts || []).push(
+            messageInitializer2
+          );
+          break;
+        case 3:
+          _instance.observedAt = new googleProtobuf001.Timestamp();
+          _reader.readMessage(
+            _instance.observedAt,
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    SoftphoneRegistration.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: SoftphoneRegistration,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.softphoneAccountName) {
+      _writer.writeString(1, _instance.softphoneAccountName);
+    }
+    if (_instance.contacts && _instance.contacts.length) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.contacts as any,
+        SoftphoneContact.serializeBinaryToWriter
+      );
+    }
+    if (_instance.observedAt) {
+      _writer.writeMessage(
+        3,
+        _instance.observedAt as any,
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _softphoneAccountName: string;
+  private _contacts?: SoftphoneContact[];
+  private _observedAt?: googleProtobuf001.Timestamp;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of SoftphoneRegistration to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<SoftphoneRegistration.AsObject>) {
+    _value = _value || {};
+    this.softphoneAccountName = _value.softphoneAccountName;
+    this.contacts = (_value.contacts || []).map(m => new SoftphoneContact(m));
+    this.observedAt = _value.observedAt
+      ? new googleProtobuf001.Timestamp(_value.observedAt)
+      : undefined;
+    SoftphoneRegistration.refineValues(this);
+  }
+  get softphoneAccountName(): string {
+    return this._softphoneAccountName;
+  }
+  set softphoneAccountName(value: string) {
+    this._softphoneAccountName = value;
+  }
+  get contacts(): SoftphoneContact[] | undefined {
+    return this._contacts;
+  }
+  set contacts(value: SoftphoneContact[] | undefined) {
+    this._contacts = value;
+  }
+  get observedAt(): googleProtobuf001.Timestamp | undefined {
+    return this._observedAt;
+  }
+  set observedAt(value: googleProtobuf001.Timestamp | undefined) {
+    this._observedAt = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    SoftphoneRegistration.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): SoftphoneRegistration.AsObject {
+    return {
+      softphoneAccountName: this.softphoneAccountName,
+      contacts: (this.contacts || []).map(m => m.toObject()),
+      observedAt: this.observedAt ? this.observedAt.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): SoftphoneRegistration.AsProtobufJSON {
+    return {
+      softphoneAccountName: this.softphoneAccountName,
+      contacts: (this.contacts || []).map(m => m.toProtobufJSON(options)),
+      observedAt: this.observedAt
+        ? this.observedAt.toProtobufJSON(options)
+        : null
+    };
+  }
+}
+export module SoftphoneRegistration {
+  /**
+   * Standard JavaScript object representation for SoftphoneRegistration
+   */
+  export interface AsObject {
+    softphoneAccountName: string;
+    contacts?: SoftphoneContact.AsObject[];
+    observedAt?: googleProtobuf001.Timestamp.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for SoftphoneRegistration
+   */
+  export interface AsProtobufJSON {
+    softphoneAccountName: string;
+    contacts: SoftphoneContact.AsProtobufJSON[] | null;
+    observedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.SoftphoneContact
+ */
+export class SoftphoneContact implements GrpcMessage {
+  static id = 'ondewo.vtsi.SoftphoneContact';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new SoftphoneContact();
+    SoftphoneContact.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: SoftphoneContact) {
+    _instance.uri = _instance.uri || '';
+    _instance.userAgent = _instance.userAgent || '';
+    _instance.sourceAddress = _instance.sourceAddress || '';
+    _instance.expireTime = _instance.expireTime || undefined;
+    _instance.roundTripMs = _instance.roundTripMs || 0;
+    _instance.status = _instance.status || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: SoftphoneContact,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.uri = _reader.readString();
+          break;
+        case 2:
+          _instance.userAgent = _reader.readString();
+          break;
+        case 3:
+          _instance.sourceAddress = _reader.readString();
+          break;
+        case 4:
+          _instance.expireTime = new googleProtobuf001.Timestamp();
+          _reader.readMessage(
+            _instance.expireTime,
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.roundTripMs = _reader.readDouble();
+          break;
+        case 6:
+          _instance.status = _reader.readEnum();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    SoftphoneContact.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: SoftphoneContact,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.uri) {
+      _writer.writeString(1, _instance.uri);
+    }
+    if (_instance.userAgent) {
+      _writer.writeString(2, _instance.userAgent);
+    }
+    if (_instance.sourceAddress) {
+      _writer.writeString(3, _instance.sourceAddress);
+    }
+    if (_instance.expireTime) {
+      _writer.writeMessage(
+        4,
+        _instance.expireTime as any,
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.roundTripMs) {
+      _writer.writeDouble(5, _instance.roundTripMs);
+    }
+    if (_instance.status) {
+      _writer.writeEnum(6, _instance.status);
+    }
+  }
+
+  private _uri: string;
+  private _userAgent: string;
+  private _sourceAddress: string;
+  private _expireTime?: googleProtobuf001.Timestamp;
+  private _roundTripMs: number;
+  private _status: SoftphoneContactStatus;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of SoftphoneContact to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<SoftphoneContact.AsObject>) {
+    _value = _value || {};
+    this.uri = _value.uri;
+    this.userAgent = _value.userAgent;
+    this.sourceAddress = _value.sourceAddress;
+    this.expireTime = _value.expireTime
+      ? new googleProtobuf001.Timestamp(_value.expireTime)
+      : undefined;
+    this.roundTripMs = _value.roundTripMs;
+    this.status = _value.status;
+    SoftphoneContact.refineValues(this);
+  }
+  get uri(): string {
+    return this._uri;
+  }
+  set uri(value: string) {
+    this._uri = value;
+  }
+  get userAgent(): string {
+    return this._userAgent;
+  }
+  set userAgent(value: string) {
+    this._userAgent = value;
+  }
+  get sourceAddress(): string {
+    return this._sourceAddress;
+  }
+  set sourceAddress(value: string) {
+    this._sourceAddress = value;
+  }
+  get expireTime(): googleProtobuf001.Timestamp | undefined {
+    return this._expireTime;
+  }
+  set expireTime(value: googleProtobuf001.Timestamp | undefined) {
+    this._expireTime = value;
+  }
+  get roundTripMs(): number {
+    return this._roundTripMs;
+  }
+  set roundTripMs(value: number) {
+    this._roundTripMs = value;
+  }
+  get status(): SoftphoneContactStatus {
+    return this._status;
+  }
+  set status(value: SoftphoneContactStatus) {
+    this._status = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    SoftphoneContact.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): SoftphoneContact.AsObject {
+    return {
+      uri: this.uri,
+      userAgent: this.userAgent,
+      sourceAddress: this.sourceAddress,
+      expireTime: this.expireTime ? this.expireTime.toObject() : undefined,
+      roundTripMs: this.roundTripMs,
+      status: this.status
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): SoftphoneContact.AsProtobufJSON {
+    return {
+      uri: this.uri,
+      userAgent: this.userAgent,
+      sourceAddress: this.sourceAddress,
+      expireTime: this.expireTime
+        ? this.expireTime.toProtobufJSON(options)
+        : null,
+      roundTripMs: this.roundTripMs,
+      status:
+        SoftphoneContactStatus[
+          this.status === null || this.status === undefined ? 0 : this.status
+        ]
+    };
+  }
+}
+export module SoftphoneContact {
+  /**
+   * Standard JavaScript object representation for SoftphoneContact
+   */
+  export interface AsObject {
+    uri: string;
+    userAgent: string;
+    sourceAddress: string;
+    expireTime?: googleProtobuf001.Timestamp.AsObject;
+    roundTripMs: number;
+    status: SoftphoneContactStatus;
+  }
+
+  /**
+   * Protobuf JSON representation for SoftphoneContact
+   */
+  export interface AsProtobufJSON {
+    uri: string;
+    userAgent: string;
+    sourceAddress: string;
+    expireTime: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    roundTripMs: number;
+    status: string;
   }
 }

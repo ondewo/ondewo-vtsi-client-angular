@@ -22,8 +22,7 @@ import { Observable } from 'rxjs';
 import * as thisProto from './softphones.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
-import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
-import * as ondewoVtsi003 from '../../ondewo/vtsi/projects.pb';
+import * as ondewoVtsi002 from '../../ondewo/vtsi/projects.pb';
 import { GRPC_SOFTPHONES_CLIENT_SETTINGS } from './softphones.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Softphones
@@ -247,6 +246,27 @@ export class SoftphonesClient {
         requestClass: thisProto.GetSoftphoneProvisioningRequest,
         responseClass: thisProto.SoftphoneProvisioning
       });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Softphones/GetSoftphoneRegistration
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.SoftphoneRegistration>>
+     */
+    getSoftphoneRegistration: (
+      requestData: thisProto.GetSoftphoneRegistrationRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.SoftphoneRegistration>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Softphones/GetSoftphoneRegistration',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.GetSoftphoneRegistrationRequest,
+        responseClass: thisProto.SoftphoneRegistration
+      });
     }
   };
 
@@ -418,6 +438,22 @@ export class SoftphonesClient {
   ): Observable<thisProto.SoftphoneProvisioning> {
     return this.$raw
       .getSoftphoneProvisioning(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Softphones/GetSoftphoneRegistration
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.SoftphoneRegistration>
+   */
+  getSoftphoneRegistration(
+    requestData: thisProto.GetSoftphoneRegistrationRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.SoftphoneRegistration> {
+    return this.$raw
+      .getSoftphoneRegistration(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 }

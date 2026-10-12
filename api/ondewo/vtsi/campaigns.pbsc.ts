@@ -22,9 +22,14 @@ import { Observable } from 'rxjs';
 import * as thisProto from './campaigns.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
-import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
-import * as googleProtobuf003 from '@ngx-grpc/well-known-types';
-import * as ondewoSip004 from '../../ondewo/sip/sip.pb';
+import * as ondewoNlu002 from '../../ondewo/nlu/context.pb';
+import * as ondewoNlu003 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t004 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s005 from '../../ondewo/t2s/text-to-speech.pb';
+import * as googleProtobuf006 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf007 from '@ngx-grpc/well-known-types';
+import * as ondewoSip008 from '../../ondewo/sip/sip.pb';
+import * as ondewoVtsi009 from '../../ondewo/vtsi/call-configs.pb';
 import { GRPC_CAMPAIGNS_CLIENT_SETTINGS } from './campaigns.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Campaigns
@@ -290,6 +295,90 @@ export class CampaignsClient {
         requestClass: thisProto.StreamCampaignStatusRequest,
         responseClass: thisProto.StreamCampaignStatusResponse
       });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Campaigns/GetCampaignCall
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.CampaignCall>>
+     */
+    getCampaignCall: (
+      requestData: thisProto.GetCampaignCallRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.CampaignCall>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Campaigns/GetCampaignCall',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.GetCampaignCallRequest,
+        responseClass: thisProto.CampaignCall
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Campaigns/CancelCampaignCalls
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.CancelCampaignCallsResponse>>
+     */
+    cancelCampaignCalls: (
+      requestData: thisProto.CancelCampaignCallsRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.CancelCampaignCallsResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Campaigns/CancelCampaignCalls',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.CancelCampaignCallsRequest,
+        responseClass: thisProto.CancelCampaignCallsResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Campaigns/RetryCampaignCalls
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.RetryCampaignCallsResponse>>
+     */
+    retryCampaignCalls: (
+      requestData: thisProto.RetryCampaignCallsRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.RetryCampaignCallsResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Campaigns/RetryCampaignCalls',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.RetryCampaignCallsRequest,
+        responseClass: thisProto.RetryCampaignCallsResponse
+      });
+    },
+    /**
+     * Unary call: /ondewo.vtsi.Campaigns/CloneCampaign
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.Campaign>>
+     */
+    cloneCampaign: (
+      requestData: thisProto.CloneCampaignRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.Campaign>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Campaigns/CloneCampaign',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.CloneCampaignRequest,
+        responseClass: thisProto.Campaign
+      });
     }
   };
 
@@ -490,6 +579,70 @@ export class CampaignsClient {
   ): Observable<thisProto.StreamCampaignStatusResponse> {
     return this.$raw
       .streamCampaignStatus(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Campaigns/GetCampaignCall
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.CampaignCall>
+   */
+  getCampaignCall(
+    requestData: thisProto.GetCampaignCallRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.CampaignCall> {
+    return this.$raw
+      .getCampaignCall(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Campaigns/CancelCampaignCalls
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.CancelCampaignCallsResponse>
+   */
+  cancelCampaignCalls(
+    requestData: thisProto.CancelCampaignCallsRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.CancelCampaignCallsResponse> {
+    return this.$raw
+      .cancelCampaignCalls(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Campaigns/RetryCampaignCalls
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.RetryCampaignCallsResponse>
+   */
+  retryCampaignCalls(
+    requestData: thisProto.RetryCampaignCallsRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.RetryCampaignCallsResponse> {
+    return this.$raw
+      .retryCampaignCalls(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Campaigns/CloneCampaign
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.Campaign>
+   */
+  cloneCampaign(
+    requestData: thisProto.CloneCampaignRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.Campaign> {
+    return this.$raw
+      .cloneCampaign(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 }

@@ -15,7 +15,8 @@ import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf003 from '@ngx-grpc/well-known-types';
 import * as ondewoSip004 from '../../ondewo/sip/sip.pb';
-import * as ondewoVtsi005 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoVtsi005 from '../../ondewo/vtsi/call-configs.pb';
+import * as ondewoVtsi006 from '../../ondewo/vtsi/campaigns.pb';
 export enum VtsiEvent {
   VTSI_EVENT_UNSPECIFIED = 0,
   VTSI_EVENT_CALL_CREATED = 100,
@@ -40,6 +41,7 @@ export enum VtsiEvent {
   VTSI_EVENT_CALL_LISTENING_RESUMED = 119,
   VTSI_EVENT_CALL_AUDIO_STREAM_CONNECTED = 120,
   VTSI_EVENT_CALL_AUDIO_STREAM_DISCONNECTED = 121,
+  VTSI_EVENT_CALL_UPDATED = 122,
   VTSI_EVENT_CALLER_STARTED = 200,
   VTSI_EVENT_CALLER_START_FAILED = 201,
   VTSI_EVENT_CALLER_STOPPED = 202,
@@ -47,6 +49,7 @@ export enum VtsiEvent {
   VTSI_EVENT_CALLER_RESTARTED = 204,
   VTSI_EVENT_CALLER_UNHEALTHY = 205,
   VTSI_EVENT_CALLER_HEALTHY = 206,
+  VTSI_EVENT_CALLER_UPDATED = 207,
   VTSI_EVENT_LISTENER_STARTED = 300,
   VTSI_EVENT_LISTENER_START_FAILED = 301,
   VTSI_EVENT_LISTENER_STOPPED = 302,
@@ -54,11 +57,13 @@ export enum VtsiEvent {
   VTSI_EVENT_LISTENER_RESTARTED = 304,
   VTSI_EVENT_LISTENER_UNHEALTHY = 305,
   VTSI_EVENT_LISTENER_HEALTHY = 306,
+  VTSI_EVENT_LISTENER_UPDATED = 307,
   VTSI_EVENT_SCHEDULED_CALLER_CREATED = 400,
   VTSI_EVENT_SCHEDULED_CALLER_FIRED = 401,
   VTSI_EVENT_SCHEDULED_CALLER_FAILED = 402,
   VTSI_EVENT_SCHEDULED_CALLER_CANCELLED = 403,
   VTSI_EVENT_SCHEDULED_CALLER_RETRY_SCHEDULED = 404,
+  VTSI_EVENT_SCHEDULED_CALLER_UPDATED = 405,
   VTSI_EVENT_CAMPAIGN_CREATED = 500,
   VTSI_EVENT_CAMPAIGN_UPDATED = 501,
   VTSI_EVENT_CAMPAIGN_DELETED = 502,
@@ -78,6 +83,9 @@ export enum VtsiEvent {
   VTSI_EVENT_CAMPAIGN_CALL_RETRY_SCHEDULED = 516,
   VTSI_EVENT_CAMPAIGN_CALL_CANCELLED = 517,
   VTSI_EVENT_CAMPAIGN_AUTO_STOPPED = 518,
+  VTSI_EVENT_CAMPAIGN_CALL_REQUEUED = 519,
+  VTSI_EVENT_CAMPAIGN_CALLING_WINDOW_OPENED = 520,
+  VTSI_EVENT_CAMPAIGN_CALLING_WINDOW_CLOSED = 521,
   VTSI_EVENT_VTSI_PROJECT_UPDATED = 601,
   VTSI_EVENT_VTSI_PROJECT_DELETED = 602,
   VTSI_EVENT_VTSI_PROJECT_DEPLOYED = 603,
@@ -212,10 +220,10 @@ export class VtsiEventMessage implements GrpcMessage {
           _instance.attributes[msg_12.key] = msg_12.value;
           break;
         case 13:
-          _instance.campaignStatistics = new ondewoVtsi005.CampaignStatistics();
+          _instance.campaignStatistics = new ondewoVtsi006.CampaignStatistics();
           _reader.readMessage(
             _instance.campaignStatistics,
-            ondewoVtsi005.CampaignStatistics.deserializeBinaryFromReader
+            ondewoVtsi006.CampaignStatistics.deserializeBinaryFromReader
           );
           break;
         case 14:
@@ -300,7 +308,7 @@ export class VtsiEventMessage implements GrpcMessage {
       _writer.writeMessage(
         13,
         _instance.campaignStatistics as any,
-        ondewoVtsi005.CampaignStatistics.serializeBinaryToWriter
+        ondewoVtsi006.CampaignStatistics.serializeBinaryToWriter
       );
     }
     if (_instance.resourceSequence) {
@@ -320,7 +328,7 @@ export class VtsiEventMessage implements GrpcMessage {
   private _campaignName: string;
   private _description: string;
   private _attributes: { [prop: string]: string };
-  private _campaignStatistics?: ondewoVtsi005.CampaignStatistics;
+  private _campaignStatistics?: ondewoVtsi006.CampaignStatistics;
   private _resourceSequence: string;
 
   /**
@@ -349,7 +357,7 @@ export class VtsiEventMessage implements GrpcMessage {
         )
       : {}),
       (this.campaignStatistics = _value.campaignStatistics
-        ? new ondewoVtsi005.CampaignStatistics(_value.campaignStatistics)
+        ? new ondewoVtsi006.CampaignStatistics(_value.campaignStatistics)
         : undefined);
     this.resourceSequence = _value.resourceSequence;
     VtsiEventMessage.refineValues(this);
@@ -426,10 +434,10 @@ export class VtsiEventMessage implements GrpcMessage {
   set attributes(value: { [prop: string]: string }) {
     this._attributes = value;
   }
-  get campaignStatistics(): ondewoVtsi005.CampaignStatistics | undefined {
+  get campaignStatistics(): ondewoVtsi006.CampaignStatistics | undefined {
     return this._campaignStatistics;
   }
-  set campaignStatistics(value: ondewoVtsi005.CampaignStatistics | undefined) {
+  set campaignStatistics(value: ondewoVtsi006.CampaignStatistics | undefined) {
     this._campaignStatistics = value;
   }
   get resourceSequence(): string {
@@ -550,7 +558,7 @@ export module VtsiEventMessage {
     campaignName: string;
     description: string;
     attributes: { [prop: string]: string };
-    campaignStatistics?: ondewoVtsi005.CampaignStatistics.AsObject;
+    campaignStatistics?: ondewoVtsi006.CampaignStatistics.AsObject;
     resourceSequence: string;
   }
 
@@ -570,7 +578,7 @@ export module VtsiEventMessage {
     campaignName: string;
     description: string;
     attributes: { [prop: string]: string };
-    campaignStatistics: ondewoVtsi005.CampaignStatistics.AsProtobufJSON | null;
+    campaignStatistics: ondewoVtsi006.CampaignStatistics.AsProtobufJSON | null;
     resourceSequence: string;
   }
 
@@ -770,6 +778,7 @@ export class VtsiEventSubscription implements GrpcMessage {
     _instance.modifiedBy = _instance.modifiedBy || '';
     _instance.modifiedAt = _instance.modifiedAt || undefined;
     _instance.campaignNames = _instance.campaignNames || [];
+    _instance.excludedEvents = _instance.excludedEvents || [];
   }
 
   /**
@@ -839,6 +848,11 @@ export class VtsiEventSubscription implements GrpcMessage {
             _reader.readString()
           );
           break;
+        case 14:
+          _reader.readPackableEnumInto(
+            (_instance.excludedEvents = _instance.excludedEvents || [])
+          );
+          break;
         default:
           _reader.skipField();
       }
@@ -906,6 +920,9 @@ export class VtsiEventSubscription implements GrpcMessage {
     if (_instance.campaignNames && _instance.campaignNames.length) {
       _writer.writeRepeatedString(13, _instance.campaignNames);
     }
+    if (_instance.excludedEvents && _instance.excludedEvents.length) {
+      _writer.writePackedEnum(14, _instance.excludedEvents);
+    }
   }
 
   private _name: string;
@@ -921,6 +938,7 @@ export class VtsiEventSubscription implements GrpcMessage {
   private _modifiedBy: string;
   private _modifiedAt?: googleProtobuf001.Timestamp;
   private _campaignNames: string[];
+  private _excludedEvents: VtsiEvent[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -945,6 +963,7 @@ export class VtsiEventSubscription implements GrpcMessage {
       ? new googleProtobuf001.Timestamp(_value.modifiedAt)
       : undefined;
     this.campaignNames = (_value.campaignNames || []).slice();
+    this.excludedEvents = (_value.excludedEvents || []).slice();
     VtsiEventSubscription.refineValues(this);
   }
   get name(): string {
@@ -1025,6 +1044,12 @@ export class VtsiEventSubscription implements GrpcMessage {
   set campaignNames(value: string[]) {
     this._campaignNames = value;
   }
+  get excludedEvents(): VtsiEvent[] {
+    return this._excludedEvents;
+  }
+  set excludedEvents(value: VtsiEvent[]) {
+    this._excludedEvents = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -1053,7 +1078,8 @@ export class VtsiEventSubscription implements GrpcMessage {
       createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
       modifiedBy: this.modifiedBy,
       modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined,
-      campaignNames: (this.campaignNames || []).slice()
+      campaignNames: (this.campaignNames || []).slice(),
+      excludedEvents: (this.excludedEvents || []).slice()
     };
   }
 
@@ -1088,7 +1114,8 @@ export class VtsiEventSubscription implements GrpcMessage {
       modifiedAt: this.modifiedAt
         ? this.modifiedAt.toProtobufJSON(options)
         : null,
-      campaignNames: (this.campaignNames || []).slice()
+      campaignNames: (this.campaignNames || []).slice(),
+      excludedEvents: (this.excludedEvents || []).map(v => VtsiEvent[v])
     };
   }
 }
@@ -1110,6 +1137,7 @@ export module VtsiEventSubscription {
     modifiedBy: string;
     modifiedAt?: googleProtobuf001.Timestamp.AsObject;
     campaignNames: string[];
+    excludedEvents: VtsiEvent[];
   }
 
   /**
@@ -1129,6 +1157,7 @@ export module VtsiEventSubscription {
     modifiedBy: string;
     modifiedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     campaignNames: string[];
+    excludedEvents: string[];
   }
 }
 
@@ -1447,6 +1476,7 @@ export class Webhook implements GrpcMessage {
     _instance.createdAt = _instance.createdAt || undefined;
     _instance.modifiedBy = _instance.modifiedBy || '';
     _instance.modifiedAt = _instance.modifiedAt || undefined;
+    _instance.signingSecret = _instance.signingSecret || '';
   }
 
   /**
@@ -1522,6 +1552,9 @@ export class Webhook implements GrpcMessage {
             _instance.modifiedAt,
             googleProtobuf001.Timestamp.deserializeBinaryFromReader
           );
+          break;
+        case 14:
+          _instance.signingSecret = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -1607,6 +1640,9 @@ export class Webhook implements GrpcMessage {
         googleProtobuf001.Timestamp.serializeBinaryToWriter
       );
     }
+    if (_instance.signingSecret) {
+      _writer.writeString(14, _instance.signingSecret);
+    }
   }
 
   private _name: string;
@@ -1622,6 +1658,7 @@ export class Webhook implements GrpcMessage {
   private _createdAt?: googleProtobuf001.Timestamp;
   private _modifiedBy: string;
   private _modifiedAt?: googleProtobuf001.Timestamp;
+  private _signingSecret: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1655,6 +1692,7 @@ export class Webhook implements GrpcMessage {
     this.modifiedAt = _value.modifiedAt
       ? new googleProtobuf001.Timestamp(_value.modifiedAt)
       : undefined;
+    this.signingSecret = _value.signingSecret;
     Webhook.refineValues(this);
   }
   get name(): string {
@@ -1735,6 +1773,12 @@ export class Webhook implements GrpcMessage {
   set modifiedAt(value: googleProtobuf001.Timestamp | undefined) {
     this._modifiedAt = value;
   }
+  get signingSecret(): string {
+    return this._signingSecret;
+  }
+  set signingSecret(value: string) {
+    this._signingSecret = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -1770,7 +1814,8 @@ export class Webhook implements GrpcMessage {
       createdBy: this.createdBy,
       createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
       modifiedBy: this.modifiedBy,
-      modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined
+      modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined,
+      signingSecret: this.signingSecret
     };
   }
 
@@ -1817,7 +1862,8 @@ export class Webhook implements GrpcMessage {
       modifiedBy: this.modifiedBy,
       modifiedAt: this.modifiedAt
         ? this.modifiedAt.toProtobufJSON(options)
-        : null
+        : null,
+      signingSecret: this.signingSecret
     };
   }
 }
@@ -1839,6 +1885,7 @@ export module Webhook {
     createdAt?: googleProtobuf001.Timestamp.AsObject;
     modifiedBy: string;
     modifiedAt?: googleProtobuf001.Timestamp.AsObject;
+    signingSecret: string;
   }
 
   /**
@@ -1858,6 +1905,7 @@ export module Webhook {
     createdAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     modifiedBy: string;
     modifiedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    signingSecret: string;
   }
 
   /**
@@ -2046,6 +2094,8 @@ export class VtsiEventFilter implements GrpcMessage {
     _instance.events = _instance.events || [];
     _instance.resourceNamePrefixes = _instance.resourceNamePrefixes || [];
     _instance.campaignNames = _instance.campaignNames || [];
+    _instance.allEvents = _instance.allEvents || false;
+    _instance.excludedEvents = _instance.excludedEvents || [];
   }
 
   /**
@@ -2073,6 +2123,14 @@ export class VtsiEventFilter implements GrpcMessage {
         case 3:
           (_instance.campaignNames = _instance.campaignNames || []).push(
             _reader.readString()
+          );
+          break;
+        case 4:
+          _instance.allEvents = _reader.readBool();
+          break;
+        case 5:
+          _reader.readPackableEnumInto(
+            (_instance.excludedEvents = _instance.excludedEvents || [])
           );
           break;
         default:
@@ -2104,11 +2162,19 @@ export class VtsiEventFilter implements GrpcMessage {
     if (_instance.campaignNames && _instance.campaignNames.length) {
       _writer.writeRepeatedString(3, _instance.campaignNames);
     }
+    if (_instance.allEvents) {
+      _writer.writeBool(4, _instance.allEvents);
+    }
+    if (_instance.excludedEvents && _instance.excludedEvents.length) {
+      _writer.writePackedEnum(5, _instance.excludedEvents);
+    }
   }
 
   private _events: VtsiEvent[];
   private _resourceNamePrefixes: string[];
   private _campaignNames: string[];
+  private _allEvents: boolean;
+  private _excludedEvents: VtsiEvent[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2119,6 +2185,8 @@ export class VtsiEventFilter implements GrpcMessage {
     this.events = (_value.events || []).slice();
     this.resourceNamePrefixes = (_value.resourceNamePrefixes || []).slice();
     this.campaignNames = (_value.campaignNames || []).slice();
+    this.allEvents = _value.allEvents;
+    this.excludedEvents = (_value.excludedEvents || []).slice();
     VtsiEventFilter.refineValues(this);
   }
   get events(): VtsiEvent[] {
@@ -2139,6 +2207,18 @@ export class VtsiEventFilter implements GrpcMessage {
   set campaignNames(value: string[]) {
     this._campaignNames = value;
   }
+  get allEvents(): boolean {
+    return this._allEvents;
+  }
+  set allEvents(value: boolean) {
+    this._allEvents = value;
+  }
+  get excludedEvents(): VtsiEvent[] {
+    return this._excludedEvents;
+  }
+  set excludedEvents(value: VtsiEvent[]) {
+    this._excludedEvents = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -2157,7 +2237,9 @@ export class VtsiEventFilter implements GrpcMessage {
     return {
       events: (this.events || []).slice(),
       resourceNamePrefixes: (this.resourceNamePrefixes || []).slice(),
-      campaignNames: (this.campaignNames || []).slice()
+      campaignNames: (this.campaignNames || []).slice(),
+      allEvents: this.allEvents,
+      excludedEvents: (this.excludedEvents || []).slice()
     };
   }
 
@@ -2180,7 +2262,9 @@ export class VtsiEventFilter implements GrpcMessage {
     return {
       events: (this.events || []).map(v => VtsiEvent[v]),
       resourceNamePrefixes: (this.resourceNamePrefixes || []).slice(),
-      campaignNames: (this.campaignNames || []).slice()
+      campaignNames: (this.campaignNames || []).slice(),
+      allEvents: this.allEvents,
+      excludedEvents: (this.excludedEvents || []).map(v => VtsiEvent[v])
     };
   }
 }
@@ -2192,6 +2276,8 @@ export module VtsiEventFilter {
     events: VtsiEvent[];
     resourceNamePrefixes: string[];
     campaignNames: string[];
+    allEvents: boolean;
+    excludedEvents: VtsiEvent[];
   }
 
   /**
@@ -2201,6 +2287,8 @@ export module VtsiEventFilter {
     events: string[];
     resourceNamePrefixes: string[];
     campaignNames: string[];
+    allEvents: boolean;
+    excludedEvents: string[];
   }
 }
 
@@ -2230,6 +2318,7 @@ export class CreateVtsiEventSubscriptionRequest implements GrpcMessage {
   static refineValues(_instance: CreateVtsiEventSubscriptionRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.eventSubscription = _instance.eventSubscription || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -2253,6 +2342,13 @@ export class CreateVtsiEventSubscriptionRequest implements GrpcMessage {
           _reader.readMessage(
             _instance.eventSubscription,
             VtsiEventSubscription.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
           );
           break;
         default:
@@ -2282,10 +2378,18 @@ export class CreateVtsiEventSubscriptionRequest implements GrpcMessage {
         VtsiEventSubscription.serializeBinaryToWriter
       );
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _eventSubscription?: VtsiEventSubscription;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2298,6 +2402,9 @@ export class CreateVtsiEventSubscriptionRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.eventSubscription = _value.eventSubscription
       ? new VtsiEventSubscription(_value.eventSubscription)
+      : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
       : undefined;
     CreateVtsiEventSubscriptionRequest.refineValues(this);
   }
@@ -2312,6 +2419,12 @@ export class CreateVtsiEventSubscriptionRequest implements GrpcMessage {
   }
   set eventSubscription(value: VtsiEventSubscription | undefined) {
     this._eventSubscription = value;
+  }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -2332,7 +2445,8 @@ export class CreateVtsiEventSubscriptionRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       eventSubscription: this.eventSubscription
         ? this.eventSubscription.toObject()
-        : undefined
+        : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -2356,7 +2470,8 @@ export class CreateVtsiEventSubscriptionRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       eventSubscription: this.eventSubscription
         ? this.eventSubscription.toProtobufJSON(options)
-        : null
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -2367,6 +2482,7 @@ export module CreateVtsiEventSubscriptionRequest {
   export interface AsObject {
     vtsiProjectName: string;
     eventSubscription?: VtsiEventSubscription.AsObject;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -2375,6 +2491,7 @@ export module CreateVtsiEventSubscriptionRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     eventSubscription: VtsiEventSubscription.AsProtobufJSON | null;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -2403,6 +2520,7 @@ export class GetVtsiEventSubscriptionRequest implements GrpcMessage {
    */
   static refineValues(_instance: GetVtsiEventSubscriptionRequest) {
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -2420,6 +2538,13 @@ export class GetVtsiEventSubscriptionRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -2441,9 +2566,17 @@ export class GetVtsiEventSubscriptionRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _name: string;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2454,6 +2587,9 @@ export class GetVtsiEventSubscriptionRequest implements GrpcMessage {
   ) {
     _value = _value || {};
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
+      : undefined;
     GetVtsiEventSubscriptionRequest.refineValues(this);
   }
   get name(): string {
@@ -2461,6 +2597,12 @@ export class GetVtsiEventSubscriptionRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -2478,7 +2620,8 @@ export class GetVtsiEventSubscriptionRequest implements GrpcMessage {
    */
   toObject(): GetVtsiEventSubscriptionRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -2499,7 +2642,8 @@ export class GetVtsiEventSubscriptionRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): GetVtsiEventSubscriptionRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -2509,6 +2653,7 @@ export module GetVtsiEventSubscriptionRequest {
    */
   export interface AsObject {
     name: string;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -2516,6 +2661,7 @@ export module GetVtsiEventSubscriptionRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -2545,6 +2691,7 @@ export class UpdateVtsiEventSubscriptionRequest implements GrpcMessage {
   static refineValues(_instance: UpdateVtsiEventSubscriptionRequest) {
     _instance.eventSubscription = _instance.eventSubscription || undefined;
     _instance.updateMask = _instance.updateMask || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -2571,6 +2718,13 @@ export class UpdateVtsiEventSubscriptionRequest implements GrpcMessage {
           _instance.updateMask = new googleProtobuf003.FieldMask();
           _reader.readMessage(
             _instance.updateMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
             googleProtobuf003.FieldMask.deserializeBinaryFromReader
           );
           break;
@@ -2605,10 +2759,18 @@ export class UpdateVtsiEventSubscriptionRequest implements GrpcMessage {
         googleProtobuf003.FieldMask.serializeBinaryToWriter
       );
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _eventSubscription?: VtsiEventSubscription;
   private _updateMask?: googleProtobuf003.FieldMask;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2624,6 +2786,9 @@ export class UpdateVtsiEventSubscriptionRequest implements GrpcMessage {
     this.updateMask = _value.updateMask
       ? new googleProtobuf003.FieldMask(_value.updateMask)
       : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
+      : undefined;
     UpdateVtsiEventSubscriptionRequest.refineValues(this);
   }
   get eventSubscription(): VtsiEventSubscription | undefined {
@@ -2637,6 +2802,12 @@ export class UpdateVtsiEventSubscriptionRequest implements GrpcMessage {
   }
   set updateMask(value: googleProtobuf003.FieldMask | undefined) {
     this._updateMask = value;
+  }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -2657,7 +2828,8 @@ export class UpdateVtsiEventSubscriptionRequest implements GrpcMessage {
       eventSubscription: this.eventSubscription
         ? this.eventSubscription.toObject()
         : undefined,
-      updateMask: this.updateMask ? this.updateMask.toObject() : undefined
+      updateMask: this.updateMask ? this.updateMask.toObject() : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -2683,7 +2855,8 @@ export class UpdateVtsiEventSubscriptionRequest implements GrpcMessage {
         : null,
       updateMask: this.updateMask
         ? this.updateMask.toProtobufJSON(options)
-        : null
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -2694,6 +2867,7 @@ export module UpdateVtsiEventSubscriptionRequest {
   export interface AsObject {
     eventSubscription?: VtsiEventSubscription.AsObject;
     updateMask?: googleProtobuf003.FieldMask.AsObject;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -2702,6 +2876,7 @@ export module UpdateVtsiEventSubscriptionRequest {
   export interface AsProtobufJSON {
     eventSubscription: VtsiEventSubscription.AsProtobufJSON | null;
     updateMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -2730,6 +2905,7 @@ export class DeleteVtsiEventSubscriptionRequest implements GrpcMessage {
    */
   static refineValues(_instance: DeleteVtsiEventSubscriptionRequest) {
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -2747,6 +2923,13 @@ export class DeleteVtsiEventSubscriptionRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -2768,9 +2951,17 @@ export class DeleteVtsiEventSubscriptionRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _name: string;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2781,6 +2972,9 @@ export class DeleteVtsiEventSubscriptionRequest implements GrpcMessage {
   ) {
     _value = _value || {};
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
+      : undefined;
     DeleteVtsiEventSubscriptionRequest.refineValues(this);
   }
   get name(): string {
@@ -2788,6 +2982,12 @@ export class DeleteVtsiEventSubscriptionRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -2805,7 +3005,8 @@ export class DeleteVtsiEventSubscriptionRequest implements GrpcMessage {
    */
   toObject(): DeleteVtsiEventSubscriptionRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -2826,7 +3027,8 @@ export class DeleteVtsiEventSubscriptionRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): DeleteVtsiEventSubscriptionRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -2836,6 +3038,7 @@ export module DeleteVtsiEventSubscriptionRequest {
    */
   export interface AsObject {
     name: string;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -2843,6 +3046,7 @@ export module DeleteVtsiEventSubscriptionRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -3013,6 +3217,7 @@ export class ListVtsiEventSubscriptionsRequest implements GrpcMessage {
   static refineValues(_instance: ListVtsiEventSubscriptionsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.pageSize = _instance.pageSize || 0;
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -3036,6 +3241,13 @@ export class ListVtsiEventSubscriptionsRequest implements GrpcMessage {
           break;
         case 3:
           _instance.pageToken = _reader.readString();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -3063,11 +3275,19 @@ export class ListVtsiEventSubscriptionsRequest implements GrpcMessage {
     if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(3, _instance.pageToken);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _pageSize: number;
   private _pageToken: string;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3080,6 +3300,9 @@ export class ListVtsiEventSubscriptionsRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.pageSize = _value.pageSize;
     this.pageToken = _value.pageToken;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
+      : undefined;
     ListVtsiEventSubscriptionsRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -3100,6 +3323,12 @@ export class ListVtsiEventSubscriptionsRequest implements GrpcMessage {
   set pageToken(value: string) {
     this._pageToken = value;
   }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -3118,7 +3347,8 @@ export class ListVtsiEventSubscriptionsRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       pageSize: this.pageSize,
-      pageToken: this.pageToken
+      pageToken: this.pageToken,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -3141,7 +3371,8 @@ export class ListVtsiEventSubscriptionsRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       pageSize: this.pageSize,
-      pageToken: this.pageToken
+      pageToken: this.pageToken,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -3153,6 +3384,7 @@ export module ListVtsiEventSubscriptionsRequest {
     vtsiProjectName: string;
     pageSize: number;
     pageToken: string;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -3162,6 +3394,7 @@ export module ListVtsiEventSubscriptionsRequest {
     vtsiProjectName: string;
     pageSize: number;
     pageToken: string;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -3367,6 +3600,7 @@ export class CreateWebhookRequest implements GrpcMessage {
   static refineValues(_instance: CreateWebhookRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.webhook = _instance.webhook || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -3390,6 +3624,13 @@ export class CreateWebhookRequest implements GrpcMessage {
           _reader.readMessage(
             _instance.webhook,
             Webhook.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
           );
           break;
         default:
@@ -3419,10 +3660,18 @@ export class CreateWebhookRequest implements GrpcMessage {
         Webhook.serializeBinaryToWriter
       );
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _webhook?: Webhook;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3432,6 +3681,9 @@ export class CreateWebhookRequest implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.webhook = _value.webhook ? new Webhook(_value.webhook) : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
+      : undefined;
     CreateWebhookRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -3445,6 +3697,12 @@ export class CreateWebhookRequest implements GrpcMessage {
   }
   set webhook(value: Webhook | undefined) {
     this._webhook = value;
+  }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -3463,7 +3721,8 @@ export class CreateWebhookRequest implements GrpcMessage {
   toObject(): CreateWebhookRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      webhook: this.webhook ? this.webhook.toObject() : undefined
+      webhook: this.webhook ? this.webhook.toObject() : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -3485,7 +3744,8 @@ export class CreateWebhookRequest implements GrpcMessage {
   ): CreateWebhookRequest.AsProtobufJSON {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      webhook: this.webhook ? this.webhook.toProtobufJSON(options) : null
+      webhook: this.webhook ? this.webhook.toProtobufJSON(options) : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -3496,6 +3756,7 @@ export module CreateWebhookRequest {
   export interface AsObject {
     vtsiProjectName: string;
     webhook?: Webhook.AsObject;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -3504,6 +3765,7 @@ export module CreateWebhookRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     webhook: Webhook.AsProtobufJSON | null;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -3532,6 +3794,7 @@ export class GetWebhookRequest implements GrpcMessage {
    */
   static refineValues(_instance: GetWebhookRequest) {
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -3549,6 +3812,13 @@ export class GetWebhookRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -3570,9 +3840,17 @@ export class GetWebhookRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _name: string;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3581,6 +3859,9 @@ export class GetWebhookRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<GetWebhookRequest.AsObject>) {
     _value = _value || {};
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
+      : undefined;
     GetWebhookRequest.refineValues(this);
   }
   get name(): string {
@@ -3588,6 +3869,12 @@ export class GetWebhookRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -3605,7 +3892,8 @@ export class GetWebhookRequest implements GrpcMessage {
    */
   toObject(): GetWebhookRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -3626,7 +3914,8 @@ export class GetWebhookRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): GetWebhookRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -3636,6 +3925,7 @@ export module GetWebhookRequest {
    */
   export interface AsObject {
     name: string;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -3643,6 +3933,7 @@ export module GetWebhookRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -3672,6 +3963,7 @@ export class UpdateWebhookRequest implements GrpcMessage {
   static refineValues(_instance: UpdateWebhookRequest) {
     _instance.webhook = _instance.webhook || undefined;
     _instance.updateMask = _instance.updateMask || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -3698,6 +3990,13 @@ export class UpdateWebhookRequest implements GrpcMessage {
           _instance.updateMask = new googleProtobuf003.FieldMask();
           _reader.readMessage(
             _instance.updateMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
             googleProtobuf003.FieldMask.deserializeBinaryFromReader
           );
           break;
@@ -3732,10 +4031,18 @@ export class UpdateWebhookRequest implements GrpcMessage {
         googleProtobuf003.FieldMask.serializeBinaryToWriter
       );
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _webhook?: Webhook;
   private _updateMask?: googleProtobuf003.FieldMask;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3746,6 +4053,9 @@ export class UpdateWebhookRequest implements GrpcMessage {
     this.webhook = _value.webhook ? new Webhook(_value.webhook) : undefined;
     this.updateMask = _value.updateMask
       ? new googleProtobuf003.FieldMask(_value.updateMask)
+      : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
       : undefined;
     UpdateWebhookRequest.refineValues(this);
   }
@@ -3760,6 +4070,12 @@ export class UpdateWebhookRequest implements GrpcMessage {
   }
   set updateMask(value: googleProtobuf003.FieldMask | undefined) {
     this._updateMask = value;
+  }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -3778,7 +4094,8 @@ export class UpdateWebhookRequest implements GrpcMessage {
   toObject(): UpdateWebhookRequest.AsObject {
     return {
       webhook: this.webhook ? this.webhook.toObject() : undefined,
-      updateMask: this.updateMask ? this.updateMask.toObject() : undefined
+      updateMask: this.updateMask ? this.updateMask.toObject() : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -3802,7 +4119,8 @@ export class UpdateWebhookRequest implements GrpcMessage {
       webhook: this.webhook ? this.webhook.toProtobufJSON(options) : null,
       updateMask: this.updateMask
         ? this.updateMask.toProtobufJSON(options)
-        : null
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -3813,6 +4131,7 @@ export module UpdateWebhookRequest {
   export interface AsObject {
     webhook?: Webhook.AsObject;
     updateMask?: googleProtobuf003.FieldMask.AsObject;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -3821,6 +4140,7 @@ export module UpdateWebhookRequest {
   export interface AsProtobufJSON {
     webhook: Webhook.AsProtobufJSON | null;
     updateMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -3849,6 +4169,7 @@ export class DeleteWebhookRequest implements GrpcMessage {
    */
   static refineValues(_instance: DeleteWebhookRequest) {
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -3866,6 +4187,13 @@ export class DeleteWebhookRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -3887,9 +4215,17 @@ export class DeleteWebhookRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _name: string;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3898,6 +4234,9 @@ export class DeleteWebhookRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<DeleteWebhookRequest.AsObject>) {
     _value = _value || {};
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
+      : undefined;
     DeleteWebhookRequest.refineValues(this);
   }
   get name(): string {
@@ -3905,6 +4244,12 @@ export class DeleteWebhookRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -3922,7 +4267,8 @@ export class DeleteWebhookRequest implements GrpcMessage {
    */
   toObject(): DeleteWebhookRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -3943,7 +4289,8 @@ export class DeleteWebhookRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): DeleteWebhookRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -3953,6 +4300,7 @@ export module DeleteWebhookRequest {
    */
   export interface AsObject {
     name: string;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -3960,6 +4308,7 @@ export module DeleteWebhookRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -4148,6 +4497,7 @@ export class ListWebhooksRequest implements GrpcMessage {
   static refineValues(_instance: ListWebhooksRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.pageSize = _instance.pageSize || 0;
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -4171,6 +4521,13 @@ export class ListWebhooksRequest implements GrpcMessage {
           break;
         case 3:
           _instance.pageToken = _reader.readString();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf003.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf003.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -4198,11 +4555,19 @@ export class ListWebhooksRequest implements GrpcMessage {
     if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(3, _instance.pageToken);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf003.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _pageSize: number;
   private _pageToken: string;
+  private _fieldMask?: googleProtobuf003.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -4213,6 +4578,9 @@ export class ListWebhooksRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.pageSize = _value.pageSize;
     this.pageToken = _value.pageToken;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf003.FieldMask(_value.fieldMask)
+      : undefined;
     ListWebhooksRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -4233,6 +4601,12 @@ export class ListWebhooksRequest implements GrpcMessage {
   set pageToken(value: string) {
     this._pageToken = value;
   }
+  get fieldMask(): googleProtobuf003.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf003.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -4251,7 +4625,8 @@ export class ListWebhooksRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       pageSize: this.pageSize,
-      pageToken: this.pageToken
+      pageToken: this.pageToken,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -4274,7 +4649,8 @@ export class ListWebhooksRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       pageSize: this.pageSize,
-      pageToken: this.pageToken
+      pageToken: this.pageToken,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -4286,6 +4662,7 @@ export module ListWebhooksRequest {
     vtsiProjectName: string;
     pageSize: number;
     pageToken: string;
+    fieldMask?: googleProtobuf003.FieldMask.AsObject;
   }
 
   /**
@@ -4295,6 +4672,7 @@ export module ListWebhooksRequest {
     vtsiProjectName: string;
     pageSize: number;
     pageToken: string;
+    fieldMask: googleProtobuf003.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -4492,6 +4870,7 @@ export class TestWebhookRequest implements GrpcMessage {
    */
   static refineValues(_instance: TestWebhookRequest) {
     _instance.name = _instance.name || '';
+    _instance.sampleEvent = _instance.sampleEvent || 0;
   }
 
   /**
@@ -4509,6 +4888,9 @@ export class TestWebhookRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.sampleEvent = _reader.readEnum();
           break;
         default:
           _reader.skipField();
@@ -4530,9 +4912,13 @@ export class TestWebhookRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.sampleEvent) {
+      _writer.writeEnum(2, _instance.sampleEvent);
+    }
   }
 
   private _name: string;
+  private _sampleEvent: VtsiEvent;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -4541,6 +4927,7 @@ export class TestWebhookRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<TestWebhookRequest.AsObject>) {
     _value = _value || {};
     this.name = _value.name;
+    this.sampleEvent = _value.sampleEvent;
     TestWebhookRequest.refineValues(this);
   }
   get name(): string {
@@ -4548,6 +4935,12 @@ export class TestWebhookRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get sampleEvent(): VtsiEvent {
+    return this._sampleEvent;
+  }
+  set sampleEvent(value: VtsiEvent) {
+    this._sampleEvent = value;
   }
 
   /**
@@ -4565,7 +4958,8 @@ export class TestWebhookRequest implements GrpcMessage {
    */
   toObject(): TestWebhookRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      sampleEvent: this.sampleEvent
     };
   }
 
@@ -4586,7 +4980,13 @@ export class TestWebhookRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): TestWebhookRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      sampleEvent:
+        VtsiEvent[
+          this.sampleEvent === null || this.sampleEvent === undefined
+            ? 0
+            : this.sampleEvent
+        ]
     };
   }
 }
@@ -4596,6 +4996,7 @@ export module TestWebhookRequest {
    */
   export interface AsObject {
     name: string;
+    sampleEvent: VtsiEvent;
   }
 
   /**
@@ -4603,6 +5004,7 @@ export module TestWebhookRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    sampleEvent: string;
   }
 }
 
@@ -4857,6 +5259,7 @@ export class SubscribeVtsiEventsRequest implements GrpcMessage {
   static refineValues(_instance: SubscribeVtsiEventsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
 
+    _instance.startTime = _instance.startTime || undefined;
   }
 
   /**
@@ -4887,6 +5290,13 @@ export class SubscribeVtsiEventsRequest implements GrpcMessage {
           break;
         case 4:
           _instance.resumeToken = _reader.readString();
+          break;
+        case 5:
+          _instance.startTime = new googleProtobuf001.Timestamp();
+          _reader.readMessage(
+            _instance.startTime,
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -4924,12 +5334,20 @@ export class SubscribeVtsiEventsRequest implements GrpcMessage {
     if (_instance.resumeToken !== undefined && _instance.resumeToken !== null) {
       _writer.writeString(4, _instance.resumeToken);
     }
+    if (_instance.startTime) {
+      _writer.writeMessage(
+        5,
+        _instance.startTime as any,
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _eventSubscriptionName: string;
   private _filter?: VtsiEventFilter;
   private _resumeToken: string;
+  private _startTime?: googleProtobuf001.Timestamp;
 
   private _selector: SubscribeVtsiEventsRequest.SelectorCase =
     SubscribeVtsiEventsRequest.SelectorCase.none;
@@ -4946,6 +5364,9 @@ export class SubscribeVtsiEventsRequest implements GrpcMessage {
       ? new VtsiEventFilter(_value.filter)
       : undefined;
     this.resumeToken = _value.resumeToken;
+    this.startTime = _value.startTime
+      ? new googleProtobuf001.Timestamp(_value.startTime)
+      : undefined;
     SubscribeVtsiEventsRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -4981,6 +5402,12 @@ export class SubscribeVtsiEventsRequest implements GrpcMessage {
   set resumeToken(value: string) {
     this._resumeToken = value;
   }
+  get startTime(): googleProtobuf001.Timestamp | undefined {
+    return this._startTime;
+  }
+  set startTime(value: googleProtobuf001.Timestamp | undefined) {
+    this._startTime = value;
+  }
   get selector() {
     return this._selector;
   }
@@ -5003,7 +5430,8 @@ export class SubscribeVtsiEventsRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       eventSubscriptionName: this.eventSubscriptionName,
       filter: this.filter ? this.filter.toObject() : undefined,
-      resumeToken: this.resumeToken
+      resumeToken: this.resumeToken,
+      startTime: this.startTime ? this.startTime.toObject() : undefined
     };
   }
 
@@ -5031,7 +5459,8 @@ export class SubscribeVtsiEventsRequest implements GrpcMessage {
           ? null
           : this.eventSubscriptionName,
       filter: this.filter ? this.filter.toProtobufJSON(options) : null,
-      resumeToken: this.resumeToken
+      resumeToken: this.resumeToken,
+      startTime: this.startTime ? this.startTime.toProtobufJSON(options) : null
     };
   }
 }
@@ -5044,6 +5473,7 @@ export module SubscribeVtsiEventsRequest {
     eventSubscriptionName: string;
     filter?: VtsiEventFilter.AsObject;
     resumeToken: string;
+    startTime?: googleProtobuf001.Timestamp.AsObject;
   }
 
   /**
@@ -5054,6 +5484,7 @@ export module SubscribeVtsiEventsRequest {
     eventSubscriptionName: string | null;
     filter: VtsiEventFilter.AsProtobufJSON | null;
     resumeToken: string;
+    startTime: googleProtobuf001.Timestamp.AsProtobufJSON | null;
   }
   export enum SelectorCase {
     none = 0,
@@ -5090,6 +5521,7 @@ export class SubscribeVtsiEventsResponse implements GrpcMessage {
     _instance.resumeToken = _instance.resumeToken || '';
     _instance.droppedEventCount = _instance.droppedEventCount || '0';
     _instance.endReason = _instance.endReason || '';
+    _instance.endReasonType = _instance.endReasonType || 0;
   }
 
   /**
@@ -5121,6 +5553,9 @@ export class SubscribeVtsiEventsResponse implements GrpcMessage {
           break;
         case 4:
           _instance.endReason = _reader.readString();
+          break;
+        case 5:
+          _instance.endReasonType = _reader.readEnum();
           break;
         default:
           _reader.skipField();
@@ -5155,12 +5590,16 @@ export class SubscribeVtsiEventsResponse implements GrpcMessage {
     if (_instance.endReason) {
       _writer.writeString(4, _instance.endReason);
     }
+    if (_instance.endReasonType) {
+      _writer.writeEnum(5, _instance.endReasonType);
+    }
   }
 
   private _events?: VtsiEventMessage[];
   private _resumeToken: string;
   private _droppedEventCount: string;
   private _endReason: string;
+  private _endReasonType: ondewoVtsi006.StreamEndReason;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -5172,6 +5611,7 @@ export class SubscribeVtsiEventsResponse implements GrpcMessage {
     this.resumeToken = _value.resumeToken;
     this.droppedEventCount = _value.droppedEventCount;
     this.endReason = _value.endReason;
+    this.endReasonType = _value.endReasonType;
     SubscribeVtsiEventsResponse.refineValues(this);
   }
   get events(): VtsiEventMessage[] | undefined {
@@ -5198,6 +5638,12 @@ export class SubscribeVtsiEventsResponse implements GrpcMessage {
   set endReason(value: string) {
     this._endReason = value;
   }
+  get endReasonType(): ondewoVtsi006.StreamEndReason {
+    return this._endReasonType;
+  }
+  set endReasonType(value: ondewoVtsi006.StreamEndReason) {
+    this._endReasonType = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -5217,7 +5663,8 @@ export class SubscribeVtsiEventsResponse implements GrpcMessage {
       events: (this.events || []).map(m => m.toObject()),
       resumeToken: this.resumeToken,
       droppedEventCount: this.droppedEventCount,
-      endReason: this.endReason
+      endReason: this.endReason,
+      endReasonType: this.endReasonType
     };
   }
 
@@ -5241,7 +5688,13 @@ export class SubscribeVtsiEventsResponse implements GrpcMessage {
       events: (this.events || []).map(m => m.toProtobufJSON(options)),
       resumeToken: this.resumeToken,
       droppedEventCount: this.droppedEventCount,
-      endReason: this.endReason
+      endReason: this.endReason,
+      endReasonType:
+        ondewoVtsi006.StreamEndReason[
+          this.endReasonType === null || this.endReasonType === undefined
+            ? 0
+            : this.endReasonType
+        ]
     };
   }
 }
@@ -5254,6 +5707,7 @@ export module SubscribeVtsiEventsResponse {
     resumeToken: string;
     droppedEventCount: string;
     endReason: string;
+    endReasonType: ondewoVtsi006.StreamEndReason;
   }
 
   /**
@@ -5264,5 +5718,467 @@ export module SubscribeVtsiEventsResponse {
     resumeToken: string;
     droppedEventCount: string;
     endReason: string;
+    endReasonType: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.RedeliverWebhookEventsRequest
+ */
+export class RedeliverWebhookEventsRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.RedeliverWebhookEventsRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new RedeliverWebhookEventsRequest();
+    RedeliverWebhookEventsRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: RedeliverWebhookEventsRequest) {
+    _instance.webhookName = _instance.webhookName || '';
+    _instance.eventIds = _instance.eventIds || [];
+    _instance.startTime = _instance.startTime || undefined;
+    _instance.endTime = _instance.endTime || undefined;
+    _instance.filter = _instance.filter || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: RedeliverWebhookEventsRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.webhookName = _reader.readString();
+          break;
+        case 2:
+          (_instance.eventIds = _instance.eventIds || []).push(
+            _reader.readString()
+          );
+          break;
+        case 3:
+          _instance.startTime = new googleProtobuf001.Timestamp();
+          _reader.readMessage(
+            _instance.startTime,
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.endTime = new googleProtobuf001.Timestamp();
+          _reader.readMessage(
+            _instance.endTime,
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.filter = new VtsiEventFilter();
+          _reader.readMessage(
+            _instance.filter,
+            VtsiEventFilter.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    RedeliverWebhookEventsRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: RedeliverWebhookEventsRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.webhookName) {
+      _writer.writeString(1, _instance.webhookName);
+    }
+    if (_instance.eventIds && _instance.eventIds.length) {
+      _writer.writeRepeatedString(2, _instance.eventIds);
+    }
+    if (_instance.startTime) {
+      _writer.writeMessage(
+        3,
+        _instance.startTime as any,
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.endTime) {
+      _writer.writeMessage(
+        4,
+        _instance.endTime as any,
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.filter) {
+      _writer.writeMessage(
+        5,
+        _instance.filter as any,
+        VtsiEventFilter.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _webhookName: string;
+  private _eventIds: string[];
+  private _startTime?: googleProtobuf001.Timestamp;
+  private _endTime?: googleProtobuf001.Timestamp;
+  private _filter?: VtsiEventFilter;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of RedeliverWebhookEventsRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<RedeliverWebhookEventsRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.webhookName = _value.webhookName;
+    this.eventIds = (_value.eventIds || []).slice();
+    this.startTime = _value.startTime
+      ? new googleProtobuf001.Timestamp(_value.startTime)
+      : undefined;
+    this.endTime = _value.endTime
+      ? new googleProtobuf001.Timestamp(_value.endTime)
+      : undefined;
+    this.filter = _value.filter
+      ? new VtsiEventFilter(_value.filter)
+      : undefined;
+    RedeliverWebhookEventsRequest.refineValues(this);
+  }
+  get webhookName(): string {
+    return this._webhookName;
+  }
+  set webhookName(value: string) {
+    this._webhookName = value;
+  }
+  get eventIds(): string[] {
+    return this._eventIds;
+  }
+  set eventIds(value: string[]) {
+    this._eventIds = value;
+  }
+  get startTime(): googleProtobuf001.Timestamp | undefined {
+    return this._startTime;
+  }
+  set startTime(value: googleProtobuf001.Timestamp | undefined) {
+    this._startTime = value;
+  }
+  get endTime(): googleProtobuf001.Timestamp | undefined {
+    return this._endTime;
+  }
+  set endTime(value: googleProtobuf001.Timestamp | undefined) {
+    this._endTime = value;
+  }
+  get filter(): VtsiEventFilter | undefined {
+    return this._filter;
+  }
+  set filter(value: VtsiEventFilter | undefined) {
+    this._filter = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    RedeliverWebhookEventsRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): RedeliverWebhookEventsRequest.AsObject {
+    return {
+      webhookName: this.webhookName,
+      eventIds: (this.eventIds || []).slice(),
+      startTime: this.startTime ? this.startTime.toObject() : undefined,
+      endTime: this.endTime ? this.endTime.toObject() : undefined,
+      filter: this.filter ? this.filter.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): RedeliverWebhookEventsRequest.AsProtobufJSON {
+    return {
+      webhookName: this.webhookName,
+      eventIds: (this.eventIds || []).slice(),
+      startTime: this.startTime ? this.startTime.toProtobufJSON(options) : null,
+      endTime: this.endTime ? this.endTime.toProtobufJSON(options) : null,
+      filter: this.filter ? this.filter.toProtobufJSON(options) : null
+    };
+  }
+}
+export module RedeliverWebhookEventsRequest {
+  /**
+   * Standard JavaScript object representation for RedeliverWebhookEventsRequest
+   */
+  export interface AsObject {
+    webhookName: string;
+    eventIds: string[];
+    startTime?: googleProtobuf001.Timestamp.AsObject;
+    endTime?: googleProtobuf001.Timestamp.AsObject;
+    filter?: VtsiEventFilter.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for RedeliverWebhookEventsRequest
+   */
+  export interface AsProtobufJSON {
+    webhookName: string;
+    eventIds: string[];
+    startTime: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    endTime: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    filter: VtsiEventFilter.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.RedeliverWebhookEventsResponse
+ */
+export class RedeliverWebhookEventsResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.RedeliverWebhookEventsResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new RedeliverWebhookEventsResponse();
+    RedeliverWebhookEventsResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: RedeliverWebhookEventsResponse) {
+    _instance.enqueuedCount = _instance.enqueuedCount || 0;
+    _instance.notInJournalCount = _instance.notInJournalCount || 0;
+    _instance.notEnqueuedCount = _instance.notEnqueuedCount || 0;
+    _instance.nextStartTime = _instance.nextStartTime || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: RedeliverWebhookEventsResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.enqueuedCount = _reader.readInt32();
+          break;
+        case 2:
+          _instance.notInJournalCount = _reader.readInt32();
+          break;
+        case 3:
+          _instance.notEnqueuedCount = _reader.readInt32();
+          break;
+        case 4:
+          _instance.nextStartTime = new googleProtobuf001.Timestamp();
+          _reader.readMessage(
+            _instance.nextStartTime,
+            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    RedeliverWebhookEventsResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: RedeliverWebhookEventsResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.enqueuedCount) {
+      _writer.writeInt32(1, _instance.enqueuedCount);
+    }
+    if (_instance.notInJournalCount) {
+      _writer.writeInt32(2, _instance.notInJournalCount);
+    }
+    if (_instance.notEnqueuedCount) {
+      _writer.writeInt32(3, _instance.notEnqueuedCount);
+    }
+    if (_instance.nextStartTime) {
+      _writer.writeMessage(
+        4,
+        _instance.nextStartTime as any,
+        googleProtobuf001.Timestamp.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _enqueuedCount: number;
+  private _notInJournalCount: number;
+  private _notEnqueuedCount: number;
+  private _nextStartTime?: googleProtobuf001.Timestamp;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of RedeliverWebhookEventsResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<RedeliverWebhookEventsResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.enqueuedCount = _value.enqueuedCount;
+    this.notInJournalCount = _value.notInJournalCount;
+    this.notEnqueuedCount = _value.notEnqueuedCount;
+    this.nextStartTime = _value.nextStartTime
+      ? new googleProtobuf001.Timestamp(_value.nextStartTime)
+      : undefined;
+    RedeliverWebhookEventsResponse.refineValues(this);
+  }
+  get enqueuedCount(): number {
+    return this._enqueuedCount;
+  }
+  set enqueuedCount(value: number) {
+    this._enqueuedCount = value;
+  }
+  get notInJournalCount(): number {
+    return this._notInJournalCount;
+  }
+  set notInJournalCount(value: number) {
+    this._notInJournalCount = value;
+  }
+  get notEnqueuedCount(): number {
+    return this._notEnqueuedCount;
+  }
+  set notEnqueuedCount(value: number) {
+    this._notEnqueuedCount = value;
+  }
+  get nextStartTime(): googleProtobuf001.Timestamp | undefined {
+    return this._nextStartTime;
+  }
+  set nextStartTime(value: googleProtobuf001.Timestamp | undefined) {
+    this._nextStartTime = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    RedeliverWebhookEventsResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): RedeliverWebhookEventsResponse.AsObject {
+    return {
+      enqueuedCount: this.enqueuedCount,
+      notInJournalCount: this.notInJournalCount,
+      notEnqueuedCount: this.notEnqueuedCount,
+      nextStartTime: this.nextStartTime
+        ? this.nextStartTime.toObject()
+        : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): RedeliverWebhookEventsResponse.AsProtobufJSON {
+    return {
+      enqueuedCount: this.enqueuedCount,
+      notInJournalCount: this.notInJournalCount,
+      notEnqueuedCount: this.notEnqueuedCount,
+      nextStartTime: this.nextStartTime
+        ? this.nextStartTime.toProtobufJSON(options)
+        : null
+    };
+  }
+}
+export module RedeliverWebhookEventsResponse {
+  /**
+   * Standard JavaScript object representation for RedeliverWebhookEventsResponse
+   */
+  export interface AsObject {
+    enqueuedCount: number;
+    notInJournalCount: number;
+    notEnqueuedCount: number;
+    nextStartTime?: googleProtobuf001.Timestamp.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for RedeliverWebhookEventsResponse
+   */
+  export interface AsProtobufJSON {
+    enqueuedCount: number;
+    notInJournalCount: number;
+    notEnqueuedCount: number;
+    nextStartTime: googleProtobuf001.Timestamp.AsProtobufJSON | null;
   }
 }

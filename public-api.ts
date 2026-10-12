@@ -64,6 +64,7 @@ export * from './api/ondewo/sip/sip.pbsc';
 export * from './api/ondewo/t2s/text-to-speech.pb';
 export * from './api/ondewo/t2s/text-to-speech.pbconf';
 export * from './api/ondewo/t2s/text-to-speech.pbsc';
+export * from './api/ondewo/vtsi/call-configs.pb';
 export * from './api/ondewo/vtsi/calls.pb';
 export * from './api/ondewo/vtsi/calls.pbconf';
 export * from './api/ondewo/vtsi/calls.pbsc';

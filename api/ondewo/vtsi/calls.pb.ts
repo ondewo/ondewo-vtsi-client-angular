@@ -11,22 +11,22 @@ import {
   uint8ArrayToBase64
 } from '@ngx-grpc/common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
-import * as googleApi000 from '../../google/api/http.pb';
-import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
-import * as googleApi002 from '../../google/api/annotations.pb';
-import * as googleProtobuf003 from '@ngx-grpc/well-known-types';
+import * as googleApi000 from '../../google/api/annotations.pb';
+import * as ondewoNlu001 from '../../ondewo/nlu/context.pb';
+import * as ondewoNlu002 from '../../ondewo/nlu/common.pb';
+import * as ondewoNlu003 from '../../ondewo/nlu/operations.pb';
 import * as googleProtobuf004 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf005 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu006 from '../../ondewo/nlu/context.pb';
-import * as ondewoNlu007 from '../../ondewo/nlu/common.pb';
-import * as ondewoNlu008 from '../../ondewo/nlu/operations.pb';
-import * as googleProtobuf009 from '@ngx-grpc/well-known-types';
-import * as googleProtobuf010 from '@ngx-grpc/well-known-types';
-import * as ondewoSip011 from '../../ondewo/sip/sip.pb';
-import * as ondewoNlu012 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t013 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s014 from '../../ondewo/t2s/text-to-speech.pb';
-import * as ondewoVtsi015 from '../../ondewo/vtsi/campaigns.pb';
+import * as googleProtobuf006 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf007 from '@ngx-grpc/well-known-types';
+import * as ondewoNlu008 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t009 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s010 from '../../ondewo/t2s/text-to-speech.pb';
+import * as googleProtobuf011 from '@ngx-grpc/well-known-types';
+import * as ondewoSip012 from '../../ondewo/sip/sip.pb';
+import * as ondewoVtsi013 from '../../ondewo/vtsi/call-configs.pb';
+import * as ondewoVtsi014 from '../../ondewo/vtsi/campaigns.pb';
+import * as ondewoVtsi015 from '../../ondewo/vtsi/projects.pb';
 export enum ScheduledCallerStatus {
   SCHEDULED_CALLER_STATUS_UNSPECIFIED = 0,
   SCHEDULED_CALLER_STATUS_PENDING = 1,
@@ -74,6 +74,18 @@ export enum ParticipantState {
   PARTICIPANT_STATE_FAILED = 3,
   PARTICIPANT_STATE_LEFT = 4
 }
+export enum ParticipantEndReason {
+  PARTICIPANT_END_REASON_UNSPECIFIED = 0,
+  PARTICIPANT_END_REASON_NO_ANSWER = 1,
+  PARTICIPANT_END_REASON_BUSY = 2,
+  PARTICIPANT_END_REASON_CHANNEL_UNAVAILABLE = 3,
+  PARTICIPANT_END_REASON_CALL_ENDED = 4,
+  PARTICIPANT_END_REASON_REMOVED = 5,
+  PARTICIPANT_END_REASON_HANGUP = 6,
+  PARTICIPANT_END_REASON_HANDED_OVER = 7,
+  PARTICIPANT_END_REASON_JOIN_FAILED = 8,
+  PARTICIPANT_END_REASON_TIMEOUT = 9
+}
 export enum CallAudioMode {
   CALL_AUDIO_MODE_UNSPECIFIED = 0,
   CALL_AUDIO_MODE_LISTEN = 1,
@@ -104,1072 +116,6 @@ export enum CallType {
   CALLER = 2,
   SCHEDULED_CALLER = 3
 }
-/**
- * Message implementation for ondewo.vtsi.BaseServiceConfig
- */
-export class BaseServiceConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.BaseServiceConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new BaseServiceConfig();
-    BaseServiceConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: BaseServiceConfig) {
-    _instance.host = _instance.host || '';
-    _instance.port = _instance.port || 0;
-    _instance.grpcCert = _instance.grpcCert || '';
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: BaseServiceConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.host = _reader.readString();
-          break;
-        case 2:
-          _instance.port = _reader.readInt32();
-          break;
-        case 3:
-          _instance.grpcCert = _reader.readString();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    BaseServiceConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: BaseServiceConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.host) {
-      _writer.writeString(1, _instance.host);
-    }
-    if (_instance.port) {
-      _writer.writeInt32(2, _instance.port);
-    }
-    if (_instance.grpcCert) {
-      _writer.writeString(3, _instance.grpcCert);
-    }
-  }
-
-  private _host: string;
-  private _port: number;
-  private _grpcCert: string;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of BaseServiceConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<BaseServiceConfig.AsObject>) {
-    _value = _value || {};
-    this.host = _value.host;
-    this.port = _value.port;
-    this.grpcCert = _value.grpcCert;
-    BaseServiceConfig.refineValues(this);
-  }
-  get host(): string {
-    return this._host;
-  }
-  set host(value: string) {
-    this._host = value;
-  }
-  get port(): number {
-    return this._port;
-  }
-  set port(value: number) {
-    this._port = value;
-  }
-  get grpcCert(): string {
-    return this._grpcCert;
-  }
-  set grpcCert(value: string) {
-    this._grpcCert = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    BaseServiceConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): BaseServiceConfig.AsObject {
-    return {
-      host: this.host,
-      port: this.port,
-      grpcCert: this.grpcCert
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): BaseServiceConfig.AsProtobufJSON {
-    return {
-      host: this.host,
-      port: this.port,
-      grpcCert: this.grpcCert
-    };
-  }
-}
-export module BaseServiceConfig {
-  /**
-   * Standard JavaScript object representation for BaseServiceConfig
-   */
-  export interface AsObject {
-    host: string;
-    port: number;
-    grpcCert: string;
-  }
-
-  /**
-   * Protobuf JSON representation for BaseServiceConfig
-   */
-  export interface AsProtobufJSON {
-    host: string;
-    port: number;
-    grpcCert: string;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.Credentials
- */
-export class Credentials implements GrpcMessage {
-  static id = 'ondewo.vtsi.Credentials';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new Credentials();
-    Credentials.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: Credentials) {
-    _instance.accountName = _instance.accountName || '';
-    _instance.password = _instance.password || '';
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: Credentials,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.accountName = _reader.readString();
-          break;
-        case 2:
-          _instance.password = _reader.readString();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    Credentials.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: Credentials,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.accountName) {
-      _writer.writeString(1, _instance.accountName);
-    }
-    if (_instance.password) {
-      _writer.writeString(2, _instance.password);
-    }
-  }
-
-  private _accountName: string;
-  private _password: string;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of Credentials to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<Credentials.AsObject>) {
-    _value = _value || {};
-    this.accountName = _value.accountName;
-    this.password = _value.password;
-    Credentials.refineValues(this);
-  }
-  get accountName(): string {
-    return this._accountName;
-  }
-  set accountName(value: string) {
-    this._accountName = value;
-  }
-  get password(): string {
-    return this._password;
-  }
-  set password(value: string) {
-    this._password = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    Credentials.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): Credentials.AsObject {
-    return {
-      accountName: this.accountName,
-      password: this.password
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): Credentials.AsProtobufJSON {
-    return {
-      accountName: this.accountName,
-      password: this.password
-    };
-  }
-}
-export module Credentials {
-  /**
-   * Standard JavaScript object representation for Credentials
-   */
-  export interface AsObject {
-    accountName: string;
-    password: string;
-  }
-
-  /**
-   * Protobuf JSON representation for Credentials
-   */
-  export interface AsProtobufJSON {
-    accountName: string;
-    password: string;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.NluVtsiConfig
- */
-export class NluVtsiConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.NluVtsiConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new NluVtsiConfig();
-    NluVtsiConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: NluVtsiConfig) {
-    _instance.nluBaseConfig = _instance.nluBaseConfig || undefined;
-
-    _instance.agentName = _instance.agentName || '';
-    _instance.languageCode = _instance.languageCode || '';
-    _instance.initialIntent = _instance.initialIntent || '';
-    _instance.contexts = _instance.contexts || [];
-    _instance.httpBasicAuthToken = _instance.httpBasicAuthToken || '';
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: NluVtsiConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.nluBaseConfig = new BaseServiceConfig();
-          _reader.readMessage(
-            _instance.nluBaseConfig,
-            BaseServiceConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 2:
-          _instance.credentials = new Credentials();
-          _reader.readMessage(
-            _instance.credentials,
-            Credentials.deserializeBinaryFromReader
-          );
-          break;
-        case 3:
-          _instance.authToken = _reader.readString();
-          break;
-        case 4:
-          _instance.agentName = _reader.readString();
-          break;
-        case 5:
-          _instance.languageCode = _reader.readString();
-          break;
-        case 6:
-          _instance.initialIntent = _reader.readString();
-          break;
-        case 7:
-          const messageInitializer7 = new ondewoNlu006.Context();
-          _reader.readMessage(
-            messageInitializer7,
-            ondewoNlu006.Context.deserializeBinaryFromReader
-          );
-          (_instance.contexts = _instance.contexts || []).push(
-            messageInitializer7
-          );
-          break;
-        case 8:
-          _instance.httpBasicAuthToken = _reader.readString();
-          break;
-        case 9:
-          _instance.platform = _reader.readEnum();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    NluVtsiConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: NluVtsiConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.nluBaseConfig) {
-      _writer.writeMessage(
-        1,
-        _instance.nluBaseConfig as any,
-        BaseServiceConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.credentials) {
-      _writer.writeMessage(
-        2,
-        _instance.credentials as any,
-        Credentials.serializeBinaryToWriter
-      );
-    }
-    if (_instance.authToken || _instance.authToken === '') {
-      _writer.writeString(3, _instance.authToken);
-    }
-    if (_instance.agentName) {
-      _writer.writeString(4, _instance.agentName);
-    }
-    if (_instance.languageCode) {
-      _writer.writeString(5, _instance.languageCode);
-    }
-    if (_instance.initialIntent) {
-      _writer.writeString(6, _instance.initialIntent);
-    }
-    if (_instance.contexts && _instance.contexts.length) {
-      _writer.writeRepeatedMessage(
-        7,
-        _instance.contexts as any,
-        ondewoNlu006.Context.serializeBinaryToWriter
-      );
-    }
-    if (_instance.httpBasicAuthToken) {
-      _writer.writeString(8, _instance.httpBasicAuthToken);
-    }
-    if (_instance.platform !== undefined && _instance.platform !== null) {
-      _writer.writeEnum(9, _instance.platform);
-    }
-  }
-
-  private _nluBaseConfig?: BaseServiceConfig;
-  private _credentials?: Credentials;
-  private _authToken: string;
-  private _agentName: string;
-  private _languageCode: string;
-  private _initialIntent: string;
-  private _contexts?: ondewoNlu006.Context[];
-  private _httpBasicAuthToken: string;
-  private _platform: ondewoNlu012.Intent.Message.Platform;
-
-  private _authentication: NluVtsiConfig.AuthenticationCase =
-    NluVtsiConfig.AuthenticationCase.none;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of NluVtsiConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<NluVtsiConfig.AsObject>) {
-    _value = _value || {};
-    this.nluBaseConfig = _value.nluBaseConfig
-      ? new BaseServiceConfig(_value.nluBaseConfig)
-      : undefined;
-    this.credentials = _value.credentials
-      ? new Credentials(_value.credentials)
-      : undefined;
-    this.authToken = _value.authToken;
-    this.agentName = _value.agentName;
-    this.languageCode = _value.languageCode;
-    this.initialIntent = _value.initialIntent;
-    this.contexts = (_value.contexts || []).map(
-      m => new ondewoNlu006.Context(m)
-    );
-    this.httpBasicAuthToken = _value.httpBasicAuthToken;
-    this.platform = _value.platform;
-    NluVtsiConfig.refineValues(this);
-  }
-  get nluBaseConfig(): BaseServiceConfig | undefined {
-    return this._nluBaseConfig;
-  }
-  set nluBaseConfig(value: BaseServiceConfig | undefined) {
-    this._nluBaseConfig = value;
-  }
-  get credentials(): Credentials | undefined {
-    return this._credentials;
-  }
-  set credentials(value: Credentials | undefined) {
-    if (value !== undefined && value !== null) {
-      this._authToken = undefined;
-      this._authentication = NluVtsiConfig.AuthenticationCase.credentials;
-    }
-    this._credentials = value;
-  }
-  get authToken(): string {
-    return this._authToken;
-  }
-  set authToken(value: string) {
-    if (value !== undefined && value !== null) {
-      this._credentials = undefined;
-      this._authentication = NluVtsiConfig.AuthenticationCase.authToken;
-    }
-    this._authToken = value;
-  }
-  get agentName(): string {
-    return this._agentName;
-  }
-  set agentName(value: string) {
-    this._agentName = value;
-  }
-  get languageCode(): string {
-    return this._languageCode;
-  }
-  set languageCode(value: string) {
-    this._languageCode = value;
-  }
-  get initialIntent(): string {
-    return this._initialIntent;
-  }
-  set initialIntent(value: string) {
-    this._initialIntent = value;
-  }
-  get contexts(): ondewoNlu006.Context[] | undefined {
-    return this._contexts;
-  }
-  set contexts(value: ondewoNlu006.Context[] | undefined) {
-    this._contexts = value;
-  }
-  get httpBasicAuthToken(): string {
-    return this._httpBasicAuthToken;
-  }
-  set httpBasicAuthToken(value: string) {
-    this._httpBasicAuthToken = value;
-  }
-  get platform(): ondewoNlu012.Intent.Message.Platform {
-    return this._platform;
-  }
-  set platform(value: ondewoNlu012.Intent.Message.Platform) {
-    this._platform = value;
-  }
-  get authentication() {
-    return this._authentication;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    NluVtsiConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): NluVtsiConfig.AsObject {
-    return {
-      nluBaseConfig: this.nluBaseConfig
-        ? this.nluBaseConfig.toObject()
-        : undefined,
-      credentials: this.credentials ? this.credentials.toObject() : undefined,
-      authToken: this.authToken,
-      agentName: this.agentName,
-      languageCode: this.languageCode,
-      initialIntent: this.initialIntent,
-      contexts: (this.contexts || []).map(m => m.toObject()),
-      httpBasicAuthToken: this.httpBasicAuthToken,
-      platform: this.platform
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): NluVtsiConfig.AsProtobufJSON {
-    return {
-      nluBaseConfig: this.nluBaseConfig
-        ? this.nluBaseConfig.toProtobufJSON(options)
-        : null,
-      credentials: this.credentials
-        ? this.credentials.toProtobufJSON(options)
-        : null,
-      authToken:
-        this.authToken === null || this.authToken === undefined
-          ? null
-          : this.authToken,
-      agentName: this.agentName,
-      languageCode: this.languageCode,
-      initialIntent: this.initialIntent,
-      contexts: (this.contexts || []).map(m => m.toProtobufJSON(options)),
-      httpBasicAuthToken: this.httpBasicAuthToken,
-      platform:
-        ondewoNlu012.Intent.Message.Platform[
-          this.platform === null || this.platform === undefined
-            ? 0
-            : this.platform
-        ]
-    };
-  }
-}
-export module NluVtsiConfig {
-  /**
-   * Standard JavaScript object representation for NluVtsiConfig
-   */
-  export interface AsObject {
-    nluBaseConfig?: BaseServiceConfig.AsObject;
-    credentials?: Credentials.AsObject;
-    authToken: string;
-    agentName: string;
-    languageCode: string;
-    initialIntent: string;
-    contexts?: ondewoNlu006.Context.AsObject[];
-    httpBasicAuthToken: string;
-    platform: ondewoNlu012.Intent.Message.Platform;
-  }
-
-  /**
-   * Protobuf JSON representation for NluVtsiConfig
-   */
-  export interface AsProtobufJSON {
-    nluBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
-    credentials: Credentials.AsProtobufJSON | null;
-    authToken: string | null;
-    agentName: string;
-    languageCode: string;
-    initialIntent: string;
-    contexts: ondewoNlu006.Context.AsProtobufJSON[] | null;
-    httpBasicAuthToken: string;
-    platform: string;
-  }
-  export enum AuthenticationCase {
-    none = 0,
-    credentials = 1,
-    authToken = 2
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.T2sVtsiConfig
- */
-export class T2sVtsiConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.T2sVtsiConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new T2sVtsiConfig();
-    T2sVtsiConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: T2sVtsiConfig) {
-    _instance.t2sBaseConfig = _instance.t2sBaseConfig || undefined;
-    _instance.t2sRequestConfig = _instance.t2sRequestConfig || undefined;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: T2sVtsiConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.t2sBaseConfig = new BaseServiceConfig();
-          _reader.readMessage(
-            _instance.t2sBaseConfig,
-            BaseServiceConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 2:
-          _instance.t2sRequestConfig = new ondewoT2s014.RequestConfig();
-          _reader.readMessage(
-            _instance.t2sRequestConfig,
-            ondewoT2s014.RequestConfig.deserializeBinaryFromReader
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    T2sVtsiConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: T2sVtsiConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.t2sBaseConfig) {
-      _writer.writeMessage(
-        1,
-        _instance.t2sBaseConfig as any,
-        BaseServiceConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.t2sRequestConfig) {
-      _writer.writeMessage(
-        2,
-        _instance.t2sRequestConfig as any,
-        ondewoT2s014.RequestConfig.serializeBinaryToWriter
-      );
-    }
-  }
-
-  private _t2sBaseConfig?: BaseServiceConfig;
-  private _t2sRequestConfig?: ondewoT2s014.RequestConfig;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of T2sVtsiConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<T2sVtsiConfig.AsObject>) {
-    _value = _value || {};
-    this.t2sBaseConfig = _value.t2sBaseConfig
-      ? new BaseServiceConfig(_value.t2sBaseConfig)
-      : undefined;
-    this.t2sRequestConfig = _value.t2sRequestConfig
-      ? new ondewoT2s014.RequestConfig(_value.t2sRequestConfig)
-      : undefined;
-    T2sVtsiConfig.refineValues(this);
-  }
-  get t2sBaseConfig(): BaseServiceConfig | undefined {
-    return this._t2sBaseConfig;
-  }
-  set t2sBaseConfig(value: BaseServiceConfig | undefined) {
-    this._t2sBaseConfig = value;
-  }
-  get t2sRequestConfig(): ondewoT2s014.RequestConfig | undefined {
-    return this._t2sRequestConfig;
-  }
-  set t2sRequestConfig(value: ondewoT2s014.RequestConfig | undefined) {
-    this._t2sRequestConfig = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    T2sVtsiConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): T2sVtsiConfig.AsObject {
-    return {
-      t2sBaseConfig: this.t2sBaseConfig
-        ? this.t2sBaseConfig.toObject()
-        : undefined,
-      t2sRequestConfig: this.t2sRequestConfig
-        ? this.t2sRequestConfig.toObject()
-        : undefined
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): T2sVtsiConfig.AsProtobufJSON {
-    return {
-      t2sBaseConfig: this.t2sBaseConfig
-        ? this.t2sBaseConfig.toProtobufJSON(options)
-        : null,
-      t2sRequestConfig: this.t2sRequestConfig
-        ? this.t2sRequestConfig.toProtobufJSON(options)
-        : null
-    };
-  }
-}
-export module T2sVtsiConfig {
-  /**
-   * Standard JavaScript object representation for T2sVtsiConfig
-   */
-  export interface AsObject {
-    t2sBaseConfig?: BaseServiceConfig.AsObject;
-    t2sRequestConfig?: ondewoT2s014.RequestConfig.AsObject;
-  }
-
-  /**
-   * Protobuf JSON representation for T2sVtsiConfig
-   */
-  export interface AsProtobufJSON {
-    t2sBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
-    t2sRequestConfig: ondewoT2s014.RequestConfig.AsProtobufJSON | null;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.S2tVtsiConfig
- */
-export class S2tVtsiConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.S2tVtsiConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new S2tVtsiConfig();
-    S2tVtsiConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: S2tVtsiConfig) {
-    _instance.s2tBaseConfig = _instance.s2tBaseConfig || undefined;
-    _instance.s2tTranscribeRequestConfig =
-      _instance.s2tTranscribeRequestConfig || undefined;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: S2tVtsiConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.s2tBaseConfig = new BaseServiceConfig();
-          _reader.readMessage(
-            _instance.s2tBaseConfig,
-            BaseServiceConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 2:
-          _instance.s2tTranscribeRequestConfig = new ondewoS2t013.TranscribeRequestConfig();
-          _reader.readMessage(
-            _instance.s2tTranscribeRequestConfig,
-            ondewoS2t013.TranscribeRequestConfig.deserializeBinaryFromReader
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    S2tVtsiConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: S2tVtsiConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.s2tBaseConfig) {
-      _writer.writeMessage(
-        1,
-        _instance.s2tBaseConfig as any,
-        BaseServiceConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.s2tTranscribeRequestConfig) {
-      _writer.writeMessage(
-        2,
-        _instance.s2tTranscribeRequestConfig as any,
-        ondewoS2t013.TranscribeRequestConfig.serializeBinaryToWriter
-      );
-    }
-  }
-
-  private _s2tBaseConfig?: BaseServiceConfig;
-  private _s2tTranscribeRequestConfig?: ondewoS2t013.TranscribeRequestConfig;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of S2tVtsiConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<S2tVtsiConfig.AsObject>) {
-    _value = _value || {};
-    this.s2tBaseConfig = _value.s2tBaseConfig
-      ? new BaseServiceConfig(_value.s2tBaseConfig)
-      : undefined;
-    this.s2tTranscribeRequestConfig = _value.s2tTranscribeRequestConfig
-      ? new ondewoS2t013.TranscribeRequestConfig(
-          _value.s2tTranscribeRequestConfig
-        )
-      : undefined;
-    S2tVtsiConfig.refineValues(this);
-  }
-  get s2tBaseConfig(): BaseServiceConfig | undefined {
-    return this._s2tBaseConfig;
-  }
-  set s2tBaseConfig(value: BaseServiceConfig | undefined) {
-    this._s2tBaseConfig = value;
-  }
-  get s2tTranscribeRequestConfig():
-    | ondewoS2t013.TranscribeRequestConfig
-    | undefined {
-    return this._s2tTranscribeRequestConfig;
-  }
-  set s2tTranscribeRequestConfig(
-    value: ondewoS2t013.TranscribeRequestConfig | undefined
-  ) {
-    this._s2tTranscribeRequestConfig = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    S2tVtsiConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): S2tVtsiConfig.AsObject {
-    return {
-      s2tBaseConfig: this.s2tBaseConfig
-        ? this.s2tBaseConfig.toObject()
-        : undefined,
-      s2tTranscribeRequestConfig: this.s2tTranscribeRequestConfig
-        ? this.s2tTranscribeRequestConfig.toObject()
-        : undefined
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): S2tVtsiConfig.AsProtobufJSON {
-    return {
-      s2tBaseConfig: this.s2tBaseConfig
-        ? this.s2tBaseConfig.toProtobufJSON(options)
-        : null,
-      s2tTranscribeRequestConfig: this.s2tTranscribeRequestConfig
-        ? this.s2tTranscribeRequestConfig.toProtobufJSON(options)
-        : null
-    };
-  }
-}
-export module S2tVtsiConfig {
-  /**
-   * Standard JavaScript object representation for S2tVtsiConfig
-   */
-  export interface AsObject {
-    s2tBaseConfig?: BaseServiceConfig.AsObject;
-    s2tTranscribeRequestConfig?: ondewoS2t013.TranscribeRequestConfig.AsObject;
-  }
-
-  /**
-   * Protobuf JSON representation for S2tVtsiConfig
-   */
-  export interface AsProtobufJSON {
-    s2tBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
-    s2tTranscribeRequestConfig: ondewoS2t013.TranscribeRequestConfig.AsProtobufJSON | null;
-  }
-}
-
 /**
  * Message implementation for ondewo.vtsi.AsteriskConfig
  */
@@ -1211,10 +157,10 @@ export class AsteriskConfig implements GrpcMessage {
 
       switch (_reader.getFieldNumber()) {
         case 1:
-          _instance.asteriskBaseConfig = new BaseServiceConfig();
+          _instance.asteriskBaseConfig = new ondewoVtsi013.BaseServiceConfig();
           _reader.readMessage(
             _instance.asteriskBaseConfig,
-            BaseServiceConfig.deserializeBinaryFromReader
+            ondewoVtsi013.BaseServiceConfig.deserializeBinaryFromReader
           );
           break;
         default:
@@ -1238,12 +184,12 @@ export class AsteriskConfig implements GrpcMessage {
       _writer.writeMessage(
         1,
         _instance.asteriskBaseConfig as any,
-        BaseServiceConfig.serializeBinaryToWriter
+        ondewoVtsi013.BaseServiceConfig.serializeBinaryToWriter
       );
     }
   }
 
-  private _asteriskBaseConfig?: BaseServiceConfig;
+  private _asteriskBaseConfig?: ondewoVtsi013.BaseServiceConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1252,14 +198,14 @@ export class AsteriskConfig implements GrpcMessage {
   constructor(_value?: RecursivePartial<AsteriskConfig.AsObject>) {
     _value = _value || {};
     this.asteriskBaseConfig = _value.asteriskBaseConfig
-      ? new BaseServiceConfig(_value.asteriskBaseConfig)
+      ? new ondewoVtsi013.BaseServiceConfig(_value.asteriskBaseConfig)
       : undefined;
     AsteriskConfig.refineValues(this);
   }
-  get asteriskBaseConfig(): BaseServiceConfig | undefined {
+  get asteriskBaseConfig(): ondewoVtsi013.BaseServiceConfig | undefined {
     return this._asteriskBaseConfig;
   }
-  set asteriskBaseConfig(value: BaseServiceConfig | undefined) {
+  set asteriskBaseConfig(value: ondewoVtsi013.BaseServiceConfig | undefined) {
     this._asteriskBaseConfig = value;
   }
 
@@ -1312,4409 +258,14 @@ export module AsteriskConfig {
    * Standard JavaScript object representation for AsteriskConfig
    */
   export interface AsObject {
-    asteriskBaseConfig?: BaseServiceConfig.AsObject;
+    asteriskBaseConfig?: ondewoVtsi013.BaseServiceConfig.AsObject;
   }
 
   /**
    * Protobuf JSON representation for AsteriskConfig
    */
   export interface AsProtobufJSON {
-    asteriskBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.CommonServicesConfig
- */
-export class CommonServicesConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.CommonServicesConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new CommonServicesConfig();
-    CommonServicesConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: CommonServicesConfig) {
-    _instance.s2tVtsiConfig = _instance.s2tVtsiConfig || undefined;
-    _instance.nluVtsiConfig = _instance.nluVtsiConfig || undefined;
-    _instance.t2sVtsiConfig = _instance.t2sVtsiConfig || undefined;
-    _instance.csiVtsiConfig = _instance.csiVtsiConfig || undefined;
-    _instance.voiceInteractionConfig =
-      _instance.voiceInteractionConfig || undefined;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: CommonServicesConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.s2tVtsiConfig = new S2tVtsiConfig();
-          _reader.readMessage(
-            _instance.s2tVtsiConfig,
-            S2tVtsiConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 2:
-          _instance.nluVtsiConfig = new NluVtsiConfig();
-          _reader.readMessage(
-            _instance.nluVtsiConfig,
-            NluVtsiConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 3:
-          _instance.t2sVtsiConfig = new T2sVtsiConfig();
-          _reader.readMessage(
-            _instance.t2sVtsiConfig,
-            T2sVtsiConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 4:
-          _instance.csiVtsiConfig = new CsiVtsiConfig();
-          _reader.readMessage(
-            _instance.csiVtsiConfig,
-            CsiVtsiConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 5:
-          _instance.voiceInteractionConfig = new VoiceInteractionConfig();
-          _reader.readMessage(
-            _instance.voiceInteractionConfig,
-            VoiceInteractionConfig.deserializeBinaryFromReader
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    CommonServicesConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: CommonServicesConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.s2tVtsiConfig) {
-      _writer.writeMessage(
-        1,
-        _instance.s2tVtsiConfig as any,
-        S2tVtsiConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.nluVtsiConfig) {
-      _writer.writeMessage(
-        2,
-        _instance.nluVtsiConfig as any,
-        NluVtsiConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.t2sVtsiConfig) {
-      _writer.writeMessage(
-        3,
-        _instance.t2sVtsiConfig as any,
-        T2sVtsiConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.csiVtsiConfig) {
-      _writer.writeMessage(
-        4,
-        _instance.csiVtsiConfig as any,
-        CsiVtsiConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.voiceInteractionConfig) {
-      _writer.writeMessage(
-        5,
-        _instance.voiceInteractionConfig as any,
-        VoiceInteractionConfig.serializeBinaryToWriter
-      );
-    }
-  }
-
-  private _s2tVtsiConfig?: S2tVtsiConfig;
-  private _nluVtsiConfig?: NluVtsiConfig;
-  private _t2sVtsiConfig?: T2sVtsiConfig;
-  private _csiVtsiConfig?: CsiVtsiConfig;
-  private _voiceInteractionConfig?: VoiceInteractionConfig;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of CommonServicesConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<CommonServicesConfig.AsObject>) {
-    _value = _value || {};
-    this.s2tVtsiConfig = _value.s2tVtsiConfig
-      ? new S2tVtsiConfig(_value.s2tVtsiConfig)
-      : undefined;
-    this.nluVtsiConfig = _value.nluVtsiConfig
-      ? new NluVtsiConfig(_value.nluVtsiConfig)
-      : undefined;
-    this.t2sVtsiConfig = _value.t2sVtsiConfig
-      ? new T2sVtsiConfig(_value.t2sVtsiConfig)
-      : undefined;
-    this.csiVtsiConfig = _value.csiVtsiConfig
-      ? new CsiVtsiConfig(_value.csiVtsiConfig)
-      : undefined;
-    this.voiceInteractionConfig = _value.voiceInteractionConfig
-      ? new VoiceInteractionConfig(_value.voiceInteractionConfig)
-      : undefined;
-    CommonServicesConfig.refineValues(this);
-  }
-  get s2tVtsiConfig(): S2tVtsiConfig | undefined {
-    return this._s2tVtsiConfig;
-  }
-  set s2tVtsiConfig(value: S2tVtsiConfig | undefined) {
-    this._s2tVtsiConfig = value;
-  }
-  get nluVtsiConfig(): NluVtsiConfig | undefined {
-    return this._nluVtsiConfig;
-  }
-  set nluVtsiConfig(value: NluVtsiConfig | undefined) {
-    this._nluVtsiConfig = value;
-  }
-  get t2sVtsiConfig(): T2sVtsiConfig | undefined {
-    return this._t2sVtsiConfig;
-  }
-  set t2sVtsiConfig(value: T2sVtsiConfig | undefined) {
-    this._t2sVtsiConfig = value;
-  }
-  get csiVtsiConfig(): CsiVtsiConfig | undefined {
-    return this._csiVtsiConfig;
-  }
-  set csiVtsiConfig(value: CsiVtsiConfig | undefined) {
-    this._csiVtsiConfig = value;
-  }
-  get voiceInteractionConfig(): VoiceInteractionConfig | undefined {
-    return this._voiceInteractionConfig;
-  }
-  set voiceInteractionConfig(value: VoiceInteractionConfig | undefined) {
-    this._voiceInteractionConfig = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    CommonServicesConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): CommonServicesConfig.AsObject {
-    return {
-      s2tVtsiConfig: this.s2tVtsiConfig
-        ? this.s2tVtsiConfig.toObject()
-        : undefined,
-      nluVtsiConfig: this.nluVtsiConfig
-        ? this.nluVtsiConfig.toObject()
-        : undefined,
-      t2sVtsiConfig: this.t2sVtsiConfig
-        ? this.t2sVtsiConfig.toObject()
-        : undefined,
-      csiVtsiConfig: this.csiVtsiConfig
-        ? this.csiVtsiConfig.toObject()
-        : undefined,
-      voiceInteractionConfig: this.voiceInteractionConfig
-        ? this.voiceInteractionConfig.toObject()
-        : undefined
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): CommonServicesConfig.AsProtobufJSON {
-    return {
-      s2tVtsiConfig: this.s2tVtsiConfig
-        ? this.s2tVtsiConfig.toProtobufJSON(options)
-        : null,
-      nluVtsiConfig: this.nluVtsiConfig
-        ? this.nluVtsiConfig.toProtobufJSON(options)
-        : null,
-      t2sVtsiConfig: this.t2sVtsiConfig
-        ? this.t2sVtsiConfig.toProtobufJSON(options)
-        : null,
-      csiVtsiConfig: this.csiVtsiConfig
-        ? this.csiVtsiConfig.toProtobufJSON(options)
-        : null,
-      voiceInteractionConfig: this.voiceInteractionConfig
-        ? this.voiceInteractionConfig.toProtobufJSON(options)
-        : null
-    };
-  }
-}
-export module CommonServicesConfig {
-  /**
-   * Standard JavaScript object representation for CommonServicesConfig
-   */
-  export interface AsObject {
-    s2tVtsiConfig?: S2tVtsiConfig.AsObject;
-    nluVtsiConfig?: NluVtsiConfig.AsObject;
-    t2sVtsiConfig?: T2sVtsiConfig.AsObject;
-    csiVtsiConfig?: CsiVtsiConfig.AsObject;
-    voiceInteractionConfig?: VoiceInteractionConfig.AsObject;
-  }
-
-  /**
-   * Protobuf JSON representation for CommonServicesConfig
-   */
-  export interface AsProtobufJSON {
-    s2tVtsiConfig: S2tVtsiConfig.AsProtobufJSON | null;
-    nluVtsiConfig: NluVtsiConfig.AsProtobufJSON | null;
-    t2sVtsiConfig: T2sVtsiConfig.AsProtobufJSON | null;
-    csiVtsiConfig: CsiVtsiConfig.AsProtobufJSON | null;
-    voiceInteractionConfig: VoiceInteractionConfig.AsProtobufJSON | null;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.VoiceInteractionConfig
- */
-export class VoiceInteractionConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.VoiceInteractionConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new VoiceInteractionConfig();
-    VoiceInteractionConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: VoiceInteractionConfig) {
-    _instance.turnDetectionConfig = _instance.turnDetectionConfig || undefined;
-    _instance.interruptionHandlingConfig =
-      _instance.interruptionHandlingConfig || undefined;
-    _instance.responseTimingConfig =
-      _instance.responseTimingConfig || undefined;
-    _instance.answeringMachineDetectionConfig =
-      _instance.answeringMachineDetectionConfig || undefined;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: VoiceInteractionConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.turnDetectionConfig = new TurnDetectionConfig();
-          _reader.readMessage(
-            _instance.turnDetectionConfig,
-            TurnDetectionConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 2:
-          _instance.interruptionHandlingConfig = new InterruptionHandlingConfig();
-          _reader.readMessage(
-            _instance.interruptionHandlingConfig,
-            InterruptionHandlingConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 3:
-          _instance.responseTimingConfig = new ResponseTimingConfig();
-          _reader.readMessage(
-            _instance.responseTimingConfig,
-            ResponseTimingConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 4:
-          _instance.answeringMachineDetectionConfig = new AnsweringMachineDetectionConfig();
-          _reader.readMessage(
-            _instance.answeringMachineDetectionConfig,
-            AnsweringMachineDetectionConfig.deserializeBinaryFromReader
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    VoiceInteractionConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: VoiceInteractionConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.turnDetectionConfig) {
-      _writer.writeMessage(
-        1,
-        _instance.turnDetectionConfig as any,
-        TurnDetectionConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.interruptionHandlingConfig) {
-      _writer.writeMessage(
-        2,
-        _instance.interruptionHandlingConfig as any,
-        InterruptionHandlingConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.responseTimingConfig) {
-      _writer.writeMessage(
-        3,
-        _instance.responseTimingConfig as any,
-        ResponseTimingConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.answeringMachineDetectionConfig) {
-      _writer.writeMessage(
-        4,
-        _instance.answeringMachineDetectionConfig as any,
-        AnsweringMachineDetectionConfig.serializeBinaryToWriter
-      );
-    }
-  }
-
-  private _turnDetectionConfig?: TurnDetectionConfig;
-  private _interruptionHandlingConfig?: InterruptionHandlingConfig;
-  private _responseTimingConfig?: ResponseTimingConfig;
-  private _answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of VoiceInteractionConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<VoiceInteractionConfig.AsObject>) {
-    _value = _value || {};
-    this.turnDetectionConfig = _value.turnDetectionConfig
-      ? new TurnDetectionConfig(_value.turnDetectionConfig)
-      : undefined;
-    this.interruptionHandlingConfig = _value.interruptionHandlingConfig
-      ? new InterruptionHandlingConfig(_value.interruptionHandlingConfig)
-      : undefined;
-    this.responseTimingConfig = _value.responseTimingConfig
-      ? new ResponseTimingConfig(_value.responseTimingConfig)
-      : undefined;
-    this.answeringMachineDetectionConfig = _value.answeringMachineDetectionConfig
-      ? new AnsweringMachineDetectionConfig(
-          _value.answeringMachineDetectionConfig
-        )
-      : undefined;
-    VoiceInteractionConfig.refineValues(this);
-  }
-  get turnDetectionConfig(): TurnDetectionConfig | undefined {
-    return this._turnDetectionConfig;
-  }
-  set turnDetectionConfig(value: TurnDetectionConfig | undefined) {
-    this._turnDetectionConfig = value;
-  }
-  get interruptionHandlingConfig(): InterruptionHandlingConfig | undefined {
-    return this._interruptionHandlingConfig;
-  }
-  set interruptionHandlingConfig(
-    value: InterruptionHandlingConfig | undefined
-  ) {
-    this._interruptionHandlingConfig = value;
-  }
-  get responseTimingConfig(): ResponseTimingConfig | undefined {
-    return this._responseTimingConfig;
-  }
-  set responseTimingConfig(value: ResponseTimingConfig | undefined) {
-    this._responseTimingConfig = value;
-  }
-  get answeringMachineDetectionConfig():
-    | AnsweringMachineDetectionConfig
-    | undefined {
-    return this._answeringMachineDetectionConfig;
-  }
-  set answeringMachineDetectionConfig(
-    value: AnsweringMachineDetectionConfig | undefined
-  ) {
-    this._answeringMachineDetectionConfig = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    VoiceInteractionConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): VoiceInteractionConfig.AsObject {
-    return {
-      turnDetectionConfig: this.turnDetectionConfig
-        ? this.turnDetectionConfig.toObject()
-        : undefined,
-      interruptionHandlingConfig: this.interruptionHandlingConfig
-        ? this.interruptionHandlingConfig.toObject()
-        : undefined,
-      responseTimingConfig: this.responseTimingConfig
-        ? this.responseTimingConfig.toObject()
-        : undefined,
-      answeringMachineDetectionConfig: this.answeringMachineDetectionConfig
-        ? this.answeringMachineDetectionConfig.toObject()
-        : undefined
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): VoiceInteractionConfig.AsProtobufJSON {
-    return {
-      turnDetectionConfig: this.turnDetectionConfig
-        ? this.turnDetectionConfig.toProtobufJSON(options)
-        : null,
-      interruptionHandlingConfig: this.interruptionHandlingConfig
-        ? this.interruptionHandlingConfig.toProtobufJSON(options)
-        : null,
-      responseTimingConfig: this.responseTimingConfig
-        ? this.responseTimingConfig.toProtobufJSON(options)
-        : null,
-      answeringMachineDetectionConfig: this.answeringMachineDetectionConfig
-        ? this.answeringMachineDetectionConfig.toProtobufJSON(options)
-        : null
-    };
-  }
-}
-export module VoiceInteractionConfig {
-  /**
-   * Standard JavaScript object representation for VoiceInteractionConfig
-   */
-  export interface AsObject {
-    turnDetectionConfig?: TurnDetectionConfig.AsObject;
-    interruptionHandlingConfig?: InterruptionHandlingConfig.AsObject;
-    responseTimingConfig?: ResponseTimingConfig.AsObject;
-    answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig.AsObject;
-  }
-
-  /**
-   * Protobuf JSON representation for VoiceInteractionConfig
-   */
-  export interface AsProtobufJSON {
-    turnDetectionConfig: TurnDetectionConfig.AsProtobufJSON | null;
-    interruptionHandlingConfig: InterruptionHandlingConfig.AsProtobufJSON | null;
-    responseTimingConfig: ResponseTimingConfig.AsProtobufJSON | null;
-    answeringMachineDetectionConfig: AnsweringMachineDetectionConfig.AsProtobufJSON | null;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.TurnDetectionConfig
- */
-export class TurnDetectionConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.TurnDetectionConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new TurnDetectionConfig();
-    TurnDetectionConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: TurnDetectionConfig) {
-    _instance.mode = _instance.mode || 0;
-    _instance.turnEagerness = _instance.turnEagerness || 0;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: TurnDetectionConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.mode = _reader.readEnum();
-          break;
-        case 2:
-          _instance.minEndpointingDelaySeconds = _reader.readFloat();
-          break;
-        case 3:
-          _instance.maxEndpointingDelaySeconds = _reader.readFloat();
-          break;
-        case 4:
-          _instance.turnEagerness = _reader.readEnum();
-          break;
-        case 5:
-          _instance.turnDetectionSystemPrompt = _reader.readString();
-          break;
-        case 6:
-          _instance.turnDetectionUserPrompt = _reader.readString();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    TurnDetectionConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: TurnDetectionConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.mode) {
-      _writer.writeEnum(1, _instance.mode);
-    }
-    if (
-      _instance.minEndpointingDelaySeconds !== undefined &&
-      _instance.minEndpointingDelaySeconds !== null
-    ) {
-      _writer.writeFloat(2, _instance.minEndpointingDelaySeconds);
-    }
-    if (
-      _instance.maxEndpointingDelaySeconds !== undefined &&
-      _instance.maxEndpointingDelaySeconds !== null
-    ) {
-      _writer.writeFloat(3, _instance.maxEndpointingDelaySeconds);
-    }
-    if (_instance.turnEagerness) {
-      _writer.writeEnum(4, _instance.turnEagerness);
-    }
-    if (
-      _instance.turnDetectionSystemPrompt !== undefined &&
-      _instance.turnDetectionSystemPrompt !== null
-    ) {
-      _writer.writeString(5, _instance.turnDetectionSystemPrompt);
-    }
-    if (
-      _instance.turnDetectionUserPrompt !== undefined &&
-      _instance.turnDetectionUserPrompt !== null
-    ) {
-      _writer.writeString(6, _instance.turnDetectionUserPrompt);
-    }
-  }
-
-  private _mode: TurnDetectionConfig.TurnDetectionMode;
-  private _minEndpointingDelaySeconds: number;
-  private _maxEndpointingDelaySeconds: number;
-  private _turnEagerness: TurnDetectionConfig.TurnEagerness;
-  private _turnDetectionSystemPrompt: string;
-  private _turnDetectionUserPrompt: string;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of TurnDetectionConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<TurnDetectionConfig.AsObject>) {
-    _value = _value || {};
-    this.mode = _value.mode;
-    this.minEndpointingDelaySeconds = _value.minEndpointingDelaySeconds;
-    this.maxEndpointingDelaySeconds = _value.maxEndpointingDelaySeconds;
-    this.turnEagerness = _value.turnEagerness;
-    this.turnDetectionSystemPrompt = _value.turnDetectionSystemPrompt;
-    this.turnDetectionUserPrompt = _value.turnDetectionUserPrompt;
-    TurnDetectionConfig.refineValues(this);
-  }
-  get mode(): TurnDetectionConfig.TurnDetectionMode {
-    return this._mode;
-  }
-  set mode(value: TurnDetectionConfig.TurnDetectionMode) {
-    this._mode = value;
-  }
-  get minEndpointingDelaySeconds(): number {
-    return this._minEndpointingDelaySeconds;
-  }
-  set minEndpointingDelaySeconds(value: number) {
-    this._minEndpointingDelaySeconds = value;
-  }
-  get maxEndpointingDelaySeconds(): number {
-    return this._maxEndpointingDelaySeconds;
-  }
-  set maxEndpointingDelaySeconds(value: number) {
-    this._maxEndpointingDelaySeconds = value;
-  }
-  get turnEagerness(): TurnDetectionConfig.TurnEagerness {
-    return this._turnEagerness;
-  }
-  set turnEagerness(value: TurnDetectionConfig.TurnEagerness) {
-    this._turnEagerness = value;
-  }
-  get turnDetectionSystemPrompt(): string {
-    return this._turnDetectionSystemPrompt;
-  }
-  set turnDetectionSystemPrompt(value: string) {
-    this._turnDetectionSystemPrompt = value;
-  }
-  get turnDetectionUserPrompt(): string {
-    return this._turnDetectionUserPrompt;
-  }
-  set turnDetectionUserPrompt(value: string) {
-    this._turnDetectionUserPrompt = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    TurnDetectionConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): TurnDetectionConfig.AsObject {
-    return {
-      mode: this.mode,
-      minEndpointingDelaySeconds: this.minEndpointingDelaySeconds,
-      maxEndpointingDelaySeconds: this.maxEndpointingDelaySeconds,
-      turnEagerness: this.turnEagerness,
-      turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
-      turnDetectionUserPrompt: this.turnDetectionUserPrompt
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): TurnDetectionConfig.AsProtobufJSON {
-    return {
-      mode:
-        TurnDetectionConfig.TurnDetectionMode[
-          this.mode === null || this.mode === undefined ? 0 : this.mode
-        ],
-      minEndpointingDelaySeconds: this.minEndpointingDelaySeconds,
-      maxEndpointingDelaySeconds: this.maxEndpointingDelaySeconds,
-      turnEagerness:
-        TurnDetectionConfig.TurnEagerness[
-          this.turnEagerness === null || this.turnEagerness === undefined
-            ? 0
-            : this.turnEagerness
-        ],
-      turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
-      turnDetectionUserPrompt: this.turnDetectionUserPrompt
-    };
-  }
-}
-export module TurnDetectionConfig {
-  /**
-   * Standard JavaScript object representation for TurnDetectionConfig
-   */
-  export interface AsObject {
-    mode: TurnDetectionConfig.TurnDetectionMode;
-    minEndpointingDelaySeconds: number;
-    maxEndpointingDelaySeconds: number;
-    turnEagerness: TurnDetectionConfig.TurnEagerness;
-    turnDetectionSystemPrompt: string;
-    turnDetectionUserPrompt: string;
-  }
-
-  /**
-   * Protobuf JSON representation for TurnDetectionConfig
-   */
-  export interface AsProtobufJSON {
-    mode: string;
-    minEndpointingDelaySeconds: number;
-    maxEndpointingDelaySeconds: number;
-    turnEagerness: string;
-    turnDetectionSystemPrompt: string;
-    turnDetectionUserPrompt: string;
-  }
-  export enum TurnDetectionMode {
-    TURN_DETECTION_MODE_UNSPECIFIED = 0,
-    VAD = 1,
-    SEMANTIC_MODEL = 2,
-    AUDIO_MODEL = 3
-  }
-  export enum TurnEagerness {
-    TURN_EAGERNESS_UNSPECIFIED = 0,
-    PATIENT = 1,
-    NORMAL = 2,
-    EAGER = 3
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.InterruptionHandlingConfig
- */
-export class InterruptionHandlingConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.InterruptionHandlingConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new InterruptionHandlingConfig();
-    InterruptionHandlingConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: InterruptionHandlingConfig) {
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: InterruptionHandlingConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.enabled = _reader.readBool();
-          break;
-        case 2:
-          _instance.minInterruptionDurationSeconds = _reader.readFloat();
-          break;
-        case 3:
-          _instance.minInterruptionWords = _reader.readInt32();
-          break;
-        case 4:
-          _instance.falseInterruptionTimeoutSeconds = _reader.readFloat();
-          break;
-        case 5:
-          _instance.resumeAfterFalseInterruption = _reader.readBool();
-          break;
-        case 6:
-          _instance.backoffSeconds = _reader.readFloat();
-          break;
-        case 7:
-          _instance.firstMessageProtectedSeconds = _reader.readFloat();
-          break;
-        case 8:
-          _instance.transcribeOnDisabledInterruptions = _reader.readBool();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    InterruptionHandlingConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: InterruptionHandlingConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.enabled !== undefined && _instance.enabled !== null) {
-      _writer.writeBool(1, _instance.enabled);
-    }
-    if (
-      _instance.minInterruptionDurationSeconds !== undefined &&
-      _instance.minInterruptionDurationSeconds !== null
-    ) {
-      _writer.writeFloat(2, _instance.minInterruptionDurationSeconds);
-    }
-    if (
-      _instance.minInterruptionWords !== undefined &&
-      _instance.minInterruptionWords !== null
-    ) {
-      _writer.writeInt32(3, _instance.minInterruptionWords);
-    }
-    if (
-      _instance.falseInterruptionTimeoutSeconds !== undefined &&
-      _instance.falseInterruptionTimeoutSeconds !== null
-    ) {
-      _writer.writeFloat(4, _instance.falseInterruptionTimeoutSeconds);
-    }
-    if (
-      _instance.resumeAfterFalseInterruption !== undefined &&
-      _instance.resumeAfterFalseInterruption !== null
-    ) {
-      _writer.writeBool(5, _instance.resumeAfterFalseInterruption);
-    }
-    if (
-      _instance.backoffSeconds !== undefined &&
-      _instance.backoffSeconds !== null
-    ) {
-      _writer.writeFloat(6, _instance.backoffSeconds);
-    }
-    if (
-      _instance.firstMessageProtectedSeconds !== undefined &&
-      _instance.firstMessageProtectedSeconds !== null
-    ) {
-      _writer.writeFloat(7, _instance.firstMessageProtectedSeconds);
-    }
-    if (
-      _instance.transcribeOnDisabledInterruptions !== undefined &&
-      _instance.transcribeOnDisabledInterruptions !== null
-    ) {
-      _writer.writeBool(8, _instance.transcribeOnDisabledInterruptions);
-    }
-  }
-
-  private _enabled: boolean;
-  private _minInterruptionDurationSeconds: number;
-  private _minInterruptionWords: number;
-  private _falseInterruptionTimeoutSeconds: number;
-  private _resumeAfterFalseInterruption: boolean;
-  private _backoffSeconds: number;
-  private _firstMessageProtectedSeconds: number;
-  private _transcribeOnDisabledInterruptions: boolean;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of InterruptionHandlingConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<InterruptionHandlingConfig.AsObject>) {
-    _value = _value || {};
-    this.enabled = _value.enabled;
-    this.minInterruptionDurationSeconds = _value.minInterruptionDurationSeconds;
-    this.minInterruptionWords = _value.minInterruptionWords;
-    this.falseInterruptionTimeoutSeconds =
-      _value.falseInterruptionTimeoutSeconds;
-    this.resumeAfterFalseInterruption = _value.resumeAfterFalseInterruption;
-    this.backoffSeconds = _value.backoffSeconds;
-    this.firstMessageProtectedSeconds = _value.firstMessageProtectedSeconds;
-    this.transcribeOnDisabledInterruptions =
-      _value.transcribeOnDisabledInterruptions;
-    InterruptionHandlingConfig.refineValues(this);
-  }
-  get enabled(): boolean {
-    return this._enabled;
-  }
-  set enabled(value: boolean) {
-    this._enabled = value;
-  }
-  get minInterruptionDurationSeconds(): number {
-    return this._minInterruptionDurationSeconds;
-  }
-  set minInterruptionDurationSeconds(value: number) {
-    this._minInterruptionDurationSeconds = value;
-  }
-  get minInterruptionWords(): number {
-    return this._minInterruptionWords;
-  }
-  set minInterruptionWords(value: number) {
-    this._minInterruptionWords = value;
-  }
-  get falseInterruptionTimeoutSeconds(): number {
-    return this._falseInterruptionTimeoutSeconds;
-  }
-  set falseInterruptionTimeoutSeconds(value: number) {
-    this._falseInterruptionTimeoutSeconds = value;
-  }
-  get resumeAfterFalseInterruption(): boolean {
-    return this._resumeAfterFalseInterruption;
-  }
-  set resumeAfterFalseInterruption(value: boolean) {
-    this._resumeAfterFalseInterruption = value;
-  }
-  get backoffSeconds(): number {
-    return this._backoffSeconds;
-  }
-  set backoffSeconds(value: number) {
-    this._backoffSeconds = value;
-  }
-  get firstMessageProtectedSeconds(): number {
-    return this._firstMessageProtectedSeconds;
-  }
-  set firstMessageProtectedSeconds(value: number) {
-    this._firstMessageProtectedSeconds = value;
-  }
-  get transcribeOnDisabledInterruptions(): boolean {
-    return this._transcribeOnDisabledInterruptions;
-  }
-  set transcribeOnDisabledInterruptions(value: boolean) {
-    this._transcribeOnDisabledInterruptions = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    InterruptionHandlingConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): InterruptionHandlingConfig.AsObject {
-    return {
-      enabled: this.enabled,
-      minInterruptionDurationSeconds: this.minInterruptionDurationSeconds,
-      minInterruptionWords: this.minInterruptionWords,
-      falseInterruptionTimeoutSeconds: this.falseInterruptionTimeoutSeconds,
-      resumeAfterFalseInterruption: this.resumeAfterFalseInterruption,
-      backoffSeconds: this.backoffSeconds,
-      firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
-      transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): InterruptionHandlingConfig.AsProtobufJSON {
-    return {
-      enabled: this.enabled,
-      minInterruptionDurationSeconds: this.minInterruptionDurationSeconds,
-      minInterruptionWords: this.minInterruptionWords,
-      falseInterruptionTimeoutSeconds: this.falseInterruptionTimeoutSeconds,
-      resumeAfterFalseInterruption: this.resumeAfterFalseInterruption,
-      backoffSeconds: this.backoffSeconds,
-      firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
-      transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions
-    };
-  }
-}
-export module InterruptionHandlingConfig {
-  /**
-   * Standard JavaScript object representation for InterruptionHandlingConfig
-   */
-  export interface AsObject {
-    enabled: boolean;
-    minInterruptionDurationSeconds: number;
-    minInterruptionWords: number;
-    falseInterruptionTimeoutSeconds: number;
-    resumeAfterFalseInterruption: boolean;
-    backoffSeconds: number;
-    firstMessageProtectedSeconds: number;
-    transcribeOnDisabledInterruptions: boolean;
-  }
-
-  /**
-   * Protobuf JSON representation for InterruptionHandlingConfig
-   */
-  export interface AsProtobufJSON {
-    enabled: boolean;
-    minInterruptionDurationSeconds: number;
-    minInterruptionWords: number;
-    falseInterruptionTimeoutSeconds: number;
-    resumeAfterFalseInterruption: boolean;
-    backoffSeconds: number;
-    firstMessageProtectedSeconds: number;
-    transcribeOnDisabledInterruptions: boolean;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.ResponseTimingConfig
- */
-export class ResponseTimingConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.ResponseTimingConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new ResponseTimingConfig();
-    ResponseTimingConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: ResponseTimingConfig) {
-    _instance.softTimeoutConfig = _instance.softTimeoutConfig || undefined;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: ResponseTimingConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.turnTimeoutSeconds = _reader.readFloat();
-          break;
-        case 2:
-          _instance.silenceEndCallTimeoutSeconds = _reader.readFloat();
-          break;
-        case 3:
-          _instance.softTimeoutConfig = new SoftTimeoutConfig();
-          _reader.readMessage(
-            _instance.softTimeoutConfig,
-            SoftTimeoutConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 4:
-          _instance.preemptiveGenerationEnabled = _reader.readBool();
-          break;
-        case 5:
-          _instance.t2sChunkedStreamingEnabled = _reader.readBool();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    ResponseTimingConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: ResponseTimingConfig,
-    _writer: BinaryWriter
-  ) {
-    if (
-      _instance.turnTimeoutSeconds !== undefined &&
-      _instance.turnTimeoutSeconds !== null
-    ) {
-      _writer.writeFloat(1, _instance.turnTimeoutSeconds);
-    }
-    if (
-      _instance.silenceEndCallTimeoutSeconds !== undefined &&
-      _instance.silenceEndCallTimeoutSeconds !== null
-    ) {
-      _writer.writeFloat(2, _instance.silenceEndCallTimeoutSeconds);
-    }
-    if (_instance.softTimeoutConfig) {
-      _writer.writeMessage(
-        3,
-        _instance.softTimeoutConfig as any,
-        SoftTimeoutConfig.serializeBinaryToWriter
-      );
-    }
-    if (
-      _instance.preemptiveGenerationEnabled !== undefined &&
-      _instance.preemptiveGenerationEnabled !== null
-    ) {
-      _writer.writeBool(4, _instance.preemptiveGenerationEnabled);
-    }
-    if (
-      _instance.t2sChunkedStreamingEnabled !== undefined &&
-      _instance.t2sChunkedStreamingEnabled !== null
-    ) {
-      _writer.writeBool(5, _instance.t2sChunkedStreamingEnabled);
-    }
-  }
-
-  private _turnTimeoutSeconds: number;
-  private _silenceEndCallTimeoutSeconds: number;
-  private _softTimeoutConfig?: SoftTimeoutConfig;
-  private _preemptiveGenerationEnabled: boolean;
-  private _t2sChunkedStreamingEnabled: boolean;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of ResponseTimingConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<ResponseTimingConfig.AsObject>) {
-    _value = _value || {};
-    this.turnTimeoutSeconds = _value.turnTimeoutSeconds;
-    this.silenceEndCallTimeoutSeconds = _value.silenceEndCallTimeoutSeconds;
-    this.softTimeoutConfig = _value.softTimeoutConfig
-      ? new SoftTimeoutConfig(_value.softTimeoutConfig)
-      : undefined;
-    this.preemptiveGenerationEnabled = _value.preemptiveGenerationEnabled;
-    this.t2sChunkedStreamingEnabled = _value.t2sChunkedStreamingEnabled;
-    ResponseTimingConfig.refineValues(this);
-  }
-  get turnTimeoutSeconds(): number {
-    return this._turnTimeoutSeconds;
-  }
-  set turnTimeoutSeconds(value: number) {
-    this._turnTimeoutSeconds = value;
-  }
-  get silenceEndCallTimeoutSeconds(): number {
-    return this._silenceEndCallTimeoutSeconds;
-  }
-  set silenceEndCallTimeoutSeconds(value: number) {
-    this._silenceEndCallTimeoutSeconds = value;
-  }
-  get softTimeoutConfig(): SoftTimeoutConfig | undefined {
-    return this._softTimeoutConfig;
-  }
-  set softTimeoutConfig(value: SoftTimeoutConfig | undefined) {
-    this._softTimeoutConfig = value;
-  }
-  get preemptiveGenerationEnabled(): boolean {
-    return this._preemptiveGenerationEnabled;
-  }
-  set preemptiveGenerationEnabled(value: boolean) {
-    this._preemptiveGenerationEnabled = value;
-  }
-  get t2sChunkedStreamingEnabled(): boolean {
-    return this._t2sChunkedStreamingEnabled;
-  }
-  set t2sChunkedStreamingEnabled(value: boolean) {
-    this._t2sChunkedStreamingEnabled = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    ResponseTimingConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): ResponseTimingConfig.AsObject {
-    return {
-      turnTimeoutSeconds: this.turnTimeoutSeconds,
-      silenceEndCallTimeoutSeconds: this.silenceEndCallTimeoutSeconds,
-      softTimeoutConfig: this.softTimeoutConfig
-        ? this.softTimeoutConfig.toObject()
-        : undefined,
-      preemptiveGenerationEnabled: this.preemptiveGenerationEnabled,
-      t2sChunkedStreamingEnabled: this.t2sChunkedStreamingEnabled
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): ResponseTimingConfig.AsProtobufJSON {
-    return {
-      turnTimeoutSeconds: this.turnTimeoutSeconds,
-      silenceEndCallTimeoutSeconds: this.silenceEndCallTimeoutSeconds,
-      softTimeoutConfig: this.softTimeoutConfig
-        ? this.softTimeoutConfig.toProtobufJSON(options)
-        : null,
-      preemptiveGenerationEnabled: this.preemptiveGenerationEnabled,
-      t2sChunkedStreamingEnabled: this.t2sChunkedStreamingEnabled
-    };
-  }
-}
-export module ResponseTimingConfig {
-  /**
-   * Standard JavaScript object representation for ResponseTimingConfig
-   */
-  export interface AsObject {
-    turnTimeoutSeconds: number;
-    silenceEndCallTimeoutSeconds: number;
-    softTimeoutConfig?: SoftTimeoutConfig.AsObject;
-    preemptiveGenerationEnabled: boolean;
-    t2sChunkedStreamingEnabled: boolean;
-  }
-
-  /**
-   * Protobuf JSON representation for ResponseTimingConfig
-   */
-  export interface AsProtobufJSON {
-    turnTimeoutSeconds: number;
-    silenceEndCallTimeoutSeconds: number;
-    softTimeoutConfig: SoftTimeoutConfig.AsProtobufJSON | null;
-    preemptiveGenerationEnabled: boolean;
-    t2sChunkedStreamingEnabled: boolean;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.SoftTimeoutConfig
- */
-export class SoftTimeoutConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.SoftTimeoutConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new SoftTimeoutConfig();
-    SoftTimeoutConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: SoftTimeoutConfig) {
-    _instance.messages = _instance.messages || [];
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: SoftTimeoutConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.timeoutSeconds = _reader.readFloat();
-          break;
-        case 2:
-          (_instance.messages = _instance.messages || []).push(
-            _reader.readString()
-          );
-          break;
-        case 3:
-          _instance.maxPerGeneration = _reader.readInt32();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    SoftTimeoutConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: SoftTimeoutConfig,
-    _writer: BinaryWriter
-  ) {
-    if (
-      _instance.timeoutSeconds !== undefined &&
-      _instance.timeoutSeconds !== null
-    ) {
-      _writer.writeFloat(1, _instance.timeoutSeconds);
-    }
-    if (_instance.messages && _instance.messages.length) {
-      _writer.writeRepeatedString(2, _instance.messages);
-    }
-    if (
-      _instance.maxPerGeneration !== undefined &&
-      _instance.maxPerGeneration !== null
-    ) {
-      _writer.writeInt32(3, _instance.maxPerGeneration);
-    }
-  }
-
-  private _timeoutSeconds: number;
-  private _messages: string[];
-  private _maxPerGeneration: number;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of SoftTimeoutConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<SoftTimeoutConfig.AsObject>) {
-    _value = _value || {};
-    this.timeoutSeconds = _value.timeoutSeconds;
-    this.messages = (_value.messages || []).slice();
-    this.maxPerGeneration = _value.maxPerGeneration;
-    SoftTimeoutConfig.refineValues(this);
-  }
-  get timeoutSeconds(): number {
-    return this._timeoutSeconds;
-  }
-  set timeoutSeconds(value: number) {
-    this._timeoutSeconds = value;
-  }
-  get messages(): string[] {
-    return this._messages;
-  }
-  set messages(value: string[]) {
-    this._messages = value;
-  }
-  get maxPerGeneration(): number {
-    return this._maxPerGeneration;
-  }
-  set maxPerGeneration(value: number) {
-    this._maxPerGeneration = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    SoftTimeoutConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): SoftTimeoutConfig.AsObject {
-    return {
-      timeoutSeconds: this.timeoutSeconds,
-      messages: (this.messages || []).slice(),
-      maxPerGeneration: this.maxPerGeneration
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): SoftTimeoutConfig.AsProtobufJSON {
-    return {
-      timeoutSeconds: this.timeoutSeconds,
-      messages: (this.messages || []).slice(),
-      maxPerGeneration: this.maxPerGeneration
-    };
-  }
-}
-export module SoftTimeoutConfig {
-  /**
-   * Standard JavaScript object representation for SoftTimeoutConfig
-   */
-  export interface AsObject {
-    timeoutSeconds: number;
-    messages: string[];
-    maxPerGeneration: number;
-  }
-
-  /**
-   * Protobuf JSON representation for SoftTimeoutConfig
-   */
-  export interface AsProtobufJSON {
-    timeoutSeconds: number;
-    messages: string[];
-    maxPerGeneration: number;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.AnsweringMachineDetectionConfig
- */
-export class AnsweringMachineDetectionConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.AnsweringMachineDetectionConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new AnsweringMachineDetectionConfig();
-    AnsweringMachineDetectionConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: AnsweringMachineDetectionConfig) {
-    _instance.additionalMachinePhrases =
-      _instance.additionalMachinePhrases || [];
-    _instance.additionalHumanPhrases = _instance.additionalHumanPhrases || [];
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: AnsweringMachineDetectionConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.active = _reader.readBool();
-          break;
-        case 2:
-          _instance.action = _reader.readEnum();
-          break;
-        case 3:
-          _instance.sensitivity = _reader.readEnum();
-          break;
-        case 4:
-          _instance.maxDecisionTimeMs = _reader.readInt32();
-          break;
-        case 5:
-          _instance.maxMachineWaitMs = _reader.readInt32();
-          break;
-        case 6:
-          _instance.beepWaitAfterGreetingMs = _reader.readInt32();
-          break;
-        case 7:
-          _instance.initialSilenceMs = _reader.readInt32();
-          break;
-        case 8:
-          _instance.maxHumanGreetingMs = _reader.readInt32();
-          break;
-        case 9:
-          _instance.greetingEndSilenceMs = _reader.readInt32();
-          break;
-        case 10:
-          _instance.beepDetectionActive = _reader.readBool();
-          break;
-        case 11:
-          (_instance.additionalMachinePhrases =
-            _instance.additionalMachinePhrases || []).push(
-            _reader.readString()
-          );
-          break;
-        case 12:
-          (_instance.additionalHumanPhrases =
-            _instance.additionalHumanPhrases || []).push(_reader.readString());
-          break;
-        case 13:
-          _instance.hangUpOnFax = _reader.readBool();
-          break;
-        case 14:
-          _instance.hangUpOnNetworkAnnouncement = _reader.readBool();
-          break;
-        case 15:
-          _instance.hangUpOnIvr = _reader.readBool();
-          break;
-        case 16:
-          _instance.hangUpOnCallScreening = _reader.readBool();
-          break;
-        case 17:
-          _instance.voiceMessageIntent = _reader.readString();
-          break;
-        case 18:
-          _instance.voiceMessageMaxBeepWaitMs = _reader.readInt32();
-          break;
-        case 19:
-          _instance.voiceMessageTimeoutMs = _reader.readInt32();
-          break;
-        case 20:
-          _instance.keywordDetectionActive = _reader.readBool();
-          break;
-        case 21:
-          _instance.cadenceDetectionActive = _reader.readBool();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    AnsweringMachineDetectionConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: AnsweringMachineDetectionConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.active !== undefined && _instance.active !== null) {
-      _writer.writeBool(1, _instance.active);
-    }
-    if (_instance.action !== undefined && _instance.action !== null) {
-      _writer.writeEnum(2, _instance.action);
-    }
-    if (_instance.sensitivity !== undefined && _instance.sensitivity !== null) {
-      _writer.writeEnum(3, _instance.sensitivity);
-    }
-    if (
-      _instance.maxDecisionTimeMs !== undefined &&
-      _instance.maxDecisionTimeMs !== null
-    ) {
-      _writer.writeInt32(4, _instance.maxDecisionTimeMs);
-    }
-    if (
-      _instance.maxMachineWaitMs !== undefined &&
-      _instance.maxMachineWaitMs !== null
-    ) {
-      _writer.writeInt32(5, _instance.maxMachineWaitMs);
-    }
-    if (
-      _instance.beepWaitAfterGreetingMs !== undefined &&
-      _instance.beepWaitAfterGreetingMs !== null
-    ) {
-      _writer.writeInt32(6, _instance.beepWaitAfterGreetingMs);
-    }
-    if (
-      _instance.initialSilenceMs !== undefined &&
-      _instance.initialSilenceMs !== null
-    ) {
-      _writer.writeInt32(7, _instance.initialSilenceMs);
-    }
-    if (
-      _instance.maxHumanGreetingMs !== undefined &&
-      _instance.maxHumanGreetingMs !== null
-    ) {
-      _writer.writeInt32(8, _instance.maxHumanGreetingMs);
-    }
-    if (
-      _instance.greetingEndSilenceMs !== undefined &&
-      _instance.greetingEndSilenceMs !== null
-    ) {
-      _writer.writeInt32(9, _instance.greetingEndSilenceMs);
-    }
-    if (
-      _instance.beepDetectionActive !== undefined &&
-      _instance.beepDetectionActive !== null
-    ) {
-      _writer.writeBool(10, _instance.beepDetectionActive);
-    }
-    if (
-      _instance.additionalMachinePhrases &&
-      _instance.additionalMachinePhrases.length
-    ) {
-      _writer.writeRepeatedString(11, _instance.additionalMachinePhrases);
-    }
-    if (
-      _instance.additionalHumanPhrases &&
-      _instance.additionalHumanPhrases.length
-    ) {
-      _writer.writeRepeatedString(12, _instance.additionalHumanPhrases);
-    }
-    if (_instance.hangUpOnFax !== undefined && _instance.hangUpOnFax !== null) {
-      _writer.writeBool(13, _instance.hangUpOnFax);
-    }
-    if (
-      _instance.hangUpOnNetworkAnnouncement !== undefined &&
-      _instance.hangUpOnNetworkAnnouncement !== null
-    ) {
-      _writer.writeBool(14, _instance.hangUpOnNetworkAnnouncement);
-    }
-    if (_instance.hangUpOnIvr !== undefined && _instance.hangUpOnIvr !== null) {
-      _writer.writeBool(15, _instance.hangUpOnIvr);
-    }
-    if (
-      _instance.hangUpOnCallScreening !== undefined &&
-      _instance.hangUpOnCallScreening !== null
-    ) {
-      _writer.writeBool(16, _instance.hangUpOnCallScreening);
-    }
-    if (
-      _instance.voiceMessageIntent !== undefined &&
-      _instance.voiceMessageIntent !== null
-    ) {
-      _writer.writeString(17, _instance.voiceMessageIntent);
-    }
-    if (
-      _instance.voiceMessageMaxBeepWaitMs !== undefined &&
-      _instance.voiceMessageMaxBeepWaitMs !== null
-    ) {
-      _writer.writeInt32(18, _instance.voiceMessageMaxBeepWaitMs);
-    }
-    if (
-      _instance.voiceMessageTimeoutMs !== undefined &&
-      _instance.voiceMessageTimeoutMs !== null
-    ) {
-      _writer.writeInt32(19, _instance.voiceMessageTimeoutMs);
-    }
-    if (
-      _instance.keywordDetectionActive !== undefined &&
-      _instance.keywordDetectionActive !== null
-    ) {
-      _writer.writeBool(20, _instance.keywordDetectionActive);
-    }
-    if (
-      _instance.cadenceDetectionActive !== undefined &&
-      _instance.cadenceDetectionActive !== null
-    ) {
-      _writer.writeBool(21, _instance.cadenceDetectionActive);
-    }
-  }
-
-  private _active: boolean;
-  private _action: AnsweringMachineDetectionConfig.AmdAction;
-  private _sensitivity: AnsweringMachineDetectionConfig.AmdSensitivity;
-  private _maxDecisionTimeMs: number;
-  private _maxMachineWaitMs: number;
-  private _beepWaitAfterGreetingMs: number;
-  private _initialSilenceMs: number;
-  private _maxHumanGreetingMs: number;
-  private _greetingEndSilenceMs: number;
-  private _beepDetectionActive: boolean;
-  private _additionalMachinePhrases: string[];
-  private _additionalHumanPhrases: string[];
-  private _hangUpOnFax: boolean;
-  private _hangUpOnNetworkAnnouncement: boolean;
-  private _hangUpOnIvr: boolean;
-  private _hangUpOnCallScreening: boolean;
-  private _voiceMessageIntent: string;
-  private _voiceMessageMaxBeepWaitMs: number;
-  private _voiceMessageTimeoutMs: number;
-  private _keywordDetectionActive: boolean;
-  private _cadenceDetectionActive: boolean;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of AnsweringMachineDetectionConfig to deeply clone from
-   */
-  constructor(
-    _value?: RecursivePartial<AnsweringMachineDetectionConfig.AsObject>
-  ) {
-    _value = _value || {};
-    this.active = _value.active;
-    this.action = _value.action;
-    this.sensitivity = _value.sensitivity;
-    this.maxDecisionTimeMs = _value.maxDecisionTimeMs;
-    this.maxMachineWaitMs = _value.maxMachineWaitMs;
-    this.beepWaitAfterGreetingMs = _value.beepWaitAfterGreetingMs;
-    this.initialSilenceMs = _value.initialSilenceMs;
-    this.maxHumanGreetingMs = _value.maxHumanGreetingMs;
-    this.greetingEndSilenceMs = _value.greetingEndSilenceMs;
-    this.beepDetectionActive = _value.beepDetectionActive;
-    this.additionalMachinePhrases = (
-      _value.additionalMachinePhrases || []
-    ).slice();
-    this.additionalHumanPhrases = (_value.additionalHumanPhrases || []).slice();
-    this.hangUpOnFax = _value.hangUpOnFax;
-    this.hangUpOnNetworkAnnouncement = _value.hangUpOnNetworkAnnouncement;
-    this.hangUpOnIvr = _value.hangUpOnIvr;
-    this.hangUpOnCallScreening = _value.hangUpOnCallScreening;
-    this.voiceMessageIntent = _value.voiceMessageIntent;
-    this.voiceMessageMaxBeepWaitMs = _value.voiceMessageMaxBeepWaitMs;
-    this.voiceMessageTimeoutMs = _value.voiceMessageTimeoutMs;
-    this.keywordDetectionActive = _value.keywordDetectionActive;
-    this.cadenceDetectionActive = _value.cadenceDetectionActive;
-    AnsweringMachineDetectionConfig.refineValues(this);
-  }
-  get active(): boolean {
-    return this._active;
-  }
-  set active(value: boolean) {
-    this._active = value;
-  }
-  get action(): AnsweringMachineDetectionConfig.AmdAction {
-    return this._action;
-  }
-  set action(value: AnsweringMachineDetectionConfig.AmdAction) {
-    this._action = value;
-  }
-  get sensitivity(): AnsweringMachineDetectionConfig.AmdSensitivity {
-    return this._sensitivity;
-  }
-  set sensitivity(value: AnsweringMachineDetectionConfig.AmdSensitivity) {
-    this._sensitivity = value;
-  }
-  get maxDecisionTimeMs(): number {
-    return this._maxDecisionTimeMs;
-  }
-  set maxDecisionTimeMs(value: number) {
-    this._maxDecisionTimeMs = value;
-  }
-  get maxMachineWaitMs(): number {
-    return this._maxMachineWaitMs;
-  }
-  set maxMachineWaitMs(value: number) {
-    this._maxMachineWaitMs = value;
-  }
-  get beepWaitAfterGreetingMs(): number {
-    return this._beepWaitAfterGreetingMs;
-  }
-  set beepWaitAfterGreetingMs(value: number) {
-    this._beepWaitAfterGreetingMs = value;
-  }
-  get initialSilenceMs(): number {
-    return this._initialSilenceMs;
-  }
-  set initialSilenceMs(value: number) {
-    this._initialSilenceMs = value;
-  }
-  get maxHumanGreetingMs(): number {
-    return this._maxHumanGreetingMs;
-  }
-  set maxHumanGreetingMs(value: number) {
-    this._maxHumanGreetingMs = value;
-  }
-  get greetingEndSilenceMs(): number {
-    return this._greetingEndSilenceMs;
-  }
-  set greetingEndSilenceMs(value: number) {
-    this._greetingEndSilenceMs = value;
-  }
-  get beepDetectionActive(): boolean {
-    return this._beepDetectionActive;
-  }
-  set beepDetectionActive(value: boolean) {
-    this._beepDetectionActive = value;
-  }
-  get additionalMachinePhrases(): string[] {
-    return this._additionalMachinePhrases;
-  }
-  set additionalMachinePhrases(value: string[]) {
-    this._additionalMachinePhrases = value;
-  }
-  get additionalHumanPhrases(): string[] {
-    return this._additionalHumanPhrases;
-  }
-  set additionalHumanPhrases(value: string[]) {
-    this._additionalHumanPhrases = value;
-  }
-  get hangUpOnFax(): boolean {
-    return this._hangUpOnFax;
-  }
-  set hangUpOnFax(value: boolean) {
-    this._hangUpOnFax = value;
-  }
-  get hangUpOnNetworkAnnouncement(): boolean {
-    return this._hangUpOnNetworkAnnouncement;
-  }
-  set hangUpOnNetworkAnnouncement(value: boolean) {
-    this._hangUpOnNetworkAnnouncement = value;
-  }
-  get hangUpOnIvr(): boolean {
-    return this._hangUpOnIvr;
-  }
-  set hangUpOnIvr(value: boolean) {
-    this._hangUpOnIvr = value;
-  }
-  get hangUpOnCallScreening(): boolean {
-    return this._hangUpOnCallScreening;
-  }
-  set hangUpOnCallScreening(value: boolean) {
-    this._hangUpOnCallScreening = value;
-  }
-  get voiceMessageIntent(): string {
-    return this._voiceMessageIntent;
-  }
-  set voiceMessageIntent(value: string) {
-    this._voiceMessageIntent = value;
-  }
-  get voiceMessageMaxBeepWaitMs(): number {
-    return this._voiceMessageMaxBeepWaitMs;
-  }
-  set voiceMessageMaxBeepWaitMs(value: number) {
-    this._voiceMessageMaxBeepWaitMs = value;
-  }
-  get voiceMessageTimeoutMs(): number {
-    return this._voiceMessageTimeoutMs;
-  }
-  set voiceMessageTimeoutMs(value: number) {
-    this._voiceMessageTimeoutMs = value;
-  }
-  get keywordDetectionActive(): boolean {
-    return this._keywordDetectionActive;
-  }
-  set keywordDetectionActive(value: boolean) {
-    this._keywordDetectionActive = value;
-  }
-  get cadenceDetectionActive(): boolean {
-    return this._cadenceDetectionActive;
-  }
-  set cadenceDetectionActive(value: boolean) {
-    this._cadenceDetectionActive = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    AnsweringMachineDetectionConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): AnsweringMachineDetectionConfig.AsObject {
-    return {
-      active: this.active,
-      action: this.action,
-      sensitivity: this.sensitivity,
-      maxDecisionTimeMs: this.maxDecisionTimeMs,
-      maxMachineWaitMs: this.maxMachineWaitMs,
-      beepWaitAfterGreetingMs: this.beepWaitAfterGreetingMs,
-      initialSilenceMs: this.initialSilenceMs,
-      maxHumanGreetingMs: this.maxHumanGreetingMs,
-      greetingEndSilenceMs: this.greetingEndSilenceMs,
-      beepDetectionActive: this.beepDetectionActive,
-      additionalMachinePhrases: (this.additionalMachinePhrases || []).slice(),
-      additionalHumanPhrases: (this.additionalHumanPhrases || []).slice(),
-      hangUpOnFax: this.hangUpOnFax,
-      hangUpOnNetworkAnnouncement: this.hangUpOnNetworkAnnouncement,
-      hangUpOnIvr: this.hangUpOnIvr,
-      hangUpOnCallScreening: this.hangUpOnCallScreening,
-      voiceMessageIntent: this.voiceMessageIntent,
-      voiceMessageMaxBeepWaitMs: this.voiceMessageMaxBeepWaitMs,
-      voiceMessageTimeoutMs: this.voiceMessageTimeoutMs,
-      keywordDetectionActive: this.keywordDetectionActive,
-      cadenceDetectionActive: this.cadenceDetectionActive
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): AnsweringMachineDetectionConfig.AsProtobufJSON {
-    return {
-      active: this.active,
-      action:
-        AnsweringMachineDetectionConfig.AmdAction[
-          this.action === null || this.action === undefined ? 0 : this.action
-        ],
-      sensitivity:
-        AnsweringMachineDetectionConfig.AmdSensitivity[
-          this.sensitivity === null || this.sensitivity === undefined
-            ? 0
-            : this.sensitivity
-        ],
-      maxDecisionTimeMs: this.maxDecisionTimeMs,
-      maxMachineWaitMs: this.maxMachineWaitMs,
-      beepWaitAfterGreetingMs: this.beepWaitAfterGreetingMs,
-      initialSilenceMs: this.initialSilenceMs,
-      maxHumanGreetingMs: this.maxHumanGreetingMs,
-      greetingEndSilenceMs: this.greetingEndSilenceMs,
-      beepDetectionActive: this.beepDetectionActive,
-      additionalMachinePhrases: (this.additionalMachinePhrases || []).slice(),
-      additionalHumanPhrases: (this.additionalHumanPhrases || []).slice(),
-      hangUpOnFax: this.hangUpOnFax,
-      hangUpOnNetworkAnnouncement: this.hangUpOnNetworkAnnouncement,
-      hangUpOnIvr: this.hangUpOnIvr,
-      hangUpOnCallScreening: this.hangUpOnCallScreening,
-      voiceMessageIntent: this.voiceMessageIntent,
-      voiceMessageMaxBeepWaitMs: this.voiceMessageMaxBeepWaitMs,
-      voiceMessageTimeoutMs: this.voiceMessageTimeoutMs,
-      keywordDetectionActive: this.keywordDetectionActive,
-      cadenceDetectionActive: this.cadenceDetectionActive
-    };
-  }
-}
-export module AnsweringMachineDetectionConfig {
-  /**
-   * Standard JavaScript object representation for AnsweringMachineDetectionConfig
-   */
-  export interface AsObject {
-    active: boolean;
-    action: AnsweringMachineDetectionConfig.AmdAction;
-    sensitivity: AnsweringMachineDetectionConfig.AmdSensitivity;
-    maxDecisionTimeMs: number;
-    maxMachineWaitMs: number;
-    beepWaitAfterGreetingMs: number;
-    initialSilenceMs: number;
-    maxHumanGreetingMs: number;
-    greetingEndSilenceMs: number;
-    beepDetectionActive: boolean;
-    additionalMachinePhrases: string[];
-    additionalHumanPhrases: string[];
-    hangUpOnFax: boolean;
-    hangUpOnNetworkAnnouncement: boolean;
-    hangUpOnIvr: boolean;
-    hangUpOnCallScreening: boolean;
-    voiceMessageIntent: string;
-    voiceMessageMaxBeepWaitMs: number;
-    voiceMessageTimeoutMs: number;
-    keywordDetectionActive: boolean;
-    cadenceDetectionActive: boolean;
-  }
-
-  /**
-   * Protobuf JSON representation for AnsweringMachineDetectionConfig
-   */
-  export interface AsProtobufJSON {
-    active: boolean;
-    action: string;
-    sensitivity: string;
-    maxDecisionTimeMs: number;
-    maxMachineWaitMs: number;
-    beepWaitAfterGreetingMs: number;
-    initialSilenceMs: number;
-    maxHumanGreetingMs: number;
-    greetingEndSilenceMs: number;
-    beepDetectionActive: boolean;
-    additionalMachinePhrases: string[];
-    additionalHumanPhrases: string[];
-    hangUpOnFax: boolean;
-    hangUpOnNetworkAnnouncement: boolean;
-    hangUpOnIvr: boolean;
-    hangUpOnCallScreening: boolean;
-    voiceMessageIntent: string;
-    voiceMessageMaxBeepWaitMs: number;
-    voiceMessageTimeoutMs: number;
-    keywordDetectionActive: boolean;
-    cadenceDetectionActive: boolean;
-  }
-  export enum AmdAction {
-    AMD_ACTION_UNSPECIFIED = 0,
-    HANG_UP = 1,
-    DETECT_ONLY = 2,
-    LEAVE_VOICE_MESSAGE = 3
-  }
-  export enum AmdSensitivity {
-    AMD_SENSITIVITY_UNSPECIFIED = 0,
-    LOW = 1,
-    MEDIUM = 2,
-    HIGH = 3
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.SipBaseConfig
- */
-export class SipBaseConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.SipBaseConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new SipBaseConfig();
-    SipBaseConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: SipBaseConfig) {
-    _instance.sipSimVersion = _instance.sipSimVersion || '';
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: SipBaseConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.sipSimVersion = _reader.readString();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    SipBaseConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: SipBaseConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.sipSimVersion) {
-      _writer.writeString(1, _instance.sipSimVersion);
-    }
-  }
-
-  private _sipSimVersion: string;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of SipBaseConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<SipBaseConfig.AsObject>) {
-    _value = _value || {};
-    this.sipSimVersion = _value.sipSimVersion;
-    SipBaseConfig.refineValues(this);
-  }
-  get sipSimVersion(): string {
-    return this._sipSimVersion;
-  }
-  set sipSimVersion(value: string) {
-    this._sipSimVersion = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    SipBaseConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): SipBaseConfig.AsObject {
-    return {
-      sipSimVersion: this.sipSimVersion
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): SipBaseConfig.AsProtobufJSON {
-    return {
-      sipSimVersion: this.sipSimVersion
-    };
-  }
-}
-export module SipBaseConfig {
-  /**
-   * Standard JavaScript object representation for SipBaseConfig
-   */
-  export interface AsObject {
-    sipSimVersion: string;
-  }
-
-  /**
-   * Protobuf JSON representation for SipBaseConfig
-   */
-  export interface AsProtobufJSON {
-    sipSimVersion: string;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.SipCallerConfig
- */
-export class SipCallerConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.SipCallerConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new SipCallerConfig();
-    SipCallerConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: SipCallerConfig) {
-    _instance.sipBaseConfig = _instance.sipBaseConfig || undefined;
-    _instance.calleeId = _instance.calleeId || '';
-    _instance.sipHeaders = _instance.sipHeaders || {};
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: SipCallerConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.sipBaseConfig = new SipBaseConfig();
-          _reader.readMessage(
-            _instance.sipBaseConfig,
-            SipBaseConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 2:
-          _instance.calleeId = _reader.readString();
-          break;
-        case 3:
-          const msg_3 = {} as any;
-          _reader.readMessage(
-            msg_3,
-            SipCallerConfig.SipHeadersEntry.deserializeBinaryFromReader
-          );
-          _instance.sipHeaders = _instance.sipHeaders || {};
-          _instance.sipHeaders[msg_3.key] = msg_3.value;
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    SipCallerConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: SipCallerConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.sipBaseConfig) {
-      _writer.writeMessage(
-        1,
-        _instance.sipBaseConfig as any,
-        SipBaseConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.calleeId) {
-      _writer.writeString(2, _instance.calleeId);
-    }
-    if (!!_instance.sipHeaders) {
-      const keys_3 = Object.keys(_instance.sipHeaders as any);
-
-      if (keys_3.length) {
-        const repeated_3 = keys_3
-          .map(key => ({ key: key, value: (_instance.sipHeaders as any)[key] }))
-          .reduce((r, v) => [...r, v], [] as any[]);
-
-        _writer.writeRepeatedMessage(
-          3,
-          repeated_3,
-          SipCallerConfig.SipHeadersEntry.serializeBinaryToWriter
-        );
-      }
-    }
-  }
-
-  private _sipBaseConfig?: SipBaseConfig;
-  private _calleeId: string;
-  private _sipHeaders: { [prop: string]: string };
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of SipCallerConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<SipCallerConfig.AsObject>) {
-    _value = _value || {};
-    this.sipBaseConfig = _value.sipBaseConfig
-      ? new SipBaseConfig(_value.sipBaseConfig)
-      : undefined;
-    this.calleeId = _value.calleeId;
-    (this.sipHeaders = _value!.sipHeaders
-      ? Object.keys(_value!.sipHeaders).reduce(
-          (r, k) => ({ ...r, [k]: _value!.sipHeaders![k] }),
-          {}
-        )
-      : {}),
-      SipCallerConfig.refineValues(this);
-  }
-  get sipBaseConfig(): SipBaseConfig | undefined {
-    return this._sipBaseConfig;
-  }
-  set sipBaseConfig(value: SipBaseConfig | undefined) {
-    this._sipBaseConfig = value;
-  }
-  get calleeId(): string {
-    return this._calleeId;
-  }
-  set calleeId(value: string) {
-    this._calleeId = value;
-  }
-  get sipHeaders(): { [prop: string]: string } {
-    return this._sipHeaders;
-  }
-  set sipHeaders(value: { [prop: string]: string }) {
-    this._sipHeaders = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    SipCallerConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): SipCallerConfig.AsObject {
-    return {
-      sipBaseConfig: this.sipBaseConfig
-        ? this.sipBaseConfig.toObject()
-        : undefined,
-      calleeId: this.calleeId,
-      sipHeaders: this.sipHeaders
-        ? Object.keys(this.sipHeaders).reduce(
-            (r, k) => ({ ...r, [k]: this.sipHeaders![k] }),
-            {}
-          )
-        : {}
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): SipCallerConfig.AsProtobufJSON {
-    return {
-      sipBaseConfig: this.sipBaseConfig
-        ? this.sipBaseConfig.toProtobufJSON(options)
-        : null,
-      calleeId: this.calleeId,
-      sipHeaders: this.sipHeaders
-        ? Object.keys(this.sipHeaders).reduce(
-            (r, k) => ({ ...r, [k]: this.sipHeaders![k] }),
-            {}
-          )
-        : {}
-    };
-  }
-}
-export module SipCallerConfig {
-  /**
-   * Standard JavaScript object representation for SipCallerConfig
-   */
-  export interface AsObject {
-    sipBaseConfig?: SipBaseConfig.AsObject;
-    calleeId: string;
-    sipHeaders: { [prop: string]: string };
-  }
-
-  /**
-   * Protobuf JSON representation for SipCallerConfig
-   */
-  export interface AsProtobufJSON {
-    sipBaseConfig: SipBaseConfig.AsProtobufJSON | null;
-    calleeId: string;
-    sipHeaders: { [prop: string]: string };
-  }
-
-  /**
-   * Message implementation for ondewo.vtsi.SipCallerConfig.SipHeadersEntry
-   */
-  export class SipHeadersEntry implements GrpcMessage {
-    static id = 'ondewo.vtsi.SipCallerConfig.SipHeadersEntry';
-
-    /**
-     * Deserialize binary data to message
-     * @param instance message instance
-     */
-    static deserializeBinary(bytes: ByteSource) {
-      const instance = new SipHeadersEntry();
-      SipHeadersEntry.deserializeBinaryFromReader(
-        instance,
-        new BinaryReader(bytes)
-      );
-      return instance;
-    }
-
-    /**
-     * Check all the properties and set default protobuf values if necessary
-     * @param _instance message instance
-     */
-    static refineValues(_instance: SipHeadersEntry) {
-      _instance.key = _instance.key || '';
-      _instance.value = _instance.value || '';
-    }
-
-    /**
-     * Deserializes / reads binary message into message instance using provided binary reader
-     * @param _instance message instance
-     * @param _reader binary reader instance
-     */
-    static deserializeBinaryFromReader(
-      _instance: SipHeadersEntry,
-      _reader: BinaryReader
-    ) {
-      while (_reader.nextField()) {
-        if (_reader.isEndGroup()) break;
-
-        switch (_reader.getFieldNumber()) {
-          case 1:
-            _instance.key = _reader.readString();
-            break;
-          case 2:
-            _instance.value = _reader.readString();
-            break;
-          default:
-            _reader.skipField();
-        }
-      }
-
-      SipHeadersEntry.refineValues(_instance);
-    }
-
-    /**
-     * Serializes a message to binary format using provided binary reader
-     * @param _instance message instance
-     * @param _writer binary writer instance
-     */
-    static serializeBinaryToWriter(
-      _instance: SipHeadersEntry,
-      _writer: BinaryWriter
-    ) {
-      if (_instance.key) {
-        _writer.writeString(1, _instance.key);
-      }
-      if (_instance.value) {
-        _writer.writeString(2, _instance.value);
-      }
-    }
-
-    private _key: string;
-    private _value: string;
-
-    /**
-     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-     * @param _value initial values object or instance of SipHeadersEntry to deeply clone from
-     */
-    constructor(_value?: RecursivePartial<SipHeadersEntry.AsObject>) {
-      _value = _value || {};
-      this.key = _value.key;
-      this.value = _value.value;
-      SipHeadersEntry.refineValues(this);
-    }
-    get key(): string {
-      return this._key;
-    }
-    set key(value: string) {
-      this._key = value;
-    }
-    get value(): string {
-      return this._value;
-    }
-    set value(value: string) {
-      this._value = value;
-    }
-
-    /**
-     * Serialize message to binary data
-     * @param instance message instance
-     */
-    serializeBinary() {
-      const writer = new BinaryWriter();
-      SipHeadersEntry.serializeBinaryToWriter(this, writer);
-      return writer.getResultBuffer();
-    }
-
-    /**
-     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-     */
-    toObject(): SipHeadersEntry.AsObject {
-      return {
-        key: this.key,
-        value: this.value
-      };
-    }
-
-    /**
-     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-     */
-    toJSON() {
-      return this.toObject();
-    }
-
-    /**
-     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-     */
-    toProtobufJSON(
-      // @ts-ignore
-      options?: ToProtobufJSONOptions
-    ): SipHeadersEntry.AsProtobufJSON {
-      return {
-        key: this.key,
-        value: this.value
-      };
-    }
-  }
-  export module SipHeadersEntry {
-    /**
-     * Standard JavaScript object representation for SipHeadersEntry
-     */
-    export interface AsObject {
-      key: string;
-      value: string;
-    }
-
-    /**
-     * Protobuf JSON representation for SipHeadersEntry
-     */
-    export interface AsProtobufJSON {
-      key: string;
-      value: string;
-    }
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.CsiVtsiConfig
- */
-export class CsiVtsiConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.CsiVtsiConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new CsiVtsiConfig();
-    CsiVtsiConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: CsiVtsiConfig) {
-    _instance.s2tVtsiCallbacks = _instance.s2tVtsiCallbacks || undefined;
-    _instance.nluVtsiCallbacks = _instance.nluVtsiCallbacks || undefined;
-    _instance.t2sVtsiCallbacks = _instance.t2sVtsiCallbacks || undefined;
-    _instance.audioObjectStoreConfig =
-      _instance.audioObjectStoreConfig || undefined;
-    _instance.messageBrokerConfig = _instance.messageBrokerConfig || undefined;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: CsiVtsiConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.s2tVtsiCallbacks = new S2tVtsiCallbacks();
-          _reader.readMessage(
-            _instance.s2tVtsiCallbacks,
-            S2tVtsiCallbacks.deserializeBinaryFromReader
-          );
-          break;
-        case 2:
-          _instance.nluVtsiCallbacks = new NluVtsiCallbacks();
-          _reader.readMessage(
-            _instance.nluVtsiCallbacks,
-            NluVtsiCallbacks.deserializeBinaryFromReader
-          );
-          break;
-        case 3:
-          _instance.t2sVtsiCallbacks = new T2sVtsiCallbacks();
-          _reader.readMessage(
-            _instance.t2sVtsiCallbacks,
-            T2sVtsiCallbacks.deserializeBinaryFromReader
-          );
-          break;
-        case 4:
-          _instance.audioObjectStoreConfig = new AudioObjectStorageConfig();
-          _reader.readMessage(
-            _instance.audioObjectStoreConfig,
-            AudioObjectStorageConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 5:
-          _instance.messageBrokerConfig = new MessageBrokerConfig();
-          _reader.readMessage(
-            _instance.messageBrokerConfig,
-            MessageBrokerConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 6:
-          _instance.activateControlMessages = _reader.readBool();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    CsiVtsiConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: CsiVtsiConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.s2tVtsiCallbacks) {
-      _writer.writeMessage(
-        1,
-        _instance.s2tVtsiCallbacks as any,
-        S2tVtsiCallbacks.serializeBinaryToWriter
-      );
-    }
-    if (_instance.nluVtsiCallbacks) {
-      _writer.writeMessage(
-        2,
-        _instance.nluVtsiCallbacks as any,
-        NluVtsiCallbacks.serializeBinaryToWriter
-      );
-    }
-    if (_instance.t2sVtsiCallbacks) {
-      _writer.writeMessage(
-        3,
-        _instance.t2sVtsiCallbacks as any,
-        T2sVtsiCallbacks.serializeBinaryToWriter
-      );
-    }
-    if (_instance.audioObjectStoreConfig) {
-      _writer.writeMessage(
-        4,
-        _instance.audioObjectStoreConfig as any,
-        AudioObjectStorageConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.messageBrokerConfig) {
-      _writer.writeMessage(
-        5,
-        _instance.messageBrokerConfig as any,
-        MessageBrokerConfig.serializeBinaryToWriter
-      );
-    }
-    if (
-      _instance.activateControlMessages !== undefined &&
-      _instance.activateControlMessages !== null
-    ) {
-      _writer.writeBool(6, _instance.activateControlMessages);
-    }
-  }
-
-  private _s2tVtsiCallbacks?: S2tVtsiCallbacks;
-  private _nluVtsiCallbacks?: NluVtsiCallbacks;
-  private _t2sVtsiCallbacks?: T2sVtsiCallbacks;
-  private _audioObjectStoreConfig?: AudioObjectStorageConfig;
-  private _messageBrokerConfig?: MessageBrokerConfig;
-  private _activateControlMessages: boolean;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of CsiVtsiConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<CsiVtsiConfig.AsObject>) {
-    _value = _value || {};
-    this.s2tVtsiCallbacks = _value.s2tVtsiCallbacks
-      ? new S2tVtsiCallbacks(_value.s2tVtsiCallbacks)
-      : undefined;
-    this.nluVtsiCallbacks = _value.nluVtsiCallbacks
-      ? new NluVtsiCallbacks(_value.nluVtsiCallbacks)
-      : undefined;
-    this.t2sVtsiCallbacks = _value.t2sVtsiCallbacks
-      ? new T2sVtsiCallbacks(_value.t2sVtsiCallbacks)
-      : undefined;
-    this.audioObjectStoreConfig = _value.audioObjectStoreConfig
-      ? new AudioObjectStorageConfig(_value.audioObjectStoreConfig)
-      : undefined;
-    this.messageBrokerConfig = _value.messageBrokerConfig
-      ? new MessageBrokerConfig(_value.messageBrokerConfig)
-      : undefined;
-    this.activateControlMessages = _value.activateControlMessages;
-    CsiVtsiConfig.refineValues(this);
-  }
-  get s2tVtsiCallbacks(): S2tVtsiCallbacks | undefined {
-    return this._s2tVtsiCallbacks;
-  }
-  set s2tVtsiCallbacks(value: S2tVtsiCallbacks | undefined) {
-    this._s2tVtsiCallbacks = value;
-  }
-  get nluVtsiCallbacks(): NluVtsiCallbacks | undefined {
-    return this._nluVtsiCallbacks;
-  }
-  set nluVtsiCallbacks(value: NluVtsiCallbacks | undefined) {
-    this._nluVtsiCallbacks = value;
-  }
-  get t2sVtsiCallbacks(): T2sVtsiCallbacks | undefined {
-    return this._t2sVtsiCallbacks;
-  }
-  set t2sVtsiCallbacks(value: T2sVtsiCallbacks | undefined) {
-    this._t2sVtsiCallbacks = value;
-  }
-  get audioObjectStoreConfig(): AudioObjectStorageConfig | undefined {
-    return this._audioObjectStoreConfig;
-  }
-  set audioObjectStoreConfig(value: AudioObjectStorageConfig | undefined) {
-    this._audioObjectStoreConfig = value;
-  }
-  get messageBrokerConfig(): MessageBrokerConfig | undefined {
-    return this._messageBrokerConfig;
-  }
-  set messageBrokerConfig(value: MessageBrokerConfig | undefined) {
-    this._messageBrokerConfig = value;
-  }
-  get activateControlMessages(): boolean {
-    return this._activateControlMessages;
-  }
-  set activateControlMessages(value: boolean) {
-    this._activateControlMessages = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    CsiVtsiConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): CsiVtsiConfig.AsObject {
-    return {
-      s2tVtsiCallbacks: this.s2tVtsiCallbacks
-        ? this.s2tVtsiCallbacks.toObject()
-        : undefined,
-      nluVtsiCallbacks: this.nluVtsiCallbacks
-        ? this.nluVtsiCallbacks.toObject()
-        : undefined,
-      t2sVtsiCallbacks: this.t2sVtsiCallbacks
-        ? this.t2sVtsiCallbacks.toObject()
-        : undefined,
-      audioObjectStoreConfig: this.audioObjectStoreConfig
-        ? this.audioObjectStoreConfig.toObject()
-        : undefined,
-      messageBrokerConfig: this.messageBrokerConfig
-        ? this.messageBrokerConfig.toObject()
-        : undefined,
-      activateControlMessages: this.activateControlMessages
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): CsiVtsiConfig.AsProtobufJSON {
-    return {
-      s2tVtsiCallbacks: this.s2tVtsiCallbacks
-        ? this.s2tVtsiCallbacks.toProtobufJSON(options)
-        : null,
-      nluVtsiCallbacks: this.nluVtsiCallbacks
-        ? this.nluVtsiCallbacks.toProtobufJSON(options)
-        : null,
-      t2sVtsiCallbacks: this.t2sVtsiCallbacks
-        ? this.t2sVtsiCallbacks.toProtobufJSON(options)
-        : null,
-      audioObjectStoreConfig: this.audioObjectStoreConfig
-        ? this.audioObjectStoreConfig.toProtobufJSON(options)
-        : null,
-      messageBrokerConfig: this.messageBrokerConfig
-        ? this.messageBrokerConfig.toProtobufJSON(options)
-        : null,
-      activateControlMessages: this.activateControlMessages
-    };
-  }
-}
-export module CsiVtsiConfig {
-  /**
-   * Standard JavaScript object representation for CsiVtsiConfig
-   */
-  export interface AsObject {
-    s2tVtsiCallbacks?: S2tVtsiCallbacks.AsObject;
-    nluVtsiCallbacks?: NluVtsiCallbacks.AsObject;
-    t2sVtsiCallbacks?: T2sVtsiCallbacks.AsObject;
-    audioObjectStoreConfig?: AudioObjectStorageConfig.AsObject;
-    messageBrokerConfig?: MessageBrokerConfig.AsObject;
-    activateControlMessages: boolean;
-  }
-
-  /**
-   * Protobuf JSON representation for CsiVtsiConfig
-   */
-  export interface AsProtobufJSON {
-    s2tVtsiCallbacks: S2tVtsiCallbacks.AsProtobufJSON | null;
-    nluVtsiCallbacks: NluVtsiCallbacks.AsProtobufJSON | null;
-    t2sVtsiCallbacks: T2sVtsiCallbacks.AsProtobufJSON | null;
-    audioObjectStoreConfig: AudioObjectStorageConfig.AsProtobufJSON | null;
-    messageBrokerConfig: MessageBrokerConfig.AsProtobufJSON | null;
-    activateControlMessages: boolean;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.AudioObjectStorageConfig
- */
-export class AudioObjectStorageConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.AudioObjectStorageConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new AudioObjectStorageConfig();
-    AudioObjectStorageConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: AudioObjectStorageConfig) {
-    _instance.audioObjectStorageServicesActivationConfig =
-      _instance.audioObjectStorageServicesActivationConfig || undefined;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: AudioObjectStorageConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.activateAudioObjectStorage = _reader.readBool();
-          break;
-        case 2:
-          _instance.audioObjectStorageServicesActivationConfig = new AudioObjectStorageServicesActivationConfig();
-          _reader.readMessage(
-            _instance.audioObjectStorageServicesActivationConfig,
-            AudioObjectStorageServicesActivationConfig.deserializeBinaryFromReader
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    AudioObjectStorageConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: AudioObjectStorageConfig,
-    _writer: BinaryWriter
-  ) {
-    if (
-      _instance.activateAudioObjectStorage !== undefined &&
-      _instance.activateAudioObjectStorage !== null
-    ) {
-      _writer.writeBool(1, _instance.activateAudioObjectStorage);
-    }
-    if (_instance.audioObjectStorageServicesActivationConfig) {
-      _writer.writeMessage(
-        2,
-        _instance.audioObjectStorageServicesActivationConfig as any,
-        AudioObjectStorageServicesActivationConfig.serializeBinaryToWriter
-      );
-    }
-  }
-
-  private _activateAudioObjectStorage: boolean;
-  private _audioObjectStorageServicesActivationConfig?: AudioObjectStorageServicesActivationConfig;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of AudioObjectStorageConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<AudioObjectStorageConfig.AsObject>) {
-    _value = _value || {};
-    this.activateAudioObjectStorage = _value.activateAudioObjectStorage;
-    this.audioObjectStorageServicesActivationConfig = _value.audioObjectStorageServicesActivationConfig
-      ? new AudioObjectStorageServicesActivationConfig(
-          _value.audioObjectStorageServicesActivationConfig
-        )
-      : undefined;
-    AudioObjectStorageConfig.refineValues(this);
-  }
-  get activateAudioObjectStorage(): boolean {
-    return this._activateAudioObjectStorage;
-  }
-  set activateAudioObjectStorage(value: boolean) {
-    this._activateAudioObjectStorage = value;
-  }
-  get audioObjectStorageServicesActivationConfig():
-    | AudioObjectStorageServicesActivationConfig
-    | undefined {
-    return this._audioObjectStorageServicesActivationConfig;
-  }
-  set audioObjectStorageServicesActivationConfig(
-    value: AudioObjectStorageServicesActivationConfig | undefined
-  ) {
-    this._audioObjectStorageServicesActivationConfig = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    AudioObjectStorageConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): AudioObjectStorageConfig.AsObject {
-    return {
-      activateAudioObjectStorage: this.activateAudioObjectStorage,
-      audioObjectStorageServicesActivationConfig: this
-        .audioObjectStorageServicesActivationConfig
-        ? this.audioObjectStorageServicesActivationConfig.toObject()
-        : undefined
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): AudioObjectStorageConfig.AsProtobufJSON {
-    return {
-      activateAudioObjectStorage: this.activateAudioObjectStorage,
-      audioObjectStorageServicesActivationConfig: this
-        .audioObjectStorageServicesActivationConfig
-        ? this.audioObjectStorageServicesActivationConfig.toProtobufJSON(
-            options
-          )
-        : null
-    };
-  }
-}
-export module AudioObjectStorageConfig {
-  /**
-   * Standard JavaScript object representation for AudioObjectStorageConfig
-   */
-  export interface AsObject {
-    activateAudioObjectStorage: boolean;
-    audioObjectStorageServicesActivationConfig?: AudioObjectStorageServicesActivationConfig.AsObject;
-  }
-
-  /**
-   * Protobuf JSON representation for AudioObjectStorageConfig
-   */
-  export interface AsProtobufJSON {
-    activateAudioObjectStorage: boolean;
-    audioObjectStorageServicesActivationConfig: AudioObjectStorageServicesActivationConfig.AsProtobufJSON | null;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.AudioObjectStorageServicesActivationConfig
- */
-export class AudioObjectStorageServicesActivationConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.AudioObjectStorageServicesActivationConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new AudioObjectStorageServicesActivationConfig();
-    AudioObjectStorageServicesActivationConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: AudioObjectStorageServicesActivationConfig) {
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: AudioObjectStorageServicesActivationConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.activateS2t = _reader.readBool();
-          break;
-        case 2:
-          _instance.activateT2s = _reader.readBool();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    AudioObjectStorageServicesActivationConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: AudioObjectStorageServicesActivationConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.activateS2t !== undefined && _instance.activateS2t !== null) {
-      _writer.writeBool(1, _instance.activateS2t);
-    }
-    if (_instance.activateT2s !== undefined && _instance.activateT2s !== null) {
-      _writer.writeBool(2, _instance.activateT2s);
-    }
-  }
-
-  private _activateS2t: boolean;
-  private _activateT2s: boolean;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of AudioObjectStorageServicesActivationConfig to deeply clone from
-   */
-  constructor(
-    _value?: RecursivePartial<
-      AudioObjectStorageServicesActivationConfig.AsObject
-    >
-  ) {
-    _value = _value || {};
-    this.activateS2t = _value.activateS2t;
-    this.activateT2s = _value.activateT2s;
-    AudioObjectStorageServicesActivationConfig.refineValues(this);
-  }
-  get activateS2t(): boolean {
-    return this._activateS2t;
-  }
-  set activateS2t(value: boolean) {
-    this._activateS2t = value;
-  }
-  get activateT2s(): boolean {
-    return this._activateT2s;
-  }
-  set activateT2s(value: boolean) {
-    this._activateT2s = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    AudioObjectStorageServicesActivationConfig.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): AudioObjectStorageServicesActivationConfig.AsObject {
-    return {
-      activateS2t: this.activateS2t,
-      activateT2s: this.activateT2s
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): AudioObjectStorageServicesActivationConfig.AsProtobufJSON {
-    return {
-      activateS2t: this.activateS2t,
-      activateT2s: this.activateT2s
-    };
-  }
-}
-export module AudioObjectStorageServicesActivationConfig {
-  /**
-   * Standard JavaScript object representation for AudioObjectStorageServicesActivationConfig
-   */
-  export interface AsObject {
-    activateS2t: boolean;
-    activateT2s: boolean;
-  }
-
-  /**
-   * Protobuf JSON representation for AudioObjectStorageServicesActivationConfig
-   */
-  export interface AsProtobufJSON {
-    activateS2t: boolean;
-    activateT2s: boolean;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.MessageBrokerConfig
- */
-export class MessageBrokerConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.MessageBrokerConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new MessageBrokerConfig();
-    MessageBrokerConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: MessageBrokerConfig) {
-    _instance.messageBrokerServicesActivationConfig =
-      _instance.messageBrokerServicesActivationConfig || undefined;
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: MessageBrokerConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.activateMessageBroker = _reader.readBool();
-          break;
-        case 2:
-          _instance.messageBrokerServicesActivationConfig = new MessageBrokerServicesActivationConfig();
-          _reader.readMessage(
-            _instance.messageBrokerServicesActivationConfig,
-            MessageBrokerServicesActivationConfig.deserializeBinaryFromReader
-          );
-          break;
-        case 3:
-          _instance.rabbitMqConfig = new RabbitMqConfig();
-          _reader.readMessage(
-            _instance.rabbitMqConfig,
-            RabbitMqConfig.deserializeBinaryFromReader
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    MessageBrokerConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: MessageBrokerConfig,
-    _writer: BinaryWriter
-  ) {
-    if (
-      _instance.activateMessageBroker !== undefined &&
-      _instance.activateMessageBroker !== null
-    ) {
-      _writer.writeBool(1, _instance.activateMessageBroker);
-    }
-    if (_instance.messageBrokerServicesActivationConfig) {
-      _writer.writeMessage(
-        2,
-        _instance.messageBrokerServicesActivationConfig as any,
-        MessageBrokerServicesActivationConfig.serializeBinaryToWriter
-      );
-    }
-    if (_instance.rabbitMqConfig) {
-      _writer.writeMessage(
-        3,
-        _instance.rabbitMqConfig as any,
-        RabbitMqConfig.serializeBinaryToWriter
-      );
-    }
-  }
-
-  private _activateMessageBroker: boolean;
-  private _messageBrokerServicesActivationConfig?: MessageBrokerServicesActivationConfig;
-  private _rabbitMqConfig?: RabbitMqConfig;
-
-  private _messageBrokerConfig: MessageBrokerConfig.MessageBrokerConfigCase =
-    MessageBrokerConfig.MessageBrokerConfigCase.none;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of MessageBrokerConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<MessageBrokerConfig.AsObject>) {
-    _value = _value || {};
-    this.activateMessageBroker = _value.activateMessageBroker;
-    this.messageBrokerServicesActivationConfig = _value.messageBrokerServicesActivationConfig
-      ? new MessageBrokerServicesActivationConfig(
-          _value.messageBrokerServicesActivationConfig
-        )
-      : undefined;
-    this.rabbitMqConfig = _value.rabbitMqConfig
-      ? new RabbitMqConfig(_value.rabbitMqConfig)
-      : undefined;
-    MessageBrokerConfig.refineValues(this);
-  }
-  get activateMessageBroker(): boolean {
-    return this._activateMessageBroker;
-  }
-  set activateMessageBroker(value: boolean) {
-    this._activateMessageBroker = value;
-  }
-  get messageBrokerServicesActivationConfig():
-    | MessageBrokerServicesActivationConfig
-    | undefined {
-    return this._messageBrokerServicesActivationConfig;
-  }
-  set messageBrokerServicesActivationConfig(
-    value: MessageBrokerServicesActivationConfig | undefined
-  ) {
-    this._messageBrokerServicesActivationConfig = value;
-  }
-  get rabbitMqConfig(): RabbitMqConfig | undefined {
-    return this._rabbitMqConfig;
-  }
-  set rabbitMqConfig(value: RabbitMqConfig | undefined) {
-    if (value !== undefined && value !== null) {
-      this._messageBrokerConfig =
-        MessageBrokerConfig.MessageBrokerConfigCase.rabbitMqConfig;
-    }
-    this._rabbitMqConfig = value;
-  }
-  get messageBrokerConfig() {
-    return this._messageBrokerConfig;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    MessageBrokerConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): MessageBrokerConfig.AsObject {
-    return {
-      activateMessageBroker: this.activateMessageBroker,
-      messageBrokerServicesActivationConfig: this
-        .messageBrokerServicesActivationConfig
-        ? this.messageBrokerServicesActivationConfig.toObject()
-        : undefined,
-      rabbitMqConfig: this.rabbitMqConfig
-        ? this.rabbitMqConfig.toObject()
-        : undefined
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): MessageBrokerConfig.AsProtobufJSON {
-    return {
-      activateMessageBroker: this.activateMessageBroker,
-      messageBrokerServicesActivationConfig: this
-        .messageBrokerServicesActivationConfig
-        ? this.messageBrokerServicesActivationConfig.toProtobufJSON(options)
-        : null,
-      rabbitMqConfig: this.rabbitMqConfig
-        ? this.rabbitMqConfig.toProtobufJSON(options)
-        : null
-    };
-  }
-}
-export module MessageBrokerConfig {
-  /**
-   * Standard JavaScript object representation for MessageBrokerConfig
-   */
-  export interface AsObject {
-    activateMessageBroker: boolean;
-    messageBrokerServicesActivationConfig?: MessageBrokerServicesActivationConfig.AsObject;
-    rabbitMqConfig?: RabbitMqConfig.AsObject;
-  }
-
-  /**
-   * Protobuf JSON representation for MessageBrokerConfig
-   */
-  export interface AsProtobufJSON {
-    activateMessageBroker: boolean;
-    messageBrokerServicesActivationConfig: MessageBrokerServicesActivationConfig.AsProtobufJSON | null;
-    rabbitMqConfig: RabbitMqConfig.AsProtobufJSON | null;
-  }
-  export enum MessageBrokerConfigCase {
-    none = 0,
-    rabbitMqConfig = 1
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.MessageBrokerServicesActivationConfig
- */
-export class MessageBrokerServicesActivationConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.MessageBrokerServicesActivationConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new MessageBrokerServicesActivationConfig();
-    MessageBrokerServicesActivationConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: MessageBrokerServicesActivationConfig) {
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: MessageBrokerServicesActivationConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.activateS2t = _reader.readBool();
-          break;
-        case 2:
-          _instance.activateNlu = _reader.readBool();
-          break;
-        case 3:
-          _instance.activateT2s = _reader.readBool();
-          break;
-        case 4:
-          _instance.activateSip = _reader.readBool();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    MessageBrokerServicesActivationConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: MessageBrokerServicesActivationConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.activateS2t !== undefined && _instance.activateS2t !== null) {
-      _writer.writeBool(1, _instance.activateS2t);
-    }
-    if (_instance.activateNlu !== undefined && _instance.activateNlu !== null) {
-      _writer.writeBool(2, _instance.activateNlu);
-    }
-    if (_instance.activateT2s !== undefined && _instance.activateT2s !== null) {
-      _writer.writeBool(3, _instance.activateT2s);
-    }
-    if (_instance.activateSip !== undefined && _instance.activateSip !== null) {
-      _writer.writeBool(4, _instance.activateSip);
-    }
-  }
-
-  private _activateS2t: boolean;
-  private _activateNlu: boolean;
-  private _activateT2s: boolean;
-  private _activateSip: boolean;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of MessageBrokerServicesActivationConfig to deeply clone from
-   */
-  constructor(
-    _value?: RecursivePartial<MessageBrokerServicesActivationConfig.AsObject>
-  ) {
-    _value = _value || {};
-    this.activateS2t = _value.activateS2t;
-    this.activateNlu = _value.activateNlu;
-    this.activateT2s = _value.activateT2s;
-    this.activateSip = _value.activateSip;
-    MessageBrokerServicesActivationConfig.refineValues(this);
-  }
-  get activateS2t(): boolean {
-    return this._activateS2t;
-  }
-  set activateS2t(value: boolean) {
-    this._activateS2t = value;
-  }
-  get activateNlu(): boolean {
-    return this._activateNlu;
-  }
-  set activateNlu(value: boolean) {
-    this._activateNlu = value;
-  }
-  get activateT2s(): boolean {
-    return this._activateT2s;
-  }
-  set activateT2s(value: boolean) {
-    this._activateT2s = value;
-  }
-  get activateSip(): boolean {
-    return this._activateSip;
-  }
-  set activateSip(value: boolean) {
-    this._activateSip = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    MessageBrokerServicesActivationConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): MessageBrokerServicesActivationConfig.AsObject {
-    return {
-      activateS2t: this.activateS2t,
-      activateNlu: this.activateNlu,
-      activateT2s: this.activateT2s,
-      activateSip: this.activateSip
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): MessageBrokerServicesActivationConfig.AsProtobufJSON {
-    return {
-      activateS2t: this.activateS2t,
-      activateNlu: this.activateNlu,
-      activateT2s: this.activateT2s,
-      activateSip: this.activateSip
-    };
-  }
-}
-export module MessageBrokerServicesActivationConfig {
-  /**
-   * Standard JavaScript object representation for MessageBrokerServicesActivationConfig
-   */
-  export interface AsObject {
-    activateS2t: boolean;
-    activateNlu: boolean;
-    activateT2s: boolean;
-    activateSip: boolean;
-  }
-
-  /**
-   * Protobuf JSON representation for MessageBrokerServicesActivationConfig
-   */
-  export interface AsProtobufJSON {
-    activateS2t: boolean;
-    activateNlu: boolean;
-    activateT2s: boolean;
-    activateSip: boolean;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.RabbitMqConfig
- */
-export class RabbitMqConfig implements GrpcMessage {
-  static id = 'ondewo.vtsi.RabbitMqConfig';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new RabbitMqConfig();
-    RabbitMqConfig.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: RabbitMqConfig) {
-    _instance.host = _instance.host || '';
-    _instance.port = _instance.port || 0;
-    _instance.port2 = _instance.port2 || 0;
-    _instance.user = _instance.user || '';
-    _instance.password = _instance.password || '';
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: RabbitMqConfig,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          _instance.host = _reader.readString();
-          break;
-        case 2:
-          _instance.port = _reader.readInt32();
-          break;
-        case 3:
-          _instance.port2 = _reader.readInt32();
-          break;
-        case 4:
-          _instance.user = _reader.readString();
-          break;
-        case 5:
-          _instance.password = _reader.readString();
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    RabbitMqConfig.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: RabbitMqConfig,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.host) {
-      _writer.writeString(1, _instance.host);
-    }
-    if (_instance.port) {
-      _writer.writeInt32(2, _instance.port);
-    }
-    if (_instance.port2) {
-      _writer.writeInt32(3, _instance.port2);
-    }
-    if (_instance.user) {
-      _writer.writeString(4, _instance.user);
-    }
-    if (_instance.password) {
-      _writer.writeString(5, _instance.password);
-    }
-  }
-
-  private _host: string;
-  private _port: number;
-  private _port2: number;
-  private _user: string;
-  private _password: string;
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of RabbitMqConfig to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<RabbitMqConfig.AsObject>) {
-    _value = _value || {};
-    this.host = _value.host;
-    this.port = _value.port;
-    this.port2 = _value.port2;
-    this.user = _value.user;
-    this.password = _value.password;
-    RabbitMqConfig.refineValues(this);
-  }
-  get host(): string {
-    return this._host;
-  }
-  set host(value: string) {
-    this._host = value;
-  }
-  get port(): number {
-    return this._port;
-  }
-  set port(value: number) {
-    this._port = value;
-  }
-  get port2(): number {
-    return this._port2;
-  }
-  set port2(value: number) {
-    this._port2 = value;
-  }
-  get user(): string {
-    return this._user;
-  }
-  set user(value: string) {
-    this._user = value;
-  }
-  get password(): string {
-    return this._password;
-  }
-  set password(value: string) {
-    this._password = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    RabbitMqConfig.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): RabbitMqConfig.AsObject {
-    return {
-      host: this.host,
-      port: this.port,
-      port2: this.port2,
-      user: this.user,
-      password: this.password
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): RabbitMqConfig.AsProtobufJSON {
-    return {
-      host: this.host,
-      port: this.port,
-      port2: this.port2,
-      user: this.user,
-      password: this.password
-    };
-  }
-}
-export module RabbitMqConfig {
-  /**
-   * Standard JavaScript object representation for RabbitMqConfig
-   */
-  export interface AsObject {
-    host: string;
-    port: number;
-    port2: number;
-    user: string;
-    password: string;
-  }
-
-  /**
-   * Protobuf JSON representation for RabbitMqConfig
-   */
-  export interface AsProtobufJSON {
-    host: string;
-    port: number;
-    port2: number;
-    user: string;
-    password: string;
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.S2tVtsiCallbacks
- */
-export class S2tVtsiCallbacks implements GrpcMessage {
-  static id = 'ondewo.vtsi.S2tVtsiCallbacks';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new S2tVtsiCallbacks();
-    S2tVtsiCallbacks.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: S2tVtsiCallbacks) {
-    _instance.preS2tCallbacks = _instance.preS2tCallbacks || [];
-    _instance.postS2tCallbacks = _instance.postS2tCallbacks || [];
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: S2tVtsiCallbacks,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          (_instance.preS2tCallbacks = _instance.preS2tCallbacks || []).push(
-            _reader.readString()
-          );
-          break;
-        case 2:
-          (_instance.postS2tCallbacks = _instance.postS2tCallbacks || []).push(
-            _reader.readString()
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    S2tVtsiCallbacks.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: S2tVtsiCallbacks,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.preS2tCallbacks && _instance.preS2tCallbacks.length) {
-      _writer.writeRepeatedString(1, _instance.preS2tCallbacks);
-    }
-    if (_instance.postS2tCallbacks && _instance.postS2tCallbacks.length) {
-      _writer.writeRepeatedString(2, _instance.postS2tCallbacks);
-    }
-  }
-
-  private _preS2tCallbacks: string[];
-  private _postS2tCallbacks: string[];
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of S2tVtsiCallbacks to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<S2tVtsiCallbacks.AsObject>) {
-    _value = _value || {};
-    this.preS2tCallbacks = (_value.preS2tCallbacks || []).slice();
-    this.postS2tCallbacks = (_value.postS2tCallbacks || []).slice();
-    S2tVtsiCallbacks.refineValues(this);
-  }
-  get preS2tCallbacks(): string[] {
-    return this._preS2tCallbacks;
-  }
-  set preS2tCallbacks(value: string[]) {
-    this._preS2tCallbacks = value;
-  }
-  get postS2tCallbacks(): string[] {
-    return this._postS2tCallbacks;
-  }
-  set postS2tCallbacks(value: string[]) {
-    this._postS2tCallbacks = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    S2tVtsiCallbacks.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): S2tVtsiCallbacks.AsObject {
-    return {
-      preS2tCallbacks: (this.preS2tCallbacks || []).slice(),
-      postS2tCallbacks: (this.postS2tCallbacks || []).slice()
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): S2tVtsiCallbacks.AsProtobufJSON {
-    return {
-      preS2tCallbacks: (this.preS2tCallbacks || []).slice(),
-      postS2tCallbacks: (this.postS2tCallbacks || []).slice()
-    };
-  }
-}
-export module S2tVtsiCallbacks {
-  /**
-   * Standard JavaScript object representation for S2tVtsiCallbacks
-   */
-  export interface AsObject {
-    preS2tCallbacks: string[];
-    postS2tCallbacks: string[];
-  }
-
-  /**
-   * Protobuf JSON representation for S2tVtsiCallbacks
-   */
-  export interface AsProtobufJSON {
-    preS2tCallbacks: string[];
-    postS2tCallbacks: string[];
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.NluVtsiCallbacks
- */
-export class NluVtsiCallbacks implements GrpcMessage {
-  static id = 'ondewo.vtsi.NluVtsiCallbacks';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new NluVtsiCallbacks();
-    NluVtsiCallbacks.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: NluVtsiCallbacks) {
-    _instance.preNluCallbacks = _instance.preNluCallbacks || [];
-    _instance.postNluCallbacks = _instance.postNluCallbacks || [];
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: NluVtsiCallbacks,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          (_instance.preNluCallbacks = _instance.preNluCallbacks || []).push(
-            _reader.readString()
-          );
-          break;
-        case 2:
-          (_instance.postNluCallbacks = _instance.postNluCallbacks || []).push(
-            _reader.readString()
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    NluVtsiCallbacks.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: NluVtsiCallbacks,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.preNluCallbacks && _instance.preNluCallbacks.length) {
-      _writer.writeRepeatedString(1, _instance.preNluCallbacks);
-    }
-    if (_instance.postNluCallbacks && _instance.postNluCallbacks.length) {
-      _writer.writeRepeatedString(2, _instance.postNluCallbacks);
-    }
-  }
-
-  private _preNluCallbacks: string[];
-  private _postNluCallbacks: string[];
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of NluVtsiCallbacks to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<NluVtsiCallbacks.AsObject>) {
-    _value = _value || {};
-    this.preNluCallbacks = (_value.preNluCallbacks || []).slice();
-    this.postNluCallbacks = (_value.postNluCallbacks || []).slice();
-    NluVtsiCallbacks.refineValues(this);
-  }
-  get preNluCallbacks(): string[] {
-    return this._preNluCallbacks;
-  }
-  set preNluCallbacks(value: string[]) {
-    this._preNluCallbacks = value;
-  }
-  get postNluCallbacks(): string[] {
-    return this._postNluCallbacks;
-  }
-  set postNluCallbacks(value: string[]) {
-    this._postNluCallbacks = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    NluVtsiCallbacks.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): NluVtsiCallbacks.AsObject {
-    return {
-      preNluCallbacks: (this.preNluCallbacks || []).slice(),
-      postNluCallbacks: (this.postNluCallbacks || []).slice()
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): NluVtsiCallbacks.AsProtobufJSON {
-    return {
-      preNluCallbacks: (this.preNluCallbacks || []).slice(),
-      postNluCallbacks: (this.postNluCallbacks || []).slice()
-    };
-  }
-}
-export module NluVtsiCallbacks {
-  /**
-   * Standard JavaScript object representation for NluVtsiCallbacks
-   */
-  export interface AsObject {
-    preNluCallbacks: string[];
-    postNluCallbacks: string[];
-  }
-
-  /**
-   * Protobuf JSON representation for NluVtsiCallbacks
-   */
-  export interface AsProtobufJSON {
-    preNluCallbacks: string[];
-    postNluCallbacks: string[];
-  }
-}
-
-/**
- * Message implementation for ondewo.vtsi.T2sVtsiCallbacks
- */
-export class T2sVtsiCallbacks implements GrpcMessage {
-  static id = 'ondewo.vtsi.T2sVtsiCallbacks';
-
-  /**
-   * Deserialize binary data to message
-   * @param instance message instance
-   */
-  static deserializeBinary(bytes: ByteSource) {
-    const instance = new T2sVtsiCallbacks();
-    T2sVtsiCallbacks.deserializeBinaryFromReader(
-      instance,
-      new BinaryReader(bytes)
-    );
-    return instance;
-  }
-
-  /**
-   * Check all the properties and set default protobuf values if necessary
-   * @param _instance message instance
-   */
-  static refineValues(_instance: T2sVtsiCallbacks) {
-    _instance.preT2sCallbacks = _instance.preT2sCallbacks || [];
-    _instance.postT2sCallbacks = _instance.postT2sCallbacks || [];
-  }
-
-  /**
-   * Deserializes / reads binary message into message instance using provided binary reader
-   * @param _instance message instance
-   * @param _reader binary reader instance
-   */
-  static deserializeBinaryFromReader(
-    _instance: T2sVtsiCallbacks,
-    _reader: BinaryReader
-  ) {
-    while (_reader.nextField()) {
-      if (_reader.isEndGroup()) break;
-
-      switch (_reader.getFieldNumber()) {
-        case 1:
-          (_instance.preT2sCallbacks = _instance.preT2sCallbacks || []).push(
-            _reader.readString()
-          );
-          break;
-        case 2:
-          (_instance.postT2sCallbacks = _instance.postT2sCallbacks || []).push(
-            _reader.readString()
-          );
-          break;
-        default:
-          _reader.skipField();
-      }
-    }
-
-    T2sVtsiCallbacks.refineValues(_instance);
-  }
-
-  /**
-   * Serializes a message to binary format using provided binary reader
-   * @param _instance message instance
-   * @param _writer binary writer instance
-   */
-  static serializeBinaryToWriter(
-    _instance: T2sVtsiCallbacks,
-    _writer: BinaryWriter
-  ) {
-    if (_instance.preT2sCallbacks && _instance.preT2sCallbacks.length) {
-      _writer.writeRepeatedString(1, _instance.preT2sCallbacks);
-    }
-    if (_instance.postT2sCallbacks && _instance.postT2sCallbacks.length) {
-      _writer.writeRepeatedString(2, _instance.postT2sCallbacks);
-    }
-  }
-
-  private _preT2sCallbacks: string[];
-  private _postT2sCallbacks: string[];
-
-  /**
-   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
-   * @param _value initial values object or instance of T2sVtsiCallbacks to deeply clone from
-   */
-  constructor(_value?: RecursivePartial<T2sVtsiCallbacks.AsObject>) {
-    _value = _value || {};
-    this.preT2sCallbacks = (_value.preT2sCallbacks || []).slice();
-    this.postT2sCallbacks = (_value.postT2sCallbacks || []).slice();
-    T2sVtsiCallbacks.refineValues(this);
-  }
-  get preT2sCallbacks(): string[] {
-    return this._preT2sCallbacks;
-  }
-  set preT2sCallbacks(value: string[]) {
-    this._preT2sCallbacks = value;
-  }
-  get postT2sCallbacks(): string[] {
-    return this._postT2sCallbacks;
-  }
-  set postT2sCallbacks(value: string[]) {
-    this._postT2sCallbacks = value;
-  }
-
-  /**
-   * Serialize message to binary data
-   * @param instance message instance
-   */
-  serializeBinary() {
-    const writer = new BinaryWriter();
-    T2sVtsiCallbacks.serializeBinaryToWriter(this, writer);
-    return writer.getResultBuffer();
-  }
-
-  /**
-   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
-   */
-  toObject(): T2sVtsiCallbacks.AsObject {
-    return {
-      preT2sCallbacks: (this.preT2sCallbacks || []).slice(),
-      postT2sCallbacks: (this.postT2sCallbacks || []).slice()
-    };
-  }
-
-  /**
-   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
-   */
-  toJSON() {
-    return this.toObject();
-  }
-
-  /**
-   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
-   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
-   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
-   */
-  toProtobufJSON(
-    // @ts-ignore
-    options?: ToProtobufJSONOptions
-  ): T2sVtsiCallbacks.AsProtobufJSON {
-    return {
-      preT2sCallbacks: (this.preT2sCallbacks || []).slice(),
-      postT2sCallbacks: (this.postT2sCallbacks || []).slice()
-    };
-  }
-}
-export module T2sVtsiCallbacks {
-  /**
-   * Standard JavaScript object representation for T2sVtsiCallbacks
-   */
-  export interface AsObject {
-    preT2sCallbacks: string[];
-    postT2sCallbacks: string[];
-  }
-
-  /**
-   * Protobuf JSON representation for T2sVtsiCallbacks
-   */
-  export interface AsProtobufJSON {
-    preT2sCallbacks: string[];
-    postT2sCallbacks: string[];
+    asteriskBaseConfig: ondewoVtsi013.BaseServiceConfig.AsProtobufJSON | null;
   }
 }
 
@@ -5744,6 +295,10 @@ export class Listener implements GrpcMessage {
     _instance.sipBaseConfig = _instance.sipBaseConfig || undefined;
     _instance.commonServicesConfig =
       _instance.commonServicesConfig || undefined;
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.active = _instance.active || false;
+    _instance.sipStatusType = _instance.sipStatusType || 0;
+    _instance.createdAt = _instance.createdAt || undefined;
   }
 
   /**
@@ -5766,17 +321,33 @@ export class Listener implements GrpcMessage {
           _instance.callName = _reader.readString();
           break;
         case 3:
-          _instance.sipBaseConfig = new SipBaseConfig();
+          _instance.sipBaseConfig = new ondewoVtsi013.SipBaseConfig();
           _reader.readMessage(
             _instance.sipBaseConfig,
-            SipBaseConfig.deserializeBinaryFromReader
+            ondewoVtsi013.SipBaseConfig.deserializeBinaryFromReader
           );
           break;
         case 4:
-          _instance.commonServicesConfig = new CommonServicesConfig();
+          _instance.commonServicesConfig = new ondewoVtsi013.CommonServicesConfig();
           _reader.readMessage(
             _instance.commonServicesConfig,
-            CommonServicesConfig.deserializeBinaryFromReader
+            ondewoVtsi013.CommonServicesConfig.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 6:
+          _instance.active = _reader.readBool();
+          break;
+        case 7:
+          _instance.sipStatusType = _reader.readEnum();
+          break;
+        case 8:
+          _instance.createdAt = new googleProtobuf005.Timestamp();
+          _reader.readMessage(
+            _instance.createdAt,
+            googleProtobuf005.Timestamp.deserializeBinaryFromReader
           );
           break;
         default:
@@ -5803,22 +374,42 @@ export class Listener implements GrpcMessage {
       _writer.writeMessage(
         3,
         _instance.sipBaseConfig as any,
-        SipBaseConfig.serializeBinaryToWriter
+        ondewoVtsi013.SipBaseConfig.serializeBinaryToWriter
       );
     }
     if (_instance.commonServicesConfig) {
       _writer.writeMessage(
         4,
         _instance.commonServicesConfig as any,
-        CommonServicesConfig.serializeBinaryToWriter
+        ondewoVtsi013.CommonServicesConfig.serializeBinaryToWriter
+      );
+    }
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(5, _instance.vtsiProjectName);
+    }
+    if (_instance.active) {
+      _writer.writeBool(6, _instance.active);
+    }
+    if (_instance.sipStatusType) {
+      _writer.writeEnum(7, _instance.sipStatusType);
+    }
+    if (_instance.createdAt) {
+      _writer.writeMessage(
+        8,
+        _instance.createdAt as any,
+        googleProtobuf005.Timestamp.serializeBinaryToWriter
       );
     }
   }
 
   private _name: string;
   private _callName: string;
-  private _sipBaseConfig?: SipBaseConfig;
-  private _commonServicesConfig?: CommonServicesConfig;
+  private _sipBaseConfig?: ondewoVtsi013.SipBaseConfig;
+  private _commonServicesConfig?: ondewoVtsi013.CommonServicesConfig;
+  private _vtsiProjectName: string;
+  private _active: boolean;
+  private _sipStatusType: ondewoSip012.SipStatus.StatusType;
+  private _createdAt?: googleProtobuf005.Timestamp;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -5829,10 +420,16 @@ export class Listener implements GrpcMessage {
     this.name = _value.name;
     this.callName = _value.callName;
     this.sipBaseConfig = _value.sipBaseConfig
-      ? new SipBaseConfig(_value.sipBaseConfig)
+      ? new ondewoVtsi013.SipBaseConfig(_value.sipBaseConfig)
       : undefined;
     this.commonServicesConfig = _value.commonServicesConfig
-      ? new CommonServicesConfig(_value.commonServicesConfig)
+      ? new ondewoVtsi013.CommonServicesConfig(_value.commonServicesConfig)
+      : undefined;
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.active = _value.active;
+    this.sipStatusType = _value.sipStatusType;
+    this.createdAt = _value.createdAt
+      ? new googleProtobuf005.Timestamp(_value.createdAt)
       : undefined;
     Listener.refineValues(this);
   }
@@ -5848,17 +445,43 @@ export class Listener implements GrpcMessage {
   set callName(value: string) {
     this._callName = value;
   }
-  get sipBaseConfig(): SipBaseConfig | undefined {
+  get sipBaseConfig(): ondewoVtsi013.SipBaseConfig | undefined {
     return this._sipBaseConfig;
   }
-  set sipBaseConfig(value: SipBaseConfig | undefined) {
+  set sipBaseConfig(value: ondewoVtsi013.SipBaseConfig | undefined) {
     this._sipBaseConfig = value;
   }
-  get commonServicesConfig(): CommonServicesConfig | undefined {
+  get commonServicesConfig(): ondewoVtsi013.CommonServicesConfig | undefined {
     return this._commonServicesConfig;
   }
-  set commonServicesConfig(value: CommonServicesConfig | undefined) {
+  set commonServicesConfig(
+    value: ondewoVtsi013.CommonServicesConfig | undefined
+  ) {
     this._commonServicesConfig = value;
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get active(): boolean {
+    return this._active;
+  }
+  set active(value: boolean) {
+    this._active = value;
+  }
+  get sipStatusType(): ondewoSip012.SipStatus.StatusType {
+    return this._sipStatusType;
+  }
+  set sipStatusType(value: ondewoSip012.SipStatus.StatusType) {
+    this._sipStatusType = value;
+  }
+  get createdAt(): googleProtobuf005.Timestamp | undefined {
+    return this._createdAt;
+  }
+  set createdAt(value: googleProtobuf005.Timestamp | undefined) {
+    this._createdAt = value;
   }
 
   /**
@@ -5883,7 +506,11 @@ export class Listener implements GrpcMessage {
         : undefined,
       commonServicesConfig: this.commonServicesConfig
         ? this.commonServicesConfig.toObject()
-        : undefined
+        : undefined,
+      vtsiProjectName: this.vtsiProjectName,
+      active: this.active,
+      sipStatusType: this.sipStatusType,
+      createdAt: this.createdAt ? this.createdAt.toObject() : undefined
     };
   }
 
@@ -5911,7 +538,16 @@ export class Listener implements GrpcMessage {
         : null,
       commonServicesConfig: this.commonServicesConfig
         ? this.commonServicesConfig.toProtobufJSON(options)
-        : null
+        : null,
+      vtsiProjectName: this.vtsiProjectName,
+      active: this.active,
+      sipStatusType:
+        ondewoSip012.SipStatus.StatusType[
+          this.sipStatusType === null || this.sipStatusType === undefined
+            ? 0
+            : this.sipStatusType
+        ],
+      createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null
     };
   }
 }
@@ -5922,8 +558,12 @@ export module Listener {
   export interface AsObject {
     name: string;
     callName: string;
-    sipBaseConfig?: SipBaseConfig.AsObject;
-    commonServicesConfig?: CommonServicesConfig.AsObject;
+    sipBaseConfig?: ondewoVtsi013.SipBaseConfig.AsObject;
+    commonServicesConfig?: ondewoVtsi013.CommonServicesConfig.AsObject;
+    vtsiProjectName: string;
+    active: boolean;
+    sipStatusType: ondewoSip012.SipStatus.StatusType;
+    createdAt?: googleProtobuf005.Timestamp.AsObject;
   }
 
   /**
@@ -5932,8 +572,12 @@ export module Listener {
   export interface AsProtobufJSON {
     name: string;
     callName: string;
-    sipBaseConfig: SipBaseConfig.AsProtobufJSON | null;
-    commonServicesConfig: CommonServicesConfig.AsProtobufJSON | null;
+    sipBaseConfig: ondewoVtsi013.SipBaseConfig.AsProtobufJSON | null;
+    commonServicesConfig: ondewoVtsi013.CommonServicesConfig.AsProtobufJSON | null;
+    vtsiProjectName: string;
+    active: boolean;
+    sipStatusType: string;
+    createdAt: googleProtobuf005.Timestamp.AsProtobufJSON | null;
   }
 }
 
@@ -5963,6 +607,12 @@ export class Caller implements GrpcMessage {
     _instance.sipCallerConfig = _instance.sipCallerConfig || undefined;
     _instance.commonServicesConfig =
       _instance.commonServicesConfig || undefined;
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.active = _instance.active || false;
+    _instance.sipStatusType = _instance.sipStatusType || 0;
+    _instance.createdAt = _instance.createdAt || undefined;
+    _instance.pooled = _instance.pooled || false;
+    _instance.campaignName = _instance.campaignName || '';
   }
 
   /**
@@ -5982,18 +632,40 @@ export class Caller implements GrpcMessage {
           _instance.callName = _reader.readString();
           break;
         case 3:
-          _instance.sipCallerConfig = new SipCallerConfig();
+          _instance.sipCallerConfig = new ondewoVtsi013.SipCallerConfig();
           _reader.readMessage(
             _instance.sipCallerConfig,
-            SipCallerConfig.deserializeBinaryFromReader
+            ondewoVtsi013.SipCallerConfig.deserializeBinaryFromReader
           );
           break;
         case 4:
-          _instance.commonServicesConfig = new CommonServicesConfig();
+          _instance.commonServicesConfig = new ondewoVtsi013.CommonServicesConfig();
           _reader.readMessage(
             _instance.commonServicesConfig,
-            CommonServicesConfig.deserializeBinaryFromReader
+            ondewoVtsi013.CommonServicesConfig.deserializeBinaryFromReader
           );
+          break;
+        case 5:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 6:
+          _instance.active = _reader.readBool();
+          break;
+        case 7:
+          _instance.sipStatusType = _reader.readEnum();
+          break;
+        case 8:
+          _instance.createdAt = new googleProtobuf005.Timestamp();
+          _reader.readMessage(
+            _instance.createdAt,
+            googleProtobuf005.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 9:
+          _instance.pooled = _reader.readBool();
+          break;
+        case 10:
+          _instance.campaignName = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -6019,22 +691,50 @@ export class Caller implements GrpcMessage {
       _writer.writeMessage(
         3,
         _instance.sipCallerConfig as any,
-        SipCallerConfig.serializeBinaryToWriter
+        ondewoVtsi013.SipCallerConfig.serializeBinaryToWriter
       );
     }
     if (_instance.commonServicesConfig) {
       _writer.writeMessage(
         4,
         _instance.commonServicesConfig as any,
-        CommonServicesConfig.serializeBinaryToWriter
+        ondewoVtsi013.CommonServicesConfig.serializeBinaryToWriter
       );
+    }
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(5, _instance.vtsiProjectName);
+    }
+    if (_instance.active) {
+      _writer.writeBool(6, _instance.active);
+    }
+    if (_instance.sipStatusType) {
+      _writer.writeEnum(7, _instance.sipStatusType);
+    }
+    if (_instance.createdAt) {
+      _writer.writeMessage(
+        8,
+        _instance.createdAt as any,
+        googleProtobuf005.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.pooled) {
+      _writer.writeBool(9, _instance.pooled);
+    }
+    if (_instance.campaignName) {
+      _writer.writeString(10, _instance.campaignName);
     }
   }
 
   private _name: string;
   private _callName: string;
-  private _sipCallerConfig?: SipCallerConfig;
-  private _commonServicesConfig?: CommonServicesConfig;
+  private _sipCallerConfig?: ondewoVtsi013.SipCallerConfig;
+  private _commonServicesConfig?: ondewoVtsi013.CommonServicesConfig;
+  private _vtsiProjectName: string;
+  private _active: boolean;
+  private _sipStatusType: ondewoSip012.SipStatus.StatusType;
+  private _createdAt?: googleProtobuf005.Timestamp;
+  private _pooled: boolean;
+  private _campaignName: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -6045,11 +745,19 @@ export class Caller implements GrpcMessage {
     this.name = _value.name;
     this.callName = _value.callName;
     this.sipCallerConfig = _value.sipCallerConfig
-      ? new SipCallerConfig(_value.sipCallerConfig)
+      ? new ondewoVtsi013.SipCallerConfig(_value.sipCallerConfig)
       : undefined;
     this.commonServicesConfig = _value.commonServicesConfig
-      ? new CommonServicesConfig(_value.commonServicesConfig)
+      ? new ondewoVtsi013.CommonServicesConfig(_value.commonServicesConfig)
       : undefined;
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.active = _value.active;
+    this.sipStatusType = _value.sipStatusType;
+    this.createdAt = _value.createdAt
+      ? new googleProtobuf005.Timestamp(_value.createdAt)
+      : undefined;
+    this.pooled = _value.pooled;
+    this.campaignName = _value.campaignName;
     Caller.refineValues(this);
   }
   get name(): string {
@@ -6064,17 +772,55 @@ export class Caller implements GrpcMessage {
   set callName(value: string) {
     this._callName = value;
   }
-  get sipCallerConfig(): SipCallerConfig | undefined {
+  get sipCallerConfig(): ondewoVtsi013.SipCallerConfig | undefined {
     return this._sipCallerConfig;
   }
-  set sipCallerConfig(value: SipCallerConfig | undefined) {
+  set sipCallerConfig(value: ondewoVtsi013.SipCallerConfig | undefined) {
     this._sipCallerConfig = value;
   }
-  get commonServicesConfig(): CommonServicesConfig | undefined {
+  get commonServicesConfig(): ondewoVtsi013.CommonServicesConfig | undefined {
     return this._commonServicesConfig;
   }
-  set commonServicesConfig(value: CommonServicesConfig | undefined) {
+  set commonServicesConfig(
+    value: ondewoVtsi013.CommonServicesConfig | undefined
+  ) {
     this._commonServicesConfig = value;
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get active(): boolean {
+    return this._active;
+  }
+  set active(value: boolean) {
+    this._active = value;
+  }
+  get sipStatusType(): ondewoSip012.SipStatus.StatusType {
+    return this._sipStatusType;
+  }
+  set sipStatusType(value: ondewoSip012.SipStatus.StatusType) {
+    this._sipStatusType = value;
+  }
+  get createdAt(): googleProtobuf005.Timestamp | undefined {
+    return this._createdAt;
+  }
+  set createdAt(value: googleProtobuf005.Timestamp | undefined) {
+    this._createdAt = value;
+  }
+  get pooled(): boolean {
+    return this._pooled;
+  }
+  set pooled(value: boolean) {
+    this._pooled = value;
+  }
+  get campaignName(): string {
+    return this._campaignName;
+  }
+  set campaignName(value: string) {
+    this._campaignName = value;
   }
 
   /**
@@ -6099,7 +845,13 @@ export class Caller implements GrpcMessage {
         : undefined,
       commonServicesConfig: this.commonServicesConfig
         ? this.commonServicesConfig.toObject()
-        : undefined
+        : undefined,
+      vtsiProjectName: this.vtsiProjectName,
+      active: this.active,
+      sipStatusType: this.sipStatusType,
+      createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
+      pooled: this.pooled,
+      campaignName: this.campaignName
     };
   }
 
@@ -6127,7 +879,18 @@ export class Caller implements GrpcMessage {
         : null,
       commonServicesConfig: this.commonServicesConfig
         ? this.commonServicesConfig.toProtobufJSON(options)
-        : null
+        : null,
+      vtsiProjectName: this.vtsiProjectName,
+      active: this.active,
+      sipStatusType:
+        ondewoSip012.SipStatus.StatusType[
+          this.sipStatusType === null || this.sipStatusType === undefined
+            ? 0
+            : this.sipStatusType
+        ],
+      createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null,
+      pooled: this.pooled,
+      campaignName: this.campaignName
     };
   }
 }
@@ -6138,8 +901,14 @@ export module Caller {
   export interface AsObject {
     name: string;
     callName: string;
-    sipCallerConfig?: SipCallerConfig.AsObject;
-    commonServicesConfig?: CommonServicesConfig.AsObject;
+    sipCallerConfig?: ondewoVtsi013.SipCallerConfig.AsObject;
+    commonServicesConfig?: ondewoVtsi013.CommonServicesConfig.AsObject;
+    vtsiProjectName: string;
+    active: boolean;
+    sipStatusType: ondewoSip012.SipStatus.StatusType;
+    createdAt?: googleProtobuf005.Timestamp.AsObject;
+    pooled: boolean;
+    campaignName: string;
   }
 
   /**
@@ -6148,8 +917,14 @@ export module Caller {
   export interface AsProtobufJSON {
     name: string;
     callName: string;
-    sipCallerConfig: SipCallerConfig.AsProtobufJSON | null;
-    commonServicesConfig: CommonServicesConfig.AsProtobufJSON | null;
+    sipCallerConfig: ondewoVtsi013.SipCallerConfig.AsProtobufJSON | null;
+    commonServicesConfig: ondewoVtsi013.CommonServicesConfig.AsProtobufJSON | null;
+    vtsiProjectName: string;
+    active: boolean;
+    sipStatusType: string;
+    createdAt: googleProtobuf005.Timestamp.AsProtobufJSON | null;
+    pooled: boolean;
+    campaignName: string;
   }
 }
 
@@ -6181,6 +956,8 @@ export class StartListenerRequest implements GrpcMessage {
     _instance.sipBaseConfig = _instance.sipBaseConfig || undefined;
     _instance.commonServicesConfig =
       _instance.commonServicesConfig || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
   }
 
   /**
@@ -6200,18 +977,28 @@ export class StartListenerRequest implements GrpcMessage {
           _instance.vtsiProjectName = _reader.readString();
           break;
         case 2:
-          _instance.sipBaseConfig = new SipBaseConfig();
+          _instance.sipBaseConfig = new ondewoVtsi013.SipBaseConfig();
           _reader.readMessage(
             _instance.sipBaseConfig,
-            SipBaseConfig.deserializeBinaryFromReader
+            ondewoVtsi013.SipBaseConfig.deserializeBinaryFromReader
           );
           break;
         case 3:
-          _instance.commonServicesConfig = new CommonServicesConfig();
+          _instance.commonServicesConfig = new ondewoVtsi013.CommonServicesConfig();
           _reader.readMessage(
             _instance.commonServicesConfig,
-            CommonServicesConfig.deserializeBinaryFromReader
+            ondewoVtsi013.CommonServicesConfig.deserializeBinaryFromReader
           );
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.validateOnly = _reader.readBool();
           break;
         default:
           _reader.skipField();
@@ -6237,21 +1024,33 @@ export class StartListenerRequest implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.sipBaseConfig as any,
-        SipBaseConfig.serializeBinaryToWriter
+        ondewoVtsi013.SipBaseConfig.serializeBinaryToWriter
       );
     }
     if (_instance.commonServicesConfig) {
       _writer.writeMessage(
         3,
         _instance.commonServicesConfig as any,
-        CommonServicesConfig.serializeBinaryToWriter
+        ondewoVtsi013.CommonServicesConfig.serializeBinaryToWriter
       );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.validateOnly) {
+      _writer.writeBool(5, _instance.validateOnly);
     }
   }
 
   private _vtsiProjectName: string;
-  private _sipBaseConfig?: SipBaseConfig;
-  private _commonServicesConfig?: CommonServicesConfig;
+  private _sipBaseConfig?: ondewoVtsi013.SipBaseConfig;
+  private _commonServicesConfig?: ondewoVtsi013.CommonServicesConfig;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _validateOnly: boolean;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -6261,11 +1060,15 @@ export class StartListenerRequest implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.sipBaseConfig = _value.sipBaseConfig
-      ? new SipBaseConfig(_value.sipBaseConfig)
+      ? new ondewoVtsi013.SipBaseConfig(_value.sipBaseConfig)
       : undefined;
     this.commonServicesConfig = _value.commonServicesConfig
-      ? new CommonServicesConfig(_value.commonServicesConfig)
+      ? new ondewoVtsi013.CommonServicesConfig(_value.commonServicesConfig)
       : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.validateOnly = _value.validateOnly;
     StartListenerRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -6274,17 +1077,31 @@ export class StartListenerRequest implements GrpcMessage {
   set vtsiProjectName(value: string) {
     this._vtsiProjectName = value;
   }
-  get sipBaseConfig(): SipBaseConfig | undefined {
+  get sipBaseConfig(): ondewoVtsi013.SipBaseConfig | undefined {
     return this._sipBaseConfig;
   }
-  set sipBaseConfig(value: SipBaseConfig | undefined) {
+  set sipBaseConfig(value: ondewoVtsi013.SipBaseConfig | undefined) {
     this._sipBaseConfig = value;
   }
-  get commonServicesConfig(): CommonServicesConfig | undefined {
+  get commonServicesConfig(): ondewoVtsi013.CommonServicesConfig | undefined {
     return this._commonServicesConfig;
   }
-  set commonServicesConfig(value: CommonServicesConfig | undefined) {
+  set commonServicesConfig(
+    value: ondewoVtsi013.CommonServicesConfig | undefined
+  ) {
     this._commonServicesConfig = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
   }
 
   /**
@@ -6308,7 +1125,9 @@ export class StartListenerRequest implements GrpcMessage {
         : undefined,
       commonServicesConfig: this.commonServicesConfig
         ? this.commonServicesConfig.toObject()
-        : undefined
+        : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      validateOnly: this.validateOnly
     };
   }
 
@@ -6335,7 +1154,9 @@ export class StartListenerRequest implements GrpcMessage {
         : null,
       commonServicesConfig: this.commonServicesConfig
         ? this.commonServicesConfig.toProtobufJSON(options)
-        : null
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
     };
   }
 }
@@ -6345,8 +1166,10 @@ export module StartListenerRequest {
    */
   export interface AsObject {
     vtsiProjectName: string;
-    sipBaseConfig?: SipBaseConfig.AsObject;
-    commonServicesConfig?: CommonServicesConfig.AsObject;
+    sipBaseConfig?: ondewoVtsi013.SipBaseConfig.AsObject;
+    commonServicesConfig?: ondewoVtsi013.CommonServicesConfig.AsObject;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    validateOnly: boolean;
   }
 
   /**
@@ -6354,8 +1177,10 @@ export module StartListenerRequest {
    */
   export interface AsProtobufJSON {
     vtsiProjectName: string;
-    sipBaseConfig: SipBaseConfig.AsProtobufJSON | null;
-    commonServicesConfig: CommonServicesConfig.AsProtobufJSON | null;
+    sipBaseConfig: ondewoVtsi013.SipBaseConfig.AsProtobufJSON | null;
+    commonServicesConfig: ondewoVtsi013.CommonServicesConfig.AsProtobufJSON | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    validateOnly: boolean;
   }
 }
 
@@ -6571,6 +1396,8 @@ export class StartListenersRequest implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.listenerRequests = _instance.listenerRequests || [];
     _instance.idempotencyKey = _instance.idempotencyKey || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
   }
 
   /**
@@ -6602,6 +1429,16 @@ export class StartListenersRequest implements GrpcMessage {
         case 3:
           _instance.idempotencyKey = _reader.readString();
           break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.validateOnly = _reader.readBool();
+          break;
         default:
           _reader.skipField();
       }
@@ -6632,11 +1469,23 @@ export class StartListenersRequest implements GrpcMessage {
     if (_instance.idempotencyKey) {
       _writer.writeString(3, _instance.idempotencyKey);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.validateOnly) {
+      _writer.writeBool(5, _instance.validateOnly);
+    }
   }
 
   private _vtsiProjectName: string;
   private _listenerRequests?: StartListenerRequest[];
   private _idempotencyKey: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _validateOnly: boolean;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -6649,6 +1498,10 @@ export class StartListenersRequest implements GrpcMessage {
       m => new StartListenerRequest(m)
     );
     this.idempotencyKey = _value.idempotencyKey;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.validateOnly = _value.validateOnly;
     StartListenersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -6669,6 +1522,18 @@ export class StartListenersRequest implements GrpcMessage {
   set idempotencyKey(value: string) {
     this._idempotencyKey = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -6687,7 +1552,9 @@ export class StartListenersRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       listenerRequests: (this.listenerRequests || []).map(m => m.toObject()),
-      idempotencyKey: this.idempotencyKey
+      idempotencyKey: this.idempotencyKey,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      validateOnly: this.validateOnly
     };
   }
 
@@ -6712,7 +1579,9 @@ export class StartListenersRequest implements GrpcMessage {
       listenerRequests: (this.listenerRequests || []).map(m =>
         m.toProtobufJSON(options)
       ),
-      idempotencyKey: this.idempotencyKey
+      idempotencyKey: this.idempotencyKey,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
     };
   }
 }
@@ -6724,6 +1593,8 @@ export module StartListenersRequest {
     vtsiProjectName: string;
     listenerRequests?: StartListenerRequest.AsObject[];
     idempotencyKey: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    validateOnly: boolean;
   }
 
   /**
@@ -6733,6 +1604,8 @@ export module StartListenersRequest {
     vtsiProjectName: string;
     listenerRequests: StartListenerRequest.AsProtobufJSON[] | null;
     idempotencyKey: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    validateOnly: boolean;
   }
 }
 
@@ -6955,6 +1828,8 @@ export class StartCallerRequest implements GrpcMessage {
     _instance.sipCallerConfig = _instance.sipCallerConfig || undefined;
     _instance.commonServicesConfig =
       _instance.commonServicesConfig || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
   }
 
   /**
@@ -6974,18 +1849,28 @@ export class StartCallerRequest implements GrpcMessage {
           _instance.vtsiProjectName = _reader.readString();
           break;
         case 2:
-          _instance.sipCallerConfig = new SipCallerConfig();
+          _instance.sipCallerConfig = new ondewoVtsi013.SipCallerConfig();
           _reader.readMessage(
             _instance.sipCallerConfig,
-            SipCallerConfig.deserializeBinaryFromReader
+            ondewoVtsi013.SipCallerConfig.deserializeBinaryFromReader
           );
           break;
         case 3:
-          _instance.commonServicesConfig = new CommonServicesConfig();
+          _instance.commonServicesConfig = new ondewoVtsi013.CommonServicesConfig();
           _reader.readMessage(
             _instance.commonServicesConfig,
-            CommonServicesConfig.deserializeBinaryFromReader
+            ondewoVtsi013.CommonServicesConfig.deserializeBinaryFromReader
           );
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.validateOnly = _reader.readBool();
           break;
         default:
           _reader.skipField();
@@ -7011,21 +1896,33 @@ export class StartCallerRequest implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.sipCallerConfig as any,
-        SipCallerConfig.serializeBinaryToWriter
+        ondewoVtsi013.SipCallerConfig.serializeBinaryToWriter
       );
     }
     if (_instance.commonServicesConfig) {
       _writer.writeMessage(
         3,
         _instance.commonServicesConfig as any,
-        CommonServicesConfig.serializeBinaryToWriter
+        ondewoVtsi013.CommonServicesConfig.serializeBinaryToWriter
       );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.validateOnly) {
+      _writer.writeBool(5, _instance.validateOnly);
     }
   }
 
   private _vtsiProjectName: string;
-  private _sipCallerConfig?: SipCallerConfig;
-  private _commonServicesConfig?: CommonServicesConfig;
+  private _sipCallerConfig?: ondewoVtsi013.SipCallerConfig;
+  private _commonServicesConfig?: ondewoVtsi013.CommonServicesConfig;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _validateOnly: boolean;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -7035,11 +1932,15 @@ export class StartCallerRequest implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.sipCallerConfig = _value.sipCallerConfig
-      ? new SipCallerConfig(_value.sipCallerConfig)
+      ? new ondewoVtsi013.SipCallerConfig(_value.sipCallerConfig)
       : undefined;
     this.commonServicesConfig = _value.commonServicesConfig
-      ? new CommonServicesConfig(_value.commonServicesConfig)
+      ? new ondewoVtsi013.CommonServicesConfig(_value.commonServicesConfig)
       : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.validateOnly = _value.validateOnly;
     StartCallerRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -7048,17 +1949,31 @@ export class StartCallerRequest implements GrpcMessage {
   set vtsiProjectName(value: string) {
     this._vtsiProjectName = value;
   }
-  get sipCallerConfig(): SipCallerConfig | undefined {
+  get sipCallerConfig(): ondewoVtsi013.SipCallerConfig | undefined {
     return this._sipCallerConfig;
   }
-  set sipCallerConfig(value: SipCallerConfig | undefined) {
+  set sipCallerConfig(value: ondewoVtsi013.SipCallerConfig | undefined) {
     this._sipCallerConfig = value;
   }
-  get commonServicesConfig(): CommonServicesConfig | undefined {
+  get commonServicesConfig(): ondewoVtsi013.CommonServicesConfig | undefined {
     return this._commonServicesConfig;
   }
-  set commonServicesConfig(value: CommonServicesConfig | undefined) {
+  set commonServicesConfig(
+    value: ondewoVtsi013.CommonServicesConfig | undefined
+  ) {
     this._commonServicesConfig = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
   }
 
   /**
@@ -7082,7 +1997,9 @@ export class StartCallerRequest implements GrpcMessage {
         : undefined,
       commonServicesConfig: this.commonServicesConfig
         ? this.commonServicesConfig.toObject()
-        : undefined
+        : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      validateOnly: this.validateOnly
     };
   }
 
@@ -7109,7 +2026,9 @@ export class StartCallerRequest implements GrpcMessage {
         : null,
       commonServicesConfig: this.commonServicesConfig
         ? this.commonServicesConfig.toProtobufJSON(options)
-        : null
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
     };
   }
 }
@@ -7119,8 +2038,10 @@ export module StartCallerRequest {
    */
   export interface AsObject {
     vtsiProjectName: string;
-    sipCallerConfig?: SipCallerConfig.AsObject;
-    commonServicesConfig?: CommonServicesConfig.AsObject;
+    sipCallerConfig?: ondewoVtsi013.SipCallerConfig.AsObject;
+    commonServicesConfig?: ondewoVtsi013.CommonServicesConfig.AsObject;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    validateOnly: boolean;
   }
 
   /**
@@ -7128,8 +2049,10 @@ export module StartCallerRequest {
    */
   export interface AsProtobufJSON {
     vtsiProjectName: string;
-    sipCallerConfig: SipCallerConfig.AsProtobufJSON | null;
-    commonServicesConfig: CommonServicesConfig.AsProtobufJSON | null;
+    sipCallerConfig: ondewoVtsi013.SipCallerConfig.AsProtobufJSON | null;
+    commonServicesConfig: ondewoVtsi013.CommonServicesConfig.AsProtobufJSON | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    validateOnly: boolean;
   }
 }
 
@@ -7345,6 +2268,8 @@ export class StartCallersRequest implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callerRequests = _instance.callerRequests || [];
     _instance.idempotencyKey = _instance.idempotencyKey || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
   }
 
   /**
@@ -7376,6 +2301,16 @@ export class StartCallersRequest implements GrpcMessage {
         case 4:
           _instance.idempotencyKey = _reader.readString();
           break;
+        case 5:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 6:
+          _instance.validateOnly = _reader.readBool();
+          break;
         default:
           _reader.skipField();
       }
@@ -7406,11 +2341,23 @@ export class StartCallersRequest implements GrpcMessage {
     if (_instance.idempotencyKey) {
       _writer.writeString(4, _instance.idempotencyKey);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        5,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.validateOnly) {
+      _writer.writeBool(6, _instance.validateOnly);
+    }
   }
 
   private _vtsiProjectName: string;
   private _callerRequests?: StartCallerRequest[];
   private _idempotencyKey: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _validateOnly: boolean;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -7423,6 +2370,10 @@ export class StartCallersRequest implements GrpcMessage {
       m => new StartCallerRequest(m)
     );
     this.idempotencyKey = _value.idempotencyKey;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.validateOnly = _value.validateOnly;
     StartCallersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -7443,6 +2394,18 @@ export class StartCallersRequest implements GrpcMessage {
   set idempotencyKey(value: string) {
     this._idempotencyKey = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -7461,7 +2424,9 @@ export class StartCallersRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       callerRequests: (this.callerRequests || []).map(m => m.toObject()),
-      idempotencyKey: this.idempotencyKey
+      idempotencyKey: this.idempotencyKey,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      validateOnly: this.validateOnly
     };
   }
 
@@ -7486,7 +2451,9 @@ export class StartCallersRequest implements GrpcMessage {
       callerRequests: (this.callerRequests || []).map(m =>
         m.toProtobufJSON(options)
       ),
-      idempotencyKey: this.idempotencyKey
+      idempotencyKey: this.idempotencyKey,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
     };
   }
 }
@@ -7498,6 +2465,8 @@ export module StartCallersRequest {
     vtsiProjectName: string;
     callerRequests?: StartCallerRequest.AsObject[];
     idempotencyKey: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    validateOnly: boolean;
   }
 
   /**
@@ -7507,6 +2476,8 @@ export module StartCallersRequest {
     vtsiProjectName: string;
     callerRequests: StartCallerRequest.AsProtobufJSON[] | null;
     idempotencyKey: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    validateOnly: boolean;
   }
 }
 
@@ -7727,6 +2698,11 @@ export class ListCallersRequest implements GrpcMessage {
    */
   static refineValues(_instance: ListCallersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
+
+    _instance.pageSize = _instance.pageSize || 0;
+    _instance.activeOnly = _instance.activeOnly || false;
+    _instance.sipStatusTypes = _instance.sipStatusTypes || [];
   }
 
   /**
@@ -7750,6 +2726,30 @@ export class ListCallersRequest implements GrpcMessage {
           break;
         case 3:
           _instance.callView = _reader.readEnum();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.campaignName = _reader.readString();
+          break;
+        case 6:
+          _instance.campaignDisplayName = _reader.readString();
+          break;
+        case 7:
+          _instance.pageSize = _reader.readInt32();
+          break;
+        case 8:
+          _instance.activeOnly = _reader.readBool();
+          break;
+        case 9:
+          _reader.readPackableEnumInto(
+            (_instance.sipStatusTypes = _instance.sipStatusTypes || [])
+          );
           break;
         default:
           _reader.skipField();
@@ -7777,11 +2777,42 @@ export class ListCallersRequest implements GrpcMessage {
     if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.campaignName || _instance.campaignName === '') {
+      _writer.writeString(5, _instance.campaignName);
+    }
+    if (_instance.campaignDisplayName || _instance.campaignDisplayName === '') {
+      _writer.writeString(6, _instance.campaignDisplayName);
+    }
+    if (_instance.pageSize) {
+      _writer.writeInt32(7, _instance.pageSize);
+    }
+    if (_instance.activeOnly) {
+      _writer.writeBool(8, _instance.activeOnly);
+    }
+    if (_instance.sipStatusTypes && _instance.sipStatusTypes.length) {
+      _writer.writePackedEnum(9, _instance.sipStatusTypes);
+    }
   }
 
   private _vtsiProjectName: string;
   private _pageToken: string;
   private _callView: CallView;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _campaignName: string;
+  private _campaignDisplayName: string;
+  private _pageSize: number;
+  private _activeOnly: boolean;
+  private _sipStatusTypes: ondewoSip012.SipStatus.StatusType[];
+
+  private _campaign: ListCallersRequest.CampaignCase =
+    ListCallersRequest.CampaignCase.none;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -7792,6 +2823,14 @@ export class ListCallersRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.pageToken = _value.pageToken;
     this.callView = _value.callView;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.campaignName = _value.campaignName;
+    this.campaignDisplayName = _value.campaignDisplayName;
+    this.pageSize = _value.pageSize;
+    this.activeOnly = _value.activeOnly;
+    this.sipStatusTypes = (_value.sipStatusTypes || []).slice();
     ListCallersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -7812,6 +2851,53 @@ export class ListCallersRequest implements GrpcMessage {
   set callView(value: CallView) {
     this._callView = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get campaignName(): string {
+    return this._campaignName;
+  }
+  set campaignName(value: string) {
+    if (value !== undefined && value !== null) {
+      this._campaignDisplayName = undefined;
+      this._campaign = ListCallersRequest.CampaignCase.campaignName;
+    }
+    this._campaignName = value;
+  }
+  get campaignDisplayName(): string {
+    return this._campaignDisplayName;
+  }
+  set campaignDisplayName(value: string) {
+    if (value !== undefined && value !== null) {
+      this._campaignName = undefined;
+      this._campaign = ListCallersRequest.CampaignCase.campaignDisplayName;
+    }
+    this._campaignDisplayName = value;
+  }
+  get pageSize(): number {
+    return this._pageSize;
+  }
+  set pageSize(value: number) {
+    this._pageSize = value;
+  }
+  get activeOnly(): boolean {
+    return this._activeOnly;
+  }
+  set activeOnly(value: boolean) {
+    this._activeOnly = value;
+  }
+  get sipStatusTypes(): ondewoSip012.SipStatus.StatusType[] {
+    return this._sipStatusTypes;
+  }
+  set sipStatusTypes(value: ondewoSip012.SipStatus.StatusType[]) {
+    this._sipStatusTypes = value;
+  }
+  get campaign() {
+    return this._campaign;
+  }
 
   /**
    * Serialize message to binary data
@@ -7830,7 +2916,13 @@ export class ListCallersRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       pageToken: this.pageToken,
-      callView: this.callView
+      callView: this.callView,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      campaignName: this.campaignName,
+      campaignDisplayName: this.campaignDisplayName,
+      pageSize: this.pageSize,
+      activeOnly: this.activeOnly,
+      sipStatusTypes: (this.sipStatusTypes || []).slice()
     };
   }
 
@@ -7858,7 +2950,22 @@ export class ListCallersRequest implements GrpcMessage {
           this.callView === null || this.callView === undefined
             ? 0
             : this.callView
-        ]
+        ],
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      campaignName:
+        this.campaignName === null || this.campaignName === undefined
+          ? null
+          : this.campaignName,
+      campaignDisplayName:
+        this.campaignDisplayName === null ||
+        this.campaignDisplayName === undefined
+          ? null
+          : this.campaignDisplayName,
+      pageSize: this.pageSize,
+      activeOnly: this.activeOnly,
+      sipStatusTypes: (this.sipStatusTypes || []).map(
+        v => ondewoSip012.SipStatus.StatusType[v]
+      )
     };
   }
 }
@@ -7870,6 +2977,12 @@ export module ListCallersRequest {
     vtsiProjectName: string;
     pageToken: string;
     callView: CallView;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    campaignName: string;
+    campaignDisplayName: string;
+    pageSize: number;
+    activeOnly: boolean;
+    sipStatusTypes: ondewoSip012.SipStatus.StatusType[];
   }
 
   /**
@@ -7879,6 +2992,17 @@ export module ListCallersRequest {
     vtsiProjectName: string;
     pageToken: string;
     callView: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    campaignName: string | null;
+    campaignDisplayName: string | null;
+    pageSize: number;
+    activeOnly: boolean;
+    sipStatusTypes: string[];
+  }
+  export enum CampaignCase {
+    none = 0,
+    campaignName = 1,
+    campaignDisplayName = 2
   }
 }
 
@@ -7908,6 +3032,7 @@ export class ListCallersResponse implements GrpcMessage {
   static refineValues(_instance: ListCallersResponse) {
     _instance.callers = _instance.callers || [];
     _instance.nextPageToken = _instance.nextPageToken || '';
+    _instance.totalSize = _instance.totalSize || 0;
   }
 
   /**
@@ -7936,6 +3061,9 @@ export class ListCallersResponse implements GrpcMessage {
         case 2:
           _instance.nextPageToken = _reader.readString();
           break;
+        case 3:
+          _instance.totalSize = _reader.readInt32();
+          break;
         default:
           _reader.skipField();
       }
@@ -7963,10 +3091,14 @@ export class ListCallersResponse implements GrpcMessage {
     if (_instance.nextPageToken) {
       _writer.writeString(2, _instance.nextPageToken);
     }
+    if (_instance.totalSize) {
+      _writer.writeInt32(3, _instance.totalSize);
+    }
   }
 
   private _callers?: Caller[];
   private _nextPageToken: string;
+  private _totalSize: number;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -7976,6 +3108,7 @@ export class ListCallersResponse implements GrpcMessage {
     _value = _value || {};
     this.callers = (_value.callers || []).map(m => new Caller(m));
     this.nextPageToken = _value.nextPageToken;
+    this.totalSize = _value.totalSize;
     ListCallersResponse.refineValues(this);
   }
   get callers(): Caller[] | undefined {
@@ -7989,6 +3122,12 @@ export class ListCallersResponse implements GrpcMessage {
   }
   set nextPageToken(value: string) {
     this._nextPageToken = value;
+  }
+  get totalSize(): number {
+    return this._totalSize;
+  }
+  set totalSize(value: number) {
+    this._totalSize = value;
   }
 
   /**
@@ -8007,7 +3146,8 @@ export class ListCallersResponse implements GrpcMessage {
   toObject(): ListCallersResponse.AsObject {
     return {
       callers: (this.callers || []).map(m => m.toObject()),
-      nextPageToken: this.nextPageToken
+      nextPageToken: this.nextPageToken,
+      totalSize: this.totalSize
     };
   }
 
@@ -8029,7 +3169,8 @@ export class ListCallersResponse implements GrpcMessage {
   ): ListCallersResponse.AsProtobufJSON {
     return {
       callers: (this.callers || []).map(m => m.toProtobufJSON(options)),
-      nextPageToken: this.nextPageToken
+      nextPageToken: this.nextPageToken,
+      totalSize: this.totalSize
     };
   }
 }
@@ -8040,6 +3181,7 @@ export module ListCallersResponse {
   export interface AsObject {
     callers?: Caller.AsObject[];
     nextPageToken: string;
+    totalSize: number;
   }
 
   /**
@@ -8048,6 +3190,7 @@ export module ListCallersResponse {
   export interface AsProtobufJSON {
     callers: Caller.AsProtobufJSON[] | null;
     nextPageToken: string;
+    totalSize: number;
   }
 }
 
@@ -8077,6 +3220,7 @@ export class GetCallerRequest implements GrpcMessage {
   static refineValues(_instance: GetCallerRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -8100,6 +3244,13 @@ export class GetCallerRequest implements GrpcMessage {
           break;
         case 3:
           _instance.callView = _reader.readEnum();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -8127,11 +3278,19 @@ export class GetCallerRequest implements GrpcMessage {
     if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _name: string;
   private _callView: CallView;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -8142,6 +3301,9 @@ export class GetCallerRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.name = _value.name;
     this.callView = _value.callView;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     GetCallerRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -8162,6 +3324,12 @@ export class GetCallerRequest implements GrpcMessage {
   set callView(value: CallView) {
     this._callView = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -8180,7 +3348,8 @@ export class GetCallerRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       name: this.name,
-      callView: this.callView
+      callView: this.callView,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -8208,7 +3377,8 @@ export class GetCallerRequest implements GrpcMessage {
           this.callView === null || this.callView === undefined
             ? 0
             : this.callView
-        ]
+        ],
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -8220,6 +3390,7 @@ export module GetCallerRequest {
     vtsiProjectName: string;
     name: string;
     callView: CallView;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -8229,6 +3400,7 @@ export module GetCallerRequest {
     vtsiProjectName: string;
     name: string;
     callView: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -8257,6 +3429,10 @@ export class ListListenersRequest implements GrpcMessage {
    */
   static refineValues(_instance: ListListenersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.pageSize = _instance.pageSize || 0;
+    _instance.activeOnly = _instance.activeOnly || false;
+    _instance.sipStatusTypes = _instance.sipStatusTypes || [];
   }
 
   /**
@@ -8280,6 +3456,24 @@ export class ListListenersRequest implements GrpcMessage {
           break;
         case 3:
           _instance.callView = _reader.readEnum();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.pageSize = _reader.readInt32();
+          break;
+        case 6:
+          _instance.activeOnly = _reader.readBool();
+          break;
+        case 7:
+          _reader.readPackableEnumInto(
+            (_instance.sipStatusTypes = _instance.sipStatusTypes || [])
+          );
           break;
         default:
           _reader.skipField();
@@ -8307,11 +3501,31 @@ export class ListListenersRequest implements GrpcMessage {
     if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.pageSize) {
+      _writer.writeInt32(5, _instance.pageSize);
+    }
+    if (_instance.activeOnly) {
+      _writer.writeBool(6, _instance.activeOnly);
+    }
+    if (_instance.sipStatusTypes && _instance.sipStatusTypes.length) {
+      _writer.writePackedEnum(7, _instance.sipStatusTypes);
+    }
   }
 
   private _vtsiProjectName: string;
   private _pageToken: string;
   private _callView: CallView;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _pageSize: number;
+  private _activeOnly: boolean;
+  private _sipStatusTypes: ondewoSip012.SipStatus.StatusType[];
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -8322,6 +3536,12 @@ export class ListListenersRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.pageToken = _value.pageToken;
     this.callView = _value.callView;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.pageSize = _value.pageSize;
+    this.activeOnly = _value.activeOnly;
+    this.sipStatusTypes = (_value.sipStatusTypes || []).slice();
     ListListenersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -8342,6 +3562,30 @@ export class ListListenersRequest implements GrpcMessage {
   set callView(value: CallView) {
     this._callView = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get pageSize(): number {
+    return this._pageSize;
+  }
+  set pageSize(value: number) {
+    this._pageSize = value;
+  }
+  get activeOnly(): boolean {
+    return this._activeOnly;
+  }
+  set activeOnly(value: boolean) {
+    this._activeOnly = value;
+  }
+  get sipStatusTypes(): ondewoSip012.SipStatus.StatusType[] {
+    return this._sipStatusTypes;
+  }
+  set sipStatusTypes(value: ondewoSip012.SipStatus.StatusType[]) {
+    this._sipStatusTypes = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -8360,7 +3604,11 @@ export class ListListenersRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       pageToken: this.pageToken,
-      callView: this.callView
+      callView: this.callView,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      pageSize: this.pageSize,
+      activeOnly: this.activeOnly,
+      sipStatusTypes: (this.sipStatusTypes || []).slice()
     };
   }
 
@@ -8388,7 +3636,13 @@ export class ListListenersRequest implements GrpcMessage {
           this.callView === null || this.callView === undefined
             ? 0
             : this.callView
-        ]
+        ],
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      pageSize: this.pageSize,
+      activeOnly: this.activeOnly,
+      sipStatusTypes: (this.sipStatusTypes || []).map(
+        v => ondewoSip012.SipStatus.StatusType[v]
+      )
     };
   }
 }
@@ -8400,6 +3654,10 @@ export module ListListenersRequest {
     vtsiProjectName: string;
     pageToken: string;
     callView: CallView;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    pageSize: number;
+    activeOnly: boolean;
+    sipStatusTypes: ondewoSip012.SipStatus.StatusType[];
   }
 
   /**
@@ -8409,6 +3667,10 @@ export module ListListenersRequest {
     vtsiProjectName: string;
     pageToken: string;
     callView: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    pageSize: number;
+    activeOnly: boolean;
+    sipStatusTypes: string[];
   }
 }
 
@@ -8438,6 +3700,7 @@ export class ListListenersResponse implements GrpcMessage {
   static refineValues(_instance: ListListenersResponse) {
     _instance.listeners = _instance.listeners || [];
     _instance.nextPageToken = _instance.nextPageToken || '';
+    _instance.totalSize = _instance.totalSize || 0;
   }
 
   /**
@@ -8466,6 +3729,9 @@ export class ListListenersResponse implements GrpcMessage {
         case 2:
           _instance.nextPageToken = _reader.readString();
           break;
+        case 3:
+          _instance.totalSize = _reader.readInt32();
+          break;
         default:
           _reader.skipField();
       }
@@ -8493,10 +3759,14 @@ export class ListListenersResponse implements GrpcMessage {
     if (_instance.nextPageToken) {
       _writer.writeString(2, _instance.nextPageToken);
     }
+    if (_instance.totalSize) {
+      _writer.writeInt32(3, _instance.totalSize);
+    }
   }
 
   private _listeners?: Listener[];
   private _nextPageToken: string;
+  private _totalSize: number;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -8506,6 +3776,7 @@ export class ListListenersResponse implements GrpcMessage {
     _value = _value || {};
     this.listeners = (_value.listeners || []).map(m => new Listener(m));
     this.nextPageToken = _value.nextPageToken;
+    this.totalSize = _value.totalSize;
     ListListenersResponse.refineValues(this);
   }
   get listeners(): Listener[] | undefined {
@@ -8519,6 +3790,12 @@ export class ListListenersResponse implements GrpcMessage {
   }
   set nextPageToken(value: string) {
     this._nextPageToken = value;
+  }
+  get totalSize(): number {
+    return this._totalSize;
+  }
+  set totalSize(value: number) {
+    this._totalSize = value;
   }
 
   /**
@@ -8537,7 +3814,8 @@ export class ListListenersResponse implements GrpcMessage {
   toObject(): ListListenersResponse.AsObject {
     return {
       listeners: (this.listeners || []).map(m => m.toObject()),
-      nextPageToken: this.nextPageToken
+      nextPageToken: this.nextPageToken,
+      totalSize: this.totalSize
     };
   }
 
@@ -8559,7 +3837,8 @@ export class ListListenersResponse implements GrpcMessage {
   ): ListListenersResponse.AsProtobufJSON {
     return {
       listeners: (this.listeners || []).map(m => m.toProtobufJSON(options)),
-      nextPageToken: this.nextPageToken
+      nextPageToken: this.nextPageToken,
+      totalSize: this.totalSize
     };
   }
 }
@@ -8570,6 +3849,7 @@ export module ListListenersResponse {
   export interface AsObject {
     listeners?: Listener.AsObject[];
     nextPageToken: string;
+    totalSize: number;
   }
 
   /**
@@ -8578,6 +3858,7 @@ export module ListListenersResponse {
   export interface AsProtobufJSON {
     listeners: Listener.AsProtobufJSON[] | null;
     nextPageToken: string;
+    totalSize: number;
   }
 }
 
@@ -8607,6 +3888,7 @@ export class GetListenerRequest implements GrpcMessage {
   static refineValues(_instance: GetListenerRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -8630,6 +3912,13 @@ export class GetListenerRequest implements GrpcMessage {
           break;
         case 3:
           _instance.callView = _reader.readEnum();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -8657,11 +3946,19 @@ export class GetListenerRequest implements GrpcMessage {
     if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _name: string;
   private _callView: CallView;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -8672,6 +3969,9 @@ export class GetListenerRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.name = _value.name;
     this.callView = _value.callView;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     GetListenerRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -8692,6 +3992,12 @@ export class GetListenerRequest implements GrpcMessage {
   set callView(value: CallView) {
     this._callView = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -8710,7 +4016,8 @@ export class GetListenerRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       name: this.name,
-      callView: this.callView
+      callView: this.callView,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -8738,7 +4045,8 @@ export class GetListenerRequest implements GrpcMessage {
           this.callView === null || this.callView === undefined
             ? 0
             : this.callView
-        ]
+        ],
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -8750,6 +4058,7 @@ export module GetListenerRequest {
     vtsiProjectName: string;
     name: string;
     callView: CallView;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -8759,6 +4068,7 @@ export module GetListenerRequest {
     vtsiProjectName: string;
     name: string;
     callView: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -8787,6 +4097,7 @@ export class StopListenerRequest implements GrpcMessage {
    */
   static refineValues(_instance: StopListenerRequest) {
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -8804,6 +4115,13 @@ export class StopListenerRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -8825,9 +4143,17 @@ export class StopListenerRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _name: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -8836,6 +4162,9 @@ export class StopListenerRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<StopListenerRequest.AsObject>) {
     _value = _value || {};
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     StopListenerRequest.refineValues(this);
   }
   get name(): string {
@@ -8843,6 +4172,12 @@ export class StopListenerRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -8860,7 +4195,8 @@ export class StopListenerRequest implements GrpcMessage {
    */
   toObject(): StopListenerRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -8881,7 +4217,8 @@ export class StopListenerRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): StopListenerRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -8891,6 +4228,7 @@ export module StopListenerRequest {
    */
   export interface AsObject {
     name: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -8898,6 +4236,7 @@ export module StopListenerRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -9084,6 +4423,8 @@ export class StopListenersRequest implements GrpcMessage {
    */
   static refineValues(_instance: StopListenersRequest) {
     _instance.names = _instance.names || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
   }
 
   /**
@@ -9101,6 +4442,16 @@ export class StopListenersRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           (_instance.names = _instance.names || []).push(_reader.readString());
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.vtsiProjectName = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -9122,9 +4473,21 @@ export class StopListenersRequest implements GrpcMessage {
     if (_instance.names && _instance.names.length) {
       _writer.writeRepeatedString(1, _instance.names);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(3, _instance.vtsiProjectName);
+    }
   }
 
   private _names: string[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _vtsiProjectName: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -9133,6 +4496,10 @@ export class StopListenersRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<StopListenersRequest.AsObject>) {
     _value = _value || {};
     this.names = (_value.names || []).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.vtsiProjectName = _value.vtsiProjectName;
     StopListenersRequest.refineValues(this);
   }
   get names(): string[] {
@@ -9140,6 +4507,18 @@ export class StopListenersRequest implements GrpcMessage {
   }
   set names(value: string[]) {
     this._names = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
   }
 
   /**
@@ -9157,7 +4536,9 @@ export class StopListenersRequest implements GrpcMessage {
    */
   toObject(): StopListenersRequest.AsObject {
     return {
-      names: (this.names || []).slice()
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 
@@ -9178,7 +4559,9 @@ export class StopListenersRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): StopListenersRequest.AsProtobufJSON {
     return {
-      names: (this.names || []).slice()
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 }
@@ -9188,6 +4571,8 @@ export module StopListenersRequest {
    */
   export interface AsObject {
     names: string[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    vtsiProjectName: string;
   }
 
   /**
@@ -9195,6 +4580,8 @@ export module StopListenersRequest {
    */
   export interface AsProtobufJSON {
     names: string[];
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    vtsiProjectName: string;
   }
 }
 
@@ -9400,6 +4787,7 @@ export class StopCallerRequest implements GrpcMessage {
    */
   static refineValues(_instance: StopCallerRequest) {
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -9417,6 +4805,13 @@ export class StopCallerRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -9438,9 +4833,17 @@ export class StopCallerRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _name: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -9449,6 +4852,9 @@ export class StopCallerRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<StopCallerRequest.AsObject>) {
     _value = _value || {};
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     StopCallerRequest.refineValues(this);
   }
   get name(): string {
@@ -9456,6 +4862,12 @@ export class StopCallerRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -9473,7 +4885,8 @@ export class StopCallerRequest implements GrpcMessage {
    */
   toObject(): StopCallerRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -9494,7 +4907,8 @@ export class StopCallerRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): StopCallerRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -9504,6 +4918,7 @@ export module StopCallerRequest {
    */
   export interface AsObject {
     name: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -9511,6 +4926,7 @@ export module StopCallerRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -9697,6 +5113,8 @@ export class StopCallersRequest implements GrpcMessage {
    */
   static refineValues(_instance: StopCallersRequest) {
     _instance.names = _instance.names || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
   }
 
   /**
@@ -9714,6 +5132,16 @@ export class StopCallersRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           (_instance.names = _instance.names || []).push(_reader.readString());
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.vtsiProjectName = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -9735,9 +5163,21 @@ export class StopCallersRequest implements GrpcMessage {
     if (_instance.names && _instance.names.length) {
       _writer.writeRepeatedString(1, _instance.names);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(3, _instance.vtsiProjectName);
+    }
   }
 
   private _names: string[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _vtsiProjectName: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -9746,6 +5186,10 @@ export class StopCallersRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<StopCallersRequest.AsObject>) {
     _value = _value || {};
     this.names = (_value.names || []).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.vtsiProjectName = _value.vtsiProjectName;
     StopCallersRequest.refineValues(this);
   }
   get names(): string[] {
@@ -9753,6 +5197,18 @@ export class StopCallersRequest implements GrpcMessage {
   }
   set names(value: string[]) {
     this._names = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
   }
 
   /**
@@ -9770,7 +5226,9 @@ export class StopCallersRequest implements GrpcMessage {
    */
   toObject(): StopCallersRequest.AsObject {
     return {
-      names: (this.names || []).slice()
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 
@@ -9791,7 +5249,9 @@ export class StopCallersRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): StopCallersRequest.AsProtobufJSON {
     return {
-      names: (this.names || []).slice()
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 }
@@ -9801,6 +5261,8 @@ export module StopCallersRequest {
    */
   export interface AsObject {
     names: string[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    vtsiProjectName: string;
   }
 
   /**
@@ -9808,6 +5270,8 @@ export module StopCallersRequest {
    */
   export interface AsProtobufJSON {
     names: string[];
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    vtsiProjectName: string;
   }
 }
 
@@ -10010,6 +5474,7 @@ export class DeleteListenerRequest implements GrpcMessage {
    */
   static refineValues(_instance: DeleteListenerRequest) {
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -10027,6 +5492,13 @@ export class DeleteListenerRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -10048,9 +5520,17 @@ export class DeleteListenerRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _name: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -10059,6 +5539,9 @@ export class DeleteListenerRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<DeleteListenerRequest.AsObject>) {
     _value = _value || {};
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     DeleteListenerRequest.refineValues(this);
   }
   get name(): string {
@@ -10066,6 +5549,12 @@ export class DeleteListenerRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -10083,7 +5572,8 @@ export class DeleteListenerRequest implements GrpcMessage {
    */
   toObject(): DeleteListenerRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -10104,7 +5594,8 @@ export class DeleteListenerRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): DeleteListenerRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -10114,6 +5605,7 @@ export module DeleteListenerRequest {
    */
   export interface AsObject {
     name: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -10121,6 +5613,7 @@ export module DeleteListenerRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -10307,6 +5800,8 @@ export class DeleteListenersRequest implements GrpcMessage {
    */
   static refineValues(_instance: DeleteListenersRequest) {
     _instance.names = _instance.names || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
   }
 
   /**
@@ -10324,6 +5819,16 @@ export class DeleteListenersRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           (_instance.names = _instance.names || []).push(_reader.readString());
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.vtsiProjectName = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -10345,9 +5850,21 @@ export class DeleteListenersRequest implements GrpcMessage {
     if (_instance.names && _instance.names.length) {
       _writer.writeRepeatedString(1, _instance.names);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(3, _instance.vtsiProjectName);
+    }
   }
 
   private _names: string[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _vtsiProjectName: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -10356,6 +5873,10 @@ export class DeleteListenersRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<DeleteListenersRequest.AsObject>) {
     _value = _value || {};
     this.names = (_value.names || []).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.vtsiProjectName = _value.vtsiProjectName;
     DeleteListenersRequest.refineValues(this);
   }
   get names(): string[] {
@@ -10363,6 +5884,18 @@ export class DeleteListenersRequest implements GrpcMessage {
   }
   set names(value: string[]) {
     this._names = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
   }
 
   /**
@@ -10380,7 +5913,9 @@ export class DeleteListenersRequest implements GrpcMessage {
    */
   toObject(): DeleteListenersRequest.AsObject {
     return {
-      names: (this.names || []).slice()
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 
@@ -10401,7 +5936,9 @@ export class DeleteListenersRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): DeleteListenersRequest.AsProtobufJSON {
     return {
-      names: (this.names || []).slice()
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 }
@@ -10411,6 +5948,8 @@ export module DeleteListenersRequest {
    */
   export interface AsObject {
     names: string[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    vtsiProjectName: string;
   }
 
   /**
@@ -10418,6 +5957,8 @@ export module DeleteListenersRequest {
    */
   export interface AsProtobufJSON {
     names: string[];
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    vtsiProjectName: string;
   }
 }
 
@@ -10623,6 +6164,7 @@ export class DeleteCallerRequest implements GrpcMessage {
    */
   static refineValues(_instance: DeleteCallerRequest) {
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -10640,6 +6182,13 @@ export class DeleteCallerRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -10661,9 +6210,17 @@ export class DeleteCallerRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(1, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _name: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -10672,6 +6229,9 @@ export class DeleteCallerRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<DeleteCallerRequest.AsObject>) {
     _value = _value || {};
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     DeleteCallerRequest.refineValues(this);
   }
   get name(): string {
@@ -10679,6 +6239,12 @@ export class DeleteCallerRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -10696,7 +6262,8 @@ export class DeleteCallerRequest implements GrpcMessage {
    */
   toObject(): DeleteCallerRequest.AsObject {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -10717,7 +6284,8 @@ export class DeleteCallerRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): DeleteCallerRequest.AsProtobufJSON {
     return {
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -10727,6 +6295,7 @@ export module DeleteCallerRequest {
    */
   export interface AsObject {
     name: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -10734,6 +6303,7 @@ export module DeleteCallerRequest {
    */
   export interface AsProtobufJSON {
     name: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -10920,6 +6490,8 @@ export class DeleteCallersRequest implements GrpcMessage {
    */
   static refineValues(_instance: DeleteCallersRequest) {
     _instance.names = _instance.names || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
   }
 
   /**
@@ -10937,6 +6509,16 @@ export class DeleteCallersRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           (_instance.names = _instance.names || []).push(_reader.readString());
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.vtsiProjectName = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -10958,9 +6540,21 @@ export class DeleteCallersRequest implements GrpcMessage {
     if (_instance.names && _instance.names.length) {
       _writer.writeRepeatedString(1, _instance.names);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(3, _instance.vtsiProjectName);
+    }
   }
 
   private _names: string[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _vtsiProjectName: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -10969,6 +6563,10 @@ export class DeleteCallersRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<DeleteCallersRequest.AsObject>) {
     _value = _value || {};
     this.names = (_value.names || []).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.vtsiProjectName = _value.vtsiProjectName;
     DeleteCallersRequest.refineValues(this);
   }
   get names(): string[] {
@@ -10976,6 +6574,18 @@ export class DeleteCallersRequest implements GrpcMessage {
   }
   set names(value: string[]) {
     this._names = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
   }
 
   /**
@@ -10993,7 +6603,9 @@ export class DeleteCallersRequest implements GrpcMessage {
    */
   toObject(): DeleteCallersRequest.AsObject {
     return {
-      names: (this.names || []).slice()
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 
@@ -11014,7 +6626,9 @@ export class DeleteCallersRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): DeleteCallersRequest.AsProtobufJSON {
     return {
-      names: (this.names || []).slice()
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      vtsiProjectName: this.vtsiProjectName
     };
   }
 }
@@ -11024,6 +6638,8 @@ export module DeleteCallersRequest {
    */
   export interface AsObject {
     names: string[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    vtsiProjectName: string;
   }
 
   /**
@@ -11031,6 +6647,8 @@ export module DeleteCallersRequest {
    */
   export interface AsProtobufJSON {
     names: string[];
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    vtsiProjectName: string;
   }
 }
 
@@ -11212,6 +6830,1670 @@ export module DeleteCallersResponse {
 }
 
 /**
+ * Message implementation for ondewo.vtsi.UpdateCallerRequest
+ */
+export class UpdateCallerRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateCallerRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateCallerRequest();
+    UpdateCallerRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateCallerRequest) {
+    _instance.caller = _instance.caller || undefined;
+    _instance.updateMask = _instance.updateMask || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateCallerRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.caller = new Caller();
+          _reader.readMessage(
+            _instance.caller,
+            Caller.deserializeBinaryFromReader
+          );
+          break;
+        case 2:
+          _instance.updateMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.updateMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.validateOnly = _reader.readBool();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateCallerRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateCallerRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.caller) {
+      _writer.writeMessage(
+        1,
+        _instance.caller as any,
+        Caller.serializeBinaryToWriter
+      );
+    }
+    if (_instance.updateMask) {
+      _writer.writeMessage(
+        2,
+        _instance.updateMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.validateOnly) {
+      _writer.writeBool(4, _instance.validateOnly);
+    }
+  }
+
+  private _caller?: Caller;
+  private _updateMask?: googleProtobuf006.FieldMask;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _validateOnly: boolean;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateCallerRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateCallerRequest.AsObject>) {
+    _value = _value || {};
+    this.caller = _value.caller ? new Caller(_value.caller) : undefined;
+    this.updateMask = _value.updateMask
+      ? new googleProtobuf006.FieldMask(_value.updateMask)
+      : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.validateOnly = _value.validateOnly;
+    UpdateCallerRequest.refineValues(this);
+  }
+  get caller(): Caller | undefined {
+    return this._caller;
+  }
+  set caller(value: Caller | undefined) {
+    this._caller = value;
+  }
+  get updateMask(): googleProtobuf006.FieldMask | undefined {
+    return this._updateMask;
+  }
+  set updateMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._updateMask = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateCallerRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateCallerRequest.AsObject {
+    return {
+      caller: this.caller ? this.caller.toObject() : undefined,
+      updateMask: this.updateMask ? this.updateMask.toObject() : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      validateOnly: this.validateOnly
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateCallerRequest.AsProtobufJSON {
+    return {
+      caller: this.caller ? this.caller.toProtobufJSON(options) : null,
+      updateMask: this.updateMask
+        ? this.updateMask.toProtobufJSON(options)
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
+    };
+  }
+}
+export module UpdateCallerRequest {
+  /**
+   * Standard JavaScript object representation for UpdateCallerRequest
+   */
+  export interface AsObject {
+    caller?: Caller.AsObject;
+    updateMask?: googleProtobuf006.FieldMask.AsObject;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    validateOnly: boolean;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateCallerRequest
+   */
+  export interface AsProtobufJSON {
+    caller: Caller.AsProtobufJSON | null;
+    updateMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    validateOnly: boolean;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateCallerResponse
+ */
+export class UpdateCallerResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateCallerResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateCallerResponse();
+    UpdateCallerResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateCallerResponse) {
+    _instance.name = _instance.name || '';
+    _instance.caller = _instance.caller || undefined;
+    _instance.errorMessage = _instance.errorMessage || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateCallerResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.caller = new Caller();
+          _reader.readMessage(
+            _instance.caller,
+            Caller.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.errorMessage = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateCallerResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateCallerResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.name) {
+      _writer.writeString(1, _instance.name);
+    }
+    if (_instance.caller) {
+      _writer.writeMessage(
+        2,
+        _instance.caller as any,
+        Caller.serializeBinaryToWriter
+      );
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(3, _instance.errorMessage);
+    }
+  }
+
+  private _name: string;
+  private _caller?: Caller;
+  private _errorMessage: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateCallerResponse to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateCallerResponse.AsObject>) {
+    _value = _value || {};
+    this.name = _value.name;
+    this.caller = _value.caller ? new Caller(_value.caller) : undefined;
+    this.errorMessage = _value.errorMessage;
+    UpdateCallerResponse.refineValues(this);
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+  get caller(): Caller | undefined {
+    return this._caller;
+  }
+  set caller(value: Caller | undefined) {
+    this._caller = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateCallerResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateCallerResponse.AsObject {
+    return {
+      name: this.name,
+      caller: this.caller ? this.caller.toObject() : undefined,
+      errorMessage: this.errorMessage
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateCallerResponse.AsProtobufJSON {
+    return {
+      name: this.name,
+      caller: this.caller ? this.caller.toProtobufJSON(options) : null,
+      errorMessage: this.errorMessage
+    };
+  }
+}
+export module UpdateCallerResponse {
+  /**
+   * Standard JavaScript object representation for UpdateCallerResponse
+   */
+  export interface AsObject {
+    name: string;
+    caller?: Caller.AsObject;
+    errorMessage: string;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateCallerResponse
+   */
+  export interface AsProtobufJSON {
+    name: string;
+    caller: Caller.AsProtobufJSON | null;
+    errorMessage: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateCallersRequest
+ */
+export class UpdateCallersRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateCallersRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateCallersRequest();
+    UpdateCallersRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateCallersRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.updateCallerRequests = _instance.updateCallerRequests || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateCallersRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new UpdateCallerRequest();
+          _reader.readMessage(
+            messageInitializer2,
+            UpdateCallerRequest.deserializeBinaryFromReader
+          );
+          (_instance.updateCallerRequests =
+            _instance.updateCallerRequests || []).push(messageInitializer2);
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.validateOnly = _reader.readBool();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateCallersRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateCallersRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (
+      _instance.updateCallerRequests &&
+      _instance.updateCallerRequests.length
+    ) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.updateCallerRequests as any,
+        UpdateCallerRequest.serializeBinaryToWriter
+      );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.validateOnly) {
+      _writer.writeBool(4, _instance.validateOnly);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _updateCallerRequests?: UpdateCallerRequest[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _validateOnly: boolean;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateCallersRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateCallersRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.updateCallerRequests = (_value.updateCallerRequests || []).map(
+      m => new UpdateCallerRequest(m)
+    );
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.validateOnly = _value.validateOnly;
+    UpdateCallersRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get updateCallerRequests(): UpdateCallerRequest[] | undefined {
+    return this._updateCallerRequests;
+  }
+  set updateCallerRequests(value: UpdateCallerRequest[] | undefined) {
+    this._updateCallerRequests = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateCallersRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateCallersRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateCallerRequests: (this.updateCallerRequests || []).map(m =>
+        m.toObject()
+      ),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      validateOnly: this.validateOnly
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateCallersRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateCallerRequests: (this.updateCallerRequests || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
+    };
+  }
+}
+export module UpdateCallersRequest {
+  /**
+   * Standard JavaScript object representation for UpdateCallersRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    updateCallerRequests?: UpdateCallerRequest.AsObject[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    validateOnly: boolean;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateCallersRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    updateCallerRequests: UpdateCallerRequest.AsProtobufJSON[] | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    validateOnly: boolean;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateCallersResponse
+ */
+export class UpdateCallersResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateCallersResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateCallersResponse();
+    UpdateCallersResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateCallersResponse) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.updateCallerResponses = _instance.updateCallerResponses || [];
+    _instance.errorMessage = _instance.errorMessage || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateCallersResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new UpdateCallerResponse();
+          _reader.readMessage(
+            messageInitializer2,
+            UpdateCallerResponse.deserializeBinaryFromReader
+          );
+          (_instance.updateCallerResponses =
+            _instance.updateCallerResponses || []).push(messageInitializer2);
+          break;
+        case 3:
+          _instance.errorMessage = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateCallersResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateCallersResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (
+      _instance.updateCallerResponses &&
+      _instance.updateCallerResponses.length
+    ) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.updateCallerResponses as any,
+        UpdateCallerResponse.serializeBinaryToWriter
+      );
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(3, _instance.errorMessage);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _updateCallerResponses?: UpdateCallerResponse[];
+  private _errorMessage: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateCallersResponse to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateCallersResponse.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.updateCallerResponses = (_value.updateCallerResponses || []).map(
+      m => new UpdateCallerResponse(m)
+    );
+    this.errorMessage = _value.errorMessage;
+    UpdateCallersResponse.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get updateCallerResponses(): UpdateCallerResponse[] | undefined {
+    return this._updateCallerResponses;
+  }
+  set updateCallerResponses(value: UpdateCallerResponse[] | undefined) {
+    this._updateCallerResponses = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateCallersResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateCallersResponse.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateCallerResponses: (this.updateCallerResponses || []).map(m =>
+        m.toObject()
+      ),
+      errorMessage: this.errorMessage
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateCallersResponse.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateCallerResponses: (this.updateCallerResponses || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      errorMessage: this.errorMessage
+    };
+  }
+}
+export module UpdateCallersResponse {
+  /**
+   * Standard JavaScript object representation for UpdateCallersResponse
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    updateCallerResponses?: UpdateCallerResponse.AsObject[];
+    errorMessage: string;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateCallersResponse
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    updateCallerResponses: UpdateCallerResponse.AsProtobufJSON[] | null;
+    errorMessage: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateListenerRequest
+ */
+export class UpdateListenerRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateListenerRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateListenerRequest();
+    UpdateListenerRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateListenerRequest) {
+    _instance.listener = _instance.listener || undefined;
+    _instance.updateMask = _instance.updateMask || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateListenerRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.listener = new Listener();
+          _reader.readMessage(
+            _instance.listener,
+            Listener.deserializeBinaryFromReader
+          );
+          break;
+        case 2:
+          _instance.updateMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.updateMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.validateOnly = _reader.readBool();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateListenerRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateListenerRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.listener) {
+      _writer.writeMessage(
+        1,
+        _instance.listener as any,
+        Listener.serializeBinaryToWriter
+      );
+    }
+    if (_instance.updateMask) {
+      _writer.writeMessage(
+        2,
+        _instance.updateMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.validateOnly) {
+      _writer.writeBool(4, _instance.validateOnly);
+    }
+  }
+
+  private _listener?: Listener;
+  private _updateMask?: googleProtobuf006.FieldMask;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _validateOnly: boolean;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateListenerRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateListenerRequest.AsObject>) {
+    _value = _value || {};
+    this.listener = _value.listener ? new Listener(_value.listener) : undefined;
+    this.updateMask = _value.updateMask
+      ? new googleProtobuf006.FieldMask(_value.updateMask)
+      : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.validateOnly = _value.validateOnly;
+    UpdateListenerRequest.refineValues(this);
+  }
+  get listener(): Listener | undefined {
+    return this._listener;
+  }
+  set listener(value: Listener | undefined) {
+    this._listener = value;
+  }
+  get updateMask(): googleProtobuf006.FieldMask | undefined {
+    return this._updateMask;
+  }
+  set updateMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._updateMask = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateListenerRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateListenerRequest.AsObject {
+    return {
+      listener: this.listener ? this.listener.toObject() : undefined,
+      updateMask: this.updateMask ? this.updateMask.toObject() : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      validateOnly: this.validateOnly
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateListenerRequest.AsProtobufJSON {
+    return {
+      listener: this.listener ? this.listener.toProtobufJSON(options) : null,
+      updateMask: this.updateMask
+        ? this.updateMask.toProtobufJSON(options)
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
+    };
+  }
+}
+export module UpdateListenerRequest {
+  /**
+   * Standard JavaScript object representation for UpdateListenerRequest
+   */
+  export interface AsObject {
+    listener?: Listener.AsObject;
+    updateMask?: googleProtobuf006.FieldMask.AsObject;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    validateOnly: boolean;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateListenerRequest
+   */
+  export interface AsProtobufJSON {
+    listener: Listener.AsProtobufJSON | null;
+    updateMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    validateOnly: boolean;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateListenerResponse
+ */
+export class UpdateListenerResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateListenerResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateListenerResponse();
+    UpdateListenerResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateListenerResponse) {
+    _instance.name = _instance.name || '';
+    _instance.listener = _instance.listener || undefined;
+    _instance.errorMessage = _instance.errorMessage || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateListenerResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.listener = new Listener();
+          _reader.readMessage(
+            _instance.listener,
+            Listener.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.errorMessage = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateListenerResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateListenerResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.name) {
+      _writer.writeString(1, _instance.name);
+    }
+    if (_instance.listener) {
+      _writer.writeMessage(
+        2,
+        _instance.listener as any,
+        Listener.serializeBinaryToWriter
+      );
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(3, _instance.errorMessage);
+    }
+  }
+
+  private _name: string;
+  private _listener?: Listener;
+  private _errorMessage: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateListenerResponse to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateListenerResponse.AsObject>) {
+    _value = _value || {};
+    this.name = _value.name;
+    this.listener = _value.listener ? new Listener(_value.listener) : undefined;
+    this.errorMessage = _value.errorMessage;
+    UpdateListenerResponse.refineValues(this);
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+  get listener(): Listener | undefined {
+    return this._listener;
+  }
+  set listener(value: Listener | undefined) {
+    this._listener = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateListenerResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateListenerResponse.AsObject {
+    return {
+      name: this.name,
+      listener: this.listener ? this.listener.toObject() : undefined,
+      errorMessage: this.errorMessage
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateListenerResponse.AsProtobufJSON {
+    return {
+      name: this.name,
+      listener: this.listener ? this.listener.toProtobufJSON(options) : null,
+      errorMessage: this.errorMessage
+    };
+  }
+}
+export module UpdateListenerResponse {
+  /**
+   * Standard JavaScript object representation for UpdateListenerResponse
+   */
+  export interface AsObject {
+    name: string;
+    listener?: Listener.AsObject;
+    errorMessage: string;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateListenerResponse
+   */
+  export interface AsProtobufJSON {
+    name: string;
+    listener: Listener.AsProtobufJSON | null;
+    errorMessage: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateListenersRequest
+ */
+export class UpdateListenersRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateListenersRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateListenersRequest();
+    UpdateListenersRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateListenersRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.updateListenerRequests = _instance.updateListenerRequests || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.validateOnly = _instance.validateOnly || false;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateListenersRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new UpdateListenerRequest();
+          _reader.readMessage(
+            messageInitializer2,
+            UpdateListenerRequest.deserializeBinaryFromReader
+          );
+          (_instance.updateListenerRequests =
+            _instance.updateListenerRequests || []).push(messageInitializer2);
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.validateOnly = _reader.readBool();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateListenersRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateListenersRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (
+      _instance.updateListenerRequests &&
+      _instance.updateListenerRequests.length
+    ) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.updateListenerRequests as any,
+        UpdateListenerRequest.serializeBinaryToWriter
+      );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.validateOnly) {
+      _writer.writeBool(4, _instance.validateOnly);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _updateListenerRequests?: UpdateListenerRequest[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _validateOnly: boolean;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateListenersRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateListenersRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.updateListenerRequests = (_value.updateListenerRequests || []).map(
+      m => new UpdateListenerRequest(m)
+    );
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.validateOnly = _value.validateOnly;
+    UpdateListenersRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get updateListenerRequests(): UpdateListenerRequest[] | undefined {
+    return this._updateListenerRequests;
+  }
+  set updateListenerRequests(value: UpdateListenerRequest[] | undefined) {
+    this._updateListenerRequests = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get validateOnly(): boolean {
+    return this._validateOnly;
+  }
+  set validateOnly(value: boolean) {
+    this._validateOnly = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateListenersRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateListenersRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateListenerRequests: (this.updateListenerRequests || []).map(m =>
+        m.toObject()
+      ),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      validateOnly: this.validateOnly
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateListenersRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateListenerRequests: (this.updateListenerRequests || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      validateOnly: this.validateOnly
+    };
+  }
+}
+export module UpdateListenersRequest {
+  /**
+   * Standard JavaScript object representation for UpdateListenersRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    updateListenerRequests?: UpdateListenerRequest.AsObject[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    validateOnly: boolean;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateListenersRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    updateListenerRequests: UpdateListenerRequest.AsProtobufJSON[] | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    validateOnly: boolean;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateListenersResponse
+ */
+export class UpdateListenersResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateListenersResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateListenersResponse();
+    UpdateListenersResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateListenersResponse) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.updateListenerResponses = _instance.updateListenerResponses || [];
+    _instance.errorMessage = _instance.errorMessage || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateListenersResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new UpdateListenerResponse();
+          _reader.readMessage(
+            messageInitializer2,
+            UpdateListenerResponse.deserializeBinaryFromReader
+          );
+          (_instance.updateListenerResponses =
+            _instance.updateListenerResponses || []).push(messageInitializer2);
+          break;
+        case 3:
+          _instance.errorMessage = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateListenersResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateListenersResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (
+      _instance.updateListenerResponses &&
+      _instance.updateListenerResponses.length
+    ) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.updateListenerResponses as any,
+        UpdateListenerResponse.serializeBinaryToWriter
+      );
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(3, _instance.errorMessage);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _updateListenerResponses?: UpdateListenerResponse[];
+  private _errorMessage: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateListenersResponse to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateListenersResponse.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.updateListenerResponses = (_value.updateListenerResponses || []).map(
+      m => new UpdateListenerResponse(m)
+    );
+    this.errorMessage = _value.errorMessage;
+    UpdateListenersResponse.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get updateListenerResponses(): UpdateListenerResponse[] | undefined {
+    return this._updateListenerResponses;
+  }
+  set updateListenerResponses(value: UpdateListenerResponse[] | undefined) {
+    this._updateListenerResponses = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateListenersResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateListenersResponse.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateListenerResponses: (this.updateListenerResponses || []).map(m =>
+        m.toObject()
+      ),
+      errorMessage: this.errorMessage
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateListenersResponse.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateListenerResponses: (this.updateListenerResponses || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      errorMessage: this.errorMessage
+    };
+  }
+}
+export module UpdateListenersResponse {
+  /**
+   * Standard JavaScript object representation for UpdateListenersResponse
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    updateListenerResponses?: UpdateListenerResponse.AsObject[];
+    errorMessage: string;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateListenersResponse
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    updateListenerResponses: UpdateListenerResponse.AsProtobufJSON[] | null;
+    errorMessage: string;
+  }
+}
+
+/**
  * Message implementation for ondewo.vtsi.StartScheduledCallerRequest
  */
 export class StartScheduledCallerRequest implements GrpcMessage {
@@ -11238,6 +8520,7 @@ export class StartScheduledCallerRequest implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.request = _instance.request || undefined;
     _instance.scheduledTime = _instance.scheduledTime || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -11268,6 +8551,13 @@ export class StartScheduledCallerRequest implements GrpcMessage {
           _reader.readMessage(
             _instance.scheduledTime,
             googleProtobuf005.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
           );
           break;
         default:
@@ -11304,11 +8594,19 @@ export class StartScheduledCallerRequest implements GrpcMessage {
         googleProtobuf005.Timestamp.serializeBinaryToWriter
       );
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _request?: StartCallerRequest;
   private _scheduledTime?: googleProtobuf005.Timestamp;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -11322,6 +8620,9 @@ export class StartScheduledCallerRequest implements GrpcMessage {
       : undefined;
     this.scheduledTime = _value.scheduledTime
       ? new googleProtobuf005.Timestamp(_value.scheduledTime)
+      : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
       : undefined;
     StartScheduledCallerRequest.refineValues(this);
   }
@@ -11343,6 +8644,12 @@ export class StartScheduledCallerRequest implements GrpcMessage {
   set scheduledTime(value: googleProtobuf005.Timestamp | undefined) {
     this._scheduledTime = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -11363,7 +8670,8 @@ export class StartScheduledCallerRequest implements GrpcMessage {
       request: this.request ? this.request.toObject() : undefined,
       scheduledTime: this.scheduledTime
         ? this.scheduledTime.toObject()
-        : undefined
+        : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -11388,7 +8696,8 @@ export class StartScheduledCallerRequest implements GrpcMessage {
       request: this.request ? this.request.toProtobufJSON(options) : null,
       scheduledTime: this.scheduledTime
         ? this.scheduledTime.toProtobufJSON(options)
-        : null
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -11400,6 +8709,7 @@ export module StartScheduledCallerRequest {
     vtsiProjectName: string;
     request?: StartCallerRequest.AsObject;
     scheduledTime?: googleProtobuf005.Timestamp.AsObject;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -11409,6 +8719,7 @@ export module StartScheduledCallerRequest {
     vtsiProjectName: string;
     request: StartCallerRequest.AsProtobufJSON | null;
     scheduledTime: googleProtobuf005.Timestamp.AsProtobufJSON | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -11439,6 +8750,7 @@ export class StartScheduledCallersRequest implements GrpcMessage {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.scheduledCallerRequests = _instance.scheduledCallerRequests || [];
     _instance.idempotencyKey = _instance.idempotencyKey || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -11468,6 +8780,13 @@ export class StartScheduledCallersRequest implements GrpcMessage {
           break;
         case 4:
           _instance.idempotencyKey = _reader.readString();
+          break;
+        case 5:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -11502,11 +8821,19 @@ export class StartScheduledCallersRequest implements GrpcMessage {
     if (_instance.idempotencyKey) {
       _writer.writeString(4, _instance.idempotencyKey);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        5,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _scheduledCallerRequests?: StartScheduledCallerRequest[];
   private _idempotencyKey: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -11521,6 +8848,9 @@ export class StartScheduledCallersRequest implements GrpcMessage {
       m => new StartScheduledCallerRequest(m)
     );
     this.idempotencyKey = _value.idempotencyKey;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     StartScheduledCallersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -11543,6 +8873,12 @@ export class StartScheduledCallersRequest implements GrpcMessage {
   set idempotencyKey(value: string) {
     this._idempotencyKey = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -11563,7 +8899,8 @@ export class StartScheduledCallersRequest implements GrpcMessage {
       scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m =>
         m.toObject()
       ),
-      idempotencyKey: this.idempotencyKey
+      idempotencyKey: this.idempotencyKey,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -11588,7 +8925,8 @@ export class StartScheduledCallersRequest implements GrpcMessage {
       scheduledCallerRequests: (this.scheduledCallerRequests || []).map(m =>
         m.toProtobufJSON(options)
       ),
-      idempotencyKey: this.idempotencyKey
+      idempotencyKey: this.idempotencyKey,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -11600,6 +8938,7 @@ export module StartScheduledCallersRequest {
     vtsiProjectName: string;
     scheduledCallerRequests?: StartScheduledCallerRequest.AsObject[];
     idempotencyKey: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -11611,6 +8950,7 @@ export module StartScheduledCallersRequest {
       | StartScheduledCallerRequest.AsProtobufJSON[]
       | null;
     idempotencyKey: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -11855,10 +9195,10 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
           );
           break;
         case 3:
-          _instance.campaignAssignment = new ondewoVtsi015.CampaignAssignment();
+          _instance.campaignAssignment = new ondewoVtsi014.CampaignAssignment();
           _reader.readMessage(
             _instance.campaignAssignment,
-            ondewoVtsi015.CampaignAssignment.deserializeBinaryFromReader
+            ondewoVtsi014.CampaignAssignment.deserializeBinaryFromReader
           );
           break;
         case 4:
@@ -11895,7 +9235,7 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
       _writer.writeMessage(
         3,
         _instance.campaignAssignment as any,
-        ondewoVtsi015.CampaignAssignment.serializeBinaryToWriter
+        ondewoVtsi014.CampaignAssignment.serializeBinaryToWriter
       );
     }
     if (_instance.idempotencyKey) {
@@ -11905,7 +9245,7 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
 
   private _vtsiProjectName: string;
   private _callerRequests?: StartCallerRequest[];
-  private _campaignAssignment?: ondewoVtsi015.CampaignAssignment;
+  private _campaignAssignment?: ondewoVtsi014.CampaignAssignment;
   private _idempotencyKey: string;
 
   /**
@@ -11919,7 +9259,7 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
       m => new StartCallerRequest(m)
     );
     this.campaignAssignment = _value.campaignAssignment
-      ? new ondewoVtsi015.CampaignAssignment(_value.campaignAssignment)
+      ? new ondewoVtsi014.CampaignAssignment(_value.campaignAssignment)
       : undefined;
     this.idempotencyKey = _value.idempotencyKey;
     AddCallersToCampaignRequest.refineValues(this);
@@ -11936,10 +9276,10 @@ export class AddCallersToCampaignRequest implements GrpcMessage {
   set callerRequests(value: StartCallerRequest[] | undefined) {
     this._callerRequests = value;
   }
-  get campaignAssignment(): ondewoVtsi015.CampaignAssignment | undefined {
+  get campaignAssignment(): ondewoVtsi014.CampaignAssignment | undefined {
     return this._campaignAssignment;
   }
-  set campaignAssignment(value: ondewoVtsi015.CampaignAssignment | undefined) {
+  set campaignAssignment(value: ondewoVtsi014.CampaignAssignment | undefined) {
     this._campaignAssignment = value;
   }
   get idempotencyKey(): string {
@@ -12008,7 +9348,7 @@ export module AddCallersToCampaignRequest {
   export interface AsObject {
     vtsiProjectName: string;
     callerRequests?: StartCallerRequest.AsObject[];
-    campaignAssignment?: ondewoVtsi015.CampaignAssignment.AsObject;
+    campaignAssignment?: ondewoVtsi014.CampaignAssignment.AsObject;
     idempotencyKey: string;
   }
 
@@ -12018,7 +9358,7 @@ export module AddCallersToCampaignRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     callerRequests: StartCallerRequest.AsProtobufJSON[] | null;
-    campaignAssignment: ondewoVtsi015.CampaignAssignment.AsProtobufJSON | null;
+    campaignAssignment: ondewoVtsi014.CampaignAssignment.AsProtobufJSON | null;
     idempotencyKey: string;
   }
 }
@@ -12069,10 +9409,10 @@ export class AddCallersToCampaignResponse implements GrpcMessage {
           _instance.vtsiProjectName = _reader.readString();
           break;
         case 2:
-          _instance.campaign = new ondewoVtsi015.Campaign();
+          _instance.campaign = new ondewoVtsi014.Campaign();
           _reader.readMessage(
             _instance.campaign,
-            ondewoVtsi015.Campaign.deserializeBinaryFromReader
+            ondewoVtsi014.Campaign.deserializeBinaryFromReader
           );
           break;
         case 3:
@@ -12103,7 +9443,7 @@ export class AddCallersToCampaignResponse implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.campaign as any,
-        ondewoVtsi015.Campaign.serializeBinaryToWriter
+        ondewoVtsi014.Campaign.serializeBinaryToWriter
       );
     }
     if (_instance.campaignCallNames && _instance.campaignCallNames.length) {
@@ -12112,7 +9452,7 @@ export class AddCallersToCampaignResponse implements GrpcMessage {
   }
 
   private _vtsiProjectName: string;
-  private _campaign?: ondewoVtsi015.Campaign;
+  private _campaign?: ondewoVtsi014.Campaign;
   private _campaignCallNames: string[];
 
   /**
@@ -12125,7 +9465,7 @@ export class AddCallersToCampaignResponse implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.campaign = _value.campaign
-      ? new ondewoVtsi015.Campaign(_value.campaign)
+      ? new ondewoVtsi014.Campaign(_value.campaign)
       : undefined;
     this.campaignCallNames = (_value.campaignCallNames || []).slice();
     AddCallersToCampaignResponse.refineValues(this);
@@ -12136,10 +9476,10 @@ export class AddCallersToCampaignResponse implements GrpcMessage {
   set vtsiProjectName(value: string) {
     this._vtsiProjectName = value;
   }
-  get campaign(): ondewoVtsi015.Campaign | undefined {
+  get campaign(): ondewoVtsi014.Campaign | undefined {
     return this._campaign;
   }
-  set campaign(value: ondewoVtsi015.Campaign | undefined) {
+  set campaign(value: ondewoVtsi014.Campaign | undefined) {
     this._campaign = value;
   }
   get campaignCallNames(): string[] {
@@ -12199,7 +9539,7 @@ export module AddCallersToCampaignResponse {
    */
   export interface AsObject {
     vtsiProjectName: string;
-    campaign?: ondewoVtsi015.Campaign.AsObject;
+    campaign?: ondewoVtsi014.Campaign.AsObject;
     campaignCallNames: string[];
   }
 
@@ -12208,7 +9548,7 @@ export module AddCallersToCampaignResponse {
    */
   export interface AsProtobufJSON {
     vtsiProjectName: string;
-    campaign: ondewoVtsi015.Campaign.AsProtobufJSON | null;
+    campaign: ondewoVtsi014.Campaign.AsProtobufJSON | null;
     campaignCallNames: string[];
   }
 }
@@ -12269,10 +9609,10 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
             _instance.scheduledCallerRequests || []).push(messageInitializer2);
           break;
         case 3:
-          _instance.campaignAssignment = new ondewoVtsi015.CampaignAssignment();
+          _instance.campaignAssignment = new ondewoVtsi014.CampaignAssignment();
           _reader.readMessage(
             _instance.campaignAssignment,
-            ondewoVtsi015.CampaignAssignment.deserializeBinaryFromReader
+            ondewoVtsi014.CampaignAssignment.deserializeBinaryFromReader
           );
           break;
         case 4:
@@ -12312,7 +9652,7 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
       _writer.writeMessage(
         3,
         _instance.campaignAssignment as any,
-        ondewoVtsi015.CampaignAssignment.serializeBinaryToWriter
+        ondewoVtsi014.CampaignAssignment.serializeBinaryToWriter
       );
     }
     if (_instance.idempotencyKey) {
@@ -12322,7 +9662,7 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
 
   private _vtsiProjectName: string;
   private _scheduledCallerRequests?: StartScheduledCallerRequest[];
-  private _campaignAssignment?: ondewoVtsi015.CampaignAssignment;
+  private _campaignAssignment?: ondewoVtsi014.CampaignAssignment;
   private _idempotencyKey: string;
 
   /**
@@ -12338,7 +9678,7 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
       m => new StartScheduledCallerRequest(m)
     );
     this.campaignAssignment = _value.campaignAssignment
-      ? new ondewoVtsi015.CampaignAssignment(_value.campaignAssignment)
+      ? new ondewoVtsi014.CampaignAssignment(_value.campaignAssignment)
       : undefined;
     this.idempotencyKey = _value.idempotencyKey;
     AddScheduledCallersToCampaignRequest.refineValues(this);
@@ -12357,10 +9697,10 @@ export class AddScheduledCallersToCampaignRequest implements GrpcMessage {
   ) {
     this._scheduledCallerRequests = value;
   }
-  get campaignAssignment(): ondewoVtsi015.CampaignAssignment | undefined {
+  get campaignAssignment(): ondewoVtsi014.CampaignAssignment | undefined {
     return this._campaignAssignment;
   }
-  set campaignAssignment(value: ondewoVtsi015.CampaignAssignment | undefined) {
+  set campaignAssignment(value: ondewoVtsi014.CampaignAssignment | undefined) {
     this._campaignAssignment = value;
   }
   get idempotencyKey(): string {
@@ -12431,7 +9771,7 @@ export module AddScheduledCallersToCampaignRequest {
   export interface AsObject {
     vtsiProjectName: string;
     scheduledCallerRequests?: StartScheduledCallerRequest.AsObject[];
-    campaignAssignment?: ondewoVtsi015.CampaignAssignment.AsObject;
+    campaignAssignment?: ondewoVtsi014.CampaignAssignment.AsObject;
     idempotencyKey: string;
   }
 
@@ -12443,7 +9783,7 @@ export module AddScheduledCallersToCampaignRequest {
     scheduledCallerRequests:
       | StartScheduledCallerRequest.AsProtobufJSON[]
       | null;
-    campaignAssignment: ondewoVtsi015.CampaignAssignment.AsProtobufJSON | null;
+    campaignAssignment: ondewoVtsi014.CampaignAssignment.AsProtobufJSON | null;
     idempotencyKey: string;
   }
 }
@@ -12505,10 +9845,10 @@ export class AddScheduledCallersToCampaignResponse implements GrpcMessage {
             _instance.scheduledCallerResponses || []).push(messageInitializer2);
           break;
         case 3:
-          _instance.campaign = new ondewoVtsi015.Campaign();
+          _instance.campaign = new ondewoVtsi014.Campaign();
           _reader.readMessage(
             _instance.campaign,
-            ondewoVtsi015.Campaign.deserializeBinaryFromReader
+            ondewoVtsi014.Campaign.deserializeBinaryFromReader
           );
           break;
         case 4:
@@ -12549,7 +9889,7 @@ export class AddScheduledCallersToCampaignResponse implements GrpcMessage {
       _writer.writeMessage(
         3,
         _instance.campaign as any,
-        ondewoVtsi015.Campaign.serializeBinaryToWriter
+        ondewoVtsi014.Campaign.serializeBinaryToWriter
       );
     }
     if (_instance.campaignCallNames && _instance.campaignCallNames.length) {
@@ -12559,7 +9899,7 @@ export class AddScheduledCallersToCampaignResponse implements GrpcMessage {
 
   private _vtsiProjectName: string;
   private _scheduledCallerResponses?: StartScheduledCallerResponse[];
-  private _campaign?: ondewoVtsi015.Campaign;
+  private _campaign?: ondewoVtsi014.Campaign;
   private _campaignCallNames: string[];
 
   /**
@@ -12575,7 +9915,7 @@ export class AddScheduledCallersToCampaignResponse implements GrpcMessage {
       m => new StartScheduledCallerResponse(m)
     );
     this.campaign = _value.campaign
-      ? new ondewoVtsi015.Campaign(_value.campaign)
+      ? new ondewoVtsi014.Campaign(_value.campaign)
       : undefined;
     this.campaignCallNames = (_value.campaignCallNames || []).slice();
     AddScheduledCallersToCampaignResponse.refineValues(this);
@@ -12594,10 +9934,10 @@ export class AddScheduledCallersToCampaignResponse implements GrpcMessage {
   ) {
     this._scheduledCallerResponses = value;
   }
-  get campaign(): ondewoVtsi015.Campaign | undefined {
+  get campaign(): ondewoVtsi014.Campaign | undefined {
     return this._campaign;
   }
-  set campaign(value: ondewoVtsi015.Campaign | undefined) {
+  set campaign(value: ondewoVtsi014.Campaign | undefined) {
     this._campaign = value;
   }
   get campaignCallNames(): string[] {
@@ -12664,7 +10004,7 @@ export module AddScheduledCallersToCampaignResponse {
   export interface AsObject {
     vtsiProjectName: string;
     scheduledCallerResponses?: StartScheduledCallerResponse.AsObject[];
-    campaign?: ondewoVtsi015.Campaign.AsObject;
+    campaign?: ondewoVtsi014.Campaign.AsObject;
     campaignCallNames: string[];
   }
 
@@ -12676,7 +10016,7 @@ export module AddScheduledCallersToCampaignResponse {
     scheduledCallerResponses:
       | StartScheduledCallerResponse.AsProtobufJSON[]
       | null;
-    campaign: ondewoVtsi015.Campaign.AsProtobufJSON | null;
+    campaign: ondewoVtsi014.Campaign.AsProtobufJSON | null;
     campaignCallNames: string[];
   }
 }
@@ -12911,6 +10251,10 @@ export class ScheduledCaller implements GrpcMessage {
     _instance.firedAt = _instance.firedAt || undefined;
     _instance.errorMessage = _instance.errorMessage || '';
     _instance.campaignName = _instance.campaignName || '';
+    _instance.retryOfScheduledCallerName =
+      _instance.retryOfScheduledCallerName || '';
+    _instance.retriedByScheduledCallerName =
+      _instance.retriedByScheduledCallerName || '';
   }
 
   /**
@@ -12933,17 +10277,17 @@ export class ScheduledCaller implements GrpcMessage {
           _instance.callName = _reader.readString();
           break;
         case 3:
-          _instance.sipConfig = new SipBaseConfig();
+          _instance.sipConfig = new ondewoVtsi013.SipBaseConfig();
           _reader.readMessage(
             _instance.sipConfig,
-            SipBaseConfig.deserializeBinaryFromReader
+            ondewoVtsi013.SipBaseConfig.deserializeBinaryFromReader
           );
           break;
         case 4:
-          _instance.commonServicesConfig = new CommonServicesConfig();
+          _instance.commonServicesConfig = new ondewoVtsi013.CommonServicesConfig();
           _reader.readMessage(
             _instance.commonServicesConfig,
-            CommonServicesConfig.deserializeBinaryFromReader
+            ondewoVtsi013.CommonServicesConfig.deserializeBinaryFromReader
           );
           break;
         case 5:
@@ -12954,10 +10298,10 @@ export class ScheduledCaller implements GrpcMessage {
           );
           break;
         case 6:
-          _instance.sipCallerConfig = new SipCallerConfig();
+          _instance.sipCallerConfig = new ondewoVtsi013.SipCallerConfig();
           _reader.readMessage(
             _instance.sipCallerConfig,
-            SipCallerConfig.deserializeBinaryFromReader
+            ondewoVtsi013.SipCallerConfig.deserializeBinaryFromReader
           );
           break;
         case 7:
@@ -12986,6 +10330,12 @@ export class ScheduledCaller implements GrpcMessage {
         case 12:
           _instance.campaignName = _reader.readString();
           break;
+        case 13:
+          _instance.retryOfScheduledCallerName = _reader.readString();
+          break;
+        case 14:
+          _instance.retriedByScheduledCallerName = _reader.readString();
+          break;
         default:
           _reader.skipField();
       }
@@ -13013,14 +10363,14 @@ export class ScheduledCaller implements GrpcMessage {
       _writer.writeMessage(
         3,
         _instance.sipConfig as any,
-        SipBaseConfig.serializeBinaryToWriter
+        ondewoVtsi013.SipBaseConfig.serializeBinaryToWriter
       );
     }
     if (_instance.commonServicesConfig) {
       _writer.writeMessage(
         4,
         _instance.commonServicesConfig as any,
-        CommonServicesConfig.serializeBinaryToWriter
+        ondewoVtsi013.CommonServicesConfig.serializeBinaryToWriter
       );
     }
     if (_instance.scheduledTime) {
@@ -13034,7 +10384,7 @@ export class ScheduledCaller implements GrpcMessage {
       _writer.writeMessage(
         6,
         _instance.sipCallerConfig as any,
-        SipCallerConfig.serializeBinaryToWriter
+        ondewoVtsi013.SipCallerConfig.serializeBinaryToWriter
       );
     }
     if (_instance.status) {
@@ -13063,20 +10413,28 @@ export class ScheduledCaller implements GrpcMessage {
     if (_instance.campaignName) {
       _writer.writeString(12, _instance.campaignName);
     }
+    if (_instance.retryOfScheduledCallerName) {
+      _writer.writeString(13, _instance.retryOfScheduledCallerName);
+    }
+    if (_instance.retriedByScheduledCallerName) {
+      _writer.writeString(14, _instance.retriedByScheduledCallerName);
+    }
   }
 
   private _name: string;
   private _callName: string;
-  private _sipConfig?: SipBaseConfig;
-  private _commonServicesConfig?: CommonServicesConfig;
+  private _sipConfig?: ondewoVtsi013.SipBaseConfig;
+  private _commonServicesConfig?: ondewoVtsi013.CommonServicesConfig;
   private _scheduledTime?: googleProtobuf005.Timestamp;
-  private _sipCallerConfig?: SipCallerConfig;
+  private _sipCallerConfig?: ondewoVtsi013.SipCallerConfig;
   private _status: ScheduledCallerStatus;
   private _vtsiProjectName: string;
   private _createdAt?: googleProtobuf005.Timestamp;
   private _firedAt?: googleProtobuf005.Timestamp;
   private _errorMessage: string;
   private _campaignName: string;
+  private _retryOfScheduledCallerName: string;
+  private _retriedByScheduledCallerName: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -13087,16 +10445,16 @@ export class ScheduledCaller implements GrpcMessage {
     this.name = _value.name;
     this.callName = _value.callName;
     this.sipConfig = _value.sipConfig
-      ? new SipBaseConfig(_value.sipConfig)
+      ? new ondewoVtsi013.SipBaseConfig(_value.sipConfig)
       : undefined;
     this.commonServicesConfig = _value.commonServicesConfig
-      ? new CommonServicesConfig(_value.commonServicesConfig)
+      ? new ondewoVtsi013.CommonServicesConfig(_value.commonServicesConfig)
       : undefined;
     this.scheduledTime = _value.scheduledTime
       ? new googleProtobuf005.Timestamp(_value.scheduledTime)
       : undefined;
     this.sipCallerConfig = _value.sipCallerConfig
-      ? new SipCallerConfig(_value.sipCallerConfig)
+      ? new ondewoVtsi013.SipCallerConfig(_value.sipCallerConfig)
       : undefined;
     this.status = _value.status;
     this.vtsiProjectName = _value.vtsiProjectName;
@@ -13108,6 +10466,8 @@ export class ScheduledCaller implements GrpcMessage {
       : undefined;
     this.errorMessage = _value.errorMessage;
     this.campaignName = _value.campaignName;
+    this.retryOfScheduledCallerName = _value.retryOfScheduledCallerName;
+    this.retriedByScheduledCallerName = _value.retriedByScheduledCallerName;
     ScheduledCaller.refineValues(this);
   }
   get name(): string {
@@ -13122,16 +10482,18 @@ export class ScheduledCaller implements GrpcMessage {
   set callName(value: string) {
     this._callName = value;
   }
-  get sipConfig(): SipBaseConfig | undefined {
+  get sipConfig(): ondewoVtsi013.SipBaseConfig | undefined {
     return this._sipConfig;
   }
-  set sipConfig(value: SipBaseConfig | undefined) {
+  set sipConfig(value: ondewoVtsi013.SipBaseConfig | undefined) {
     this._sipConfig = value;
   }
-  get commonServicesConfig(): CommonServicesConfig | undefined {
+  get commonServicesConfig(): ondewoVtsi013.CommonServicesConfig | undefined {
     return this._commonServicesConfig;
   }
-  set commonServicesConfig(value: CommonServicesConfig | undefined) {
+  set commonServicesConfig(
+    value: ondewoVtsi013.CommonServicesConfig | undefined
+  ) {
     this._commonServicesConfig = value;
   }
   get scheduledTime(): googleProtobuf005.Timestamp | undefined {
@@ -13140,10 +10502,10 @@ export class ScheduledCaller implements GrpcMessage {
   set scheduledTime(value: googleProtobuf005.Timestamp | undefined) {
     this._scheduledTime = value;
   }
-  get sipCallerConfig(): SipCallerConfig | undefined {
+  get sipCallerConfig(): ondewoVtsi013.SipCallerConfig | undefined {
     return this._sipCallerConfig;
   }
-  set sipCallerConfig(value: SipCallerConfig | undefined) {
+  set sipCallerConfig(value: ondewoVtsi013.SipCallerConfig | undefined) {
     this._sipCallerConfig = value;
   }
   get status(): ScheduledCallerStatus {
@@ -13182,6 +10544,18 @@ export class ScheduledCaller implements GrpcMessage {
   set campaignName(value: string) {
     this._campaignName = value;
   }
+  get retryOfScheduledCallerName(): string {
+    return this._retryOfScheduledCallerName;
+  }
+  set retryOfScheduledCallerName(value: string) {
+    this._retryOfScheduledCallerName = value;
+  }
+  get retriedByScheduledCallerName(): string {
+    return this._retriedByScheduledCallerName;
+  }
+  set retriedByScheduledCallerName(value: string) {
+    this._retriedByScheduledCallerName = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -13215,7 +10589,9 @@ export class ScheduledCaller implements GrpcMessage {
       createdAt: this.createdAt ? this.createdAt.toObject() : undefined,
       firedAt: this.firedAt ? this.firedAt.toObject() : undefined,
       errorMessage: this.errorMessage,
-      campaignName: this.campaignName
+      campaignName: this.campaignName,
+      retryOfScheduledCallerName: this.retryOfScheduledCallerName,
+      retriedByScheduledCallerName: this.retriedByScheduledCallerName
     };
   }
 
@@ -13256,7 +10632,9 @@ export class ScheduledCaller implements GrpcMessage {
       createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null,
       firedAt: this.firedAt ? this.firedAt.toProtobufJSON(options) : null,
       errorMessage: this.errorMessage,
-      campaignName: this.campaignName
+      campaignName: this.campaignName,
+      retryOfScheduledCallerName: this.retryOfScheduledCallerName,
+      retriedByScheduledCallerName: this.retriedByScheduledCallerName
     };
   }
 }
@@ -13267,16 +10645,18 @@ export module ScheduledCaller {
   export interface AsObject {
     name: string;
     callName: string;
-    sipConfig?: SipBaseConfig.AsObject;
-    commonServicesConfig?: CommonServicesConfig.AsObject;
+    sipConfig?: ondewoVtsi013.SipBaseConfig.AsObject;
+    commonServicesConfig?: ondewoVtsi013.CommonServicesConfig.AsObject;
     scheduledTime?: googleProtobuf005.Timestamp.AsObject;
-    sipCallerConfig?: SipCallerConfig.AsObject;
+    sipCallerConfig?: ondewoVtsi013.SipCallerConfig.AsObject;
     status: ScheduledCallerStatus;
     vtsiProjectName: string;
     createdAt?: googleProtobuf005.Timestamp.AsObject;
     firedAt?: googleProtobuf005.Timestamp.AsObject;
     errorMessage: string;
     campaignName: string;
+    retryOfScheduledCallerName: string;
+    retriedByScheduledCallerName: string;
   }
 
   /**
@@ -13285,16 +10665,18 @@ export module ScheduledCaller {
   export interface AsProtobufJSON {
     name: string;
     callName: string;
-    sipConfig: SipBaseConfig.AsProtobufJSON | null;
-    commonServicesConfig: CommonServicesConfig.AsProtobufJSON | null;
+    sipConfig: ondewoVtsi013.SipBaseConfig.AsProtobufJSON | null;
+    commonServicesConfig: ondewoVtsi013.CommonServicesConfig.AsProtobufJSON | null;
     scheduledTime: googleProtobuf005.Timestamp.AsProtobufJSON | null;
-    sipCallerConfig: SipCallerConfig.AsProtobufJSON | null;
+    sipCallerConfig: ondewoVtsi013.SipCallerConfig.AsProtobufJSON | null;
     status: string;
     vtsiProjectName: string;
     createdAt: googleProtobuf005.Timestamp.AsProtobufJSON | null;
     firedAt: googleProtobuf005.Timestamp.AsProtobufJSON | null;
     errorMessage: string;
     campaignName: string;
+    retryOfScheduledCallerName: string;
+    retriedByScheduledCallerName: string;
   }
 }
 
@@ -13324,6 +10706,7 @@ export class GetScheduledCallerRequest implements GrpcMessage {
   static refineValues(_instance: GetScheduledCallerRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -13347,6 +10730,13 @@ export class GetScheduledCallerRequest implements GrpcMessage {
           break;
         case 3:
           _instance.callView = _reader.readEnum();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -13374,11 +10764,19 @@ export class GetScheduledCallerRequest implements GrpcMessage {
     if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _name: string;
   private _callView: CallView;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -13389,6 +10787,9 @@ export class GetScheduledCallerRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.name = _value.name;
     this.callView = _value.callView;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     GetScheduledCallerRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -13409,6 +10810,12 @@ export class GetScheduledCallerRequest implements GrpcMessage {
   set callView(value: CallView) {
     this._callView = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -13427,7 +10834,8 @@ export class GetScheduledCallerRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       name: this.name,
-      callView: this.callView
+      callView: this.callView,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -13455,7 +10863,8 @@ export class GetScheduledCallerRequest implements GrpcMessage {
           this.callView === null || this.callView === undefined
             ? 0
             : this.callView
-        ]
+        ],
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -13467,6 +10876,7 @@ export module GetScheduledCallerRequest {
     vtsiProjectName: string;
     name: string;
     callView: CallView;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -13476,6 +10886,7 @@ export module GetScheduledCallerRequest {
     vtsiProjectName: string;
     name: string;
     callView: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -13505,6 +10916,11 @@ export class ListScheduledCallersRequest implements GrpcMessage {
   static refineValues(_instance: ListScheduledCallersRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.statuses = _instance.statuses || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.pageSize = _instance.pageSize || 0;
+    _instance.campaignName = _instance.campaignName || '';
+    _instance.scheduledAfter = _instance.scheduledAfter || undefined;
+    _instance.scheduledBefore = _instance.scheduledBefore || undefined;
   }
 
   /**
@@ -13532,6 +10948,33 @@ export class ListScheduledCallersRequest implements GrpcMessage {
         case 4:
           _reader.readPackableEnumInto(
             (_instance.statuses = _instance.statuses || [])
+          );
+          break;
+        case 5:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 6:
+          _instance.pageSize = _reader.readInt32();
+          break;
+        case 7:
+          _instance.campaignName = _reader.readString();
+          break;
+        case 8:
+          _instance.scheduledAfter = new googleProtobuf005.Timestamp();
+          _reader.readMessage(
+            _instance.scheduledAfter,
+            googleProtobuf005.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 9:
+          _instance.scheduledBefore = new googleProtobuf005.Timestamp();
+          _reader.readMessage(
+            _instance.scheduledBefore,
+            googleProtobuf005.Timestamp.deserializeBinaryFromReader
           );
           break;
         default:
@@ -13563,12 +11006,44 @@ export class ListScheduledCallersRequest implements GrpcMessage {
     if (_instance.statuses && _instance.statuses.length) {
       _writer.writePackedEnum(4, _instance.statuses);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        5,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.pageSize) {
+      _writer.writeInt32(6, _instance.pageSize);
+    }
+    if (_instance.campaignName) {
+      _writer.writeString(7, _instance.campaignName);
+    }
+    if (_instance.scheduledAfter) {
+      _writer.writeMessage(
+        8,
+        _instance.scheduledAfter as any,
+        googleProtobuf005.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.scheduledBefore) {
+      _writer.writeMessage(
+        9,
+        _instance.scheduledBefore as any,
+        googleProtobuf005.Timestamp.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _pageToken: string;
   private _callView: CallView;
   private _statuses: ScheduledCallerStatus[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _pageSize: number;
+  private _campaignName: string;
+  private _scheduledAfter?: googleProtobuf005.Timestamp;
+  private _scheduledBefore?: googleProtobuf005.Timestamp;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -13580,6 +11055,17 @@ export class ListScheduledCallersRequest implements GrpcMessage {
     this.pageToken = _value.pageToken;
     this.callView = _value.callView;
     this.statuses = (_value.statuses || []).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.pageSize = _value.pageSize;
+    this.campaignName = _value.campaignName;
+    this.scheduledAfter = _value.scheduledAfter
+      ? new googleProtobuf005.Timestamp(_value.scheduledAfter)
+      : undefined;
+    this.scheduledBefore = _value.scheduledBefore
+      ? new googleProtobuf005.Timestamp(_value.scheduledBefore)
+      : undefined;
     ListScheduledCallersRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -13606,6 +11092,36 @@ export class ListScheduledCallersRequest implements GrpcMessage {
   set statuses(value: ScheduledCallerStatus[]) {
     this._statuses = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get pageSize(): number {
+    return this._pageSize;
+  }
+  set pageSize(value: number) {
+    this._pageSize = value;
+  }
+  get campaignName(): string {
+    return this._campaignName;
+  }
+  set campaignName(value: string) {
+    this._campaignName = value;
+  }
+  get scheduledAfter(): googleProtobuf005.Timestamp | undefined {
+    return this._scheduledAfter;
+  }
+  set scheduledAfter(value: googleProtobuf005.Timestamp | undefined) {
+    this._scheduledAfter = value;
+  }
+  get scheduledBefore(): googleProtobuf005.Timestamp | undefined {
+    return this._scheduledBefore;
+  }
+  set scheduledBefore(value: googleProtobuf005.Timestamp | undefined) {
+    this._scheduledBefore = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -13625,7 +11141,16 @@ export class ListScheduledCallersRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       pageToken: this.pageToken,
       callView: this.callView,
-      statuses: (this.statuses || []).slice()
+      statuses: (this.statuses || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      pageSize: this.pageSize,
+      campaignName: this.campaignName,
+      scheduledAfter: this.scheduledAfter
+        ? this.scheduledAfter.toObject()
+        : undefined,
+      scheduledBefore: this.scheduledBefore
+        ? this.scheduledBefore.toObject()
+        : undefined
     };
   }
 
@@ -13654,7 +11179,16 @@ export class ListScheduledCallersRequest implements GrpcMessage {
             ? 0
             : this.callView
         ],
-      statuses: (this.statuses || []).map(v => ScheduledCallerStatus[v])
+      statuses: (this.statuses || []).map(v => ScheduledCallerStatus[v]),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      pageSize: this.pageSize,
+      campaignName: this.campaignName,
+      scheduledAfter: this.scheduledAfter
+        ? this.scheduledAfter.toProtobufJSON(options)
+        : null,
+      scheduledBefore: this.scheduledBefore
+        ? this.scheduledBefore.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -13667,6 +11201,11 @@ export module ListScheduledCallersRequest {
     pageToken: string;
     callView: CallView;
     statuses: ScheduledCallerStatus[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    pageSize: number;
+    campaignName: string;
+    scheduledAfter?: googleProtobuf005.Timestamp.AsObject;
+    scheduledBefore?: googleProtobuf005.Timestamp.AsObject;
   }
 
   /**
@@ -13677,6 +11216,11 @@ export module ListScheduledCallersRequest {
     pageToken: string;
     callView: string;
     statuses: string[];
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    pageSize: number;
+    campaignName: string;
+    scheduledAfter: googleProtobuf005.Timestamp.AsProtobufJSON | null;
+    scheduledBefore: googleProtobuf005.Timestamp.AsProtobufJSON | null;
   }
 }
 
@@ -13706,6 +11250,7 @@ export class ListScheduledCallersResponse implements GrpcMessage {
   static refineValues(_instance: ListScheduledCallersResponse) {
     _instance.scheduledCallers = _instance.scheduledCallers || [];
     _instance.nextPageToken = _instance.nextPageToken || '';
+    _instance.totalSize = _instance.totalSize || 0;
   }
 
   /**
@@ -13734,6 +11279,9 @@ export class ListScheduledCallersResponse implements GrpcMessage {
         case 2:
           _instance.nextPageToken = _reader.readString();
           break;
+        case 3:
+          _instance.totalSize = _reader.readInt32();
+          break;
         default:
           _reader.skipField();
       }
@@ -13761,10 +11309,14 @@ export class ListScheduledCallersResponse implements GrpcMessage {
     if (_instance.nextPageToken) {
       _writer.writeString(2, _instance.nextPageToken);
     }
+    if (_instance.totalSize) {
+      _writer.writeInt32(3, _instance.totalSize);
+    }
   }
 
   private _scheduledCallers?: ScheduledCaller[];
   private _nextPageToken: string;
+  private _totalSize: number;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -13778,6 +11330,7 @@ export class ListScheduledCallersResponse implements GrpcMessage {
       m => new ScheduledCaller(m)
     );
     this.nextPageToken = _value.nextPageToken;
+    this.totalSize = _value.totalSize;
     ListScheduledCallersResponse.refineValues(this);
   }
   get scheduledCallers(): ScheduledCaller[] | undefined {
@@ -13791,6 +11344,12 @@ export class ListScheduledCallersResponse implements GrpcMessage {
   }
   set nextPageToken(value: string) {
     this._nextPageToken = value;
+  }
+  get totalSize(): number {
+    return this._totalSize;
+  }
+  set totalSize(value: number) {
+    this._totalSize = value;
   }
 
   /**
@@ -13809,7 +11368,8 @@ export class ListScheduledCallersResponse implements GrpcMessage {
   toObject(): ListScheduledCallersResponse.AsObject {
     return {
       scheduledCallers: (this.scheduledCallers || []).map(m => m.toObject()),
-      nextPageToken: this.nextPageToken
+      nextPageToken: this.nextPageToken,
+      totalSize: this.totalSize
     };
   }
 
@@ -13833,7 +11393,8 @@ export class ListScheduledCallersResponse implements GrpcMessage {
       scheduledCallers: (this.scheduledCallers || []).map(m =>
         m.toProtobufJSON(options)
       ),
-      nextPageToken: this.nextPageToken
+      nextPageToken: this.nextPageToken,
+      totalSize: this.totalSize
     };
   }
 }
@@ -13844,6 +11405,7 @@ export module ListScheduledCallersResponse {
   export interface AsObject {
     scheduledCallers?: ScheduledCaller.AsObject[];
     nextPageToken: string;
+    totalSize: number;
   }
 
   /**
@@ -13852,6 +11414,7 @@ export module ListScheduledCallersResponse {
   export interface AsProtobufJSON {
     scheduledCallers: ScheduledCaller.AsProtobufJSON[] | null;
     nextPageToken: string;
+    totalSize: number;
   }
 }
 
@@ -13881,6 +11444,7 @@ export class CancelScheduledCallerRequest implements GrpcMessage {
   static refineValues(_instance: CancelScheduledCallerRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.name = _instance.name || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -13901,6 +11465,13 @@ export class CancelScheduledCallerRequest implements GrpcMessage {
           break;
         case 2:
           _instance.name = _reader.readString();
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -13925,10 +11496,18 @@ export class CancelScheduledCallerRequest implements GrpcMessage {
     if (_instance.name) {
       _writer.writeString(2, _instance.name);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _name: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -13940,6 +11519,9 @@ export class CancelScheduledCallerRequest implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.name = _value.name;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     CancelScheduledCallerRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -13953,6 +11535,12 @@ export class CancelScheduledCallerRequest implements GrpcMessage {
   }
   set name(value: string) {
     this._name = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -13971,7 +11559,8 @@ export class CancelScheduledCallerRequest implements GrpcMessage {
   toObject(): CancelScheduledCallerRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -13993,7 +11582,8 @@ export class CancelScheduledCallerRequest implements GrpcMessage {
   ): CancelScheduledCallerRequest.AsProtobufJSON {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      name: this.name
+      name: this.name,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -14004,6 +11594,7 @@ export module CancelScheduledCallerRequest {
   export interface AsObject {
     vtsiProjectName: string;
     name: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -14012,6 +11603,7 @@ export module CancelScheduledCallerRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     name: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -14217,6 +11809,837 @@ export module CancelScheduledCallerResponse {
 }
 
 /**
+ * Message implementation for ondewo.vtsi.CancelScheduledCallersRequest
+ */
+export class CancelScheduledCallersRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.CancelScheduledCallersRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CancelScheduledCallersRequest();
+    CancelScheduledCallersRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CancelScheduledCallersRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.names = _instance.names || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CancelScheduledCallersRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          (_instance.names = _instance.names || []).push(_reader.readString());
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CancelScheduledCallersRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CancelScheduledCallersRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.names && _instance.names.length) {
+      _writer.writeRepeatedString(2, _instance.names);
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _names: string[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CancelScheduledCallersRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<CancelScheduledCallersRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.names = (_value.names || []).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    CancelScheduledCallersRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get names(): string[] {
+    return this._names;
+  }
+  set names(value: string[]) {
+    this._names = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CancelScheduledCallersRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CancelScheduledCallersRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CancelScheduledCallersRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      names: (this.names || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
+    };
+  }
+}
+export module CancelScheduledCallersRequest {
+  /**
+   * Standard JavaScript object representation for CancelScheduledCallersRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    names: string[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for CancelScheduledCallersRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    names: string[];
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.CancelScheduledCallersResponse
+ */
+export class CancelScheduledCallersResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.CancelScheduledCallersResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CancelScheduledCallersResponse();
+    CancelScheduledCallersResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CancelScheduledCallersResponse) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.cancelScheduledCallerResponses =
+      _instance.cancelScheduledCallerResponses || [];
+    _instance.errorMessage = _instance.errorMessage || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CancelScheduledCallersResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new CancelScheduledCallerResponse();
+          _reader.readMessage(
+            messageInitializer2,
+            CancelScheduledCallerResponse.deserializeBinaryFromReader
+          );
+          (_instance.cancelScheduledCallerResponses =
+            _instance.cancelScheduledCallerResponses || []).push(
+            messageInitializer2
+          );
+          break;
+        case 3:
+          _instance.errorMessage = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CancelScheduledCallersResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CancelScheduledCallersResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (
+      _instance.cancelScheduledCallerResponses &&
+      _instance.cancelScheduledCallerResponses.length
+    ) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.cancelScheduledCallerResponses as any,
+        CancelScheduledCallerResponse.serializeBinaryToWriter
+      );
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(3, _instance.errorMessage);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _cancelScheduledCallerResponses?: CancelScheduledCallerResponse[];
+  private _errorMessage: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CancelScheduledCallersResponse to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<CancelScheduledCallersResponse.AsObject>
+  ) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.cancelScheduledCallerResponses = (
+      _value.cancelScheduledCallerResponses || []
+    ).map(m => new CancelScheduledCallerResponse(m));
+    this.errorMessage = _value.errorMessage;
+    CancelScheduledCallersResponse.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get cancelScheduledCallerResponses():
+    | CancelScheduledCallerResponse[]
+    | undefined {
+    return this._cancelScheduledCallerResponses;
+  }
+  set cancelScheduledCallerResponses(
+    value: CancelScheduledCallerResponse[] | undefined
+  ) {
+    this._cancelScheduledCallerResponses = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CancelScheduledCallersResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CancelScheduledCallersResponse.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      cancelScheduledCallerResponses: (
+        this.cancelScheduledCallerResponses || []
+      ).map(m => m.toObject()),
+      errorMessage: this.errorMessage
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CancelScheduledCallersResponse.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      cancelScheduledCallerResponses: (
+        this.cancelScheduledCallerResponses || []
+      ).map(m => m.toProtobufJSON(options)),
+      errorMessage: this.errorMessage
+    };
+  }
+}
+export module CancelScheduledCallersResponse {
+  /**
+   * Standard JavaScript object representation for CancelScheduledCallersResponse
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    cancelScheduledCallerResponses?: CancelScheduledCallerResponse.AsObject[];
+    errorMessage: string;
+  }
+
+  /**
+   * Protobuf JSON representation for CancelScheduledCallersResponse
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    cancelScheduledCallerResponses:
+      | CancelScheduledCallerResponse.AsProtobufJSON[]
+      | null;
+    errorMessage: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateScheduledCallerRequest
+ */
+export class UpdateScheduledCallerRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateScheduledCallerRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateScheduledCallerRequest();
+    UpdateScheduledCallerRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateScheduledCallerRequest) {
+    _instance.scheduledCaller = _instance.scheduledCaller || undefined;
+    _instance.updateMask = _instance.updateMask || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateScheduledCallerRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.scheduledCaller = new ScheduledCaller();
+          _reader.readMessage(
+            _instance.scheduledCaller,
+            ScheduledCaller.deserializeBinaryFromReader
+          );
+          break;
+        case 2:
+          _instance.updateMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.updateMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateScheduledCallerRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateScheduledCallerRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.scheduledCaller) {
+      _writer.writeMessage(
+        1,
+        _instance.scheduledCaller as any,
+        ScheduledCaller.serializeBinaryToWriter
+      );
+    }
+    if (_instance.updateMask) {
+      _writer.writeMessage(
+        2,
+        _instance.updateMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _scheduledCaller?: ScheduledCaller;
+  private _updateMask?: googleProtobuf006.FieldMask;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateScheduledCallerRequest to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<UpdateScheduledCallerRequest.AsObject>
+  ) {
+    _value = _value || {};
+    this.scheduledCaller = _value.scheduledCaller
+      ? new ScheduledCaller(_value.scheduledCaller)
+      : undefined;
+    this.updateMask = _value.updateMask
+      ? new googleProtobuf006.FieldMask(_value.updateMask)
+      : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    UpdateScheduledCallerRequest.refineValues(this);
+  }
+  get scheduledCaller(): ScheduledCaller | undefined {
+    return this._scheduledCaller;
+  }
+  set scheduledCaller(value: ScheduledCaller | undefined) {
+    this._scheduledCaller = value;
+  }
+  get updateMask(): googleProtobuf006.FieldMask | undefined {
+    return this._updateMask;
+  }
+  set updateMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._updateMask = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateScheduledCallerRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateScheduledCallerRequest.AsObject {
+    return {
+      scheduledCaller: this.scheduledCaller
+        ? this.scheduledCaller.toObject()
+        : undefined,
+      updateMask: this.updateMask ? this.updateMask.toObject() : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateScheduledCallerRequest.AsProtobufJSON {
+    return {
+      scheduledCaller: this.scheduledCaller
+        ? this.scheduledCaller.toProtobufJSON(options)
+        : null,
+      updateMask: this.updateMask
+        ? this.updateMask.toProtobufJSON(options)
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
+    };
+  }
+}
+export module UpdateScheduledCallerRequest {
+  /**
+   * Standard JavaScript object representation for UpdateScheduledCallerRequest
+   */
+  export interface AsObject {
+    scheduledCaller?: ScheduledCaller.AsObject;
+    updateMask?: googleProtobuf006.FieldMask.AsObject;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateScheduledCallerRequest
+   */
+  export interface AsProtobufJSON {
+    scheduledCaller: ScheduledCaller.AsProtobufJSON | null;
+    updateMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.RetryScheduledCallerRequest
+ */
+export class RetryScheduledCallerRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.RetryScheduledCallerRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new RetryScheduledCallerRequest();
+    RetryScheduledCallerRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: RetryScheduledCallerRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.name = _instance.name || '';
+    _instance.scheduledTime = _instance.scheduledTime || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: RetryScheduledCallerRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.name = _reader.readString();
+          break;
+        case 3:
+          _instance.scheduledTime = new googleProtobuf005.Timestamp();
+          _reader.readMessage(
+            _instance.scheduledTime,
+            googleProtobuf005.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    RetryScheduledCallerRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: RetryScheduledCallerRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.name) {
+      _writer.writeString(2, _instance.name);
+    }
+    if (_instance.scheduledTime) {
+      _writer.writeMessage(
+        3,
+        _instance.scheduledTime as any,
+        googleProtobuf005.Timestamp.serializeBinaryToWriter
+      );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _name: string;
+  private _scheduledTime?: googleProtobuf005.Timestamp;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of RetryScheduledCallerRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<RetryScheduledCallerRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.name = _value.name;
+    this.scheduledTime = _value.scheduledTime
+      ? new googleProtobuf005.Timestamp(_value.scheduledTime)
+      : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    RetryScheduledCallerRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+  get scheduledTime(): googleProtobuf005.Timestamp | undefined {
+    return this._scheduledTime;
+  }
+  set scheduledTime(value: googleProtobuf005.Timestamp | undefined) {
+    this._scheduledTime = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    RetryScheduledCallerRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): RetryScheduledCallerRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      name: this.name,
+      scheduledTime: this.scheduledTime
+        ? this.scheduledTime.toObject()
+        : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): RetryScheduledCallerRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      name: this.name,
+      scheduledTime: this.scheduledTime
+        ? this.scheduledTime.toProtobufJSON(options)
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
+    };
+  }
+}
+export module RetryScheduledCallerRequest {
+  /**
+   * Standard JavaScript object representation for RetryScheduledCallerRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    name: string;
+    scheduledTime?: googleProtobuf005.Timestamp.AsObject;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for RetryScheduledCallerRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    name: string;
+    scheduledTime: googleProtobuf005.Timestamp.AsProtobufJSON | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+  }
+}
+
+/**
  * Message implementation for ondewo.vtsi.StopCallRequest
  */
 export class StopCallRequest implements GrpcMessage {
@@ -14242,6 +12665,7 @@ export class StopCallRequest implements GrpcMessage {
   static refineValues(_instance: StopCallRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callName = _instance.callName || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -14262,6 +12686,13 @@ export class StopCallRequest implements GrpcMessage {
           break;
         case 2:
           _instance.callName = _reader.readString();
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -14286,10 +12717,18 @@ export class StopCallRequest implements GrpcMessage {
     if (_instance.callName) {
       _writer.writeString(2, _instance.callName);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _callName: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -14299,6 +12738,9 @@ export class StopCallRequest implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.callName = _value.callName;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     StopCallRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -14312,6 +12754,12 @@ export class StopCallRequest implements GrpcMessage {
   }
   set callName(value: string) {
     this._callName = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -14330,7 +12778,8 @@ export class StopCallRequest implements GrpcMessage {
   toObject(): StopCallRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      callName: this.callName
+      callName: this.callName,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -14352,7 +12801,8 @@ export class StopCallRequest implements GrpcMessage {
   ): StopCallRequest.AsProtobufJSON {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      callName: this.callName
+      callName: this.callName,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -14363,6 +12813,7 @@ export module StopCallRequest {
   export interface AsObject {
     vtsiProjectName: string;
     callName: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -14371,6 +12822,7 @@ export module StopCallRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     callName: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -14577,6 +13029,7 @@ export class StopCallsRequest implements GrpcMessage {
   static refineValues(_instance: StopCallsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callNames = _instance.callNames || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -14598,6 +13051,13 @@ export class StopCallsRequest implements GrpcMessage {
         case 2:
           (_instance.callNames = _instance.callNames || []).push(
             _reader.readString()
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
           );
           break;
         default:
@@ -14623,10 +13083,18 @@ export class StopCallsRequest implements GrpcMessage {
     if (_instance.callNames && _instance.callNames.length) {
       _writer.writeRepeatedString(2, _instance.callNames);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _callNames: string[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -14636,6 +13104,9 @@ export class StopCallsRequest implements GrpcMessage {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
     this.callNames = (_value.callNames || []).slice();
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     StopCallsRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -14649,6 +13120,12 @@ export class StopCallsRequest implements GrpcMessage {
   }
   set callNames(value: string[]) {
     this._callNames = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
   }
 
   /**
@@ -14667,7 +13144,8 @@ export class StopCallsRequest implements GrpcMessage {
   toObject(): StopCallsRequest.AsObject {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      callNames: (this.callNames || []).slice()
+      callNames: (this.callNames || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -14689,7 +13167,8 @@ export class StopCallsRequest implements GrpcMessage {
   ): StopCallsRequest.AsProtobufJSON {
     return {
       vtsiProjectName: this.vtsiProjectName,
-      callNames: (this.callNames || []).slice()
+      callNames: (this.callNames || []).slice(),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -14700,6 +13179,7 @@ export module StopCallsRequest {
   export interface AsObject {
     vtsiProjectName: string;
     callNames: string[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -14708,6 +13188,7 @@ export module StopCallsRequest {
   export interface AsProtobufJSON {
     vtsiProjectName: string;
     callNames: string[];
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -14908,6 +13389,8 @@ export class StopAllCallsRequest implements GrpcMessage {
    */
   static refineValues(_instance: StopAllCallsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.callFilter = _instance.callFilter || undefined;
   }
 
   /**
@@ -14925,6 +13408,20 @@ export class StopAllCallsRequest implements GrpcMessage {
       switch (_reader.getFieldNumber()) {
         case 1:
           _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.callFilter = new CallFilter();
+          _reader.readMessage(
+            _instance.callFilter,
+            CallFilter.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -14946,9 +13443,25 @@ export class StopAllCallsRequest implements GrpcMessage {
     if (_instance.vtsiProjectName) {
       _writer.writeString(1, _instance.vtsiProjectName);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        2,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.callFilter) {
+      _writer.writeMessage(
+        3,
+        _instance.callFilter as any,
+        CallFilter.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _callFilter?: CallFilter;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -14957,6 +13470,12 @@ export class StopAllCallsRequest implements GrpcMessage {
   constructor(_value?: RecursivePartial<StopAllCallsRequest.AsObject>) {
     _value = _value || {};
     this.vtsiProjectName = _value.vtsiProjectName;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.callFilter = _value.callFilter
+      ? new CallFilter(_value.callFilter)
+      : undefined;
     StopAllCallsRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -14964,6 +13483,18 @@ export class StopAllCallsRequest implements GrpcMessage {
   }
   set vtsiProjectName(value: string) {
     this._vtsiProjectName = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get callFilter(): CallFilter | undefined {
+    return this._callFilter;
+  }
+  set callFilter(value: CallFilter | undefined) {
+    this._callFilter = value;
   }
 
   /**
@@ -14981,7 +13512,9 @@ export class StopAllCallsRequest implements GrpcMessage {
    */
   toObject(): StopAllCallsRequest.AsObject {
     return {
-      vtsiProjectName: this.vtsiProjectName
+      vtsiProjectName: this.vtsiProjectName,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      callFilter: this.callFilter ? this.callFilter.toObject() : undefined
     };
   }
 
@@ -15002,7 +13535,11 @@ export class StopAllCallsRequest implements GrpcMessage {
     options?: ToProtobufJSONOptions
   ): StopAllCallsRequest.AsProtobufJSON {
     return {
-      vtsiProjectName: this.vtsiProjectName
+      vtsiProjectName: this.vtsiProjectName,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      callFilter: this.callFilter
+        ? this.callFilter.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -15012,6 +13549,8 @@ export module StopAllCallsRequest {
    */
   export interface AsObject {
     vtsiProjectName: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    callFilter?: CallFilter.AsObject;
   }
 
   /**
@@ -15019,6 +13558,8 @@ export module StopAllCallsRequest {
    */
   export interface AsProtobufJSON {
     vtsiProjectName: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    callFilter: CallFilter.AsProtobufJSON | null;
   }
 }
 
@@ -15053,6 +13594,7 @@ export class TransferCallRequest implements GrpcMessage {
     _instance.mode = _instance.mode || 0;
     _instance.headers = _instance.headers || {};
     _instance.ringTimeoutS = _instance.ringTimeoutS || 0;
+    _instance.requestId = _instance.requestId || '';
   }
 
   /**
@@ -15098,6 +13640,9 @@ export class TransferCallRequest implements GrpcMessage {
           break;
         case 7:
           _instance.ringTimeoutS = _reader.readInt32();
+          break;
+        case 8:
+          _instance.requestId = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -15153,6 +13698,9 @@ export class TransferCallRequest implements GrpcMessage {
     if (_instance.ringTimeoutS) {
       _writer.writeInt32(7, _instance.ringTimeoutS);
     }
+    if (_instance.requestId) {
+      _writer.writeString(8, _instance.requestId);
+    }
   }
 
   private _vtsiProjectName: string;
@@ -15162,6 +13710,7 @@ export class TransferCallRequest implements GrpcMessage {
   private _mode: TransferMode;
   private _headers: { [prop: string]: string };
   private _ringTimeoutS: number;
+  private _requestId: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -15181,6 +13730,7 @@ export class TransferCallRequest implements GrpcMessage {
         )
       : {}),
       (this.ringTimeoutS = _value.ringTimeoutS);
+    this.requestId = _value.requestId;
     TransferCallRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -15225,6 +13775,12 @@ export class TransferCallRequest implements GrpcMessage {
   set ringTimeoutS(value: number) {
     this._ringTimeoutS = value;
   }
+  get requestId(): string {
+    return this._requestId;
+  }
+  set requestId(value: string) {
+    this._requestId = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -15252,7 +13808,8 @@ export class TransferCallRequest implements GrpcMessage {
             {}
           )
         : {},
-      ringTimeoutS: this.ringTimeoutS
+      ringTimeoutS: this.ringTimeoutS,
+      requestId: this.requestId
     };
   }
 
@@ -15287,7 +13844,8 @@ export class TransferCallRequest implements GrpcMessage {
             {}
           )
         : {},
-      ringTimeoutS: this.ringTimeoutS
+      ringTimeoutS: this.ringTimeoutS,
+      requestId: this.requestId
     };
   }
 }
@@ -15303,6 +13861,7 @@ export module TransferCallRequest {
     mode: TransferMode;
     headers: { [prop: string]: string };
     ringTimeoutS: number;
+    requestId: string;
   }
 
   /**
@@ -15316,6 +13875,7 @@ export module TransferCallRequest {
     mode: string;
     headers: { [prop: string]: string };
     ringTimeoutS: number;
+    requestId: string;
   }
 
   /**
@@ -16593,6 +15153,7 @@ export class CallParticipant implements GrpcMessage {
     _instance.endReason = _instance.endReason || '';
     _instance.invitedBy = _instance.invitedBy || '';
     _instance.botPolicy = _instance.botPolicy || 0;
+    _instance.endReasonType = _instance.endReasonType || 0;
   }
 
   /**
@@ -16649,6 +15210,9 @@ export class CallParticipant implements GrpcMessage {
           break;
         case 10:
           _instance.botPolicy = _reader.readEnum();
+          break;
+        case 11:
+          _instance.endReasonType = _reader.readEnum();
           break;
         default:
           _reader.skipField();
@@ -16709,6 +15273,9 @@ export class CallParticipant implements GrpcMessage {
     if (_instance.botPolicy) {
       _writer.writeEnum(10, _instance.botPolicy);
     }
+    if (_instance.endReasonType) {
+      _writer.writeEnum(11, _instance.endReasonType);
+    }
   }
 
   private _participantId: string;
@@ -16721,6 +15288,7 @@ export class CallParticipant implements GrpcMessage {
   private _endReason: string;
   private _invitedBy: string;
   private _botPolicy: BotPolicyOnJoin;
+  private _endReasonType: ParticipantEndReason;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -16744,6 +15312,7 @@ export class CallParticipant implements GrpcMessage {
     this.endReason = _value.endReason;
     this.invitedBy = _value.invitedBy;
     this.botPolicy = _value.botPolicy;
+    this.endReasonType = _value.endReasonType;
     CallParticipant.refineValues(this);
   }
   get participantId(): string {
@@ -16806,6 +15375,12 @@ export class CallParticipant implements GrpcMessage {
   set botPolicy(value: BotPolicyOnJoin) {
     this._botPolicy = value;
   }
+  get endReasonType(): ParticipantEndReason {
+    return this._endReasonType;
+  }
+  set endReasonType(value: ParticipantEndReason) {
+    this._endReasonType = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -16831,7 +15406,8 @@ export class CallParticipant implements GrpcMessage {
       leftAt: this.leftAt ? this.leftAt.toObject() : undefined,
       endReason: this.endReason,
       invitedBy: this.invitedBy,
-      botPolicy: this.botPolicy
+      botPolicy: this.botPolicy,
+      endReasonType: this.endReasonType
     };
   }
 
@@ -16872,6 +15448,12 @@ export class CallParticipant implements GrpcMessage {
           this.botPolicy === null || this.botPolicy === undefined
             ? 0
             : this.botPolicy
+        ],
+      endReasonType:
+        ParticipantEndReason[
+          this.endReasonType === null || this.endReasonType === undefined
+            ? 0
+            : this.endReasonType
         ]
     };
   }
@@ -16891,6 +15473,7 @@ export module CallParticipant {
     endReason: string;
     invitedBy: string;
     botPolicy: BotPolicyOnJoin;
+    endReasonType: ParticipantEndReason;
   }
 
   /**
@@ -16907,6 +15490,7 @@ export module CallParticipant {
     endReason: string;
     invitedBy: string;
     botPolicy: string;
+    endReasonType: string;
   }
 }
 
@@ -20205,6 +18789,7 @@ export class GetCallRequest implements GrpcMessage {
   static refineValues(_instance: GetCallRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callName = _instance.callName || '';
+    _instance.fieldMask = _instance.fieldMask || undefined;
   }
 
   /**
@@ -20228,6 +18813,13 @@ export class GetCallRequest implements GrpcMessage {
           break;
         case 3:
           _instance.callView = _reader.readEnum();
+          break;
+        case 4:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -20255,11 +18847,19 @@ export class GetCallRequest implements GrpcMessage {
     if (_instance.callView !== undefined && _instance.callView !== null) {
       _writer.writeEnum(3, _instance.callView);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        4,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _callName: string;
   private _callView: CallView;
+  private _fieldMask?: googleProtobuf006.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -20270,6 +18870,9 @@ export class GetCallRequest implements GrpcMessage {
     this.vtsiProjectName = _value.vtsiProjectName;
     this.callName = _value.callName;
     this.callView = _value.callView;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
     GetCallRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -20290,6 +18893,12 @@ export class GetCallRequest implements GrpcMessage {
   set callView(value: CallView) {
     this._callView = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -20308,7 +18917,8 @@ export class GetCallRequest implements GrpcMessage {
     return {
       vtsiProjectName: this.vtsiProjectName,
       callName: this.callName,
-      callView: this.callView
+      callView: this.callView,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
     };
   }
 
@@ -20336,7 +18946,8 @@ export class GetCallRequest implements GrpcMessage {
           this.callView === null || this.callView === undefined
             ? 0
             : this.callView
-        ]
+        ],
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
     };
   }
 }
@@ -20348,6 +18959,7 @@ export module GetCallRequest {
     vtsiProjectName: string;
     callName: string;
     callView: CallView;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
   }
 
   /**
@@ -20357,6 +18969,7 @@ export module GetCallRequest {
     vtsiProjectName: string;
     callName: string;
     callView: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -20400,6 +19013,7 @@ export class Call implements GrpcMessage {
     _instance.participants = _instance.participants || [];
     _instance.lastTransfer = _instance.lastTransfer || undefined;
     _instance.sipCallId = _instance.sipCallId || '';
+    _instance.labels = _instance.labels || {};
   }
 
   /**
@@ -20445,17 +19059,17 @@ export class Call implements GrpcMessage {
           _instance.sipStatusType = _reader.readEnum();
           break;
         case 9:
-          _instance.sipStatus = new ondewoSip011.SipStatus();
+          _instance.sipStatus = new ondewoSip012.SipStatus();
           _reader.readMessage(
             _instance.sipStatus,
-            ondewoSip011.SipStatus.deserializeBinaryFromReader
+            ondewoSip012.SipStatus.deserializeBinaryFromReader
           );
           break;
         case 10:
-          _instance.sipStatusHistory = new ondewoSip011.SipStatusHistoryResponse();
+          _instance.sipStatusHistory = new ondewoSip012.SipStatusHistoryResponse();
           _reader.readMessage(
             _instance.sipStatusHistory,
-            ondewoSip011.SipStatusHistoryResponse.deserializeBinaryFromReader
+            ondewoSip012.SipStatusHistoryResponse.deserializeBinaryFromReader
           );
           break;
         case 11:
@@ -20472,10 +19086,10 @@ export class Call implements GrpcMessage {
           _instance.vtsiProjectName = _reader.readString();
           break;
         case 14:
-          _instance.commonServicesConfig = new CommonServicesConfig();
+          _instance.commonServicesConfig = new ondewoVtsi013.CommonServicesConfig();
           _reader.readMessage(
             _instance.commonServicesConfig,
-            CommonServicesConfig.deserializeBinaryFromReader
+            ondewoVtsi013.CommonServicesConfig.deserializeBinaryFromReader
           );
           break;
         case 15:
@@ -20525,6 +19139,15 @@ export class Call implements GrpcMessage {
           break;
         case 25:
           _instance.sipCallId = _reader.readString();
+          break;
+        case 26:
+          const msg_26 = {} as any;
+          _reader.readMessage(
+            msg_26,
+            Call.LabelsEntry.deserializeBinaryFromReader
+          );
+          _instance.labels = _instance.labels || {};
+          _instance.labels[msg_26.key] = msg_26.value;
           break;
         default:
           _reader.skipField();
@@ -20576,14 +19199,14 @@ export class Call implements GrpcMessage {
       _writer.writeMessage(
         9,
         _instance.sipStatus as any,
-        ondewoSip011.SipStatus.serializeBinaryToWriter
+        ondewoSip012.SipStatus.serializeBinaryToWriter
       );
     }
     if (_instance.sipStatusHistory) {
       _writer.writeMessage(
         10,
         _instance.sipStatusHistory as any,
-        ondewoSip011.SipStatusHistoryResponse.serializeBinaryToWriter
+        ondewoSip012.SipStatusHistoryResponse.serializeBinaryToWriter
       );
     }
     if (_instance.servicesStatuses) {
@@ -20603,7 +19226,7 @@ export class Call implements GrpcMessage {
       _writer.writeMessage(
         14,
         _instance.commonServicesConfig as any,
-        CommonServicesConfig.serializeBinaryToWriter
+        ondewoVtsi013.CommonServicesConfig.serializeBinaryToWriter
       );
     }
     if (_instance.sipPort !== undefined && _instance.sipPort !== null) {
@@ -20666,6 +19289,21 @@ export class Call implements GrpcMessage {
     if (_instance.sipCallId) {
       _writer.writeString(25, _instance.sipCallId);
     }
+    if (!!_instance.labels) {
+      const keys_26 = Object.keys(_instance.labels as any);
+
+      if (keys_26.length) {
+        const repeated_26 = keys_26
+          .map(key => ({ key: key, value: (_instance.labels as any)[key] }))
+          .reduce((r, v) => [...r, v], [] as any[]);
+
+        _writer.writeRepeatedMessage(
+          26,
+          repeated_26,
+          Call.LabelsEntry.serializeBinaryToWriter
+        );
+      }
+    }
   }
 
   private _name: string;
@@ -20675,17 +19313,17 @@ export class Call implements GrpcMessage {
   private _phoneNumber: string;
   private _startTime?: googleProtobuf005.Timestamp;
   private _endTime?: googleProtobuf005.Timestamp;
-  private _sipStatusType: ondewoSip011.SipStatus.StatusType;
-  private _sipStatus?: ondewoSip011.SipStatus;
-  private _sipStatusHistory?: ondewoSip011.SipStatusHistoryResponse;
+  private _sipStatusType: ondewoSip012.SipStatus.StatusType;
+  private _sipStatus?: ondewoSip012.SipStatus;
+  private _sipStatusHistory?: ondewoSip012.SipStatusHistoryResponse;
   private _servicesStatuses?: AllServicesStatuses;
   private _active: boolean;
   private _vtsiProjectName: string;
-  private _commonServicesConfig?: CommonServicesConfig;
+  private _commonServicesConfig?: ondewoVtsi013.CommonServicesConfig;
   private _sipPort: number;
   private _csiPort: number;
   private _nluSessionName: string;
-  private _platforms: ondewoNlu012.Intent.Message.Platform;
+  private _platforms: ondewoNlu008.Intent.Message.Platform;
   private _redialRecommended: boolean;
   private _redialReason: string;
   private _answeringMachineDetectionEndDescription: string;
@@ -20693,6 +19331,7 @@ export class Call implements GrpcMessage {
   private _participants?: CallParticipant[];
   private _lastTransfer?: CallTransferRecord;
   private _sipCallId: string;
+  private _labels: { [prop: string]: string };
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -20713,10 +19352,10 @@ export class Call implements GrpcMessage {
       : undefined;
     this.sipStatusType = _value.sipStatusType;
     this.sipStatus = _value.sipStatus
-      ? new ondewoSip011.SipStatus(_value.sipStatus)
+      ? new ondewoSip012.SipStatus(_value.sipStatus)
       : undefined;
     this.sipStatusHistory = _value.sipStatusHistory
-      ? new ondewoSip011.SipStatusHistoryResponse(_value.sipStatusHistory)
+      ? new ondewoSip012.SipStatusHistoryResponse(_value.sipStatusHistory)
       : undefined;
     this.servicesStatuses = _value.servicesStatuses
       ? new AllServicesStatuses(_value.servicesStatuses)
@@ -20724,7 +19363,7 @@ export class Call implements GrpcMessage {
     this.active = _value.active;
     this.vtsiProjectName = _value.vtsiProjectName;
     this.commonServicesConfig = _value.commonServicesConfig
-      ? new CommonServicesConfig(_value.commonServicesConfig)
+      ? new ondewoVtsi013.CommonServicesConfig(_value.commonServicesConfig)
       : undefined;
     this.sipPort = _value.sipPort;
     this.csiPort = _value.csiPort;
@@ -20744,7 +19383,13 @@ export class Call implements GrpcMessage {
       ? new CallTransferRecord(_value.lastTransfer)
       : undefined;
     this.sipCallId = _value.sipCallId;
-    Call.refineValues(this);
+    (this.labels = _value!.labels
+      ? Object.keys(_value!.labels).reduce(
+          (r, k) => ({ ...r, [k]: _value!.labels![k] }),
+          {}
+        )
+      : {}),
+      Call.refineValues(this);
   }
   get name(): string {
     return this._name;
@@ -20788,23 +19433,23 @@ export class Call implements GrpcMessage {
   set endTime(value: googleProtobuf005.Timestamp | undefined) {
     this._endTime = value;
   }
-  get sipStatusType(): ondewoSip011.SipStatus.StatusType {
+  get sipStatusType(): ondewoSip012.SipStatus.StatusType {
     return this._sipStatusType;
   }
-  set sipStatusType(value: ondewoSip011.SipStatus.StatusType) {
+  set sipStatusType(value: ondewoSip012.SipStatus.StatusType) {
     this._sipStatusType = value;
   }
-  get sipStatus(): ondewoSip011.SipStatus | undefined {
+  get sipStatus(): ondewoSip012.SipStatus | undefined {
     return this._sipStatus;
   }
-  set sipStatus(value: ondewoSip011.SipStatus | undefined) {
+  set sipStatus(value: ondewoSip012.SipStatus | undefined) {
     this._sipStatus = value;
   }
-  get sipStatusHistory(): ondewoSip011.SipStatusHistoryResponse | undefined {
+  get sipStatusHistory(): ondewoSip012.SipStatusHistoryResponse | undefined {
     return this._sipStatusHistory;
   }
   set sipStatusHistory(
-    value: ondewoSip011.SipStatusHistoryResponse | undefined
+    value: ondewoSip012.SipStatusHistoryResponse | undefined
   ) {
     this._sipStatusHistory = value;
   }
@@ -20826,10 +19471,12 @@ export class Call implements GrpcMessage {
   set vtsiProjectName(value: string) {
     this._vtsiProjectName = value;
   }
-  get commonServicesConfig(): CommonServicesConfig | undefined {
+  get commonServicesConfig(): ondewoVtsi013.CommonServicesConfig | undefined {
     return this._commonServicesConfig;
   }
-  set commonServicesConfig(value: CommonServicesConfig | undefined) {
+  set commonServicesConfig(
+    value: ondewoVtsi013.CommonServicesConfig | undefined
+  ) {
     this._commonServicesConfig = value;
   }
   get sipPort(): number {
@@ -20850,10 +19497,10 @@ export class Call implements GrpcMessage {
   set nluSessionName(value: string) {
     this._nluSessionName = value;
   }
-  get platforms(): ondewoNlu012.Intent.Message.Platform {
+  get platforms(): ondewoNlu008.Intent.Message.Platform {
     return this._platforms;
   }
-  set platforms(value: ondewoNlu012.Intent.Message.Platform) {
+  set platforms(value: ondewoNlu008.Intent.Message.Platform) {
     this._platforms = value;
   }
   get redialRecommended(): boolean {
@@ -20897,6 +19544,12 @@ export class Call implements GrpcMessage {
   }
   set sipCallId(value: string) {
     this._sipCallId = value;
+  }
+  get labels(): { [prop: string]: string } {
+    return this._labels;
+  }
+  set labels(value: { [prop: string]: string }) {
+    this._labels = value;
   }
 
   /**
@@ -20949,7 +19602,13 @@ export class Call implements GrpcMessage {
       lastTransfer: this.lastTransfer
         ? this.lastTransfer.toObject()
         : undefined,
-      sipCallId: this.sipCallId
+      sipCallId: this.sipCallId,
+      labels: this.labels
+        ? Object.keys(this.labels).reduce(
+            (r, k) => ({ ...r, [k]: this.labels![k] }),
+            {}
+          )
+        : {}
     };
   }
 
@@ -20983,7 +19642,7 @@ export class Call implements GrpcMessage {
       startTime: this.startTime ? this.startTime.toProtobufJSON(options) : null,
       endTime: this.endTime ? this.endTime.toProtobufJSON(options) : null,
       sipStatusType:
-        ondewoSip011.SipStatus.StatusType[
+        ondewoSip012.SipStatus.StatusType[
           this.sipStatusType === null || this.sipStatusType === undefined
             ? 0
             : this.sipStatusType
@@ -21004,7 +19663,7 @@ export class Call implements GrpcMessage {
       csiPort: this.csiPort,
       nluSessionName: this.nluSessionName,
       platforms:
-        ondewoNlu012.Intent.Message.Platform[
+        ondewoNlu008.Intent.Message.Platform[
           this.platforms === null || this.platforms === undefined
             ? 0
             : this.platforms
@@ -21022,7 +19681,13 @@ export class Call implements GrpcMessage {
       lastTransfer: this.lastTransfer
         ? this.lastTransfer.toProtobufJSON(options)
         : null,
-      sipCallId: this.sipCallId
+      sipCallId: this.sipCallId,
+      labels: this.labels
+        ? Object.keys(this.labels).reduce(
+            (r, k) => ({ ...r, [k]: this.labels![k] }),
+            {}
+          )
+        : {}
     };
   }
 }
@@ -21038,17 +19703,17 @@ export module Call {
     phoneNumber: string;
     startTime?: googleProtobuf005.Timestamp.AsObject;
     endTime?: googleProtobuf005.Timestamp.AsObject;
-    sipStatusType: ondewoSip011.SipStatus.StatusType;
-    sipStatus?: ondewoSip011.SipStatus.AsObject;
-    sipStatusHistory?: ondewoSip011.SipStatusHistoryResponse.AsObject;
+    sipStatusType: ondewoSip012.SipStatus.StatusType;
+    sipStatus?: ondewoSip012.SipStatus.AsObject;
+    sipStatusHistory?: ondewoSip012.SipStatusHistoryResponse.AsObject;
     servicesStatuses?: AllServicesStatuses.AsObject;
     active: boolean;
     vtsiProjectName: string;
-    commonServicesConfig?: CommonServicesConfig.AsObject;
+    commonServicesConfig?: ondewoVtsi013.CommonServicesConfig.AsObject;
     sipPort: number;
     csiPort: number;
     nluSessionName: string;
-    platforms: ondewoNlu012.Intent.Message.Platform;
+    platforms: ondewoNlu008.Intent.Message.Platform;
     redialRecommended: boolean;
     redialReason: string;
     answeringMachineDetectionEndDescription: string;
@@ -21056,6 +19721,7 @@ export module Call {
     participants?: CallParticipant.AsObject[];
     lastTransfer?: CallTransferRecord.AsObject;
     sipCallId: string;
+    labels: { [prop: string]: string };
   }
 
   /**
@@ -21070,12 +19736,12 @@ export module Call {
     startTime: googleProtobuf005.Timestamp.AsProtobufJSON | null;
     endTime: googleProtobuf005.Timestamp.AsProtobufJSON | null;
     sipStatusType: string;
-    sipStatus: ondewoSip011.SipStatus.AsProtobufJSON | null;
-    sipStatusHistory: ondewoSip011.SipStatusHistoryResponse.AsProtobufJSON | null;
+    sipStatus: ondewoSip012.SipStatus.AsProtobufJSON | null;
+    sipStatusHistory: ondewoSip012.SipStatusHistoryResponse.AsProtobufJSON | null;
     servicesStatuses: AllServicesStatuses.AsProtobufJSON | null;
     active: boolean;
     vtsiProjectName: string;
-    commonServicesConfig: CommonServicesConfig.AsProtobufJSON | null;
+    commonServicesConfig: ondewoVtsi013.CommonServicesConfig.AsProtobufJSON | null;
     sipPort: number;
     csiPort: number;
     nluSessionName: string;
@@ -21087,6 +19753,165 @@ export module Call {
     participants: CallParticipant.AsProtobufJSON[] | null;
     lastTransfer: CallTransferRecord.AsProtobufJSON | null;
     sipCallId: string;
+    labels: { [prop: string]: string };
+  }
+
+  /**
+   * Message implementation for ondewo.vtsi.Call.LabelsEntry
+   */
+  export class LabelsEntry implements GrpcMessage {
+    static id = 'ondewo.vtsi.Call.LabelsEntry';
+
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource) {
+      const instance = new LabelsEntry();
+      LabelsEntry.deserializeBinaryFromReader(
+        instance,
+        new BinaryReader(bytes)
+      );
+      return instance;
+    }
+
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: LabelsEntry) {
+      _instance.key = _instance.key || '';
+      _instance.value = _instance.value || '';
+    }
+
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(
+      _instance: LabelsEntry,
+      _reader: BinaryReader
+    ) {
+      while (_reader.nextField()) {
+        if (_reader.isEndGroup()) break;
+
+        switch (_reader.getFieldNumber()) {
+          case 1:
+            _instance.key = _reader.readString();
+            break;
+          case 2:
+            _instance.value = _reader.readString();
+            break;
+          default:
+            _reader.skipField();
+        }
+      }
+
+      LabelsEntry.refineValues(_instance);
+    }
+
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(
+      _instance: LabelsEntry,
+      _writer: BinaryWriter
+    ) {
+      if (_instance.key) {
+        _writer.writeString(1, _instance.key);
+      }
+      if (_instance.value) {
+        _writer.writeString(2, _instance.value);
+      }
+    }
+
+    private _key: string;
+    private _value: string;
+
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of LabelsEntry to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<LabelsEntry.AsObject>) {
+      _value = _value || {};
+      this.key = _value.key;
+      this.value = _value.value;
+      LabelsEntry.refineValues(this);
+    }
+    get key(): string {
+      return this._key;
+    }
+    set key(value: string) {
+      this._key = value;
+    }
+    get value(): string {
+      return this._value;
+    }
+    set value(value: string) {
+      this._value = value;
+    }
+
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+      const writer = new BinaryWriter();
+      LabelsEntry.serializeBinaryToWriter(this, writer);
+      return writer.getResultBuffer();
+    }
+
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): LabelsEntry.AsObject {
+      return {
+        key: this.key,
+        value: this.value
+      };
+    }
+
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+      return this.toObject();
+    }
+
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+      // @ts-ignore
+      options?: ToProtobufJSONOptions
+    ): LabelsEntry.AsProtobufJSON {
+      return {
+        key: this.key,
+        value: this.value
+      };
+    }
+  }
+  export module LabelsEntry {
+    /**
+     * Standard JavaScript object representation for LabelsEntry
+     */
+    export interface AsObject {
+      key: string;
+      value: string;
+    }
+
+    /**
+     * Protobuf JSON representation for LabelsEntry
+     */
+    export interface AsProtobufJSON {
+      key: string;
+      value: string;
+    }
   }
 }
 
@@ -21123,6 +19948,13 @@ export class CallFilter implements GrpcMessage {
     _instance.startTime = _instance.startTime || undefined;
     _instance.endTime = _instance.endTime || undefined;
     _instance.platforms = _instance.platforms || [];
+
+    _instance.labels = _instance.labels || {};
+    _instance.callerNames = _instance.callerNames || [];
+    _instance.listenerNames = _instance.listenerNames || [];
+    _instance.transferOutcomes = _instance.transferOutcomes || [];
+    _instance.sipPortNumbers = _instance.sipPortNumbers || [];
+    _instance.csiPortNumbers = _instance.csiPortNumbers || [];
   }
 
   /**
@@ -21211,6 +20043,49 @@ export class CallFilter implements GrpcMessage {
             (_instance.platforms = _instance.platforms || [])
           );
           break;
+        case 16:
+          _instance.campaignName = _reader.readString();
+          break;
+        case 17:
+          _instance.campaignDisplayName = _reader.readString();
+          break;
+        case 18:
+          const msg_18 = {} as any;
+          _reader.readMessage(
+            msg_18,
+            CallFilter.LabelsEntry.deserializeBinaryFromReader
+          );
+          _instance.labels = _instance.labels || {};
+          _instance.labels[msg_18.key] = msg_18.value;
+          break;
+        case 19:
+          (_instance.callerNames = _instance.callerNames || []).push(
+            _reader.readString()
+          );
+          break;
+        case 20:
+          (_instance.listenerNames = _instance.listenerNames || []).push(
+            _reader.readString()
+          );
+          break;
+        case 21:
+          _instance.redialRecommended = _reader.readBool();
+          break;
+        case 22:
+          _reader.readPackableEnumInto(
+            (_instance.transferOutcomes = _instance.transferOutcomes || [])
+          );
+          break;
+        case 23:
+          _reader.readPackableInt32Into(
+            (_instance.sipPortNumbers = _instance.sipPortNumbers || [])
+          );
+          break;
+        case 24:
+          _reader.readPackableInt32Into(
+            (_instance.csiPortNumbers = _instance.csiPortNumbers || [])
+          );
+          break;
         default:
           _reader.skipField();
       }
@@ -21284,6 +20159,48 @@ export class CallFilter implements GrpcMessage {
     if (_instance.platforms && _instance.platforms.length) {
       _writer.writePackedEnum(15, _instance.platforms);
     }
+    if (_instance.campaignName || _instance.campaignName === '') {
+      _writer.writeString(16, _instance.campaignName);
+    }
+    if (_instance.campaignDisplayName || _instance.campaignDisplayName === '') {
+      _writer.writeString(17, _instance.campaignDisplayName);
+    }
+    if (!!_instance.labels) {
+      const keys_18 = Object.keys(_instance.labels as any);
+
+      if (keys_18.length) {
+        const repeated_18 = keys_18
+          .map(key => ({ key: key, value: (_instance.labels as any)[key] }))
+          .reduce((r, v) => [...r, v], [] as any[]);
+
+        _writer.writeRepeatedMessage(
+          18,
+          repeated_18,
+          CallFilter.LabelsEntry.serializeBinaryToWriter
+        );
+      }
+    }
+    if (_instance.callerNames && _instance.callerNames.length) {
+      _writer.writeRepeatedString(19, _instance.callerNames);
+    }
+    if (_instance.listenerNames && _instance.listenerNames.length) {
+      _writer.writeRepeatedString(20, _instance.listenerNames);
+    }
+    if (
+      _instance.redialRecommended !== undefined &&
+      _instance.redialRecommended !== null
+    ) {
+      _writer.writeBool(21, _instance.redialRecommended);
+    }
+    if (_instance.transferOutcomes && _instance.transferOutcomes.length) {
+      _writer.writePackedEnum(22, _instance.transferOutcomes);
+    }
+    if (_instance.sipPortNumbers && _instance.sipPortNumbers.length) {
+      _writer.writePackedInt32(23, _instance.sipPortNumbers);
+    }
+    if (_instance.csiPortNumbers && _instance.csiPortNumbers.length) {
+      _writer.writePackedInt32(24, _instance.csiPortNumbers);
+    }
   }
 
   private _callNames: string[];
@@ -21294,13 +20211,24 @@ export class CallFilter implements GrpcMessage {
   private _sipPorts: string[];
   private _csiPorts: string[];
   private _callTypes: CallType[];
-  private _sipStatusTypes: ondewoSip011.SipStatus.StatusType[];
+  private _sipStatusTypes: ondewoSip012.SipStatus.StatusType[];
   private _callStatus: CallStatus;
   private _startTime?: googleProtobuf005.Timestamp;
   private _endTime?: googleProtobuf005.Timestamp;
   private _durationInSMin: number;
   private _durationInSMax: number;
-  private _platforms: ondewoNlu012.Intent.Message.Platform[];
+  private _platforms: ondewoNlu008.Intent.Message.Platform[];
+  private _campaignName: string;
+  private _campaignDisplayName: string;
+  private _labels: { [prop: string]: string };
+  private _callerNames: string[];
+  private _listenerNames: string[];
+  private _redialRecommended: boolean;
+  private _transferOutcomes: TransferOutcome[];
+  private _sipPortNumbers: number[];
+  private _csiPortNumbers: number[];
+
+  private _campaign: CallFilter.CampaignCase = CallFilter.CampaignCase.none;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -21327,6 +20255,20 @@ export class CallFilter implements GrpcMessage {
     this.durationInSMin = _value.durationInSMin;
     this.durationInSMax = _value.durationInSMax;
     this.platforms = (_value.platforms || []).slice();
+    this.campaignName = _value.campaignName;
+    this.campaignDisplayName = _value.campaignDisplayName;
+    (this.labels = _value!.labels
+      ? Object.keys(_value!.labels).reduce(
+          (r, k) => ({ ...r, [k]: _value!.labels![k] }),
+          {}
+        )
+      : {}),
+      (this.callerNames = (_value.callerNames || []).slice());
+    this.listenerNames = (_value.listenerNames || []).slice();
+    this.redialRecommended = _value.redialRecommended;
+    this.transferOutcomes = (_value.transferOutcomes || []).slice();
+    this.sipPortNumbers = (_value.sipPortNumbers || []).slice();
+    this.csiPortNumbers = (_value.csiPortNumbers || []).slice();
     CallFilter.refineValues(this);
   }
   get callNames(): string[] {
@@ -21377,10 +20319,10 @@ export class CallFilter implements GrpcMessage {
   set callTypes(value: CallType[]) {
     this._callTypes = value;
   }
-  get sipStatusTypes(): ondewoSip011.SipStatus.StatusType[] {
+  get sipStatusTypes(): ondewoSip012.SipStatus.StatusType[] {
     return this._sipStatusTypes;
   }
-  set sipStatusTypes(value: ondewoSip011.SipStatus.StatusType[]) {
+  set sipStatusTypes(value: ondewoSip012.SipStatus.StatusType[]) {
     this._sipStatusTypes = value;
   }
   get callStatus(): CallStatus {
@@ -21413,11 +20355,76 @@ export class CallFilter implements GrpcMessage {
   set durationInSMax(value: number) {
     this._durationInSMax = value;
   }
-  get platforms(): ondewoNlu012.Intent.Message.Platform[] {
+  get platforms(): ondewoNlu008.Intent.Message.Platform[] {
     return this._platforms;
   }
-  set platforms(value: ondewoNlu012.Intent.Message.Platform[]) {
+  set platforms(value: ondewoNlu008.Intent.Message.Platform[]) {
     this._platforms = value;
+  }
+  get campaignName(): string {
+    return this._campaignName;
+  }
+  set campaignName(value: string) {
+    if (value !== undefined && value !== null) {
+      this._campaignDisplayName = undefined;
+      this._campaign = CallFilter.CampaignCase.campaignName;
+    }
+    this._campaignName = value;
+  }
+  get campaignDisplayName(): string {
+    return this._campaignDisplayName;
+  }
+  set campaignDisplayName(value: string) {
+    if (value !== undefined && value !== null) {
+      this._campaignName = undefined;
+      this._campaign = CallFilter.CampaignCase.campaignDisplayName;
+    }
+    this._campaignDisplayName = value;
+  }
+  get labels(): { [prop: string]: string } {
+    return this._labels;
+  }
+  set labels(value: { [prop: string]: string }) {
+    this._labels = value;
+  }
+  get callerNames(): string[] {
+    return this._callerNames;
+  }
+  set callerNames(value: string[]) {
+    this._callerNames = value;
+  }
+  get listenerNames(): string[] {
+    return this._listenerNames;
+  }
+  set listenerNames(value: string[]) {
+    this._listenerNames = value;
+  }
+  get redialRecommended(): boolean {
+    return this._redialRecommended;
+  }
+  set redialRecommended(value: boolean) {
+    this._redialRecommended = value;
+  }
+  get transferOutcomes(): TransferOutcome[] {
+    return this._transferOutcomes;
+  }
+  set transferOutcomes(value: TransferOutcome[]) {
+    this._transferOutcomes = value;
+  }
+  get sipPortNumbers(): number[] {
+    return this._sipPortNumbers;
+  }
+  set sipPortNumbers(value: number[]) {
+    this._sipPortNumbers = value;
+  }
+  get csiPortNumbers(): number[] {
+    return this._csiPortNumbers;
+  }
+  set csiPortNumbers(value: number[]) {
+    this._csiPortNumbers = value;
+  }
+  get campaign() {
+    return this._campaign;
   }
 
   /**
@@ -21449,7 +20456,21 @@ export class CallFilter implements GrpcMessage {
       endTime: this.endTime ? this.endTime.toObject() : undefined,
       durationInSMin: this.durationInSMin,
       durationInSMax: this.durationInSMax,
-      platforms: (this.platforms || []).slice()
+      platforms: (this.platforms || []).slice(),
+      campaignName: this.campaignName,
+      campaignDisplayName: this.campaignDisplayName,
+      labels: this.labels
+        ? Object.keys(this.labels).reduce(
+            (r, k) => ({ ...r, [k]: this.labels![k] }),
+            {}
+          )
+        : {},
+      callerNames: (this.callerNames || []).slice(),
+      listenerNames: (this.listenerNames || []).slice(),
+      redialRecommended: this.redialRecommended,
+      transferOutcomes: (this.transferOutcomes || []).slice(),
+      sipPortNumbers: (this.sipPortNumbers || []).slice(),
+      csiPortNumbers: (this.csiPortNumbers || []).slice()
     };
   }
 
@@ -21479,7 +20500,7 @@ export class CallFilter implements GrpcMessage {
       csiPorts: (this.csiPorts || []).slice(),
       callTypes: (this.callTypes || []).map(v => CallType[v]),
       sipStatusTypes: (this.sipStatusTypes || []).map(
-        v => ondewoSip011.SipStatus.StatusType[v]
+        v => ondewoSip012.SipStatus.StatusType[v]
       ),
       callStatus:
         CallStatus[
@@ -21492,8 +20513,31 @@ export class CallFilter implements GrpcMessage {
       durationInSMin: this.durationInSMin,
       durationInSMax: this.durationInSMax,
       platforms: (this.platforms || []).map(
-        v => ondewoNlu012.Intent.Message.Platform[v]
-      )
+        v => ondewoNlu008.Intent.Message.Platform[v]
+      ),
+      campaignName:
+        this.campaignName === null || this.campaignName === undefined
+          ? null
+          : this.campaignName,
+      campaignDisplayName:
+        this.campaignDisplayName === null ||
+        this.campaignDisplayName === undefined
+          ? null
+          : this.campaignDisplayName,
+      labels: this.labels
+        ? Object.keys(this.labels).reduce(
+            (r, k) => ({ ...r, [k]: this.labels![k] }),
+            {}
+          )
+        : {},
+      callerNames: (this.callerNames || []).slice(),
+      listenerNames: (this.listenerNames || []).slice(),
+      redialRecommended: this.redialRecommended,
+      transferOutcomes: (this.transferOutcomes || []).map(
+        v => TransferOutcome[v]
+      ),
+      sipPortNumbers: (this.sipPortNumbers || []).slice(),
+      csiPortNumbers: (this.csiPortNumbers || []).slice()
     };
   }
 }
@@ -21510,13 +20554,22 @@ export module CallFilter {
     sipPorts: string[];
     csiPorts: string[];
     callTypes: CallType[];
-    sipStatusTypes: ondewoSip011.SipStatus.StatusType[];
+    sipStatusTypes: ondewoSip012.SipStatus.StatusType[];
     callStatus: CallStatus;
     startTime?: googleProtobuf005.Timestamp.AsObject;
     endTime?: googleProtobuf005.Timestamp.AsObject;
     durationInSMin: number;
     durationInSMax: number;
-    platforms: ondewoNlu012.Intent.Message.Platform[];
+    platforms: ondewoNlu008.Intent.Message.Platform[];
+    campaignName: string;
+    campaignDisplayName: string;
+    labels: { [prop: string]: string };
+    callerNames: string[];
+    listenerNames: string[];
+    redialRecommended: boolean;
+    transferOutcomes: TransferOutcome[];
+    sipPortNumbers: number[];
+    csiPortNumbers: number[];
   }
 
   /**
@@ -21538,6 +20591,346 @@ export module CallFilter {
     durationInSMin: number;
     durationInSMax: number;
     platforms: string[];
+    campaignName: string | null;
+    campaignDisplayName: string | null;
+    labels: { [prop: string]: string };
+    callerNames: string[];
+    listenerNames: string[];
+    redialRecommended: boolean;
+    transferOutcomes: string[];
+    sipPortNumbers: number[];
+    csiPortNumbers: number[];
+  }
+  export enum CampaignCase {
+    none = 0,
+    campaignName = 1,
+    campaignDisplayName = 2
+  }
+  /**
+   * Message implementation for ondewo.vtsi.CallFilter.LabelsEntry
+   */
+  export class LabelsEntry implements GrpcMessage {
+    static id = 'ondewo.vtsi.CallFilter.LabelsEntry';
+
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource) {
+      const instance = new LabelsEntry();
+      LabelsEntry.deserializeBinaryFromReader(
+        instance,
+        new BinaryReader(bytes)
+      );
+      return instance;
+    }
+
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: LabelsEntry) {
+      _instance.key = _instance.key || '';
+      _instance.value = _instance.value || '';
+    }
+
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(
+      _instance: LabelsEntry,
+      _reader: BinaryReader
+    ) {
+      while (_reader.nextField()) {
+        if (_reader.isEndGroup()) break;
+
+        switch (_reader.getFieldNumber()) {
+          case 1:
+            _instance.key = _reader.readString();
+            break;
+          case 2:
+            _instance.value = _reader.readString();
+            break;
+          default:
+            _reader.skipField();
+        }
+      }
+
+      LabelsEntry.refineValues(_instance);
+    }
+
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(
+      _instance: LabelsEntry,
+      _writer: BinaryWriter
+    ) {
+      if (_instance.key) {
+        _writer.writeString(1, _instance.key);
+      }
+      if (_instance.value) {
+        _writer.writeString(2, _instance.value);
+      }
+    }
+
+    private _key: string;
+    private _value: string;
+
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of LabelsEntry to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<LabelsEntry.AsObject>) {
+      _value = _value || {};
+      this.key = _value.key;
+      this.value = _value.value;
+      LabelsEntry.refineValues(this);
+    }
+    get key(): string {
+      return this._key;
+    }
+    set key(value: string) {
+      this._key = value;
+    }
+    get value(): string {
+      return this._value;
+    }
+    set value(value: string) {
+      this._value = value;
+    }
+
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+      const writer = new BinaryWriter();
+      LabelsEntry.serializeBinaryToWriter(this, writer);
+      return writer.getResultBuffer();
+    }
+
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): LabelsEntry.AsObject {
+      return {
+        key: this.key,
+        value: this.value
+      };
+    }
+
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+      return this.toObject();
+    }
+
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+      // @ts-ignore
+      options?: ToProtobufJSONOptions
+    ): LabelsEntry.AsProtobufJSON {
+      return {
+        key: this.key,
+        value: this.value
+      };
+    }
+  }
+  export module LabelsEntry {
+    /**
+     * Standard JavaScript object representation for LabelsEntry
+     */
+    export interface AsObject {
+      key: string;
+      value: string;
+    }
+
+    /**
+     * Protobuf JSON representation for LabelsEntry
+     */
+    export interface AsProtobufJSON {
+      key: string;
+      value: string;
+    }
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.CallSorting
+ */
+export class CallSorting implements GrpcMessage {
+  static id = 'ondewo.vtsi.CallSorting';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CallSorting();
+    CallSorting.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CallSorting) {
+    _instance.sortingField = _instance.sortingField || 0;
+    _instance.sortingMode = _instance.sortingMode || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CallSorting,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.sortingField = _reader.readEnum();
+          break;
+        case 2:
+          _instance.sortingMode = _reader.readEnum();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CallSorting.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CallSorting,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.sortingField) {
+      _writer.writeEnum(1, _instance.sortingField);
+    }
+    if (_instance.sortingMode) {
+      _writer.writeEnum(2, _instance.sortingMode);
+    }
+  }
+
+  private _sortingField: CallSorting.CallSortingField;
+  private _sortingMode: ondewoVtsi015.VtsiProjectSortingMode;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CallSorting to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<CallSorting.AsObject>) {
+    _value = _value || {};
+    this.sortingField = _value.sortingField;
+    this.sortingMode = _value.sortingMode;
+    CallSorting.refineValues(this);
+  }
+  get sortingField(): CallSorting.CallSortingField {
+    return this._sortingField;
+  }
+  set sortingField(value: CallSorting.CallSortingField) {
+    this._sortingField = value;
+  }
+  get sortingMode(): ondewoVtsi015.VtsiProjectSortingMode {
+    return this._sortingMode;
+  }
+  set sortingMode(value: ondewoVtsi015.VtsiProjectSortingMode) {
+    this._sortingMode = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CallSorting.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CallSorting.AsObject {
+    return {
+      sortingField: this.sortingField,
+      sortingMode: this.sortingMode
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CallSorting.AsProtobufJSON {
+    return {
+      sortingField:
+        CallSorting.CallSortingField[
+          this.sortingField === null || this.sortingField === undefined
+            ? 0
+            : this.sortingField
+        ],
+      sortingMode:
+        ondewoVtsi015.VtsiProjectSortingMode[
+          this.sortingMode === null || this.sortingMode === undefined
+            ? 0
+            : this.sortingMode
+        ]
+    };
+  }
+}
+export module CallSorting {
+  /**
+   * Standard JavaScript object representation for CallSorting
+   */
+  export interface AsObject {
+    sortingField: CallSorting.CallSortingField;
+    sortingMode: ondewoVtsi015.VtsiProjectSortingMode;
+  }
+
+  /**
+   * Protobuf JSON representation for CallSorting
+   */
+  export interface AsProtobufJSON {
+    sortingField: string;
+    sortingMode: string;
+  }
+  export enum CallSortingField {
+    NO_CALL_SORTING = 0,
+    SORT_CALL_BY_START_TIME = 1
   }
 }
 
@@ -21567,6 +20960,9 @@ export class ListCallsRequest implements GrpcMessage {
   static refineValues(_instance: ListCallsRequest) {
     _instance.vtsiProjectName = _instance.vtsiProjectName || '';
     _instance.callFilter = _instance.callFilter || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+    _instance.pageSize = _instance.pageSize || 0;
+    _instance.callSorting = _instance.callSorting || undefined;
   }
 
   /**
@@ -21597,6 +20993,23 @@ export class ListCallsRequest implements GrpcMessage {
           break;
         case 4:
           _instance.pageToken = _reader.readString();
+          break;
+        case 5:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 6:
+          _instance.pageSize = _reader.readInt32();
+          break;
+        case 7:
+          _instance.callSorting = new CallSorting();
+          _reader.readMessage(
+            _instance.callSorting,
+            CallSorting.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -21631,12 +21044,32 @@ export class ListCallsRequest implements GrpcMessage {
     if (_instance.pageToken !== undefined && _instance.pageToken !== null) {
       _writer.writeString(4, _instance.pageToken);
     }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        5,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.pageSize) {
+      _writer.writeInt32(6, _instance.pageSize);
+    }
+    if (_instance.callSorting) {
+      _writer.writeMessage(
+        7,
+        _instance.callSorting as any,
+        CallSorting.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
   private _callView: CallView;
   private _callFilter?: CallFilter;
   private _pageToken: string;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+  private _pageSize: number;
+  private _callSorting?: CallSorting;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -21650,6 +21083,13 @@ export class ListCallsRequest implements GrpcMessage {
       ? new CallFilter(_value.callFilter)
       : undefined;
     this.pageToken = _value.pageToken;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    this.pageSize = _value.pageSize;
+    this.callSorting = _value.callSorting
+      ? new CallSorting(_value.callSorting)
+      : undefined;
     ListCallsRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -21676,6 +21116,24 @@ export class ListCallsRequest implements GrpcMessage {
   set pageToken(value: string) {
     this._pageToken = value;
   }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+  get pageSize(): number {
+    return this._pageSize;
+  }
+  set pageSize(value: number) {
+    this._pageSize = value;
+  }
+  get callSorting(): CallSorting | undefined {
+    return this._callSorting;
+  }
+  set callSorting(value: CallSorting | undefined) {
+    this._callSorting = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -21695,7 +21153,10 @@ export class ListCallsRequest implements GrpcMessage {
       vtsiProjectName: this.vtsiProjectName,
       callView: this.callView,
       callFilter: this.callFilter ? this.callFilter.toObject() : undefined,
-      pageToken: this.pageToken
+      pageToken: this.pageToken,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined,
+      pageSize: this.pageSize,
+      callSorting: this.callSorting ? this.callSorting.toObject() : undefined
     };
   }
 
@@ -21726,7 +21187,12 @@ export class ListCallsRequest implements GrpcMessage {
       callFilter: this.callFilter
         ? this.callFilter.toProtobufJSON(options)
         : null,
-      pageToken: this.pageToken
+      pageToken: this.pageToken,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+      pageSize: this.pageSize,
+      callSorting: this.callSorting
+        ? this.callSorting.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -21739,6 +21205,9 @@ export module ListCallsRequest {
     callView: CallView;
     callFilter?: CallFilter.AsObject;
     pageToken: string;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+    pageSize: number;
+    callSorting?: CallSorting.AsObject;
   }
 
   /**
@@ -21749,6 +21218,9 @@ export module ListCallsRequest {
     callView: string;
     callFilter: CallFilter.AsProtobufJSON | null;
     pageToken: string;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    pageSize: number;
+    callSorting: CallSorting.AsProtobufJSON | null;
   }
 }
 
@@ -21778,6 +21250,7 @@ export class ListCallsResponse implements GrpcMessage {
   static refineValues(_instance: ListCallsResponse) {
     _instance.calls = _instance.calls || [];
     _instance.nextPageToken = _instance.nextPageToken || '';
+    _instance.totalSize = _instance.totalSize || 0;
   }
 
   /**
@@ -21803,6 +21276,9 @@ export class ListCallsResponse implements GrpcMessage {
           break;
         case 2:
           _instance.nextPageToken = _reader.readString();
+          break;
+        case 3:
+          _instance.totalSize = _reader.readInt32();
           break;
         default:
           _reader.skipField();
@@ -21831,10 +21307,14 @@ export class ListCallsResponse implements GrpcMessage {
     if (_instance.nextPageToken) {
       _writer.writeString(2, _instance.nextPageToken);
     }
+    if (_instance.totalSize) {
+      _writer.writeInt32(3, _instance.totalSize);
+    }
   }
 
   private _calls?: Call[];
   private _nextPageToken: string;
+  private _totalSize: number;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -21844,6 +21324,7 @@ export class ListCallsResponse implements GrpcMessage {
     _value = _value || {};
     this.calls = (_value.calls || []).map(m => new Call(m));
     this.nextPageToken = _value.nextPageToken;
+    this.totalSize = _value.totalSize;
     ListCallsResponse.refineValues(this);
   }
   get calls(): Call[] | undefined {
@@ -21857,6 +21338,12 @@ export class ListCallsResponse implements GrpcMessage {
   }
   set nextPageToken(value: string) {
     this._nextPageToken = value;
+  }
+  get totalSize(): number {
+    return this._totalSize;
+  }
+  set totalSize(value: number) {
+    this._totalSize = value;
   }
 
   /**
@@ -21875,7 +21362,8 @@ export class ListCallsResponse implements GrpcMessage {
   toObject(): ListCallsResponse.AsObject {
     return {
       calls: (this.calls || []).map(m => m.toObject()),
-      nextPageToken: this.nextPageToken
+      nextPageToken: this.nextPageToken,
+      totalSize: this.totalSize
     };
   }
 
@@ -21897,7 +21385,8 @@ export class ListCallsResponse implements GrpcMessage {
   ): ListCallsResponse.AsProtobufJSON {
     return {
       calls: (this.calls || []).map(m => m.toProtobufJSON(options)),
-      nextPageToken: this.nextPageToken
+      nextPageToken: this.nextPageToken,
+      totalSize: this.totalSize
     };
   }
 }
@@ -21908,6 +21397,7 @@ export module ListCallsResponse {
   export interface AsObject {
     calls?: Call.AsObject[];
     nextPageToken: string;
+    totalSize: number;
   }
 
   /**
@@ -21916,6 +21406,2001 @@ export module ListCallsResponse {
   export interface AsProtobufJSON {
     calls: Call.AsProtobufJSON[] | null;
     nextPageToken: string;
+    totalSize: number;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateCallRequest
+ */
+export class UpdateCallRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateCallRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateCallRequest();
+    UpdateCallRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateCallRequest) {
+    _instance.call = _instance.call || undefined;
+    _instance.updateMask = _instance.updateMask || undefined;
+    _instance.fieldMask = _instance.fieldMask || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateCallRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.call = new Call();
+          _reader.readMessage(_instance.call, Call.deserializeBinaryFromReader);
+          break;
+        case 2:
+          _instance.updateMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.updateMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateCallRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateCallRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.call) {
+      _writer.writeMessage(
+        1,
+        _instance.call as any,
+        Call.serializeBinaryToWriter
+      );
+    }
+    if (_instance.updateMask) {
+      _writer.writeMessage(
+        2,
+        _instance.updateMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _call?: Call;
+  private _updateMask?: googleProtobuf006.FieldMask;
+  private _fieldMask?: googleProtobuf006.FieldMask;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateCallRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateCallRequest.AsObject>) {
+    _value = _value || {};
+    this.call = _value.call ? new Call(_value.call) : undefined;
+    this.updateMask = _value.updateMask
+      ? new googleProtobuf006.FieldMask(_value.updateMask)
+      : undefined;
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    UpdateCallRequest.refineValues(this);
+  }
+  get call(): Call | undefined {
+    return this._call;
+  }
+  set call(value: Call | undefined) {
+    this._call = value;
+  }
+  get updateMask(): googleProtobuf006.FieldMask | undefined {
+    return this._updateMask;
+  }
+  set updateMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._updateMask = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateCallRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateCallRequest.AsObject {
+    return {
+      call: this.call ? this.call.toObject() : undefined,
+      updateMask: this.updateMask ? this.updateMask.toObject() : undefined,
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateCallRequest.AsProtobufJSON {
+    return {
+      call: this.call ? this.call.toProtobufJSON(options) : null,
+      updateMask: this.updateMask
+        ? this.updateMask.toProtobufJSON(options)
+        : null,
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
+    };
+  }
+}
+export module UpdateCallRequest {
+  /**
+   * Standard JavaScript object representation for UpdateCallRequest
+   */
+  export interface AsObject {
+    call?: Call.AsObject;
+    updateMask?: googleProtobuf006.FieldMask.AsObject;
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateCallRequest
+   */
+  export interface AsProtobufJSON {
+    call: Call.AsProtobufJSON | null;
+    updateMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateCallResponse
+ */
+export class UpdateCallResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateCallResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateCallResponse();
+    UpdateCallResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateCallResponse) {
+    _instance.name = _instance.name || '';
+    _instance.call = _instance.call || undefined;
+    _instance.errorMessage = _instance.errorMessage || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateCallResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.name = _reader.readString();
+          break;
+        case 2:
+          _instance.call = new Call();
+          _reader.readMessage(_instance.call, Call.deserializeBinaryFromReader);
+          break;
+        case 3:
+          _instance.errorMessage = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateCallResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateCallResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.name) {
+      _writer.writeString(1, _instance.name);
+    }
+    if (_instance.call) {
+      _writer.writeMessage(
+        2,
+        _instance.call as any,
+        Call.serializeBinaryToWriter
+      );
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(3, _instance.errorMessage);
+    }
+  }
+
+  private _name: string;
+  private _call?: Call;
+  private _errorMessage: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateCallResponse to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateCallResponse.AsObject>) {
+    _value = _value || {};
+    this.name = _value.name;
+    this.call = _value.call ? new Call(_value.call) : undefined;
+    this.errorMessage = _value.errorMessage;
+    UpdateCallResponse.refineValues(this);
+  }
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+  }
+  get call(): Call | undefined {
+    return this._call;
+  }
+  set call(value: Call | undefined) {
+    this._call = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateCallResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateCallResponse.AsObject {
+    return {
+      name: this.name,
+      call: this.call ? this.call.toObject() : undefined,
+      errorMessage: this.errorMessage
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateCallResponse.AsProtobufJSON {
+    return {
+      name: this.name,
+      call: this.call ? this.call.toProtobufJSON(options) : null,
+      errorMessage: this.errorMessage
+    };
+  }
+}
+export module UpdateCallResponse {
+  /**
+   * Standard JavaScript object representation for UpdateCallResponse
+   */
+  export interface AsObject {
+    name: string;
+    call?: Call.AsObject;
+    errorMessage: string;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateCallResponse
+   */
+  export interface AsProtobufJSON {
+    name: string;
+    call: Call.AsProtobufJSON | null;
+    errorMessage: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateCallsRequest
+ */
+export class UpdateCallsRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateCallsRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateCallsRequest();
+    UpdateCallsRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateCallsRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.updateCallRequests = _instance.updateCallRequests || [];
+    _instance.fieldMask = _instance.fieldMask || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateCallsRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new UpdateCallRequest();
+          _reader.readMessage(
+            messageInitializer2,
+            UpdateCallRequest.deserializeBinaryFromReader
+          );
+          (_instance.updateCallRequests =
+            _instance.updateCallRequests || []).push(messageInitializer2);
+          break;
+        case 3:
+          _instance.fieldMask = new googleProtobuf006.FieldMask();
+          _reader.readMessage(
+            _instance.fieldMask,
+            googleProtobuf006.FieldMask.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateCallsRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateCallsRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.updateCallRequests && _instance.updateCallRequests.length) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.updateCallRequests as any,
+        UpdateCallRequest.serializeBinaryToWriter
+      );
+    }
+    if (_instance.fieldMask) {
+      _writer.writeMessage(
+        3,
+        _instance.fieldMask as any,
+        googleProtobuf006.FieldMask.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _updateCallRequests?: UpdateCallRequest[];
+  private _fieldMask?: googleProtobuf006.FieldMask;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateCallsRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateCallsRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.updateCallRequests = (_value.updateCallRequests || []).map(
+      m => new UpdateCallRequest(m)
+    );
+    this.fieldMask = _value.fieldMask
+      ? new googleProtobuf006.FieldMask(_value.fieldMask)
+      : undefined;
+    UpdateCallsRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get updateCallRequests(): UpdateCallRequest[] | undefined {
+    return this._updateCallRequests;
+  }
+  set updateCallRequests(value: UpdateCallRequest[] | undefined) {
+    this._updateCallRequests = value;
+  }
+  get fieldMask(): googleProtobuf006.FieldMask | undefined {
+    return this._fieldMask;
+  }
+  set fieldMask(value: googleProtobuf006.FieldMask | undefined) {
+    this._fieldMask = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateCallsRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateCallsRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateCallRequests: (this.updateCallRequests || []).map(m =>
+        m.toObject()
+      ),
+      fieldMask: this.fieldMask ? this.fieldMask.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateCallsRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateCallRequests: (this.updateCallRequests || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
+    };
+  }
+}
+export module UpdateCallsRequest {
+  /**
+   * Standard JavaScript object representation for UpdateCallsRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    updateCallRequests?: UpdateCallRequest.AsObject[];
+    fieldMask?: googleProtobuf006.FieldMask.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateCallsRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    updateCallRequests: UpdateCallRequest.AsProtobufJSON[] | null;
+    fieldMask: googleProtobuf006.FieldMask.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.UpdateCallsResponse
+ */
+export class UpdateCallsResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.UpdateCallsResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new UpdateCallsResponse();
+    UpdateCallsResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: UpdateCallsResponse) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.updateCallResponses = _instance.updateCallResponses || [];
+    _instance.errorMessage = _instance.errorMessage || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: UpdateCallsResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          const messageInitializer2 = new UpdateCallResponse();
+          _reader.readMessage(
+            messageInitializer2,
+            UpdateCallResponse.deserializeBinaryFromReader
+          );
+          (_instance.updateCallResponses =
+            _instance.updateCallResponses || []).push(messageInitializer2);
+          break;
+        case 3:
+          _instance.errorMessage = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    UpdateCallsResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: UpdateCallsResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.updateCallResponses && _instance.updateCallResponses.length) {
+      _writer.writeRepeatedMessage(
+        2,
+        _instance.updateCallResponses as any,
+        UpdateCallResponse.serializeBinaryToWriter
+      );
+    }
+    if (_instance.errorMessage) {
+      _writer.writeString(3, _instance.errorMessage);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _updateCallResponses?: UpdateCallResponse[];
+  private _errorMessage: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of UpdateCallsResponse to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<UpdateCallsResponse.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.updateCallResponses = (_value.updateCallResponses || []).map(
+      m => new UpdateCallResponse(m)
+    );
+    this.errorMessage = _value.errorMessage;
+    UpdateCallsResponse.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get updateCallResponses(): UpdateCallResponse[] | undefined {
+    return this._updateCallResponses;
+  }
+  set updateCallResponses(value: UpdateCallResponse[] | undefined) {
+    this._updateCallResponses = value;
+  }
+  get errorMessage(): string {
+    return this._errorMessage;
+  }
+  set errorMessage(value: string) {
+    this._errorMessage = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    UpdateCallsResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): UpdateCallsResponse.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateCallResponses: (this.updateCallResponses || []).map(m =>
+        m.toObject()
+      ),
+      errorMessage: this.errorMessage
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): UpdateCallsResponse.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      updateCallResponses: (this.updateCallResponses || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      errorMessage: this.errorMessage
+    };
+  }
+}
+export module UpdateCallsResponse {
+  /**
+   * Standard JavaScript object representation for UpdateCallsResponse
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    updateCallResponses?: UpdateCallResponse.AsObject[];
+    errorMessage: string;
+  }
+
+  /**
+   * Protobuf JSON representation for UpdateCallsResponse
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    updateCallResponses: UpdateCallResponse.AsProtobufJSON[] | null;
+    errorMessage: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.GetCallStatisticsRequest
+ */
+export class GetCallStatisticsRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.GetCallStatisticsRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new GetCallStatisticsRequest();
+    GetCallStatisticsRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: GetCallStatisticsRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.callFilter = _instance.callFilter || undefined;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: GetCallStatisticsRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.callFilter = new CallFilter();
+          _reader.readMessage(
+            _instance.callFilter,
+            CallFilter.deserializeBinaryFromReader
+          );
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    GetCallStatisticsRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: GetCallStatisticsRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.callFilter) {
+      _writer.writeMessage(
+        2,
+        _instance.callFilter as any,
+        CallFilter.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _callFilter?: CallFilter;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of GetCallStatisticsRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<GetCallStatisticsRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.callFilter = _value.callFilter
+      ? new CallFilter(_value.callFilter)
+      : undefined;
+    GetCallStatisticsRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get callFilter(): CallFilter | undefined {
+    return this._callFilter;
+  }
+  set callFilter(value: CallFilter | undefined) {
+    this._callFilter = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    GetCallStatisticsRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): GetCallStatisticsRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      callFilter: this.callFilter ? this.callFilter.toObject() : undefined
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): GetCallStatisticsRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      callFilter: this.callFilter
+        ? this.callFilter.toProtobufJSON(options)
+        : null
+    };
+  }
+}
+export module GetCallStatisticsRequest {
+  /**
+   * Standard JavaScript object representation for GetCallStatisticsRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    callFilter?: CallFilter.AsObject;
+  }
+
+  /**
+   * Protobuf JSON representation for GetCallStatisticsRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    callFilter: CallFilter.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.SipStatusTypeCount
+ */
+export class SipStatusTypeCount implements GrpcMessage {
+  static id = 'ondewo.vtsi.SipStatusTypeCount';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new SipStatusTypeCount();
+    SipStatusTypeCount.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: SipStatusTypeCount) {
+    _instance.sipStatusType = _instance.sipStatusType || 0;
+    _instance.count = _instance.count || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: SipStatusTypeCount,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.sipStatusType = _reader.readEnum();
+          break;
+        case 2:
+          _instance.count = _reader.readInt32();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    SipStatusTypeCount.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: SipStatusTypeCount,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.sipStatusType) {
+      _writer.writeEnum(1, _instance.sipStatusType);
+    }
+    if (_instance.count) {
+      _writer.writeInt32(2, _instance.count);
+    }
+  }
+
+  private _sipStatusType: ondewoSip012.SipStatus.StatusType;
+  private _count: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of SipStatusTypeCount to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<SipStatusTypeCount.AsObject>) {
+    _value = _value || {};
+    this.sipStatusType = _value.sipStatusType;
+    this.count = _value.count;
+    SipStatusTypeCount.refineValues(this);
+  }
+  get sipStatusType(): ondewoSip012.SipStatus.StatusType {
+    return this._sipStatusType;
+  }
+  set sipStatusType(value: ondewoSip012.SipStatus.StatusType) {
+    this._sipStatusType = value;
+  }
+  get count(): number {
+    return this._count;
+  }
+  set count(value: number) {
+    this._count = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    SipStatusTypeCount.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): SipStatusTypeCount.AsObject {
+    return {
+      sipStatusType: this.sipStatusType,
+      count: this.count
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): SipStatusTypeCount.AsProtobufJSON {
+    return {
+      sipStatusType:
+        ondewoSip012.SipStatus.StatusType[
+          this.sipStatusType === null || this.sipStatusType === undefined
+            ? 0
+            : this.sipStatusType
+        ],
+      count: this.count
+    };
+  }
+}
+export module SipStatusTypeCount {
+  /**
+   * Standard JavaScript object representation for SipStatusTypeCount
+   */
+  export interface AsObject {
+    sipStatusType: ondewoSip012.SipStatus.StatusType;
+    count: number;
+  }
+
+  /**
+   * Protobuf JSON representation for SipStatusTypeCount
+   */
+  export interface AsProtobufJSON {
+    sipStatusType: string;
+    count: number;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.CallTypeCount
+ */
+export class CallTypeCount implements GrpcMessage {
+  static id = 'ondewo.vtsi.CallTypeCount';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CallTypeCount();
+    CallTypeCount.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CallTypeCount) {
+    _instance.callType = _instance.callType || 0;
+    _instance.count = _instance.count || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CallTypeCount,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.callType = _reader.readEnum();
+          break;
+        case 2:
+          _instance.count = _reader.readInt32();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CallTypeCount.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CallTypeCount,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.callType) {
+      _writer.writeEnum(1, _instance.callType);
+    }
+    if (_instance.count) {
+      _writer.writeInt32(2, _instance.count);
+    }
+  }
+
+  private _callType: CallType;
+  private _count: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CallTypeCount to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<CallTypeCount.AsObject>) {
+    _value = _value || {};
+    this.callType = _value.callType;
+    this.count = _value.count;
+    CallTypeCount.refineValues(this);
+  }
+  get callType(): CallType {
+    return this._callType;
+  }
+  set callType(value: CallType) {
+    this._callType = value;
+  }
+  get count(): number {
+    return this._count;
+  }
+  set count(value: number) {
+    this._count = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CallTypeCount.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CallTypeCount.AsObject {
+    return {
+      callType: this.callType,
+      count: this.count
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CallTypeCount.AsProtobufJSON {
+    return {
+      callType:
+        CallType[
+          this.callType === null || this.callType === undefined
+            ? 0
+            : this.callType
+        ],
+      count: this.count
+    };
+  }
+}
+export module CallTypeCount {
+  /**
+   * Standard JavaScript object representation for CallTypeCount
+   */
+  export interface AsObject {
+    callType: CallType;
+    count: number;
+  }
+
+  /**
+   * Protobuf JSON representation for CallTypeCount
+   */
+  export interface AsProtobufJSON {
+    callType: string;
+    count: number;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.AmdVerdictCount
+ */
+export class AmdVerdictCount implements GrpcMessage {
+  static id = 'ondewo.vtsi.AmdVerdictCount';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new AmdVerdictCount();
+    AmdVerdictCount.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: AmdVerdictCount) {
+    _instance.verdict = _instance.verdict || 0;
+    _instance.count = _instance.count || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: AmdVerdictCount,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.verdict = _reader.readEnum();
+          break;
+        case 2:
+          _instance.count = _reader.readInt32();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    AmdVerdictCount.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: AmdVerdictCount,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.verdict) {
+      _writer.writeEnum(1, _instance.verdict);
+    }
+    if (_instance.count) {
+      _writer.writeInt32(2, _instance.count);
+    }
+  }
+
+  private _verdict: ondewoSip012.AnsweringMachineDetectionResult.Verdict;
+  private _count: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of AmdVerdictCount to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<AmdVerdictCount.AsObject>) {
+    _value = _value || {};
+    this.verdict = _value.verdict;
+    this.count = _value.count;
+    AmdVerdictCount.refineValues(this);
+  }
+  get verdict(): ondewoSip012.AnsweringMachineDetectionResult.Verdict {
+    return this._verdict;
+  }
+  set verdict(value: ondewoSip012.AnsweringMachineDetectionResult.Verdict) {
+    this._verdict = value;
+  }
+  get count(): number {
+    return this._count;
+  }
+  set count(value: number) {
+    this._count = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    AmdVerdictCount.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): AmdVerdictCount.AsObject {
+    return {
+      verdict: this.verdict,
+      count: this.count
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): AmdVerdictCount.AsProtobufJSON {
+    return {
+      verdict:
+        ondewoSip012.AnsweringMachineDetectionResult.Verdict[
+          this.verdict === null || this.verdict === undefined ? 0 : this.verdict
+        ],
+      count: this.count
+    };
+  }
+}
+export module AmdVerdictCount {
+  /**
+   * Standard JavaScript object representation for AmdVerdictCount
+   */
+  export interface AsObject {
+    verdict: ondewoSip012.AnsweringMachineDetectionResult.Verdict;
+    count: number;
+  }
+
+  /**
+   * Protobuf JSON representation for AmdVerdictCount
+   */
+  export interface AsProtobufJSON {
+    verdict: string;
+    count: number;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.TransferOutcomeCount
+ */
+export class TransferOutcomeCount implements GrpcMessage {
+  static id = 'ondewo.vtsi.TransferOutcomeCount';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new TransferOutcomeCount();
+    TransferOutcomeCount.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: TransferOutcomeCount) {
+    _instance.outcome = _instance.outcome || 0;
+    _instance.count = _instance.count || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: TransferOutcomeCount,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.outcome = _reader.readEnum();
+          break;
+        case 2:
+          _instance.count = _reader.readInt32();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    TransferOutcomeCount.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: TransferOutcomeCount,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.outcome) {
+      _writer.writeEnum(1, _instance.outcome);
+    }
+    if (_instance.count) {
+      _writer.writeInt32(2, _instance.count);
+    }
+  }
+
+  private _outcome: TransferOutcome;
+  private _count: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of TransferOutcomeCount to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<TransferOutcomeCount.AsObject>) {
+    _value = _value || {};
+    this.outcome = _value.outcome;
+    this.count = _value.count;
+    TransferOutcomeCount.refineValues(this);
+  }
+  get outcome(): TransferOutcome {
+    return this._outcome;
+  }
+  set outcome(value: TransferOutcome) {
+    this._outcome = value;
+  }
+  get count(): number {
+    return this._count;
+  }
+  set count(value: number) {
+    this._count = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    TransferOutcomeCount.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): TransferOutcomeCount.AsObject {
+    return {
+      outcome: this.outcome,
+      count: this.count
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): TransferOutcomeCount.AsProtobufJSON {
+    return {
+      outcome:
+        TransferOutcome[
+          this.outcome === null || this.outcome === undefined ? 0 : this.outcome
+        ],
+      count: this.count
+    };
+  }
+}
+export module TransferOutcomeCount {
+  /**
+   * Standard JavaScript object representation for TransferOutcomeCount
+   */
+  export interface AsObject {
+    outcome: TransferOutcome;
+    count: number;
+  }
+
+  /**
+   * Protobuf JSON representation for TransferOutcomeCount
+   */
+  export interface AsProtobufJSON {
+    outcome: string;
+    count: number;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.CallStatistics
+ */
+export class CallStatistics implements GrpcMessage {
+  static id = 'ondewo.vtsi.CallStatistics';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CallStatistics();
+    CallStatistics.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CallStatistics) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.total = _instance.total || 0;
+    _instance.active = _instance.active || 0;
+    _instance.sipStatusTypeCounts = _instance.sipStatusTypeCounts || [];
+    _instance.callTypeCounts = _instance.callTypeCounts || [];
+    _instance.endedCalls = _instance.endedCalls || 0;
+    _instance.totalDurationS = _instance.totalDurationS || 0;
+    _instance.averageDurationS = _instance.averageDurationS || 0;
+    _instance.redialRecommended = _instance.redialRecommended || 0;
+    _instance.amdVerdictCounts = _instance.amdVerdictCounts || [];
+    _instance.transferOutcomeCounts = _instance.transferOutcomeCounts || [];
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CallStatistics,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.total = _reader.readInt32();
+          break;
+        case 3:
+          _instance.active = _reader.readInt32();
+          break;
+        case 4:
+          const messageInitializer4 = new SipStatusTypeCount();
+          _reader.readMessage(
+            messageInitializer4,
+            SipStatusTypeCount.deserializeBinaryFromReader
+          );
+          (_instance.sipStatusTypeCounts =
+            _instance.sipStatusTypeCounts || []).push(messageInitializer4);
+          break;
+        case 5:
+          const messageInitializer5 = new CallTypeCount();
+          _reader.readMessage(
+            messageInitializer5,
+            CallTypeCount.deserializeBinaryFromReader
+          );
+          (_instance.callTypeCounts = _instance.callTypeCounts || []).push(
+            messageInitializer5
+          );
+          break;
+        case 6:
+          _instance.endedCalls = _reader.readInt32();
+          break;
+        case 7:
+          _instance.totalDurationS = _reader.readDouble();
+          break;
+        case 8:
+          _instance.averageDurationS = _reader.readDouble();
+          break;
+        case 9:
+          _instance.redialRecommended = _reader.readInt32();
+          break;
+        case 10:
+          const messageInitializer10 = new AmdVerdictCount();
+          _reader.readMessage(
+            messageInitializer10,
+            AmdVerdictCount.deserializeBinaryFromReader
+          );
+          (_instance.amdVerdictCounts = _instance.amdVerdictCounts || []).push(
+            messageInitializer10
+          );
+          break;
+        case 11:
+          const messageInitializer11 = new TransferOutcomeCount();
+          _reader.readMessage(
+            messageInitializer11,
+            TransferOutcomeCount.deserializeBinaryFromReader
+          );
+          (_instance.transferOutcomeCounts =
+            _instance.transferOutcomeCounts || []).push(messageInitializer11);
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CallStatistics.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CallStatistics,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.total) {
+      _writer.writeInt32(2, _instance.total);
+    }
+    if (_instance.active) {
+      _writer.writeInt32(3, _instance.active);
+    }
+    if (_instance.sipStatusTypeCounts && _instance.sipStatusTypeCounts.length) {
+      _writer.writeRepeatedMessage(
+        4,
+        _instance.sipStatusTypeCounts as any,
+        SipStatusTypeCount.serializeBinaryToWriter
+      );
+    }
+    if (_instance.callTypeCounts && _instance.callTypeCounts.length) {
+      _writer.writeRepeatedMessage(
+        5,
+        _instance.callTypeCounts as any,
+        CallTypeCount.serializeBinaryToWriter
+      );
+    }
+    if (_instance.endedCalls) {
+      _writer.writeInt32(6, _instance.endedCalls);
+    }
+    if (_instance.totalDurationS) {
+      _writer.writeDouble(7, _instance.totalDurationS);
+    }
+    if (_instance.averageDurationS) {
+      _writer.writeDouble(8, _instance.averageDurationS);
+    }
+    if (_instance.redialRecommended) {
+      _writer.writeInt32(9, _instance.redialRecommended);
+    }
+    if (_instance.amdVerdictCounts && _instance.amdVerdictCounts.length) {
+      _writer.writeRepeatedMessage(
+        10,
+        _instance.amdVerdictCounts as any,
+        AmdVerdictCount.serializeBinaryToWriter
+      );
+    }
+    if (
+      _instance.transferOutcomeCounts &&
+      _instance.transferOutcomeCounts.length
+    ) {
+      _writer.writeRepeatedMessage(
+        11,
+        _instance.transferOutcomeCounts as any,
+        TransferOutcomeCount.serializeBinaryToWriter
+      );
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _total: number;
+  private _active: number;
+  private _sipStatusTypeCounts?: SipStatusTypeCount[];
+  private _callTypeCounts?: CallTypeCount[];
+  private _endedCalls: number;
+  private _totalDurationS: number;
+  private _averageDurationS: number;
+  private _redialRecommended: number;
+  private _amdVerdictCounts?: AmdVerdictCount[];
+  private _transferOutcomeCounts?: TransferOutcomeCount[];
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CallStatistics to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<CallStatistics.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.total = _value.total;
+    this.active = _value.active;
+    this.sipStatusTypeCounts = (_value.sipStatusTypeCounts || []).map(
+      m => new SipStatusTypeCount(m)
+    );
+    this.callTypeCounts = (_value.callTypeCounts || []).map(
+      m => new CallTypeCount(m)
+    );
+    this.endedCalls = _value.endedCalls;
+    this.totalDurationS = _value.totalDurationS;
+    this.averageDurationS = _value.averageDurationS;
+    this.redialRecommended = _value.redialRecommended;
+    this.amdVerdictCounts = (_value.amdVerdictCounts || []).map(
+      m => new AmdVerdictCount(m)
+    );
+    this.transferOutcomeCounts = (_value.transferOutcomeCounts || []).map(
+      m => new TransferOutcomeCount(m)
+    );
+    CallStatistics.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get total(): number {
+    return this._total;
+  }
+  set total(value: number) {
+    this._total = value;
+  }
+  get active(): number {
+    return this._active;
+  }
+  set active(value: number) {
+    this._active = value;
+  }
+  get sipStatusTypeCounts(): SipStatusTypeCount[] | undefined {
+    return this._sipStatusTypeCounts;
+  }
+  set sipStatusTypeCounts(value: SipStatusTypeCount[] | undefined) {
+    this._sipStatusTypeCounts = value;
+  }
+  get callTypeCounts(): CallTypeCount[] | undefined {
+    return this._callTypeCounts;
+  }
+  set callTypeCounts(value: CallTypeCount[] | undefined) {
+    this._callTypeCounts = value;
+  }
+  get endedCalls(): number {
+    return this._endedCalls;
+  }
+  set endedCalls(value: number) {
+    this._endedCalls = value;
+  }
+  get totalDurationS(): number {
+    return this._totalDurationS;
+  }
+  set totalDurationS(value: number) {
+    this._totalDurationS = value;
+  }
+  get averageDurationS(): number {
+    return this._averageDurationS;
+  }
+  set averageDurationS(value: number) {
+    this._averageDurationS = value;
+  }
+  get redialRecommended(): number {
+    return this._redialRecommended;
+  }
+  set redialRecommended(value: number) {
+    this._redialRecommended = value;
+  }
+  get amdVerdictCounts(): AmdVerdictCount[] | undefined {
+    return this._amdVerdictCounts;
+  }
+  set amdVerdictCounts(value: AmdVerdictCount[] | undefined) {
+    this._amdVerdictCounts = value;
+  }
+  get transferOutcomeCounts(): TransferOutcomeCount[] | undefined {
+    return this._transferOutcomeCounts;
+  }
+  set transferOutcomeCounts(value: TransferOutcomeCount[] | undefined) {
+    this._transferOutcomeCounts = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CallStatistics.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CallStatistics.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      total: this.total,
+      active: this.active,
+      sipStatusTypeCounts: (this.sipStatusTypeCounts || []).map(m =>
+        m.toObject()
+      ),
+      callTypeCounts: (this.callTypeCounts || []).map(m => m.toObject()),
+      endedCalls: this.endedCalls,
+      totalDurationS: this.totalDurationS,
+      averageDurationS: this.averageDurationS,
+      redialRecommended: this.redialRecommended,
+      amdVerdictCounts: (this.amdVerdictCounts || []).map(m => m.toObject()),
+      transferOutcomeCounts: (this.transferOutcomeCounts || []).map(m =>
+        m.toObject()
+      )
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CallStatistics.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      total: this.total,
+      active: this.active,
+      sipStatusTypeCounts: (this.sipStatusTypeCounts || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      callTypeCounts: (this.callTypeCounts || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      endedCalls: this.endedCalls,
+      totalDurationS: this.totalDurationS,
+      averageDurationS: this.averageDurationS,
+      redialRecommended: this.redialRecommended,
+      amdVerdictCounts: (this.amdVerdictCounts || []).map(m =>
+        m.toProtobufJSON(options)
+      ),
+      transferOutcomeCounts: (this.transferOutcomeCounts || []).map(m =>
+        m.toProtobufJSON(options)
+      )
+    };
+  }
+}
+export module CallStatistics {
+  /**
+   * Standard JavaScript object representation for CallStatistics
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    total: number;
+    active: number;
+    sipStatusTypeCounts?: SipStatusTypeCount.AsObject[];
+    callTypeCounts?: CallTypeCount.AsObject[];
+    endedCalls: number;
+    totalDurationS: number;
+    averageDurationS: number;
+    redialRecommended: number;
+    amdVerdictCounts?: AmdVerdictCount.AsObject[];
+    transferOutcomeCounts?: TransferOutcomeCount.AsObject[];
+  }
+
+  /**
+   * Protobuf JSON representation for CallStatistics
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    total: number;
+    active: number;
+    sipStatusTypeCounts: SipStatusTypeCount.AsProtobufJSON[] | null;
+    callTypeCounts: CallTypeCount.AsProtobufJSON[] | null;
+    endedCalls: number;
+    totalDurationS: number;
+    averageDurationS: number;
+    redialRecommended: number;
+    amdVerdictCounts: AmdVerdictCount.AsProtobufJSON[] | null;
+    transferOutcomeCounts: TransferOutcomeCount.AsProtobufJSON[] | null;
   }
 }
 
@@ -22523,7 +24008,7 @@ export class CallResourceStatus implements GrpcMessage {
   private _callType: CallType;
   private _callName: string;
   private _active: boolean;
-  private _sipStatusType: ondewoSip011.SipStatus.StatusType;
+  private _sipStatusType: ondewoSip012.SipStatus.StatusType;
   private _sipStatusDescription: string;
   private _startTime?: googleProtobuf005.Timestamp;
   private _endTime?: googleProtobuf005.Timestamp;
@@ -22584,10 +24069,10 @@ export class CallResourceStatus implements GrpcMessage {
   set active(value: boolean) {
     this._active = value;
   }
-  get sipStatusType(): ondewoSip011.SipStatus.StatusType {
+  get sipStatusType(): ondewoSip012.SipStatus.StatusType {
     return this._sipStatusType;
   }
-  set sipStatusType(value: ondewoSip011.SipStatus.StatusType) {
+  set sipStatusType(value: ondewoSip012.SipStatus.StatusType) {
     this._sipStatusType = value;
   }
   get sipStatusDescription(): string {
@@ -22699,7 +24184,7 @@ export class CallResourceStatus implements GrpcMessage {
       callName: this.callName,
       active: this.active,
       sipStatusType:
-        ondewoSip011.SipStatus.StatusType[
+        ondewoSip012.SipStatus.StatusType[
           this.sipStatusType === null || this.sipStatusType === undefined
             ? 0
             : this.sipStatusType
@@ -22732,7 +24217,7 @@ export module CallResourceStatus {
     callType: CallType;
     callName: string;
     active: boolean;
-    sipStatusType: ondewoSip011.SipStatus.StatusType;
+    sipStatusType: ondewoSip012.SipStatus.StatusType;
     sipStatusDescription: string;
     startTime?: googleProtobuf005.Timestamp.AsObject;
     endTime?: googleProtobuf005.Timestamp.AsObject;
