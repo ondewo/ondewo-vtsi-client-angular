@@ -1,11 +1,10 @@
 name: tests
 
 on:
+  # Every branch (master, release/**, feature/**, ticket branches), and every tag.
   push:
     branches:
-      - master
-      - 'OND211-**'
-      - 'release/**'
+      - '**'
     tags:
       - '*'
   pull_request:
@@ -41,8 +40,8 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund --legacy-peer-deps
+      - name: Install dependencies (exactly the lockfile)
+        run: npm ci --no-audit --no-fund --legacy-peer-deps
 
       - name: Run auth unit tests with coverage (100% gate on auth surface)
         run: npx jest --config jest.config.js --coverage --ci
