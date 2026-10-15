@@ -40,9 +40,10 @@ PRETTIER_WRITE?=
 
 NPM_PACKAGE=@ondewo/vtsi-client-angular
 NPM_REGISTRY=https://registry.npmjs.org
-# How long release_verify waits for npm to serve a freshly published version (20 x 30 s).
-NPM_VERIFY_ATTEMPTS?=20
-NPM_VERIFY_DELAY_S?=30
+# How long release_verify waits for npm to serve a freshly published version (20 x 30 s). The release
+# driver (ondewo-vtsi-api) sets VERIFY_ATTEMPTS / VERIFY_INTERVAL_S for every client alike.
+NPM_VERIFY_ATTEMPTS?=$(or $(VERIFY_ATTEMPTS),20)
+NPM_VERIFY_DELAY_S?=$(or $(VERIFY_INTERVAL_S),30)
 
 # The section of RELEASE.md whose heading is EXACTLY `#... Release ONDEWO VTSI Angular Client <version>`
 # (anchored, version dots escaped by \Q..\E), up to the next ***** separator.
@@ -54,6 +55,16 @@ RELEASE_NOTES_BODY=perl -ne 'print if (/^\#+ Release ONDEWO VTSI Angular Client 
 GH_REPO_SLUG=ondewo/ondewo-vtsi-client-angular
 GH_REPO="https://github.com/${GH_REPO_SLUG}"
 DEVOPS_ACCOUNT_GIT=ondewo-devops-accounts
+# Shell prefix for a recipe line that needs a token: when a token is not already in the environment and
+# DEVOPS_ACCOUNT_DIR names a devops-accounts clone (the release driver hands over an absolute path), both
+# are read from it into THIS line's environment - never onto an argv, never printed. So release_preflight
+# and release_verify also work standalone with only DEVOPS_ACCOUNT_DIR set.
+LOAD_CREDENTIALS=if [ -n "$${DEVOPS_ACCOUNT_DIR:-}" ] && { [ -z "$${GITHUB_GH_TOKEN:-}" ] || [ -z "$${NPM_AUTOMATION_TOKEN:-}" ]; }; then \
+		test -d "$${DEVOPS_ACCOUNT_DIR}" || { echo "ERROR: DEVOPS_ACCOUNT_DIR is not a directory"; exit 1; }; \
+		credentials=$$(grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)=' "$${DEVOPS_ACCOUNT_DIR}/account_github.env" "$${DEVOPS_ACCOUNT_DIR}/account_npm.env") \
+			|| { echo "ERROR: cannot read the tokens from DEVOPS_ACCOUNT_DIR"; exit 1; }; \
+		set -a; eval "$$credentials"; set +a; unset credentials; \
+	fi;
 
 # Every step that does not publish runs without the release credentials: npm install scripts of
 # third-party packages, the test suite and the pre-commit hooks never see a token.
@@ -190,17 +201,17 @@ release_preflight: ## Read-only: fails before anything is built, committed, publ
 	@git push --dry-run origin HEAD >/dev/null 2>&1 \
 		|| { echo "ERROR: release_preflight: 'git push --dry-run origin HEAD' failed - this host cannot push to origin"; exit 1; }; \
 		echo "-- git: this host can push to origin"
-	@test -n "$${NPM_AUTOMATION_TOKEN:-}" || { echo "ERROR: release_preflight: NPM_AUTOMATION_TOKEN is not set"; exit 1; }
-	@test -n "$${GITHUB_GH_TOKEN:-}" || { echo "ERROR: release_preflight: GITHUB_GH_TOKEN is not set"; exit 1; }
+	@$(LOAD_CREDENTIALS) test -n "$${NPM_AUTOMATION_TOKEN:-}" || { echo "ERROR: release_preflight: NPM_AUTOMATION_TOKEN is not set"; exit 1; }
+	@$(LOAD_CREDENTIALS) test -n "$${GITHUB_GH_TOKEN:-}" || { echo "ERROR: release_preflight: GITHUB_GH_TOKEN is not set"; exit 1; }
 	@$(MAKE) --no-print-directory build_tools_docker_image
 	@# A throw-away userconfig inside a throw-away container; npm substitutes the token from the
 	@# environment, so it is never on an argv and never written to this host.
-	@user=$$(docker run --rm -e NPM_AUTOMATION_TOKEN $(IMAGE_TOOLS_NAME) sh -c \
+	@$(LOAD_CREDENTIALS) user=$$(docker run --rm -e NPM_AUTOMATION_TOKEN $(IMAGE_TOOLS_NAME) sh -c \
 			'umask 077 && printf "%s\n" "//registry.npmjs.org/:_authToken=\$${NPM_AUTOMATION_TOKEN}" > /tmp/npmrc && npm whoami --userconfig /tmp/npmrc --registry $(NPM_REGISTRY)/' 2>/dev/null) \
 		&& test -n "$$user" \
 		|| { echo "ERROR: release_preflight: NPM_AUTOMATION_TOKEN is not accepted by $(NPM_REGISTRY) (npm whoami failed)"; exit 1; }; \
 		echo "-- npm: the token authenticates as $$user"
-	@push=$$(docker run --rm -e GITHUB_GH_TOKEN $(IMAGE_TOOLS_NAME) sh -c \
+	@$(LOAD_CREDENTIALS) push=$$(docker run --rm -e GITHUB_GH_TOKEN $(IMAGE_TOOLS_NAME) sh -c \
 			'GH_TOKEN="$$GITHUB_GH_TOKEN" gh api repos/$(GH_REPO_SLUG) --jq .permissions.push' 2>/dev/null); \
 		test "$$push" = "true" \
 		|| { echo "ERROR: release_preflight: GITHUB_GH_TOKEN cannot push to $(GH_REPO_SLUG) (permissions.push: '$$push')"; exit 1; }; \
@@ -259,8 +270,9 @@ release_verify: check_npm_published ## Read-only: the tag is on origin, the GitH
 		|| { echo "ERROR: release_verify: tag $(ONDEWO_VTSI_VERSION) is not on origin"; exit 1; }; \
 		echo "-- git: tag $(ONDEWO_VTSI_VERSION) is on origin"
 	@$(MAKE) --no-print-directory build_tools_docker_image
-	@body=$$(docker run --rm -e GITHUB_GH_TOKEN $(IMAGE_TOOLS_NAME) sh -c \
-			'GH_TOKEN="$$GITHUB_GH_TOKEN" gh release view "$(ONDEWO_VTSI_VERSION)" --repo $(GH_REPO_SLUG) --json body --jq .body'); \
+	@$(LOAD_CREDENTIALS) body=$$(docker run --rm -e GITHUB_GH_TOKEN $(IMAGE_TOOLS_NAME) sh -c \
+			'GH_TOKEN="$$GITHUB_GH_TOKEN" gh release view "$(ONDEWO_VTSI_VERSION)" --repo $(GH_REPO_SLUG) --json body --jq .body' 2>&1) \
+		|| { echo "ERROR: release_verify: gh could not read GitHub release $(ONDEWO_VTSI_VERSION) (GITHUB_GH_TOKEN rejected, or no release): $$(printf '%s\n' "$$body" | head -1)"; exit 1; }; \
 		test -n "$$(printf '%s' "$$body" | tr -d '[:space:]')" \
 		|| { echo "ERROR: release_verify: GitHub release $(ONDEWO_VTSI_VERSION) is missing or has an empty body"; exit 1; }; \
 		echo "-- GitHub: release $(ONDEWO_VTSI_VERSION) has notes"

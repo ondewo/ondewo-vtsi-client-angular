@@ -150,6 +150,28 @@ describe('release credentials', (): void => {
 		expect(MAKEFILE).not.toMatch(/^DEVOPS_ACCOUNT_DIR\s*[:?]?=/m);
 	});
 
+	/**
+	 * The release driver runs release_preflight and release_verify on their own with only an absolute
+	 * DEVOPS_ACCOUNT_DIR set. Every recipe line that needs a token loads it from there first - into that
+	 * line's shell environment, read by an anchored grep, never onto an argv.
+	 */
+	it('are loaded from DEVOPS_ACCOUNT_DIR by every preflight and verify line that needs one', (): void => {
+		const loader: string = /^LOAD_CREDENTIALS=([\s\S]*?\tfi;)$/m.exec(MAKEFILE)?.[1] ?? '';
+		expect(loader).toContain('if [ -n "$${DEVOPS_ACCOUNT_DIR:-}" ]');
+		expect(loader).toContain("grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)='");
+		expect(loader).toContain('set -a; eval "$$credentials"; set +a; unset credentials;');
+		for (const [target, count] of [
+			['release_preflight', 4],
+			['release_verify', 1]
+		] as [string, number][]) {
+			const tokenLines: string[] = recipeOf(target)
+				.split('\n')
+				.filter((line: string): boolean => /NPM_AUTOMATION_TOKEN|GITHUB_GH_TOKEN/.test(line) && line.startsWith('\t@'));
+			expect(tokenLines.length).toBe(count);
+			expect(tokenLines.filter((line: string): boolean => !line.startsWith('\t@$(LOAD_CREDENTIALS) '))).toEqual([]);
+		}
+	});
+
 	/** The codegen container mounts the repository root, so the build refuses a clone that sits there. */
 	it('never sit in the tree the codegen container mounts', (): void => {
 		expect(MAKEFILE).toMatch(/^build: refuse_devops_clone_in_tree /m);
