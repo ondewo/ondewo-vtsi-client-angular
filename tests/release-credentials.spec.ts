@@ -24,8 +24,10 @@
  * @module
  */
 
-import { existsSync, readdirSync, readFileSync } from 'fs';
-import { dirname, join } from 'path';
+import { spawnSync, SpawnSyncReturns } from 'child_process';
+import { chmodSync, existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import { tmpdir } from 'os';
+import { delimiter, dirname, join } from 'path';
 
 /**
  * @param start - The directory to start from.
@@ -131,7 +133,7 @@ describe('release credentials', (): void => {
 		const recipe: string = recipeOf('ondewo_release');
 		const read: number = recipe.indexOf('grep -h -E');
 		const deleted: number = recipe.indexOf('if [ -n "$$clone" ]; then rm -rf "$$clone"; fi');
-		const released: number = recipe.indexOf('$(MAKE) release');
+		const released: number = recipe.lastIndexOf('$(MAKE) release');
 
 		expect(recipe).toContain('trap \'rm -rf "$$clone"\' EXIT');
 		expect(recipe).toContain('clone=$$(mktemp -d)');
@@ -140,6 +142,46 @@ describe('release credentials', (): void => {
 		expect(released).toBeGreaterThan(deleted);
 		expect(MAKEFILE).not.toMatch(/^clone_devops_accounts:/m);
 		expect(MAKEFILE).not.toMatch(/^run_release_with_devops:/m);
+	});
+
+	/**
+	 * make runs a recipe line that names $(MAKE) even under `make -n`, and the clone shares that line
+	 * with `$(MAKE) release`: a dry run used to clone devops-accounts and read the tokens for real.
+	 */
+	it('are neither cloned nor read by a dry run of ondewo_release', (): void => {
+		const recipe: string = recipeOf('ondewo_release');
+		const dryRun: number = recipe.indexOf('if test -n "$(findstring n,$(firstword -$(MAKEFLAGS)))"; then');
+		expect(dryRun).toBeGreaterThan(0);
+		expect(dryRun).toBeLessThan(recipe.indexOf('git clone'));
+		expect(dryRun).toBeLessThan(recipe.indexOf('grep -h -E'));
+		expect(recipe.slice(dryRun, recipe.indexOf('set -e;'))).toContain('exit 0;');
+	});
+
+	/** The same property, observed: every git call of `make -n ondewo_release` is recorded. */
+	it('make -n ondewo_release runs no git clone and exits 0', (): void => {
+		const scratch: string = mkdtempSync(join(tmpdir(), 'dry-run-'));
+		try {
+			const calls: string = join(scratch, 'git-calls.log');
+			const realGit: string = String(spawnSync('sh', ['-c', 'command -v git'], { encoding: 'utf8' }).stdout).trim();
+			writeFileSync(join(scratch, 'git'), `#!/bin/sh\necho "$*" >> '${calls}'\nexec '${realGit}' "$@"\n`);
+			chmodSync(join(scratch, 'git'), 0o755);
+			const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${scratch}${delimiter}${process.env.PATH ?? ''}` };
+			delete env.DEVOPS_ACCOUNT_DIR;
+			delete env.MAKEFLAGS;
+			delete env.MAKELEVEL;
+			const run: SpawnSyncReturns<string> = spawnSync(
+				'make',
+				['-n', 'ondewo_release', 'ONDEWO_VTSI_VERSION=0.0.0-dry-run', 'DEVOPS_ACCOUNT_REPO=/nonexistent/x.git'],
+				{ cwd: REPO_ROOT, env, encoding: 'utf8', timeout: 120000 }
+			);
+			expect({ status: run.status, stderr: run.stderr.slice(-500) }).toEqual({ status: 0, stderr: expect.any(String) });
+			expect(run.stdout).toContain('dry run: read the tokens');
+			const gitCalls: string = existsSync(calls) ? String(readFileSync(calls, 'utf8')) : '';
+			expect(gitCalls).not.toMatch(/(?:^|\s)clone(?:\s|$)/m);
+			expect(gitCalls).not.toContain('/nonexistent/x.git');
+		} finally {
+			rmSync(scratch, { recursive: true, force: true });
+		}
 	});
 
 	/** The driver clones the accounts once for all clients and hands the directory over. */

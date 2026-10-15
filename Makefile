@@ -55,6 +55,7 @@ RELEASE_NOTES_BODY=perl -ne 'print if (/^\#+ Release ONDEWO VTSI Angular Client 
 GH_REPO_SLUG=ondewo/ondewo-vtsi-client-angular
 GH_REPO="https://github.com/${GH_REPO_SLUG}"
 DEVOPS_ACCOUNT_GIT=ondewo-devops-accounts
+DEVOPS_ACCOUNT_REPO?=git@bitbucket.org:ondewo/$(DEVOPS_ACCOUNT_GIT).git
 # Shell prefix for a recipe line that needs a token: when a token is not already in the environment and
 # DEVOPS_ACCOUNT_DIR names a devops-accounts clone (the release driver hands over an absolute path), both
 # are read from it into THIS line's environment - never onto an argv, never printed. So release_preflight
@@ -345,15 +346,22 @@ docker_npm_release: ## Release to npm with docker image
 # `make release NAME=<value>` would put every value on make's argv, which /proc/<pid>/cmdline shows
 # to every user on the host. When DEVOPS_ACCOUNT_DIR names an existing directory (the driver's one
 # temporary clone for all clients), it is read and left to the driver to delete.
+# make runs a line that names $(MAKE) even under `make -n`, so a dry run must branch off before the
+# clone: it prints what would happen and runs `make -n release` only, cloning and reading nothing.
 ondewo_release: spc ## Release with credentials from devops-accounts repo
-	@set -e; \
+	@if test -n "$(findstring n,$(firstword -$(MAKEFLAGS)))"; then \
+		echo "dry run: read the tokens from DEVOPS_ACCOUNT_DIR or a temporary $(DEVOPS_ACCOUNT_GIT) clone, delete the clone, then:"; \
+		$(MAKE) release; \
+		exit 0; \
+	fi; \
+	set -e; \
 	clone=""; \
 	if [ -n "$${DEVOPS_ACCOUNT_DIR:-}" ] && [ -d "$${DEVOPS_ACCOUNT_DIR}" ]; then \
 		accounts="$${DEVOPS_ACCOUNT_DIR}"; \
 	else \
 		clone=$$(mktemp -d); \
 		trap 'rm -rf "$$clone"' EXIT; \
-		git clone -q --depth 1 git@bitbucket.org:ondewo/$(DEVOPS_ACCOUNT_GIT).git "$$clone/$(DEVOPS_ACCOUNT_GIT)"; \
+		git clone -q --depth 1 "$(DEVOPS_ACCOUNT_REPO)" "$$clone/$(DEVOPS_ACCOUNT_GIT)"; \
 		accounts="$$clone/$(DEVOPS_ACCOUNT_GIT)"; \
 	fi; \
 	credentials=$$(grep -h -E '^(GITHUB_GH_TOKEN|NPM_AUTOMATION_TOKEN)=' "$$accounts/account_github.env" "$$accounts/account_npm.env"); \
