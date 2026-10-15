@@ -174,9 +174,14 @@ describe('release credentials', (): void => {
 				['-n', 'ondewo_release', 'ONDEWO_VTSI_VERSION=0.0.0-dry-run', 'DEVOPS_ACCOUNT_REPO=/nonexistent/x.git'],
 				{ cwd: REPO_ROOT, env, encoding: 'utf8', timeout: 120000 }
 			);
-			expect({ status: run.status, stderr: run.stderr.slice(-500) }).toEqual({ status: 0, stderr: expect.any(String) });
+			if (run.status !== 0) {
+				throw new Error(`make -n ondewo_release exited ${String(run.status)}: ${run.stderr.slice(-500)}`);
+			}
 			expect(run.stdout).toContain('dry run: read the tokens');
-			const gitCalls: string = existsSync(calls) ? String(readFileSync(calls, 'utf8')) : '';
+			let gitCalls: string = '';
+			if (existsSync(calls)) {
+				gitCalls = String(readFileSync(calls, 'utf8'));
+			}
 			expect(gitCalls).not.toMatch(/(?:^|\s)clone(?:\s|$)/m);
 			expect(gitCalls).not.toContain('/nonexistent/x.git');
 		} finally {
