@@ -521,6 +521,45 @@ describe('the hand-written auth surface survives the codegen', (): void => {
 	});
 
 	/**
+	 * The committed typings entry point is what npm ships (check_tag_matches_package compares them
+	 * byte for byte), so every name the hand-written auth barrel exports must be exported there. A
+	 * formatter or a stale regeneration that drops one is caught here, without a build. Derived from
+	 * src/auth/index.ts, not listed, so a new auth export is covered the day it is added.
+	 */
+	it('exports every name of the auth barrel from the committed index.d.ts', (): void => {
+		const barrel: string = fs.readFileSync(path.join(REPO_ROOT, 'src', 'auth', 'index.ts'), 'utf8');
+		const names: string[] = [...barrel.matchAll(/export\s*\{([^}]*)\}\s*from/g)].flatMap(
+			(matched: RegExpMatchArray): string[] =>
+				matched[1]
+					.split(',')
+					.map(
+						(name: string): string =>
+							name
+								.trim()
+								.replace(/^type\s+/, '')
+								.split(/\s+as\s+/)
+								.pop() ?? ''
+					)
+					.filter((name: string): boolean => name !== '')
+		);
+		expect(names.length).toBeGreaterThan(10);
+		const typings: string = fs.readFileSync(path.join(REPO_ROOT, 'index.d.ts'), 'utf8');
+		// ng-packagr emits the values as `export { ... };` and the interfaces as `export type { ... };`.
+		const exported: Set<string> = new Set<string>(
+			[...typings.matchAll(/^export (?:type )?\{ (.*) \};$/gm)].flatMap((matched: RegExpMatchArray): string[] =>
+				matched[1].split(', ').map(
+					(name: string): string =>
+						name
+							.replace(/^type\s+/, '')
+							.split(/\s+as\s+/)
+							.pop() ?? ''
+				)
+			)
+		);
+		expect(names.filter((name: string): boolean => !exported.has(name))).toEqual([]);
+	});
+
+	/**
 	 * The property the move exists to protect: the auth API is part of the published package.
 	 * Asserted against the packaging output rather than the sources, because being compiled is
 	 * exactly what was missing — ng-packagr rolls the entry point's transitive closure into
