@@ -704,6 +704,264 @@ describe('the release target stages what it publishes', (): void => {
 	});
 });
 
+/**
+ * The executed lines of a recipe, trimmed, without comments.
+ *
+ * @param target the target whose recipe is read
+ * @returns one entry per command line (continuation lines are separate entries)
+ */
+function recipeCommandLines(target: string): string[] {
+	return recipeCommands(readMakefileRecipe(MAKEFILE, target))
+		.split('\n')
+		.slice(1)
+		.map((line: string): string => line.trim())
+		.filter((line: string): boolean => line !== '');
+}
+
+/**
+ * The index of the one recipe line that matches `step`.
+ *
+ * @param lines the recipe lines
+ * @param step the pattern naming the step
+ * @returns its index; the test fails when the step is missing or appears twice
+ */
+function indexOfStep(lines: string[], step: RegExp): number {
+	const matches: number[] = [];
+	lines.forEach((line: string, index: number): void => {
+		if (step.test(line)) {
+			matches.push(index);
+		}
+	});
+	expect({ step: String(step), matches: matches.length }).toEqual({ step: String(step), matches: 1 });
+	return matches[0];
+}
+
+describe('the release order', (): void => {
+	/**
+	 * The order IS the safety property. The 9.1.0 releases pushed "Preparing for Release" to master
+	 * before npm publish ran, so a bad npm token left master ahead of npm, and a bad GitHub token left
+	 * npm, branch and tag published with no GitHub release. Now: nothing is built before the
+	 * credentials, the version and the notes are checked; nothing is committed before the suite is
+	 * green; nothing is pushed before npm accepted AND serves the package; the tag and the GitHub
+	 * release come last and are verified.
+	 */
+	const RELEASE_STEPS: RegExp[] = [
+		/^\$\(MAKE\) release_preflight$/,
+		/^\$\(WITHOUT_CREDENTIALS\) \$\(MAKE\) build$/,
+		/^\$\(WITHOUT_CREDENTIALS\) \$\(MAKE\) check_build$/,
+		/^\$\(WITHOUT_CREDENTIALS\) \$\(MAKE\) release_tests$/,
+		/^\$\(WITHOUT_CREDENTIALS\) \$\(MAKE\) run_precommit_hooks$/,
+		/^git diff --cached --quiet \|\| git commit --no-verify -m /,
+		/^\$\(MAKE\) check_tag_matches_package$/,
+		/^\$\(MAKE\) publish_npm_via_docker$/,
+		/^\$\(MAKE\) check_npm_published$/,
+		/^git push$/,
+		/^\$\(MAKE\) create_release_branch$/,
+		/^\$\(MAKE\) create_release_tag$/,
+		/^\$\(MAKE\) release_to_github_via_docker_image$/,
+		/^\$\(MAKE\) release_verify$/
+	];
+
+	it('runs preflight, build, tests, commit, package check, publish, npm check, push, branch, tag, GitHub release, verify', (): void => {
+		const lines: string[] = recipeCommandLines('release');
+		const positions: number[] = RELEASE_STEPS.map((step: RegExp): number => indexOfStep(lines, step));
+		expect(positions).toEqual([...positions].sort((a: number, b: number): number => a - b));
+	});
+
+	/** The preflight is the first thing the release does: no step may run before it. */
+	it('starts with the preflight', (): void => {
+		const lines: string[] = recipeCommandLines('release').filter((line: string): boolean => !line.startsWith('@echo'));
+		expect(lines[0]).toBe('$(MAKE) release_preflight');
+	});
+
+	/** Everything the commit records is staged before it. */
+	it('stages every path before the commit', (): void => {
+		const lines: string[] = recipeCommandLines('release');
+		const commit: number = indexOfStep(lines, /git commit/);
+		const lastAdd: number = lines.map((line: string): boolean => /^-?git add /.test(line)).lastIndexOf(true);
+		expect(lastAdd).toBeGreaterThan(0);
+		expect(lastAdd).toBeLessThan(commit);
+	});
+
+	/**
+	 * `-git commit` swallowed a failing commit, after which `git push` pushed nothing and npm
+	 * published anyway. An empty index (a re-run) is the only tolerated "no commit".
+	 */
+	it('never ignores a failing commit', (): void => {
+		const source: string = fs.readFileSync(MAKEFILE, 'utf8');
+		expect(source).not.toMatch(/^\t-\s*git commit/m);
+		expect(source).not.toMatch(/^\t-\s*git push/m);
+	});
+
+	/** Only the branch and tag targets push after the main push; neither ignores a failure. */
+	it('creates the release branch and tag with failing pushes stopping the release', (): void => {
+		expect(recipeCommandLines('create_release_branch')).toEqual([
+			'git checkout -b "release/${ONDEWO_VTSI_VERSION}"',
+			'git push -u origin "release/${ONDEWO_VTSI_VERSION}"'
+		]);
+		expect(recipeCommandLines('create_release_tag')).toEqual([
+			'git tag -a ${ONDEWO_VTSI_VERSION} -m "release/${ONDEWO_VTSI_VERSION}"',
+			'git push origin ${ONDEWO_VTSI_VERSION}'
+		]);
+	});
+
+	/** The full suite on exactly the lockfile, as CI runs it. */
+	it('tests on a clean install of the lockfile', (): void => {
+		const lines: string[] = recipeCommandLines('release_tests');
+		expect(lines).toEqual([
+			'$(NODE_RUN) npm ci --no-audit --no-fund --legacy-peer-deps',
+			'$(NODE_RUN) npx jest --config jest.config.js --ci'
+		]);
+	});
+});
+
+describe('release_preflight and release_verify', (): void => {
+	const preflight: () => string = (): string => recipeCommands(readMakefileRecipe(MAKEFILE, 'release_preflight'));
+
+	/** Every credential is proven valid against the service that will use it, before anything runs. */
+	it('proves the npm token, the GitHub push permission and the git push access', (): void => {
+		const recipe: string = preflight();
+		expect(recipe).toContain('npm whoami --userconfig /tmp/npmrc');
+		expect(recipe).toContain('gh api repos/$(GH_REPO_SLUG) --jq .permissions.push');
+		expect(recipe).toContain('test "$$push" = "true"');
+		expect(recipe).toContain('git push --dry-run origin HEAD');
+	});
+
+	/** Anchored checks: the version is neither a tag, nor a release branch, nor on npm yet. */
+	it('refuses a version that is already tagged, branched or published', (): void => {
+		const recipe: string = preflight();
+		expect(recipe).toContain('$(MAKE) --no-print-directory spc');
+		expect(recipe).toContain('$(NPM_REGISTRY)/$(subst /,%2f,$(NPM_PACKAGE))/$(ONDEWO_VTSI_VERSION)');
+		const spc: string = recipeCommands(readMakefileRecipe(MAKEFILE, 'spc'));
+		expect(spc).toContain('git rev-parse -q --verify "refs/tags/$(ONDEWO_VTSI_VERSION)"');
+		expect(spc).toContain('git rev-parse -q --verify "refs/heads/release/$(ONDEWO_VTSI_VERSION)"');
+		expect(spc).toContain('git ls-remote --exit-code --tags origin "refs/tags/$(ONDEWO_VTSI_VERSION)"');
+		expect(spc).toContain('git ls-remote --exit-code --heads origin "refs/heads/release/$(ONDEWO_VTSI_VERSION)"');
+		// `grep "${VERSION}"` matched 19.1.0 for 9.1.0 and read the dots as wildcards.
+		expect(spc).not.toMatch(/\|\s*grep/);
+	});
+
+	/** The release notes the GitHub release will carry exist before anything is built. */
+	it('requires non-empty release notes for the version', (): void => {
+		expect(preflight()).toContain('$$($(RELEASE_NOTES_BODY) src/RELEASE.md)');
+	});
+
+	/** The host needs only docker, make, git, perl and curl; node, npm and gh run in containers. */
+	it('checks the host tools the release needs and nothing more', (): void => {
+		expect(preflight()).toContain('for tool in docker make git perl curl; do');
+	});
+
+	/** The release ends by proving the tag, the GitHub release notes and the npm version exist. */
+	it('verifies the tag on origin, a non-empty GitHub release and the npm version', (): void => {
+		const verify: string = readMakefileRecipe(MAKEFILE, 'release_verify');
+		expect(verify.split('\n')[0]).toMatch(/^release_verify: check_npm_published /);
+		expect(verify).toContain('git ls-remote --exit-code --tags origin "refs/tags/$(ONDEWO_VTSI_VERSION)"');
+		expect(verify).toContain('gh release view "$(ONDEWO_VTSI_VERSION)" --repo $(GH_REPO_SLUG) --json body --jq .body');
+		const npmCheck: string = readMakefileRecipe(MAKEFILE, 'check_npm_published');
+		expect(npmCheck).toContain('npm view "$(NPM_PACKAGE)@$(ONDEWO_VTSI_VERSION)" version');
+		expect(readMakefileVariable(MAKEFILE, 'NPM_PACKAGE')).toBe(readJson(path.join(REPO_ROOT, 'package.json')).name);
+	});
+});
+
+describe('the npm package matches the release commit', (): void => {
+	/** Files npm/ carries that are rewritten on purpose; everything else must equal its committed twin. */
+	const REWRITTEN: string[] = ['package.json', 'README.md', 'LICENSE', 'public-api.ts'];
+	/** The one line the npm copy of the barrel leaves out: npm/ has no src/, so it would dangle there. */
+	const AUTH_BARREL_LINE: string = "export * from './src/auth';";
+
+	it('runs check_tag_matches_package over exactly the documented exemptions', (): void => {
+		const recipe: string = readMakefileRecipe(MAKEFILE, 'check_tag_matches_package');
+		expect(recipe).toContain('npm pack ./npm --dry-run --json --ignore-scripts');
+		expect(recipe).toContain('git cat-file -e "HEAD:$$f"');
+		expect(recipe).toContain(`grep -vxF "${AUTH_BARREL_LINE}"`);
+		const exempted: string[] = [...recipe.matchAll(/^\t+([\w.|-]+)\)/gm)]
+			.flatMap((matched: RegExpMatchArray): string[] => matched[1].split('|'))
+			.sort();
+		expect(exempted).toEqual([...REWRITTEN].sort());
+	});
+
+	/** The root barrel carries the auth line the npm copy drops, and nothing else differs. */
+	it('keeps the auth barrel line in the committed public-api.ts', (): void => {
+		expect(fs.readFileSync(PUBLIC_API_TS, 'utf8').split('\n')).toContain(AUTH_BARREL_LINE);
+	});
+
+	itWithBuildOutput('ships a public-api.ts equal to the committed one minus the auth barrel line', (): void => {
+		const committed: string = fs
+			.readFileSync(PUBLIC_API_TS, 'utf8')
+			.split('\n')
+			.filter((line: string): boolean => line !== AUTH_BARREL_LINE)
+			.join('\n');
+		expect(fs.readFileSync(path.join(NPM_PUBLISH_DIR, 'public-api.ts'), 'utf8')).toBe(committed);
+	});
+
+	itWithBuildOutput('ships every other file byte-equal to the repository root', (): void => {
+		const differing: string[] = findFiles(NPM_PUBLISH_DIR, [''])
+			.filter((relative: string): boolean => !REWRITTEN.includes(relative))
+			.filter((relative: string): boolean => {
+				const twin: string = path.join(REPO_ROOT, relative);
+				return (
+					!fs.existsSync(twin) || !fs.readFileSync(twin).equals(fs.readFileSync(path.join(NPM_PUBLISH_DIR, relative)))
+				);
+			});
+		expect(differing).toEqual([]);
+	});
+});
+
+describe('build and release toolchain', (): void => {
+	const source: () => string = (): string => fs.readFileSync(MAKEFILE, 'utf8');
+
+	/** Root-owned codegen output is handed back by a container, never by sudo on the host. */
+	it('never runs sudo', (): void => {
+		expect(source()).not.toMatch(/^\t.*\bsudo\b/m);
+	});
+
+	/** The release image and the node fallback are one pinned image, by version and digest. */
+	it('pins the node image by version and digest, identically in the Makefile and Dockerfile.utils', (): void => {
+		const nodeImage: string = readMakefileVariable(MAKEFILE, 'NODE_IMAGE');
+		expect(nodeImage).toMatch(/^node:\d+\.\d+\.\d+-[a-z]+@sha256:[0-9a-f]{64}$/);
+		const dockerfile: string = fs.readFileSync(path.join(REPO_ROOT, 'Dockerfile.utils'), 'utf8');
+		expect(dockerfile).toContain(`ARG NODE_IMAGE=${nodeImage}`);
+		expect(dockerfile).not.toMatch(/:latest\b/);
+		expect(dockerfile).toMatch(/ARG GH_VERSION=\d+\.\d+\.\d+/);
+		expect(dockerfile).toContain('sha256sum -c -');
+	});
+
+	/** The preflight builds only the tools stage, which must not need `make build` output. */
+	it('keeps a tools stage that copies nothing from the build', (): void => {
+		const dockerfile: string = fs.readFileSync(path.join(REPO_ROOT, 'Dockerfile.utils'), 'utf8');
+		const tools: string = dockerfile.slice(dockerfile.indexOf(' AS tools'), dockerfile.indexOf(' AS release'));
+		expect(tools).not.toMatch(/^COPY /m);
+		expect(readMakefileRecipe(MAKEFILE, 'build_tools_docker_image')).toContain('--target tools');
+	});
+
+	/** The codegen image is the one build_compiler tagged with the pinned compiler version. */
+	it('generates with the version-tagged codegen image, the same arguments as src/package.json and no TTY', (): void => {
+		const compiler: string = readMakefileVariable(MAKEFILE, 'ONDEWO_PROTO_COMPILER_GIT_BRANCH').replace(/^tags\//, '');
+		expect(readMakefileVariable(MAKEFILE, 'CODEGEN_IMAGE')).toBe(
+			'ondewo-angular-proto-compiler:$(patsubst tags/%,%,${ONDEWO_PROTO_COMPILER_GIT_BRANCH})'
+		);
+		expect(compiler).toMatch(/^\d+\.\d+\.\d+$/);
+		expect(readMakefileRecipe(MAKEFILE, 'build_compiler')).toContain(
+			'docker tag ondewo-angular-proto-compiler:latest $(CODEGEN_IMAGE)'
+		);
+		const codegen: string =
+			recipeCommandLines('npm_run_build').find((line: string): boolean => line.includes('/input-volume')) ?? '';
+		expect(codegen).toContain('docker run --rm ');
+		expect(codegen).not.toMatch(/(?:^|\s)-{1,2}(?:it|ti|t|tty)(?=\s|$)/);
+		expect(codegen.endsWith('$(CODEGEN_IMAGE) ondewo-vtsi-api ondewo')).toBe(true);
+		expect(librarySourceScripts().generate.endsWith('ondewo-angular-proto-compiler ondewo-vtsi-api ondewo')).toBe(true);
+	});
+
+	/** The GitHub workflow installs exactly the lockfile and runs on every branch and tag. */
+	it('runs CI on every branch and tag with npm ci', (): void => {
+		const workflow: string = fs.readFileSync(path.join(REPO_ROOT, '.github', 'workflows', 'tests.yml'), 'utf8');
+		expect(workflow).toMatch(/branches:\n\s+- '\*\*'/);
+		expect(workflow).toMatch(/tags:\n\s+- '\*'/);
+		expect(workflow).toContain('npm ci ');
+		expect(workflow).not.toMatch(/npm (?:install|i)\b/);
+	});
+});
+
 describe('the formatter leaves generated output alone', (): void => {
 	/**
 	 * `.husky/pre-commit` runs `make prettier PRETTIER_WRITE=-w`, i.e. the formatter writes on
