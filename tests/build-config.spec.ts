@@ -485,11 +485,22 @@ describe('generated api surface', (): void => {
 	])(
 		'exposes the ondewo.vtsi.%s service as %s and %s in the typings entry point',
 		(service: string, client: string, settings: string): void => {
-			const typings: string = fs.readFileSync(path.join(REPO_ROOT, 'index.d.ts'), 'utf8');
+			const typings: string = fs.readFileSync(
+				path.join(REPO_ROOT, JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')).typings),
+				'utf8'
+			);
 			expect(typings).toMatch(new RegExp(`declare class ${client}\\b`));
 			expect(typings).toMatch(new RegExp(`declare const ${settings}\\b`));
 			expect(typings).toContain(`/ondewo.vtsi.${service}/`);
-			const exported: string[] = (/^export \{ (.*) \};$/m.exec(typings)?.[1] ?? '').split(', ');
+			const exported: string[] = [
+				...(/^export \{ (.*) \};$/m.exec(typings)?.[1] ?? '').split(', '),
+				// ng-packagr >= 22 exports every declaration inline instead of one trailing export list.
+				...[
+					...typings.matchAll(
+						/^export (?:declare )?(?:abstract )?(?:class|const|function|interface|type|enum|namespace) (\w+)/gm
+					)
+				].map((matched: RegExpMatchArray): string => matched[1])
+			];
 			expect(exported).toEqual(expect.arrayContaining([client, settings]));
 		}
 	);
@@ -543,10 +554,20 @@ describe('the hand-written auth surface survives the codegen', (): void => {
 					.filter((name: string): boolean => name !== '')
 		);
 		expect(names.length).toBeGreaterThan(10);
-		const typings: string = fs.readFileSync(path.join(REPO_ROOT, 'index.d.ts'), 'utf8');
+		const typings: string = fs.readFileSync(
+			path.join(REPO_ROOT, JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')).typings),
+			'utf8'
+		);
 		// ng-packagr emits the values as `export { ... };` and the interfaces as `export type { ... };`.
-		const exported: Set<string> = new Set<string>(
-			[...typings.matchAll(/^export (?:type )?\{ (.*) \};$/gm)].flatMap((matched: RegExpMatchArray): string[] =>
+		// ng-packagr >= 22 instead exports every declaration inline (`export declare class X`).
+		const inline: string[] = [
+			...typings.matchAll(
+				/^export (?:declare )?(?:abstract )?(?:class|const|function|interface|type|enum|namespace) (\w+)/gm
+			)
+		].map((matched: RegExpMatchArray): string => matched[1]);
+		const exported: Set<string> = new Set<string>([
+			...inline,
+			...[...typings.matchAll(/^export (?:type )?\{ (.*) \};$/gm)].flatMap((matched: RegExpMatchArray): string[] =>
 				matched[1].split(', ').map(
 					(name: string): string =>
 						name
@@ -555,7 +576,7 @@ describe('the hand-written auth surface survives the codegen', (): void => {
 							.pop() ?? ''
 				)
 			)
-		);
+		]);
 		expect(names.filter((name: string): boolean => !exported.has(name))).toEqual([]);
 	});
 
@@ -567,7 +588,13 @@ describe('the hand-written auth surface survives the codegen', (): void => {
 	 * the sources are. `npm/` exists only after a local `make build`.
 	 */
 	itWithBuildOutput('ships the auth surface in the packaged typings', (): void => {
-		const typings: string = fs.readFileSync(path.join(NPM_PUBLISH_DIR, 'index.d.ts'), 'utf8');
+		const typings: string = fs.readFileSync(
+			path.join(
+				NPM_PUBLISH_DIR,
+				JSON.parse(fs.readFileSync(path.join(NPM_PUBLISH_DIR, 'package.json'), 'utf8')).typings
+			),
+			'utf8'
+		);
 		const missing: string[] = [
 			'provideOndewoVtsiAuth',
 			'AuthGrpcInterceptor',
@@ -635,7 +662,11 @@ describe('published package layout', (): void => {
 				}
 			}
 		};
+		// Since proto compiler 5.16.0 (ng-packagr 22) the typings live in types/, so the 8.1.0
+		// manifest's index.d.ts targets are unresolved as well - correctly so.
 		expect(unresolvedManifestTargets(released810, REPO_ROOT)).toEqual([
+			'index.d.ts',
+			'./index.d.ts',
 			'./esm2022/ondewo-vtsi-client-angular.mjs',
 			'./esm2022/ondewo-vtsi-client-angular.mjs'
 		]);
@@ -1017,7 +1048,7 @@ describe('the formatter leaves generated output alone', (): void => {
 				.map((line: string): string => line.trim().replace(/\/$/, ''))
 				.filter((line: string): boolean => line !== '' && !line.startsWith('#'))
 		);
-		const generated: string[] = ['api', 'fesm2022', 'npm', 'index.d.ts', 'public-api.ts', 'coverage'];
+		const generated: string[] = ['api', 'fesm2022', 'npm', 'types', 'public-api.ts', 'coverage'];
 		expect(generated.filter((artifact: string): boolean => !entries.has(artifact))).toEqual([]);
 	});
 });
