@@ -19,10 +19,10 @@ import * as googleProtobuf004 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf005 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf006 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf007 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu008 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t009 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s010 from '../../ondewo/t2s/text-to-speech.pb';
-import * as googleProtobuf011 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf008 from '@ngx-grpc/well-known-types';
+import * as ondewoNlu009 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t010 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s011 from '../../ondewo/t2s/text-to-speech.pb';
 import * as ondewoSip012 from '../../ondewo/sip/sip.pb';
 import * as ondewoVtsi013 from '../../ondewo/vtsi/call-configs.pb';
 import * as ondewoVtsi014 from '../../ondewo/vtsi/campaigns.pb';
@@ -49,7 +49,11 @@ export enum TransferOutcome {
   TRANSFER_OUTCOME_TIMEOUT = 5,
   TRANSFER_OUTCOME_CALL_ENDED = 6,
   TRANSFER_OUTCOME_CALL_SCOPE_MISMATCH = 7,
-  TRANSFER_OUTCOME_SIP_UNREACHABLE = 8
+  TRANSFER_OUTCOME_SIP_UNREACHABLE = 8,
+  TRANSFER_OUTCOME_DECLINED = 9,
+  TRANSFER_OUTCOME_NO_DECISION = 10,
+  TRANSFER_OUTCOME_TARGET_UNAVAILABLE = 11,
+  TRANSFER_OUTCOME_INTRO_UNAVAILABLE = 12
 }
 export enum CallMediaSetting {
   CALL_MEDIA_SETTING_UNCHANGED = 0,
@@ -13595,6 +13599,7 @@ export class TransferCallRequest implements GrpcMessage {
     _instance.headers = _instance.headers || {};
     _instance.ringTimeoutS = _instance.ringTimeoutS || 0;
     _instance.requestId = _instance.requestId || '';
+    _instance.warmTransferConfig = _instance.warmTransferConfig || undefined;
   }
 
   /**
@@ -13643,6 +13648,13 @@ export class TransferCallRequest implements GrpcMessage {
           break;
         case 8:
           _instance.requestId = _reader.readString();
+          break;
+        case 9:
+          _instance.warmTransferConfig = new ondewoVtsi013.WarmTransferConfig();
+          _reader.readMessage(
+            _instance.warmTransferConfig,
+            ondewoVtsi013.WarmTransferConfig.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -13701,6 +13713,13 @@ export class TransferCallRequest implements GrpcMessage {
     if (_instance.requestId) {
       _writer.writeString(8, _instance.requestId);
     }
+    if (_instance.warmTransferConfig) {
+      _writer.writeMessage(
+        9,
+        _instance.warmTransferConfig as any,
+        ondewoVtsi013.WarmTransferConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _vtsiProjectName: string;
@@ -13711,6 +13730,7 @@ export class TransferCallRequest implements GrpcMessage {
   private _headers: { [prop: string]: string };
   private _ringTimeoutS: number;
   private _requestId: string;
+  private _warmTransferConfig?: ondewoVtsi013.WarmTransferConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -13731,6 +13751,9 @@ export class TransferCallRequest implements GrpcMessage {
       : {}),
       (this.ringTimeoutS = _value.ringTimeoutS);
     this.requestId = _value.requestId;
+    this.warmTransferConfig = _value.warmTransferConfig
+      ? new ondewoVtsi013.WarmTransferConfig(_value.warmTransferConfig)
+      : undefined;
     TransferCallRequest.refineValues(this);
   }
   get vtsiProjectName(): string {
@@ -13781,6 +13804,12 @@ export class TransferCallRequest implements GrpcMessage {
   set requestId(value: string) {
     this._requestId = value;
   }
+  get warmTransferConfig(): ondewoVtsi013.WarmTransferConfig | undefined {
+    return this._warmTransferConfig;
+  }
+  set warmTransferConfig(value: ondewoVtsi013.WarmTransferConfig | undefined) {
+    this._warmTransferConfig = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -13809,7 +13838,10 @@ export class TransferCallRequest implements GrpcMessage {
           )
         : {},
       ringTimeoutS: this.ringTimeoutS,
-      requestId: this.requestId
+      requestId: this.requestId,
+      warmTransferConfig: this.warmTransferConfig
+        ? this.warmTransferConfig.toObject()
+        : undefined
     };
   }
 
@@ -13845,7 +13877,10 @@ export class TransferCallRequest implements GrpcMessage {
           )
         : {},
       ringTimeoutS: this.ringTimeoutS,
-      requestId: this.requestId
+      requestId: this.requestId,
+      warmTransferConfig: this.warmTransferConfig
+        ? this.warmTransferConfig.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -13862,6 +13897,7 @@ export module TransferCallRequest {
     headers: { [prop: string]: string };
     ringTimeoutS: number;
     requestId: string;
+    warmTransferConfig?: ondewoVtsi013.WarmTransferConfig.AsObject;
   }
 
   /**
@@ -13876,6 +13912,7 @@ export module TransferCallRequest {
     headers: { [prop: string]: string };
     ringTimeoutS: number;
     requestId: string;
+    warmTransferConfig: ondewoVtsi013.WarmTransferConfig.AsProtobufJSON | null;
   }
 
   /**
@@ -14088,6 +14125,9 @@ export class CallTarget implements GrpcMessage {
             ListenerQueueTarget.deserializeBinaryFromReader
           );
           break;
+        case 5:
+          _instance.ivrMenuName = _reader.readString();
+          break;
         default:
           _reader.skipField();
       }
@@ -14121,12 +14161,16 @@ export class CallTarget implements GrpcMessage {
         ListenerQueueTarget.serializeBinaryToWriter
       );
     }
+    if (_instance.ivrMenuName || _instance.ivrMenuName === '') {
+      _writer.writeString(5, _instance.ivrMenuName);
+    }
   }
 
   private _phoneNumber: string;
   private _softphoneAccountName: string;
   private _listenerName: string;
   private _listenerQueue?: ListenerQueueTarget;
+  private _ivrMenuName: string;
 
   private _target: CallTarget.TargetCase = CallTarget.TargetCase.none;
 
@@ -14142,6 +14186,7 @@ export class CallTarget implements GrpcMessage {
     this.listenerQueue = _value.listenerQueue
       ? new ListenerQueueTarget(_value.listenerQueue)
       : undefined;
+    this.ivrMenuName = _value.ivrMenuName;
     CallTarget.refineValues(this);
   }
   get phoneNumber(): string {
@@ -14149,7 +14194,7 @@ export class CallTarget implements GrpcMessage {
   }
   set phoneNumber(value: string) {
     if (value !== undefined && value !== null) {
-      this._softphoneAccountName = this._listenerName = this._listenerQueue = undefined;
+      this._softphoneAccountName = this._listenerName = this._listenerQueue = this._ivrMenuName = undefined;
       this._target = CallTarget.TargetCase.phoneNumber;
     }
     this._phoneNumber = value;
@@ -14159,7 +14204,7 @@ export class CallTarget implements GrpcMessage {
   }
   set softphoneAccountName(value: string) {
     if (value !== undefined && value !== null) {
-      this._phoneNumber = this._listenerName = this._listenerQueue = undefined;
+      this._phoneNumber = this._listenerName = this._listenerQueue = this._ivrMenuName = undefined;
       this._target = CallTarget.TargetCase.softphoneAccountName;
     }
     this._softphoneAccountName = value;
@@ -14169,7 +14214,7 @@ export class CallTarget implements GrpcMessage {
   }
   set listenerName(value: string) {
     if (value !== undefined && value !== null) {
-      this._phoneNumber = this._softphoneAccountName = this._listenerQueue = undefined;
+      this._phoneNumber = this._softphoneAccountName = this._listenerQueue = this._ivrMenuName = undefined;
       this._target = CallTarget.TargetCase.listenerName;
     }
     this._listenerName = value;
@@ -14179,10 +14224,20 @@ export class CallTarget implements GrpcMessage {
   }
   set listenerQueue(value: ListenerQueueTarget | undefined) {
     if (value !== undefined && value !== null) {
-      this._phoneNumber = this._softphoneAccountName = this._listenerName = undefined;
+      this._phoneNumber = this._softphoneAccountName = this._listenerName = this._ivrMenuName = undefined;
       this._target = CallTarget.TargetCase.listenerQueue;
     }
     this._listenerQueue = value;
+  }
+  get ivrMenuName(): string {
+    return this._ivrMenuName;
+  }
+  set ivrMenuName(value: string) {
+    if (value !== undefined && value !== null) {
+      this._phoneNumber = this._softphoneAccountName = this._listenerName = this._listenerQueue = undefined;
+      this._target = CallTarget.TargetCase.ivrMenuName;
+    }
+    this._ivrMenuName = value;
   }
   get target() {
     return this._target;
@@ -14208,7 +14263,8 @@ export class CallTarget implements GrpcMessage {
       listenerName: this.listenerName,
       listenerQueue: this.listenerQueue
         ? this.listenerQueue.toObject()
-        : undefined
+        : undefined,
+      ivrMenuName: this.ivrMenuName
     };
   }
 
@@ -14244,7 +14300,11 @@ export class CallTarget implements GrpcMessage {
           : this.listenerName,
       listenerQueue: this.listenerQueue
         ? this.listenerQueue.toProtobufJSON(options)
-        : null
+        : null,
+      ivrMenuName:
+        this.ivrMenuName === null || this.ivrMenuName === undefined
+          ? null
+          : this.ivrMenuName
     };
   }
 }
@@ -14257,6 +14317,7 @@ export module CallTarget {
     softphoneAccountName: string;
     listenerName: string;
     listenerQueue?: ListenerQueueTarget.AsObject;
+    ivrMenuName: string;
   }
 
   /**
@@ -14267,13 +14328,15 @@ export module CallTarget {
     softphoneAccountName: string | null;
     listenerName: string | null;
     listenerQueue: ListenerQueueTarget.AsProtobufJSON | null;
+    ivrMenuName: string | null;
   }
   export enum TargetCase {
     none = 0,
     phoneNumber = 1,
     softphoneAccountName = 2,
     listenerName = 3,
-    listenerQueue = 4
+    listenerQueue = 4,
+    ivrMenuName = 5
   }
 }
 
@@ -14695,6 +14758,9 @@ export class CallTransferRecord implements GrpcMessage {
     _instance.outcome = _instance.outcome || 0;
     _instance.sipResponseCode = _instance.sipResponseCode || 0;
     _instance.time = _instance.time || undefined;
+    _instance.warmIntro = _instance.warmIntro || undefined;
+    _instance.effectiveWarmTransferConfig =
+      _instance.effectiveWarmTransferConfig || undefined;
   }
 
   /**
@@ -14734,6 +14800,20 @@ export class CallTransferRecord implements GrpcMessage {
           _reader.readMessage(
             _instance.time,
             googleProtobuf005.Timestamp.deserializeBinaryFromReader
+          );
+          break;
+        case 7:
+          _instance.warmIntro = new ondewoVtsi013.WarmIntroRecord();
+          _reader.readMessage(
+            _instance.warmIntro,
+            ondewoVtsi013.WarmIntroRecord.deserializeBinaryFromReader
+          );
+          break;
+        case 8:
+          _instance.effectiveWarmTransferConfig = new ondewoVtsi013.WarmTransferConfig();
+          _reader.readMessage(
+            _instance.effectiveWarmTransferConfig,
+            ondewoVtsi013.WarmTransferConfig.deserializeBinaryFromReader
           );
           break;
         default:
@@ -14779,6 +14859,20 @@ export class CallTransferRecord implements GrpcMessage {
         googleProtobuf005.Timestamp.serializeBinaryToWriter
       );
     }
+    if (_instance.warmIntro) {
+      _writer.writeMessage(
+        7,
+        _instance.warmIntro as any,
+        ondewoVtsi013.WarmIntroRecord.serializeBinaryToWriter
+      );
+    }
+    if (_instance.effectiveWarmTransferConfig) {
+      _writer.writeMessage(
+        8,
+        _instance.effectiveWarmTransferConfig as any,
+        ondewoVtsi013.WarmTransferConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _target?: CallTarget;
@@ -14787,6 +14881,8 @@ export class CallTransferRecord implements GrpcMessage {
   private _outcome: TransferOutcome;
   private _sipResponseCode: number;
   private _time?: googleProtobuf005.Timestamp;
+  private _warmIntro?: ondewoVtsi013.WarmIntroRecord;
+  private _effectiveWarmTransferConfig?: ondewoVtsi013.WarmTransferConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -14801,6 +14897,12 @@ export class CallTransferRecord implements GrpcMessage {
     this.sipResponseCode = _value.sipResponseCode;
     this.time = _value.time
       ? new googleProtobuf005.Timestamp(_value.time)
+      : undefined;
+    this.warmIntro = _value.warmIntro
+      ? new ondewoVtsi013.WarmIntroRecord(_value.warmIntro)
+      : undefined;
+    this.effectiveWarmTransferConfig = _value.effectiveWarmTransferConfig
+      ? new ondewoVtsi013.WarmTransferConfig(_value.effectiveWarmTransferConfig)
       : undefined;
     CallTransferRecord.refineValues(this);
   }
@@ -14840,6 +14942,22 @@ export class CallTransferRecord implements GrpcMessage {
   set time(value: googleProtobuf005.Timestamp | undefined) {
     this._time = value;
   }
+  get warmIntro(): ondewoVtsi013.WarmIntroRecord | undefined {
+    return this._warmIntro;
+  }
+  set warmIntro(value: ondewoVtsi013.WarmIntroRecord | undefined) {
+    this._warmIntro = value;
+  }
+  get effectiveWarmTransferConfig():
+    | ondewoVtsi013.WarmTransferConfig
+    | undefined {
+    return this._effectiveWarmTransferConfig;
+  }
+  set effectiveWarmTransferConfig(
+    value: ondewoVtsi013.WarmTransferConfig | undefined
+  ) {
+    this._effectiveWarmTransferConfig = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -14861,7 +14979,11 @@ export class CallTransferRecord implements GrpcMessage {
       mode: this.mode,
       outcome: this.outcome,
       sipResponseCode: this.sipResponseCode,
-      time: this.time ? this.time.toObject() : undefined
+      time: this.time ? this.time.toObject() : undefined,
+      warmIntro: this.warmIntro ? this.warmIntro.toObject() : undefined,
+      effectiveWarmTransferConfig: this.effectiveWarmTransferConfig
+        ? this.effectiveWarmTransferConfig.toObject()
+        : undefined
     };
   }
 
@@ -14893,7 +15015,11 @@ export class CallTransferRecord implements GrpcMessage {
           this.outcome === null || this.outcome === undefined ? 0 : this.outcome
         ],
       sipResponseCode: this.sipResponseCode,
-      time: this.time ? this.time.toProtobufJSON(options) : null
+      time: this.time ? this.time.toProtobufJSON(options) : null,
+      warmIntro: this.warmIntro ? this.warmIntro.toProtobufJSON(options) : null,
+      effectiveWarmTransferConfig: this.effectiveWarmTransferConfig
+        ? this.effectiveWarmTransferConfig.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -14908,6 +15034,8 @@ export module CallTransferRecord {
     outcome: TransferOutcome;
     sipResponseCode: number;
     time?: googleProtobuf005.Timestamp.AsObject;
+    warmIntro?: ondewoVtsi013.WarmIntroRecord.AsObject;
+    effectiveWarmTransferConfig?: ondewoVtsi013.WarmTransferConfig.AsObject;
   }
 
   /**
@@ -14920,6 +15048,8 @@ export module CallTransferRecord {
     outcome: string;
     sipResponseCode: number;
     time: googleProtobuf005.Timestamp.AsProtobufJSON | null;
+    warmIntro: ondewoVtsi013.WarmIntroRecord.AsProtobufJSON | null;
+    effectiveWarmTransferConfig: ondewoVtsi013.WarmTransferConfig.AsProtobufJSON | null;
   }
 }
 
@@ -19368,6 +19498,8 @@ export class Call implements GrpcMessage {
     _instance.lastTransfer = _instance.lastTransfer || undefined;
     _instance.sipCallId = _instance.sipCallId || '';
     _instance.labels = _instance.labels || {};
+    _instance.ivrMenuDisplayName = _instance.ivrMenuDisplayName || '';
+    _instance.ivrPath = _instance.ivrPath || '';
   }
 
   /**
@@ -19502,6 +19634,12 @@ export class Call implements GrpcMessage {
           );
           _instance.labels = _instance.labels || {};
           _instance.labels[msg_26.key] = msg_26.value;
+          break;
+        case 27:
+          _instance.ivrMenuDisplayName = _reader.readString();
+          break;
+        case 28:
+          _instance.ivrPath = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -19658,6 +19796,12 @@ export class Call implements GrpcMessage {
         );
       }
     }
+    if (_instance.ivrMenuDisplayName) {
+      _writer.writeString(27, _instance.ivrMenuDisplayName);
+    }
+    if (_instance.ivrPath) {
+      _writer.writeString(28, _instance.ivrPath);
+    }
   }
 
   private _name: string;
@@ -19677,7 +19821,7 @@ export class Call implements GrpcMessage {
   private _sipPort: number;
   private _csiPort: number;
   private _nluSessionName: string;
-  private _platforms: ondewoNlu008.Intent.Message.Platform;
+  private _platforms: ondewoNlu009.Intent.Message.Platform;
   private _redialRecommended: boolean;
   private _redialReason: string;
   private _answeringMachineDetectionEndDescription: string;
@@ -19686,6 +19830,8 @@ export class Call implements GrpcMessage {
   private _lastTransfer?: CallTransferRecord;
   private _sipCallId: string;
   private _labels: { [prop: string]: string };
+  private _ivrMenuDisplayName: string;
+  private _ivrPath: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -19743,7 +19889,9 @@ export class Call implements GrpcMessage {
           {}
         )
       : {}),
-      Call.refineValues(this);
+      (this.ivrMenuDisplayName = _value.ivrMenuDisplayName);
+    this.ivrPath = _value.ivrPath;
+    Call.refineValues(this);
   }
   get name(): string {
     return this._name;
@@ -19851,10 +19999,10 @@ export class Call implements GrpcMessage {
   set nluSessionName(value: string) {
     this._nluSessionName = value;
   }
-  get platforms(): ondewoNlu008.Intent.Message.Platform {
+  get platforms(): ondewoNlu009.Intent.Message.Platform {
     return this._platforms;
   }
-  set platforms(value: ondewoNlu008.Intent.Message.Platform) {
+  set platforms(value: ondewoNlu009.Intent.Message.Platform) {
     this._platforms = value;
   }
   get redialRecommended(): boolean {
@@ -19904,6 +20052,18 @@ export class Call implements GrpcMessage {
   }
   set labels(value: { [prop: string]: string }) {
     this._labels = value;
+  }
+  get ivrMenuDisplayName(): string {
+    return this._ivrMenuDisplayName;
+  }
+  set ivrMenuDisplayName(value: string) {
+    this._ivrMenuDisplayName = value;
+  }
+  get ivrPath(): string {
+    return this._ivrPath;
+  }
+  set ivrPath(value: string) {
+    this._ivrPath = value;
   }
 
   /**
@@ -19962,7 +20122,9 @@ export class Call implements GrpcMessage {
             (r, k) => ({ ...r, [k]: this.labels![k] }),
             {}
           )
-        : {}
+        : {},
+      ivrMenuDisplayName: this.ivrMenuDisplayName,
+      ivrPath: this.ivrPath
     };
   }
 
@@ -20017,7 +20179,7 @@ export class Call implements GrpcMessage {
       csiPort: this.csiPort,
       nluSessionName: this.nluSessionName,
       platforms:
-        ondewoNlu008.Intent.Message.Platform[
+        ondewoNlu009.Intent.Message.Platform[
           this.platforms === null || this.platforms === undefined
             ? 0
             : this.platforms
@@ -20041,7 +20203,9 @@ export class Call implements GrpcMessage {
             (r, k) => ({ ...r, [k]: this.labels![k] }),
             {}
           )
-        : {}
+        : {},
+      ivrMenuDisplayName: this.ivrMenuDisplayName,
+      ivrPath: this.ivrPath
     };
   }
 }
@@ -20067,7 +20231,7 @@ export module Call {
     sipPort: number;
     csiPort: number;
     nluSessionName: string;
-    platforms: ondewoNlu008.Intent.Message.Platform;
+    platforms: ondewoNlu009.Intent.Message.Platform;
     redialRecommended: boolean;
     redialReason: string;
     answeringMachineDetectionEndDescription: string;
@@ -20076,6 +20240,8 @@ export module Call {
     lastTransfer?: CallTransferRecord.AsObject;
     sipCallId: string;
     labels: { [prop: string]: string };
+    ivrMenuDisplayName: string;
+    ivrPath: string;
   }
 
   /**
@@ -20108,6 +20274,8 @@ export module Call {
     lastTransfer: CallTransferRecord.AsProtobufJSON | null;
     sipCallId: string;
     labels: { [prop: string]: string };
+    ivrMenuDisplayName: string;
+    ivrPath: string;
   }
 
   /**
@@ -20571,7 +20739,7 @@ export class CallFilter implements GrpcMessage {
   private _endTime?: googleProtobuf005.Timestamp;
   private _durationInSMin: number;
   private _durationInSMax: number;
-  private _platforms: ondewoNlu008.Intent.Message.Platform[];
+  private _platforms: ondewoNlu009.Intent.Message.Platform[];
   private _campaignName: string;
   private _campaignDisplayName: string;
   private _labels: { [prop: string]: string };
@@ -20709,10 +20877,10 @@ export class CallFilter implements GrpcMessage {
   set durationInSMax(value: number) {
     this._durationInSMax = value;
   }
-  get platforms(): ondewoNlu008.Intent.Message.Platform[] {
+  get platforms(): ondewoNlu009.Intent.Message.Platform[] {
     return this._platforms;
   }
-  set platforms(value: ondewoNlu008.Intent.Message.Platform[]) {
+  set platforms(value: ondewoNlu009.Intent.Message.Platform[]) {
     this._platforms = value;
   }
   get campaignName(): string {
@@ -20867,7 +21035,7 @@ export class CallFilter implements GrpcMessage {
       durationInSMin: this.durationInSMin,
       durationInSMax: this.durationInSMax,
       platforms: (this.platforms || []).map(
-        v => ondewoNlu008.Intent.Message.Platform[v]
+        v => ondewoNlu009.Intent.Message.Platform[v]
       ),
       campaignName:
         this.campaignName === null || this.campaignName === undefined
@@ -20914,7 +21082,7 @@ export module CallFilter {
     endTime?: googleProtobuf005.Timestamp.AsObject;
     durationInSMin: number;
     durationInSMax: number;
-    platforms: ondewoNlu008.Intent.Message.Platform[];
+    platforms: ondewoNlu009.Intent.Message.Platform[];
     campaignName: string;
     campaignDisplayName: string;
     labels: { [prop: string]: string };

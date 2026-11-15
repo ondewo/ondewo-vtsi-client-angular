@@ -185,15 +185,28 @@ function stubBaseForProto(protoRelativePath: string): string {
 }
 
 /**
- * List every `ondewo/**` proto of the checked-out API submodule — the exact set the codegen
- * container compiles (`npm run generate` passes `ondewo` as its selected sub-directory).
+ * The vendored protos `npm_run_build` leaves out of the codegen (`CODEGEN_EXCLUDED_PROTOS`).
+ *
+ * @returns proto paths relative to the API submodule root
+ */
+function codegenExcludedProtos(): string[] {
+	return readMakefileVariable(MAKEFILE, 'CODEGEN_EXCLUDED_PROTOS')
+		.split(/\s+/)
+		.filter((proto: string): boolean => proto !== '');
+}
+
+/**
+ * List every `ondewo/**` proto of the checked-out API submodule that the codegen container
+ * compiles (`npm run generate` passes `ondewo` as its selected sub-directory), i.e. without
+ * the ones `CODEGEN_EXCLUDED_PROTOS` leaves out.
  *
  * @returns proto paths relative to the API submodule root, sorted
  */
 function pinnedOndewoProtos(): string[] {
-	const protos: string[] = findFiles(path.join(API_SUBMODULE, 'ondewo'), ['.proto']).map((relative: string): string =>
-		path.join('ondewo', relative)
-	);
+	const excluded: string[] = codegenExcludedProtos();
+	const protos: string[] = findFiles(path.join(API_SUBMODULE, 'ondewo'), ['.proto'])
+		.map((relative: string): string => path.join('ondewo', relative))
+		.filter((proto: string): boolean => !excluded.includes(proto));
 	if (protos.length === 0) {
 		throw new Error(`no .proto files under ${path.join(API_SUBMODULE, 'ondewo')} — is the submodule checked out?`);
 	}
@@ -430,6 +443,20 @@ describe('generated api surface', (): void => {
 			}
 		}
 		expect(missing).toEqual([]);
+	});
+
+	/**
+	 * An excluded proto must still exist (a stale entry hides nothing and documents a collision
+	 * that is gone), and no compiled proto may import it, or the codegen could not resolve it.
+	 */
+	itWithApi('excludes only existing protos that no compiled proto imports', (): void => {
+		const excluded: string[] = codegenExcludedProtos();
+		expect(excluded.filter((proto: string): boolean => !fs.existsSync(path.join(API_SUBMODULE, proto)))).toEqual([]);
+		const importers: string[] = pinnedOndewoProtos().filter((proto: string): boolean => {
+			const source: string = fs.readFileSync(path.join(API_SUBMODULE, proto), 'utf8');
+			return excluded.some((excludedProto: string): boolean => source.includes(`import "${excludedProto}";`));
+		});
+		expect(importers).toEqual([]);
 	});
 
 	/** The barrel is what consumers import through; a stub it forgets is unreachable. */

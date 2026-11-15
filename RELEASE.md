@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO VTSI Angular Client 9.5.0
+
+### Improvements
+
+* Tracking API Version [9.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+* `LogsClient` and `GRPC_LOGS_CLIENT_SETTINGS` stay the `ondewo.vtsi.Logs` client: the `ondewo.nlu.Logs` service vendored with ondewo-nlu-api is not compiled into this library (use `@ondewo/nlu-client-angular` for it)
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 9.4.0
 
 ### Improvements

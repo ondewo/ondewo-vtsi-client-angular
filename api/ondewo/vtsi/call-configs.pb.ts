@@ -18,9 +18,32 @@ import * as ondewoNlu004 from '../../ondewo/nlu/context.pb';
 import * as ondewoNlu005 from '../../ondewo/nlu/common.pb';
 import * as ondewoNlu006 from '../../ondewo/nlu/operations.pb';
 import * as googleProtobuf007 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu008 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t009 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s010 from '../../ondewo/t2s/text-to-speech.pb';
+import * as googleProtobuf008 from '@ngx-grpc/well-known-types';
+import * as ondewoNlu009 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t010 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s011 from '../../ondewo/t2s/text-to-speech.pb';
+export enum WarmIntroTextSource {
+  WARM_INTRO_TEXT_SOURCE_UNSPECIFIED = 0,
+  WARM_INTRO_TEXT_SOURCE_TEMPLATE = 1,
+  WARM_INTRO_TEXT_SOURCE_LLM_SUMMARY = 2
+}
+export enum WarmIntroUnavailablePolicy {
+  WARM_INTRO_UNAVAILABLE_POLICY_UNSPECIFIED = 0,
+  WARM_INTRO_UNAVAILABLE_POLICY_CONNECT_WITHOUT_INTRO = 1,
+  WARM_INTRO_UNAVAILABLE_POLICY_RETURN_TO_CALLER = 2
+}
+export enum WarmIntroDecision {
+  WARM_INTRO_DECISION_UNSPECIFIED = 0,
+  WARM_INTRO_DECISION_ACCEPTED = 1,
+  WARM_INTRO_DECISION_DECLINED = 2,
+  WARM_INTRO_DECISION_NO_DECISION = 3
+}
+export enum WarmIntroDecidedBy {
+  WARM_INTRO_DECIDED_BY_UNSPECIFIED = 0,
+  WARM_INTRO_DECIDED_BY_DTMF = 1,
+  WARM_INTRO_DECIDED_BY_SPEECH = 2,
+  WARM_INTRO_DECIDED_BY_TIMEOUT = 3
+}
 /**
  * Message implementation for ondewo.vtsi.BaseServiceConfig
  */
@@ -523,7 +546,7 @@ export class NluVtsiConfig implements GrpcMessage {
   private _initialIntent: string;
   private _contexts?: ondewoNlu004.Context[];
   private _httpBasicAuthToken: string;
-  private _platform: ondewoNlu008.Intent.Message.Platform;
+  private _platform: ondewoNlu009.Intent.Message.Platform;
   private _preemptiveGenerationConfig?: NluPreemptiveGenerationConfig;
 
   private _authentication: NluVtsiConfig.AuthenticationCase =
@@ -611,10 +634,10 @@ export class NluVtsiConfig implements GrpcMessage {
   set httpBasicAuthToken(value: string) {
     this._httpBasicAuthToken = value;
   }
-  get platform(): ondewoNlu008.Intent.Message.Platform {
+  get platform(): ondewoNlu009.Intent.Message.Platform {
     return this._platform;
   }
-  set platform(value: ondewoNlu008.Intent.Message.Platform) {
+  set platform(value: ondewoNlu009.Intent.Message.Platform) {
     this._platform = value;
   }
   get preemptiveGenerationConfig(): NluPreemptiveGenerationConfig | undefined {
@@ -694,7 +717,7 @@ export class NluVtsiConfig implements GrpcMessage {
       contexts: (this.contexts || []).map(m => m.toProtobufJSON(options)),
       httpBasicAuthToken: this.httpBasicAuthToken,
       platform:
-        ondewoNlu008.Intent.Message.Platform[
+        ondewoNlu009.Intent.Message.Platform[
           this.platform === null || this.platform === undefined
             ? 0
             : this.platform
@@ -718,7 +741,7 @@ export module NluVtsiConfig {
     initialIntent: string;
     contexts?: ondewoNlu004.Context.AsObject[];
     httpBasicAuthToken: string;
-    platform: ondewoNlu008.Intent.Message.Platform;
+    platform: ondewoNlu009.Intent.Message.Platform;
     preemptiveGenerationConfig?: NluPreemptiveGenerationConfig.AsObject;
   }
 
@@ -980,10 +1003,10 @@ export class T2sVtsiConfig implements GrpcMessage {
           );
           break;
         case 2:
-          _instance.t2sRequestConfig = new ondewoT2s010.RequestConfig();
+          _instance.t2sRequestConfig = new ondewoT2s011.RequestConfig();
           _reader.readMessage(
             _instance.t2sRequestConfig,
-            ondewoT2s010.RequestConfig.deserializeBinaryFromReader
+            ondewoT2s011.RequestConfig.deserializeBinaryFromReader
           );
           break;
         case 3:
@@ -1021,7 +1044,7 @@ export class T2sVtsiConfig implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.t2sRequestConfig as any,
-        ondewoT2s010.RequestConfig.serializeBinaryToWriter
+        ondewoT2s011.RequestConfig.serializeBinaryToWriter
       );
     }
     if (_instance.preemptiveSynthesisConfig) {
@@ -1034,7 +1057,7 @@ export class T2sVtsiConfig implements GrpcMessage {
   }
 
   private _t2sBaseConfig?: BaseServiceConfig;
-  private _t2sRequestConfig?: ondewoT2s010.RequestConfig;
+  private _t2sRequestConfig?: ondewoT2s011.RequestConfig;
   private _preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig;
 
   /**
@@ -1047,7 +1070,7 @@ export class T2sVtsiConfig implements GrpcMessage {
       ? new BaseServiceConfig(_value.t2sBaseConfig)
       : undefined;
     this.t2sRequestConfig = _value.t2sRequestConfig
-      ? new ondewoT2s010.RequestConfig(_value.t2sRequestConfig)
+      ? new ondewoT2s011.RequestConfig(_value.t2sRequestConfig)
       : undefined;
     this.preemptiveSynthesisConfig = _value.preemptiveSynthesisConfig
       ? new T2sPreemptiveSynthesisConfig(_value.preemptiveSynthesisConfig)
@@ -1060,10 +1083,10 @@ export class T2sVtsiConfig implements GrpcMessage {
   set t2sBaseConfig(value: BaseServiceConfig | undefined) {
     this._t2sBaseConfig = value;
   }
-  get t2sRequestConfig(): ondewoT2s010.RequestConfig | undefined {
+  get t2sRequestConfig(): ondewoT2s011.RequestConfig | undefined {
     return this._t2sRequestConfig;
   }
-  set t2sRequestConfig(value: ondewoT2s010.RequestConfig | undefined) {
+  set t2sRequestConfig(value: ondewoT2s011.RequestConfig | undefined) {
     this._t2sRequestConfig = value;
   }
   get preemptiveSynthesisConfig(): T2sPreemptiveSynthesisConfig | undefined {
@@ -1137,7 +1160,7 @@ export module T2sVtsiConfig {
    */
   export interface AsObject {
     t2sBaseConfig?: BaseServiceConfig.AsObject;
-    t2sRequestConfig?: ondewoT2s010.RequestConfig.AsObject;
+    t2sRequestConfig?: ondewoT2s011.RequestConfig.AsObject;
     preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig.AsObject;
   }
 
@@ -1146,7 +1169,7 @@ export module T2sVtsiConfig {
    */
   export interface AsProtobufJSON {
     t2sBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
-    t2sRequestConfig: ondewoT2s010.RequestConfig.AsProtobufJSON | null;
+    t2sRequestConfig: ondewoT2s011.RequestConfig.AsProtobufJSON | null;
     preemptiveSynthesisConfig: T2sPreemptiveSynthesisConfig.AsProtobufJSON | null;
   }
 }
@@ -1359,10 +1382,10 @@ export class S2tVtsiConfig implements GrpcMessage {
           );
           break;
         case 2:
-          _instance.s2tTranscribeRequestConfig = new ondewoS2t009.TranscribeRequestConfig();
+          _instance.s2tTranscribeRequestConfig = new ondewoS2t010.TranscribeRequestConfig();
           _reader.readMessage(
             _instance.s2tTranscribeRequestConfig,
-            ondewoS2t009.TranscribeRequestConfig.deserializeBinaryFromReader
+            ondewoS2t010.TranscribeRequestConfig.deserializeBinaryFromReader
           );
           break;
         default:
@@ -1393,13 +1416,13 @@ export class S2tVtsiConfig implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.s2tTranscribeRequestConfig as any,
-        ondewoS2t009.TranscribeRequestConfig.serializeBinaryToWriter
+        ondewoS2t010.TranscribeRequestConfig.serializeBinaryToWriter
       );
     }
   }
 
   private _s2tBaseConfig?: BaseServiceConfig;
-  private _s2tTranscribeRequestConfig?: ondewoS2t009.TranscribeRequestConfig;
+  private _s2tTranscribeRequestConfig?: ondewoS2t010.TranscribeRequestConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1411,7 +1434,7 @@ export class S2tVtsiConfig implements GrpcMessage {
       ? new BaseServiceConfig(_value.s2tBaseConfig)
       : undefined;
     this.s2tTranscribeRequestConfig = _value.s2tTranscribeRequestConfig
-      ? new ondewoS2t009.TranscribeRequestConfig(
+      ? new ondewoS2t010.TranscribeRequestConfig(
           _value.s2tTranscribeRequestConfig
         )
       : undefined;
@@ -1424,12 +1447,12 @@ export class S2tVtsiConfig implements GrpcMessage {
     this._s2tBaseConfig = value;
   }
   get s2tTranscribeRequestConfig():
-    | ondewoS2t009.TranscribeRequestConfig
+    | ondewoS2t010.TranscribeRequestConfig
     | undefined {
     return this._s2tTranscribeRequestConfig;
   }
   set s2tTranscribeRequestConfig(
-    value: ondewoS2t009.TranscribeRequestConfig | undefined
+    value: ondewoS2t010.TranscribeRequestConfig | undefined
   ) {
     this._s2tTranscribeRequestConfig = value;
   }
@@ -1490,7 +1513,7 @@ export module S2tVtsiConfig {
    */
   export interface AsObject {
     s2tBaseConfig?: BaseServiceConfig.AsObject;
-    s2tTranscribeRequestConfig?: ondewoS2t009.TranscribeRequestConfig.AsObject;
+    s2tTranscribeRequestConfig?: ondewoS2t010.TranscribeRequestConfig.AsObject;
   }
 
   /**
@@ -1498,7 +1521,7 @@ export module S2tVtsiConfig {
    */
   export interface AsProtobufJSON {
     s2tBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
-    s2tTranscribeRequestConfig: ondewoS2t009.TranscribeRequestConfig.AsProtobufJSON | null;
+    s2tTranscribeRequestConfig: ondewoS2t010.TranscribeRequestConfig.AsProtobufJSON | null;
   }
 }
 
@@ -1820,6 +1843,7 @@ export class VoiceInteractionConfig implements GrpcMessage {
     _instance.answeringMachineDetectionConfig =
       _instance.answeringMachineDetectionConfig || undefined;
     _instance.dtmfConfig = _instance.dtmfConfig || undefined;
+    _instance.warmTransferConfig = _instance.warmTransferConfig || undefined;
   }
 
   /**
@@ -1868,6 +1892,13 @@ export class VoiceInteractionConfig implements GrpcMessage {
           _reader.readMessage(
             _instance.dtmfConfig,
             DtmfConfig.deserializeBinaryFromReader
+          );
+          break;
+        case 6:
+          _instance.warmTransferConfig = new WarmTransferConfig();
+          _reader.readMessage(
+            _instance.warmTransferConfig,
+            WarmTransferConfig.deserializeBinaryFromReader
           );
           break;
         default:
@@ -1922,6 +1953,13 @@ export class VoiceInteractionConfig implements GrpcMessage {
         DtmfConfig.serializeBinaryToWriter
       );
     }
+    if (_instance.warmTransferConfig) {
+      _writer.writeMessage(
+        6,
+        _instance.warmTransferConfig as any,
+        WarmTransferConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _turnDetectionConfig?: TurnDetectionConfig;
@@ -1929,6 +1967,7 @@ export class VoiceInteractionConfig implements GrpcMessage {
   private _responseTimingConfig?: ResponseTimingConfig;
   private _answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig;
   private _dtmfConfig?: DtmfConfig;
+  private _warmTransferConfig?: WarmTransferConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1952,6 +1991,9 @@ export class VoiceInteractionConfig implements GrpcMessage {
       : undefined;
     this.dtmfConfig = _value.dtmfConfig
       ? new DtmfConfig(_value.dtmfConfig)
+      : undefined;
+    this.warmTransferConfig = _value.warmTransferConfig
+      ? new WarmTransferConfig(_value.warmTransferConfig)
       : undefined;
     VoiceInteractionConfig.refineValues(this);
   }
@@ -1991,6 +2033,12 @@ export class VoiceInteractionConfig implements GrpcMessage {
   set dtmfConfig(value: DtmfConfig | undefined) {
     this._dtmfConfig = value;
   }
+  get warmTransferConfig(): WarmTransferConfig | undefined {
+    return this._warmTransferConfig;
+  }
+  set warmTransferConfig(value: WarmTransferConfig | undefined) {
+    this._warmTransferConfig = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -2019,7 +2067,10 @@ export class VoiceInteractionConfig implements GrpcMessage {
       answeringMachineDetectionConfig: this.answeringMachineDetectionConfig
         ? this.answeringMachineDetectionConfig.toObject()
         : undefined,
-      dtmfConfig: this.dtmfConfig ? this.dtmfConfig.toObject() : undefined
+      dtmfConfig: this.dtmfConfig ? this.dtmfConfig.toObject() : undefined,
+      warmTransferConfig: this.warmTransferConfig
+        ? this.warmTransferConfig.toObject()
+        : undefined
     };
   }
 
@@ -2054,6 +2105,9 @@ export class VoiceInteractionConfig implements GrpcMessage {
         : null,
       dtmfConfig: this.dtmfConfig
         ? this.dtmfConfig.toProtobufJSON(options)
+        : null,
+      warmTransferConfig: this.warmTransferConfig
+        ? this.warmTransferConfig.toProtobufJSON(options)
         : null
     };
   }
@@ -2068,6 +2122,7 @@ export module VoiceInteractionConfig {
     responseTimingConfig?: ResponseTimingConfig.AsObject;
     answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig.AsObject;
     dtmfConfig?: DtmfConfig.AsObject;
+    warmTransferConfig?: WarmTransferConfig.AsObject;
   }
 
   /**
@@ -2079,6 +2134,7 @@ export module VoiceInteractionConfig {
     responseTimingConfig: ResponseTimingConfig.AsProtobufJSON | null;
     answeringMachineDetectionConfig: AnsweringMachineDetectionConfig.AsProtobufJSON | null;
     dtmfConfig: DtmfConfig.AsProtobufJSON | null;
+    warmTransferConfig: WarmTransferConfig.AsProtobufJSON | null;
   }
 }
 
@@ -2271,6 +2327,1036 @@ export module DtmfConfig {
     bargeIn: boolean;
     interDigitTimeoutMs: number;
     undeclaredPolicy: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.WarmTransferConfig
+ */
+export class WarmTransferConfig implements GrpcMessage {
+  static id = 'ondewo.vtsi.WarmTransferConfig';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new WarmTransferConfig();
+    WarmTransferConfig.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: WarmTransferConfig) {
+    _instance.introTextSource = _instance.introTextSource || 0;
+    _instance.onIntroUnavailable = _instance.onIntroUnavailable || 0;
+    _instance.introListenerNames = _instance.introListenerNames || [];
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: WarmTransferConfig,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.enabled = _reader.readBool();
+          break;
+        case 2:
+          _instance.introPrompt = _reader.readString();
+          break;
+        case 3:
+          _instance.introTextSource = _reader.readEnum();
+          break;
+        case 4:
+          _instance.readyQuestion = _reader.readString();
+          break;
+        case 5:
+          _instance.confirmHumanBeforeIntro = _reader.readBool();
+          break;
+        case 6:
+          _instance.acceptQuestion = _reader.readString();
+          break;
+        case 7:
+          _instance.declineReasonQuestion = _reader.readString();
+          break;
+        case 8:
+          _instance.callerDeclinedMessage = _reader.readString();
+          break;
+        case 9:
+          _instance.callerUnreachableMessage = _reader.readString();
+          break;
+        case 10:
+          _instance.acceptDtmf = _reader.readString();
+          break;
+        case 11:
+          _instance.declineDtmf = _reader.readString();
+          break;
+        case 12:
+          _instance.decisionTimeoutS = _reader.readUint32();
+          break;
+        case 13:
+          _instance.maxIntroDurationS = _reader.readUint32();
+          break;
+        case 14:
+          _instance.calleeDisplayName = _reader.readString();
+          break;
+        case 15:
+          _instance.calleeDescription = _reader.readString();
+          break;
+        case 16:
+          _instance.onIntroUnavailable = _reader.readEnum();
+          break;
+        case 17:
+          _instance.applyToBotTransfers = _reader.readBool();
+          break;
+        case 18:
+          _instance.callerHoldMessage = _reader.readString();
+          break;
+        case 19:
+          _instance.callerHoldMusic = _reader.readBool();
+          break;
+        case 20:
+          _instance.callerReassureIntervalS = _reader.readUint32();
+          break;
+        case 21:
+          _instance.llmCcaiServiceName = _reader.readString();
+          break;
+        case 22:
+          _instance.callerDisclosureMessage = _reader.readString();
+          break;
+        case 23:
+          _instance.callerAcceptedMessage = _reader.readString();
+          break;
+        case 24:
+          _instance.storeIntroAudio = _reader.readBool();
+          break;
+        case 25:
+          (_instance.introListenerNames =
+            _instance.introListenerNames || []).push(_reader.readString());
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    WarmTransferConfig.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: WarmTransferConfig,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.enabled !== undefined && _instance.enabled !== null) {
+      _writer.writeBool(1, _instance.enabled);
+    }
+    if (_instance.introPrompt !== undefined && _instance.introPrompt !== null) {
+      _writer.writeString(2, _instance.introPrompt);
+    }
+    if (_instance.introTextSource) {
+      _writer.writeEnum(3, _instance.introTextSource);
+    }
+    if (
+      _instance.readyQuestion !== undefined &&
+      _instance.readyQuestion !== null
+    ) {
+      _writer.writeString(4, _instance.readyQuestion);
+    }
+    if (
+      _instance.confirmHumanBeforeIntro !== undefined &&
+      _instance.confirmHumanBeforeIntro !== null
+    ) {
+      _writer.writeBool(5, _instance.confirmHumanBeforeIntro);
+    }
+    if (
+      _instance.acceptQuestion !== undefined &&
+      _instance.acceptQuestion !== null
+    ) {
+      _writer.writeString(6, _instance.acceptQuestion);
+    }
+    if (
+      _instance.declineReasonQuestion !== undefined &&
+      _instance.declineReasonQuestion !== null
+    ) {
+      _writer.writeString(7, _instance.declineReasonQuestion);
+    }
+    if (
+      _instance.callerDeclinedMessage !== undefined &&
+      _instance.callerDeclinedMessage !== null
+    ) {
+      _writer.writeString(8, _instance.callerDeclinedMessage);
+    }
+    if (
+      _instance.callerUnreachableMessage !== undefined &&
+      _instance.callerUnreachableMessage !== null
+    ) {
+      _writer.writeString(9, _instance.callerUnreachableMessage);
+    }
+    if (_instance.acceptDtmf !== undefined && _instance.acceptDtmf !== null) {
+      _writer.writeString(10, _instance.acceptDtmf);
+    }
+    if (_instance.declineDtmf !== undefined && _instance.declineDtmf !== null) {
+      _writer.writeString(11, _instance.declineDtmf);
+    }
+    if (
+      _instance.decisionTimeoutS !== undefined &&
+      _instance.decisionTimeoutS !== null
+    ) {
+      _writer.writeUint32(12, _instance.decisionTimeoutS);
+    }
+    if (
+      _instance.maxIntroDurationS !== undefined &&
+      _instance.maxIntroDurationS !== null
+    ) {
+      _writer.writeUint32(13, _instance.maxIntroDurationS);
+    }
+    if (
+      _instance.calleeDisplayName !== undefined &&
+      _instance.calleeDisplayName !== null
+    ) {
+      _writer.writeString(14, _instance.calleeDisplayName);
+    }
+    if (
+      _instance.calleeDescription !== undefined &&
+      _instance.calleeDescription !== null
+    ) {
+      _writer.writeString(15, _instance.calleeDescription);
+    }
+    if (_instance.onIntroUnavailable) {
+      _writer.writeEnum(16, _instance.onIntroUnavailable);
+    }
+    if (
+      _instance.applyToBotTransfers !== undefined &&
+      _instance.applyToBotTransfers !== null
+    ) {
+      _writer.writeBool(17, _instance.applyToBotTransfers);
+    }
+    if (
+      _instance.callerHoldMessage !== undefined &&
+      _instance.callerHoldMessage !== null
+    ) {
+      _writer.writeString(18, _instance.callerHoldMessage);
+    }
+    if (
+      _instance.callerHoldMusic !== undefined &&
+      _instance.callerHoldMusic !== null
+    ) {
+      _writer.writeBool(19, _instance.callerHoldMusic);
+    }
+    if (
+      _instance.callerReassureIntervalS !== undefined &&
+      _instance.callerReassureIntervalS !== null
+    ) {
+      _writer.writeUint32(20, _instance.callerReassureIntervalS);
+    }
+    if (
+      _instance.llmCcaiServiceName !== undefined &&
+      _instance.llmCcaiServiceName !== null
+    ) {
+      _writer.writeString(21, _instance.llmCcaiServiceName);
+    }
+    if (
+      _instance.callerDisclosureMessage !== undefined &&
+      _instance.callerDisclosureMessage !== null
+    ) {
+      _writer.writeString(22, _instance.callerDisclosureMessage);
+    }
+    if (
+      _instance.callerAcceptedMessage !== undefined &&
+      _instance.callerAcceptedMessage !== null
+    ) {
+      _writer.writeString(23, _instance.callerAcceptedMessage);
+    }
+    if (
+      _instance.storeIntroAudio !== undefined &&
+      _instance.storeIntroAudio !== null
+    ) {
+      _writer.writeBool(24, _instance.storeIntroAudio);
+    }
+    if (_instance.introListenerNames && _instance.introListenerNames.length) {
+      _writer.writeRepeatedString(25, _instance.introListenerNames);
+    }
+  }
+
+  private _enabled: boolean;
+  private _introPrompt: string;
+  private _introTextSource: WarmIntroTextSource;
+  private _readyQuestion: string;
+  private _confirmHumanBeforeIntro: boolean;
+  private _acceptQuestion: string;
+  private _declineReasonQuestion: string;
+  private _callerDeclinedMessage: string;
+  private _callerUnreachableMessage: string;
+  private _acceptDtmf: string;
+  private _declineDtmf: string;
+  private _decisionTimeoutS: number;
+  private _maxIntroDurationS: number;
+  private _calleeDisplayName: string;
+  private _calleeDescription: string;
+  private _onIntroUnavailable: WarmIntroUnavailablePolicy;
+  private _applyToBotTransfers: boolean;
+  private _callerHoldMessage: string;
+  private _callerHoldMusic: boolean;
+  private _callerReassureIntervalS: number;
+  private _llmCcaiServiceName: string;
+  private _callerDisclosureMessage: string;
+  private _callerAcceptedMessage: string;
+  private _storeIntroAudio: boolean;
+  private _introListenerNames: string[];
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of WarmTransferConfig to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<WarmTransferConfig.AsObject>) {
+    _value = _value || {};
+    this.enabled = _value.enabled;
+    this.introPrompt = _value.introPrompt;
+    this.introTextSource = _value.introTextSource;
+    this.readyQuestion = _value.readyQuestion;
+    this.confirmHumanBeforeIntro = _value.confirmHumanBeforeIntro;
+    this.acceptQuestion = _value.acceptQuestion;
+    this.declineReasonQuestion = _value.declineReasonQuestion;
+    this.callerDeclinedMessage = _value.callerDeclinedMessage;
+    this.callerUnreachableMessage = _value.callerUnreachableMessage;
+    this.acceptDtmf = _value.acceptDtmf;
+    this.declineDtmf = _value.declineDtmf;
+    this.decisionTimeoutS = _value.decisionTimeoutS;
+    this.maxIntroDurationS = _value.maxIntroDurationS;
+    this.calleeDisplayName = _value.calleeDisplayName;
+    this.calleeDescription = _value.calleeDescription;
+    this.onIntroUnavailable = _value.onIntroUnavailable;
+    this.applyToBotTransfers = _value.applyToBotTransfers;
+    this.callerHoldMessage = _value.callerHoldMessage;
+    this.callerHoldMusic = _value.callerHoldMusic;
+    this.callerReassureIntervalS = _value.callerReassureIntervalS;
+    this.llmCcaiServiceName = _value.llmCcaiServiceName;
+    this.callerDisclosureMessage = _value.callerDisclosureMessage;
+    this.callerAcceptedMessage = _value.callerAcceptedMessage;
+    this.storeIntroAudio = _value.storeIntroAudio;
+    this.introListenerNames = (_value.introListenerNames || []).slice();
+    WarmTransferConfig.refineValues(this);
+  }
+  get enabled(): boolean {
+    return this._enabled;
+  }
+  set enabled(value: boolean) {
+    this._enabled = value;
+  }
+  get introPrompt(): string {
+    return this._introPrompt;
+  }
+  set introPrompt(value: string) {
+    this._introPrompt = value;
+  }
+  get introTextSource(): WarmIntroTextSource {
+    return this._introTextSource;
+  }
+  set introTextSource(value: WarmIntroTextSource) {
+    this._introTextSource = value;
+  }
+  get readyQuestion(): string {
+    return this._readyQuestion;
+  }
+  set readyQuestion(value: string) {
+    this._readyQuestion = value;
+  }
+  get confirmHumanBeforeIntro(): boolean {
+    return this._confirmHumanBeforeIntro;
+  }
+  set confirmHumanBeforeIntro(value: boolean) {
+    this._confirmHumanBeforeIntro = value;
+  }
+  get acceptQuestion(): string {
+    return this._acceptQuestion;
+  }
+  set acceptQuestion(value: string) {
+    this._acceptQuestion = value;
+  }
+  get declineReasonQuestion(): string {
+    return this._declineReasonQuestion;
+  }
+  set declineReasonQuestion(value: string) {
+    this._declineReasonQuestion = value;
+  }
+  get callerDeclinedMessage(): string {
+    return this._callerDeclinedMessage;
+  }
+  set callerDeclinedMessage(value: string) {
+    this._callerDeclinedMessage = value;
+  }
+  get callerUnreachableMessage(): string {
+    return this._callerUnreachableMessage;
+  }
+  set callerUnreachableMessage(value: string) {
+    this._callerUnreachableMessage = value;
+  }
+  get acceptDtmf(): string {
+    return this._acceptDtmf;
+  }
+  set acceptDtmf(value: string) {
+    this._acceptDtmf = value;
+  }
+  get declineDtmf(): string {
+    return this._declineDtmf;
+  }
+  set declineDtmf(value: string) {
+    this._declineDtmf = value;
+  }
+  get decisionTimeoutS(): number {
+    return this._decisionTimeoutS;
+  }
+  set decisionTimeoutS(value: number) {
+    this._decisionTimeoutS = value;
+  }
+  get maxIntroDurationS(): number {
+    return this._maxIntroDurationS;
+  }
+  set maxIntroDurationS(value: number) {
+    this._maxIntroDurationS = value;
+  }
+  get calleeDisplayName(): string {
+    return this._calleeDisplayName;
+  }
+  set calleeDisplayName(value: string) {
+    this._calleeDisplayName = value;
+  }
+  get calleeDescription(): string {
+    return this._calleeDescription;
+  }
+  set calleeDescription(value: string) {
+    this._calleeDescription = value;
+  }
+  get onIntroUnavailable(): WarmIntroUnavailablePolicy {
+    return this._onIntroUnavailable;
+  }
+  set onIntroUnavailable(value: WarmIntroUnavailablePolicy) {
+    this._onIntroUnavailable = value;
+  }
+  get applyToBotTransfers(): boolean {
+    return this._applyToBotTransfers;
+  }
+  set applyToBotTransfers(value: boolean) {
+    this._applyToBotTransfers = value;
+  }
+  get callerHoldMessage(): string {
+    return this._callerHoldMessage;
+  }
+  set callerHoldMessage(value: string) {
+    this._callerHoldMessage = value;
+  }
+  get callerHoldMusic(): boolean {
+    return this._callerHoldMusic;
+  }
+  set callerHoldMusic(value: boolean) {
+    this._callerHoldMusic = value;
+  }
+  get callerReassureIntervalS(): number {
+    return this._callerReassureIntervalS;
+  }
+  set callerReassureIntervalS(value: number) {
+    this._callerReassureIntervalS = value;
+  }
+  get llmCcaiServiceName(): string {
+    return this._llmCcaiServiceName;
+  }
+  set llmCcaiServiceName(value: string) {
+    this._llmCcaiServiceName = value;
+  }
+  get callerDisclosureMessage(): string {
+    return this._callerDisclosureMessage;
+  }
+  set callerDisclosureMessage(value: string) {
+    this._callerDisclosureMessage = value;
+  }
+  get callerAcceptedMessage(): string {
+    return this._callerAcceptedMessage;
+  }
+  set callerAcceptedMessage(value: string) {
+    this._callerAcceptedMessage = value;
+  }
+  get storeIntroAudio(): boolean {
+    return this._storeIntroAudio;
+  }
+  set storeIntroAudio(value: boolean) {
+    this._storeIntroAudio = value;
+  }
+  get introListenerNames(): string[] {
+    return this._introListenerNames;
+  }
+  set introListenerNames(value: string[]) {
+    this._introListenerNames = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    WarmTransferConfig.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): WarmTransferConfig.AsObject {
+    return {
+      enabled: this.enabled,
+      introPrompt: this.introPrompt,
+      introTextSource: this.introTextSource,
+      readyQuestion: this.readyQuestion,
+      confirmHumanBeforeIntro: this.confirmHumanBeforeIntro,
+      acceptQuestion: this.acceptQuestion,
+      declineReasonQuestion: this.declineReasonQuestion,
+      callerDeclinedMessage: this.callerDeclinedMessage,
+      callerUnreachableMessage: this.callerUnreachableMessage,
+      acceptDtmf: this.acceptDtmf,
+      declineDtmf: this.declineDtmf,
+      decisionTimeoutS: this.decisionTimeoutS,
+      maxIntroDurationS: this.maxIntroDurationS,
+      calleeDisplayName: this.calleeDisplayName,
+      calleeDescription: this.calleeDescription,
+      onIntroUnavailable: this.onIntroUnavailable,
+      applyToBotTransfers: this.applyToBotTransfers,
+      callerHoldMessage: this.callerHoldMessage,
+      callerHoldMusic: this.callerHoldMusic,
+      callerReassureIntervalS: this.callerReassureIntervalS,
+      llmCcaiServiceName: this.llmCcaiServiceName,
+      callerDisclosureMessage: this.callerDisclosureMessage,
+      callerAcceptedMessage: this.callerAcceptedMessage,
+      storeIntroAudio: this.storeIntroAudio,
+      introListenerNames: (this.introListenerNames || []).slice()
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): WarmTransferConfig.AsProtobufJSON {
+    return {
+      enabled: this.enabled,
+      introPrompt: this.introPrompt,
+      introTextSource:
+        WarmIntroTextSource[
+          this.introTextSource === null || this.introTextSource === undefined
+            ? 0
+            : this.introTextSource
+        ],
+      readyQuestion: this.readyQuestion,
+      confirmHumanBeforeIntro: this.confirmHumanBeforeIntro,
+      acceptQuestion: this.acceptQuestion,
+      declineReasonQuestion: this.declineReasonQuestion,
+      callerDeclinedMessage: this.callerDeclinedMessage,
+      callerUnreachableMessage: this.callerUnreachableMessage,
+      acceptDtmf: this.acceptDtmf,
+      declineDtmf: this.declineDtmf,
+      decisionTimeoutS: this.decisionTimeoutS,
+      maxIntroDurationS: this.maxIntroDurationS,
+      calleeDisplayName: this.calleeDisplayName,
+      calleeDescription: this.calleeDescription,
+      onIntroUnavailable:
+        WarmIntroUnavailablePolicy[
+          this.onIntroUnavailable === null ||
+          this.onIntroUnavailable === undefined
+            ? 0
+            : this.onIntroUnavailable
+        ],
+      applyToBotTransfers: this.applyToBotTransfers,
+      callerHoldMessage: this.callerHoldMessage,
+      callerHoldMusic: this.callerHoldMusic,
+      callerReassureIntervalS: this.callerReassureIntervalS,
+      llmCcaiServiceName: this.llmCcaiServiceName,
+      callerDisclosureMessage: this.callerDisclosureMessage,
+      callerAcceptedMessage: this.callerAcceptedMessage,
+      storeIntroAudio: this.storeIntroAudio,
+      introListenerNames: (this.introListenerNames || []).slice()
+    };
+  }
+}
+export module WarmTransferConfig {
+  /**
+   * Standard JavaScript object representation for WarmTransferConfig
+   */
+  export interface AsObject {
+    enabled: boolean;
+    introPrompt: string;
+    introTextSource: WarmIntroTextSource;
+    readyQuestion: string;
+    confirmHumanBeforeIntro: boolean;
+    acceptQuestion: string;
+    declineReasonQuestion: string;
+    callerDeclinedMessage: string;
+    callerUnreachableMessage: string;
+    acceptDtmf: string;
+    declineDtmf: string;
+    decisionTimeoutS: number;
+    maxIntroDurationS: number;
+    calleeDisplayName: string;
+    calleeDescription: string;
+    onIntroUnavailable: WarmIntroUnavailablePolicy;
+    applyToBotTransfers: boolean;
+    callerHoldMessage: string;
+    callerHoldMusic: boolean;
+    callerReassureIntervalS: number;
+    llmCcaiServiceName: string;
+    callerDisclosureMessage: string;
+    callerAcceptedMessage: string;
+    storeIntroAudio: boolean;
+    introListenerNames: string[];
+  }
+
+  /**
+   * Protobuf JSON representation for WarmTransferConfig
+   */
+  export interface AsProtobufJSON {
+    enabled: boolean;
+    introPrompt: string;
+    introTextSource: string;
+    readyQuestion: string;
+    confirmHumanBeforeIntro: boolean;
+    acceptQuestion: string;
+    declineReasonQuestion: string;
+    callerDeclinedMessage: string;
+    callerUnreachableMessage: string;
+    acceptDtmf: string;
+    declineDtmf: string;
+    decisionTimeoutS: number;
+    maxIntroDurationS: number;
+    calleeDisplayName: string;
+    calleeDescription: string;
+    onIntroUnavailable: string;
+    applyToBotTransfers: boolean;
+    callerHoldMessage: string;
+    callerHoldMusic: boolean;
+    callerReassureIntervalS: number;
+    llmCcaiServiceName: string;
+    callerDisclosureMessage: string;
+    callerAcceptedMessage: string;
+    storeIntroAudio: boolean;
+    introListenerNames: string[];
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.WarmIntroRecord
+ */
+export class WarmIntroRecord implements GrpcMessage {
+  static id = 'ondewo.vtsi.WarmIntroRecord';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new WarmIntroRecord();
+    WarmIntroRecord.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: WarmIntroRecord) {
+    _instance.introId = _instance.introId || '';
+    _instance.decision = _instance.decision || 0;
+    _instance.decidedBy = _instance.decidedBy || 0;
+    _instance.declineReasonPresent = _instance.declineReasonPresent || false;
+    _instance.introCallName = _instance.introCallName || '';
+    _instance.ringDuration = _instance.ringDuration || undefined;
+    _instance.introDuration = _instance.introDuration || undefined;
+    _instance.textSource = _instance.textSource || 0;
+    _instance.textFellBack = _instance.textFellBack || false;
+    _instance.cause = _instance.cause || '';
+    _instance.noticeDelivered = _instance.noticeDelivered || false;
+    _instance.introStarted = _instance.introStarted || false;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: WarmIntroRecord,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.introId = _reader.readString();
+          break;
+        case 2:
+          _instance.decision = _reader.readEnum();
+          break;
+        case 3:
+          _instance.decidedBy = _reader.readEnum();
+          break;
+        case 4:
+          _instance.declineReasonPresent = _reader.readBool();
+          break;
+        case 5:
+          _instance.introCallName = _reader.readString();
+          break;
+        case 6:
+          _instance.ringDuration = new googleProtobuf008.Duration();
+          _reader.readMessage(
+            _instance.ringDuration,
+            googleProtobuf008.Duration.deserializeBinaryFromReader
+          );
+          break;
+        case 7:
+          _instance.introDuration = new googleProtobuf008.Duration();
+          _reader.readMessage(
+            _instance.introDuration,
+            googleProtobuf008.Duration.deserializeBinaryFromReader
+          );
+          break;
+        case 8:
+          _instance.textSource = _reader.readEnum();
+          break;
+        case 9:
+          _instance.textFellBack = _reader.readBool();
+          break;
+        case 10:
+          _instance.cause = _reader.readString();
+          break;
+        case 11:
+          _instance.noticeDelivered = _reader.readBool();
+          break;
+        case 12:
+          _instance.introStarted = _reader.readBool();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    WarmIntroRecord.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: WarmIntroRecord,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.introId) {
+      _writer.writeString(1, _instance.introId);
+    }
+    if (_instance.decision) {
+      _writer.writeEnum(2, _instance.decision);
+    }
+    if (_instance.decidedBy) {
+      _writer.writeEnum(3, _instance.decidedBy);
+    }
+    if (_instance.declineReasonPresent) {
+      _writer.writeBool(4, _instance.declineReasonPresent);
+    }
+    if (_instance.introCallName) {
+      _writer.writeString(5, _instance.introCallName);
+    }
+    if (_instance.ringDuration) {
+      _writer.writeMessage(
+        6,
+        _instance.ringDuration as any,
+        googleProtobuf008.Duration.serializeBinaryToWriter
+      );
+    }
+    if (_instance.introDuration) {
+      _writer.writeMessage(
+        7,
+        _instance.introDuration as any,
+        googleProtobuf008.Duration.serializeBinaryToWriter
+      );
+    }
+    if (_instance.textSource) {
+      _writer.writeEnum(8, _instance.textSource);
+    }
+    if (_instance.textFellBack) {
+      _writer.writeBool(9, _instance.textFellBack);
+    }
+    if (_instance.cause) {
+      _writer.writeString(10, _instance.cause);
+    }
+    if (_instance.noticeDelivered) {
+      _writer.writeBool(11, _instance.noticeDelivered);
+    }
+    if (_instance.introStarted) {
+      _writer.writeBool(12, _instance.introStarted);
+    }
+  }
+
+  private _introId: string;
+  private _decision: WarmIntroDecision;
+  private _decidedBy: WarmIntroDecidedBy;
+  private _declineReasonPresent: boolean;
+  private _introCallName: string;
+  private _ringDuration?: googleProtobuf008.Duration;
+  private _introDuration?: googleProtobuf008.Duration;
+  private _textSource: WarmIntroTextSource;
+  private _textFellBack: boolean;
+  private _cause: string;
+  private _noticeDelivered: boolean;
+  private _introStarted: boolean;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of WarmIntroRecord to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<WarmIntroRecord.AsObject>) {
+    _value = _value || {};
+    this.introId = _value.introId;
+    this.decision = _value.decision;
+    this.decidedBy = _value.decidedBy;
+    this.declineReasonPresent = _value.declineReasonPresent;
+    this.introCallName = _value.introCallName;
+    this.ringDuration = _value.ringDuration
+      ? new googleProtobuf008.Duration(_value.ringDuration)
+      : undefined;
+    this.introDuration = _value.introDuration
+      ? new googleProtobuf008.Duration(_value.introDuration)
+      : undefined;
+    this.textSource = _value.textSource;
+    this.textFellBack = _value.textFellBack;
+    this.cause = _value.cause;
+    this.noticeDelivered = _value.noticeDelivered;
+    this.introStarted = _value.introStarted;
+    WarmIntroRecord.refineValues(this);
+  }
+  get introId(): string {
+    return this._introId;
+  }
+  set introId(value: string) {
+    this._introId = value;
+  }
+  get decision(): WarmIntroDecision {
+    return this._decision;
+  }
+  set decision(value: WarmIntroDecision) {
+    this._decision = value;
+  }
+  get decidedBy(): WarmIntroDecidedBy {
+    return this._decidedBy;
+  }
+  set decidedBy(value: WarmIntroDecidedBy) {
+    this._decidedBy = value;
+  }
+  get declineReasonPresent(): boolean {
+    return this._declineReasonPresent;
+  }
+  set declineReasonPresent(value: boolean) {
+    this._declineReasonPresent = value;
+  }
+  get introCallName(): string {
+    return this._introCallName;
+  }
+  set introCallName(value: string) {
+    this._introCallName = value;
+  }
+  get ringDuration(): googleProtobuf008.Duration | undefined {
+    return this._ringDuration;
+  }
+  set ringDuration(value: googleProtobuf008.Duration | undefined) {
+    this._ringDuration = value;
+  }
+  get introDuration(): googleProtobuf008.Duration | undefined {
+    return this._introDuration;
+  }
+  set introDuration(value: googleProtobuf008.Duration | undefined) {
+    this._introDuration = value;
+  }
+  get textSource(): WarmIntroTextSource {
+    return this._textSource;
+  }
+  set textSource(value: WarmIntroTextSource) {
+    this._textSource = value;
+  }
+  get textFellBack(): boolean {
+    return this._textFellBack;
+  }
+  set textFellBack(value: boolean) {
+    this._textFellBack = value;
+  }
+  get cause(): string {
+    return this._cause;
+  }
+  set cause(value: string) {
+    this._cause = value;
+  }
+  get noticeDelivered(): boolean {
+    return this._noticeDelivered;
+  }
+  set noticeDelivered(value: boolean) {
+    this._noticeDelivered = value;
+  }
+  get introStarted(): boolean {
+    return this._introStarted;
+  }
+  set introStarted(value: boolean) {
+    this._introStarted = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    WarmIntroRecord.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): WarmIntroRecord.AsObject {
+    return {
+      introId: this.introId,
+      decision: this.decision,
+      decidedBy: this.decidedBy,
+      declineReasonPresent: this.declineReasonPresent,
+      introCallName: this.introCallName,
+      ringDuration: this.ringDuration
+        ? this.ringDuration.toObject()
+        : undefined,
+      introDuration: this.introDuration
+        ? this.introDuration.toObject()
+        : undefined,
+      textSource: this.textSource,
+      textFellBack: this.textFellBack,
+      cause: this.cause,
+      noticeDelivered: this.noticeDelivered,
+      introStarted: this.introStarted
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): WarmIntroRecord.AsProtobufJSON {
+    return {
+      introId: this.introId,
+      decision:
+        WarmIntroDecision[
+          this.decision === null || this.decision === undefined
+            ? 0
+            : this.decision
+        ],
+      decidedBy:
+        WarmIntroDecidedBy[
+          this.decidedBy === null || this.decidedBy === undefined
+            ? 0
+            : this.decidedBy
+        ],
+      declineReasonPresent: this.declineReasonPresent,
+      introCallName: this.introCallName,
+      ringDuration: this.ringDuration
+        ? this.ringDuration.toProtobufJSON(options)
+        : null,
+      introDuration: this.introDuration
+        ? this.introDuration.toProtobufJSON(options)
+        : null,
+      textSource:
+        WarmIntroTextSource[
+          this.textSource === null || this.textSource === undefined
+            ? 0
+            : this.textSource
+        ],
+      textFellBack: this.textFellBack,
+      cause: this.cause,
+      noticeDelivered: this.noticeDelivered,
+      introStarted: this.introStarted
+    };
+  }
+}
+export module WarmIntroRecord {
+  /**
+   * Standard JavaScript object representation for WarmIntroRecord
+   */
+  export interface AsObject {
+    introId: string;
+    decision: WarmIntroDecision;
+    decidedBy: WarmIntroDecidedBy;
+    declineReasonPresent: boolean;
+    introCallName: string;
+    ringDuration?: googleProtobuf008.Duration.AsObject;
+    introDuration?: googleProtobuf008.Duration.AsObject;
+    textSource: WarmIntroTextSource;
+    textFellBack: boolean;
+    cause: string;
+    noticeDelivered: boolean;
+    introStarted: boolean;
+  }
+
+  /**
+   * Protobuf JSON representation for WarmIntroRecord
+   */
+  export interface AsProtobufJSON {
+    introId: string;
+    decision: string;
+    decidedBy: string;
+    declineReasonPresent: boolean;
+    introCallName: string;
+    ringDuration: googleProtobuf008.Duration.AsProtobufJSON | null;
+    introDuration: googleProtobuf008.Duration.AsProtobufJSON | null;
+    textSource: string;
+    textFellBack: boolean;
+    cause: string;
+    noticeDelivered: boolean;
+    introStarted: boolean;
   }
 }
 

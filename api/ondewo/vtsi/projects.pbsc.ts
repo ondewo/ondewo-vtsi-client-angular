@@ -21,7 +21,13 @@ import {
 import { Observable } from 'rxjs';
 import * as thisProto from './projects.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
-import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
+import * as ondewoNlu001 from '../../ondewo/nlu/context.pb';
+import * as ondewoNlu002 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t003 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s004 from '../../ondewo/t2s/text-to-speech.pb';
+import * as googleProtobuf005 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf006 from '@ngx-grpc/well-known-types';
+import * as ondewoVtsi007 from '../../ondewo/vtsi/call-configs.pb';
 import { GRPC_PROJECTS_CLIENT_SETTINGS } from './projects.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Projects

@@ -22,7 +22,8 @@ import { Observable } from 'rxjs';
 import * as thisProto from './softphones.pb';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
-import * as ondewoVtsi002 from '../../ondewo/vtsi/projects.pb';
+import * as ondewoVtsi002 from '../../ondewo/vtsi/call-configs.pb';
+import * as ondewoVtsi003 from '../../ondewo/vtsi/projects.pb';
 import { GRPC_SOFTPHONES_CLIENT_SETTINGS } from './softphones.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Softphones

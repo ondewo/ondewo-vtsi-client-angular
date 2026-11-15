@@ -12,11 +12,11 @@ import {
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
-import * as ondewoNlu002 from '../../ondewo/nlu/context.pb';
-import * as ondewoNlu003 from '../../ondewo/nlu/intent.pb';
-import * as ondewoS2t004 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s005 from '../../ondewo/t2s/text-to-speech.pb';
-import * as googleProtobuf006 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf002 from '@ngx-grpc/well-known-types';
+import * as ondewoNlu003 from '../../ondewo/nlu/context.pb';
+import * as ondewoNlu004 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t005 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s006 from '../../ondewo/t2s/text-to-speech.pb';
 import * as googleProtobuf007 from '@ngx-grpc/well-known-types';
 import * as ondewoSip008 from '../../ondewo/sip/sip.pb';
 import * as ondewoVtsi009 from '../../ondewo/vtsi/call-configs.pb';
@@ -163,10 +163,10 @@ export class Campaign implements GrpcMessage {
           _instance.maxAttempts = _reader.readInt32();
           break;
         case 7:
-          _instance.retryDelay = new googleProtobuf006.Duration();
+          _instance.retryDelay = new googleProtobuf002.Duration();
           _reader.readMessage(
             _instance.retryDelay,
-            googleProtobuf006.Duration.deserializeBinaryFromReader
+            googleProtobuf002.Duration.deserializeBinaryFromReader
           );
           break;
         case 8:
@@ -291,7 +291,7 @@ export class Campaign implements GrpcMessage {
       _writer.writeMessage(
         7,
         _instance.retryDelay as any,
-        googleProtobuf006.Duration.serializeBinaryToWriter
+        googleProtobuf002.Duration.serializeBinaryToWriter
       );
     }
     if (_instance.state) {
@@ -386,7 +386,7 @@ export class Campaign implements GrpcMessage {
   private _displayName: string;
   private _maxParallelCalls: number;
   private _maxAttempts: number;
-  private _retryDelay?: googleProtobuf006.Duration;
+  private _retryDelay?: googleProtobuf002.Duration;
   private _state: CampaignState;
   private _stateReason: string;
   private _statistics?: CampaignStatistics;
@@ -417,7 +417,7 @@ export class Campaign implements GrpcMessage {
     this.maxParallelCalls = _value.maxParallelCalls;
     this.maxAttempts = _value.maxAttempts;
     this.retryDelay = _value.retryDelay
-      ? new googleProtobuf006.Duration(_value.retryDelay)
+      ? new googleProtobuf002.Duration(_value.retryDelay)
       : undefined;
     this.state = _value.state;
     this.stateReason = _value.stateReason;
@@ -493,10 +493,10 @@ export class Campaign implements GrpcMessage {
   set maxAttempts(value: number) {
     this._maxAttempts = value;
   }
-  get retryDelay(): googleProtobuf006.Duration | undefined {
+  get retryDelay(): googleProtobuf002.Duration | undefined {
     return this._retryDelay;
   }
-  set retryDelay(value: googleProtobuf006.Duration | undefined) {
+  set retryDelay(value: googleProtobuf002.Duration | undefined) {
     this._retryDelay = value;
   }
   get state(): CampaignState {
@@ -720,7 +720,7 @@ export module Campaign {
     displayName: string;
     maxParallelCalls: number;
     maxAttempts: number;
-    retryDelay?: googleProtobuf006.Duration.AsObject;
+    retryDelay?: googleProtobuf002.Duration.AsObject;
     state: CampaignState;
     stateReason: string;
     statistics?: CampaignStatistics.AsObject;
@@ -749,7 +749,7 @@ export module Campaign {
     displayName: string;
     maxParallelCalls: number;
     maxAttempts: number;
-    retryDelay: googleProtobuf006.Duration.AsProtobufJSON | null;
+    retryDelay: googleProtobuf002.Duration.AsProtobufJSON | null;
     state: string;
     stateReason: string;
     statistics: CampaignStatistics.AsProtobufJSON | null;
@@ -1243,10 +1243,10 @@ export class CampaignStatistics implements GrpcMessage {
           _instance.callsRetried = _reader.readInt32();
           break;
         case 13:
-          _instance.averageConnectedDuration = new googleProtobuf006.Duration();
+          _instance.averageConnectedDuration = new googleProtobuf002.Duration();
           _reader.readMessage(
             _instance.averageConnectedDuration,
-            googleProtobuf006.Duration.deserializeBinaryFromReader
+            googleProtobuf002.Duration.deserializeBinaryFromReader
           );
           break;
         case 14:
@@ -1309,7 +1309,7 @@ export class CampaignStatistics implements GrpcMessage {
       _writer.writeMessage(
         13,
         _instance.averageConnectedDuration as any,
-        googleProtobuf006.Duration.serializeBinaryToWriter
+        googleProtobuf002.Duration.serializeBinaryToWriter
       );
     }
     if (_instance.answeringMachineDetected) {
@@ -1329,7 +1329,7 @@ export class CampaignStatistics implements GrpcMessage {
   private _progressPercent: number;
   private _scheduledNotDue: number;
   private _callsRetried: number;
-  private _averageConnectedDuration?: googleProtobuf006.Duration;
+  private _averageConnectedDuration?: googleProtobuf002.Duration;
   private _answeringMachineDetected: number;
 
   /**
@@ -1351,7 +1351,7 @@ export class CampaignStatistics implements GrpcMessage {
     this.scheduledNotDue = _value.scheduledNotDue;
     this.callsRetried = _value.callsRetried;
     this.averageConnectedDuration = _value.averageConnectedDuration
-      ? new googleProtobuf006.Duration(_value.averageConnectedDuration)
+      ? new googleProtobuf002.Duration(_value.averageConnectedDuration)
       : undefined;
     this.answeringMachineDetected = _value.answeringMachineDetected;
     CampaignStatistics.refineValues(this);
@@ -1428,10 +1428,10 @@ export class CampaignStatistics implements GrpcMessage {
   set callsRetried(value: number) {
     this._callsRetried = value;
   }
-  get averageConnectedDuration(): googleProtobuf006.Duration | undefined {
+  get averageConnectedDuration(): googleProtobuf002.Duration | undefined {
     return this._averageConnectedDuration;
   }
-  set averageConnectedDuration(value: googleProtobuf006.Duration | undefined) {
+  set averageConnectedDuration(value: googleProtobuf002.Duration | undefined) {
     this._averageConnectedDuration = value;
   }
   get answeringMachineDetected(): number {
@@ -1528,7 +1528,7 @@ export module CampaignStatistics {
     progressPercent: number;
     scheduledNotDue: number;
     callsRetried: number;
-    averageConnectedDuration?: googleProtobuf006.Duration.AsObject;
+    averageConnectedDuration?: googleProtobuf002.Duration.AsObject;
     answeringMachineDetected: number;
   }
 
@@ -1548,7 +1548,7 @@ export module CampaignStatistics {
     progressPercent: number;
     scheduledNotDue: number;
     callsRetried: number;
-    averageConnectedDuration: googleProtobuf006.Duration.AsProtobufJSON | null;
+    averageConnectedDuration: googleProtobuf002.Duration.AsProtobufJSON | null;
     answeringMachineDetected: number;
   }
 }

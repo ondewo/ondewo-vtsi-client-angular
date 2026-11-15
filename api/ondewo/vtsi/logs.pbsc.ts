@@ -28,11 +28,12 @@ import * as ondewoSip004 from '../../ondewo/sip/sip.pb';
 import * as ondewoVtsi005 from '../../ondewo/vtsi/call-configs.pb';
 import * as ondewoVtsi006 from '../../ondewo/vtsi/campaigns.pb';
 import * as ondewoVtsi007 from '../../ondewo/vtsi/projects.pb';
-import * as ondewoNlu008 from '../../ondewo/nlu/context.pb';
-import * as ondewoS2t009 from '../../ondewo/s2t/speech-to-text.pb';
-import * as ondewoT2s010 from '../../ondewo/t2s/text-to-speech.pb';
-import * as ondewoNlu011 from '../../ondewo/nlu/common.pb';
-import * as ondewoVtsi012 from '../../ondewo/vtsi/calls.pb';
+import * as googleProtobuf008 from '@ngx-grpc/well-known-types';
+import * as ondewoNlu009 from '../../ondewo/nlu/context.pb';
+import * as ondewoS2t010 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s011 from '../../ondewo/t2s/text-to-speech.pb';
+import * as ondewoNlu012 from '../../ondewo/nlu/common.pb';
+import * as ondewoVtsi013 from '../../ondewo/vtsi/calls.pb';
 import { GRPC_LOGS_CLIENT_SETTINGS } from './logs.pbconf';
 /**
  * Service client implementation for ondewo.vtsi.Logs

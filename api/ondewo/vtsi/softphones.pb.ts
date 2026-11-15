@@ -13,7 +13,8 @@ import {
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
 import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
-import * as ondewoVtsi002 from '../../ondewo/vtsi/projects.pb';
+import * as ondewoVtsi002 from '../../ondewo/vtsi/call-configs.pb';
+import * as ondewoVtsi003 from '../../ondewo/vtsi/projects.pb';
 export enum SoftphoneTransportSecurity {
   SOFTPHONE_TRANSPORT_SECURITY_UNSPECIFIED = 0,
   SOFTPHONE_TRANSPORT_SECURITY_CLIENT_CERTIFICATE = 1,
@@ -82,6 +83,7 @@ export class SoftphoneAccount implements GrpcMessage {
     _instance.locked = _instance.locked || false;
     _instance.lockedAt = _instance.lockedAt || undefined;
     _instance.lockedReason = _instance.lockedReason || '';
+    _instance.description = _instance.description || '';
   }
 
   /**
@@ -186,6 +188,9 @@ export class SoftphoneAccount implements GrpcMessage {
           break;
         case 21:
           _instance.lockedReason = _reader.readString();
+          break;
+        case 22:
+          _instance.description = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -299,6 +304,9 @@ export class SoftphoneAccount implements GrpcMessage {
     if (_instance.lockedReason) {
       _writer.writeString(21, _instance.lockedReason);
     }
+    if (_instance.description) {
+      _writer.writeString(22, _instance.description);
+    }
   }
 
   private _name: string;
@@ -322,6 +330,7 @@ export class SoftphoneAccount implements GrpcMessage {
   private _locked: boolean;
   private _lockedAt?: googleProtobuf001.Timestamp;
   private _lockedReason: string;
+  private _description: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -366,6 +375,7 @@ export class SoftphoneAccount implements GrpcMessage {
       ? new googleProtobuf001.Timestamp(_value.lockedAt)
       : undefined;
     this.lockedReason = _value.lockedReason;
+    this.description = _value.description;
     SoftphoneAccount.refineValues(this);
   }
   get name(): string {
@@ -496,6 +506,12 @@ export class SoftphoneAccount implements GrpcMessage {
   set lockedReason(value: string) {
     this._lockedReason = value;
   }
+  get description(): string {
+    return this._description;
+  }
+  set description(value: string) {
+    this._description = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -542,7 +558,8 @@ export class SoftphoneAccount implements GrpcMessage {
       modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : undefined,
       locked: this.locked,
       lockedAt: this.lockedAt ? this.lockedAt.toObject() : undefined,
-      lockedReason: this.lockedReason
+      lockedReason: this.lockedReason,
+      description: this.description
     };
   }
 
@@ -601,7 +618,8 @@ export class SoftphoneAccount implements GrpcMessage {
         : null,
       locked: this.locked,
       lockedAt: this.lockedAt ? this.lockedAt.toProtobufJSON(options) : null,
-      lockedReason: this.lockedReason
+      lockedReason: this.lockedReason,
+      description: this.description
     };
   }
 }
@@ -631,6 +649,7 @@ export module SoftphoneAccount {
     locked: boolean;
     lockedAt?: googleProtobuf001.Timestamp.AsObject;
     lockedReason: string;
+    description: string;
   }
 
   /**
@@ -658,6 +677,7 @@ export module SoftphoneAccount {
     locked: boolean;
     lockedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
     lockedReason: string;
+    description: string;
   }
 
   /**
@@ -2846,7 +2866,7 @@ export class SoftphoneAccountSorting implements GrpcMessage {
   }
 
   private _sortingField: SoftphoneAccountSorting.SoftphoneAccountSortingField;
-  private _sortingMode: ondewoVtsi002.VtsiProjectSortingMode;
+  private _sortingMode: ondewoVtsi003.VtsiProjectSortingMode;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2866,10 +2886,10 @@ export class SoftphoneAccountSorting implements GrpcMessage {
   ) {
     this._sortingField = value;
   }
-  get sortingMode(): ondewoVtsi002.VtsiProjectSortingMode {
+  get sortingMode(): ondewoVtsi003.VtsiProjectSortingMode {
     return this._sortingMode;
   }
-  set sortingMode(value: ondewoVtsi002.VtsiProjectSortingMode) {
+  set sortingMode(value: ondewoVtsi003.VtsiProjectSortingMode) {
     this._sortingMode = value;
   }
 
@@ -2917,7 +2937,7 @@ export class SoftphoneAccountSorting implements GrpcMessage {
             : this.sortingField
         ],
       sortingMode:
-        ondewoVtsi002.VtsiProjectSortingMode[
+        ondewoVtsi003.VtsiProjectSortingMode[
           this.sortingMode === null || this.sortingMode === undefined
             ? 0
             : this.sortingMode
@@ -2931,7 +2951,7 @@ export module SoftphoneAccountSorting {
    */
   export interface AsObject {
     sortingField: SoftphoneAccountSorting.SoftphoneAccountSortingField;
-    sortingMode: ondewoVtsi002.VtsiProjectSortingMode;
+    sortingMode: ondewoVtsi003.VtsiProjectSortingMode;
   }
 
   /**

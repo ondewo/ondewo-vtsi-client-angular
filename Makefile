@@ -15,9 +15,9 @@ export
 # 		Variables
 ########################################################
 
-ONDEWO_VTSI_VERSION=9.4.0
+ONDEWO_VTSI_VERSION=9.5.0
 
-VTSI_API_GIT_BRANCH=feature/OND236-120-barge-in-cancel
+VTSI_API_GIT_BRANCH=5cdc0e467a9ea4afaa00e329093f0ae791f007c6
 # Must name the tag the committed ondewo-proto-compiler submodule points at, otherwise
 # check_out_correct_submodule_versions checks the submodule BACK to the older tag.
 ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags/5.15.7
@@ -25,6 +25,11 @@ ONDEWO_PROTO_COMPILER_DIR=ondewo-proto-compiler
 VTSI_APIS_DIR=src/ondewo-vtsi-api
 VTSI_PROTOS_DIR=${VTSI_APIS_DIR}/ondewo
 GOOGLE_PROTOS_DIR=${VTSI_APIS_DIR}/google
+# Vendored protos (paths under ${VTSI_APIS_DIR}) left out of the codegen. ondewo/nlu/logs.proto
+# declares a second `service Logs`, and the compiler's barrel binds a name two stubs declare to the
+# first in sorted order, so it would replace this client's ondewo.vtsi LogsClient and
+# GRPC_LOGS_CLIENT_SETTINGS. No compiled proto imports it; @ondewo/nlu-client-angular ships it.
+CODEGEN_EXCLUDED_PROTOS=ondewo/nlu/logs.proto
 NPM_USERNAME?=ENTER_HERE_YOUR_NPM_USERNAME
 NPM_PASSWORD?=ENTER_HERE_YOUR_NPM_PASSWORD
 GITHUB_GH_TOKEN?=
@@ -467,7 +472,9 @@ check_out_correct_submodule_versions: ## Fetches all Submodules and checksout sp
 # files it writes are handed back to the invoking user by the same image - no sudo on the host.
 npm_run_build: ## Generates the stubs and the library in the proto-compiler container
 	@echo "START npm run build ..."
-	docker run --rm -v "$(CURDIR)/src":/input-volume -v "$(CURDIR)":/output-volume $(CODEGEN_IMAGE) ondewo-vtsi-api ondewo
+	# The excluded protos leave the input tree for the codegen run only; the EXIT trap restores them
+	# from git whatever the outcome, and the shell still exits with the codegen's status.
+	trap 'git -C ${VTSI_APIS_DIR} checkout -- ${CODEGEN_EXCLUDED_PROTOS}' EXIT; rm -f $(addprefix ${VTSI_APIS_DIR}/,${CODEGEN_EXCLUDED_PROTOS}); docker run --rm -v "$(CURDIR)/src":/input-volume -v "$(CURDIR)":/output-volume $(CODEGEN_IMAGE) ondewo-vtsi-api ondewo
 	docker run --rm --entrypoint chown -v "$(CURDIR)":/output-volume $(CODEGEN_IMAGE) -R "$$(id -u):$$(id -g)" /output-volume
 	@echo "DONE npm run build."
 

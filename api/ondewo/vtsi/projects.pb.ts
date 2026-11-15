@@ -11,7 +11,27 @@ import {
 } from '@ngx-grpc/common';
 import { BinaryReader, BinaryWriter, ByteSource } from 'google-protobuf';
 import * as googleProtobuf000 from '@ngx-grpc/well-known-types';
-import * as googleProtobuf001 from '@ngx-grpc/well-known-types';
+import * as ondewoNlu001 from '../../ondewo/nlu/context.pb';
+import * as ondewoNlu002 from '../../ondewo/nlu/intent.pb';
+import * as ondewoS2t003 from '../../ondewo/s2t/speech-to-text.pb';
+import * as ondewoT2s004 from '../../ondewo/t2s/text-to-speech.pb';
+import * as googleProtobuf005 from '@ngx-grpc/well-known-types';
+import * as googleProtobuf006 from '@ngx-grpc/well-known-types';
+import * as ondewoVtsi007 from '../../ondewo/vtsi/call-configs.pb';
+export enum WarmIntroAvailability {
+  WARM_INTRO_AVAILABILITY_UNSPECIFIED = 0,
+  WARM_INTRO_AVAILABILITY_AVAILABLE = 1,
+  WARM_INTRO_AVAILABILITY_DISABLED_BY_DEPLOYMENT = 2,
+  WARM_INTRO_AVAILABILITY_NEEDS_LOCAL_ASTERISK = 3,
+  WARM_INTRO_AVAILABILITY_NEEDS_LISTENER = 4,
+  WARM_INTRO_AVAILABILITY_NEEDS_CALL_CONTROL_KEY = 5
+}
+export enum IvrAvailability {
+  IVR_AVAILABILITY_UNSPECIFIED = 0,
+  IVR_AVAILABILITY_AVAILABLE = 1,
+  IVR_AVAILABILITY_DISABLED_BY_DEPLOYMENT = 2,
+  IVR_AVAILABILITY_NEEDS_LOCAL_ASTERISK = 3
+}
 export enum TrunkRegistrationState {
   TRUNK_REGISTRATION_STATE_UNSPECIFIED = 0,
   TRUNK_REGISTRATION_STATE_REGISTERED = 1,
@@ -90,6 +110,10 @@ export class VtsiProject implements GrpcMessage {
     _instance.trunkRegistrationState = _instance.trunkRegistrationState || 0;
     _instance.asteriskVersionEffective =
       _instance.asteriskVersionEffective || '';
+    _instance.warmTransferDefaults =
+      _instance.warmTransferDefaults || undefined;
+    _instance.featureAvailability = _instance.featureAvailability || undefined;
+    _instance.transferTargetDirectory = _instance.transferTargetDirectory || {};
   }
 
   /**
@@ -131,20 +155,20 @@ export class VtsiProject implements GrpcMessage {
           _instance.createdBy = _reader.readString();
           break;
         case 8:
-          _instance.createdAt = new googleProtobuf001.Timestamp();
+          _instance.createdAt = new googleProtobuf006.Timestamp();
           _reader.readMessage(
             _instance.createdAt,
-            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+            googleProtobuf006.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 9:
           _instance.modifiedBy = _reader.readString();
           break;
         case 10:
-          _instance.modifiedAt = new googleProtobuf001.Timestamp();
+          _instance.modifiedAt = new googleProtobuf006.Timestamp();
           _reader.readMessage(
             _instance.modifiedAt,
-            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+            googleProtobuf006.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 11:
@@ -177,10 +201,10 @@ export class VtsiProject implements GrpcMessage {
           _instance.statusMessage = _reader.readString();
           break;
         case 19:
-          _instance.statusChangedAt = new googleProtobuf001.Timestamp();
+          _instance.statusChangedAt = new googleProtobuf006.Timestamp();
           _reader.readMessage(
             _instance.statusChangedAt,
-            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+            googleProtobuf006.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 20:
@@ -188,6 +212,33 @@ export class VtsiProject implements GrpcMessage {
           break;
         case 21:
           _instance.asteriskVersionEffective = _reader.readString();
+          break;
+        case 22:
+          _instance.warmTransferDefaults = new ondewoVtsi007.WarmTransferConfig();
+          _reader.readMessage(
+            _instance.warmTransferDefaults,
+            ondewoVtsi007.WarmTransferConfig.deserializeBinaryFromReader
+          );
+          break;
+        case 23:
+          _instance.featureAvailability = new VtsiProjectFeatureAvailability();
+          _reader.readMessage(
+            _instance.featureAvailability,
+            VtsiProjectFeatureAvailability.deserializeBinaryFromReader
+          );
+          break;
+        case 24:
+          _instance.ivrMenusEnabled = _reader.readBool();
+          break;
+        case 25:
+          const msg_25 = {} as any;
+          _reader.readMessage(
+            msg_25,
+            VtsiProject.TransferTargetDirectoryEntry.deserializeBinaryFromReader
+          );
+          _instance.transferTargetDirectory =
+            _instance.transferTargetDirectory || {};
+          _instance.transferTargetDirectory[msg_25.key] = msg_25.value;
           break;
         default:
           _reader.skipField();
@@ -235,7 +286,7 @@ export class VtsiProject implements GrpcMessage {
       _writer.writeMessage(
         8,
         _instance.createdAt as any,
-        googleProtobuf001.Timestamp.serializeBinaryToWriter
+        googleProtobuf006.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.modifiedBy) {
@@ -245,7 +296,7 @@ export class VtsiProject implements GrpcMessage {
       _writer.writeMessage(
         10,
         _instance.modifiedAt as any,
-        googleProtobuf001.Timestamp.serializeBinaryToWriter
+        googleProtobuf006.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.activeCallers) {
@@ -279,7 +330,7 @@ export class VtsiProject implements GrpcMessage {
       _writer.writeMessage(
         19,
         _instance.statusChangedAt as any,
-        googleProtobuf001.Timestamp.serializeBinaryToWriter
+        googleProtobuf006.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.trunkRegistrationState) {
@@ -287,6 +338,44 @@ export class VtsiProject implements GrpcMessage {
     }
     if (_instance.asteriskVersionEffective) {
       _writer.writeString(21, _instance.asteriskVersionEffective);
+    }
+    if (_instance.warmTransferDefaults) {
+      _writer.writeMessage(
+        22,
+        _instance.warmTransferDefaults as any,
+        ondewoVtsi007.WarmTransferConfig.serializeBinaryToWriter
+      );
+    }
+    if (_instance.featureAvailability) {
+      _writer.writeMessage(
+        23,
+        _instance.featureAvailability as any,
+        VtsiProjectFeatureAvailability.serializeBinaryToWriter
+      );
+    }
+    if (
+      _instance.ivrMenusEnabled !== undefined &&
+      _instance.ivrMenusEnabled !== null
+    ) {
+      _writer.writeBool(24, _instance.ivrMenusEnabled);
+    }
+    if (!!_instance.transferTargetDirectory) {
+      const keys_25 = Object.keys(_instance.transferTargetDirectory as any);
+
+      if (keys_25.length) {
+        const repeated_25 = keys_25
+          .map(key => ({
+            key: key,
+            value: (_instance.transferTargetDirectory as any)[key]
+          }))
+          .reduce((r, v) => [...r, v], [] as any[]);
+
+        _writer.writeRepeatedMessage(
+          25,
+          repeated_25,
+          VtsiProject.TransferTargetDirectoryEntry.serializeBinaryToWriter
+        );
+      }
     }
   }
 
@@ -297,9 +386,9 @@ export class VtsiProject implements GrpcMessage {
   private _asteriskConfigs?: AsteriskConfigs;
   private _vtsiProjectStatus: VtsiProjectStatus;
   private _createdBy: string;
-  private _createdAt?: googleProtobuf001.Timestamp;
+  private _createdAt?: googleProtobuf006.Timestamp;
   private _modifiedBy: string;
-  private _modifiedAt?: googleProtobuf001.Timestamp;
+  private _modifiedAt?: googleProtobuf006.Timestamp;
   private _activeCallers: number;
   private _activeListeners: number;
   private _asteriskPort: number;
@@ -308,9 +397,15 @@ export class VtsiProject implements GrpcMessage {
   private _deployedListeners: number;
   private _transferPhoneNumberAllowlist: string[];
   private _statusMessage: string;
-  private _statusChangedAt?: googleProtobuf001.Timestamp;
+  private _statusChangedAt?: googleProtobuf006.Timestamp;
   private _trunkRegistrationState: TrunkRegistrationState;
   private _asteriskVersionEffective: string;
+  private _warmTransferDefaults?: ondewoVtsi007.WarmTransferConfig;
+  private _featureAvailability?: VtsiProjectFeatureAvailability;
+  private _ivrMenusEnabled: boolean;
+  private _transferTargetDirectory: {
+    [prop: string]: TransferTargetDirectoryItem;
+  };
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -328,11 +423,11 @@ export class VtsiProject implements GrpcMessage {
     this.vtsiProjectStatus = _value.vtsiProjectStatus;
     this.createdBy = _value.createdBy;
     this.createdAt = _value.createdAt
-      ? new googleProtobuf001.Timestamp(_value.createdAt)
+      ? new googleProtobuf006.Timestamp(_value.createdAt)
       : undefined;
     this.modifiedBy = _value.modifiedBy;
     this.modifiedAt = _value.modifiedAt
-      ? new googleProtobuf001.Timestamp(_value.modifiedAt)
+      ? new googleProtobuf006.Timestamp(_value.modifiedAt)
       : undefined;
     this.activeCallers = _value.activeCallers;
     this.activeListeners = _value.activeListeners;
@@ -345,11 +440,31 @@ export class VtsiProject implements GrpcMessage {
     ).slice();
     this.statusMessage = _value.statusMessage;
     this.statusChangedAt = _value.statusChangedAt
-      ? new googleProtobuf001.Timestamp(_value.statusChangedAt)
+      ? new googleProtobuf006.Timestamp(_value.statusChangedAt)
       : undefined;
     this.trunkRegistrationState = _value.trunkRegistrationState;
     this.asteriskVersionEffective = _value.asteriskVersionEffective;
-    VtsiProject.refineValues(this);
+    this.warmTransferDefaults = _value.warmTransferDefaults
+      ? new ondewoVtsi007.WarmTransferConfig(_value.warmTransferDefaults)
+      : undefined;
+    this.featureAvailability = _value.featureAvailability
+      ? new VtsiProjectFeatureAvailability(_value.featureAvailability)
+      : undefined;
+    this.ivrMenusEnabled = _value.ivrMenusEnabled;
+    (this.transferTargetDirectory = _value!.transferTargetDirectory
+      ? Object.keys(_value!.transferTargetDirectory).reduce(
+          (r, k) => ({
+            ...r,
+            [k]: _value!.transferTargetDirectory![k]
+              ? new TransferTargetDirectoryItem(
+                  _value!.transferTargetDirectory![k]
+                )
+              : undefined
+          }),
+          {}
+        )
+      : {}),
+      VtsiProject.refineValues(this);
   }
   get name(): string {
     return this._name;
@@ -393,10 +508,10 @@ export class VtsiProject implements GrpcMessage {
   set createdBy(value: string) {
     this._createdBy = value;
   }
-  get createdAt(): googleProtobuf001.Timestamp | undefined {
+  get createdAt(): googleProtobuf006.Timestamp | undefined {
     return this._createdAt;
   }
-  set createdAt(value: googleProtobuf001.Timestamp | undefined) {
+  set createdAt(value: googleProtobuf006.Timestamp | undefined) {
     this._createdAt = value;
   }
   get modifiedBy(): string {
@@ -405,10 +520,10 @@ export class VtsiProject implements GrpcMessage {
   set modifiedBy(value: string) {
     this._modifiedBy = value;
   }
-  get modifiedAt(): googleProtobuf001.Timestamp | undefined {
+  get modifiedAt(): googleProtobuf006.Timestamp | undefined {
     return this._modifiedAt;
   }
-  set modifiedAt(value: googleProtobuf001.Timestamp | undefined) {
+  set modifiedAt(value: googleProtobuf006.Timestamp | undefined) {
     this._modifiedAt = value;
   }
   get activeCallers(): number {
@@ -459,10 +574,10 @@ export class VtsiProject implements GrpcMessage {
   set statusMessage(value: string) {
     this._statusMessage = value;
   }
-  get statusChangedAt(): googleProtobuf001.Timestamp | undefined {
+  get statusChangedAt(): googleProtobuf006.Timestamp | undefined {
     return this._statusChangedAt;
   }
-  set statusChangedAt(value: googleProtobuf001.Timestamp | undefined) {
+  set statusChangedAt(value: googleProtobuf006.Timestamp | undefined) {
     this._statusChangedAt = value;
   }
   get trunkRegistrationState(): TrunkRegistrationState {
@@ -476,6 +591,36 @@ export class VtsiProject implements GrpcMessage {
   }
   set asteriskVersionEffective(value: string) {
     this._asteriskVersionEffective = value;
+  }
+  get warmTransferDefaults(): ondewoVtsi007.WarmTransferConfig | undefined {
+    return this._warmTransferDefaults;
+  }
+  set warmTransferDefaults(
+    value: ondewoVtsi007.WarmTransferConfig | undefined
+  ) {
+    this._warmTransferDefaults = value;
+  }
+  get featureAvailability(): VtsiProjectFeatureAvailability | undefined {
+    return this._featureAvailability;
+  }
+  set featureAvailability(value: VtsiProjectFeatureAvailability | undefined) {
+    this._featureAvailability = value;
+  }
+  get ivrMenusEnabled(): boolean {
+    return this._ivrMenusEnabled;
+  }
+  set ivrMenusEnabled(value: boolean) {
+    this._ivrMenusEnabled = value;
+  }
+  get transferTargetDirectory(): {
+    [prop: string]: TransferTargetDirectoryItem;
+  } {
+    return this._transferTargetDirectory;
+  }
+  set transferTargetDirectory(value: {
+    [prop: string]: TransferTargetDirectoryItem;
+  }) {
+    this._transferTargetDirectory = value;
   }
 
   /**
@@ -519,7 +664,25 @@ export class VtsiProject implements GrpcMessage {
         ? this.statusChangedAt.toObject()
         : undefined,
       trunkRegistrationState: this.trunkRegistrationState,
-      asteriskVersionEffective: this.asteriskVersionEffective
+      asteriskVersionEffective: this.asteriskVersionEffective,
+      warmTransferDefaults: this.warmTransferDefaults
+        ? this.warmTransferDefaults.toObject()
+        : undefined,
+      featureAvailability: this.featureAvailability
+        ? this.featureAvailability.toObject()
+        : undefined,
+      ivrMenusEnabled: this.ivrMenusEnabled,
+      transferTargetDirectory: this.transferTargetDirectory
+        ? Object.keys(this.transferTargetDirectory).reduce(
+            (r, k) => ({
+              ...r,
+              [k]: this.transferTargetDirectory![k]
+                ? this.transferTargetDirectory![k].toObject()
+                : undefined
+            }),
+            {}
+          )
+        : {}
     };
   }
 
@@ -580,7 +743,25 @@ export class VtsiProject implements GrpcMessage {
             ? 0
             : this.trunkRegistrationState
         ],
-      asteriskVersionEffective: this.asteriskVersionEffective
+      asteriskVersionEffective: this.asteriskVersionEffective,
+      warmTransferDefaults: this.warmTransferDefaults
+        ? this.warmTransferDefaults.toProtobufJSON(options)
+        : null,
+      featureAvailability: this.featureAvailability
+        ? this.featureAvailability.toProtobufJSON(options)
+        : null,
+      ivrMenusEnabled: this.ivrMenusEnabled,
+      transferTargetDirectory: this.transferTargetDirectory
+        ? Object.keys(this.transferTargetDirectory).reduce(
+            (r, k) => ({
+              ...r,
+              [k]: this.transferTargetDirectory![k]
+                ? this.transferTargetDirectory![k].toJSON()
+                : null
+            }),
+            {}
+          )
+        : {}
     };
   }
 }
@@ -596,9 +777,9 @@ export module VtsiProject {
     asteriskConfigs?: AsteriskConfigs.AsObject;
     vtsiProjectStatus: VtsiProjectStatus;
     createdBy: string;
-    createdAt?: googleProtobuf001.Timestamp.AsObject;
+    createdAt?: googleProtobuf006.Timestamp.AsObject;
     modifiedBy: string;
-    modifiedAt?: googleProtobuf001.Timestamp.AsObject;
+    modifiedAt?: googleProtobuf006.Timestamp.AsObject;
     activeCallers: number;
     activeListeners: number;
     asteriskPort: number;
@@ -607,9 +788,13 @@ export module VtsiProject {
     deployedListeners: number;
     transferPhoneNumberAllowlist: string[];
     statusMessage: string;
-    statusChangedAt?: googleProtobuf001.Timestamp.AsObject;
+    statusChangedAt?: googleProtobuf006.Timestamp.AsObject;
     trunkRegistrationState: TrunkRegistrationState;
     asteriskVersionEffective: string;
+    warmTransferDefaults?: ondewoVtsi007.WarmTransferConfig.AsObject;
+    featureAvailability?: VtsiProjectFeatureAvailability.AsObject;
+    ivrMenusEnabled: boolean;
+    transferTargetDirectory: { [prop: string]: TransferTargetDirectoryItem };
   }
 
   /**
@@ -623,9 +808,9 @@ export module VtsiProject {
     asteriskConfigs: AsteriskConfigs.AsProtobufJSON | null;
     vtsiProjectStatus: string;
     createdBy: string;
-    createdAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    createdAt: googleProtobuf006.Timestamp.AsProtobufJSON | null;
     modifiedBy: string;
-    modifiedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    modifiedAt: googleProtobuf006.Timestamp.AsProtobufJSON | null;
     activeCallers: number;
     activeListeners: number;
     asteriskPort: number;
@@ -634,9 +819,528 @@ export module VtsiProject {
     deployedListeners: number;
     transferPhoneNumberAllowlist: string[];
     statusMessage: string;
-    statusChangedAt: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    statusChangedAt: googleProtobuf006.Timestamp.AsProtobufJSON | null;
     trunkRegistrationState: string;
     asteriskVersionEffective: string;
+    warmTransferDefaults: ondewoVtsi007.WarmTransferConfig.AsProtobufJSON | null;
+    featureAvailability: VtsiProjectFeatureAvailability.AsProtobufJSON | null;
+    ivrMenusEnabled: boolean;
+    transferTargetDirectory: { [prop: string]: TransferTargetDirectoryItem };
+  }
+
+  /**
+   * Message implementation for ondewo.vtsi.VtsiProject.TransferTargetDirectoryEntry
+   */
+  export class TransferTargetDirectoryEntry implements GrpcMessage {
+    static id = 'ondewo.vtsi.VtsiProject.TransferTargetDirectoryEntry';
+
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource) {
+      const instance = new TransferTargetDirectoryEntry();
+      TransferTargetDirectoryEntry.deserializeBinaryFromReader(
+        instance,
+        new BinaryReader(bytes)
+      );
+      return instance;
+    }
+
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: TransferTargetDirectoryEntry) {
+      _instance.key = _instance.key || '';
+      _instance.value = _instance.value || undefined;
+    }
+
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(
+      _instance: TransferTargetDirectoryEntry,
+      _reader: BinaryReader
+    ) {
+      while (_reader.nextField()) {
+        if (_reader.isEndGroup()) break;
+
+        switch (_reader.getFieldNumber()) {
+          case 1:
+            _instance.key = _reader.readString();
+            break;
+          case 2:
+            _instance.value = new TransferTargetDirectoryItem();
+            _reader.readMessage(
+              _instance.value,
+              TransferTargetDirectoryItem.deserializeBinaryFromReader
+            );
+            break;
+          default:
+            _reader.skipField();
+        }
+      }
+
+      TransferTargetDirectoryEntry.refineValues(_instance);
+    }
+
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(
+      _instance: TransferTargetDirectoryEntry,
+      _writer: BinaryWriter
+    ) {
+      if (_instance.key) {
+        _writer.writeString(1, _instance.key);
+      }
+      if (_instance.value) {
+        _writer.writeMessage(
+          2,
+          _instance.value as any,
+          TransferTargetDirectoryItem.serializeBinaryToWriter
+        );
+      }
+    }
+
+    private _key: string;
+    private _value?: TransferTargetDirectoryItem;
+
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TransferTargetDirectoryEntry to deeply clone from
+     */
+    constructor(
+      _value?: RecursivePartial<TransferTargetDirectoryEntry.AsObject>
+    ) {
+      _value = _value || {};
+      this.key = _value.key;
+      this.value = _value.value
+        ? new TransferTargetDirectoryItem(_value.value)
+        : undefined;
+      TransferTargetDirectoryEntry.refineValues(this);
+    }
+    get key(): string {
+      return this._key;
+    }
+    set key(value: string) {
+      this._key = value;
+    }
+    get value(): TransferTargetDirectoryItem | undefined {
+      return this._value;
+    }
+    set value(value: TransferTargetDirectoryItem | undefined) {
+      this._value = value;
+    }
+
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+      const writer = new BinaryWriter();
+      TransferTargetDirectoryEntry.serializeBinaryToWriter(this, writer);
+      return writer.getResultBuffer();
+    }
+
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): TransferTargetDirectoryEntry.AsObject {
+      return {
+        key: this.key,
+        value: this.value ? this.value.toObject() : undefined
+      };
+    }
+
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+      return this.toObject();
+    }
+
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+      // @ts-ignore
+      options?: ToProtobufJSONOptions
+    ): TransferTargetDirectoryEntry.AsProtobufJSON {
+      return {
+        key: this.key,
+        value: this.value ? this.value.toProtobufJSON(options) : null
+      };
+    }
+  }
+  export module TransferTargetDirectoryEntry {
+    /**
+     * Standard JavaScript object representation for TransferTargetDirectoryEntry
+     */
+    export interface AsObject {
+      key: string;
+      value?: TransferTargetDirectoryItem.AsObject;
+    }
+
+    /**
+     * Protobuf JSON representation for TransferTargetDirectoryEntry
+     */
+    export interface AsProtobufJSON {
+      key: string;
+      value: TransferTargetDirectoryItem.AsProtobufJSON | null;
+    }
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.TransferTargetDirectoryItem
+ */
+export class TransferTargetDirectoryItem implements GrpcMessage {
+  static id = 'ondewo.vtsi.TransferTargetDirectoryItem';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new TransferTargetDirectoryItem();
+    TransferTargetDirectoryItem.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: TransferTargetDirectoryItem) {
+    _instance.displayName = _instance.displayName || '';
+    _instance.description = _instance.description || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: TransferTargetDirectoryItem,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.displayName = _reader.readString();
+          break;
+        case 2:
+          _instance.description = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    TransferTargetDirectoryItem.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: TransferTargetDirectoryItem,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.displayName) {
+      _writer.writeString(1, _instance.displayName);
+    }
+    if (_instance.description) {
+      _writer.writeString(2, _instance.description);
+    }
+  }
+
+  private _displayName: string;
+  private _description: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of TransferTargetDirectoryItem to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<TransferTargetDirectoryItem.AsObject>) {
+    _value = _value || {};
+    this.displayName = _value.displayName;
+    this.description = _value.description;
+    TransferTargetDirectoryItem.refineValues(this);
+  }
+  get displayName(): string {
+    return this._displayName;
+  }
+  set displayName(value: string) {
+    this._displayName = value;
+  }
+  get description(): string {
+    return this._description;
+  }
+  set description(value: string) {
+    this._description = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    TransferTargetDirectoryItem.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): TransferTargetDirectoryItem.AsObject {
+    return {
+      displayName: this.displayName,
+      description: this.description
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): TransferTargetDirectoryItem.AsProtobufJSON {
+    return {
+      displayName: this.displayName,
+      description: this.description
+    };
+  }
+}
+export module TransferTargetDirectoryItem {
+  /**
+   * Standard JavaScript object representation for TransferTargetDirectoryItem
+   */
+  export interface AsObject {
+    displayName: string;
+    description: string;
+  }
+
+  /**
+   * Protobuf JSON representation for TransferTargetDirectoryItem
+   */
+  export interface AsProtobufJSON {
+    displayName: string;
+    description: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.VtsiProjectFeatureAvailability
+ */
+export class VtsiProjectFeatureAvailability implements GrpcMessage {
+  static id = 'ondewo.vtsi.VtsiProjectFeatureAvailability';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new VtsiProjectFeatureAvailability();
+    VtsiProjectFeatureAvailability.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: VtsiProjectFeatureAvailability) {
+    _instance.warmIntro = _instance.warmIntro || 0;
+    _instance.warmIntroPhaseB = _instance.warmIntroPhaseB || false;
+    _instance.ivr = _instance.ivr || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: VtsiProjectFeatureAvailability,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.warmIntro = _reader.readEnum();
+          break;
+        case 2:
+          _instance.warmIntroPhaseB = _reader.readBool();
+          break;
+        case 3:
+          _instance.ivr = _reader.readEnum();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    VtsiProjectFeatureAvailability.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: VtsiProjectFeatureAvailability,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.warmIntro) {
+      _writer.writeEnum(1, _instance.warmIntro);
+    }
+    if (_instance.warmIntroPhaseB) {
+      _writer.writeBool(2, _instance.warmIntroPhaseB);
+    }
+    if (_instance.ivr) {
+      _writer.writeEnum(3, _instance.ivr);
+    }
+  }
+
+  private _warmIntro: WarmIntroAvailability;
+  private _warmIntroPhaseB: boolean;
+  private _ivr: IvrAvailability;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of VtsiProjectFeatureAvailability to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<VtsiProjectFeatureAvailability.AsObject>
+  ) {
+    _value = _value || {};
+    this.warmIntro = _value.warmIntro;
+    this.warmIntroPhaseB = _value.warmIntroPhaseB;
+    this.ivr = _value.ivr;
+    VtsiProjectFeatureAvailability.refineValues(this);
+  }
+  get warmIntro(): WarmIntroAvailability {
+    return this._warmIntro;
+  }
+  set warmIntro(value: WarmIntroAvailability) {
+    this._warmIntro = value;
+  }
+  get warmIntroPhaseB(): boolean {
+    return this._warmIntroPhaseB;
+  }
+  set warmIntroPhaseB(value: boolean) {
+    this._warmIntroPhaseB = value;
+  }
+  get ivr(): IvrAvailability {
+    return this._ivr;
+  }
+  set ivr(value: IvrAvailability) {
+    this._ivr = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    VtsiProjectFeatureAvailability.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): VtsiProjectFeatureAvailability.AsObject {
+    return {
+      warmIntro: this.warmIntro,
+      warmIntroPhaseB: this.warmIntroPhaseB,
+      ivr: this.ivr
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): VtsiProjectFeatureAvailability.AsProtobufJSON {
+    return {
+      warmIntro:
+        WarmIntroAvailability[
+          this.warmIntro === null || this.warmIntro === undefined
+            ? 0
+            : this.warmIntro
+        ],
+      warmIntroPhaseB: this.warmIntroPhaseB,
+      ivr:
+        IvrAvailability[
+          this.ivr === null || this.ivr === undefined ? 0 : this.ivr
+        ]
+    };
+  }
+}
+export module VtsiProjectFeatureAvailability {
+  /**
+   * Standard JavaScript object representation for VtsiProjectFeatureAvailability
+   */
+  export interface AsObject {
+    warmIntro: WarmIntroAvailability;
+    warmIntroPhaseB: boolean;
+    ivr: IvrAvailability;
+  }
+
+  /**
+   * Protobuf JSON representation for VtsiProjectFeatureAvailability
+   */
+  export interface AsProtobufJSON {
+    warmIntro: string;
+    warmIntroPhaseB: boolean;
+    ivr: string;
   }
 }
 
@@ -1868,10 +2572,10 @@ export class GetVtsiProjectRequest implements GrpcMessage {
           _instance.vtsiProjectView = _reader.readEnum();
           break;
         case 3:
-          _instance.fieldMask = new googleProtobuf000.FieldMask();
+          _instance.fieldMask = new googleProtobuf005.FieldMask();
           _reader.readMessage(
             _instance.fieldMask,
-            googleProtobuf000.FieldMask.deserializeBinaryFromReader
+            googleProtobuf005.FieldMask.deserializeBinaryFromReader
           );
           break;
         default:
@@ -1901,14 +2605,14 @@ export class GetVtsiProjectRequest implements GrpcMessage {
       _writer.writeMessage(
         3,
         _instance.fieldMask as any,
-        googleProtobuf000.FieldMask.serializeBinaryToWriter
+        googleProtobuf005.FieldMask.serializeBinaryToWriter
       );
     }
   }
 
   private _name: string;
   private _vtsiProjectView: VtsiProjectView;
-  private _fieldMask?: googleProtobuf000.FieldMask;
+  private _fieldMask?: googleProtobuf005.FieldMask;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1919,7 +2623,7 @@ export class GetVtsiProjectRequest implements GrpcMessage {
     this.name = _value.name;
     this.vtsiProjectView = _value.vtsiProjectView;
     this.fieldMask = _value.fieldMask
-      ? new googleProtobuf000.FieldMask(_value.fieldMask)
+      ? new googleProtobuf005.FieldMask(_value.fieldMask)
       : undefined;
     GetVtsiProjectRequest.refineValues(this);
   }
@@ -1935,10 +2639,10 @@ export class GetVtsiProjectRequest implements GrpcMessage {
   set vtsiProjectView(value: VtsiProjectView) {
     this._vtsiProjectView = value;
   }
-  get fieldMask(): googleProtobuf000.FieldMask | undefined {
+  get fieldMask(): googleProtobuf005.FieldMask | undefined {
     return this._fieldMask;
   }
-  set fieldMask(value: googleProtobuf000.FieldMask | undefined) {
+  set fieldMask(value: googleProtobuf005.FieldMask | undefined) {
     this._fieldMask = value;
   }
 
@@ -1998,7 +2702,7 @@ export module GetVtsiProjectRequest {
   export interface AsObject {
     name: string;
     vtsiProjectView: VtsiProjectView;
-    fieldMask?: googleProtobuf000.FieldMask.AsObject;
+    fieldMask?: googleProtobuf005.FieldMask.AsObject;
   }
 
   /**
@@ -2007,7 +2711,7 @@ export module GetVtsiProjectRequest {
   export interface AsProtobufJSON {
     name: string;
     vtsiProjectView: string;
-    fieldMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf005.FieldMask.AsProtobufJSON | null;
   }
 }
 
@@ -2078,10 +2782,10 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
           );
           break;
         case 5:
-          _instance.fieldMask = new googleProtobuf000.FieldMask();
+          _instance.fieldMask = new googleProtobuf005.FieldMask();
           _reader.readMessage(
             _instance.fieldMask,
-            googleProtobuf000.FieldMask.deserializeBinaryFromReader
+            googleProtobuf005.FieldMask.deserializeBinaryFromReader
           );
           break;
         case 6:
@@ -2096,17 +2800,17 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
           _instance.displayNameContains = _reader.readString();
           break;
         case 9:
-          _instance.createdAfter = new googleProtobuf001.Timestamp();
+          _instance.createdAfter = new googleProtobuf006.Timestamp();
           _reader.readMessage(
             _instance.createdAfter,
-            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+            googleProtobuf006.Timestamp.deserializeBinaryFromReader
           );
           break;
         case 10:
-          _instance.createdBefore = new googleProtobuf001.Timestamp();
+          _instance.createdBefore = new googleProtobuf006.Timestamp();
           _reader.readMessage(
             _instance.createdBefore,
-            googleProtobuf001.Timestamp.deserializeBinaryFromReader
+            googleProtobuf006.Timestamp.deserializeBinaryFromReader
           );
           break;
         default:
@@ -2146,7 +2850,7 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
       _writer.writeMessage(
         5,
         _instance.fieldMask as any,
-        googleProtobuf000.FieldMask.serializeBinaryToWriter
+        googleProtobuf005.FieldMask.serializeBinaryToWriter
       );
     }
     if (_instance.pageSize) {
@@ -2162,14 +2866,14 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
       _writer.writeMessage(
         9,
         _instance.createdAfter as any,
-        googleProtobuf001.Timestamp.serializeBinaryToWriter
+        googleProtobuf006.Timestamp.serializeBinaryToWriter
       );
     }
     if (_instance.createdBefore) {
       _writer.writeMessage(
         10,
         _instance.createdBefore as any,
-        googleProtobuf001.Timestamp.serializeBinaryToWriter
+        googleProtobuf006.Timestamp.serializeBinaryToWriter
       );
     }
   }
@@ -2178,12 +2882,12 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
   private _pageToken: string;
   private _vtsiProjectSorting?: VtsiProjectSorting;
   private _nluAgentNames: string[];
-  private _fieldMask?: googleProtobuf000.FieldMask;
+  private _fieldMask?: googleProtobuf005.FieldMask;
   private _pageSize: number;
   private _statuses: VtsiProjectStatus[];
   private _displayNameContains: string;
-  private _createdAfter?: googleProtobuf001.Timestamp;
-  private _createdBefore?: googleProtobuf001.Timestamp;
+  private _createdAfter?: googleProtobuf006.Timestamp;
+  private _createdBefore?: googleProtobuf006.Timestamp;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2198,16 +2902,16 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
       : undefined;
     this.nluAgentNames = (_value.nluAgentNames || []).slice();
     this.fieldMask = _value.fieldMask
-      ? new googleProtobuf000.FieldMask(_value.fieldMask)
+      ? new googleProtobuf005.FieldMask(_value.fieldMask)
       : undefined;
     this.pageSize = _value.pageSize;
     this.statuses = (_value.statuses || []).slice();
     this.displayNameContains = _value.displayNameContains;
     this.createdAfter = _value.createdAfter
-      ? new googleProtobuf001.Timestamp(_value.createdAfter)
+      ? new googleProtobuf006.Timestamp(_value.createdAfter)
       : undefined;
     this.createdBefore = _value.createdBefore
-      ? new googleProtobuf001.Timestamp(_value.createdBefore)
+      ? new googleProtobuf006.Timestamp(_value.createdBefore)
       : undefined;
     ListVtsiProjectsRequest.refineValues(this);
   }
@@ -2235,10 +2939,10 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
   set nluAgentNames(value: string[]) {
     this._nluAgentNames = value;
   }
-  get fieldMask(): googleProtobuf000.FieldMask | undefined {
+  get fieldMask(): googleProtobuf005.FieldMask | undefined {
     return this._fieldMask;
   }
-  set fieldMask(value: googleProtobuf000.FieldMask | undefined) {
+  set fieldMask(value: googleProtobuf005.FieldMask | undefined) {
     this._fieldMask = value;
   }
   get pageSize(): number {
@@ -2259,16 +2963,16 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
   set displayNameContains(value: string) {
     this._displayNameContains = value;
   }
-  get createdAfter(): googleProtobuf001.Timestamp | undefined {
+  get createdAfter(): googleProtobuf006.Timestamp | undefined {
     return this._createdAfter;
   }
-  set createdAfter(value: googleProtobuf001.Timestamp | undefined) {
+  set createdAfter(value: googleProtobuf006.Timestamp | undefined) {
     this._createdAfter = value;
   }
-  get createdBefore(): googleProtobuf001.Timestamp | undefined {
+  get createdBefore(): googleProtobuf006.Timestamp | undefined {
     return this._createdBefore;
   }
-  set createdBefore(value: googleProtobuf001.Timestamp | undefined) {
+  set createdBefore(value: googleProtobuf006.Timestamp | undefined) {
     this._createdBefore = value;
   }
 
@@ -2356,12 +3060,12 @@ export module ListVtsiProjectsRequest {
     pageToken: string;
     vtsiProjectSorting?: VtsiProjectSorting.AsObject;
     nluAgentNames: string[];
-    fieldMask?: googleProtobuf000.FieldMask.AsObject;
+    fieldMask?: googleProtobuf005.FieldMask.AsObject;
     pageSize: number;
     statuses: VtsiProjectStatus[];
     displayNameContains: string;
-    createdAfter?: googleProtobuf001.Timestamp.AsObject;
-    createdBefore?: googleProtobuf001.Timestamp.AsObject;
+    createdAfter?: googleProtobuf006.Timestamp.AsObject;
+    createdBefore?: googleProtobuf006.Timestamp.AsObject;
   }
 
   /**
@@ -2372,12 +3076,12 @@ export module ListVtsiProjectsRequest {
     pageToken: string;
     vtsiProjectSorting: VtsiProjectSorting.AsProtobufJSON | null;
     nluAgentNames: string[];
-    fieldMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf005.FieldMask.AsProtobufJSON | null;
     pageSize: number;
     statuses: string[];
     displayNameContains: string;
-    createdAfter: googleProtobuf001.Timestamp.AsProtobufJSON | null;
-    createdBefore: googleProtobuf001.Timestamp.AsProtobufJSON | null;
+    createdAfter: googleProtobuf006.Timestamp.AsProtobufJSON | null;
+    createdBefore: googleProtobuf006.Timestamp.AsProtobufJSON | null;
   }
 }
 
@@ -2781,17 +3485,17 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
           );
           break;
         case 2:
-          _instance.updateMask = new googleProtobuf000.FieldMask();
+          _instance.updateMask = new googleProtobuf005.FieldMask();
           _reader.readMessage(
             _instance.updateMask,
-            googleProtobuf000.FieldMask.deserializeBinaryFromReader
+            googleProtobuf005.FieldMask.deserializeBinaryFromReader
           );
           break;
         case 3:
-          _instance.fieldMask = new googleProtobuf000.FieldMask();
+          _instance.fieldMask = new googleProtobuf005.FieldMask();
           _reader.readMessage(
             _instance.fieldMask,
-            googleProtobuf000.FieldMask.deserializeBinaryFromReader
+            googleProtobuf005.FieldMask.deserializeBinaryFromReader
           );
           break;
         case 4:
@@ -2825,14 +3529,14 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
       _writer.writeMessage(
         2,
         _instance.updateMask as any,
-        googleProtobuf000.FieldMask.serializeBinaryToWriter
+        googleProtobuf005.FieldMask.serializeBinaryToWriter
       );
     }
     if (_instance.fieldMask) {
       _writer.writeMessage(
         3,
         _instance.fieldMask as any,
-        googleProtobuf000.FieldMask.serializeBinaryToWriter
+        googleProtobuf005.FieldMask.serializeBinaryToWriter
       );
     }
     if (_instance.validateOnly) {
@@ -2841,8 +3545,8 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
   }
 
   private _vtsiProject?: VtsiProject;
-  private _updateMask?: googleProtobuf000.FieldMask;
-  private _fieldMask?: googleProtobuf000.FieldMask;
+  private _updateMask?: googleProtobuf005.FieldMask;
+  private _fieldMask?: googleProtobuf005.FieldMask;
   private _validateOnly: boolean;
 
   /**
@@ -2855,10 +3559,10 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
       ? new VtsiProject(_value.vtsiProject)
       : undefined;
     this.updateMask = _value.updateMask
-      ? new googleProtobuf000.FieldMask(_value.updateMask)
+      ? new googleProtobuf005.FieldMask(_value.updateMask)
       : undefined;
     this.fieldMask = _value.fieldMask
-      ? new googleProtobuf000.FieldMask(_value.fieldMask)
+      ? new googleProtobuf005.FieldMask(_value.fieldMask)
       : undefined;
     this.validateOnly = _value.validateOnly;
     UpdateVtsiProjectRequest.refineValues(this);
@@ -2869,16 +3573,16 @@ export class UpdateVtsiProjectRequest implements GrpcMessage {
   set vtsiProject(value: VtsiProject | undefined) {
     this._vtsiProject = value;
   }
-  get updateMask(): googleProtobuf000.FieldMask | undefined {
+  get updateMask(): googleProtobuf005.FieldMask | undefined {
     return this._updateMask;
   }
-  set updateMask(value: googleProtobuf000.FieldMask | undefined) {
+  set updateMask(value: googleProtobuf005.FieldMask | undefined) {
     this._updateMask = value;
   }
-  get fieldMask(): googleProtobuf000.FieldMask | undefined {
+  get fieldMask(): googleProtobuf005.FieldMask | undefined {
     return this._fieldMask;
   }
-  set fieldMask(value: googleProtobuf000.FieldMask | undefined) {
+  set fieldMask(value: googleProtobuf005.FieldMask | undefined) {
     this._fieldMask = value;
   }
   get validateOnly(): boolean {
@@ -2944,8 +3648,8 @@ export module UpdateVtsiProjectRequest {
    */
   export interface AsObject {
     vtsiProject?: VtsiProject.AsObject;
-    updateMask?: googleProtobuf000.FieldMask.AsObject;
-    fieldMask?: googleProtobuf000.FieldMask.AsObject;
+    updateMask?: googleProtobuf005.FieldMask.AsObject;
+    fieldMask?: googleProtobuf005.FieldMask.AsObject;
     validateOnly: boolean;
   }
 
@@ -2954,8 +3658,8 @@ export module UpdateVtsiProjectRequest {
    */
   export interface AsProtobufJSON {
     vtsiProject: VtsiProject.AsProtobufJSON | null;
-    updateMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
-    fieldMask: googleProtobuf000.FieldMask.AsProtobufJSON | null;
+    updateMask: googleProtobuf005.FieldMask.AsProtobufJSON | null;
+    fieldMask: googleProtobuf005.FieldMask.AsProtobufJSON | null;
     validateOnly: boolean;
   }
 }
