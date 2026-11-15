@@ -24,13 +24,24 @@ function findRepoRoot(start: string): string {
 }
 
 const REPO_ROOT: string = findRepoRoot(String(__dirname));
-const TYPINGS: string = String(readFileSync(join(REPO_ROOT, 'index.d.ts'), 'utf8'));
+const TYPINGS: string = String(
+	readFileSync(
+		join(
+			REPO_ROOT,
+			(JSON.parse(String(readFileSync(join(REPO_ROOT, 'package.json'), 'utf8'))) as { typings: string }).typings
+		),
+		'utf8'
+	)
+);
 const PUBLIC_API: string = String(readFileSync(join(REPO_ROOT, 'public-api.ts'), 'utf8'));
 
 describe('LogsClient is the ondewo.vtsi.Logs client', (): void => {
 	it('declares exactly one LogsClient, and it serves ondewo.vtsi.Logs', (): void => {
+		// ng-packagr >= 22 (proto compiler 5.16.0) declares it inline as `export declare class`.
 		expect(TYPINGS.match(/declare class LogsClient\b/g)).toHaveLength(1);
-		expect(TYPINGS).toMatch(/Service client implementation for ondewo\.vtsi\.Logs\s*\*\/\s*declare class LogsClient\b/);
+		expect(TYPINGS).toMatch(
+			/Service client implementation for ondewo\.vtsi\.Logs\s*\*\/\s*(?:export )?declare class LogsClient\b/
+		);
 		expect(TYPINGS).not.toContain('/ondewo.nlu.Logs/');
 	});
 

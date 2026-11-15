@@ -513,7 +513,10 @@ describe('generated api surface', (): void => {
 		'exposes the ondewo.vtsi.%s service as %s and %s in the typings entry point',
 		(service: string, client: string, settings: string): void => {
 			const typings: string = fs.readFileSync(
-				path.join(REPO_ROOT, JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')).typings),
+				path.join(
+					REPO_ROOT,
+					(JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')) as { typings: string }).typings
+				),
 				'utf8'
 			);
 			expect(typings).toMatch(new RegExp(`declare class ${client}\\b`));
@@ -582,7 +585,10 @@ describe('the hand-written auth surface survives the codegen', (): void => {
 		);
 		expect(names.length).toBeGreaterThan(10);
 		const typings: string = fs.readFileSync(
-			path.join(REPO_ROOT, JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')).typings),
+			path.join(
+				REPO_ROOT,
+				(JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')) as { typings: string }).typings
+			),
 			'utf8'
 		);
 		// ng-packagr emits the values as `export { ... };` and the interfaces as `export type { ... };`.
@@ -618,7 +624,7 @@ describe('the hand-written auth surface survives the codegen', (): void => {
 		const typings: string = fs.readFileSync(
 			path.join(
 				NPM_PUBLISH_DIR,
-				JSON.parse(fs.readFileSync(path.join(NPM_PUBLISH_DIR, 'package.json'), 'utf8')).typings
+				(JSON.parse(fs.readFileSync(path.join(NPM_PUBLISH_DIR, 'package.json'), 'utf8')) as { typings: string }).typings
 			),
 			'utf8'
 		);
