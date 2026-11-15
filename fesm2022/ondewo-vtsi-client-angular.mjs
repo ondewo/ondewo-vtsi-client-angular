@@ -120561,24 +120561,6 @@ class RagsClient {
                 });
             },
             /**
-             * Client streaming: /ondewo.nlu.Rags/RagUploadDocument
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.RagDocument>>
-             */
-            ragUploadDocument: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.clientStream,
-                    client: this.client,
-                    path: '/ondewo.nlu.Rags/RagUploadDocument',
-                    requestData,
-                    requestMetadata,
-                    requestClass: RagUploadDocumentRequest,
-                    responseClass: RagDocument
-                });
-            },
-            /**
              * Unary call: /ondewo.nlu.Rags/RagUpdateDocument
              *
              * @param requestMessage Request message
@@ -121059,18 +121041,6 @@ class RagsClient {
     ragListDatasets(requestData, requestMetadata = new GrpcMetadata()) {
         return this.$raw
             .ragListDatasets(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Client streaming @/ondewo.nlu.Rags/RagUploadDocument
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.RagDocument>
-     */
-    ragUploadDocument(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .ragUploadDocument(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
@@ -121664,24 +121634,6 @@ class SessionsClient {
                     requestMetadata,
                     requestClass: DetectIntentRequest,
                     responseClass: DetectIntentResponse
-                });
-            },
-            /**
-             * Bidirectional streaming: /ondewo.nlu.Sessions/StreamingDetectIntent
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.StreamingDetectIntentResponse>>
-             */
-            streamingDetectIntent: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.bidiStream,
-                    client: this.client,
-                    path: '/ondewo.nlu.Sessions/StreamingDetectIntent',
-                    requestData,
-                    requestMetadata,
-                    requestClass: StreamingDetectIntentRequest,
-                    responseClass: StreamingDetectIntentResponse
                 });
             },
             /**
@@ -122561,18 +122513,6 @@ class SessionsClient {
     detectIntent(requestData, requestMetadata = new GrpcMetadata()) {
         return this.$raw
             .detectIntent(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Bidirectional streaming @/ondewo.nlu.Sessions/StreamingDetectIntent
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.StreamingDetectIntentResponse>
-     */
-    streamingDetectIntent(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .streamingDetectIntent(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
@@ -143547,24 +143487,6 @@ class Speech2TextClient {
                 });
             },
             /**
-             * Bidirectional streaming: /ondewo.s2t.Speech2Text/TranscribeStream
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.TranscribeStreamResponse>>
-             */
-            transcribeStream: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.bidiStream,
-                    client: this.client,
-                    path: '/ondewo.s2t.Speech2Text/TranscribeStream',
-                    requestData,
-                    requestMetadata,
-                    requestClass: TranscribeStreamRequest,
-                    responseClass: TranscribeStreamResponse
-                });
-            },
-            /**
              * Unary call: /ondewo.s2t.Speech2Text/GetS2tPipeline
              *
              * @param requestMessage Request message
@@ -143829,18 +143751,6 @@ class Speech2TextClient {
     transcribeFile(requestData, requestMetadata = new GrpcMetadata()) {
         return this.$raw
             .transcribeFile(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Bidirectional streaming @/ondewo.s2t.Speech2Text/TranscribeStream
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.TranscribeStreamResponse>
-     */
-    transcribeStream(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .transcribeStream(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
@@ -147648,24 +147558,6 @@ class SipClient {
                 });
             },
             /**
-             * Bidirectional streaming: /ondewo.sip.Sip/SipStreamCallAudio
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.SipCallAudioResponse>>
-             */
-            sipStreamCallAudio: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.bidiStream,
-                    client: this.client,
-                    path: '/ondewo.sip.Sip/SipStreamCallAudio',
-                    requestData,
-                    requestMetadata,
-                    requestClass: SipCallAudioRequest,
-                    responseClass: SipCallAudioResponse
-                });
-            },
-            /**
              * Unary call: /ondewo.sip.Sip/SipSendDtmf
              *
              * @param requestMessage Request message
@@ -147840,18 +147732,6 @@ class SipClient {
     sipSetCallMediaControl(requestData, requestMetadata = new GrpcMetadata()) {
         return this.$raw
             .sipSetCallMediaControl(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Bidirectional streaming @/ondewo.sip.Sip/SipStreamCallAudio
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.SipCallAudioResponse>
-     */
-    sipStreamCallAudio(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .sipStreamCallAudio(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
@@ -157123,24 +157003,6 @@ class Text2SpeechClient {
                 });
             },
             /**
-             * Bidirectional streaming: /ondewo.t2s.Text2Speech/StreamingSynthesize
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.StreamingSynthesizeResponse>>
-             */
-            streamingSynthesize: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.bidiStream,
-                    client: this.client,
-                    path: '/ondewo.t2s.Text2Speech/StreamingSynthesize',
-                    requestData,
-                    requestMetadata,
-                    requestClass: StreamingSynthesizeRequest,
-                    responseClass: StreamingSynthesizeResponse
-                });
-            },
-            /**
              * Unary call: /ondewo.t2s.Text2Speech/NormalizeText
              *
              * @param requestMessage Request message
@@ -157453,18 +157315,6 @@ class Text2SpeechClient {
     batchSynthesize(requestData, requestMetadata = new GrpcMetadata()) {
         return this.$raw
             .batchSynthesize(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Bidirectional streaming @/ondewo.t2s.Text2Speech/StreamingSynthesize
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.StreamingSynthesizeResponse>
-     */
-    streamingSynthesize(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .streamingSynthesize(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
@@ -191629,24 +191479,6 @@ class CallsClient {
                 });
             },
             /**
-             * Bidirectional streaming: /ondewo.vtsi.Calls/StreamCallAudio
-             *
-             * @param requestMessage Request message
-             * @param requestMetadata Request metadata
-             * @returns Observable<GrpcEvent<thisProto.StreamCallAudioResponse>>
-             */
-            streamCallAudio: (requestData, requestMetadata = new GrpcMetadata()) => {
-                return this.handler.handle({
-                    type: GrpcCallType.bidiStream,
-                    client: this.client,
-                    path: '/ondewo.vtsi.Calls/StreamCallAudio',
-                    requestData,
-                    requestMetadata,
-                    requestClass: StreamCallAudioRequest,
-                    responseClass: StreamCallAudioResponse
-                });
-            },
-            /**
              * Server streaming: /ondewo.vtsi.Calls/ListenCallAudio
              *
              * @param requestMessage Request message
@@ -192229,18 +192061,6 @@ class CallsClient {
     sendCallDtmf(requestData, requestMetadata = new GrpcMetadata()) {
         return this.$raw
             .sendCallDtmf(requestData, requestMetadata)
-            .pipe(throwStatusErrors(), takeMessages());
-    }
-    /**
-     * Bidirectional streaming @/ondewo.vtsi.Calls/StreamCallAudio
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<thisProto.StreamCallAudioResponse>
-     */
-    streamCallAudio(requestData, requestMetadata = new GrpcMetadata()) {
-        return this.$raw
-            .streamCallAudio(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**

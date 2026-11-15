@@ -310,27 +310,6 @@ export class SipClient {
       });
     },
     /**
-     * Bidirectional streaming: /ondewo.sip.Sip/SipStreamCallAudio
-     *
-     * @param requestMessage Request message
-     * @param requestMetadata Request metadata
-     * @returns Observable<GrpcEvent<thisProto.SipCallAudioResponse>>
-     */
-    sipStreamCallAudio: (
-      requestData: Observable<thisProto.SipCallAudioRequest>,
-      requestMetadata = new GrpcMetadata()
-    ): Observable<GrpcEvent<thisProto.SipCallAudioResponse>> => {
-      return this.handler.handle({
-        type: GrpcCallType.bidiStream,
-        client: this.client,
-        path: '/ondewo.sip.Sip/SipStreamCallAudio',
-        requestData,
-        requestMetadata,
-        requestClass: thisProto.SipCallAudioRequest,
-        responseClass: thisProto.SipCallAudioResponse
-      });
-    },
-    /**
      * Unary call: /ondewo.sip.Sip/SipSendDtmf
      *
      * @param requestMessage Request message
@@ -566,22 +545,6 @@ export class SipClient {
   ): Observable<thisProto.SipStatus> {
     return this.$raw
       .sipSetCallMediaControl(requestData, requestMetadata)
-      .pipe(throwStatusErrors(), takeMessages());
-  }
-
-  /**
-   * Bidirectional streaming @/ondewo.sip.Sip/SipStreamCallAudio
-   *
-   * @param requestMessage Request message
-   * @param requestMetadata Request metadata
-   * @returns Observable<thisProto.SipCallAudioResponse>
-   */
-  sipStreamCallAudio(
-    requestData: Observable<thisProto.SipCallAudioRequest>,
-    requestMetadata = new GrpcMetadata()
-  ): Observable<thisProto.SipCallAudioResponse> {
-    return this.$raw
-      .sipStreamCallAudio(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 

@@ -2,6 +2,14 @@
 
 *****************
 
+## Release ONDEWO VTSI Angular Client 9.4.0
+
+### Improvements
+
+* Tracking API Version [9.4.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.4.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 9.3.0
 
 ### Improvements

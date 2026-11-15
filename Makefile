@@ -15,7 +15,7 @@ export
 # 		Variables
 ########################################################
 
-ONDEWO_VTSI_VERSION=9.3.0
+ONDEWO_VTSI_VERSION=9.4.0
 
 VTSI_API_GIT_BRANCH=feature/OND236-120-barge-in-cancel
 # Must name the tag the committed ondewo-proto-compiler submodule points at, otherwise
