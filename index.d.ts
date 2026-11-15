@@ -63604,6 +63604,14 @@ declare class RagsClient {
          */
         ragListDatasets: (requestData: RagListDatasetsRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<RagDatasetList>>;
         /**
+         * Client streaming: /ondewo.nlu.Rags/RagUploadDocument
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.RagDocument>>
+         */
+        ragUploadDocument: (requestData: Observable<RagUploadDocumentRequest>, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<RagDocument>>;
+        /**
          * Unary call: /ondewo.nlu.Rags/RagUpdateDocument
          *
          * @param requestMessage Request message
@@ -63829,6 +63837,14 @@ declare class RagsClient {
      * @returns Observable<thisProto.RagDatasetList>
      */
     ragListDatasets(requestData: RagListDatasetsRequest, requestMetadata?: GrpcMetadata): Observable<RagDatasetList>;
+    /**
+     * Client streaming @/ondewo.nlu.Rags/RagUploadDocument
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.RagDocument>
+     */
+    ragUploadDocument(requestData: Observable<RagUploadDocumentRequest>, requestMetadata?: GrpcMetadata): Observable<RagDocument>;
     /**
      * Unary call @/ondewo.nlu.Rags/RagUpdateDocument
      *
@@ -64193,6 +64209,14 @@ declare class SessionsClient {
          * @returns Observable<GrpcEvent<thisProto.DetectIntentResponse>>
          */
         detectIntent: (requestData: DetectIntentRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<DetectIntentResponse>>;
+        /**
+         * Bidirectional streaming: /ondewo.nlu.Sessions/StreamingDetectIntent
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.StreamingDetectIntentResponse>>
+         */
+        streamingDetectIntent: (requestData: Observable<StreamingDetectIntentRequest>, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<StreamingDetectIntentResponse>>;
         /**
          * Unary call: /ondewo.nlu.Sessions/ListSessions
          *
@@ -64587,6 +64611,14 @@ declare class SessionsClient {
      * @returns Observable<thisProto.DetectIntentResponse>
      */
     detectIntent(requestData: DetectIntentRequest, requestMetadata?: GrpcMetadata): Observable<DetectIntentResponse>;
+    /**
+     * Bidirectional streaming @/ondewo.nlu.Sessions/StreamingDetectIntent
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.StreamingDetectIntentResponse>
+     */
+    streamingDetectIntent(requestData: Observable<StreamingDetectIntentRequest>, requestMetadata?: GrpcMetadata): Observable<StreamingDetectIntentResponse>;
     /**
      * Unary call @/ondewo.nlu.Sessions/ListSessions
      *
@@ -70266,6 +70298,8 @@ declare class UtteranceDetectionOptions implements GrpcMessage {
     private _transcribeNotFinal;
     private _nextChunkTimeout;
     private _turnDetection?;
+    private _minAudioChunkSize;
+    private _transcribeNotFinalPeriodSeconds;
     private _oneofTranscribeNotFinal;
     private _oneofTurnDetection;
     /**
@@ -70279,6 +70313,10 @@ declare class UtteranceDetectionOptions implements GrpcMessage {
     set nextChunkTimeout(value: number);
     get turnDetection(): TurnDetectionOptions | undefined;
     set turnDetection(value: TurnDetectionOptions | undefined);
+    get minAudioChunkSize(): string;
+    set minAudioChunkSize(value: string);
+    get transcribeNotFinalPeriodSeconds(): number;
+    set transcribeNotFinalPeriodSeconds(value: number);
     get oneofTranscribeNotFinal(): UtteranceDetectionOptions.OneofTranscribeNotFinalCase;
     get oneofTurnDetection(): UtteranceDetectionOptions.OneofTurnDetectionCase;
     /**
@@ -70309,6 +70347,8 @@ declare namespace UtteranceDetectionOptions {
         transcribeNotFinal: boolean;
         nextChunkTimeout: number;
         turnDetection?: TurnDetectionOptions.AsObject;
+        minAudioChunkSize: string;
+        transcribeNotFinalPeriodSeconds: number;
     }
     /**
      * Protobuf JSON representation for UtteranceDetectionOptions
@@ -70317,6 +70357,8 @@ declare namespace UtteranceDetectionOptions {
         transcribeNotFinal: boolean;
         nextChunkTimeout: number;
         turnDetection: TurnDetectionOptions.AsProtobufJSON | null;
+        minAudioChunkSize: string;
+        transcribeNotFinalPeriodSeconds: number;
     }
     enum OneofTranscribeNotFinalCase {
         none = 0,
@@ -73207,6 +73249,7 @@ declare class StreamingSpeechRecognition implements GrpcMessage {
     private _minAudioChunkSize;
     private _nextChunkTimeout;
     private _turnDetection?;
+    private _transcribeNotFinalPeriodSeconds;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of StreamingSpeechRecognition to deeply clone from
@@ -73224,6 +73267,8 @@ declare class StreamingSpeechRecognition implements GrpcMessage {
     set nextChunkTimeout(value: number);
     get turnDetection(): TurnDetectionOptions | undefined;
     set turnDetection(value: TurnDetectionOptions | undefined);
+    get transcribeNotFinalPeriodSeconds(): number;
+    set transcribeNotFinalPeriodSeconds(value: number);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -73255,6 +73300,7 @@ declare namespace StreamingSpeechRecognition {
         minAudioChunkSize: string;
         nextChunkTimeout: number;
         turnDetection?: TurnDetectionOptions.AsObject;
+        transcribeNotFinalPeriodSeconds: number;
     }
     /**
      * Protobuf JSON representation for StreamingSpeechRecognition
@@ -73266,6 +73312,7 @@ declare namespace StreamingSpeechRecognition {
         minAudioChunkSize: string;
         nextChunkTimeout: number;
         turnDetection: TurnDetectionOptions.AsProtobufJSON | null;
+        transcribeNotFinalPeriodSeconds: number;
     }
 }
 /**
@@ -73300,6 +73347,17 @@ declare class TurnDetectionOptions implements GrpcMessage {
     private _turnDetectionSystemPrompt;
     private _turnDetectionUserPrompt;
     private _turnDetectionLlmOpenaiOptions?;
+    private _conversationContext?;
+    private _endOfTurnProbabilityThreshold;
+    private _holdBands?;
+    private _uncertainMinWords;
+    private _incompleteMaxSilenceSeconds;
+    private _exactProbability;
+    private _pipecatTritonModelName;
+    private _pipecatTritonServerHost;
+    private _pipecatTritonServerPort;
+    private _pipecatMaxAudioSeconds;
+    private _pipecatTimeoutSeconds;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of TurnDetectionOptions to deeply clone from
@@ -73315,6 +73373,28 @@ declare class TurnDetectionOptions implements GrpcMessage {
     set turnDetectionUserPrompt(value: string);
     get turnDetectionLlmOpenaiOptions(): OpenaiLlmOptions | undefined;
     set turnDetectionLlmOpenaiOptions(value: OpenaiLlmOptions | undefined);
+    get conversationContext(): TurnDetectionConversationContext | undefined;
+    set conversationContext(value: TurnDetectionConversationContext | undefined);
+    get endOfTurnProbabilityThreshold(): number;
+    set endOfTurnProbabilityThreshold(value: number);
+    get holdBands(): TurnDetectionHoldBands | undefined;
+    set holdBands(value: TurnDetectionHoldBands | undefined);
+    get uncertainMinWords(): number;
+    set uncertainMinWords(value: number);
+    get incompleteMaxSilenceSeconds(): number;
+    set incompleteMaxSilenceSeconds(value: number);
+    get exactProbability(): boolean;
+    set exactProbability(value: boolean);
+    get pipecatTritonModelName(): string;
+    set pipecatTritonModelName(value: string);
+    get pipecatTritonServerHost(): string;
+    set pipecatTritonServerHost(value: string);
+    get pipecatTritonServerPort(): string;
+    set pipecatTritonServerPort(value: string);
+    get pipecatMaxAudioSeconds(): number;
+    set pipecatMaxAudioSeconds(value: number);
+    get pipecatTimeoutSeconds(): number;
+    set pipecatTimeoutSeconds(value: number);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -73345,6 +73425,17 @@ declare namespace TurnDetectionOptions {
         turnDetectionSystemPrompt: string;
         turnDetectionUserPrompt: string;
         turnDetectionLlmOpenaiOptions?: OpenaiLlmOptions.AsObject;
+        conversationContext?: TurnDetectionConversationContext.AsObject;
+        endOfTurnProbabilityThreshold: number;
+        holdBands?: TurnDetectionHoldBands.AsObject;
+        uncertainMinWords: number;
+        incompleteMaxSilenceSeconds: number;
+        exactProbability: boolean;
+        pipecatTritonModelName: string;
+        pipecatTritonServerHost: string;
+        pipecatTritonServerPort: string;
+        pipecatMaxAudioSeconds: number;
+        pipecatTimeoutSeconds: number;
     }
     /**
      * Protobuf JSON representation for TurnDetectionOptions
@@ -73355,6 +73446,308 @@ declare namespace TurnDetectionOptions {
         turnDetectionSystemPrompt: string;
         turnDetectionUserPrompt: string;
         turnDetectionLlmOpenaiOptions: OpenaiLlmOptions.AsProtobufJSON | null;
+        conversationContext: TurnDetectionConversationContext.AsProtobufJSON | null;
+        endOfTurnProbabilityThreshold: number;
+        holdBands: TurnDetectionHoldBands.AsProtobufJSON | null;
+        uncertainMinWords: number;
+        incompleteMaxSilenceSeconds: number;
+        exactProbability: boolean;
+        pipecatTritonModelName: string;
+        pipecatTritonServerHost: string;
+        pipecatTritonServerPort: string;
+        pipecatMaxAudioSeconds: number;
+        pipecatTimeoutSeconds: number;
+    }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionConversationContext
+ */
+declare class TurnDetectionConversationContext implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): TurnDetectionConversationContext;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: TurnDetectionConversationContext): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: TurnDetectionConversationContext, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: TurnDetectionConversationContext, _writer: BinaryWriter): void;
+    private _turns?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TurnDetectionConversationContext to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<TurnDetectionConversationContext.AsObject>);
+    get turns(): TurnDetectionContextTurn[] | undefined;
+    set turns(value: TurnDetectionContextTurn[] | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): TurnDetectionConversationContext.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): TurnDetectionConversationContext.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionConversationContext.AsProtobufJSON;
+}
+declare namespace TurnDetectionConversationContext {
+    /**
+     * Standard JavaScript object representation for TurnDetectionConversationContext
+     */
+    interface AsObject {
+        turns?: TurnDetectionContextTurn.AsObject[];
+    }
+    /**
+     * Protobuf JSON representation for TurnDetectionConversationContext
+     */
+    interface AsProtobufJSON {
+        turns: TurnDetectionContextTurn.AsProtobufJSON[] | null;
+    }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionContextTurn
+ */
+declare class TurnDetectionContextTurn implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): TurnDetectionContextTurn;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: TurnDetectionContextTurn): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: TurnDetectionContextTurn, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: TurnDetectionContextTurn, _writer: BinaryWriter): void;
+    private _role;
+    private _text;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TurnDetectionContextTurn to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<TurnDetectionContextTurn.AsObject>);
+    get role(): TurnDetectionContextTurn.Role;
+    set role(value: TurnDetectionContextTurn.Role);
+    get text(): string;
+    set text(value: string);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): TurnDetectionContextTurn.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): TurnDetectionContextTurn.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionContextTurn.AsProtobufJSON;
+}
+declare namespace TurnDetectionContextTurn {
+    /**
+     * Standard JavaScript object representation for TurnDetectionContextTurn
+     */
+    interface AsObject {
+        role: TurnDetectionContextTurn.Role;
+        text: string;
+    }
+    /**
+     * Protobuf JSON representation for TurnDetectionContextTurn
+     */
+    interface AsProtobufJSON {
+        role: string;
+        text: string;
+    }
+    enum Role {
+        ROLE_UNSPECIFIED = 0,
+        ROLE_USER = 1,
+        ROLE_ASSISTANT = 2
+    }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionHoldBands
+ */
+declare class TurnDetectionHoldBands implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): TurnDetectionHoldBands;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: TurnDetectionHoldBands): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: TurnDetectionHoldBands, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: TurnDetectionHoldBands, _writer: BinaryWriter): void;
+    private _bands?;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TurnDetectionHoldBands to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<TurnDetectionHoldBands.AsObject>);
+    get bands(): TurnDetectionHoldBand[] | undefined;
+    set bands(value: TurnDetectionHoldBand[] | undefined);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): TurnDetectionHoldBands.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): TurnDetectionHoldBands.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionHoldBands.AsProtobufJSON;
+}
+declare namespace TurnDetectionHoldBands {
+    /**
+     * Standard JavaScript object representation for TurnDetectionHoldBands
+     */
+    interface AsObject {
+        bands?: TurnDetectionHoldBand.AsObject[];
+    }
+    /**
+     * Protobuf JSON representation for TurnDetectionHoldBands
+     */
+    interface AsProtobufJSON {
+        bands: TurnDetectionHoldBand.AsProtobufJSON[] | null;
+    }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionHoldBand
+ */
+declare class TurnDetectionHoldBand implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): TurnDetectionHoldBand;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: TurnDetectionHoldBand): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: TurnDetectionHoldBand, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: TurnDetectionHoldBand, _writer: BinaryWriter): void;
+    private _upperProbability;
+    private _maxSilenceSeconds;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TurnDetectionHoldBand to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<TurnDetectionHoldBand.AsObject>);
+    get upperProbability(): number;
+    set upperProbability(value: number);
+    get maxSilenceSeconds(): number;
+    set maxSilenceSeconds(value: number);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): TurnDetectionHoldBand.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): TurnDetectionHoldBand.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionHoldBand.AsProtobufJSON;
+}
+declare namespace TurnDetectionHoldBand {
+    /**
+     * Standard JavaScript object representation for TurnDetectionHoldBand
+     */
+    interface AsObject {
+        upperProbability: number;
+        maxSilenceSeconds: number;
+    }
+    /**
+     * Protobuf JSON representation for TurnDetectionHoldBand
+     */
+    interface AsProtobufJSON {
+        upperProbability: number;
+        maxSilenceSeconds: number;
     }
 }
 /**
@@ -75754,6 +76147,14 @@ declare class Speech2TextClient {
          */
         transcribeFile: (requestData: TranscribeFileRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<TranscribeFileResponse>>;
         /**
+         * Bidirectional streaming: /ondewo.s2t.Speech2Text/TranscribeStream
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.TranscribeStreamResponse>>
+         */
+        transcribeStream: (requestData: Observable<TranscribeStreamRequest>, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<TranscribeStreamResponse>>;
+        /**
          * Unary call: /ondewo.s2t.Speech2Text/GetS2tPipeline
          *
          * @param requestMessage Request message
@@ -75875,6 +76276,14 @@ declare class Speech2TextClient {
      * @returns Observable<thisProto.TranscribeFileResponse>
      */
     transcribeFile(requestData: TranscribeFileRequest, requestMetadata?: GrpcMetadata): Observable<TranscribeFileResponse>;
+    /**
+     * Bidirectional streaming @/ondewo.s2t.Speech2Text/TranscribeStream
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.TranscribeStreamResponse>
+     */
+    transcribeStream(requestData: Observable<TranscribeStreamRequest>, requestMetadata?: GrpcMetadata): Observable<TranscribeStreamResponse>;
     /**
      * Unary call @/ondewo.s2t.Speech2Text/GetS2tPipeline
      *
@@ -77182,6 +77591,75 @@ declare namespace SipSetCallMediaControlRequest {
     }
 }
 /**
+ * Message implementation for ondewo.sip.SipSendDtmfRequest
+ */
+declare class SipSendDtmfRequest implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): SipSendDtmfRequest;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: SipSendDtmfRequest): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: SipSendDtmfRequest, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: SipSendDtmfRequest, _writer: BinaryWriter): void;
+    private _digits;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of SipSendDtmfRequest to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<SipSendDtmfRequest.AsObject>);
+    get digits(): string;
+    set digits(value: string);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): SipSendDtmfRequest.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): SipSendDtmfRequest.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): SipSendDtmfRequest.AsProtobufJSON;
+}
+declare namespace SipSendDtmfRequest {
+    /**
+     * Standard JavaScript object representation for SipSendDtmfRequest
+     */
+    interface AsObject {
+        digits: string;
+    }
+    /**
+     * Protobuf JSON representation for SipSendDtmfRequest
+     */
+    interface AsProtobufJSON {
+        digits: string;
+    }
+}
+/**
  * Message implementation for ondewo.sip.SipCallAudioConfig
  */
 declare class SipCallAudioConfig implements GrpcMessage {
@@ -77968,6 +78446,22 @@ declare class SipClient {
          * @returns Observable<GrpcEvent<thisProto.SipStatus>>
          */
         sipSetCallMediaControl: (requestData: SipSetCallMediaControlRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<SipStatus>>;
+        /**
+         * Bidirectional streaming: /ondewo.sip.Sip/SipStreamCallAudio
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.SipCallAudioResponse>>
+         */
+        sipStreamCallAudio: (requestData: Observable<SipCallAudioRequest>, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<SipCallAudioResponse>>;
+        /**
+         * Unary call: /ondewo.sip.Sip/SipSendDtmf
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.SipStatus>>
+         */
+        sipSendDtmf: (requestData: SipSendDtmfRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<SipStatus>>;
     };
     constructor(settings: any, clientFactory: GrpcClientFactory<any>, handler: GrpcHandler);
     /**
@@ -78074,6 +78568,22 @@ declare class SipClient {
      * @returns Observable<thisProto.SipStatus>
      */
     sipSetCallMediaControl(requestData: SipSetCallMediaControlRequest, requestMetadata?: GrpcMetadata): Observable<SipStatus>;
+    /**
+     * Bidirectional streaming @/ondewo.sip.Sip/SipStreamCallAudio
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.SipCallAudioResponse>
+     */
+    sipStreamCallAudio(requestData: Observable<SipCallAudioRequest>, requestMetadata?: GrpcMetadata): Observable<SipCallAudioResponse>;
+    /**
+     * Unary call @/ondewo.sip.Sip/SipSendDtmf
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.SipStatus>
+     */
+    sipSendDtmf(requestData: SipSendDtmfRequest, requestMetadata?: GrpcMetadata): Observable<SipStatus>;
     static ɵfac: i0.ɵɵFactoryDeclaration<SipClient, [{ optional: true; }, null, null]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SipClient>;
 }
@@ -83179,6 +83689,14 @@ declare class Text2SpeechClient {
          */
         batchSynthesize: (requestData: BatchSynthesizeRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<BatchSynthesizeResponse>>;
         /**
+         * Bidirectional streaming: /ondewo.t2s.Text2Speech/StreamingSynthesize
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.StreamingSynthesizeResponse>>
+         */
+        streamingSynthesize: (requestData: Observable<StreamingSynthesizeRequest>, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<StreamingSynthesizeResponse>>;
+        /**
          * Unary call: /ondewo.t2s.Text2Speech/NormalizeText
          *
          * @param requestMessage Request message
@@ -83324,6 +83842,14 @@ declare class Text2SpeechClient {
      * @returns Observable<thisProto.BatchSynthesizeResponse>
      */
     batchSynthesize(requestData: BatchSynthesizeRequest, requestMetadata?: GrpcMetadata): Observable<BatchSynthesizeResponse>;
+    /**
+     * Bidirectional streaming @/ondewo.t2s.Text2Speech/StreamingSynthesize
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.StreamingSynthesizeResponse>
+     */
+    streamingSynthesize(requestData: Observable<StreamingSynthesizeRequest>, requestMetadata?: GrpcMetadata): Observable<StreamingSynthesizeResponse>;
     /**
      * Unary call @/ondewo.t2s.Text2Speech/NormalizeText
      *
@@ -83645,6 +84171,7 @@ declare class NluVtsiConfig implements GrpcMessage {
     private _contexts?;
     private _httpBasicAuthToken;
     private _platform;
+    private _preemptiveGenerationConfig?;
     private _authentication;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -83669,6 +84196,8 @@ declare class NluVtsiConfig implements GrpcMessage {
     set httpBasicAuthToken(value: string);
     get platform(): Intent.Message.Platform;
     set platform(value: Intent.Message.Platform);
+    get preemptiveGenerationConfig(): NluPreemptiveGenerationConfig | undefined;
+    set preemptiveGenerationConfig(value: NluPreemptiveGenerationConfig | undefined);
     get authentication(): NluVtsiConfig.AuthenticationCase;
     /**
      * Serialize message to binary data
@@ -83704,6 +84233,7 @@ declare namespace NluVtsiConfig {
         contexts?: Context.AsObject[];
         httpBasicAuthToken: string;
         platform: Intent.Message.Platform;
+        preemptiveGenerationConfig?: NluPreemptiveGenerationConfig.AsObject;
     }
     /**
      * Protobuf JSON representation for NluVtsiConfig
@@ -83718,11 +84248,91 @@ declare namespace NluVtsiConfig {
         contexts: Context.AsProtobufJSON[] | null;
         httpBasicAuthToken: string;
         platform: string;
+        preemptiveGenerationConfig: NluPreemptiveGenerationConfig.AsProtobufJSON | null;
     }
     enum AuthenticationCase {
         none = 0,
         credentials = 1,
         authToken = 2
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.NluPreemptiveGenerationConfig
+ */
+declare class NluPreemptiveGenerationConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): NluPreemptiveGenerationConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: NluPreemptiveGenerationConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: NluPreemptiveGenerationConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: NluPreemptiveGenerationConfig, _writer: BinaryWriter): void;
+    private _maxDraftsPerTurn;
+    private _minStableDwellSeconds;
+    private _minIntervalSeconds;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of NluPreemptiveGenerationConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<NluPreemptiveGenerationConfig.AsObject>);
+    get maxDraftsPerTurn(): number;
+    set maxDraftsPerTurn(value: number);
+    get minStableDwellSeconds(): number;
+    set minStableDwellSeconds(value: number);
+    get minIntervalSeconds(): number;
+    set minIntervalSeconds(value: number);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): NluPreemptiveGenerationConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): NluPreemptiveGenerationConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): NluPreemptiveGenerationConfig.AsProtobufJSON;
+}
+declare namespace NluPreemptiveGenerationConfig {
+    /**
+     * Standard JavaScript object representation for NluPreemptiveGenerationConfig
+     */
+    interface AsObject {
+        maxDraftsPerTurn: number;
+        minStableDwellSeconds: number;
+        minIntervalSeconds: number;
+    }
+    /**
+     * Protobuf JSON representation for NluPreemptiveGenerationConfig
+     */
+    interface AsProtobufJSON {
+        maxDraftsPerTurn: number;
+        minStableDwellSeconds: number;
+        minIntervalSeconds: number;
     }
 }
 /**
@@ -83754,6 +84364,7 @@ declare class T2sVtsiConfig implements GrpcMessage {
     static serializeBinaryToWriter(_instance: T2sVtsiConfig, _writer: BinaryWriter): void;
     private _t2sBaseConfig?;
     private _t2sRequestConfig?;
+    private _preemptiveSynthesisConfig?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of T2sVtsiConfig to deeply clone from
@@ -83763,6 +84374,8 @@ declare class T2sVtsiConfig implements GrpcMessage {
     set t2sBaseConfig(value: BaseServiceConfig | undefined);
     get t2sRequestConfig(): RequestConfig | undefined;
     set t2sRequestConfig(value: RequestConfig | undefined);
+    get preemptiveSynthesisConfig(): T2sPreemptiveSynthesisConfig | undefined;
+    set preemptiveSynthesisConfig(value: T2sPreemptiveSynthesisConfig | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -83790,6 +84403,7 @@ declare namespace T2sVtsiConfig {
     interface AsObject {
         t2sBaseConfig?: BaseServiceConfig.AsObject;
         t2sRequestConfig?: RequestConfig.AsObject;
+        preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig.AsObject;
     }
     /**
      * Protobuf JSON representation for T2sVtsiConfig
@@ -83797,6 +84411,81 @@ declare namespace T2sVtsiConfig {
     interface AsProtobufJSON {
         t2sBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
         t2sRequestConfig: RequestConfig.AsProtobufJSON | null;
+        preemptiveSynthesisConfig: T2sPreemptiveSynthesisConfig.AsProtobufJSON | null;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.T2sPreemptiveSynthesisConfig
+ */
+declare class T2sPreemptiveSynthesisConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): T2sPreemptiveSynthesisConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: T2sPreemptiveSynthesisConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: T2sPreemptiveSynthesisConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: T2sPreemptiveSynthesisConfig, _writer: BinaryWriter): void;
+    private _enabled;
+    private _chunked;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of T2sPreemptiveSynthesisConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<T2sPreemptiveSynthesisConfig.AsObject>);
+    get enabled(): boolean;
+    set enabled(value: boolean);
+    get chunked(): boolean;
+    set chunked(value: boolean);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): T2sPreemptiveSynthesisConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): T2sPreemptiveSynthesisConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): T2sPreemptiveSynthesisConfig.AsProtobufJSON;
+}
+declare namespace T2sPreemptiveSynthesisConfig {
+    /**
+     * Standard JavaScript object representation for T2sPreemptiveSynthesisConfig
+     */
+    interface AsObject {
+        enabled: boolean;
+        chunked: boolean;
+    }
+    /**
+     * Protobuf JSON representation for T2sPreemptiveSynthesisConfig
+     */
+    interface AsProtobufJSON {
+        enabled: boolean;
+        chunked: boolean;
     }
 }
 /**
@@ -83993,6 +84682,7 @@ declare class VoiceInteractionConfig implements GrpcMessage {
     private _interruptionHandlingConfig?;
     private _responseTimingConfig?;
     private _answeringMachineDetectionConfig?;
+    private _dtmfConfig?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of VoiceInteractionConfig to deeply clone from
@@ -84006,6 +84696,8 @@ declare class VoiceInteractionConfig implements GrpcMessage {
     set responseTimingConfig(value: ResponseTimingConfig | undefined);
     get answeringMachineDetectionConfig(): AnsweringMachineDetectionConfig | undefined;
     set answeringMachineDetectionConfig(value: AnsweringMachineDetectionConfig | undefined);
+    get dtmfConfig(): DtmfConfig | undefined;
+    set dtmfConfig(value: DtmfConfig | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -84035,6 +84727,7 @@ declare namespace VoiceInteractionConfig {
         interruptionHandlingConfig?: InterruptionHandlingConfig.AsObject;
         responseTimingConfig?: ResponseTimingConfig.AsObject;
         answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig.AsObject;
+        dtmfConfig?: DtmfConfig.AsObject;
     }
     /**
      * Protobuf JSON representation for VoiceInteractionConfig
@@ -84044,6 +84737,91 @@ declare namespace VoiceInteractionConfig {
         interruptionHandlingConfig: InterruptionHandlingConfig.AsProtobufJSON | null;
         responseTimingConfig: ResponseTimingConfig.AsProtobufJSON | null;
         answeringMachineDetectionConfig: AnsweringMachineDetectionConfig.AsProtobufJSON | null;
+        dtmfConfig: DtmfConfig.AsProtobufJSON | null;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.DtmfConfig
+ */
+declare class DtmfConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): DtmfConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: DtmfConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: DtmfConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: DtmfConfig, _writer: BinaryWriter): void;
+    private _enabled;
+    private _bargeIn;
+    private _interDigitTimeoutMs;
+    private _undeclaredPolicy;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of DtmfConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<DtmfConfig.AsObject>);
+    get enabled(): boolean;
+    set enabled(value: boolean);
+    get bargeIn(): boolean;
+    set bargeIn(value: boolean);
+    get interDigitTimeoutMs(): number;
+    set interDigitTimeoutMs(value: number);
+    get undeclaredPolicy(): string;
+    set undeclaredPolicy(value: string);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): DtmfConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): DtmfConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): DtmfConfig.AsProtobufJSON;
+}
+declare namespace DtmfConfig {
+    /**
+     * Standard JavaScript object representation for DtmfConfig
+     */
+    interface AsObject {
+        enabled: boolean;
+        bargeIn: boolean;
+        interDigitTimeoutMs: number;
+        undeclaredPolicy: string;
+    }
+    /**
+     * Protobuf JSON representation for DtmfConfig
+     */
+    interface AsProtobufJSON {
+        enabled: boolean;
+        bargeIn: boolean;
+        interDigitTimeoutMs: number;
+        undeclaredPolicy: string;
     }
 }
 /**
@@ -84079,6 +84857,15 @@ declare class TurnDetectionConfig implements GrpcMessage {
     private _turnEagerness;
     private _turnDetectionSystemPrompt;
     private _turnDetectionUserPrompt;
+    private _conversationContextTurns;
+    private _semanticModelName;
+    private _endOfTurnProbabilityThreshold;
+    private _holdBands?;
+    private _uncertainMinWords;
+    private _incompleteMaxSilenceSeconds;
+    private _exactProbability;
+    private _finalMergeWindowSeconds;
+    private _dictationConfig?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of TurnDetectionConfig to deeply clone from
@@ -84096,6 +84883,24 @@ declare class TurnDetectionConfig implements GrpcMessage {
     set turnDetectionSystemPrompt(value: string);
     get turnDetectionUserPrompt(): string;
     set turnDetectionUserPrompt(value: string);
+    get conversationContextTurns(): number;
+    set conversationContextTurns(value: number);
+    get semanticModelName(): string;
+    set semanticModelName(value: string);
+    get endOfTurnProbabilityThreshold(): number;
+    set endOfTurnProbabilityThreshold(value: number);
+    get holdBands(): TurnDetectionConfig.EndOfTurnHoldBands | undefined;
+    set holdBands(value: TurnDetectionConfig.EndOfTurnHoldBands | undefined);
+    get uncertainMinWords(): number;
+    set uncertainMinWords(value: number);
+    get incompleteMaxSilenceSeconds(): number;
+    set incompleteMaxSilenceSeconds(value: number);
+    get exactProbability(): boolean;
+    set exactProbability(value: boolean);
+    get finalMergeWindowSeconds(): number;
+    set finalMergeWindowSeconds(value: number);
+    get dictationConfig(): DictationConfig | undefined;
+    set dictationConfig(value: DictationConfig | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -84127,6 +84932,15 @@ declare namespace TurnDetectionConfig {
         turnEagerness: TurnDetectionConfig.TurnEagerness;
         turnDetectionSystemPrompt: string;
         turnDetectionUserPrompt: string;
+        conversationContextTurns: number;
+        semanticModelName: string;
+        endOfTurnProbabilityThreshold: number;
+        holdBands?: TurnDetectionConfig.EndOfTurnHoldBands.AsObject;
+        uncertainMinWords: number;
+        incompleteMaxSilenceSeconds: number;
+        exactProbability: boolean;
+        finalMergeWindowSeconds: number;
+        dictationConfig?: DictationConfig.AsObject;
     }
     /**
      * Protobuf JSON representation for TurnDetectionConfig
@@ -84138,6 +84952,15 @@ declare namespace TurnDetectionConfig {
         turnEagerness: string;
         turnDetectionSystemPrompt: string;
         turnDetectionUserPrompt: string;
+        conversationContextTurns: number;
+        semanticModelName: string;
+        endOfTurnProbabilityThreshold: number;
+        holdBands: TurnDetectionConfig.EndOfTurnHoldBands.AsProtobufJSON | null;
+        uncertainMinWords: number;
+        incompleteMaxSilenceSeconds: number;
+        exactProbability: boolean;
+        finalMergeWindowSeconds: number;
+        dictationConfig: DictationConfig.AsProtobufJSON | null;
     }
     enum TurnDetectionMode {
         TURN_DETECTION_MODE_UNSPECIFIED = 0,
@@ -84150,6 +84973,340 @@ declare namespace TurnDetectionConfig {
         PATIENT = 1,
         NORMAL = 2,
         EAGER = 3
+    }
+    /**
+     * Message implementation for ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBands
+     */
+    class EndOfTurnHoldBands implements GrpcMessage {
+        static id: string;
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes: ByteSource): EndOfTurnHoldBands;
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance: EndOfTurnHoldBands): void;
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance: EndOfTurnHoldBands, _reader: BinaryReader): void;
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance: EndOfTurnHoldBands, _writer: BinaryWriter): void;
+        private _bands?;
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of EndOfTurnHoldBands to deeply clone from
+         */
+        constructor(_value?: RecursivePartial<EndOfTurnHoldBands.AsObject>);
+        get bands(): TurnDetectionConfig.EndOfTurnHoldBand[] | undefined;
+        set bands(value: TurnDetectionConfig.EndOfTurnHoldBand[] | undefined);
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary(): any;
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject(): EndOfTurnHoldBands.AsObject;
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON(): EndOfTurnHoldBands.AsObject;
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(options?: ToProtobufJSONOptions): EndOfTurnHoldBands.AsProtobufJSON;
+    }
+    namespace EndOfTurnHoldBands {
+        /**
+         * Standard JavaScript object representation for EndOfTurnHoldBands
+         */
+        interface AsObject {
+            bands?: TurnDetectionConfig.EndOfTurnHoldBand.AsObject[];
+        }
+        /**
+         * Protobuf JSON representation for EndOfTurnHoldBands
+         */
+        interface AsProtobufJSON {
+            bands: TurnDetectionConfig.EndOfTurnHoldBand.AsProtobufJSON[] | null;
+        }
+    }
+    /**
+     * Message implementation for ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBand
+     */
+    class EndOfTurnHoldBand implements GrpcMessage {
+        static id: string;
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes: ByteSource): EndOfTurnHoldBand;
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance: EndOfTurnHoldBand): void;
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance: EndOfTurnHoldBand, _reader: BinaryReader): void;
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance: EndOfTurnHoldBand, _writer: BinaryWriter): void;
+        private _upperProbability;
+        private _maxSilenceSeconds;
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of EndOfTurnHoldBand to deeply clone from
+         */
+        constructor(_value?: RecursivePartial<EndOfTurnHoldBand.AsObject>);
+        get upperProbability(): number;
+        set upperProbability(value: number);
+        get maxSilenceSeconds(): number;
+        set maxSilenceSeconds(value: number);
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary(): any;
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject(): EndOfTurnHoldBand.AsObject;
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON(): EndOfTurnHoldBand.AsObject;
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(options?: ToProtobufJSONOptions): EndOfTurnHoldBand.AsProtobufJSON;
+    }
+    namespace EndOfTurnHoldBand {
+        /**
+         * Standard JavaScript object representation for EndOfTurnHoldBand
+         */
+        interface AsObject {
+            upperProbability: number;
+            maxSilenceSeconds: number;
+        }
+        /**
+         * Protobuf JSON representation for EndOfTurnHoldBand
+         */
+        interface AsProtobufJSON {
+            upperProbability: number;
+            maxSilenceSeconds: number;
+        }
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.DictationConfig
+ */
+declare class DictationConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): DictationConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: DictationConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: DictationConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: DictationConfig, _writer: BinaryWriter): void;
+    private _holdEnabled;
+    private _expectedInputEnabled;
+    private _readBackFromBotTextEnabled;
+    private _holdGenericMaxSeconds;
+    private _holdMaxSecondsByCategory;
+    private _holdInvalidChecksumSeconds;
+    private _earlyCommitOnCompleteValue;
+    private _s2tSlotMinDurationOffSeconds;
+    private _s2tSlotMinDurationOffRestoreSeconds;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of DictationConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<DictationConfig.AsObject>);
+    get holdEnabled(): boolean;
+    set holdEnabled(value: boolean);
+    get expectedInputEnabled(): boolean;
+    set expectedInputEnabled(value: boolean);
+    get readBackFromBotTextEnabled(): boolean;
+    set readBackFromBotTextEnabled(value: boolean);
+    get holdGenericMaxSeconds(): number;
+    set holdGenericMaxSeconds(value: number);
+    get holdMaxSecondsByCategory(): {
+        [prop: string]: number;
+    };
+    set holdMaxSecondsByCategory(value: {
+        [prop: string]: number;
+    });
+    get holdInvalidChecksumSeconds(): number;
+    set holdInvalidChecksumSeconds(value: number);
+    get earlyCommitOnCompleteValue(): boolean;
+    set earlyCommitOnCompleteValue(value: boolean);
+    get s2tSlotMinDurationOffSeconds(): number;
+    set s2tSlotMinDurationOffSeconds(value: number);
+    get s2tSlotMinDurationOffRestoreSeconds(): number;
+    set s2tSlotMinDurationOffRestoreSeconds(value: number);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): DictationConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): DictationConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): DictationConfig.AsProtobufJSON;
+}
+declare namespace DictationConfig {
+    /**
+     * Standard JavaScript object representation for DictationConfig
+     */
+    interface AsObject {
+        holdEnabled: boolean;
+        expectedInputEnabled: boolean;
+        readBackFromBotTextEnabled: boolean;
+        holdGenericMaxSeconds: number;
+        holdMaxSecondsByCategory: {
+            [prop: string]: number;
+        };
+        holdInvalidChecksumSeconds: number;
+        earlyCommitOnCompleteValue: boolean;
+        s2tSlotMinDurationOffSeconds: number;
+        s2tSlotMinDurationOffRestoreSeconds: number;
+    }
+    /**
+     * Protobuf JSON representation for DictationConfig
+     */
+    interface AsProtobufJSON {
+        holdEnabled: boolean;
+        expectedInputEnabled: boolean;
+        readBackFromBotTextEnabled: boolean;
+        holdGenericMaxSeconds: number;
+        holdMaxSecondsByCategory: {
+            [prop: string]: number;
+        };
+        holdInvalidChecksumSeconds: number;
+        earlyCommitOnCompleteValue: boolean;
+        s2tSlotMinDurationOffSeconds: number;
+        s2tSlotMinDurationOffRestoreSeconds: number;
+    }
+    /**
+     * Message implementation for ondewo.vtsi.DictationConfig.HoldMaxSecondsByCategoryEntry
+     */
+    class HoldMaxSecondsByCategoryEntry implements GrpcMessage {
+        static id: string;
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes: ByteSource): HoldMaxSecondsByCategoryEntry;
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance: HoldMaxSecondsByCategoryEntry): void;
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance: HoldMaxSecondsByCategoryEntry, _reader: BinaryReader): void;
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance: HoldMaxSecondsByCategoryEntry, _writer: BinaryWriter): void;
+        private _key;
+        private _value;
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of HoldMaxSecondsByCategoryEntry to deeply clone from
+         */
+        constructor(_value?: RecursivePartial<HoldMaxSecondsByCategoryEntry.AsObject>);
+        get key(): string;
+        set key(value: string);
+        get value(): number;
+        set value(value: number);
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary(): any;
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject(): HoldMaxSecondsByCategoryEntry.AsObject;
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON(): HoldMaxSecondsByCategoryEntry.AsObject;
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(options?: ToProtobufJSONOptions): HoldMaxSecondsByCategoryEntry.AsProtobufJSON;
+    }
+    namespace HoldMaxSecondsByCategoryEntry {
+        /**
+         * Standard JavaScript object representation for HoldMaxSecondsByCategoryEntry
+         */
+        interface AsObject {
+            key: string;
+            value: number;
+        }
+        /**
+         * Protobuf JSON representation for HoldMaxSecondsByCategoryEntry
+         */
+        interface AsProtobufJSON {
+            key: string;
+            value: number;
+        }
     }
 }
 /**
@@ -84187,6 +85344,7 @@ declare class InterruptionHandlingConfig implements GrpcMessage {
     private _backoffSeconds;
     private _firstMessageProtectedSeconds;
     private _transcribeOnDisabledInterruptions;
+    private _interruptionFadeOutMs;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of InterruptionHandlingConfig to deeply clone from
@@ -84208,6 +85366,8 @@ declare class InterruptionHandlingConfig implements GrpcMessage {
     set firstMessageProtectedSeconds(value: number);
     get transcribeOnDisabledInterruptions(): boolean;
     set transcribeOnDisabledInterruptions(value: boolean);
+    get interruptionFadeOutMs(): number;
+    set interruptionFadeOutMs(value: number);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -84241,6 +85401,7 @@ declare namespace InterruptionHandlingConfig {
         backoffSeconds: number;
         firstMessageProtectedSeconds: number;
         transcribeOnDisabledInterruptions: boolean;
+        interruptionFadeOutMs: number;
     }
     /**
      * Protobuf JSON representation for InterruptionHandlingConfig
@@ -84254,6 +85415,7 @@ declare namespace InterruptionHandlingConfig {
         backoffSeconds: number;
         firstMessageProtectedSeconds: number;
         transcribeOnDisabledInterruptions: boolean;
+        interruptionFadeOutMs: number;
     }
 }
 /**
@@ -84868,6 +86030,7 @@ declare class CsiVtsiConfig implements GrpcMessage {
     private _audioObjectStoreConfig?;
     private _messageBrokerConfig?;
     private _activateControlMessages;
+    private _preemptiveGenerationConfig?;
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
      * @param _value initial values object or instance of CsiVtsiConfig to deeply clone from
@@ -84885,6 +86048,8 @@ declare class CsiVtsiConfig implements GrpcMessage {
     set messageBrokerConfig(value: MessageBrokerConfig | undefined);
     get activateControlMessages(): boolean;
     set activateControlMessages(value: boolean);
+    get preemptiveGenerationConfig(): CsiPreemptiveGenerationConfig | undefined;
+    set preemptiveGenerationConfig(value: CsiPreemptiveGenerationConfig | undefined);
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -84916,6 +86081,7 @@ declare namespace CsiVtsiConfig {
         audioObjectStoreConfig?: AudioObjectStorageConfig.AsObject;
         messageBrokerConfig?: MessageBrokerConfig.AsObject;
         activateControlMessages: boolean;
+        preemptiveGenerationConfig?: CsiPreemptiveGenerationConfig.AsObject;
     }
     /**
      * Protobuf JSON representation for CsiVtsiConfig
@@ -84927,6 +86093,81 @@ declare namespace CsiVtsiConfig {
         audioObjectStoreConfig: AudioObjectStorageConfig.AsProtobufJSON | null;
         messageBrokerConfig: MessageBrokerConfig.AsProtobufJSON | null;
         activateControlMessages: boolean;
+        preemptiveGenerationConfig: CsiPreemptiveGenerationConfig.AsProtobufJSON | null;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.CsiPreemptiveGenerationConfig
+ */
+declare class CsiPreemptiveGenerationConfig implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): CsiPreemptiveGenerationConfig;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: CsiPreemptiveGenerationConfig): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: CsiPreemptiveGenerationConfig, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: CsiPreemptiveGenerationConfig, _writer: BinaryWriter): void;
+    private _enabled;
+    private _commitWaitTimeoutSeconds;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CsiPreemptiveGenerationConfig to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<CsiPreemptiveGenerationConfig.AsObject>);
+    get enabled(): boolean;
+    set enabled(value: boolean);
+    get commitWaitTimeoutSeconds(): number;
+    set commitWaitTimeoutSeconds(value: number);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): CsiPreemptiveGenerationConfig.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): CsiPreemptiveGenerationConfig.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): CsiPreemptiveGenerationConfig.AsProtobufJSON;
+}
+declare namespace CsiPreemptiveGenerationConfig {
+    /**
+     * Standard JavaScript object representation for CsiPreemptiveGenerationConfig
+     */
+    interface AsObject {
+        enabled: boolean;
+        commitWaitTimeoutSeconds: number;
+    }
+    /**
+     * Protobuf JSON representation for CsiPreemptiveGenerationConfig
+     */
+    interface AsProtobufJSON {
+        enabled: boolean;
+        commitWaitTimeoutSeconds: number;
     }
 }
 /**
@@ -96572,6 +97813,164 @@ declare namespace InviteToCallResponse {
     }
 }
 /**
+ * Message implementation for ondewo.vtsi.SendCallDtmfRequest
+ */
+declare class SendCallDtmfRequest implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): SendCallDtmfRequest;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: SendCallDtmfRequest): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: SendCallDtmfRequest, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: SendCallDtmfRequest, _writer: BinaryWriter): void;
+    private _vtsiProjectName;
+    private _callName;
+    private _digits;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of SendCallDtmfRequest to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<SendCallDtmfRequest.AsObject>);
+    get vtsiProjectName(): string;
+    set vtsiProjectName(value: string);
+    get callName(): string;
+    set callName(value: string);
+    get digits(): string;
+    set digits(value: string);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): SendCallDtmfRequest.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): SendCallDtmfRequest.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): SendCallDtmfRequest.AsProtobufJSON;
+}
+declare namespace SendCallDtmfRequest {
+    /**
+     * Standard JavaScript object representation for SendCallDtmfRequest
+     */
+    interface AsObject {
+        vtsiProjectName: string;
+        callName: string;
+        digits: string;
+    }
+    /**
+     * Protobuf JSON representation for SendCallDtmfRequest
+     */
+    interface AsProtobufJSON {
+        vtsiProjectName: string;
+        callName: string;
+        digits: string;
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.SendCallDtmfResponse
+ */
+declare class SendCallDtmfResponse implements GrpcMessage {
+    static id: string;
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource): SendCallDtmfResponse;
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: SendCallDtmfResponse): void;
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance: SendCallDtmfResponse, _reader: BinaryReader): void;
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance: SendCallDtmfResponse, _writer: BinaryWriter): void;
+    private _vtsiProjectName;
+    private _callName;
+    private _queuedKeys;
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of SendCallDtmfResponse to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<SendCallDtmfResponse.AsObject>);
+    get vtsiProjectName(): string;
+    set vtsiProjectName(value: string);
+    get callName(): string;
+    set callName(value: string);
+    get queuedKeys(): number;
+    set queuedKeys(value: number);
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary(): any;
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): SendCallDtmfResponse.AsObject;
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON(): SendCallDtmfResponse.AsObject;
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(options?: ToProtobufJSONOptions): SendCallDtmfResponse.AsProtobufJSON;
+}
+declare namespace SendCallDtmfResponse {
+    /**
+     * Standard JavaScript object representation for SendCallDtmfResponse
+     */
+    interface AsObject {
+        vtsiProjectName: string;
+        callName: string;
+        queuedKeys: number;
+    }
+    /**
+     * Protobuf JSON representation for SendCallDtmfResponse
+     */
+    interface AsProtobufJSON {
+        vtsiProjectName: string;
+        callName: string;
+        queuedKeys: number;
+    }
+}
+/**
  * Message implementation for ondewo.vtsi.RemoveCallParticipantRequest
  */
 declare class RemoveCallParticipantRequest implements GrpcMessage {
@@ -100429,6 +101828,22 @@ declare class CallsClient {
          */
         setCallMediaControl: (requestData: SetCallMediaControlRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<SetCallMediaControlResponse>>;
         /**
+         * Unary call: /ondewo.vtsi.Calls/SendCallDtmf
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.SendCallDtmfResponse>>
+         */
+        sendCallDtmf: (requestData: SendCallDtmfRequest, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<SendCallDtmfResponse>>;
+        /**
+         * Bidirectional streaming: /ondewo.vtsi.Calls/StreamCallAudio
+         *
+         * @param requestMessage Request message
+         * @param requestMetadata Request metadata
+         * @returns Observable<GrpcEvent<thisProto.StreamCallAudioResponse>>
+         */
+        streamCallAudio: (requestData: Observable<StreamCallAudioRequest>, requestMetadata?: GrpcMetadata) => Observable<GrpcEvent<StreamCallAudioResponse>>;
+        /**
          * Server streaming: /ondewo.vtsi.Calls/ListenCallAudio
          *
          * @param requestMessage Request message
@@ -100807,6 +102222,22 @@ declare class CallsClient {
      */
     setCallMediaControl(requestData: SetCallMediaControlRequest, requestMetadata?: GrpcMetadata): Observable<SetCallMediaControlResponse>;
     /**
+     * Unary call @/ondewo.vtsi.Calls/SendCallDtmf
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.SendCallDtmfResponse>
+     */
+    sendCallDtmf(requestData: SendCallDtmfRequest, requestMetadata?: GrpcMetadata): Observable<SendCallDtmfResponse>;
+    /**
+     * Bidirectional streaming @/ondewo.vtsi.Calls/StreamCallAudio
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.StreamCallAudioResponse>
+     */
+    streamCallAudio(requestData: Observable<StreamCallAudioRequest>, requestMetadata?: GrpcMetadata): Observable<StreamCallAudioResponse>;
+    /**
      * Server streaming @/ondewo.vtsi.Calls/ListenCallAudio
      *
      * @param requestMessage Request message
@@ -101123,6 +102554,7 @@ declare enum VtsiEvent {
     VTSI_EVENT_CALL_AUDIO_STREAM_CONNECTED = 120,
     VTSI_EVENT_CALL_AUDIO_STREAM_DISCONNECTED = 121,
     VTSI_EVENT_CALL_UPDATED = 122,
+    VTSI_EVENT_CALL_DTMF_SENT = 123,
     VTSI_EVENT_CALLER_STARTED = 200,
     VTSI_EVENT_CALLER_START_FAILED = 201,
     VTSI_EVENT_CALLER_STOPPED = 202,
@@ -108905,5 +110337,5 @@ declare class GrpcWebEndpointError extends Error {
  */
 declare function buildGrpcWebHost(config: GrpcWebEndpointConfig): string;
 
-export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddCallersToCampaignRequest, AddCallersToCampaignResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddScheduledCallersToCampaignRequest, AddScheduledCallersToCampaignResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, AmdVerdictCount, AnsweringMachineDetectionConfig, AnsweringMachineDetectionResult, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BROWSER_UNSUPPORTED_TLS_FIELDS, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BotPolicyOnJoin, BuildCacheRequest, Caching, Call, CallAudioEndReason, CallAudioEnded, CallAudioFrame, CallAudioMode, CallAudioStarted, CallAudioStats, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallMediaControlState, CallMediaSetting, CallParticipant, CallResourceStatus, CallSorting, CallStatistics, CallStatus, CallTarget, CallTransferRecord, CallType, CallTypeCount, CallView, Caller, CallingWindowDayOfWeek, CallingWindowSlot, CallsClient, Campaign, CampaignAssignment, CampaignCall, CampaignCallAttempt, CampaignCallAttemptOutcome, CampaignCallRefusal, CampaignCallSource, CampaignCallState, CampaignCallingWindow, CampaignFilter, CampaignOrderBy, CampaignStartMode, CampaignState, CampaignStatistics, CampaignsClient, CancelCampaignCallsRequest, CancelCampaignCallsResponse, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CancelScheduledCallersRequest, CancelScheduledCallersResponse, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CloneCampaignRequest, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCampaignRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateSoftphoneAccountRequest, CreateSoftphoneAccountResponse, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiEventSubscriptionRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, CreateWebhookRequest, Credentials, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCampaignRequest, DeleteCampaignResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteSoftphoneAccountRequest, DeleteSoftphoneAccountResponse, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiEventSubscriptionRequest, DeleteVtsiEventSubscriptionResponse, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeleteWebhookRequest, DeleteWebhookResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DocumentFileResource, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, EventsClient, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportCallLogsRequest, ExportCallLogsResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CAMPAIGNS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_EVENTS_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SOFTPHONES_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallStatisticsRequest, GetCallerRequest, GetCampaignCallRequest, GetCampaignRequest, GetCampaignStatisticsRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSoftphoneAccountRequest, GetSoftphoneCertificateRequest, GetSoftphoneProvisioningRequest, GetSoftphoneRegistrationRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiEventSubscriptionRequest, GetVtsiProjectRequest, GetWebhookRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, GrpcWebEndpointError, HardStopCampaignRequest, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptionHandlingConfig, InviteToCallRequest, InviteToCallResponse, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCampaignCallsRequest, ListCampaignCallsResponse, ListCampaignsRequest, ListCampaignsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListSoftphoneAccountsRequest, ListSoftphoneAccountsResponse, ListSoftphoneCertificatesRequest, ListSoftphoneCertificatesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiEventSubscriptionsRequest, ListVtsiEventSubscriptionsResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, ListWebhooksRequest, ListWebhooksResponse, ListenCallAudioRequest, Listener, ListenerQueueTarget, LlmAgentNodeEvent, LlmAgentNodePhase, LlmAgentUsage, LlmBaseUrlUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogExportFormat, LogSeverity, LogSource, LogStreamChannel, LogStreamEndReason, Logging, Logmnse, LogsClient, MIN_REFRESH_DELAY_IN_S, Map, MbMelganTriton, MediaControlOwner, MediaControlSetting, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, ParticipantEndReason, ParticipantMode, ParticipantState, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerIncrementalConfig, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort$1 as ReasoningEffort, RedeliverWebhookEventsRequest, RedeliverWebhookEventsResponse, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveCallParticipantRequest, RemoveCallParticipantResponse, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, ResumeCampaignRequest, RetryCampaignCallsRequest, RetryCampaignCallsResponse, RetryScheduledCallerRequest, RevokeSoftphoneCertificateRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RotateSoftphoneCredentialsRequest, RotateSoftphoneCredentialsResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetCallMediaControlRequest, SetCallMediaControlResponse, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, Silero, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallAudioConfig, SipCallAudioEndReason, SipCallAudioEnded, SipCallAudioFrame, SipCallAudioMode, SipCallAudioRequest, SipCallAudioResponse, SipCallAudioStarted, SipCallAudioStats, SipCallerConfig, SipClient, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipReportAnsweringMachineDetectedRequest, SipSetCallMediaControlRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipStatusTypeCount, SipTransferCallRequest, SipTrunkTransport, SoftTimeoutConfig, SoftphoneAccount, SoftphoneAccountFilter, SoftphoneAccountSorting, SoftphoneCertificate, SoftphoneCertificateFilter, SoftphoneCertificateStatus, SoftphoneContact, SoftphoneContactStatus, SoftphoneCredentials, SoftphoneProvisioning, SoftphoneRegistration, SoftphoneSrtpMode, SoftphoneTransportSecurity, SoftphonesClient, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartCampaignRequest, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopCampaignRequest, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallAudioConfig, StreamCallAudioRequest, StreamCallAudioResponse, StreamCallLogsRequest, StreamCallLogsResponse, StreamCallResourceStatusResponse, StreamCallerStatusRequest, StreamCampaignStatusRequest, StreamCampaignStatusResponse, StreamEndReason, StreamListenerStatusRequest, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamScheduledCallerStatusRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SubscribeVtsiEventsRequest, SubscribeVtsiEventsResponse, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, TestWebhookRequest, TestWebhookResponse, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TransferMode, TransferOutcome, TransferOutcomeCount, TrunkRegistrationState, TsdMethod, TurnDetectionConfig, TurnDetectionOptions, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCallRequest, UpdateCallResponse, UpdateCallerRequest, UpdateCallerResponse, UpdateCallersRequest, UpdateCallersResponse, UpdateCallsRequest, UpdateCallsResponse, UpdateCampaignRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateListenerRequest, UpdateListenerResponse, UpdateListenersRequest, UpdateListenersResponse, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateScheduledCallerRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateSoftphoneAccountRequest, UpdateUserRequest, UpdateVtsiEventSubscriptionRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UpdateWebhookRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, VadMethod, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiEvent, VtsiEventFilter, VtsiEventMessage, VtsiEventSubscription, VtsiProject, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, Wav2Vec, Wav2VecTriton, Webhook, WebhookClient, WebhookDeliveryStatistics, WebhookHttpMethod, WebhookRequest, WebhookResponse, WespeakerTsd, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, authHttpInterceptor, buildBearerValue, buildGrpcWebHost, provideOndewoVtsiAuth, resolveBearerValue, resolveToken };
+export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddCallersToCampaignRequest, AddCallersToCampaignResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddScheduledCallersToCampaignRequest, AddScheduledCallersToCampaignResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, AmdVerdictCount, AnsweringMachineDetectionConfig, AnsweringMachineDetectionResult, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BROWSER_UNSUPPORTED_TLS_FIELDS, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BotPolicyOnJoin, BuildCacheRequest, Caching, Call, CallAudioEndReason, CallAudioEnded, CallAudioFrame, CallAudioMode, CallAudioStarted, CallAudioStats, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallMediaControlState, CallMediaSetting, CallParticipant, CallResourceStatus, CallSorting, CallStatistics, CallStatus, CallTarget, CallTransferRecord, CallType, CallTypeCount, CallView, Caller, CallingWindowDayOfWeek, CallingWindowSlot, CallsClient, Campaign, CampaignAssignment, CampaignCall, CampaignCallAttempt, CampaignCallAttemptOutcome, CampaignCallRefusal, CampaignCallSource, CampaignCallState, CampaignCallingWindow, CampaignFilter, CampaignOrderBy, CampaignStartMode, CampaignState, CampaignStatistics, CampaignsClient, CancelCampaignCallsRequest, CancelCampaignCallsResponse, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CancelScheduledCallersRequest, CancelScheduledCallersResponse, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CloneCampaignRequest, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCampaignRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateSoftphoneAccountRequest, CreateSoftphoneAccountResponse, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiEventSubscriptionRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, CreateWebhookRequest, Credentials, CsiPreemptiveGenerationConfig, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCampaignRequest, DeleteCampaignResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteSoftphoneAccountRequest, DeleteSoftphoneAccountResponse, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiEventSubscriptionRequest, DeleteVtsiEventSubscriptionResponse, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeleteWebhookRequest, DeleteWebhookResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DictationConfig, DocumentFileResource, DtmfConfig, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, EventsClient, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportCallLogsRequest, ExportCallLogsResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CAMPAIGNS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_EVENTS_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SOFTPHONES_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallStatisticsRequest, GetCallerRequest, GetCampaignCallRequest, GetCampaignRequest, GetCampaignStatisticsRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSoftphoneAccountRequest, GetSoftphoneCertificateRequest, GetSoftphoneProvisioningRequest, GetSoftphoneRegistrationRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiEventSubscriptionRequest, GetVtsiProjectRequest, GetWebhookRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, GrpcWebEndpointError, HardStopCampaignRequest, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptionHandlingConfig, InviteToCallRequest, InviteToCallResponse, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCampaignCallsRequest, ListCampaignCallsResponse, ListCampaignsRequest, ListCampaignsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListSoftphoneAccountsRequest, ListSoftphoneAccountsResponse, ListSoftphoneCertificatesRequest, ListSoftphoneCertificatesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiEventSubscriptionsRequest, ListVtsiEventSubscriptionsResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, ListWebhooksRequest, ListWebhooksResponse, ListenCallAudioRequest, Listener, ListenerQueueTarget, LlmAgentNodeEvent, LlmAgentNodePhase, LlmAgentUsage, LlmBaseUrlUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogExportFormat, LogSeverity, LogSource, LogStreamChannel, LogStreamEndReason, Logging, Logmnse, LogsClient, MIN_REFRESH_DELAY_IN_S, Map, MbMelganTriton, MediaControlOwner, MediaControlSetting, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluPreemptiveGenerationConfig, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, ParticipantEndReason, ParticipantMode, ParticipantState, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerIncrementalConfig, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort$1 as ReasoningEffort, RedeliverWebhookEventsRequest, RedeliverWebhookEventsResponse, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveCallParticipantRequest, RemoveCallParticipantResponse, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, ResumeCampaignRequest, RetryCampaignCallsRequest, RetryCampaignCallsResponse, RetryScheduledCallerRequest, RevokeSoftphoneCertificateRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RotateSoftphoneCredentialsRequest, RotateSoftphoneCredentialsResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, SendCallDtmfRequest, SendCallDtmfResponse, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetCallMediaControlRequest, SetCallMediaControlResponse, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, Silero, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallAudioConfig, SipCallAudioEndReason, SipCallAudioEnded, SipCallAudioFrame, SipCallAudioMode, SipCallAudioRequest, SipCallAudioResponse, SipCallAudioStarted, SipCallAudioStats, SipCallerConfig, SipClient, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipReportAnsweringMachineDetectedRequest, SipSendDtmfRequest, SipSetCallMediaControlRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipStatusTypeCount, SipTransferCallRequest, SipTrunkTransport, SoftTimeoutConfig, SoftphoneAccount, SoftphoneAccountFilter, SoftphoneAccountSorting, SoftphoneCertificate, SoftphoneCertificateFilter, SoftphoneCertificateStatus, SoftphoneContact, SoftphoneContactStatus, SoftphoneCredentials, SoftphoneProvisioning, SoftphoneRegistration, SoftphoneSrtpMode, SoftphoneTransportSecurity, SoftphonesClient, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartCampaignRequest, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopCampaignRequest, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallAudioConfig, StreamCallAudioRequest, StreamCallAudioResponse, StreamCallLogsRequest, StreamCallLogsResponse, StreamCallResourceStatusResponse, StreamCallerStatusRequest, StreamCampaignStatusRequest, StreamCampaignStatusResponse, StreamEndReason, StreamListenerStatusRequest, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamScheduledCallerStatusRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SubscribeVtsiEventsRequest, SubscribeVtsiEventsResponse, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sPreemptiveSynthesisConfig, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, TestWebhookRequest, TestWebhookResponse, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TransferMode, TransferOutcome, TransferOutcomeCount, TrunkRegistrationState, TsdMethod, TurnDetectionConfig, TurnDetectionContextTurn, TurnDetectionConversationContext, TurnDetectionHoldBand, TurnDetectionHoldBands, TurnDetectionOptions, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCallRequest, UpdateCallResponse, UpdateCallerRequest, UpdateCallerResponse, UpdateCallersRequest, UpdateCallersResponse, UpdateCallsRequest, UpdateCallsResponse, UpdateCampaignRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateListenerRequest, UpdateListenerResponse, UpdateListenersRequest, UpdateListenersResponse, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateScheduledCallerRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateSoftphoneAccountRequest, UpdateUserRequest, UpdateVtsiEventSubscriptionRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UpdateWebhookRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, VadMethod, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiEvent, VtsiEventFilter, VtsiEventMessage, VtsiEventSubscription, VtsiProject, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, Wav2Vec, Wav2VecTriton, Webhook, WebhookClient, WebhookDeliveryStatistics, WebhookHttpMethod, WebhookRequest, WebhookResponse, WespeakerTsd, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, authHttpInterceptor, buildBearerValue, buildGrpcWebHost, provideOndewoVtsiAuth, resolveBearerValue, resolveToken };
 export type { GrpcWebEndpointConfig, KeycloakTokenProviderConfig, TokenProvider, TokenResult };

@@ -2800,6 +2800,145 @@ export module SipSetCallMediaControlRequest {
 }
 
 /**
+ * Message implementation for ondewo.sip.SipSendDtmfRequest
+ */
+export class SipSendDtmfRequest implements GrpcMessage {
+  static id = 'ondewo.sip.SipSendDtmfRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new SipSendDtmfRequest();
+    SipSendDtmfRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: SipSendDtmfRequest) {
+    _instance.digits = _instance.digits || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: SipSendDtmfRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.digits = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    SipSendDtmfRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: SipSendDtmfRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.digits) {
+      _writer.writeString(1, _instance.digits);
+    }
+  }
+
+  private _digits: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of SipSendDtmfRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<SipSendDtmfRequest.AsObject>) {
+    _value = _value || {};
+    this.digits = _value.digits;
+    SipSendDtmfRequest.refineValues(this);
+  }
+  get digits(): string {
+    return this._digits;
+  }
+  set digits(value: string) {
+    this._digits = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    SipSendDtmfRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): SipSendDtmfRequest.AsObject {
+    return {
+      digits: this.digits
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): SipSendDtmfRequest.AsProtobufJSON {
+    return {
+      digits: this.digits
+    };
+  }
+}
+export module SipSendDtmfRequest {
+  /**
+   * Standard JavaScript object representation for SipSendDtmfRequest
+   */
+  export interface AsObject {
+    digits: string;
+  }
+
+  /**
+   * Protobuf JSON representation for SipSendDtmfRequest
+   */
+  export interface AsProtobufJSON {
+    digits: string;
+  }
+}
+
+/**
  * Message implementation for ondewo.sip.SipCallAudioConfig
  */
 export class SipCallAudioConfig implements GrpcMessage {

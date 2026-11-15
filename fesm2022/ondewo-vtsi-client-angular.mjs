@@ -95960,10 +95960,10 @@ class AgentsClient {
             .rotateProjectTechnicalUserPassword(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AgentsClient, deps: [{ token: GRPC_AGENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AgentsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AgentsClient, deps: [{ token: GRPC_AGENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AgentsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AgentsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AgentsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -101836,10 +101836,10 @@ class AiServicesClient {
             .listLlmModels(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AiServicesClient, deps: [{ token: GRPC_AI_SERVICES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AiServicesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AiServicesClient, deps: [{ token: GRPC_AI_SERVICES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AiServicesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AiServicesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AiServicesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -102065,10 +102065,10 @@ class CcaiProjectsClient {
             .getCcaiService(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CcaiProjectsClient, deps: [{ token: GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CcaiProjectsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CcaiProjectsClient, deps: [{ token: GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CcaiProjectsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CcaiProjectsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CcaiProjectsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -102294,10 +102294,10 @@ class ContextsClient {
             .deleteAllContexts(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ContextsClient, deps: [{ token: GRPC_CONTEXTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ContextsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ContextsClient, deps: [{ token: GRPC_CONTEXTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ContextsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ContextsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ContextsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -102823,10 +102823,10 @@ class EntityTypesClient {
             .listEntities(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: EntityTypesClient, deps: [{ token: GRPC_ENTITY_TYPES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: EntityTypesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: EntityTypesClient, deps: [{ token: GRPC_ENTITY_TYPES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: EntityTypesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: EntityTypesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: EntityTypesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -103682,10 +103682,10 @@ class IntentsClient {
             .listTrainingPhrasesofIntentsWithEnrichment(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: IntentsClient, deps: [{ token: GRPC_INTENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: IntentsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: IntentsClient, deps: [{ token: GRPC_INTENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: IntentsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: IntentsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: IntentsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -105891,10 +105891,10 @@ class LlmEvaluationsClient {
             .llmEvaluationPromoteAnnotationQueueItem(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: LlmEvaluationsClient, deps: [{ token: GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: LlmEvaluationsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: LlmEvaluationsClient, deps: [{ token: GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: LlmEvaluationsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: LlmEvaluationsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: LlmEvaluationsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -106180,10 +106180,10 @@ class OperationsClient {
             .listRemoteOperationContainers(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: OperationsClient, deps: [{ token: GRPC_OPERATIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: OperationsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: OperationsClient, deps: [{ token: GRPC_OPERATIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: OperationsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: OperationsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: OperationsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -106379,10 +106379,10 @@ class ProjectRolesClient {
             .listProjectRoles(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectRolesClient, deps: [{ token: GRPC_PROJECT_ROLES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectRolesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectRolesClient, deps: [{ token: GRPC_PROJECT_ROLES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectRolesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectRolesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectRolesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -107125,10 +107125,10 @@ class ProjectStatisticsClient {
             .getEntitySynonymCount(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectStatisticsClient, deps: [{ token: GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectStatisticsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectStatisticsClient, deps: [{ token: GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectStatisticsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectStatisticsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectStatisticsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -120561,6 +120561,24 @@ class RagsClient {
                 });
             },
             /**
+             * Client streaming: /ondewo.nlu.Rags/RagUploadDocument
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.RagDocument>>
+             */
+            ragUploadDocument: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.clientStream,
+                    client: this.client,
+                    path: '/ondewo.nlu.Rags/RagUploadDocument',
+                    requestData,
+                    requestMetadata,
+                    requestClass: RagUploadDocumentRequest,
+                    responseClass: RagDocument
+                });
+            },
+            /**
              * Unary call: /ondewo.nlu.Rags/RagUpdateDocument
              *
              * @param requestMessage Request message
@@ -121044,6 +121062,18 @@ class RagsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
+     * Client streaming @/ondewo.nlu.Rags/RagUploadDocument
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.RagDocument>
+     */
+    ragUploadDocument(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .ragUploadDocument(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
      * Unary call @/ondewo.nlu.Rags/RagUpdateDocument
      *
      * @param requestMessage Request message
@@ -121331,10 +121361,10 @@ class RagsClient {
             .ragGetCrawlerRunLogs(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: RagsClient, deps: [{ token: GRPC_RAGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: RagsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: RagsClient, deps: [{ token: GRPC_RAGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: RagsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: RagsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: RagsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -121572,10 +121602,10 @@ class ServerStatisticsClient {
             .getUserCount(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ServerStatisticsClient, deps: [{ token: GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ServerStatisticsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ServerStatisticsClient, deps: [{ token: GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ServerStatisticsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ServerStatisticsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ServerStatisticsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -121634,6 +121664,24 @@ class SessionsClient {
                     requestMetadata,
                     requestClass: DetectIntentRequest,
                     responseClass: DetectIntentResponse
+                });
+            },
+            /**
+             * Bidirectional streaming: /ondewo.nlu.Sessions/StreamingDetectIntent
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.StreamingDetectIntentResponse>>
+             */
+            streamingDetectIntent: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.bidiStream,
+                    client: this.client,
+                    path: '/ondewo.nlu.Sessions/StreamingDetectIntent',
+                    requestData,
+                    requestMetadata,
+                    requestClass: StreamingDetectIntentRequest,
+                    responseClass: StreamingDetectIntentResponse
                 });
             },
             /**
@@ -122516,6 +122564,18 @@ class SessionsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
+     * Bidirectional streaming @/ondewo.nlu.Sessions/StreamingDetectIntent
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.StreamingDetectIntentResponse>
+     */
+    streamingDetectIntent(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .streamingDetectIntent(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
      * Unary call @/ondewo.nlu.Sessions/ListSessions
      *
      * @param requestMessage Request message
@@ -123091,10 +123151,10 @@ class SessionsClient {
             .listAudioFiles(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SessionsClient, deps: [{ token: GRPC_SESSIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SessionsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SessionsClient, deps: [{ token: GRPC_SESSIONS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SessionsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SessionsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SessionsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -123920,10 +123980,10 @@ class UsersClient {
             .deleteAllUserPreferences(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: UsersClient, deps: [{ token: GRPC_USERS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: UsersClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: UsersClient, deps: [{ token: GRPC_USERS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: UsersClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: UsersClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: UsersClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -127507,10 +127567,10 @@ class UtilitiesClient {
             .addTrainingPhrasesFromCSV(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: UtilitiesClient, deps: [{ token: GRPC_UTILITIES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: UtilitiesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: UtilitiesClient, deps: [{ token: GRPC_UTILITIES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: UtilitiesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: UtilitiesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: UtilitiesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -129325,10 +129385,10 @@ class WebhookClient {
             .deleteSessionEntityType(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: WebhookClient, deps: [{ token: GRPC_WEBHOOK_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: WebhookClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: WebhookClient, deps: [{ token: GRPC_WEBHOOK_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: WebhookClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: WebhookClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: WebhookClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -131091,10 +131151,10 @@ class QAClient {
             .getProjectConfig(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: QAClient, deps: [{ token: GRPC_QA_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: QAClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: QAClient, deps: [{ token: GRPC_QA_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: QAClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: QAClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: QAClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -132563,6 +132623,12 @@ class UtteranceDetectionOptions {
                     _instance.turnDetection = new TurnDetectionOptions();
                     _reader.readMessage(_instance.turnDetection, TurnDetectionOptions.deserializeBinaryFromReader);
                     break;
+                case 4:
+                    _instance.minAudioChunkSize = _reader.readInt64String();
+                    break;
+                case 5:
+                    _instance.transcribeNotFinalPeriodSeconds = _reader.readFloat();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -132585,6 +132651,14 @@ class UtteranceDetectionOptions {
         if (_instance.turnDetection) {
             _writer.writeMessage(3, _instance.turnDetection, TurnDetectionOptions.serializeBinaryToWriter);
         }
+        if (_instance.minAudioChunkSize !== undefined &&
+            _instance.minAudioChunkSize !== null) {
+            _writer.writeInt64String(4, _instance.minAudioChunkSize);
+        }
+        if (_instance.transcribeNotFinalPeriodSeconds !== undefined &&
+            _instance.transcribeNotFinalPeriodSeconds !== null) {
+            _writer.writeFloat(5, _instance.transcribeNotFinalPeriodSeconds);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -132599,6 +132673,9 @@ class UtteranceDetectionOptions {
         this.turnDetection = _value.turnDetection
             ? new TurnDetectionOptions(_value.turnDetection)
             : undefined;
+        this.minAudioChunkSize = _value.minAudioChunkSize;
+        this.transcribeNotFinalPeriodSeconds =
+            _value.transcribeNotFinalPeriodSeconds;
         UtteranceDetectionOptions.refineValues(this);
     }
     get transcribeNotFinal() {
@@ -132627,6 +132704,18 @@ class UtteranceDetectionOptions {
         }
         this._turnDetection = value;
     }
+    get minAudioChunkSize() {
+        return this._minAudioChunkSize;
+    }
+    set minAudioChunkSize(value) {
+        this._minAudioChunkSize = value;
+    }
+    get transcribeNotFinalPeriodSeconds() {
+        return this._transcribeNotFinalPeriodSeconds;
+    }
+    set transcribeNotFinalPeriodSeconds(value) {
+        this._transcribeNotFinalPeriodSeconds = value;
+    }
     get oneofTranscribeNotFinal() {
         return this._oneofTranscribeNotFinal;
     }
@@ -132651,7 +132740,9 @@ class UtteranceDetectionOptions {
             nextChunkTimeout: this.nextChunkTimeout,
             turnDetection: this.turnDetection
                 ? this.turnDetection.toObject()
-                : undefined
+                : undefined,
+            minAudioChunkSize: this.minAudioChunkSize,
+            transcribeNotFinalPeriodSeconds: this.transcribeNotFinalPeriodSeconds
         };
     }
     /**
@@ -132673,7 +132764,9 @@ class UtteranceDetectionOptions {
             nextChunkTimeout: this.nextChunkTimeout,
             turnDetection: this.turnDetection
                 ? this.turnDetection.toProtobufJSON(options)
-                : null
+                : null,
+            minAudioChunkSize: this.minAudioChunkSize,
+            transcribeNotFinalPeriodSeconds: this.transcribeNotFinalPeriodSeconds
         };
     }
 }
@@ -137875,7 +137968,6 @@ class StreamingSpeechRecognition {
      * @param _instance message instance
      */
     static refineValues(_instance) {
-        _instance.transcribeNotFinal = _instance.transcribeNotFinal || false;
         _instance.decodingMethod = _instance.decodingMethod || '';
         _instance.samplingRate = _instance.samplingRate || '0';
         _instance.minAudioChunkSize = _instance.minAudioChunkSize || '0';
@@ -137911,6 +138003,9 @@ class StreamingSpeechRecognition {
                     _instance.turnDetection = new TurnDetectionOptions();
                     _reader.readMessage(_instance.turnDetection, TurnDetectionOptions.deserializeBinaryFromReader);
                     break;
+                case 7:
+                    _instance.transcribeNotFinalPeriodSeconds = _reader.readFloat();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -137923,7 +138018,8 @@ class StreamingSpeechRecognition {
      * @param _writer binary writer instance
      */
     static serializeBinaryToWriter(_instance, _writer) {
-        if (_instance.transcribeNotFinal) {
+        if (_instance.transcribeNotFinal !== undefined &&
+            _instance.transcribeNotFinal !== null) {
             _writer.writeBool(1, _instance.transcribeNotFinal);
         }
         if (_instance.decodingMethod) {
@@ -137941,6 +138037,10 @@ class StreamingSpeechRecognition {
         if (_instance.turnDetection) {
             _writer.writeMessage(6, _instance.turnDetection, TurnDetectionOptions.serializeBinaryToWriter);
         }
+        if (_instance.transcribeNotFinalPeriodSeconds !== undefined &&
+            _instance.transcribeNotFinalPeriodSeconds !== null) {
+            _writer.writeFloat(7, _instance.transcribeNotFinalPeriodSeconds);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -137956,6 +138056,8 @@ class StreamingSpeechRecognition {
         this.turnDetection = _value.turnDetection
             ? new TurnDetectionOptions(_value.turnDetection)
             : undefined;
+        this.transcribeNotFinalPeriodSeconds =
+            _value.transcribeNotFinalPeriodSeconds;
         StreamingSpeechRecognition.refineValues(this);
     }
     get transcribeNotFinal() {
@@ -137994,6 +138096,12 @@ class StreamingSpeechRecognition {
     set turnDetection(value) {
         this._turnDetection = value;
     }
+    get transcribeNotFinalPeriodSeconds() {
+        return this._transcribeNotFinalPeriodSeconds;
+    }
+    set transcribeNotFinalPeriodSeconds(value) {
+        this._transcribeNotFinalPeriodSeconds = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -138015,7 +138123,8 @@ class StreamingSpeechRecognition {
             nextChunkTimeout: this.nextChunkTimeout,
             turnDetection: this.turnDetection
                 ? this.turnDetection.toObject()
-                : undefined
+                : undefined,
+            transcribeNotFinalPeriodSeconds: this.transcribeNotFinalPeriodSeconds
         };
     }
     /**
@@ -138040,7 +138149,8 @@ class StreamingSpeechRecognition {
             nextChunkTimeout: this.nextChunkTimeout,
             turnDetection: this.turnDetection
                 ? this.turnDetection.toProtobufJSON(options)
-                : null
+                : null,
+            transcribeNotFinalPeriodSeconds: this.transcribeNotFinalPeriodSeconds
         };
     }
 }
@@ -138065,6 +138175,8 @@ class TurnDetectionOptions {
     static refineValues(_instance) {
         _instance.turnDetectionLlmOpenaiOptions =
             _instance.turnDetectionLlmOpenaiOptions || undefined;
+        _instance.conversationContext = _instance.conversationContext || undefined;
+        _instance.holdBands = _instance.holdBands || undefined;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -138091,6 +138203,41 @@ class TurnDetectionOptions {
                 case 5:
                     _instance.turnDetectionLlmOpenaiOptions = new OpenaiLlmOptions();
                     _reader.readMessage(_instance.turnDetectionLlmOpenaiOptions, OpenaiLlmOptions.deserializeBinaryFromReader);
+                    break;
+                case 6:
+                    _instance.conversationContext = new TurnDetectionConversationContext();
+                    _reader.readMessage(_instance.conversationContext, TurnDetectionConversationContext.deserializeBinaryFromReader);
+                    break;
+                case 7:
+                    _instance.endOfTurnProbabilityThreshold = _reader.readFloat();
+                    break;
+                case 8:
+                    _instance.holdBands = new TurnDetectionHoldBands();
+                    _reader.readMessage(_instance.holdBands, TurnDetectionHoldBands.deserializeBinaryFromReader);
+                    break;
+                case 9:
+                    _instance.uncertainMinWords = _reader.readUint32();
+                    break;
+                case 10:
+                    _instance.incompleteMaxSilenceSeconds = _reader.readFloat();
+                    break;
+                case 11:
+                    _instance.exactProbability = _reader.readBool();
+                    break;
+                case 12:
+                    _instance.pipecatTritonModelName = _reader.readString();
+                    break;
+                case 13:
+                    _instance.pipecatTritonServerHost = _reader.readString();
+                    break;
+                case 14:
+                    _instance.pipecatTritonServerPort = _reader.readInt64String();
+                    break;
+                case 15:
+                    _instance.pipecatMaxAudioSeconds = _reader.readFloat();
+                    break;
+                case 16:
+                    _instance.pipecatTimeoutSeconds = _reader.readFloat();
                     break;
                 default:
                     _reader.skipField();
@@ -138122,6 +138269,48 @@ class TurnDetectionOptions {
         if (_instance.turnDetectionLlmOpenaiOptions) {
             _writer.writeMessage(5, _instance.turnDetectionLlmOpenaiOptions, OpenaiLlmOptions.serializeBinaryToWriter);
         }
+        if (_instance.conversationContext) {
+            _writer.writeMessage(6, _instance.conversationContext, TurnDetectionConversationContext.serializeBinaryToWriter);
+        }
+        if (_instance.endOfTurnProbabilityThreshold !== undefined &&
+            _instance.endOfTurnProbabilityThreshold !== null) {
+            _writer.writeFloat(7, _instance.endOfTurnProbabilityThreshold);
+        }
+        if (_instance.holdBands) {
+            _writer.writeMessage(8, _instance.holdBands, TurnDetectionHoldBands.serializeBinaryToWriter);
+        }
+        if (_instance.uncertainMinWords !== undefined &&
+            _instance.uncertainMinWords !== null) {
+            _writer.writeUint32(9, _instance.uncertainMinWords);
+        }
+        if (_instance.incompleteMaxSilenceSeconds !== undefined &&
+            _instance.incompleteMaxSilenceSeconds !== null) {
+            _writer.writeFloat(10, _instance.incompleteMaxSilenceSeconds);
+        }
+        if (_instance.exactProbability !== undefined &&
+            _instance.exactProbability !== null) {
+            _writer.writeBool(11, _instance.exactProbability);
+        }
+        if (_instance.pipecatTritonModelName !== undefined &&
+            _instance.pipecatTritonModelName !== null) {
+            _writer.writeString(12, _instance.pipecatTritonModelName);
+        }
+        if (_instance.pipecatTritonServerHost !== undefined &&
+            _instance.pipecatTritonServerHost !== null) {
+            _writer.writeString(13, _instance.pipecatTritonServerHost);
+        }
+        if (_instance.pipecatTritonServerPort !== undefined &&
+            _instance.pipecatTritonServerPort !== null) {
+            _writer.writeInt64String(14, _instance.pipecatTritonServerPort);
+        }
+        if (_instance.pipecatMaxAudioSeconds !== undefined &&
+            _instance.pipecatMaxAudioSeconds !== null) {
+            _writer.writeFloat(15, _instance.pipecatMaxAudioSeconds);
+        }
+        if (_instance.pipecatTimeoutSeconds !== undefined &&
+            _instance.pipecatTimeoutSeconds !== null) {
+            _writer.writeFloat(16, _instance.pipecatTimeoutSeconds);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -138136,6 +138325,21 @@ class TurnDetectionOptions {
         this.turnDetectionLlmOpenaiOptions = _value.turnDetectionLlmOpenaiOptions
             ? new OpenaiLlmOptions(_value.turnDetectionLlmOpenaiOptions)
             : undefined;
+        this.conversationContext = _value.conversationContext
+            ? new TurnDetectionConversationContext(_value.conversationContext)
+            : undefined;
+        this.endOfTurnProbabilityThreshold = _value.endOfTurnProbabilityThreshold;
+        this.holdBands = _value.holdBands
+            ? new TurnDetectionHoldBands(_value.holdBands)
+            : undefined;
+        this.uncertainMinWords = _value.uncertainMinWords;
+        this.incompleteMaxSilenceSeconds = _value.incompleteMaxSilenceSeconds;
+        this.exactProbability = _value.exactProbability;
+        this.pipecatTritonModelName = _value.pipecatTritonModelName;
+        this.pipecatTritonServerHost = _value.pipecatTritonServerHost;
+        this.pipecatTritonServerPort = _value.pipecatTritonServerPort;
+        this.pipecatMaxAudioSeconds = _value.pipecatMaxAudioSeconds;
+        this.pipecatTimeoutSeconds = _value.pipecatTimeoutSeconds;
         TurnDetectionOptions.refineValues(this);
     }
     get active() {
@@ -138168,6 +138372,72 @@ class TurnDetectionOptions {
     set turnDetectionLlmOpenaiOptions(value) {
         this._turnDetectionLlmOpenaiOptions = value;
     }
+    get conversationContext() {
+        return this._conversationContext;
+    }
+    set conversationContext(value) {
+        this._conversationContext = value;
+    }
+    get endOfTurnProbabilityThreshold() {
+        return this._endOfTurnProbabilityThreshold;
+    }
+    set endOfTurnProbabilityThreshold(value) {
+        this._endOfTurnProbabilityThreshold = value;
+    }
+    get holdBands() {
+        return this._holdBands;
+    }
+    set holdBands(value) {
+        this._holdBands = value;
+    }
+    get uncertainMinWords() {
+        return this._uncertainMinWords;
+    }
+    set uncertainMinWords(value) {
+        this._uncertainMinWords = value;
+    }
+    get incompleteMaxSilenceSeconds() {
+        return this._incompleteMaxSilenceSeconds;
+    }
+    set incompleteMaxSilenceSeconds(value) {
+        this._incompleteMaxSilenceSeconds = value;
+    }
+    get exactProbability() {
+        return this._exactProbability;
+    }
+    set exactProbability(value) {
+        this._exactProbability = value;
+    }
+    get pipecatTritonModelName() {
+        return this._pipecatTritonModelName;
+    }
+    set pipecatTritonModelName(value) {
+        this._pipecatTritonModelName = value;
+    }
+    get pipecatTritonServerHost() {
+        return this._pipecatTritonServerHost;
+    }
+    set pipecatTritonServerHost(value) {
+        this._pipecatTritonServerHost = value;
+    }
+    get pipecatTritonServerPort() {
+        return this._pipecatTritonServerPort;
+    }
+    set pipecatTritonServerPort(value) {
+        this._pipecatTritonServerPort = value;
+    }
+    get pipecatMaxAudioSeconds() {
+        return this._pipecatMaxAudioSeconds;
+    }
+    set pipecatMaxAudioSeconds(value) {
+        this._pipecatMaxAudioSeconds = value;
+    }
+    get pipecatTimeoutSeconds() {
+        return this._pipecatTimeoutSeconds;
+    }
+    set pipecatTimeoutSeconds(value) {
+        this._pipecatTimeoutSeconds = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -138188,7 +138458,20 @@ class TurnDetectionOptions {
             turnDetectionUserPrompt: this.turnDetectionUserPrompt,
             turnDetectionLlmOpenaiOptions: this.turnDetectionLlmOpenaiOptions
                 ? this.turnDetectionLlmOpenaiOptions.toObject()
-                : undefined
+                : undefined,
+            conversationContext: this.conversationContext
+                ? this.conversationContext.toObject()
+                : undefined,
+            endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+            holdBands: this.holdBands ? this.holdBands.toObject() : undefined,
+            uncertainMinWords: this.uncertainMinWords,
+            incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+            exactProbability: this.exactProbability,
+            pipecatTritonModelName: this.pipecatTritonModelName,
+            pipecatTritonServerHost: this.pipecatTritonServerHost,
+            pipecatTritonServerPort: this.pipecatTritonServerPort,
+            pipecatMaxAudioSeconds: this.pipecatMaxAudioSeconds,
+            pipecatTimeoutSeconds: this.pipecatTimeoutSeconds
         };
     }
     /**
@@ -138212,7 +138495,468 @@ class TurnDetectionOptions {
             turnDetectionUserPrompt: this.turnDetectionUserPrompt,
             turnDetectionLlmOpenaiOptions: this.turnDetectionLlmOpenaiOptions
                 ? this.turnDetectionLlmOpenaiOptions.toProtobufJSON(options)
-                : null
+                : null,
+            conversationContext: this.conversationContext
+                ? this.conversationContext.toProtobufJSON(options)
+                : null,
+            endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+            holdBands: this.holdBands ? this.holdBands.toProtobufJSON(options) : null,
+            uncertainMinWords: this.uncertainMinWords,
+            incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+            exactProbability: this.exactProbability,
+            pipecatTritonModelName: this.pipecatTritonModelName,
+            pipecatTritonServerHost: this.pipecatTritonServerHost,
+            pipecatTritonServerPort: this.pipecatTritonServerPort,
+            pipecatMaxAudioSeconds: this.pipecatMaxAudioSeconds,
+            pipecatTimeoutSeconds: this.pipecatTimeoutSeconds
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionConversationContext
+ */
+class TurnDetectionConversationContext {
+    static { this.id = 'ondewo.s2t.TurnDetectionConversationContext'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new TurnDetectionConversationContext();
+        TurnDetectionConversationContext.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.turns = _instance.turns || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    const messageInitializer1 = new TurnDetectionContextTurn();
+                    _reader.readMessage(messageInitializer1, TurnDetectionContextTurn.deserializeBinaryFromReader);
+                    (_instance.turns = _instance.turns || []).push(messageInitializer1);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        TurnDetectionConversationContext.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.turns && _instance.turns.length) {
+            _writer.writeRepeatedMessage(1, _instance.turns, TurnDetectionContextTurn.serializeBinaryToWriter);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TurnDetectionConversationContext to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.turns = (_value.turns || []).map(m => new TurnDetectionContextTurn(m));
+        TurnDetectionConversationContext.refineValues(this);
+    }
+    get turns() {
+        return this._turns;
+    }
+    set turns(value) {
+        this._turns = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        TurnDetectionConversationContext.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            turns: (this.turns || []).map(m => m.toObject())
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            turns: (this.turns || []).map(m => m.toProtobufJSON(options))
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionContextTurn
+ */
+class TurnDetectionContextTurn {
+    static { this.id = 'ondewo.s2t.TurnDetectionContextTurn'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new TurnDetectionContextTurn();
+        TurnDetectionContextTurn.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.role = _instance.role || 0;
+        _instance.text = _instance.text || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.role = _reader.readEnum();
+                    break;
+                case 2:
+                    _instance.text = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        TurnDetectionContextTurn.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.role) {
+            _writer.writeEnum(1, _instance.role);
+        }
+        if (_instance.text) {
+            _writer.writeString(2, _instance.text);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TurnDetectionContextTurn to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.role = _value.role;
+        this.text = _value.text;
+        TurnDetectionContextTurn.refineValues(this);
+    }
+    get role() {
+        return this._role;
+    }
+    set role(value) {
+        this._role = value;
+    }
+    get text() {
+        return this._text;
+    }
+    set text(value) {
+        this._text = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        TurnDetectionContextTurn.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            role: this.role,
+            text: this.text
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            role: TurnDetectionContextTurn.Role[this.role === null || this.role === undefined ? 0 : this.role],
+            text: this.text
+        };
+    }
+}
+(function (TurnDetectionContextTurn) {
+    let Role;
+    (function (Role) {
+        Role[Role["ROLE_UNSPECIFIED"] = 0] = "ROLE_UNSPECIFIED";
+        Role[Role["ROLE_USER"] = 1] = "ROLE_USER";
+        Role[Role["ROLE_ASSISTANT"] = 2] = "ROLE_ASSISTANT";
+    })(Role = TurnDetectionContextTurn.Role || (TurnDetectionContextTurn.Role = {}));
+})(TurnDetectionContextTurn || (TurnDetectionContextTurn = {}));
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionHoldBands
+ */
+class TurnDetectionHoldBands {
+    static { this.id = 'ondewo.s2t.TurnDetectionHoldBands'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new TurnDetectionHoldBands();
+        TurnDetectionHoldBands.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.bands = _instance.bands || [];
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    const messageInitializer1 = new TurnDetectionHoldBand();
+                    _reader.readMessage(messageInitializer1, TurnDetectionHoldBand.deserializeBinaryFromReader);
+                    (_instance.bands = _instance.bands || []).push(messageInitializer1);
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        TurnDetectionHoldBands.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.bands && _instance.bands.length) {
+            _writer.writeRepeatedMessage(1, _instance.bands, TurnDetectionHoldBand.serializeBinaryToWriter);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TurnDetectionHoldBands to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.bands = (_value.bands || []).map(m => new TurnDetectionHoldBand(m));
+        TurnDetectionHoldBands.refineValues(this);
+    }
+    get bands() {
+        return this._bands;
+    }
+    set bands(value) {
+        this._bands = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        TurnDetectionHoldBands.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            bands: (this.bands || []).map(m => m.toObject())
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            bands: (this.bands || []).map(m => m.toProtobufJSON(options))
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionHoldBand
+ */
+class TurnDetectionHoldBand {
+    static { this.id = 'ondewo.s2t.TurnDetectionHoldBand'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new TurnDetectionHoldBand();
+        TurnDetectionHoldBand.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.upperProbability = _instance.upperProbability || 0;
+        _instance.maxSilenceSeconds = _instance.maxSilenceSeconds || 0;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.upperProbability = _reader.readFloat();
+                    break;
+                case 2:
+                    _instance.maxSilenceSeconds = _reader.readFloat();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        TurnDetectionHoldBand.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.upperProbability) {
+            _writer.writeFloat(1, _instance.upperProbability);
+        }
+        if (_instance.maxSilenceSeconds) {
+            _writer.writeFloat(2, _instance.maxSilenceSeconds);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of TurnDetectionHoldBand to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.upperProbability = _value.upperProbability;
+        this.maxSilenceSeconds = _value.maxSilenceSeconds;
+        TurnDetectionHoldBand.refineValues(this);
+    }
+    get upperProbability() {
+        return this._upperProbability;
+    }
+    set upperProbability(value) {
+        this._upperProbability = value;
+    }
+    get maxSilenceSeconds() {
+        return this._maxSilenceSeconds;
+    }
+    set maxSilenceSeconds(value) {
+        this._maxSilenceSeconds = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        TurnDetectionHoldBand.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            upperProbability: this.upperProbability,
+            maxSilenceSeconds: this.maxSilenceSeconds
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            upperProbability: this.upperProbability,
+            maxSilenceSeconds: this.maxSilenceSeconds
         };
     }
 }
@@ -142803,6 +143547,24 @@ class Speech2TextClient {
                 });
             },
             /**
+             * Bidirectional streaming: /ondewo.s2t.Speech2Text/TranscribeStream
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.TranscribeStreamResponse>>
+             */
+            transcribeStream: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.bidiStream,
+                    client: this.client,
+                    path: '/ondewo.s2t.Speech2Text/TranscribeStream',
+                    requestData,
+                    requestMetadata,
+                    requestClass: TranscribeStreamRequest,
+                    responseClass: TranscribeStreamResponse
+                });
+            },
+            /**
              * Unary call: /ondewo.s2t.Speech2Text/GetS2tPipeline
              *
              * @param requestMessage Request message
@@ -143070,6 +143832,18 @@ class Speech2TextClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
+     * Bidirectional streaming @/ondewo.s2t.Speech2Text/TranscribeStream
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.TranscribeStreamResponse>
+     */
+    transcribeStream(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .transcribeStream(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
      * Unary call @/ondewo.s2t.Speech2Text/GetS2tPipeline
      *
      * @param requestMessage Request message
@@ -143237,10 +144011,10 @@ class Speech2TextClient {
             .listS2tNormalizationPipelines(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: Speech2TextClient, deps: [{ token: GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: Speech2TextClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: Speech2TextClient, deps: [{ token: GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: Speech2TextClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: Speech2TextClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: Speech2TextClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -145340,6 +146114,107 @@ class SipSetCallMediaControlRequest {
     }
 }
 /**
+ * Message implementation for ondewo.sip.SipSendDtmfRequest
+ */
+class SipSendDtmfRequest {
+    static { this.id = 'ondewo.sip.SipSendDtmfRequest'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new SipSendDtmfRequest();
+        SipSendDtmfRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.digits = _instance.digits || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.digits = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        SipSendDtmfRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.digits) {
+            _writer.writeString(1, _instance.digits);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of SipSendDtmfRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.digits = _value.digits;
+        SipSendDtmfRequest.refineValues(this);
+    }
+    get digits() {
+        return this._digits;
+    }
+    set digits(value) {
+        this._digits = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        SipSendDtmfRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            digits: this.digits
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            digits: this.digits
+        };
+    }
+}
+/**
  * Message implementation for ondewo.sip.SipCallAudioConfig
  */
 class SipCallAudioConfig {
@@ -146771,6 +147646,42 @@ class SipClient {
                     requestClass: SipSetCallMediaControlRequest,
                     responseClass: SipStatus
                 });
+            },
+            /**
+             * Bidirectional streaming: /ondewo.sip.Sip/SipStreamCallAudio
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.SipCallAudioResponse>>
+             */
+            sipStreamCallAudio: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.bidiStream,
+                    client: this.client,
+                    path: '/ondewo.sip.Sip/SipStreamCallAudio',
+                    requestData,
+                    requestMetadata,
+                    requestClass: SipCallAudioRequest,
+                    responseClass: SipCallAudioResponse
+                });
+            },
+            /**
+             * Unary call: /ondewo.sip.Sip/SipSendDtmf
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.SipStatus>>
+             */
+            sipSendDtmf: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.sip.Sip/SipSendDtmf',
+                    requestData,
+                    requestMetadata,
+                    requestClass: SipSendDtmfRequest,
+                    responseClass: SipStatus
+                });
             }
         };
         this.client = clientFactory.createClient('ondewo.sip.Sip', settings);
@@ -146931,10 +147842,34 @@ class SipClient {
             .sipSetCallMediaControl(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SipClient, deps: [{ token: GRPC_SIP_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SipClient, providedIn: 'any' }); }
+    /**
+     * Bidirectional streaming @/ondewo.sip.Sip/SipStreamCallAudio
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.SipCallAudioResponse>
+     */
+    sipStreamCallAudio(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .sipStreamCallAudio(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Unary call @/ondewo.sip.Sip/SipSendDtmf
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.SipStatus>
+     */
+    sipSendDtmf(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .sipSendDtmf(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SipClient, deps: [{ token: GRPC_SIP_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SipClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SipClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SipClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -156188,6 +157123,24 @@ class Text2SpeechClient {
                 });
             },
             /**
+             * Bidirectional streaming: /ondewo.t2s.Text2Speech/StreamingSynthesize
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.StreamingSynthesizeResponse>>
+             */
+            streamingSynthesize: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.bidiStream,
+                    client: this.client,
+                    path: '/ondewo.t2s.Text2Speech/StreamingSynthesize',
+                    requestData,
+                    requestMetadata,
+                    requestClass: StreamingSynthesizeRequest,
+                    responseClass: StreamingSynthesizeResponse
+                });
+            },
+            /**
              * Unary call: /ondewo.t2s.Text2Speech/NormalizeText
              *
              * @param requestMessage Request message
@@ -156503,6 +157456,18 @@ class Text2SpeechClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
+     * Bidirectional streaming @/ondewo.t2s.Text2Speech/StreamingSynthesize
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.StreamingSynthesizeResponse>
+     */
+    streamingSynthesize(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .streamingSynthesize(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
      * Unary call @/ondewo.t2s.Text2Speech/NormalizeText
      *
      * @param requestMessage Request message
@@ -156694,10 +157659,10 @@ class Text2SpeechClient {
             .voiceCloning(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: Text2SpeechClient, deps: [{ token: GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: Text2SpeechClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: Text2SpeechClient, deps: [{ token: GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: Text2SpeechClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: Text2SpeechClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: Text2SpeechClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -156985,6 +157950,8 @@ class NluVtsiConfig {
         _instance.initialIntent = _instance.initialIntent || '';
         _instance.contexts = _instance.contexts || [];
         _instance.httpBasicAuthToken = _instance.httpBasicAuthToken || '';
+        _instance.preemptiveGenerationConfig =
+            _instance.preemptiveGenerationConfig || undefined;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -157027,6 +157994,10 @@ class NluVtsiConfig {
                 case 9:
                     _instance.platform = _reader.readEnum();
                     break;
+                case 10:
+                    _instance.preemptiveGenerationConfig = new NluPreemptiveGenerationConfig();
+                    _reader.readMessage(_instance.preemptiveGenerationConfig, NluPreemptiveGenerationConfig.deserializeBinaryFromReader);
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -157066,6 +158037,9 @@ class NluVtsiConfig {
         if (_instance.platform !== undefined && _instance.platform !== null) {
             _writer.writeEnum(9, _instance.platform);
         }
+        if (_instance.preemptiveGenerationConfig) {
+            _writer.writeMessage(10, _instance.preemptiveGenerationConfig, NluPreemptiveGenerationConfig.serializeBinaryToWriter);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -157087,6 +158061,9 @@ class NluVtsiConfig {
         this.contexts = (_value.contexts || []).map(m => new Context(m));
         this.httpBasicAuthToken = _value.httpBasicAuthToken;
         this.platform = _value.platform;
+        this.preemptiveGenerationConfig = _value.preemptiveGenerationConfig
+            ? new NluPreemptiveGenerationConfig(_value.preemptiveGenerationConfig)
+            : undefined;
         NluVtsiConfig.refineValues(this);
     }
     get nluBaseConfig() {
@@ -157151,6 +158128,12 @@ class NluVtsiConfig {
     set platform(value) {
         this._platform = value;
     }
+    get preemptiveGenerationConfig() {
+        return this._preemptiveGenerationConfig;
+    }
+    set preemptiveGenerationConfig(value) {
+        this._preemptiveGenerationConfig = value;
+    }
     get authentication() {
         return this._authentication;
     }
@@ -157178,7 +158161,10 @@ class NluVtsiConfig {
             initialIntent: this.initialIntent,
             contexts: (this.contexts || []).map(m => m.toObject()),
             httpBasicAuthToken: this.httpBasicAuthToken,
-            platform: this.platform
+            platform: this.platform,
+            preemptiveGenerationConfig: this.preemptiveGenerationConfig
+                ? this.preemptiveGenerationConfig.toObject()
+                : undefined
         };
     }
     /**
@@ -157212,7 +158198,10 @@ class NluVtsiConfig {
             httpBasicAuthToken: this.httpBasicAuthToken,
             platform: Intent.Message.Platform[this.platform === null || this.platform === undefined
                 ? 0
-                : this.platform]
+                : this.platform],
+            preemptiveGenerationConfig: this.preemptiveGenerationConfig
+                ? this.preemptiveGenerationConfig.toProtobufJSON(options)
+                : null
         };
     }
 }
@@ -157224,6 +158213,139 @@ class NluVtsiConfig {
         AuthenticationCase[AuthenticationCase["authToken"] = 2] = "authToken";
     })(AuthenticationCase = NluVtsiConfig.AuthenticationCase || (NluVtsiConfig.AuthenticationCase = {}));
 })(NluVtsiConfig || (NluVtsiConfig = {}));
+/**
+ * Message implementation for ondewo.vtsi.NluPreemptiveGenerationConfig
+ */
+class NluPreemptiveGenerationConfig {
+    static { this.id = 'ondewo.vtsi.NluPreemptiveGenerationConfig'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new NluPreemptiveGenerationConfig();
+        NluPreemptiveGenerationConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.maxDraftsPerTurn = _reader.readInt32();
+                    break;
+                case 2:
+                    _instance.minStableDwellSeconds = _reader.readFloat();
+                    break;
+                case 3:
+                    _instance.minIntervalSeconds = _reader.readFloat();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        NluPreemptiveGenerationConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.maxDraftsPerTurn !== undefined &&
+            _instance.maxDraftsPerTurn !== null) {
+            _writer.writeInt32(1, _instance.maxDraftsPerTurn);
+        }
+        if (_instance.minStableDwellSeconds !== undefined &&
+            _instance.minStableDwellSeconds !== null) {
+            _writer.writeFloat(2, _instance.minStableDwellSeconds);
+        }
+        if (_instance.minIntervalSeconds !== undefined &&
+            _instance.minIntervalSeconds !== null) {
+            _writer.writeFloat(3, _instance.minIntervalSeconds);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of NluPreemptiveGenerationConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.maxDraftsPerTurn = _value.maxDraftsPerTurn;
+        this.minStableDwellSeconds = _value.minStableDwellSeconds;
+        this.minIntervalSeconds = _value.minIntervalSeconds;
+        NluPreemptiveGenerationConfig.refineValues(this);
+    }
+    get maxDraftsPerTurn() {
+        return this._maxDraftsPerTurn;
+    }
+    set maxDraftsPerTurn(value) {
+        this._maxDraftsPerTurn = value;
+    }
+    get minStableDwellSeconds() {
+        return this._minStableDwellSeconds;
+    }
+    set minStableDwellSeconds(value) {
+        this._minStableDwellSeconds = value;
+    }
+    get minIntervalSeconds() {
+        return this._minIntervalSeconds;
+    }
+    set minIntervalSeconds(value) {
+        this._minIntervalSeconds = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        NluPreemptiveGenerationConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            maxDraftsPerTurn: this.maxDraftsPerTurn,
+            minStableDwellSeconds: this.minStableDwellSeconds,
+            minIntervalSeconds: this.minIntervalSeconds
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            maxDraftsPerTurn: this.maxDraftsPerTurn,
+            minStableDwellSeconds: this.minStableDwellSeconds,
+            minIntervalSeconds: this.minIntervalSeconds
+        };
+    }
+}
 /**
  * Message implementation for ondewo.vtsi.T2sVtsiConfig
  */
@@ -157245,6 +158367,8 @@ class T2sVtsiConfig {
     static refineValues(_instance) {
         _instance.t2sBaseConfig = _instance.t2sBaseConfig || undefined;
         _instance.t2sRequestConfig = _instance.t2sRequestConfig || undefined;
+        _instance.preemptiveSynthesisConfig =
+            _instance.preemptiveSynthesisConfig || undefined;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -157264,6 +158388,10 @@ class T2sVtsiConfig {
                     _instance.t2sRequestConfig = new RequestConfig();
                     _reader.readMessage(_instance.t2sRequestConfig, RequestConfig.deserializeBinaryFromReader);
                     break;
+                case 3:
+                    _instance.preemptiveSynthesisConfig = new T2sPreemptiveSynthesisConfig();
+                    _reader.readMessage(_instance.preemptiveSynthesisConfig, T2sPreemptiveSynthesisConfig.deserializeBinaryFromReader);
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -157282,6 +158410,9 @@ class T2sVtsiConfig {
         if (_instance.t2sRequestConfig) {
             _writer.writeMessage(2, _instance.t2sRequestConfig, RequestConfig.serializeBinaryToWriter);
         }
+        if (_instance.preemptiveSynthesisConfig) {
+            _writer.writeMessage(3, _instance.preemptiveSynthesisConfig, T2sPreemptiveSynthesisConfig.serializeBinaryToWriter);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -157294,6 +158425,9 @@ class T2sVtsiConfig {
             : undefined;
         this.t2sRequestConfig = _value.t2sRequestConfig
             ? new RequestConfig(_value.t2sRequestConfig)
+            : undefined;
+        this.preemptiveSynthesisConfig = _value.preemptiveSynthesisConfig
+            ? new T2sPreemptiveSynthesisConfig(_value.preemptiveSynthesisConfig)
             : undefined;
         T2sVtsiConfig.refineValues(this);
     }
@@ -157308,6 +158442,12 @@ class T2sVtsiConfig {
     }
     set t2sRequestConfig(value) {
         this._t2sRequestConfig = value;
+    }
+    get preemptiveSynthesisConfig() {
+        return this._preemptiveSynthesisConfig;
+    }
+    set preemptiveSynthesisConfig(value) {
+        this._preemptiveSynthesisConfig = value;
     }
     /**
      * Serialize message to binary data
@@ -157328,6 +158468,9 @@ class T2sVtsiConfig {
                 : undefined,
             t2sRequestConfig: this.t2sRequestConfig
                 ? this.t2sRequestConfig.toObject()
+                : undefined,
+            preemptiveSynthesisConfig: this.preemptiveSynthesisConfig
+                ? this.preemptiveSynthesisConfig.toObject()
                 : undefined
         };
     }
@@ -157351,7 +158494,125 @@ class T2sVtsiConfig {
                 : null,
             t2sRequestConfig: this.t2sRequestConfig
                 ? this.t2sRequestConfig.toProtobufJSON(options)
+                : null,
+            preemptiveSynthesisConfig: this.preemptiveSynthesisConfig
+                ? this.preemptiveSynthesisConfig.toProtobufJSON(options)
                 : null
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.T2sPreemptiveSynthesisConfig
+ */
+class T2sPreemptiveSynthesisConfig {
+    static { this.id = 'ondewo.vtsi.T2sPreemptiveSynthesisConfig'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new T2sPreemptiveSynthesisConfig();
+        T2sPreemptiveSynthesisConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.enabled = _reader.readBool();
+                    break;
+                case 2:
+                    _instance.chunked = _reader.readBool();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        T2sPreemptiveSynthesisConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.enabled !== undefined && _instance.enabled !== null) {
+            _writer.writeBool(1, _instance.enabled);
+        }
+        if (_instance.chunked !== undefined && _instance.chunked !== null) {
+            _writer.writeBool(2, _instance.chunked);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of T2sPreemptiveSynthesisConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.enabled = _value.enabled;
+        this.chunked = _value.chunked;
+        T2sPreemptiveSynthesisConfig.refineValues(this);
+    }
+    get enabled() {
+        return this._enabled;
+    }
+    set enabled(value) {
+        this._enabled = value;
+    }
+    get chunked() {
+        return this._chunked;
+    }
+    set chunked(value) {
+        this._chunked = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        T2sPreemptiveSynthesisConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            enabled: this.enabled,
+            chunked: this.chunked
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            enabled: this.enabled,
+            chunked: this.chunked
         };
     }
 }
@@ -157714,6 +158975,7 @@ class VoiceInteractionConfig {
             _instance.responseTimingConfig || undefined;
         _instance.answeringMachineDetectionConfig =
             _instance.answeringMachineDetectionConfig || undefined;
+        _instance.dtmfConfig = _instance.dtmfConfig || undefined;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -157741,6 +159003,10 @@ class VoiceInteractionConfig {
                     _instance.answeringMachineDetectionConfig = new AnsweringMachineDetectionConfig();
                     _reader.readMessage(_instance.answeringMachineDetectionConfig, AnsweringMachineDetectionConfig.deserializeBinaryFromReader);
                     break;
+                case 5:
+                    _instance.dtmfConfig = new DtmfConfig();
+                    _reader.readMessage(_instance.dtmfConfig, DtmfConfig.deserializeBinaryFromReader);
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -157765,6 +159031,9 @@ class VoiceInteractionConfig {
         if (_instance.answeringMachineDetectionConfig) {
             _writer.writeMessage(4, _instance.answeringMachineDetectionConfig, AnsweringMachineDetectionConfig.serializeBinaryToWriter);
         }
+        if (_instance.dtmfConfig) {
+            _writer.writeMessage(5, _instance.dtmfConfig, DtmfConfig.serializeBinaryToWriter);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -157783,6 +159052,9 @@ class VoiceInteractionConfig {
             : undefined;
         this.answeringMachineDetectionConfig = _value.answeringMachineDetectionConfig
             ? new AnsweringMachineDetectionConfig(_value.answeringMachineDetectionConfig)
+            : undefined;
+        this.dtmfConfig = _value.dtmfConfig
+            ? new DtmfConfig(_value.dtmfConfig)
             : undefined;
         VoiceInteractionConfig.refineValues(this);
     }
@@ -157810,6 +159082,12 @@ class VoiceInteractionConfig {
     set answeringMachineDetectionConfig(value) {
         this._answeringMachineDetectionConfig = value;
     }
+    get dtmfConfig() {
+        return this._dtmfConfig;
+    }
+    set dtmfConfig(value) {
+        this._dtmfConfig = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -157835,7 +159113,8 @@ class VoiceInteractionConfig {
                 : undefined,
             answeringMachineDetectionConfig: this.answeringMachineDetectionConfig
                 ? this.answeringMachineDetectionConfig.toObject()
-                : undefined
+                : undefined,
+            dtmfConfig: this.dtmfConfig ? this.dtmfConfig.toObject() : undefined
         };
     }
     /**
@@ -157864,7 +159143,157 @@ class VoiceInteractionConfig {
                 : null,
             answeringMachineDetectionConfig: this.answeringMachineDetectionConfig
                 ? this.answeringMachineDetectionConfig.toProtobufJSON(options)
+                : null,
+            dtmfConfig: this.dtmfConfig
+                ? this.dtmfConfig.toProtobufJSON(options)
                 : null
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.DtmfConfig
+ */
+class DtmfConfig {
+    static { this.id = 'ondewo.vtsi.DtmfConfig'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new DtmfConfig();
+        DtmfConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.enabled = _reader.readBool();
+                    break;
+                case 2:
+                    _instance.bargeIn = _reader.readBool();
+                    break;
+                case 3:
+                    _instance.interDigitTimeoutMs = _reader.readUint32();
+                    break;
+                case 4:
+                    _instance.undeclaredPolicy = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        DtmfConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.enabled !== undefined && _instance.enabled !== null) {
+            _writer.writeBool(1, _instance.enabled);
+        }
+        if (_instance.bargeIn !== undefined && _instance.bargeIn !== null) {
+            _writer.writeBool(2, _instance.bargeIn);
+        }
+        if (_instance.interDigitTimeoutMs !== undefined &&
+            _instance.interDigitTimeoutMs !== null) {
+            _writer.writeUint32(3, _instance.interDigitTimeoutMs);
+        }
+        if (_instance.undeclaredPolicy !== undefined &&
+            _instance.undeclaredPolicy !== null) {
+            _writer.writeString(4, _instance.undeclaredPolicy);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of DtmfConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.enabled = _value.enabled;
+        this.bargeIn = _value.bargeIn;
+        this.interDigitTimeoutMs = _value.interDigitTimeoutMs;
+        this.undeclaredPolicy = _value.undeclaredPolicy;
+        DtmfConfig.refineValues(this);
+    }
+    get enabled() {
+        return this._enabled;
+    }
+    set enabled(value) {
+        this._enabled = value;
+    }
+    get bargeIn() {
+        return this._bargeIn;
+    }
+    set bargeIn(value) {
+        this._bargeIn = value;
+    }
+    get interDigitTimeoutMs() {
+        return this._interDigitTimeoutMs;
+    }
+    set interDigitTimeoutMs(value) {
+        this._interDigitTimeoutMs = value;
+    }
+    get undeclaredPolicy() {
+        return this._undeclaredPolicy;
+    }
+    set undeclaredPolicy(value) {
+        this._undeclaredPolicy = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        DtmfConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            enabled: this.enabled,
+            bargeIn: this.bargeIn,
+            interDigitTimeoutMs: this.interDigitTimeoutMs,
+            undeclaredPolicy: this.undeclaredPolicy
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            enabled: this.enabled,
+            bargeIn: this.bargeIn,
+            interDigitTimeoutMs: this.interDigitTimeoutMs,
+            undeclaredPolicy: this.undeclaredPolicy
         };
     }
 }
@@ -157889,6 +159318,8 @@ class TurnDetectionConfig {
     static refineValues(_instance) {
         _instance.mode = _instance.mode || 0;
         _instance.turnEagerness = _instance.turnEagerness || 0;
+        _instance.holdBands = _instance.holdBands || undefined;
+        _instance.dictationConfig = _instance.dictationConfig || undefined;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -157917,6 +159348,35 @@ class TurnDetectionConfig {
                     break;
                 case 6:
                     _instance.turnDetectionUserPrompt = _reader.readString();
+                    break;
+                case 7:
+                    _instance.conversationContextTurns = _reader.readUint32();
+                    break;
+                case 8:
+                    _instance.semanticModelName = _reader.readString();
+                    break;
+                case 9:
+                    _instance.endOfTurnProbabilityThreshold = _reader.readFloat();
+                    break;
+                case 10:
+                    _instance.holdBands = new TurnDetectionConfig.EndOfTurnHoldBands();
+                    _reader.readMessage(_instance.holdBands, TurnDetectionConfig.EndOfTurnHoldBands.deserializeBinaryFromReader);
+                    break;
+                case 11:
+                    _instance.uncertainMinWords = _reader.readUint32();
+                    break;
+                case 12:
+                    _instance.incompleteMaxSilenceSeconds = _reader.readFloat();
+                    break;
+                case 13:
+                    _instance.exactProbability = _reader.readBool();
+                    break;
+                case 14:
+                    _instance.finalMergeWindowSeconds = _reader.readFloat();
+                    break;
+                case 15:
+                    _instance.dictationConfig = new DictationConfig();
+                    _reader.readMessage(_instance.dictationConfig, DictationConfig.deserializeBinaryFromReader);
                     break;
                 default:
                     _reader.skipField();
@@ -157952,6 +159412,40 @@ class TurnDetectionConfig {
             _instance.turnDetectionUserPrompt !== null) {
             _writer.writeString(6, _instance.turnDetectionUserPrompt);
         }
+        if (_instance.conversationContextTurns !== undefined &&
+            _instance.conversationContextTurns !== null) {
+            _writer.writeUint32(7, _instance.conversationContextTurns);
+        }
+        if (_instance.semanticModelName !== undefined &&
+            _instance.semanticModelName !== null) {
+            _writer.writeString(8, _instance.semanticModelName);
+        }
+        if (_instance.endOfTurnProbabilityThreshold !== undefined &&
+            _instance.endOfTurnProbabilityThreshold !== null) {
+            _writer.writeFloat(9, _instance.endOfTurnProbabilityThreshold);
+        }
+        if (_instance.holdBands) {
+            _writer.writeMessage(10, _instance.holdBands, TurnDetectionConfig.EndOfTurnHoldBands.serializeBinaryToWriter);
+        }
+        if (_instance.uncertainMinWords !== undefined &&
+            _instance.uncertainMinWords !== null) {
+            _writer.writeUint32(11, _instance.uncertainMinWords);
+        }
+        if (_instance.incompleteMaxSilenceSeconds !== undefined &&
+            _instance.incompleteMaxSilenceSeconds !== null) {
+            _writer.writeFloat(12, _instance.incompleteMaxSilenceSeconds);
+        }
+        if (_instance.exactProbability !== undefined &&
+            _instance.exactProbability !== null) {
+            _writer.writeBool(13, _instance.exactProbability);
+        }
+        if (_instance.finalMergeWindowSeconds !== undefined &&
+            _instance.finalMergeWindowSeconds !== null) {
+            _writer.writeFloat(14, _instance.finalMergeWindowSeconds);
+        }
+        if (_instance.dictationConfig) {
+            _writer.writeMessage(15, _instance.dictationConfig, DictationConfig.serializeBinaryToWriter);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -157965,6 +159459,19 @@ class TurnDetectionConfig {
         this.turnEagerness = _value.turnEagerness;
         this.turnDetectionSystemPrompt = _value.turnDetectionSystemPrompt;
         this.turnDetectionUserPrompt = _value.turnDetectionUserPrompt;
+        this.conversationContextTurns = _value.conversationContextTurns;
+        this.semanticModelName = _value.semanticModelName;
+        this.endOfTurnProbabilityThreshold = _value.endOfTurnProbabilityThreshold;
+        this.holdBands = _value.holdBands
+            ? new TurnDetectionConfig.EndOfTurnHoldBands(_value.holdBands)
+            : undefined;
+        this.uncertainMinWords = _value.uncertainMinWords;
+        this.incompleteMaxSilenceSeconds = _value.incompleteMaxSilenceSeconds;
+        this.exactProbability = _value.exactProbability;
+        this.finalMergeWindowSeconds = _value.finalMergeWindowSeconds;
+        this.dictationConfig = _value.dictationConfig
+            ? new DictationConfig(_value.dictationConfig)
+            : undefined;
         TurnDetectionConfig.refineValues(this);
     }
     get mode() {
@@ -158003,6 +159510,60 @@ class TurnDetectionConfig {
     set turnDetectionUserPrompt(value) {
         this._turnDetectionUserPrompt = value;
     }
+    get conversationContextTurns() {
+        return this._conversationContextTurns;
+    }
+    set conversationContextTurns(value) {
+        this._conversationContextTurns = value;
+    }
+    get semanticModelName() {
+        return this._semanticModelName;
+    }
+    set semanticModelName(value) {
+        this._semanticModelName = value;
+    }
+    get endOfTurnProbabilityThreshold() {
+        return this._endOfTurnProbabilityThreshold;
+    }
+    set endOfTurnProbabilityThreshold(value) {
+        this._endOfTurnProbabilityThreshold = value;
+    }
+    get holdBands() {
+        return this._holdBands;
+    }
+    set holdBands(value) {
+        this._holdBands = value;
+    }
+    get uncertainMinWords() {
+        return this._uncertainMinWords;
+    }
+    set uncertainMinWords(value) {
+        this._uncertainMinWords = value;
+    }
+    get incompleteMaxSilenceSeconds() {
+        return this._incompleteMaxSilenceSeconds;
+    }
+    set incompleteMaxSilenceSeconds(value) {
+        this._incompleteMaxSilenceSeconds = value;
+    }
+    get exactProbability() {
+        return this._exactProbability;
+    }
+    set exactProbability(value) {
+        this._exactProbability = value;
+    }
+    get finalMergeWindowSeconds() {
+        return this._finalMergeWindowSeconds;
+    }
+    set finalMergeWindowSeconds(value) {
+        this._finalMergeWindowSeconds = value;
+    }
+    get dictationConfig() {
+        return this._dictationConfig;
+    }
+    set dictationConfig(value) {
+        this._dictationConfig = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -158022,7 +159583,18 @@ class TurnDetectionConfig {
             maxEndpointingDelaySeconds: this.maxEndpointingDelaySeconds,
             turnEagerness: this.turnEagerness,
             turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
-            turnDetectionUserPrompt: this.turnDetectionUserPrompt
+            turnDetectionUserPrompt: this.turnDetectionUserPrompt,
+            conversationContextTurns: this.conversationContextTurns,
+            semanticModelName: this.semanticModelName,
+            endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+            holdBands: this.holdBands ? this.holdBands.toObject() : undefined,
+            uncertainMinWords: this.uncertainMinWords,
+            incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+            exactProbability: this.exactProbability,
+            finalMergeWindowSeconds: this.finalMergeWindowSeconds,
+            dictationConfig: this.dictationConfig
+                ? this.dictationConfig.toObject()
+                : undefined
         };
     }
     /**
@@ -158047,7 +159619,18 @@ class TurnDetectionConfig {
                 ? 0
                 : this.turnEagerness],
             turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
-            turnDetectionUserPrompt: this.turnDetectionUserPrompt
+            turnDetectionUserPrompt: this.turnDetectionUserPrompt,
+            conversationContextTurns: this.conversationContextTurns,
+            semanticModelName: this.semanticModelName,
+            endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+            holdBands: this.holdBands ? this.holdBands.toProtobufJSON(options) : null,
+            uncertainMinWords: this.uncertainMinWords,
+            incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+            exactProbability: this.exactProbability,
+            finalMergeWindowSeconds: this.finalMergeWindowSeconds,
+            dictationConfig: this.dictationConfig
+                ? this.dictationConfig.toProtobufJSON(options)
+                : null
         };
     }
 }
@@ -158066,7 +159649,601 @@ class TurnDetectionConfig {
         TurnEagerness[TurnEagerness["NORMAL"] = 2] = "NORMAL";
         TurnEagerness[TurnEagerness["EAGER"] = 3] = "EAGER";
     })(TurnEagerness = TurnDetectionConfig.TurnEagerness || (TurnDetectionConfig.TurnEagerness = {}));
+    /**
+     * Message implementation for ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBands
+     */
+    class EndOfTurnHoldBands {
+        static { this.id = 'ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBands'; }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes) {
+            const instance = new EndOfTurnHoldBands();
+            EndOfTurnHoldBands.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+            return instance;
+        }
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance) {
+            _instance.bands = _instance.bands || [];
+        }
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        const messageInitializer1 = new TurnDetectionConfig.EndOfTurnHoldBand();
+                        _reader.readMessage(messageInitializer1, TurnDetectionConfig.EndOfTurnHoldBand.deserializeBinaryFromReader);
+                        (_instance.bands = _instance.bands || []).push(messageInitializer1);
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            EndOfTurnHoldBands.refineValues(_instance);
+        }
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance, _writer) {
+            if (_instance.bands && _instance.bands.length) {
+                _writer.writeRepeatedMessage(1, _instance.bands, TurnDetectionConfig.EndOfTurnHoldBand.serializeBinaryToWriter);
+            }
+        }
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of EndOfTurnHoldBands to deeply clone from
+         */
+        constructor(_value) {
+            _value = _value || {};
+            this.bands = (_value.bands || []).map(m => new TurnDetectionConfig.EndOfTurnHoldBand(m));
+            EndOfTurnHoldBands.refineValues(this);
+        }
+        get bands() {
+            return this._bands;
+        }
+        set bands(value) {
+            this._bands = value;
+        }
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary() {
+            const writer = new BinaryWriter();
+            EndOfTurnHoldBands.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        }
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject() {
+            return {
+                bands: (this.bands || []).map(m => m.toObject())
+            };
+        }
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON() {
+            return this.toObject();
+        }
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(
+        // @ts-ignore
+        options) {
+            return {
+                bands: (this.bands || []).map(m => m.toProtobufJSON(options))
+            };
+        }
+    }
+    TurnDetectionConfig.EndOfTurnHoldBands = EndOfTurnHoldBands;
+    /**
+     * Message implementation for ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBand
+     */
+    class EndOfTurnHoldBand {
+        static { this.id = 'ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBand'; }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes) {
+            const instance = new EndOfTurnHoldBand();
+            EndOfTurnHoldBand.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+            return instance;
+        }
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance) {
+            _instance.upperProbability = _instance.upperProbability || 0;
+            _instance.maxSilenceSeconds = _instance.maxSilenceSeconds || 0;
+        }
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.upperProbability = _reader.readFloat();
+                        break;
+                    case 2:
+                        _instance.maxSilenceSeconds = _reader.readFloat();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            EndOfTurnHoldBand.refineValues(_instance);
+        }
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance, _writer) {
+            if (_instance.upperProbability) {
+                _writer.writeFloat(1, _instance.upperProbability);
+            }
+            if (_instance.maxSilenceSeconds) {
+                _writer.writeFloat(2, _instance.maxSilenceSeconds);
+            }
+        }
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of EndOfTurnHoldBand to deeply clone from
+         */
+        constructor(_value) {
+            _value = _value || {};
+            this.upperProbability = _value.upperProbability;
+            this.maxSilenceSeconds = _value.maxSilenceSeconds;
+            EndOfTurnHoldBand.refineValues(this);
+        }
+        get upperProbability() {
+            return this._upperProbability;
+        }
+        set upperProbability(value) {
+            this._upperProbability = value;
+        }
+        get maxSilenceSeconds() {
+            return this._maxSilenceSeconds;
+        }
+        set maxSilenceSeconds(value) {
+            this._maxSilenceSeconds = value;
+        }
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary() {
+            const writer = new BinaryWriter();
+            EndOfTurnHoldBand.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        }
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject() {
+            return {
+                upperProbability: this.upperProbability,
+                maxSilenceSeconds: this.maxSilenceSeconds
+            };
+        }
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON() {
+            return this.toObject();
+        }
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(
+        // @ts-ignore
+        options) {
+            return {
+                upperProbability: this.upperProbability,
+                maxSilenceSeconds: this.maxSilenceSeconds
+            };
+        }
+    }
+    TurnDetectionConfig.EndOfTurnHoldBand = EndOfTurnHoldBand;
 })(TurnDetectionConfig || (TurnDetectionConfig = {}));
+/**
+ * Message implementation for ondewo.vtsi.DictationConfig
+ */
+class DictationConfig {
+    static { this.id = 'ondewo.vtsi.DictationConfig'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new DictationConfig();
+        DictationConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.holdMaxSecondsByCategory =
+            _instance.holdMaxSecondsByCategory || {};
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.holdEnabled = _reader.readBool();
+                    break;
+                case 2:
+                    _instance.expectedInputEnabled = _reader.readBool();
+                    break;
+                case 3:
+                    _instance.readBackFromBotTextEnabled = _reader.readBool();
+                    break;
+                case 4:
+                    _instance.holdGenericMaxSeconds = _reader.readFloat();
+                    break;
+                case 5:
+                    const msg_5 = {};
+                    _reader.readMessage(msg_5, DictationConfig.HoldMaxSecondsByCategoryEntry
+                        .deserializeBinaryFromReader);
+                    _instance.holdMaxSecondsByCategory =
+                        _instance.holdMaxSecondsByCategory || {};
+                    _instance.holdMaxSecondsByCategory[msg_5.key] = msg_5.value;
+                    break;
+                case 6:
+                    _instance.holdInvalidChecksumSeconds = _reader.readFloat();
+                    break;
+                case 7:
+                    _instance.earlyCommitOnCompleteValue = _reader.readBool();
+                    break;
+                case 8:
+                    _instance.s2tSlotMinDurationOffSeconds = _reader.readFloat();
+                    break;
+                case 9:
+                    _instance.s2tSlotMinDurationOffRestoreSeconds = _reader.readFloat();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        DictationConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.holdEnabled !== undefined && _instance.holdEnabled !== null) {
+            _writer.writeBool(1, _instance.holdEnabled);
+        }
+        if (_instance.expectedInputEnabled !== undefined &&
+            _instance.expectedInputEnabled !== null) {
+            _writer.writeBool(2, _instance.expectedInputEnabled);
+        }
+        if (_instance.readBackFromBotTextEnabled !== undefined &&
+            _instance.readBackFromBotTextEnabled !== null) {
+            _writer.writeBool(3, _instance.readBackFromBotTextEnabled);
+        }
+        if (_instance.holdGenericMaxSeconds !== undefined &&
+            _instance.holdGenericMaxSeconds !== null) {
+            _writer.writeFloat(4, _instance.holdGenericMaxSeconds);
+        }
+        if (!!_instance.holdMaxSecondsByCategory) {
+            const keys_5 = Object.keys(_instance.holdMaxSecondsByCategory);
+            if (keys_5.length) {
+                const repeated_5 = keys_5
+                    .map(key => ({
+                    key: key,
+                    value: _instance.holdMaxSecondsByCategory[key]
+                }))
+                    .reduce((r, v) => [...r, v], []);
+                _writer.writeRepeatedMessage(5, repeated_5, DictationConfig.HoldMaxSecondsByCategoryEntry.serializeBinaryToWriter);
+            }
+        }
+        if (_instance.holdInvalidChecksumSeconds !== undefined &&
+            _instance.holdInvalidChecksumSeconds !== null) {
+            _writer.writeFloat(6, _instance.holdInvalidChecksumSeconds);
+        }
+        if (_instance.earlyCommitOnCompleteValue !== undefined &&
+            _instance.earlyCommitOnCompleteValue !== null) {
+            _writer.writeBool(7, _instance.earlyCommitOnCompleteValue);
+        }
+        if (_instance.s2tSlotMinDurationOffSeconds !== undefined &&
+            _instance.s2tSlotMinDurationOffSeconds !== null) {
+            _writer.writeFloat(8, _instance.s2tSlotMinDurationOffSeconds);
+        }
+        if (_instance.s2tSlotMinDurationOffRestoreSeconds !== undefined &&
+            _instance.s2tSlotMinDurationOffRestoreSeconds !== null) {
+            _writer.writeFloat(9, _instance.s2tSlotMinDurationOffRestoreSeconds);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of DictationConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.holdEnabled = _value.holdEnabled;
+        this.expectedInputEnabled = _value.expectedInputEnabled;
+        this.readBackFromBotTextEnabled = _value.readBackFromBotTextEnabled;
+        this.holdGenericMaxSeconds = _value.holdGenericMaxSeconds;
+        (this.holdMaxSecondsByCategory = _value.holdMaxSecondsByCategory
+            ? Object.keys(_value.holdMaxSecondsByCategory).reduce((r, k) => ({ ...r, [k]: _value.holdMaxSecondsByCategory[k] }), {})
+            : {}),
+            (this.holdInvalidChecksumSeconds = _value.holdInvalidChecksumSeconds);
+        this.earlyCommitOnCompleteValue = _value.earlyCommitOnCompleteValue;
+        this.s2tSlotMinDurationOffSeconds = _value.s2tSlotMinDurationOffSeconds;
+        this.s2tSlotMinDurationOffRestoreSeconds =
+            _value.s2tSlotMinDurationOffRestoreSeconds;
+        DictationConfig.refineValues(this);
+    }
+    get holdEnabled() {
+        return this._holdEnabled;
+    }
+    set holdEnabled(value) {
+        this._holdEnabled = value;
+    }
+    get expectedInputEnabled() {
+        return this._expectedInputEnabled;
+    }
+    set expectedInputEnabled(value) {
+        this._expectedInputEnabled = value;
+    }
+    get readBackFromBotTextEnabled() {
+        return this._readBackFromBotTextEnabled;
+    }
+    set readBackFromBotTextEnabled(value) {
+        this._readBackFromBotTextEnabled = value;
+    }
+    get holdGenericMaxSeconds() {
+        return this._holdGenericMaxSeconds;
+    }
+    set holdGenericMaxSeconds(value) {
+        this._holdGenericMaxSeconds = value;
+    }
+    get holdMaxSecondsByCategory() {
+        return this._holdMaxSecondsByCategory;
+    }
+    set holdMaxSecondsByCategory(value) {
+        this._holdMaxSecondsByCategory = value;
+    }
+    get holdInvalidChecksumSeconds() {
+        return this._holdInvalidChecksumSeconds;
+    }
+    set holdInvalidChecksumSeconds(value) {
+        this._holdInvalidChecksumSeconds = value;
+    }
+    get earlyCommitOnCompleteValue() {
+        return this._earlyCommitOnCompleteValue;
+    }
+    set earlyCommitOnCompleteValue(value) {
+        this._earlyCommitOnCompleteValue = value;
+    }
+    get s2tSlotMinDurationOffSeconds() {
+        return this._s2tSlotMinDurationOffSeconds;
+    }
+    set s2tSlotMinDurationOffSeconds(value) {
+        this._s2tSlotMinDurationOffSeconds = value;
+    }
+    get s2tSlotMinDurationOffRestoreSeconds() {
+        return this._s2tSlotMinDurationOffRestoreSeconds;
+    }
+    set s2tSlotMinDurationOffRestoreSeconds(value) {
+        this._s2tSlotMinDurationOffRestoreSeconds = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        DictationConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            holdEnabled: this.holdEnabled,
+            expectedInputEnabled: this.expectedInputEnabled,
+            readBackFromBotTextEnabled: this.readBackFromBotTextEnabled,
+            holdGenericMaxSeconds: this.holdGenericMaxSeconds,
+            holdMaxSecondsByCategory: this.holdMaxSecondsByCategory
+                ? Object.keys(this.holdMaxSecondsByCategory).reduce((r, k) => ({ ...r, [k]: this.holdMaxSecondsByCategory[k] }), {})
+                : {},
+            holdInvalidChecksumSeconds: this.holdInvalidChecksumSeconds,
+            earlyCommitOnCompleteValue: this.earlyCommitOnCompleteValue,
+            s2tSlotMinDurationOffSeconds: this.s2tSlotMinDurationOffSeconds,
+            s2tSlotMinDurationOffRestoreSeconds: this
+                .s2tSlotMinDurationOffRestoreSeconds
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            holdEnabled: this.holdEnabled,
+            expectedInputEnabled: this.expectedInputEnabled,
+            readBackFromBotTextEnabled: this.readBackFromBotTextEnabled,
+            holdGenericMaxSeconds: this.holdGenericMaxSeconds,
+            holdMaxSecondsByCategory: this.holdMaxSecondsByCategory
+                ? Object.keys(this.holdMaxSecondsByCategory).reduce((r, k) => ({ ...r, [k]: this.holdMaxSecondsByCategory[k] }), {})
+                : {},
+            holdInvalidChecksumSeconds: this.holdInvalidChecksumSeconds,
+            earlyCommitOnCompleteValue: this.earlyCommitOnCompleteValue,
+            s2tSlotMinDurationOffSeconds: this.s2tSlotMinDurationOffSeconds,
+            s2tSlotMinDurationOffRestoreSeconds: this
+                .s2tSlotMinDurationOffRestoreSeconds
+        };
+    }
+}
+(function (DictationConfig) {
+    /**
+     * Message implementation for ondewo.vtsi.DictationConfig.HoldMaxSecondsByCategoryEntry
+     */
+    class HoldMaxSecondsByCategoryEntry {
+        static { this.id = 'ondewo.vtsi.DictationConfig.HoldMaxSecondsByCategoryEntry'; }
+        /**
+         * Deserialize binary data to message
+         * @param instance message instance
+         */
+        static deserializeBinary(bytes) {
+            const instance = new HoldMaxSecondsByCategoryEntry();
+            HoldMaxSecondsByCategoryEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+            return instance;
+        }
+        /**
+         * Check all the properties and set default protobuf values if necessary
+         * @param _instance message instance
+         */
+        static refineValues(_instance) {
+            _instance.key = _instance.key || '';
+            _instance.value = _instance.value || 0;
+        }
+        /**
+         * Deserializes / reads binary message into message instance using provided binary reader
+         * @param _instance message instance
+         * @param _reader binary reader instance
+         */
+        static deserializeBinaryFromReader(_instance, _reader) {
+            while (_reader.nextField()) {
+                if (_reader.isEndGroup())
+                    break;
+                switch (_reader.getFieldNumber()) {
+                    case 1:
+                        _instance.key = _reader.readString();
+                        break;
+                    case 2:
+                        _instance.value = _reader.readFloat();
+                        break;
+                    default:
+                        _reader.skipField();
+                }
+            }
+            HoldMaxSecondsByCategoryEntry.refineValues(_instance);
+        }
+        /**
+         * Serializes a message to binary format using provided binary reader
+         * @param _instance message instance
+         * @param _writer binary writer instance
+         */
+        static serializeBinaryToWriter(_instance, _writer) {
+            if (_instance.key) {
+                _writer.writeString(1, _instance.key);
+            }
+            if (_instance.value) {
+                _writer.writeFloat(2, _instance.value);
+            }
+        }
+        /**
+         * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+         * @param _value initial values object or instance of HoldMaxSecondsByCategoryEntry to deeply clone from
+         */
+        constructor(_value) {
+            _value = _value || {};
+            this.key = _value.key;
+            this.value = _value.value;
+            HoldMaxSecondsByCategoryEntry.refineValues(this);
+        }
+        get key() {
+            return this._key;
+        }
+        set key(value) {
+            this._key = value;
+        }
+        get value() {
+            return this._value;
+        }
+        set value(value) {
+            this._value = value;
+        }
+        /**
+         * Serialize message to binary data
+         * @param instance message instance
+         */
+        serializeBinary() {
+            const writer = new BinaryWriter();
+            HoldMaxSecondsByCategoryEntry.serializeBinaryToWriter(this, writer);
+            return writer.getResultBuffer();
+        }
+        /**
+         * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+         */
+        toObject() {
+            return {
+                key: this.key,
+                value: this.value
+            };
+        }
+        /**
+         * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+         */
+        toJSON() {
+            return this.toObject();
+        }
+        /**
+         * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+         * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+         * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+         */
+        toProtobufJSON(
+        // @ts-ignore
+        options) {
+            return {
+                key: this.key,
+                value: this.value
+            };
+        }
+    }
+    DictationConfig.HoldMaxSecondsByCategoryEntry = HoldMaxSecondsByCategoryEntry;
+})(DictationConfig || (DictationConfig = {}));
 /**
  * Message implementation for ondewo.vtsi.InterruptionHandlingConfig
  */
@@ -158121,6 +160298,9 @@ class InterruptionHandlingConfig {
                 case 8:
                     _instance.transcribeOnDisabledInterruptions = _reader.readBool();
                     break;
+                case 9:
+                    _instance.interruptionFadeOutMs = _reader.readInt32();
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -158164,6 +160344,10 @@ class InterruptionHandlingConfig {
             _instance.transcribeOnDisabledInterruptions !== null) {
             _writer.writeBool(8, _instance.transcribeOnDisabledInterruptions);
         }
+        if (_instance.interruptionFadeOutMs !== undefined &&
+            _instance.interruptionFadeOutMs !== null) {
+            _writer.writeInt32(9, _instance.interruptionFadeOutMs);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -158181,6 +160365,7 @@ class InterruptionHandlingConfig {
         this.firstMessageProtectedSeconds = _value.firstMessageProtectedSeconds;
         this.transcribeOnDisabledInterruptions =
             _value.transcribeOnDisabledInterruptions;
+        this.interruptionFadeOutMs = _value.interruptionFadeOutMs;
         InterruptionHandlingConfig.refineValues(this);
     }
     get enabled() {
@@ -158231,6 +160416,12 @@ class InterruptionHandlingConfig {
     set transcribeOnDisabledInterruptions(value) {
         this._transcribeOnDisabledInterruptions = value;
     }
+    get interruptionFadeOutMs() {
+        return this._interruptionFadeOutMs;
+    }
+    set interruptionFadeOutMs(value) {
+        this._interruptionFadeOutMs = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -158252,7 +160443,8 @@ class InterruptionHandlingConfig {
             resumeAfterFalseInterruption: this.resumeAfterFalseInterruption,
             backoffSeconds: this.backoffSeconds,
             firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
-            transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions
+            transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions,
+            interruptionFadeOutMs: this.interruptionFadeOutMs
         };
     }
     /**
@@ -158277,7 +160469,8 @@ class InterruptionHandlingConfig {
             resumeAfterFalseInterruption: this.resumeAfterFalseInterruption,
             backoffSeconds: this.backoffSeconds,
             firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
-            transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions
+            transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions,
+            interruptionFadeOutMs: this.interruptionFadeOutMs
         };
     }
 }
@@ -159426,6 +161619,8 @@ class CsiVtsiConfig {
         _instance.audioObjectStoreConfig =
             _instance.audioObjectStoreConfig || undefined;
         _instance.messageBrokerConfig = _instance.messageBrokerConfig || undefined;
+        _instance.preemptiveGenerationConfig =
+            _instance.preemptiveGenerationConfig || undefined;
     }
     /**
      * Deserializes / reads binary message into message instance using provided binary reader
@@ -159460,6 +161655,10 @@ class CsiVtsiConfig {
                 case 6:
                     _instance.activateControlMessages = _reader.readBool();
                     break;
+                case 7:
+                    _instance.preemptiveGenerationConfig = new CsiPreemptiveGenerationConfig();
+                    _reader.readMessage(_instance.preemptiveGenerationConfig, CsiPreemptiveGenerationConfig.deserializeBinaryFromReader);
+                    break;
                 default:
                     _reader.skipField();
             }
@@ -159491,6 +161690,9 @@ class CsiVtsiConfig {
             _instance.activateControlMessages !== null) {
             _writer.writeBool(6, _instance.activateControlMessages);
         }
+        if (_instance.preemptiveGenerationConfig) {
+            _writer.writeMessage(7, _instance.preemptiveGenerationConfig, CsiPreemptiveGenerationConfig.serializeBinaryToWriter);
+        }
     }
     /**
      * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -159514,6 +161716,9 @@ class CsiVtsiConfig {
             ? new MessageBrokerConfig(_value.messageBrokerConfig)
             : undefined;
         this.activateControlMessages = _value.activateControlMessages;
+        this.preemptiveGenerationConfig = _value.preemptiveGenerationConfig
+            ? new CsiPreemptiveGenerationConfig(_value.preemptiveGenerationConfig)
+            : undefined;
         CsiVtsiConfig.refineValues(this);
     }
     get s2tVtsiCallbacks() {
@@ -159552,6 +161757,12 @@ class CsiVtsiConfig {
     set activateControlMessages(value) {
         this._activateControlMessages = value;
     }
+    get preemptiveGenerationConfig() {
+        return this._preemptiveGenerationConfig;
+    }
+    set preemptiveGenerationConfig(value) {
+        this._preemptiveGenerationConfig = value;
+    }
     /**
      * Serialize message to binary data
      * @param instance message instance
@@ -159581,7 +161792,10 @@ class CsiVtsiConfig {
             messageBrokerConfig: this.messageBrokerConfig
                 ? this.messageBrokerConfig.toObject()
                 : undefined,
-            activateControlMessages: this.activateControlMessages
+            activateControlMessages: this.activateControlMessages,
+            preemptiveGenerationConfig: this.preemptiveGenerationConfig
+                ? this.preemptiveGenerationConfig.toObject()
+                : undefined
         };
     }
     /**
@@ -159614,7 +161828,126 @@ class CsiVtsiConfig {
             messageBrokerConfig: this.messageBrokerConfig
                 ? this.messageBrokerConfig.toProtobufJSON(options)
                 : null,
-            activateControlMessages: this.activateControlMessages
+            activateControlMessages: this.activateControlMessages,
+            preemptiveGenerationConfig: this.preemptiveGenerationConfig
+                ? this.preemptiveGenerationConfig.toProtobufJSON(options)
+                : null
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.CsiPreemptiveGenerationConfig
+ */
+class CsiPreemptiveGenerationConfig {
+    static { this.id = 'ondewo.vtsi.CsiPreemptiveGenerationConfig'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new CsiPreemptiveGenerationConfig();
+        CsiPreemptiveGenerationConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.enabled = _reader.readBool();
+                    break;
+                case 2:
+                    _instance.commitWaitTimeoutSeconds = _reader.readFloat();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        CsiPreemptiveGenerationConfig.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.enabled !== undefined && _instance.enabled !== null) {
+            _writer.writeBool(1, _instance.enabled);
+        }
+        if (_instance.commitWaitTimeoutSeconds !== undefined &&
+            _instance.commitWaitTimeoutSeconds !== null) {
+            _writer.writeFloat(2, _instance.commitWaitTimeoutSeconds);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of CsiPreemptiveGenerationConfig to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.enabled = _value.enabled;
+        this.commitWaitTimeoutSeconds = _value.commitWaitTimeoutSeconds;
+        CsiPreemptiveGenerationConfig.refineValues(this);
+    }
+    get enabled() {
+        return this._enabled;
+    }
+    set enabled(value) {
+        this._enabled = value;
+    }
+    get commitWaitTimeoutSeconds() {
+        return this._commitWaitTimeoutSeconds;
+    }
+    set commitWaitTimeoutSeconds(value) {
+        this._commitWaitTimeoutSeconds = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        CsiPreemptiveGenerationConfig.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            enabled: this.enabled,
+            commitWaitTimeoutSeconds: this.commitWaitTimeoutSeconds
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            enabled: this.enabled,
+            commitWaitTimeoutSeconds: this.commitWaitTimeoutSeconds
         };
     }
 }
@@ -181552,6 +183885,272 @@ class InviteToCallResponse {
     }
 }
 /**
+ * Message implementation for ondewo.vtsi.SendCallDtmfRequest
+ */
+class SendCallDtmfRequest {
+    static { this.id = 'ondewo.vtsi.SendCallDtmfRequest'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new SendCallDtmfRequest();
+        SendCallDtmfRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+        _instance.callName = _instance.callName || '';
+        _instance.digits = _instance.digits || '';
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.vtsiProjectName = _reader.readString();
+                    break;
+                case 2:
+                    _instance.callName = _reader.readString();
+                    break;
+                case 3:
+                    _instance.digits = _reader.readString();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        SendCallDtmfRequest.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.vtsiProjectName) {
+            _writer.writeString(1, _instance.vtsiProjectName);
+        }
+        if (_instance.callName) {
+            _writer.writeString(2, _instance.callName);
+        }
+        if (_instance.digits) {
+            _writer.writeString(3, _instance.digits);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of SendCallDtmfRequest to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.vtsiProjectName = _value.vtsiProjectName;
+        this.callName = _value.callName;
+        this.digits = _value.digits;
+        SendCallDtmfRequest.refineValues(this);
+    }
+    get vtsiProjectName() {
+        return this._vtsiProjectName;
+    }
+    set vtsiProjectName(value) {
+        this._vtsiProjectName = value;
+    }
+    get callName() {
+        return this._callName;
+    }
+    set callName(value) {
+        this._callName = value;
+    }
+    get digits() {
+        return this._digits;
+    }
+    set digits(value) {
+        this._digits = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        SendCallDtmfRequest.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            callName: this.callName,
+            digits: this.digits
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            callName: this.callName,
+            digits: this.digits
+        };
+    }
+}
+/**
+ * Message implementation for ondewo.vtsi.SendCallDtmfResponse
+ */
+class SendCallDtmfResponse {
+    static { this.id = 'ondewo.vtsi.SendCallDtmfResponse'; }
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes) {
+        const instance = new SendCallDtmfResponse();
+        SendCallDtmfResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+        return instance;
+    }
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance) {
+        _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+        _instance.callName = _instance.callName || '';
+        _instance.queuedKeys = _instance.queuedKeys || 0;
+    }
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(_instance, _reader) {
+        while (_reader.nextField()) {
+            if (_reader.isEndGroup())
+                break;
+            switch (_reader.getFieldNumber()) {
+                case 1:
+                    _instance.vtsiProjectName = _reader.readString();
+                    break;
+                case 2:
+                    _instance.callName = _reader.readString();
+                    break;
+                case 3:
+                    _instance.queuedKeys = _reader.readInt32();
+                    break;
+                default:
+                    _reader.skipField();
+            }
+        }
+        SendCallDtmfResponse.refineValues(_instance);
+    }
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(_instance, _writer) {
+        if (_instance.vtsiProjectName) {
+            _writer.writeString(1, _instance.vtsiProjectName);
+        }
+        if (_instance.callName) {
+            _writer.writeString(2, _instance.callName);
+        }
+        if (_instance.queuedKeys) {
+            _writer.writeInt32(3, _instance.queuedKeys);
+        }
+    }
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of SendCallDtmfResponse to deeply clone from
+     */
+    constructor(_value) {
+        _value = _value || {};
+        this.vtsiProjectName = _value.vtsiProjectName;
+        this.callName = _value.callName;
+        this.queuedKeys = _value.queuedKeys;
+        SendCallDtmfResponse.refineValues(this);
+    }
+    get vtsiProjectName() {
+        return this._vtsiProjectName;
+    }
+    set vtsiProjectName(value) {
+        this._vtsiProjectName = value;
+    }
+    get callName() {
+        return this._callName;
+    }
+    set callName(value) {
+        this._callName = value;
+    }
+    get queuedKeys() {
+        return this._queuedKeys;
+    }
+    set queuedKeys(value) {
+        this._queuedKeys = value;
+    }
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+        const writer = new BinaryWriter();
+        SendCallDtmfResponse.serializeBinaryToWriter(this, writer);
+        return writer.getResultBuffer();
+    }
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject() {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            callName: this.callName,
+            queuedKeys: this.queuedKeys
+        };
+    }
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+        return this.toObject();
+    }
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+    // @ts-ignore
+    options) {
+        return {
+            vtsiProjectName: this.vtsiProjectName,
+            callName: this.callName,
+            queuedKeys: this.queuedKeys
+        };
+    }
+}
+/**
  * Message implementation for ondewo.vtsi.RemoveCallParticipantRequest
  */
 class RemoveCallParticipantRequest {
@@ -189012,6 +191611,42 @@ class CallsClient {
                 });
             },
             /**
+             * Unary call: /ondewo.vtsi.Calls/SendCallDtmf
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.SendCallDtmfResponse>>
+             */
+            sendCallDtmf: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.unary,
+                    client: this.client,
+                    path: '/ondewo.vtsi.Calls/SendCallDtmf',
+                    requestData,
+                    requestMetadata,
+                    requestClass: SendCallDtmfRequest,
+                    responseClass: SendCallDtmfResponse
+                });
+            },
+            /**
+             * Bidirectional streaming: /ondewo.vtsi.Calls/StreamCallAudio
+             *
+             * @param requestMessage Request message
+             * @param requestMetadata Request metadata
+             * @returns Observable<GrpcEvent<thisProto.StreamCallAudioResponse>>
+             */
+            streamCallAudio: (requestData, requestMetadata = new GrpcMetadata()) => {
+                return this.handler.handle({
+                    type: GrpcCallType.bidiStream,
+                    client: this.client,
+                    path: '/ondewo.vtsi.Calls/StreamCallAudio',
+                    requestData,
+                    requestMetadata,
+                    requestClass: StreamCallAudioRequest,
+                    responseClass: StreamCallAudioResponse
+                });
+            },
+            /**
              * Server streaming: /ondewo.vtsi.Calls/ListenCallAudio
              *
              * @param requestMessage Request message
@@ -189585,6 +192220,30 @@ class CallsClient {
             .pipe(throwStatusErrors(), takeMessages());
     }
     /**
+     * Unary call @/ondewo.vtsi.Calls/SendCallDtmf
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.SendCallDtmfResponse>
+     */
+    sendCallDtmf(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .sendCallDtmf(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
+     * Bidirectional streaming @/ondewo.vtsi.Calls/StreamCallAudio
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<thisProto.StreamCallAudioResponse>
+     */
+    streamCallAudio(requestData, requestMetadata = new GrpcMetadata()) {
+        return this.$raw
+            .streamCallAudio(requestData, requestMetadata)
+            .pipe(throwStatusErrors(), takeMessages());
+    }
+    /**
      * Server streaming @/ondewo.vtsi.Calls/ListenCallAudio
      *
      * @param requestMessage Request message
@@ -189596,10 +192255,10 @@ class CallsClient {
             .listenCallAudio(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CallsClient, deps: [{ token: GRPC_CALLS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CallsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CallsClient, deps: [{ token: GRPC_CALLS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CallsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CallsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CallsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -190125,10 +192784,10 @@ class CampaignsClient {
             .cloneCampaign(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CampaignsClient, deps: [{ token: GRPC_CAMPAIGNS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CampaignsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CampaignsClient, deps: [{ token: GRPC_CAMPAIGNS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CampaignsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: CampaignsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: CampaignsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -190167,6 +192826,7 @@ var VtsiEvent;
     VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_AUDIO_STREAM_CONNECTED"] = 120] = "VTSI_EVENT_CALL_AUDIO_STREAM_CONNECTED";
     VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_AUDIO_STREAM_DISCONNECTED"] = 121] = "VTSI_EVENT_CALL_AUDIO_STREAM_DISCONNECTED";
     VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_UPDATED"] = 122] = "VTSI_EVENT_CALL_UPDATED";
+    VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_DTMF_SENT"] = 123] = "VTSI_EVENT_CALL_DTMF_SENT";
     VtsiEvent[VtsiEvent["VTSI_EVENT_CALLER_STARTED"] = 200] = "VTSI_EVENT_CALLER_STARTED";
     VtsiEvent[VtsiEvent["VTSI_EVENT_CALLER_START_FAILED"] = 201] = "VTSI_EVENT_CALLER_START_FAILED";
     VtsiEvent[VtsiEvent["VTSI_EVENT_CALLER_STOPPED"] = 202] = "VTSI_EVENT_CALLER_STOPPED";
@@ -195084,10 +197744,10 @@ class EventsClient {
             .subscribeVtsiEvents(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: EventsClient, deps: [{ token: GRPC_EVENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: EventsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: EventsClient, deps: [{ token: GRPC_EVENTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: EventsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: EventsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: EventsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -198879,10 +201539,10 @@ class LogsClient {
             .exportCallLogs(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: LogsClient, deps: [{ token: GRPC_LOGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: LogsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: LogsClient, deps: [{ token: GRPC_LOGS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: LogsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: LogsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: LogsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -199138,10 +201798,10 @@ class ProjectsClient {
             .listVtsiProjects(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectsClient, deps: [{ token: GRPC_PROJECTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectsClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectsClient, deps: [{ token: GRPC_PROJECTS_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectsClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: ProjectsClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: ProjectsClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -204168,10 +206828,10 @@ class SoftphonesClient {
             .getSoftphoneRegistration(requestData, requestMetadata)
             .pipe(throwStatusErrors(), takeMessages());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SoftphonesClient, deps: [{ token: GRPC_SOFTPHONES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SoftphonesClient, providedIn: 'any' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SoftphonesClient, deps: [{ token: GRPC_SOFTPHONES_CLIENT_SETTINGS, optional: true }, { token: GRPC_CLIENT_FACTORY }, { token: i1.GrpcHandler }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SoftphonesClient, providedIn: 'any' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: SoftphonesClient, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: SoftphonesClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'any' }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
@@ -204522,10 +207182,10 @@ class KeycloakTokenProvider {
             throw new KeycloakAuthenticationError("KeycloakTokenProviderConfig requires either a refreshToken or both username and password");
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: KeycloakTokenProvider, deps: [{ token: i1$1.HttpClient }, { token: KEYCLOAK_TOKEN_PROVIDER_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: KeycloakTokenProvider, providedIn: "root" }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: KeycloakTokenProvider, deps: [{ token: i1$1.HttpClient }, { token: KEYCLOAK_TOKEN_PROVIDER_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: KeycloakTokenProvider, providedIn: "root" }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: KeycloakTokenProvider, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: KeycloakTokenProvider, decorators: [{
             type: Injectable,
             args: [{ providedIn: "root" }]
         }], ctorParameters: () => [{ type: i1$1.HttpClient }, { type: undefined, decorators: [{
@@ -204711,10 +207371,10 @@ class AuthGrpcInterceptor {
             return next.handle(request);
         }));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AuthGrpcInterceptor, deps: [{ token: TOKEN_PROVIDER }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AuthGrpcInterceptor }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AuthGrpcInterceptor, deps: [{ token: TOKEN_PROVIDER }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AuthGrpcInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.34", ngImport: i0, type: AuthGrpcInterceptor, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.35", ngImport: i0, type: AuthGrpcInterceptor, decorators: [{
             type: Injectable
         }], ctorParameters: () => [{ type: undefined, decorators: [{
                     type: Inject,
@@ -204897,5 +207557,5 @@ function warnInsecure(authority) {
  * Generated bundle index. Do not edit.
  */
 
-export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddCallersToCampaignRequest, AddCallersToCampaignResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddScheduledCallersToCampaignRequest, AddScheduledCallersToCampaignResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, AmdVerdictCount, AnsweringMachineDetectionConfig, AnsweringMachineDetectionResult, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BROWSER_UNSUPPORTED_TLS_FIELDS, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BotPolicyOnJoin, BuildCacheRequest, Caching, Call, CallAudioEndReason, CallAudioEnded, CallAudioFrame, CallAudioMode, CallAudioStarted, CallAudioStats, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallMediaControlState, CallMediaSetting, CallParticipant, CallResourceStatus, CallSorting, CallStatistics, CallStatus, CallTarget, CallTransferRecord, CallType, CallTypeCount, CallView, Caller, CallingWindowDayOfWeek, CallingWindowSlot, CallsClient, Campaign, CampaignAssignment, CampaignCall, CampaignCallAttempt, CampaignCallAttemptOutcome, CampaignCallRefusal, CampaignCallSource, CampaignCallState, CampaignCallingWindow, CampaignFilter, CampaignOrderBy, CampaignStartMode, CampaignState, CampaignStatistics, CampaignsClient, CancelCampaignCallsRequest, CancelCampaignCallsResponse, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CancelScheduledCallersRequest, CancelScheduledCallersResponse, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CloneCampaignRequest, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCampaignRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateSoftphoneAccountRequest, CreateSoftphoneAccountResponse, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiEventSubscriptionRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, CreateWebhookRequest, Credentials, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCampaignRequest, DeleteCampaignResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteSoftphoneAccountRequest, DeleteSoftphoneAccountResponse, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiEventSubscriptionRequest, DeleteVtsiEventSubscriptionResponse, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeleteWebhookRequest, DeleteWebhookResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DocumentFileResource, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, EventsClient, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportCallLogsRequest, ExportCallLogsResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CAMPAIGNS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_EVENTS_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SOFTPHONES_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallStatisticsRequest, GetCallerRequest, GetCampaignCallRequest, GetCampaignRequest, GetCampaignStatisticsRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSoftphoneAccountRequest, GetSoftphoneCertificateRequest, GetSoftphoneProvisioningRequest, GetSoftphoneRegistrationRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiEventSubscriptionRequest, GetVtsiProjectRequest, GetWebhookRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, GrpcWebEndpointError, HardStopCampaignRequest, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptionHandlingConfig, InviteToCallRequest, InviteToCallResponse, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCampaignCallsRequest, ListCampaignCallsResponse, ListCampaignsRequest, ListCampaignsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListSoftphoneAccountsRequest, ListSoftphoneAccountsResponse, ListSoftphoneCertificatesRequest, ListSoftphoneCertificatesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiEventSubscriptionsRequest, ListVtsiEventSubscriptionsResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, ListWebhooksRequest, ListWebhooksResponse, ListenCallAudioRequest, Listener, ListenerQueueTarget, LlmAgentNodeEvent, LlmAgentNodePhase, LlmAgentUsage, LlmBaseUrlUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogExportFormat, LogSeverity, LogSource, LogStreamChannel, LogStreamEndReason, Logging, Logmnse, LogsClient, MIN_REFRESH_DELAY_IN_S, Map, MbMelganTriton, MediaControlOwner, MediaControlSetting, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, ParticipantEndReason, ParticipantMode, ParticipantState, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerIncrementalConfig, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort$1 as ReasoningEffort, RedeliverWebhookEventsRequest, RedeliverWebhookEventsResponse, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveCallParticipantRequest, RemoveCallParticipantResponse, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, ResumeCampaignRequest, RetryCampaignCallsRequest, RetryCampaignCallsResponse, RetryScheduledCallerRequest, RevokeSoftphoneCertificateRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RotateSoftphoneCredentialsRequest, RotateSoftphoneCredentialsResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetCallMediaControlRequest, SetCallMediaControlResponse, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, Silero, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallAudioConfig, SipCallAudioEndReason, SipCallAudioEnded, SipCallAudioFrame, SipCallAudioMode, SipCallAudioRequest, SipCallAudioResponse, SipCallAudioStarted, SipCallAudioStats, SipCallerConfig, SipClient, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipReportAnsweringMachineDetectedRequest, SipSetCallMediaControlRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipStatusTypeCount, SipTransferCallRequest, SipTrunkTransport, SoftTimeoutConfig, SoftphoneAccount, SoftphoneAccountFilter, SoftphoneAccountSorting, SoftphoneCertificate, SoftphoneCertificateFilter, SoftphoneCertificateStatus, SoftphoneContact, SoftphoneContactStatus, SoftphoneCredentials, SoftphoneProvisioning, SoftphoneRegistration, SoftphoneSrtpMode, SoftphoneTransportSecurity, SoftphonesClient, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartCampaignRequest, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopCampaignRequest, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallAudioConfig, StreamCallAudioRequest, StreamCallAudioResponse, StreamCallLogsRequest, StreamCallLogsResponse, StreamCallResourceStatusResponse, StreamCallerStatusRequest, StreamCampaignStatusRequest, StreamCampaignStatusResponse, StreamEndReason, StreamListenerStatusRequest, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamScheduledCallerStatusRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SubscribeVtsiEventsRequest, SubscribeVtsiEventsResponse, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, TestWebhookRequest, TestWebhookResponse, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TransferMode, TransferOutcome, TransferOutcomeCount, TrunkRegistrationState, TsdMethod, TurnDetectionConfig, TurnDetectionOptions, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCallRequest, UpdateCallResponse, UpdateCallerRequest, UpdateCallerResponse, UpdateCallersRequest, UpdateCallersResponse, UpdateCallsRequest, UpdateCallsResponse, UpdateCampaignRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateListenerRequest, UpdateListenerResponse, UpdateListenersRequest, UpdateListenersResponse, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateScheduledCallerRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateSoftphoneAccountRequest, UpdateUserRequest, UpdateVtsiEventSubscriptionRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UpdateWebhookRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, VadMethod, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiEvent, VtsiEventFilter, VtsiEventMessage, VtsiEventSubscription, VtsiProject, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, Wav2Vec, Wav2VecTriton, Webhook, WebhookClient, WebhookDeliveryStatistics, WebhookHttpMethod, WebhookRequest, WebhookResponse, WespeakerTsd, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, authHttpInterceptor, buildBearerValue, buildGrpcWebHost, provideOndewoVtsiAuth, resolveBearerValue, resolveToken };
+export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddCallersToCampaignRequest, AddCallersToCampaignResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddScheduledCallersToCampaignRequest, AddScheduledCallersToCampaignResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, AmdVerdictCount, AnsweringMachineDetectionConfig, AnsweringMachineDetectionResult, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BROWSER_UNSUPPORTED_TLS_FIELDS, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BotPolicyOnJoin, BuildCacheRequest, Caching, Call, CallAudioEndReason, CallAudioEnded, CallAudioFrame, CallAudioMode, CallAudioStarted, CallAudioStats, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallMediaControlState, CallMediaSetting, CallParticipant, CallResourceStatus, CallSorting, CallStatistics, CallStatus, CallTarget, CallTransferRecord, CallType, CallTypeCount, CallView, Caller, CallingWindowDayOfWeek, CallingWindowSlot, CallsClient, Campaign, CampaignAssignment, CampaignCall, CampaignCallAttempt, CampaignCallAttemptOutcome, CampaignCallRefusal, CampaignCallSource, CampaignCallState, CampaignCallingWindow, CampaignFilter, CampaignOrderBy, CampaignStartMode, CampaignState, CampaignStatistics, CampaignsClient, CancelCampaignCallsRequest, CancelCampaignCallsResponse, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CancelScheduledCallersRequest, CancelScheduledCallersResponse, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CloneCampaignRequest, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCampaignRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateSoftphoneAccountRequest, CreateSoftphoneAccountResponse, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiEventSubscriptionRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, CreateWebhookRequest, Credentials, CsiPreemptiveGenerationConfig, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCampaignRequest, DeleteCampaignResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteSoftphoneAccountRequest, DeleteSoftphoneAccountResponse, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiEventSubscriptionRequest, DeleteVtsiEventSubscriptionResponse, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeleteWebhookRequest, DeleteWebhookResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DictationConfig, DocumentFileResource, DtmfConfig, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, EventsClient, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportCallLogsRequest, ExportCallLogsResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CAMPAIGNS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_EVENTS_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SOFTPHONES_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallStatisticsRequest, GetCallerRequest, GetCampaignCallRequest, GetCampaignRequest, GetCampaignStatisticsRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSoftphoneAccountRequest, GetSoftphoneCertificateRequest, GetSoftphoneProvisioningRequest, GetSoftphoneRegistrationRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiEventSubscriptionRequest, GetVtsiProjectRequest, GetWebhookRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, GrpcWebEndpointError, HardStopCampaignRequest, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptionHandlingConfig, InviteToCallRequest, InviteToCallResponse, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCampaignCallsRequest, ListCampaignCallsResponse, ListCampaignsRequest, ListCampaignsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListSoftphoneAccountsRequest, ListSoftphoneAccountsResponse, ListSoftphoneCertificatesRequest, ListSoftphoneCertificatesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiEventSubscriptionsRequest, ListVtsiEventSubscriptionsResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, ListWebhooksRequest, ListWebhooksResponse, ListenCallAudioRequest, Listener, ListenerQueueTarget, LlmAgentNodeEvent, LlmAgentNodePhase, LlmAgentUsage, LlmBaseUrlUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogExportFormat, LogSeverity, LogSource, LogStreamChannel, LogStreamEndReason, Logging, Logmnse, LogsClient, MIN_REFRESH_DELAY_IN_S, Map, MbMelganTriton, MediaControlOwner, MediaControlSetting, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluPreemptiveGenerationConfig, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, ParticipantEndReason, ParticipantMode, ParticipantState, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerIncrementalConfig, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort$1 as ReasoningEffort, RedeliverWebhookEventsRequest, RedeliverWebhookEventsResponse, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveCallParticipantRequest, RemoveCallParticipantResponse, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, ResumeCampaignRequest, RetryCampaignCallsRequest, RetryCampaignCallsResponse, RetryScheduledCallerRequest, RevokeSoftphoneCertificateRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RotateSoftphoneCredentialsRequest, RotateSoftphoneCredentialsResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, SendCallDtmfRequest, SendCallDtmfResponse, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetCallMediaControlRequest, SetCallMediaControlResponse, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, Silero, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallAudioConfig, SipCallAudioEndReason, SipCallAudioEnded, SipCallAudioFrame, SipCallAudioMode, SipCallAudioRequest, SipCallAudioResponse, SipCallAudioStarted, SipCallAudioStats, SipCallerConfig, SipClient, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipReportAnsweringMachineDetectedRequest, SipSendDtmfRequest, SipSetCallMediaControlRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipStatusTypeCount, SipTransferCallRequest, SipTrunkTransport, SoftTimeoutConfig, SoftphoneAccount, SoftphoneAccountFilter, SoftphoneAccountSorting, SoftphoneCertificate, SoftphoneCertificateFilter, SoftphoneCertificateStatus, SoftphoneContact, SoftphoneContactStatus, SoftphoneCredentials, SoftphoneProvisioning, SoftphoneRegistration, SoftphoneSrtpMode, SoftphoneTransportSecurity, SoftphonesClient, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartCampaignRequest, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopCampaignRequest, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallAudioConfig, StreamCallAudioRequest, StreamCallAudioResponse, StreamCallLogsRequest, StreamCallLogsResponse, StreamCallResourceStatusResponse, StreamCallerStatusRequest, StreamCampaignStatusRequest, StreamCampaignStatusResponse, StreamEndReason, StreamListenerStatusRequest, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamScheduledCallerStatusRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SubscribeVtsiEventsRequest, SubscribeVtsiEventsResponse, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sPreemptiveSynthesisConfig, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, TestWebhookRequest, TestWebhookResponse, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TransferMode, TransferOutcome, TransferOutcomeCount, TrunkRegistrationState, TsdMethod, TurnDetectionConfig, TurnDetectionContextTurn, TurnDetectionConversationContext, TurnDetectionHoldBand, TurnDetectionHoldBands, TurnDetectionOptions, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCallRequest, UpdateCallResponse, UpdateCallerRequest, UpdateCallerResponse, UpdateCallersRequest, UpdateCallersResponse, UpdateCallsRequest, UpdateCallsResponse, UpdateCampaignRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateListenerRequest, UpdateListenerResponse, UpdateListenersRequest, UpdateListenersResponse, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateScheduledCallerRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateSoftphoneAccountRequest, UpdateUserRequest, UpdateVtsiEventSubscriptionRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UpdateWebhookRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, VadMethod, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiEvent, VtsiEventFilter, VtsiEventMessage, VtsiEventSubscription, VtsiProject, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, Wav2Vec, Wav2VecTriton, Webhook, WebhookClient, WebhookDeliveryStatistics, WebhookHttpMethod, WebhookRequest, WebhookResponse, WespeakerTsd, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, authHttpInterceptor, buildBearerValue, buildGrpcWebHost, provideOndewoVtsiAuth, resolveBearerValue, resolveToken };
 //# sourceMappingURL=ondewo-vtsi-client-angular.mjs.map

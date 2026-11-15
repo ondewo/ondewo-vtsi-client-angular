@@ -384,6 +384,8 @@ export class NluVtsiConfig implements GrpcMessage {
     _instance.initialIntent = _instance.initialIntent || '';
     _instance.contexts = _instance.contexts || [];
     _instance.httpBasicAuthToken = _instance.httpBasicAuthToken || '';
+    _instance.preemptiveGenerationConfig =
+      _instance.preemptiveGenerationConfig || undefined;
   }
 
   /**
@@ -441,6 +443,13 @@ export class NluVtsiConfig implements GrpcMessage {
         case 9:
           _instance.platform = _reader.readEnum();
           break;
+        case 10:
+          _instance.preemptiveGenerationConfig = new NluPreemptiveGenerationConfig();
+          _reader.readMessage(
+            _instance.preemptiveGenerationConfig,
+            NluPreemptiveGenerationConfig.deserializeBinaryFromReader
+          );
+          break;
         default:
           _reader.skipField();
       }
@@ -497,6 +506,13 @@ export class NluVtsiConfig implements GrpcMessage {
     if (_instance.platform !== undefined && _instance.platform !== null) {
       _writer.writeEnum(9, _instance.platform);
     }
+    if (_instance.preemptiveGenerationConfig) {
+      _writer.writeMessage(
+        10,
+        _instance.preemptiveGenerationConfig as any,
+        NluPreemptiveGenerationConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _nluBaseConfig?: BaseServiceConfig;
@@ -508,6 +524,7 @@ export class NluVtsiConfig implements GrpcMessage {
   private _contexts?: ondewoNlu004.Context[];
   private _httpBasicAuthToken: string;
   private _platform: ondewoNlu008.Intent.Message.Platform;
+  private _preemptiveGenerationConfig?: NluPreemptiveGenerationConfig;
 
   private _authentication: NluVtsiConfig.AuthenticationCase =
     NluVtsiConfig.AuthenticationCase.none;
@@ -533,6 +550,9 @@ export class NluVtsiConfig implements GrpcMessage {
     );
     this.httpBasicAuthToken = _value.httpBasicAuthToken;
     this.platform = _value.platform;
+    this.preemptiveGenerationConfig = _value.preemptiveGenerationConfig
+      ? new NluPreemptiveGenerationConfig(_value.preemptiveGenerationConfig)
+      : undefined;
     NluVtsiConfig.refineValues(this);
   }
   get nluBaseConfig(): BaseServiceConfig | undefined {
@@ -597,6 +617,14 @@ export class NluVtsiConfig implements GrpcMessage {
   set platform(value: ondewoNlu008.Intent.Message.Platform) {
     this._platform = value;
   }
+  get preemptiveGenerationConfig(): NluPreemptiveGenerationConfig | undefined {
+    return this._preemptiveGenerationConfig;
+  }
+  set preemptiveGenerationConfig(
+    value: NluPreemptiveGenerationConfig | undefined
+  ) {
+    this._preemptiveGenerationConfig = value;
+  }
   get authentication() {
     return this._authentication;
   }
@@ -626,7 +654,10 @@ export class NluVtsiConfig implements GrpcMessage {
       initialIntent: this.initialIntent,
       contexts: (this.contexts || []).map(m => m.toObject()),
       httpBasicAuthToken: this.httpBasicAuthToken,
-      platform: this.platform
+      platform: this.platform,
+      preemptiveGenerationConfig: this.preemptiveGenerationConfig
+        ? this.preemptiveGenerationConfig.toObject()
+        : undefined
     };
   }
 
@@ -667,7 +698,10 @@ export class NluVtsiConfig implements GrpcMessage {
           this.platform === null || this.platform === undefined
             ? 0
             : this.platform
-        ]
+        ],
+      preemptiveGenerationConfig: this.preemptiveGenerationConfig
+        ? this.preemptiveGenerationConfig.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -685,6 +719,7 @@ export module NluVtsiConfig {
     contexts?: ondewoNlu004.Context.AsObject[];
     httpBasicAuthToken: string;
     platform: ondewoNlu008.Intent.Message.Platform;
+    preemptiveGenerationConfig?: NluPreemptiveGenerationConfig.AsObject;
   }
 
   /**
@@ -700,11 +735,197 @@ export module NluVtsiConfig {
     contexts: ondewoNlu004.Context.AsProtobufJSON[] | null;
     httpBasicAuthToken: string;
     platform: string;
+    preemptiveGenerationConfig: NluPreemptiveGenerationConfig.AsProtobufJSON | null;
   }
   export enum AuthenticationCase {
     none = 0,
     credentials = 1,
     authToken = 2
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.NluPreemptiveGenerationConfig
+ */
+export class NluPreemptiveGenerationConfig implements GrpcMessage {
+  static id = 'ondewo.vtsi.NluPreemptiveGenerationConfig';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new NluPreemptiveGenerationConfig();
+    NluPreemptiveGenerationConfig.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: NluPreemptiveGenerationConfig) {
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: NluPreemptiveGenerationConfig,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.maxDraftsPerTurn = _reader.readInt32();
+          break;
+        case 2:
+          _instance.minStableDwellSeconds = _reader.readFloat();
+          break;
+        case 3:
+          _instance.minIntervalSeconds = _reader.readFloat();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    NluPreemptiveGenerationConfig.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: NluPreemptiveGenerationConfig,
+    _writer: BinaryWriter
+  ) {
+    if (
+      _instance.maxDraftsPerTurn !== undefined &&
+      _instance.maxDraftsPerTurn !== null
+    ) {
+      _writer.writeInt32(1, _instance.maxDraftsPerTurn);
+    }
+    if (
+      _instance.minStableDwellSeconds !== undefined &&
+      _instance.minStableDwellSeconds !== null
+    ) {
+      _writer.writeFloat(2, _instance.minStableDwellSeconds);
+    }
+    if (
+      _instance.minIntervalSeconds !== undefined &&
+      _instance.minIntervalSeconds !== null
+    ) {
+      _writer.writeFloat(3, _instance.minIntervalSeconds);
+    }
+  }
+
+  private _maxDraftsPerTurn: number;
+  private _minStableDwellSeconds: number;
+  private _minIntervalSeconds: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of NluPreemptiveGenerationConfig to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<NluPreemptiveGenerationConfig.AsObject>
+  ) {
+    _value = _value || {};
+    this.maxDraftsPerTurn = _value.maxDraftsPerTurn;
+    this.minStableDwellSeconds = _value.minStableDwellSeconds;
+    this.minIntervalSeconds = _value.minIntervalSeconds;
+    NluPreemptiveGenerationConfig.refineValues(this);
+  }
+  get maxDraftsPerTurn(): number {
+    return this._maxDraftsPerTurn;
+  }
+  set maxDraftsPerTurn(value: number) {
+    this._maxDraftsPerTurn = value;
+  }
+  get minStableDwellSeconds(): number {
+    return this._minStableDwellSeconds;
+  }
+  set minStableDwellSeconds(value: number) {
+    this._minStableDwellSeconds = value;
+  }
+  get minIntervalSeconds(): number {
+    return this._minIntervalSeconds;
+  }
+  set minIntervalSeconds(value: number) {
+    this._minIntervalSeconds = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    NluPreemptiveGenerationConfig.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): NluPreemptiveGenerationConfig.AsObject {
+    return {
+      maxDraftsPerTurn: this.maxDraftsPerTurn,
+      minStableDwellSeconds: this.minStableDwellSeconds,
+      minIntervalSeconds: this.minIntervalSeconds
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): NluPreemptiveGenerationConfig.AsProtobufJSON {
+    return {
+      maxDraftsPerTurn: this.maxDraftsPerTurn,
+      minStableDwellSeconds: this.minStableDwellSeconds,
+      minIntervalSeconds: this.minIntervalSeconds
+    };
+  }
+}
+export module NluPreemptiveGenerationConfig {
+  /**
+   * Standard JavaScript object representation for NluPreemptiveGenerationConfig
+   */
+  export interface AsObject {
+    maxDraftsPerTurn: number;
+    minStableDwellSeconds: number;
+    minIntervalSeconds: number;
+  }
+
+  /**
+   * Protobuf JSON representation for NluPreemptiveGenerationConfig
+   */
+  export interface AsProtobufJSON {
+    maxDraftsPerTurn: number;
+    minStableDwellSeconds: number;
+    minIntervalSeconds: number;
   }
 }
 
@@ -734,6 +955,8 @@ export class T2sVtsiConfig implements GrpcMessage {
   static refineValues(_instance: T2sVtsiConfig) {
     _instance.t2sBaseConfig = _instance.t2sBaseConfig || undefined;
     _instance.t2sRequestConfig = _instance.t2sRequestConfig || undefined;
+    _instance.preemptiveSynthesisConfig =
+      _instance.preemptiveSynthesisConfig || undefined;
   }
 
   /**
@@ -761,6 +984,13 @@ export class T2sVtsiConfig implements GrpcMessage {
           _reader.readMessage(
             _instance.t2sRequestConfig,
             ondewoT2s010.RequestConfig.deserializeBinaryFromReader
+          );
+          break;
+        case 3:
+          _instance.preemptiveSynthesisConfig = new T2sPreemptiveSynthesisConfig();
+          _reader.readMessage(
+            _instance.preemptiveSynthesisConfig,
+            T2sPreemptiveSynthesisConfig.deserializeBinaryFromReader
           );
           break;
         default:
@@ -794,10 +1024,18 @@ export class T2sVtsiConfig implements GrpcMessage {
         ondewoT2s010.RequestConfig.serializeBinaryToWriter
       );
     }
+    if (_instance.preemptiveSynthesisConfig) {
+      _writer.writeMessage(
+        3,
+        _instance.preemptiveSynthesisConfig as any,
+        T2sPreemptiveSynthesisConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _t2sBaseConfig?: BaseServiceConfig;
   private _t2sRequestConfig?: ondewoT2s010.RequestConfig;
+  private _preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -810,6 +1048,9 @@ export class T2sVtsiConfig implements GrpcMessage {
       : undefined;
     this.t2sRequestConfig = _value.t2sRequestConfig
       ? new ondewoT2s010.RequestConfig(_value.t2sRequestConfig)
+      : undefined;
+    this.preemptiveSynthesisConfig = _value.preemptiveSynthesisConfig
+      ? new T2sPreemptiveSynthesisConfig(_value.preemptiveSynthesisConfig)
       : undefined;
     T2sVtsiConfig.refineValues(this);
   }
@@ -824,6 +1065,14 @@ export class T2sVtsiConfig implements GrpcMessage {
   }
   set t2sRequestConfig(value: ondewoT2s010.RequestConfig | undefined) {
     this._t2sRequestConfig = value;
+  }
+  get preemptiveSynthesisConfig(): T2sPreemptiveSynthesisConfig | undefined {
+    return this._preemptiveSynthesisConfig;
+  }
+  set preemptiveSynthesisConfig(
+    value: T2sPreemptiveSynthesisConfig | undefined
+  ) {
+    this._preemptiveSynthesisConfig = value;
   }
 
   /**
@@ -846,6 +1095,9 @@ export class T2sVtsiConfig implements GrpcMessage {
         : undefined,
       t2sRequestConfig: this.t2sRequestConfig
         ? this.t2sRequestConfig.toObject()
+        : undefined,
+      preemptiveSynthesisConfig: this.preemptiveSynthesisConfig
+        ? this.preemptiveSynthesisConfig.toObject()
         : undefined
     };
   }
@@ -872,6 +1124,9 @@ export class T2sVtsiConfig implements GrpcMessage {
         : null,
       t2sRequestConfig: this.t2sRequestConfig
         ? this.t2sRequestConfig.toProtobufJSON(options)
+        : null,
+      preemptiveSynthesisConfig: this.preemptiveSynthesisConfig
+        ? this.preemptiveSynthesisConfig.toProtobufJSON(options)
         : null
     };
   }
@@ -883,6 +1138,7 @@ export module T2sVtsiConfig {
   export interface AsObject {
     t2sBaseConfig?: BaseServiceConfig.AsObject;
     t2sRequestConfig?: ondewoT2s010.RequestConfig.AsObject;
+    preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig.AsObject;
   }
 
   /**
@@ -891,6 +1147,165 @@ export module T2sVtsiConfig {
   export interface AsProtobufJSON {
     t2sBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
     t2sRequestConfig: ondewoT2s010.RequestConfig.AsProtobufJSON | null;
+    preemptiveSynthesisConfig: T2sPreemptiveSynthesisConfig.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.T2sPreemptiveSynthesisConfig
+ */
+export class T2sPreemptiveSynthesisConfig implements GrpcMessage {
+  static id = 'ondewo.vtsi.T2sPreemptiveSynthesisConfig';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new T2sPreemptiveSynthesisConfig();
+    T2sPreemptiveSynthesisConfig.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: T2sPreemptiveSynthesisConfig) {
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: T2sPreemptiveSynthesisConfig,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.enabled = _reader.readBool();
+          break;
+        case 2:
+          _instance.chunked = _reader.readBool();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    T2sPreemptiveSynthesisConfig.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: T2sPreemptiveSynthesisConfig,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.enabled !== undefined && _instance.enabled !== null) {
+      _writer.writeBool(1, _instance.enabled);
+    }
+    if (_instance.chunked !== undefined && _instance.chunked !== null) {
+      _writer.writeBool(2, _instance.chunked);
+    }
+  }
+
+  private _enabled: boolean;
+  private _chunked: boolean;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of T2sPreemptiveSynthesisConfig to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<T2sPreemptiveSynthesisConfig.AsObject>
+  ) {
+    _value = _value || {};
+    this.enabled = _value.enabled;
+    this.chunked = _value.chunked;
+    T2sPreemptiveSynthesisConfig.refineValues(this);
+  }
+  get enabled(): boolean {
+    return this._enabled;
+  }
+  set enabled(value: boolean) {
+    this._enabled = value;
+  }
+  get chunked(): boolean {
+    return this._chunked;
+  }
+  set chunked(value: boolean) {
+    this._chunked = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    T2sPreemptiveSynthesisConfig.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): T2sPreemptiveSynthesisConfig.AsObject {
+    return {
+      enabled: this.enabled,
+      chunked: this.chunked
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): T2sPreemptiveSynthesisConfig.AsProtobufJSON {
+    return {
+      enabled: this.enabled,
+      chunked: this.chunked
+    };
+  }
+}
+export module T2sPreemptiveSynthesisConfig {
+  /**
+   * Standard JavaScript object representation for T2sPreemptiveSynthesisConfig
+   */
+  export interface AsObject {
+    enabled: boolean;
+    chunked: boolean;
+  }
+
+  /**
+   * Protobuf JSON representation for T2sPreemptiveSynthesisConfig
+   */
+  export interface AsProtobufJSON {
+    enabled: boolean;
+    chunked: boolean;
   }
 }
 
@@ -1404,6 +1819,7 @@ export class VoiceInteractionConfig implements GrpcMessage {
       _instance.responseTimingConfig || undefined;
     _instance.answeringMachineDetectionConfig =
       _instance.answeringMachineDetectionConfig || undefined;
+    _instance.dtmfConfig = _instance.dtmfConfig || undefined;
   }
 
   /**
@@ -1445,6 +1861,13 @@ export class VoiceInteractionConfig implements GrpcMessage {
           _reader.readMessage(
             _instance.answeringMachineDetectionConfig,
             AnsweringMachineDetectionConfig.deserializeBinaryFromReader
+          );
+          break;
+        case 5:
+          _instance.dtmfConfig = new DtmfConfig();
+          _reader.readMessage(
+            _instance.dtmfConfig,
+            DtmfConfig.deserializeBinaryFromReader
           );
           break;
         default:
@@ -1492,12 +1915,20 @@ export class VoiceInteractionConfig implements GrpcMessage {
         AnsweringMachineDetectionConfig.serializeBinaryToWriter
       );
     }
+    if (_instance.dtmfConfig) {
+      _writer.writeMessage(
+        5,
+        _instance.dtmfConfig as any,
+        DtmfConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _turnDetectionConfig?: TurnDetectionConfig;
   private _interruptionHandlingConfig?: InterruptionHandlingConfig;
   private _responseTimingConfig?: ResponseTimingConfig;
   private _answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig;
+  private _dtmfConfig?: DtmfConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1518,6 +1949,9 @@ export class VoiceInteractionConfig implements GrpcMessage {
       ? new AnsweringMachineDetectionConfig(
           _value.answeringMachineDetectionConfig
         )
+      : undefined;
+    this.dtmfConfig = _value.dtmfConfig
+      ? new DtmfConfig(_value.dtmfConfig)
       : undefined;
     VoiceInteractionConfig.refineValues(this);
   }
@@ -1551,6 +1985,12 @@ export class VoiceInteractionConfig implements GrpcMessage {
   ) {
     this._answeringMachineDetectionConfig = value;
   }
+  get dtmfConfig(): DtmfConfig | undefined {
+    return this._dtmfConfig;
+  }
+  set dtmfConfig(value: DtmfConfig | undefined) {
+    this._dtmfConfig = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -1578,7 +2018,8 @@ export class VoiceInteractionConfig implements GrpcMessage {
         : undefined,
       answeringMachineDetectionConfig: this.answeringMachineDetectionConfig
         ? this.answeringMachineDetectionConfig.toObject()
-        : undefined
+        : undefined,
+      dtmfConfig: this.dtmfConfig ? this.dtmfConfig.toObject() : undefined
     };
   }
 
@@ -1610,6 +2051,9 @@ export class VoiceInteractionConfig implements GrpcMessage {
         : null,
       answeringMachineDetectionConfig: this.answeringMachineDetectionConfig
         ? this.answeringMachineDetectionConfig.toProtobufJSON(options)
+        : null,
+      dtmfConfig: this.dtmfConfig
+        ? this.dtmfConfig.toProtobufJSON(options)
         : null
     };
   }
@@ -1623,6 +2067,7 @@ export module VoiceInteractionConfig {
     interruptionHandlingConfig?: InterruptionHandlingConfig.AsObject;
     responseTimingConfig?: ResponseTimingConfig.AsObject;
     answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig.AsObject;
+    dtmfConfig?: DtmfConfig.AsObject;
   }
 
   /**
@@ -1633,6 +2078,199 @@ export module VoiceInteractionConfig {
     interruptionHandlingConfig: InterruptionHandlingConfig.AsProtobufJSON | null;
     responseTimingConfig: ResponseTimingConfig.AsProtobufJSON | null;
     answeringMachineDetectionConfig: AnsweringMachineDetectionConfig.AsProtobufJSON | null;
+    dtmfConfig: DtmfConfig.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.DtmfConfig
+ */
+export class DtmfConfig implements GrpcMessage {
+  static id = 'ondewo.vtsi.DtmfConfig';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new DtmfConfig();
+    DtmfConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: DtmfConfig) {
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: DtmfConfig,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.enabled = _reader.readBool();
+          break;
+        case 2:
+          _instance.bargeIn = _reader.readBool();
+          break;
+        case 3:
+          _instance.interDigitTimeoutMs = _reader.readUint32();
+          break;
+        case 4:
+          _instance.undeclaredPolicy = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    DtmfConfig.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: DtmfConfig, _writer: BinaryWriter) {
+    if (_instance.enabled !== undefined && _instance.enabled !== null) {
+      _writer.writeBool(1, _instance.enabled);
+    }
+    if (_instance.bargeIn !== undefined && _instance.bargeIn !== null) {
+      _writer.writeBool(2, _instance.bargeIn);
+    }
+    if (
+      _instance.interDigitTimeoutMs !== undefined &&
+      _instance.interDigitTimeoutMs !== null
+    ) {
+      _writer.writeUint32(3, _instance.interDigitTimeoutMs);
+    }
+    if (
+      _instance.undeclaredPolicy !== undefined &&
+      _instance.undeclaredPolicy !== null
+    ) {
+      _writer.writeString(4, _instance.undeclaredPolicy);
+    }
+  }
+
+  private _enabled: boolean;
+  private _bargeIn: boolean;
+  private _interDigitTimeoutMs: number;
+  private _undeclaredPolicy: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of DtmfConfig to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<DtmfConfig.AsObject>) {
+    _value = _value || {};
+    this.enabled = _value.enabled;
+    this.bargeIn = _value.bargeIn;
+    this.interDigitTimeoutMs = _value.interDigitTimeoutMs;
+    this.undeclaredPolicy = _value.undeclaredPolicy;
+    DtmfConfig.refineValues(this);
+  }
+  get enabled(): boolean {
+    return this._enabled;
+  }
+  set enabled(value: boolean) {
+    this._enabled = value;
+  }
+  get bargeIn(): boolean {
+    return this._bargeIn;
+  }
+  set bargeIn(value: boolean) {
+    this._bargeIn = value;
+  }
+  get interDigitTimeoutMs(): number {
+    return this._interDigitTimeoutMs;
+  }
+  set interDigitTimeoutMs(value: number) {
+    this._interDigitTimeoutMs = value;
+  }
+  get undeclaredPolicy(): string {
+    return this._undeclaredPolicy;
+  }
+  set undeclaredPolicy(value: string) {
+    this._undeclaredPolicy = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    DtmfConfig.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): DtmfConfig.AsObject {
+    return {
+      enabled: this.enabled,
+      bargeIn: this.bargeIn,
+      interDigitTimeoutMs: this.interDigitTimeoutMs,
+      undeclaredPolicy: this.undeclaredPolicy
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): DtmfConfig.AsProtobufJSON {
+    return {
+      enabled: this.enabled,
+      bargeIn: this.bargeIn,
+      interDigitTimeoutMs: this.interDigitTimeoutMs,
+      undeclaredPolicy: this.undeclaredPolicy
+    };
+  }
+}
+export module DtmfConfig {
+  /**
+   * Standard JavaScript object representation for DtmfConfig
+   */
+  export interface AsObject {
+    enabled: boolean;
+    bargeIn: boolean;
+    interDigitTimeoutMs: number;
+    undeclaredPolicy: string;
+  }
+
+  /**
+   * Protobuf JSON representation for DtmfConfig
+   */
+  export interface AsProtobufJSON {
+    enabled: boolean;
+    bargeIn: boolean;
+    interDigitTimeoutMs: number;
+    undeclaredPolicy: string;
   }
 }
 
@@ -1662,6 +2300,8 @@ export class TurnDetectionConfig implements GrpcMessage {
   static refineValues(_instance: TurnDetectionConfig) {
     _instance.mode = _instance.mode || 0;
     _instance.turnEagerness = _instance.turnEagerness || 0;
+    _instance.holdBands = _instance.holdBands || undefined;
+    _instance.dictationConfig = _instance.dictationConfig || undefined;
   }
 
   /**
@@ -1694,6 +2334,41 @@ export class TurnDetectionConfig implements GrpcMessage {
           break;
         case 6:
           _instance.turnDetectionUserPrompt = _reader.readString();
+          break;
+        case 7:
+          _instance.conversationContextTurns = _reader.readUint32();
+          break;
+        case 8:
+          _instance.semanticModelName = _reader.readString();
+          break;
+        case 9:
+          _instance.endOfTurnProbabilityThreshold = _reader.readFloat();
+          break;
+        case 10:
+          _instance.holdBands = new TurnDetectionConfig.EndOfTurnHoldBands();
+          _reader.readMessage(
+            _instance.holdBands,
+            TurnDetectionConfig.EndOfTurnHoldBands.deserializeBinaryFromReader
+          );
+          break;
+        case 11:
+          _instance.uncertainMinWords = _reader.readUint32();
+          break;
+        case 12:
+          _instance.incompleteMaxSilenceSeconds = _reader.readFloat();
+          break;
+        case 13:
+          _instance.exactProbability = _reader.readBool();
+          break;
+        case 14:
+          _instance.finalMergeWindowSeconds = _reader.readFloat();
+          break;
+        case 15:
+          _instance.dictationConfig = new DictationConfig();
+          _reader.readMessage(
+            _instance.dictationConfig,
+            DictationConfig.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -1742,6 +2417,62 @@ export class TurnDetectionConfig implements GrpcMessage {
     ) {
       _writer.writeString(6, _instance.turnDetectionUserPrompt);
     }
+    if (
+      _instance.conversationContextTurns !== undefined &&
+      _instance.conversationContextTurns !== null
+    ) {
+      _writer.writeUint32(7, _instance.conversationContextTurns);
+    }
+    if (
+      _instance.semanticModelName !== undefined &&
+      _instance.semanticModelName !== null
+    ) {
+      _writer.writeString(8, _instance.semanticModelName);
+    }
+    if (
+      _instance.endOfTurnProbabilityThreshold !== undefined &&
+      _instance.endOfTurnProbabilityThreshold !== null
+    ) {
+      _writer.writeFloat(9, _instance.endOfTurnProbabilityThreshold);
+    }
+    if (_instance.holdBands) {
+      _writer.writeMessage(
+        10,
+        _instance.holdBands as any,
+        TurnDetectionConfig.EndOfTurnHoldBands.serializeBinaryToWriter
+      );
+    }
+    if (
+      _instance.uncertainMinWords !== undefined &&
+      _instance.uncertainMinWords !== null
+    ) {
+      _writer.writeUint32(11, _instance.uncertainMinWords);
+    }
+    if (
+      _instance.incompleteMaxSilenceSeconds !== undefined &&
+      _instance.incompleteMaxSilenceSeconds !== null
+    ) {
+      _writer.writeFloat(12, _instance.incompleteMaxSilenceSeconds);
+    }
+    if (
+      _instance.exactProbability !== undefined &&
+      _instance.exactProbability !== null
+    ) {
+      _writer.writeBool(13, _instance.exactProbability);
+    }
+    if (
+      _instance.finalMergeWindowSeconds !== undefined &&
+      _instance.finalMergeWindowSeconds !== null
+    ) {
+      _writer.writeFloat(14, _instance.finalMergeWindowSeconds);
+    }
+    if (_instance.dictationConfig) {
+      _writer.writeMessage(
+        15,
+        _instance.dictationConfig as any,
+        DictationConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _mode: TurnDetectionConfig.TurnDetectionMode;
@@ -1750,6 +2481,15 @@ export class TurnDetectionConfig implements GrpcMessage {
   private _turnEagerness: TurnDetectionConfig.TurnEagerness;
   private _turnDetectionSystemPrompt: string;
   private _turnDetectionUserPrompt: string;
+  private _conversationContextTurns: number;
+  private _semanticModelName: string;
+  private _endOfTurnProbabilityThreshold: number;
+  private _holdBands?: TurnDetectionConfig.EndOfTurnHoldBands;
+  private _uncertainMinWords: number;
+  private _incompleteMaxSilenceSeconds: number;
+  private _exactProbability: boolean;
+  private _finalMergeWindowSeconds: number;
+  private _dictationConfig?: DictationConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1763,6 +2503,19 @@ export class TurnDetectionConfig implements GrpcMessage {
     this.turnEagerness = _value.turnEagerness;
     this.turnDetectionSystemPrompt = _value.turnDetectionSystemPrompt;
     this.turnDetectionUserPrompt = _value.turnDetectionUserPrompt;
+    this.conversationContextTurns = _value.conversationContextTurns;
+    this.semanticModelName = _value.semanticModelName;
+    this.endOfTurnProbabilityThreshold = _value.endOfTurnProbabilityThreshold;
+    this.holdBands = _value.holdBands
+      ? new TurnDetectionConfig.EndOfTurnHoldBands(_value.holdBands)
+      : undefined;
+    this.uncertainMinWords = _value.uncertainMinWords;
+    this.incompleteMaxSilenceSeconds = _value.incompleteMaxSilenceSeconds;
+    this.exactProbability = _value.exactProbability;
+    this.finalMergeWindowSeconds = _value.finalMergeWindowSeconds;
+    this.dictationConfig = _value.dictationConfig
+      ? new DictationConfig(_value.dictationConfig)
+      : undefined;
     TurnDetectionConfig.refineValues(this);
   }
   get mode(): TurnDetectionConfig.TurnDetectionMode {
@@ -1801,6 +2554,60 @@ export class TurnDetectionConfig implements GrpcMessage {
   set turnDetectionUserPrompt(value: string) {
     this._turnDetectionUserPrompt = value;
   }
+  get conversationContextTurns(): number {
+    return this._conversationContextTurns;
+  }
+  set conversationContextTurns(value: number) {
+    this._conversationContextTurns = value;
+  }
+  get semanticModelName(): string {
+    return this._semanticModelName;
+  }
+  set semanticModelName(value: string) {
+    this._semanticModelName = value;
+  }
+  get endOfTurnProbabilityThreshold(): number {
+    return this._endOfTurnProbabilityThreshold;
+  }
+  set endOfTurnProbabilityThreshold(value: number) {
+    this._endOfTurnProbabilityThreshold = value;
+  }
+  get holdBands(): TurnDetectionConfig.EndOfTurnHoldBands | undefined {
+    return this._holdBands;
+  }
+  set holdBands(value: TurnDetectionConfig.EndOfTurnHoldBands | undefined) {
+    this._holdBands = value;
+  }
+  get uncertainMinWords(): number {
+    return this._uncertainMinWords;
+  }
+  set uncertainMinWords(value: number) {
+    this._uncertainMinWords = value;
+  }
+  get incompleteMaxSilenceSeconds(): number {
+    return this._incompleteMaxSilenceSeconds;
+  }
+  set incompleteMaxSilenceSeconds(value: number) {
+    this._incompleteMaxSilenceSeconds = value;
+  }
+  get exactProbability(): boolean {
+    return this._exactProbability;
+  }
+  set exactProbability(value: boolean) {
+    this._exactProbability = value;
+  }
+  get finalMergeWindowSeconds(): number {
+    return this._finalMergeWindowSeconds;
+  }
+  set finalMergeWindowSeconds(value: number) {
+    this._finalMergeWindowSeconds = value;
+  }
+  get dictationConfig(): DictationConfig | undefined {
+    return this._dictationConfig;
+  }
+  set dictationConfig(value: DictationConfig | undefined) {
+    this._dictationConfig = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -1822,7 +2629,18 @@ export class TurnDetectionConfig implements GrpcMessage {
       maxEndpointingDelaySeconds: this.maxEndpointingDelaySeconds,
       turnEagerness: this.turnEagerness,
       turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
-      turnDetectionUserPrompt: this.turnDetectionUserPrompt
+      turnDetectionUserPrompt: this.turnDetectionUserPrompt,
+      conversationContextTurns: this.conversationContextTurns,
+      semanticModelName: this.semanticModelName,
+      endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+      holdBands: this.holdBands ? this.holdBands.toObject() : undefined,
+      uncertainMinWords: this.uncertainMinWords,
+      incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+      exactProbability: this.exactProbability,
+      finalMergeWindowSeconds: this.finalMergeWindowSeconds,
+      dictationConfig: this.dictationConfig
+        ? this.dictationConfig.toObject()
+        : undefined
     };
   }
 
@@ -1856,7 +2674,18 @@ export class TurnDetectionConfig implements GrpcMessage {
             : this.turnEagerness
         ],
       turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
-      turnDetectionUserPrompt: this.turnDetectionUserPrompt
+      turnDetectionUserPrompt: this.turnDetectionUserPrompt,
+      conversationContextTurns: this.conversationContextTurns,
+      semanticModelName: this.semanticModelName,
+      endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+      holdBands: this.holdBands ? this.holdBands.toProtobufJSON(options) : null,
+      uncertainMinWords: this.uncertainMinWords,
+      incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+      exactProbability: this.exactProbability,
+      finalMergeWindowSeconds: this.finalMergeWindowSeconds,
+      dictationConfig: this.dictationConfig
+        ? this.dictationConfig.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -1871,6 +2700,15 @@ export module TurnDetectionConfig {
     turnEagerness: TurnDetectionConfig.TurnEagerness;
     turnDetectionSystemPrompt: string;
     turnDetectionUserPrompt: string;
+    conversationContextTurns: number;
+    semanticModelName: string;
+    endOfTurnProbabilityThreshold: number;
+    holdBands?: TurnDetectionConfig.EndOfTurnHoldBands.AsObject;
+    uncertainMinWords: number;
+    incompleteMaxSilenceSeconds: number;
+    exactProbability: boolean;
+    finalMergeWindowSeconds: number;
+    dictationConfig?: DictationConfig.AsObject;
   }
 
   /**
@@ -1883,6 +2721,15 @@ export module TurnDetectionConfig {
     turnEagerness: string;
     turnDetectionSystemPrompt: string;
     turnDetectionUserPrompt: string;
+    conversationContextTurns: number;
+    semanticModelName: string;
+    endOfTurnProbabilityThreshold: number;
+    holdBands: TurnDetectionConfig.EndOfTurnHoldBands.AsProtobufJSON | null;
+    uncertainMinWords: number;
+    incompleteMaxSilenceSeconds: number;
+    exactProbability: boolean;
+    finalMergeWindowSeconds: number;
+    dictationConfig: DictationConfig.AsProtobufJSON | null;
   }
   export enum TurnDetectionMode {
     TURN_DETECTION_MODE_UNSPECIFIED = 0,
@@ -1895,6 +2742,819 @@ export module TurnDetectionConfig {
     PATIENT = 1,
     NORMAL = 2,
     EAGER = 3
+  }
+  /**
+   * Message implementation for ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBands
+   */
+  export class EndOfTurnHoldBands implements GrpcMessage {
+    static id = 'ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBands';
+
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource) {
+      const instance = new EndOfTurnHoldBands();
+      EndOfTurnHoldBands.deserializeBinaryFromReader(
+        instance,
+        new BinaryReader(bytes)
+      );
+      return instance;
+    }
+
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: EndOfTurnHoldBands) {
+      _instance.bands = _instance.bands || [];
+    }
+
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(
+      _instance: EndOfTurnHoldBands,
+      _reader: BinaryReader
+    ) {
+      while (_reader.nextField()) {
+        if (_reader.isEndGroup()) break;
+
+        switch (_reader.getFieldNumber()) {
+          case 1:
+            const messageInitializer1 = new TurnDetectionConfig.EndOfTurnHoldBand();
+            _reader.readMessage(
+              messageInitializer1,
+              TurnDetectionConfig.EndOfTurnHoldBand.deserializeBinaryFromReader
+            );
+            (_instance.bands = _instance.bands || []).push(messageInitializer1);
+            break;
+          default:
+            _reader.skipField();
+        }
+      }
+
+      EndOfTurnHoldBands.refineValues(_instance);
+    }
+
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(
+      _instance: EndOfTurnHoldBands,
+      _writer: BinaryWriter
+    ) {
+      if (_instance.bands && _instance.bands.length) {
+        _writer.writeRepeatedMessage(
+          1,
+          _instance.bands as any,
+          TurnDetectionConfig.EndOfTurnHoldBand.serializeBinaryToWriter
+        );
+      }
+    }
+
+    private _bands?: TurnDetectionConfig.EndOfTurnHoldBand[];
+
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of EndOfTurnHoldBands to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<EndOfTurnHoldBands.AsObject>) {
+      _value = _value || {};
+      this.bands = (_value.bands || []).map(
+        m => new TurnDetectionConfig.EndOfTurnHoldBand(m)
+      );
+      EndOfTurnHoldBands.refineValues(this);
+    }
+    get bands(): TurnDetectionConfig.EndOfTurnHoldBand[] | undefined {
+      return this._bands;
+    }
+    set bands(value: TurnDetectionConfig.EndOfTurnHoldBand[] | undefined) {
+      this._bands = value;
+    }
+
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+      const writer = new BinaryWriter();
+      EndOfTurnHoldBands.serializeBinaryToWriter(this, writer);
+      return writer.getResultBuffer();
+    }
+
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): EndOfTurnHoldBands.AsObject {
+      return {
+        bands: (this.bands || []).map(m => m.toObject())
+      };
+    }
+
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+      return this.toObject();
+    }
+
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+      // @ts-ignore
+      options?: ToProtobufJSONOptions
+    ): EndOfTurnHoldBands.AsProtobufJSON {
+      return {
+        bands: (this.bands || []).map(m => m.toProtobufJSON(options))
+      };
+    }
+  }
+  export module EndOfTurnHoldBands {
+    /**
+     * Standard JavaScript object representation for EndOfTurnHoldBands
+     */
+    export interface AsObject {
+      bands?: TurnDetectionConfig.EndOfTurnHoldBand.AsObject[];
+    }
+
+    /**
+     * Protobuf JSON representation for EndOfTurnHoldBands
+     */
+    export interface AsProtobufJSON {
+      bands: TurnDetectionConfig.EndOfTurnHoldBand.AsProtobufJSON[] | null;
+    }
+  }
+
+  /**
+   * Message implementation for ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBand
+   */
+  export class EndOfTurnHoldBand implements GrpcMessage {
+    static id = 'ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBand';
+
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource) {
+      const instance = new EndOfTurnHoldBand();
+      EndOfTurnHoldBand.deserializeBinaryFromReader(
+        instance,
+        new BinaryReader(bytes)
+      );
+      return instance;
+    }
+
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: EndOfTurnHoldBand) {
+      _instance.upperProbability = _instance.upperProbability || 0;
+      _instance.maxSilenceSeconds = _instance.maxSilenceSeconds || 0;
+    }
+
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(
+      _instance: EndOfTurnHoldBand,
+      _reader: BinaryReader
+    ) {
+      while (_reader.nextField()) {
+        if (_reader.isEndGroup()) break;
+
+        switch (_reader.getFieldNumber()) {
+          case 1:
+            _instance.upperProbability = _reader.readFloat();
+            break;
+          case 2:
+            _instance.maxSilenceSeconds = _reader.readFloat();
+            break;
+          default:
+            _reader.skipField();
+        }
+      }
+
+      EndOfTurnHoldBand.refineValues(_instance);
+    }
+
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(
+      _instance: EndOfTurnHoldBand,
+      _writer: BinaryWriter
+    ) {
+      if (_instance.upperProbability) {
+        _writer.writeFloat(1, _instance.upperProbability);
+      }
+      if (_instance.maxSilenceSeconds) {
+        _writer.writeFloat(2, _instance.maxSilenceSeconds);
+      }
+    }
+
+    private _upperProbability: number;
+    private _maxSilenceSeconds: number;
+
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of EndOfTurnHoldBand to deeply clone from
+     */
+    constructor(_value?: RecursivePartial<EndOfTurnHoldBand.AsObject>) {
+      _value = _value || {};
+      this.upperProbability = _value.upperProbability;
+      this.maxSilenceSeconds = _value.maxSilenceSeconds;
+      EndOfTurnHoldBand.refineValues(this);
+    }
+    get upperProbability(): number {
+      return this._upperProbability;
+    }
+    set upperProbability(value: number) {
+      this._upperProbability = value;
+    }
+    get maxSilenceSeconds(): number {
+      return this._maxSilenceSeconds;
+    }
+    set maxSilenceSeconds(value: number) {
+      this._maxSilenceSeconds = value;
+    }
+
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+      const writer = new BinaryWriter();
+      EndOfTurnHoldBand.serializeBinaryToWriter(this, writer);
+      return writer.getResultBuffer();
+    }
+
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): EndOfTurnHoldBand.AsObject {
+      return {
+        upperProbability: this.upperProbability,
+        maxSilenceSeconds: this.maxSilenceSeconds
+      };
+    }
+
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+      return this.toObject();
+    }
+
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+      // @ts-ignore
+      options?: ToProtobufJSONOptions
+    ): EndOfTurnHoldBand.AsProtobufJSON {
+      return {
+        upperProbability: this.upperProbability,
+        maxSilenceSeconds: this.maxSilenceSeconds
+      };
+    }
+  }
+  export module EndOfTurnHoldBand {
+    /**
+     * Standard JavaScript object representation for EndOfTurnHoldBand
+     */
+    export interface AsObject {
+      upperProbability: number;
+      maxSilenceSeconds: number;
+    }
+
+    /**
+     * Protobuf JSON representation for EndOfTurnHoldBand
+     */
+    export interface AsProtobufJSON {
+      upperProbability: number;
+      maxSilenceSeconds: number;
+    }
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.DictationConfig
+ */
+export class DictationConfig implements GrpcMessage {
+  static id = 'ondewo.vtsi.DictationConfig';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new DictationConfig();
+    DictationConfig.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: DictationConfig) {
+    _instance.holdMaxSecondsByCategory =
+      _instance.holdMaxSecondsByCategory || {};
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: DictationConfig,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.holdEnabled = _reader.readBool();
+          break;
+        case 2:
+          _instance.expectedInputEnabled = _reader.readBool();
+          break;
+        case 3:
+          _instance.readBackFromBotTextEnabled = _reader.readBool();
+          break;
+        case 4:
+          _instance.holdGenericMaxSeconds = _reader.readFloat();
+          break;
+        case 5:
+          const msg_5 = {} as any;
+          _reader.readMessage(
+            msg_5,
+            DictationConfig.HoldMaxSecondsByCategoryEntry
+              .deserializeBinaryFromReader
+          );
+          _instance.holdMaxSecondsByCategory =
+            _instance.holdMaxSecondsByCategory || {};
+          _instance.holdMaxSecondsByCategory[msg_5.key] = msg_5.value;
+          break;
+        case 6:
+          _instance.holdInvalidChecksumSeconds = _reader.readFloat();
+          break;
+        case 7:
+          _instance.earlyCommitOnCompleteValue = _reader.readBool();
+          break;
+        case 8:
+          _instance.s2tSlotMinDurationOffSeconds = _reader.readFloat();
+          break;
+        case 9:
+          _instance.s2tSlotMinDurationOffRestoreSeconds = _reader.readFloat();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    DictationConfig.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: DictationConfig,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.holdEnabled !== undefined && _instance.holdEnabled !== null) {
+      _writer.writeBool(1, _instance.holdEnabled);
+    }
+    if (
+      _instance.expectedInputEnabled !== undefined &&
+      _instance.expectedInputEnabled !== null
+    ) {
+      _writer.writeBool(2, _instance.expectedInputEnabled);
+    }
+    if (
+      _instance.readBackFromBotTextEnabled !== undefined &&
+      _instance.readBackFromBotTextEnabled !== null
+    ) {
+      _writer.writeBool(3, _instance.readBackFromBotTextEnabled);
+    }
+    if (
+      _instance.holdGenericMaxSeconds !== undefined &&
+      _instance.holdGenericMaxSeconds !== null
+    ) {
+      _writer.writeFloat(4, _instance.holdGenericMaxSeconds);
+    }
+    if (!!_instance.holdMaxSecondsByCategory) {
+      const keys_5 = Object.keys(_instance.holdMaxSecondsByCategory as any);
+
+      if (keys_5.length) {
+        const repeated_5 = keys_5
+          .map(key => ({
+            key: key,
+            value: (_instance.holdMaxSecondsByCategory as any)[key]
+          }))
+          .reduce((r, v) => [...r, v], [] as any[]);
+
+        _writer.writeRepeatedMessage(
+          5,
+          repeated_5,
+          DictationConfig.HoldMaxSecondsByCategoryEntry.serializeBinaryToWriter
+        );
+      }
+    }
+    if (
+      _instance.holdInvalidChecksumSeconds !== undefined &&
+      _instance.holdInvalidChecksumSeconds !== null
+    ) {
+      _writer.writeFloat(6, _instance.holdInvalidChecksumSeconds);
+    }
+    if (
+      _instance.earlyCommitOnCompleteValue !== undefined &&
+      _instance.earlyCommitOnCompleteValue !== null
+    ) {
+      _writer.writeBool(7, _instance.earlyCommitOnCompleteValue);
+    }
+    if (
+      _instance.s2tSlotMinDurationOffSeconds !== undefined &&
+      _instance.s2tSlotMinDurationOffSeconds !== null
+    ) {
+      _writer.writeFloat(8, _instance.s2tSlotMinDurationOffSeconds);
+    }
+    if (
+      _instance.s2tSlotMinDurationOffRestoreSeconds !== undefined &&
+      _instance.s2tSlotMinDurationOffRestoreSeconds !== null
+    ) {
+      _writer.writeFloat(9, _instance.s2tSlotMinDurationOffRestoreSeconds);
+    }
+  }
+
+  private _holdEnabled: boolean;
+  private _expectedInputEnabled: boolean;
+  private _readBackFromBotTextEnabled: boolean;
+  private _holdGenericMaxSeconds: number;
+  private _holdMaxSecondsByCategory: { [prop: string]: number };
+  private _holdInvalidChecksumSeconds: number;
+  private _earlyCommitOnCompleteValue: boolean;
+  private _s2tSlotMinDurationOffSeconds: number;
+  private _s2tSlotMinDurationOffRestoreSeconds: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of DictationConfig to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<DictationConfig.AsObject>) {
+    _value = _value || {};
+    this.holdEnabled = _value.holdEnabled;
+    this.expectedInputEnabled = _value.expectedInputEnabled;
+    this.readBackFromBotTextEnabled = _value.readBackFromBotTextEnabled;
+    this.holdGenericMaxSeconds = _value.holdGenericMaxSeconds;
+    (this.holdMaxSecondsByCategory = _value!.holdMaxSecondsByCategory
+      ? Object.keys(_value!.holdMaxSecondsByCategory).reduce(
+          (r, k) => ({ ...r, [k]: _value!.holdMaxSecondsByCategory![k] }),
+          {}
+        )
+      : {}),
+      (this.holdInvalidChecksumSeconds = _value.holdInvalidChecksumSeconds);
+    this.earlyCommitOnCompleteValue = _value.earlyCommitOnCompleteValue;
+    this.s2tSlotMinDurationOffSeconds = _value.s2tSlotMinDurationOffSeconds;
+    this.s2tSlotMinDurationOffRestoreSeconds =
+      _value.s2tSlotMinDurationOffRestoreSeconds;
+    DictationConfig.refineValues(this);
+  }
+  get holdEnabled(): boolean {
+    return this._holdEnabled;
+  }
+  set holdEnabled(value: boolean) {
+    this._holdEnabled = value;
+  }
+  get expectedInputEnabled(): boolean {
+    return this._expectedInputEnabled;
+  }
+  set expectedInputEnabled(value: boolean) {
+    this._expectedInputEnabled = value;
+  }
+  get readBackFromBotTextEnabled(): boolean {
+    return this._readBackFromBotTextEnabled;
+  }
+  set readBackFromBotTextEnabled(value: boolean) {
+    this._readBackFromBotTextEnabled = value;
+  }
+  get holdGenericMaxSeconds(): number {
+    return this._holdGenericMaxSeconds;
+  }
+  set holdGenericMaxSeconds(value: number) {
+    this._holdGenericMaxSeconds = value;
+  }
+  get holdMaxSecondsByCategory(): { [prop: string]: number } {
+    return this._holdMaxSecondsByCategory;
+  }
+  set holdMaxSecondsByCategory(value: { [prop: string]: number }) {
+    this._holdMaxSecondsByCategory = value;
+  }
+  get holdInvalidChecksumSeconds(): number {
+    return this._holdInvalidChecksumSeconds;
+  }
+  set holdInvalidChecksumSeconds(value: number) {
+    this._holdInvalidChecksumSeconds = value;
+  }
+  get earlyCommitOnCompleteValue(): boolean {
+    return this._earlyCommitOnCompleteValue;
+  }
+  set earlyCommitOnCompleteValue(value: boolean) {
+    this._earlyCommitOnCompleteValue = value;
+  }
+  get s2tSlotMinDurationOffSeconds(): number {
+    return this._s2tSlotMinDurationOffSeconds;
+  }
+  set s2tSlotMinDurationOffSeconds(value: number) {
+    this._s2tSlotMinDurationOffSeconds = value;
+  }
+  get s2tSlotMinDurationOffRestoreSeconds(): number {
+    return this._s2tSlotMinDurationOffRestoreSeconds;
+  }
+  set s2tSlotMinDurationOffRestoreSeconds(value: number) {
+    this._s2tSlotMinDurationOffRestoreSeconds = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    DictationConfig.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): DictationConfig.AsObject {
+    return {
+      holdEnabled: this.holdEnabled,
+      expectedInputEnabled: this.expectedInputEnabled,
+      readBackFromBotTextEnabled: this.readBackFromBotTextEnabled,
+      holdGenericMaxSeconds: this.holdGenericMaxSeconds,
+      holdMaxSecondsByCategory: this.holdMaxSecondsByCategory
+        ? Object.keys(this.holdMaxSecondsByCategory).reduce(
+            (r, k) => ({ ...r, [k]: this.holdMaxSecondsByCategory![k] }),
+            {}
+          )
+        : {},
+      holdInvalidChecksumSeconds: this.holdInvalidChecksumSeconds,
+      earlyCommitOnCompleteValue: this.earlyCommitOnCompleteValue,
+      s2tSlotMinDurationOffSeconds: this.s2tSlotMinDurationOffSeconds,
+      s2tSlotMinDurationOffRestoreSeconds: this
+        .s2tSlotMinDurationOffRestoreSeconds
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): DictationConfig.AsProtobufJSON {
+    return {
+      holdEnabled: this.holdEnabled,
+      expectedInputEnabled: this.expectedInputEnabled,
+      readBackFromBotTextEnabled: this.readBackFromBotTextEnabled,
+      holdGenericMaxSeconds: this.holdGenericMaxSeconds,
+      holdMaxSecondsByCategory: this.holdMaxSecondsByCategory
+        ? Object.keys(this.holdMaxSecondsByCategory).reduce(
+            (r, k) => ({ ...r, [k]: this.holdMaxSecondsByCategory![k] }),
+            {}
+          )
+        : {},
+      holdInvalidChecksumSeconds: this.holdInvalidChecksumSeconds,
+      earlyCommitOnCompleteValue: this.earlyCommitOnCompleteValue,
+      s2tSlotMinDurationOffSeconds: this.s2tSlotMinDurationOffSeconds,
+      s2tSlotMinDurationOffRestoreSeconds: this
+        .s2tSlotMinDurationOffRestoreSeconds
+    };
+  }
+}
+export module DictationConfig {
+  /**
+   * Standard JavaScript object representation for DictationConfig
+   */
+  export interface AsObject {
+    holdEnabled: boolean;
+    expectedInputEnabled: boolean;
+    readBackFromBotTextEnabled: boolean;
+    holdGenericMaxSeconds: number;
+    holdMaxSecondsByCategory: { [prop: string]: number };
+    holdInvalidChecksumSeconds: number;
+    earlyCommitOnCompleteValue: boolean;
+    s2tSlotMinDurationOffSeconds: number;
+    s2tSlotMinDurationOffRestoreSeconds: number;
+  }
+
+  /**
+   * Protobuf JSON representation for DictationConfig
+   */
+  export interface AsProtobufJSON {
+    holdEnabled: boolean;
+    expectedInputEnabled: boolean;
+    readBackFromBotTextEnabled: boolean;
+    holdGenericMaxSeconds: number;
+    holdMaxSecondsByCategory: { [prop: string]: number };
+    holdInvalidChecksumSeconds: number;
+    earlyCommitOnCompleteValue: boolean;
+    s2tSlotMinDurationOffSeconds: number;
+    s2tSlotMinDurationOffRestoreSeconds: number;
+  }
+
+  /**
+   * Message implementation for ondewo.vtsi.DictationConfig.HoldMaxSecondsByCategoryEntry
+   */
+  export class HoldMaxSecondsByCategoryEntry implements GrpcMessage {
+    static id = 'ondewo.vtsi.DictationConfig.HoldMaxSecondsByCategoryEntry';
+
+    /**
+     * Deserialize binary data to message
+     * @param instance message instance
+     */
+    static deserializeBinary(bytes: ByteSource) {
+      const instance = new HoldMaxSecondsByCategoryEntry();
+      HoldMaxSecondsByCategoryEntry.deserializeBinaryFromReader(
+        instance,
+        new BinaryReader(bytes)
+      );
+      return instance;
+    }
+
+    /**
+     * Check all the properties and set default protobuf values if necessary
+     * @param _instance message instance
+     */
+    static refineValues(_instance: HoldMaxSecondsByCategoryEntry) {
+      _instance.key = _instance.key || '';
+      _instance.value = _instance.value || 0;
+    }
+
+    /**
+     * Deserializes / reads binary message into message instance using provided binary reader
+     * @param _instance message instance
+     * @param _reader binary reader instance
+     */
+    static deserializeBinaryFromReader(
+      _instance: HoldMaxSecondsByCategoryEntry,
+      _reader: BinaryReader
+    ) {
+      while (_reader.nextField()) {
+        if (_reader.isEndGroup()) break;
+
+        switch (_reader.getFieldNumber()) {
+          case 1:
+            _instance.key = _reader.readString();
+            break;
+          case 2:
+            _instance.value = _reader.readFloat();
+            break;
+          default:
+            _reader.skipField();
+        }
+      }
+
+      HoldMaxSecondsByCategoryEntry.refineValues(_instance);
+    }
+
+    /**
+     * Serializes a message to binary format using provided binary reader
+     * @param _instance message instance
+     * @param _writer binary writer instance
+     */
+    static serializeBinaryToWriter(
+      _instance: HoldMaxSecondsByCategoryEntry,
+      _writer: BinaryWriter
+    ) {
+      if (_instance.key) {
+        _writer.writeString(1, _instance.key);
+      }
+      if (_instance.value) {
+        _writer.writeFloat(2, _instance.value);
+      }
+    }
+
+    private _key: string;
+    private _value: number;
+
+    /**
+     * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+     * @param _value initial values object or instance of HoldMaxSecondsByCategoryEntry to deeply clone from
+     */
+    constructor(
+      _value?: RecursivePartial<HoldMaxSecondsByCategoryEntry.AsObject>
+    ) {
+      _value = _value || {};
+      this.key = _value.key;
+      this.value = _value.value;
+      HoldMaxSecondsByCategoryEntry.refineValues(this);
+    }
+    get key(): string {
+      return this._key;
+    }
+    set key(value: string) {
+      this._key = value;
+    }
+    get value(): number {
+      return this._value;
+    }
+    set value(value: number) {
+      this._value = value;
+    }
+
+    /**
+     * Serialize message to binary data
+     * @param instance message instance
+     */
+    serializeBinary() {
+      const writer = new BinaryWriter();
+      HoldMaxSecondsByCategoryEntry.serializeBinaryToWriter(this, writer);
+      return writer.getResultBuffer();
+    }
+
+    /**
+     * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+     */
+    toObject(): HoldMaxSecondsByCategoryEntry.AsObject {
+      return {
+        key: this.key,
+        value: this.value
+      };
+    }
+
+    /**
+     * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+     */
+    toJSON() {
+      return this.toObject();
+    }
+
+    /**
+     * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+     * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+     * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+     */
+    toProtobufJSON(
+      // @ts-ignore
+      options?: ToProtobufJSONOptions
+    ): HoldMaxSecondsByCategoryEntry.AsProtobufJSON {
+      return {
+        key: this.key,
+        value: this.value
+      };
+    }
+  }
+  export module HoldMaxSecondsByCategoryEntry {
+    /**
+     * Standard JavaScript object representation for HoldMaxSecondsByCategoryEntry
+     */
+    export interface AsObject {
+      key: string;
+      value: number;
+    }
+
+    /**
+     * Protobuf JSON representation for HoldMaxSecondsByCategoryEntry
+     */
+    export interface AsProtobufJSON {
+      key: string;
+      value: number;
+    }
   }
 }
 
@@ -1961,6 +3621,9 @@ export class InterruptionHandlingConfig implements GrpcMessage {
         case 8:
           _instance.transcribeOnDisabledInterruptions = _reader.readBool();
           break;
+        case 9:
+          _instance.interruptionFadeOutMs = _reader.readInt32();
+          break;
         default:
           _reader.skipField();
       }
@@ -2023,6 +3686,12 @@ export class InterruptionHandlingConfig implements GrpcMessage {
     ) {
       _writer.writeBool(8, _instance.transcribeOnDisabledInterruptions);
     }
+    if (
+      _instance.interruptionFadeOutMs !== undefined &&
+      _instance.interruptionFadeOutMs !== null
+    ) {
+      _writer.writeInt32(9, _instance.interruptionFadeOutMs);
+    }
   }
 
   private _enabled: boolean;
@@ -2033,6 +3702,7 @@ export class InterruptionHandlingConfig implements GrpcMessage {
   private _backoffSeconds: number;
   private _firstMessageProtectedSeconds: number;
   private _transcribeOnDisabledInterruptions: boolean;
+  private _interruptionFadeOutMs: number;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -2050,6 +3720,7 @@ export class InterruptionHandlingConfig implements GrpcMessage {
     this.firstMessageProtectedSeconds = _value.firstMessageProtectedSeconds;
     this.transcribeOnDisabledInterruptions =
       _value.transcribeOnDisabledInterruptions;
+    this.interruptionFadeOutMs = _value.interruptionFadeOutMs;
     InterruptionHandlingConfig.refineValues(this);
   }
   get enabled(): boolean {
@@ -2100,6 +3771,12 @@ export class InterruptionHandlingConfig implements GrpcMessage {
   set transcribeOnDisabledInterruptions(value: boolean) {
     this._transcribeOnDisabledInterruptions = value;
   }
+  get interruptionFadeOutMs(): number {
+    return this._interruptionFadeOutMs;
+  }
+  set interruptionFadeOutMs(value: number) {
+    this._interruptionFadeOutMs = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -2123,7 +3800,8 @@ export class InterruptionHandlingConfig implements GrpcMessage {
       resumeAfterFalseInterruption: this.resumeAfterFalseInterruption,
       backoffSeconds: this.backoffSeconds,
       firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
-      transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions
+      transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions,
+      interruptionFadeOutMs: this.interruptionFadeOutMs
     };
   }
 
@@ -2151,7 +3829,8 @@ export class InterruptionHandlingConfig implements GrpcMessage {
       resumeAfterFalseInterruption: this.resumeAfterFalseInterruption,
       backoffSeconds: this.backoffSeconds,
       firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
-      transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions
+      transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions,
+      interruptionFadeOutMs: this.interruptionFadeOutMs
     };
   }
 }
@@ -2168,6 +3847,7 @@ export module InterruptionHandlingConfig {
     backoffSeconds: number;
     firstMessageProtectedSeconds: number;
     transcribeOnDisabledInterruptions: boolean;
+    interruptionFadeOutMs: number;
   }
 
   /**
@@ -2182,6 +3862,7 @@ export module InterruptionHandlingConfig {
     backoffSeconds: number;
     firstMessageProtectedSeconds: number;
     transcribeOnDisabledInterruptions: boolean;
+    interruptionFadeOutMs: number;
   }
 }
 
@@ -3733,6 +5414,8 @@ export class CsiVtsiConfig implements GrpcMessage {
     _instance.audioObjectStoreConfig =
       _instance.audioObjectStoreConfig || undefined;
     _instance.messageBrokerConfig = _instance.messageBrokerConfig || undefined;
+    _instance.preemptiveGenerationConfig =
+      _instance.preemptiveGenerationConfig || undefined;
   }
 
   /**
@@ -3785,6 +5468,13 @@ export class CsiVtsiConfig implements GrpcMessage {
           break;
         case 6:
           _instance.activateControlMessages = _reader.readBool();
+          break;
+        case 7:
+          _instance.preemptiveGenerationConfig = new CsiPreemptiveGenerationConfig();
+          _reader.readMessage(
+            _instance.preemptiveGenerationConfig,
+            CsiPreemptiveGenerationConfig.deserializeBinaryFromReader
+          );
           break;
         default:
           _reader.skipField();
@@ -3844,6 +5534,13 @@ export class CsiVtsiConfig implements GrpcMessage {
     ) {
       _writer.writeBool(6, _instance.activateControlMessages);
     }
+    if (_instance.preemptiveGenerationConfig) {
+      _writer.writeMessage(
+        7,
+        _instance.preemptiveGenerationConfig as any,
+        CsiPreemptiveGenerationConfig.serializeBinaryToWriter
+      );
+    }
   }
 
   private _s2tVtsiCallbacks?: S2tVtsiCallbacks;
@@ -3852,6 +5549,7 @@ export class CsiVtsiConfig implements GrpcMessage {
   private _audioObjectStoreConfig?: AudioObjectStorageConfig;
   private _messageBrokerConfig?: MessageBrokerConfig;
   private _activateControlMessages: boolean;
+  private _preemptiveGenerationConfig?: CsiPreemptiveGenerationConfig;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -3875,6 +5573,9 @@ export class CsiVtsiConfig implements GrpcMessage {
       ? new MessageBrokerConfig(_value.messageBrokerConfig)
       : undefined;
     this.activateControlMessages = _value.activateControlMessages;
+    this.preemptiveGenerationConfig = _value.preemptiveGenerationConfig
+      ? new CsiPreemptiveGenerationConfig(_value.preemptiveGenerationConfig)
+      : undefined;
     CsiVtsiConfig.refineValues(this);
   }
   get s2tVtsiCallbacks(): S2tVtsiCallbacks | undefined {
@@ -3913,6 +5614,14 @@ export class CsiVtsiConfig implements GrpcMessage {
   set activateControlMessages(value: boolean) {
     this._activateControlMessages = value;
   }
+  get preemptiveGenerationConfig(): CsiPreemptiveGenerationConfig | undefined {
+    return this._preemptiveGenerationConfig;
+  }
+  set preemptiveGenerationConfig(
+    value: CsiPreemptiveGenerationConfig | undefined
+  ) {
+    this._preemptiveGenerationConfig = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -3944,7 +5653,10 @@ export class CsiVtsiConfig implements GrpcMessage {
       messageBrokerConfig: this.messageBrokerConfig
         ? this.messageBrokerConfig.toObject()
         : undefined,
-      activateControlMessages: this.activateControlMessages
+      activateControlMessages: this.activateControlMessages,
+      preemptiveGenerationConfig: this.preemptiveGenerationConfig
+        ? this.preemptiveGenerationConfig.toObject()
+        : undefined
     };
   }
 
@@ -3980,7 +5692,10 @@ export class CsiVtsiConfig implements GrpcMessage {
       messageBrokerConfig: this.messageBrokerConfig
         ? this.messageBrokerConfig.toProtobufJSON(options)
         : null,
-      activateControlMessages: this.activateControlMessages
+      activateControlMessages: this.activateControlMessages,
+      preemptiveGenerationConfig: this.preemptiveGenerationConfig
+        ? this.preemptiveGenerationConfig.toProtobufJSON(options)
+        : null
     };
   }
 }
@@ -3995,6 +5710,7 @@ export module CsiVtsiConfig {
     audioObjectStoreConfig?: AudioObjectStorageConfig.AsObject;
     messageBrokerConfig?: MessageBrokerConfig.AsObject;
     activateControlMessages: boolean;
+    preemptiveGenerationConfig?: CsiPreemptiveGenerationConfig.AsObject;
   }
 
   /**
@@ -4007,6 +5723,168 @@ export module CsiVtsiConfig {
     audioObjectStoreConfig: AudioObjectStorageConfig.AsProtobufJSON | null;
     messageBrokerConfig: MessageBrokerConfig.AsProtobufJSON | null;
     activateControlMessages: boolean;
+    preemptiveGenerationConfig: CsiPreemptiveGenerationConfig.AsProtobufJSON | null;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.CsiPreemptiveGenerationConfig
+ */
+export class CsiPreemptiveGenerationConfig implements GrpcMessage {
+  static id = 'ondewo.vtsi.CsiPreemptiveGenerationConfig';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new CsiPreemptiveGenerationConfig();
+    CsiPreemptiveGenerationConfig.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: CsiPreemptiveGenerationConfig) {
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: CsiPreemptiveGenerationConfig,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.enabled = _reader.readBool();
+          break;
+        case 2:
+          _instance.commitWaitTimeoutSeconds = _reader.readFloat();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    CsiPreemptiveGenerationConfig.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: CsiPreemptiveGenerationConfig,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.enabled !== undefined && _instance.enabled !== null) {
+      _writer.writeBool(1, _instance.enabled);
+    }
+    if (
+      _instance.commitWaitTimeoutSeconds !== undefined &&
+      _instance.commitWaitTimeoutSeconds !== null
+    ) {
+      _writer.writeFloat(2, _instance.commitWaitTimeoutSeconds);
+    }
+  }
+
+  private _enabled: boolean;
+  private _commitWaitTimeoutSeconds: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of CsiPreemptiveGenerationConfig to deeply clone from
+   */
+  constructor(
+    _value?: RecursivePartial<CsiPreemptiveGenerationConfig.AsObject>
+  ) {
+    _value = _value || {};
+    this.enabled = _value.enabled;
+    this.commitWaitTimeoutSeconds = _value.commitWaitTimeoutSeconds;
+    CsiPreemptiveGenerationConfig.refineValues(this);
+  }
+  get enabled(): boolean {
+    return this._enabled;
+  }
+  set enabled(value: boolean) {
+    this._enabled = value;
+  }
+  get commitWaitTimeoutSeconds(): number {
+    return this._commitWaitTimeoutSeconds;
+  }
+  set commitWaitTimeoutSeconds(value: number) {
+    this._commitWaitTimeoutSeconds = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    CsiPreemptiveGenerationConfig.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): CsiPreemptiveGenerationConfig.AsObject {
+    return {
+      enabled: this.enabled,
+      commitWaitTimeoutSeconds: this.commitWaitTimeoutSeconds
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): CsiPreemptiveGenerationConfig.AsProtobufJSON {
+    return {
+      enabled: this.enabled,
+      commitWaitTimeoutSeconds: this.commitWaitTimeoutSeconds
+    };
+  }
+}
+export module CsiPreemptiveGenerationConfig {
+  /**
+   * Standard JavaScript object representation for CsiPreemptiveGenerationConfig
+   */
+  export interface AsObject {
+    enabled: boolean;
+    commitWaitTimeoutSeconds: number;
+  }
+
+  /**
+   * Protobuf JSON representation for CsiPreemptiveGenerationConfig
+   */
+  export interface AsProtobufJSON {
+    enabled: boolean;
+    commitWaitTimeoutSeconds: number;
   }
 }
 

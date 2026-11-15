@@ -1019,6 +1019,48 @@ export class CallsClient {
       });
     },
     /**
+     * Unary call: /ondewo.vtsi.Calls/SendCallDtmf
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.SendCallDtmfResponse>>
+     */
+    sendCallDtmf: (
+      requestData: thisProto.SendCallDtmfRequest,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.SendCallDtmfResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.unary,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/SendCallDtmf',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.SendCallDtmfRequest,
+        responseClass: thisProto.SendCallDtmfResponse
+      });
+    },
+    /**
+     * Bidirectional streaming: /ondewo.vtsi.Calls/StreamCallAudio
+     *
+     * @param requestMessage Request message
+     * @param requestMetadata Request metadata
+     * @returns Observable<GrpcEvent<thisProto.StreamCallAudioResponse>>
+     */
+    streamCallAudio: (
+      requestData: Observable<thisProto.StreamCallAudioRequest>,
+      requestMetadata = new GrpcMetadata()
+    ): Observable<GrpcEvent<thisProto.StreamCallAudioResponse>> => {
+      return this.handler.handle({
+        type: GrpcCallType.bidiStream,
+        client: this.client,
+        path: '/ondewo.vtsi.Calls/StreamCallAudio',
+        requestData,
+        requestMetadata,
+        requestClass: thisProto.StreamCallAudioRequest,
+        responseClass: thisProto.StreamCallAudioResponse
+      });
+    },
+    /**
      * Server streaming: /ondewo.vtsi.Calls/ListenCallAudio
      *
      * @param requestMessage Request message
@@ -1782,6 +1824,38 @@ export class CallsClient {
   ): Observable<thisProto.SetCallMediaControlResponse> {
     return this.$raw
       .setCallMediaControl(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Unary call @/ondewo.vtsi.Calls/SendCallDtmf
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.SendCallDtmfResponse>
+   */
+  sendCallDtmf(
+    requestData: thisProto.SendCallDtmfRequest,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.SendCallDtmfResponse> {
+    return this.$raw
+      .sendCallDtmf(requestData, requestMetadata)
+      .pipe(throwStatusErrors(), takeMessages());
+  }
+
+  /**
+   * Bidirectional streaming @/ondewo.vtsi.Calls/StreamCallAudio
+   *
+   * @param requestMessage Request message
+   * @param requestMetadata Request metadata
+   * @returns Observable<thisProto.StreamCallAudioResponse>
+   */
+  streamCallAudio(
+    requestData: Observable<thisProto.StreamCallAudioRequest>,
+    requestMetadata = new GrpcMetadata()
+  ): Observable<thisProto.StreamCallAudioResponse> {
+    return this.$raw
+      .streamCallAudio(requestData, requestMetadata)
       .pipe(throwStatusErrors(), takeMessages());
   }
 

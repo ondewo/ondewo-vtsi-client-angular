@@ -15983,6 +15983,360 @@ export module InviteToCallResponse {
 }
 
 /**
+ * Message implementation for ondewo.vtsi.SendCallDtmfRequest
+ */
+export class SendCallDtmfRequest implements GrpcMessage {
+  static id = 'ondewo.vtsi.SendCallDtmfRequest';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new SendCallDtmfRequest();
+    SendCallDtmfRequest.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: SendCallDtmfRequest) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.callName = _instance.callName || '';
+    _instance.digits = _instance.digits || '';
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: SendCallDtmfRequest,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.callName = _reader.readString();
+          break;
+        case 3:
+          _instance.digits = _reader.readString();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    SendCallDtmfRequest.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: SendCallDtmfRequest,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.callName) {
+      _writer.writeString(2, _instance.callName);
+    }
+    if (_instance.digits) {
+      _writer.writeString(3, _instance.digits);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _callName: string;
+  private _digits: string;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of SendCallDtmfRequest to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<SendCallDtmfRequest.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.callName = _value.callName;
+    this.digits = _value.digits;
+    SendCallDtmfRequest.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get callName(): string {
+    return this._callName;
+  }
+  set callName(value: string) {
+    this._callName = value;
+  }
+  get digits(): string {
+    return this._digits;
+  }
+  set digits(value: string) {
+    this._digits = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    SendCallDtmfRequest.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): SendCallDtmfRequest.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      callName: this.callName,
+      digits: this.digits
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): SendCallDtmfRequest.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      callName: this.callName,
+      digits: this.digits
+    };
+  }
+}
+export module SendCallDtmfRequest {
+  /**
+   * Standard JavaScript object representation for SendCallDtmfRequest
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    callName: string;
+    digits: string;
+  }
+
+  /**
+   * Protobuf JSON representation for SendCallDtmfRequest
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    callName: string;
+    digits: string;
+  }
+}
+
+/**
+ * Message implementation for ondewo.vtsi.SendCallDtmfResponse
+ */
+export class SendCallDtmfResponse implements GrpcMessage {
+  static id = 'ondewo.vtsi.SendCallDtmfResponse';
+
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource) {
+    const instance = new SendCallDtmfResponse();
+    SendCallDtmfResponse.deserializeBinaryFromReader(
+      instance,
+      new BinaryReader(bytes)
+    );
+    return instance;
+  }
+
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: SendCallDtmfResponse) {
+    _instance.vtsiProjectName = _instance.vtsiProjectName || '';
+    _instance.callName = _instance.callName || '';
+    _instance.queuedKeys = _instance.queuedKeys || 0;
+  }
+
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(
+    _instance: SendCallDtmfResponse,
+    _reader: BinaryReader
+  ) {
+    while (_reader.nextField()) {
+      if (_reader.isEndGroup()) break;
+
+      switch (_reader.getFieldNumber()) {
+        case 1:
+          _instance.vtsiProjectName = _reader.readString();
+          break;
+        case 2:
+          _instance.callName = _reader.readString();
+          break;
+        case 3:
+          _instance.queuedKeys = _reader.readInt32();
+          break;
+        default:
+          _reader.skipField();
+      }
+    }
+
+    SendCallDtmfResponse.refineValues(_instance);
+  }
+
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(
+    _instance: SendCallDtmfResponse,
+    _writer: BinaryWriter
+  ) {
+    if (_instance.vtsiProjectName) {
+      _writer.writeString(1, _instance.vtsiProjectName);
+    }
+    if (_instance.callName) {
+      _writer.writeString(2, _instance.callName);
+    }
+    if (_instance.queuedKeys) {
+      _writer.writeInt32(3, _instance.queuedKeys);
+    }
+  }
+
+  private _vtsiProjectName: string;
+  private _callName: string;
+  private _queuedKeys: number;
+
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of SendCallDtmfResponse to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<SendCallDtmfResponse.AsObject>) {
+    _value = _value || {};
+    this.vtsiProjectName = _value.vtsiProjectName;
+    this.callName = _value.callName;
+    this.queuedKeys = _value.queuedKeys;
+    SendCallDtmfResponse.refineValues(this);
+  }
+  get vtsiProjectName(): string {
+    return this._vtsiProjectName;
+  }
+  set vtsiProjectName(value: string) {
+    this._vtsiProjectName = value;
+  }
+  get callName(): string {
+    return this._callName;
+  }
+  set callName(value: string) {
+    this._callName = value;
+  }
+  get queuedKeys(): number {
+    return this._queuedKeys;
+  }
+  set queuedKeys(value: number) {
+    this._queuedKeys = value;
+  }
+
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary() {
+    const writer = new BinaryWriter();
+    SendCallDtmfResponse.serializeBinaryToWriter(this, writer);
+    return writer.getResultBuffer();
+  }
+
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): SendCallDtmfResponse.AsObject {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      callName: this.callName,
+      queuedKeys: this.queuedKeys
+    };
+  }
+
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON() {
+    return this.toObject();
+  }
+
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(
+    // @ts-ignore
+    options?: ToProtobufJSONOptions
+  ): SendCallDtmfResponse.AsProtobufJSON {
+    return {
+      vtsiProjectName: this.vtsiProjectName,
+      callName: this.callName,
+      queuedKeys: this.queuedKeys
+    };
+  }
+}
+export module SendCallDtmfResponse {
+  /**
+   * Standard JavaScript object representation for SendCallDtmfResponse
+   */
+  export interface AsObject {
+    vtsiProjectName: string;
+    callName: string;
+    queuedKeys: number;
+  }
+
+  /**
+   * Protobuf JSON representation for SendCallDtmfResponse
+   */
+  export interface AsProtobufJSON {
+    vtsiProjectName: string;
+    callName: string;
+    queuedKeys: number;
+  }
+}
+
+/**
  * Message implementation for ondewo.vtsi.RemoveCallParticipantRequest
  */
 export class RemoveCallParticipantRequest implements GrpcMessage {
