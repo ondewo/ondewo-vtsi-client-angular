@@ -34473,6 +34473,71 @@ var LlmAgentNodePhase;
 	LlmAgentNodePhase[LlmAgentNodePhase["LLM_AGENT_NODE_PHASE_COMPLETED"] = 2] = "LLM_AGENT_NODE_PHASE_COMPLETED";
 	LlmAgentNodePhase[LlmAgentNodePhase["LLM_AGENT_NODE_PHASE_FAILED"] = 3] = "LLM_AGENT_NODE_PHASE_FAILED";
 })(LlmAgentNodePhase || (LlmAgentNodePhase = {}));
+var TurnInterruptionReason;
+(function(TurnInterruptionReason) {
+	TurnInterruptionReason[TurnInterruptionReason["TURN_INTERRUPTION_REASON_UNSPECIFIED"] = 0] = "TURN_INTERRUPTION_REASON_UNSPECIFIED";
+	TurnInterruptionReason[TurnInterruptionReason["TURN_INTERRUPTION_REASON_BARGE_IN"] = 1] = "TURN_INTERRUPTION_REASON_BARGE_IN";
+	TurnInterruptionReason[TurnInterruptionReason["TURN_INTERRUPTION_REASON_CALLER_SPOKE_WHILE_THINKING"] = 2] = "TURN_INTERRUPTION_REASON_CALLER_SPOKE_WHILE_THINKING";
+	TurnInterruptionReason[TurnInterruptionReason["TURN_INTERRUPTION_REASON_CALL_ENDED"] = 3] = "TURN_INTERRUPTION_REASON_CALL_ENDED";
+	TurnInterruptionReason[TurnInterruptionReason["TURN_INTERRUPTION_REASON_FILLER_CUT"] = 4] = "TURN_INTERRUPTION_REASON_FILLER_CUT";
+	TurnInterruptionReason[TurnInterruptionReason["TURN_INTERRUPTION_REASON_NO_FINAL_TIMEOUT"] = 5] = "TURN_INTERRUPTION_REASON_NO_FINAL_TIMEOUT";
+	TurnInterruptionReason[TurnInterruptionReason["TURN_INTERRUPTION_REASON_OPERATOR_TAKEOVER"] = 6] = "TURN_INTERRUPTION_REASON_OPERATOR_TAKEOVER";
+	TurnInterruptionReason[TurnInterruptionReason["TURN_INTERRUPTION_REASON_BOT_MUTED"] = 7] = "TURN_INTERRUPTION_REASON_BOT_MUTED";
+})(TurnInterruptionReason || (TurnInterruptionReason = {}));
+var BackgroundWorkPolicy;
+(function(BackgroundWorkPolicy) {
+	BackgroundWorkPolicy[BackgroundWorkPolicy["BACKGROUND_WORK_POLICY_KEEP"] = 0] = "BACKGROUND_WORK_POLICY_KEEP";
+	BackgroundWorkPolicy[BackgroundWorkPolicy["BACKGROUND_WORK_POLICY_CANCEL_PENDING"] = 1] = "BACKGROUND_WORK_POLICY_CANCEL_PENDING";
+})(BackgroundWorkPolicy || (BackgroundWorkPolicy = {}));
+var HeardTextPrecision;
+(function(HeardTextPrecision) {
+	HeardTextPrecision[HeardTextPrecision["HEARD_TEXT_PRECISION_UNSPECIFIED"] = 0] = "HEARD_TEXT_PRECISION_UNSPECIFIED";
+	HeardTextPrecision[HeardTextPrecision["HEARD_TEXT_PRECISION_NONE_HEARD"] = 1] = "HEARD_TEXT_PRECISION_NONE_HEARD";
+	HeardTextPrecision[HeardTextPrecision["HEARD_TEXT_PRECISION_FULL"] = 2] = "HEARD_TEXT_PRECISION_FULL";
+	HeardTextPrecision[HeardTextPrecision["HEARD_TEXT_PRECISION_ESTIMATED_SERVER"] = 3] = "HEARD_TEXT_PRECISION_ESTIMATED_SERVER";
+	HeardTextPrecision[HeardTextPrecision["HEARD_TEXT_PRECISION_PROPORTIONAL"] = 4] = "HEARD_TEXT_PRECISION_PROPORTIONAL";
+})(HeardTextPrecision || (HeardTextPrecision = {}));
+var TurnControlAckStatus;
+(function(TurnControlAckStatus) {
+	TurnControlAckStatus[TurnControlAckStatus["TURN_CONTROL_ACK_STATUS_UNSPECIFIED"] = 0] = "TURN_CONTROL_ACK_STATUS_UNSPECIFIED";
+	TurnControlAckStatus[TurnControlAckStatus["TURN_CONTROL_ACK_STATUS_CANCELLED"] = 1] = "TURN_CONTROL_ACK_STATUS_CANCELLED";
+	TurnControlAckStatus[TurnControlAckStatus["TURN_CONTROL_ACK_STATUS_CANCELLED_QUEUED"] = 2] = "TURN_CONTROL_ACK_STATUS_CANCELLED_QUEUED";
+	TurnControlAckStatus[TurnControlAckStatus["TURN_CONTROL_ACK_STATUS_ALREADY_FINISHED"] = 3] = "TURN_CONTROL_ACK_STATUS_ALREADY_FINISHED";
+	TurnControlAckStatus[TurnControlAckStatus["TURN_CONTROL_ACK_STATUS_UNKNOWN_TURN"] = 4] = "TURN_CONTROL_ACK_STATUS_UNKNOWN_TURN";
+	TurnControlAckStatus[TurnControlAckStatus["TURN_CONTROL_ACK_STATUS_HEARD_APPLIED"] = 5] = "TURN_CONTROL_ACK_STATUS_HEARD_APPLIED";
+	TurnControlAckStatus[TurnControlAckStatus["TURN_CONTROL_ACK_STATUS_HEARD_STALE"] = 6] = "TURN_CONTROL_ACK_STATUS_HEARD_STALE";
+	TurnControlAckStatus[TurnControlAckStatus["TURN_CONTROL_ACK_STATUS_DRAFT_DISCARDED"] = 7] = "TURN_CONTROL_ACK_STATUS_DRAFT_DISCARDED";
+})(TurnControlAckStatus || (TurnControlAckStatus = {}));
+var WarmTransferIntroTextSource;
+(function(WarmTransferIntroTextSource) {
+	WarmTransferIntroTextSource[WarmTransferIntroTextSource["WARM_TRANSFER_INTRO_TEXT_SOURCE_UNSPECIFIED"] = 0] = "WARM_TRANSFER_INTRO_TEXT_SOURCE_UNSPECIFIED";
+	WarmTransferIntroTextSource[WarmTransferIntroTextSource["WARM_TRANSFER_INTRO_TEXT_SOURCE_TEMPLATE"] = 1] = "WARM_TRANSFER_INTRO_TEXT_SOURCE_TEMPLATE";
+	WarmTransferIntroTextSource[WarmTransferIntroTextSource["WARM_TRANSFER_INTRO_TEXT_SOURCE_LLM_SUMMARY"] = 2] = "WARM_TRANSFER_INTRO_TEXT_SOURCE_LLM_SUMMARY";
+})(WarmTransferIntroTextSource || (WarmTransferIntroTextSource = {}));
+var WarmTransferIntroDecision;
+(function(WarmTransferIntroDecision) {
+	WarmTransferIntroDecision[WarmTransferIntroDecision["WARM_TRANSFER_INTRO_DECISION_UNSPECIFIED"] = 0] = "WARM_TRANSFER_INTRO_DECISION_UNSPECIFIED";
+	WarmTransferIntroDecision[WarmTransferIntroDecision["WARM_TRANSFER_INTRO_DECISION_PENDING"] = 1] = "WARM_TRANSFER_INTRO_DECISION_PENDING";
+	WarmTransferIntroDecision[WarmTransferIntroDecision["WARM_TRANSFER_INTRO_DECISION_ACCEPTED"] = 2] = "WARM_TRANSFER_INTRO_DECISION_ACCEPTED";
+	WarmTransferIntroDecision[WarmTransferIntroDecision["WARM_TRANSFER_INTRO_DECISION_DECLINED"] = 3] = "WARM_TRANSFER_INTRO_DECISION_DECLINED";
+	WarmTransferIntroDecision[WarmTransferIntroDecision["WARM_TRANSFER_INTRO_DECISION_NO_DECISION"] = 4] = "WARM_TRANSFER_INTRO_DECISION_NO_DECISION";
+})(WarmTransferIntroDecision || (WarmTransferIntroDecision = {}));
+var WarmTransferIntroDecidedBy;
+(function(WarmTransferIntroDecidedBy) {
+	WarmTransferIntroDecidedBy[WarmTransferIntroDecidedBy["WARM_TRANSFER_INTRO_DECIDED_BY_UNSPECIFIED"] = 0] = "WARM_TRANSFER_INTRO_DECIDED_BY_UNSPECIFIED";
+	WarmTransferIntroDecidedBy[WarmTransferIntroDecidedBy["WARM_TRANSFER_INTRO_DECIDED_BY_DTMF"] = 1] = "WARM_TRANSFER_INTRO_DECIDED_BY_DTMF";
+	WarmTransferIntroDecidedBy[WarmTransferIntroDecidedBy["WARM_TRANSFER_INTRO_DECIDED_BY_SPEECH"] = 2] = "WARM_TRANSFER_INTRO_DECIDED_BY_SPEECH";
+	WarmTransferIntroDecidedBy[WarmTransferIntroDecidedBy["WARM_TRANSFER_INTRO_DECIDED_BY_TIMEOUT"] = 3] = "WARM_TRANSFER_INTRO_DECIDED_BY_TIMEOUT";
+})(WarmTransferIntroDecidedBy || (WarmTransferIntroDecidedBy = {}));
+var WarmTransferIntroStage;
+(function(WarmTransferIntroStage) {
+	WarmTransferIntroStage[WarmTransferIntroStage["WARM_TRANSFER_INTRO_STAGE_UNSPECIFIED"] = 0] = "WARM_TRANSFER_INTRO_STAGE_UNSPECIFIED";
+	WarmTransferIntroStage[WarmTransferIntroStage["WARM_TRANSFER_INTRO_STAGE_PREPARED"] = 1] = "WARM_TRANSFER_INTRO_STAGE_PREPARED";
+	WarmTransferIntroStage[WarmTransferIntroStage["WARM_TRANSFER_INTRO_STAGE_READY_ASKED"] = 2] = "WARM_TRANSFER_INTRO_STAGE_READY_ASKED";
+	WarmTransferIntroStage[WarmTransferIntroStage["WARM_TRANSFER_INTRO_STAGE_INTRO_SPOKEN"] = 3] = "WARM_TRANSFER_INTRO_STAGE_INTRO_SPOKEN";
+	WarmTransferIntroStage[WarmTransferIntroStage["WARM_TRANSFER_INTRO_STAGE_REASON_ASKED"] = 4] = "WARM_TRANSFER_INTRO_STAGE_REASON_ASKED";
+	WarmTransferIntroStage[WarmTransferIntroStage["WARM_TRANSFER_INTRO_STAGE_CLOSED"] = 5] = "WARM_TRANSFER_INTRO_STAGE_CLOSED";
+})(WarmTransferIntroStage || (WarmTransferIntroStage = {}));
 var AudioEncoding;
 (function(AudioEncoding) {
 	AudioEncoding[AudioEncoding["AUDIO_ENCODING_UNSPECIFIED"] = 0] = "AUDIO_ENCODING_UNSPECIFIED";
@@ -34762,6 +34827,7 @@ var QueryParameters = class QueryParameters {
 		_instance.originId = _instance.originId || "";
 		_instance.identifiedUserId = _instance.identifiedUserId || "";
 		_instance.transcriptions = _instance.transcriptions || [];
+		_instance.preemptiveDraft = _instance.preemptiveDraft || false;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -34812,6 +34878,9 @@ var QueryParameters = class QueryParameters {
 					_reader.readMessage(messageInitializer14, S2tTranscription.deserializeBinaryFromReader);
 					(_instance.transcriptions = _instance.transcriptions || []).push(messageInitializer14);
 					break;
+				case 15:
+					_instance.preemptiveDraft = _reader.readBool();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -34831,6 +34900,7 @@ var QueryParameters = class QueryParameters {
 		if (_instance.originId) _writer.writeString(12, _instance.originId);
 		if (_instance.identifiedUserId) _writer.writeString(13, _instance.identifiedUserId);
 		if (_instance.transcriptions && _instance.transcriptions.length) _writer.writeRepeatedMessage(14, _instance.transcriptions, S2tTranscription.serializeBinaryToWriter);
+		if (_instance.preemptiveDraft) _writer.writeBool(15, _instance.preemptiveDraft);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -34847,6 +34917,7 @@ var QueryParameters = class QueryParameters {
 		this.originId = _value.originId;
 		this.identifiedUserId = _value.identifiedUserId;
 		this.transcriptions = (_value.transcriptions || []).map((m) => new S2tTranscription(m));
+		this.preemptiveDraft = _value.preemptiveDraft;
 		QueryParameters.refineValues(this);
 	}
 	get timeZone() {
@@ -34927,6 +34998,12 @@ var QueryParameters = class QueryParameters {
 	set transcriptions(value) {
 		this._transcriptions = value;
 	}
+	get preemptiveDraft() {
+		return this._preemptiveDraft;
+	}
+	set preemptiveDraft(value) {
+		this._preemptiveDraft = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		QueryParameters.serializeBinaryToWriter(this, writer);
@@ -34946,7 +35023,8 @@ var QueryParameters = class QueryParameters {
 			datastreamId: this.datastreamId,
 			originId: this.originId,
 			identifiedUserId: this.identifiedUserId,
-			transcriptions: (this.transcriptions || []).map((m) => m.toObject())
+			transcriptions: (this.transcriptions || []).map((m) => m.toObject()),
+			preemptiveDraft: this.preemptiveDraft
 		};
 	}
 	toJSON() {
@@ -34966,7 +35044,8 @@ var QueryParameters = class QueryParameters {
 			datastreamId: this.datastreamId,
 			originId: this.originId,
 			identifiedUserId: this.identifiedUserId,
-			transcriptions: (this.transcriptions || []).map((m) => m.toProtobufJSON(options))
+			transcriptions: (this.transcriptions || []).map((m) => m.toProtobufJSON(options)),
+			preemptiveDraft: this.preemptiveDraft
 		};
 	}
 };
@@ -39975,6 +40054,7 @@ var ReferencedChunk = class ReferencedChunk {
 		_instance.similarity = _instance.similarity || 0;
 		_instance.documentUrl = _instance.documentUrl || "";
 		_instance.deepLinkUrl = _instance.deepLinkUrl || "";
+		_instance.documentTitle = _instance.documentTitle || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -40007,6 +40087,9 @@ var ReferencedChunk = class ReferencedChunk {
 				case 9:
 					_instance.deepLinkUrl = _reader.readString();
 					break;
+				case 10:
+					_instance.documentTitle = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -40022,6 +40105,7 @@ var ReferencedChunk = class ReferencedChunk {
 		if (_instance.similarity) _writer.writeFloat(7, _instance.similarity);
 		if (_instance.documentUrl) _writer.writeString(8, _instance.documentUrl);
 		if (_instance.deepLinkUrl) _writer.writeString(9, _instance.deepLinkUrl);
+		if (_instance.documentTitle) _writer.writeString(10, _instance.documentTitle);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -40034,6 +40118,7 @@ var ReferencedChunk = class ReferencedChunk {
 		this.similarity = _value.similarity;
 		this.documentUrl = _value.documentUrl;
 		this.deepLinkUrl = _value.deepLinkUrl;
+		this.documentTitle = _value.documentTitle;
 		ReferencedChunk.refineValues(this);
 	}
 	get referenceIndex() {
@@ -40090,6 +40175,12 @@ var ReferencedChunk = class ReferencedChunk {
 	set deepLinkUrl(value) {
 		this._deepLinkUrl = value;
 	}
+	get documentTitle() {
+		return this._documentTitle;
+	}
+	set documentTitle(value) {
+		this._documentTitle = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		ReferencedChunk.serializeBinaryToWriter(this, writer);
@@ -40105,7 +40196,8 @@ var ReferencedChunk = class ReferencedChunk {
 			content: this.content,
 			similarity: this.similarity,
 			documentUrl: this.documentUrl,
-			deepLinkUrl: this.deepLinkUrl
+			deepLinkUrl: this.deepLinkUrl,
+			documentTitle: this.documentTitle
 		};
 	}
 	toJSON() {
@@ -40121,7 +40213,8 @@ var ReferencedChunk = class ReferencedChunk {
 			content: this.content,
 			similarity: this.similarity,
 			documentUrl: this.documentUrl,
-			deepLinkUrl: this.deepLinkUrl
+			deepLinkUrl: this.deepLinkUrl,
+			documentTitle: this.documentTitle
 		};
 	}
 };
@@ -40448,6 +40541,8 @@ var StreamingDetectIntentRequest = class StreamingDetectIntentRequest {
 		_instance.queryInput = _instance.queryInput || void 0;
 		_instance.singleUtterance = _instance.singleUtterance || false;
 		_instance.inputAudio = _instance.inputAudio || /* @__PURE__ */ new Uint8Array();
+		_instance.turnControl = _instance.turnControl || void 0;
+		_instance.clientTurnId = _instance.clientTurnId || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -40470,6 +40565,13 @@ var StreamingDetectIntentRequest = class StreamingDetectIntentRequest {
 				case 6:
 					_instance.inputAudio = _reader.readBytes();
 					break;
+				case 7:
+					_instance.turnControl = new TurnControl();
+					_reader.readMessage(_instance.turnControl, TurnControl.deserializeBinaryFromReader);
+					break;
+				case 8:
+					_instance.clientTurnId = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -40481,6 +40583,8 @@ var StreamingDetectIntentRequest = class StreamingDetectIntentRequest {
 		if (_instance.queryInput) _writer.writeMessage(3, _instance.queryInput, QueryInput.serializeBinaryToWriter);
 		if (_instance.singleUtterance) _writer.writeBool(4, _instance.singleUtterance);
 		if (_instance.inputAudio && _instance.inputAudio.length) _writer.writeBytes(6, _instance.inputAudio);
+		if (_instance.turnControl) _writer.writeMessage(7, _instance.turnControl, TurnControl.serializeBinaryToWriter);
+		if (_instance.clientTurnId) _writer.writeString(8, _instance.clientTurnId);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -40489,6 +40593,8 @@ var StreamingDetectIntentRequest = class StreamingDetectIntentRequest {
 		this.queryInput = _value.queryInput ? new QueryInput(_value.queryInput) : void 0;
 		this.singleUtterance = _value.singleUtterance;
 		this.inputAudio = _value.inputAudio;
+		this.turnControl = _value.turnControl ? new TurnControl(_value.turnControl) : void 0;
+		this.clientTurnId = _value.clientTurnId;
 		StreamingDetectIntentRequest.refineValues(this);
 	}
 	get session() {
@@ -40521,6 +40627,18 @@ var StreamingDetectIntentRequest = class StreamingDetectIntentRequest {
 	set inputAudio(value) {
 		this._inputAudio = value;
 	}
+	get turnControl() {
+		return this._turnControl;
+	}
+	set turnControl(value) {
+		this._turnControl = value;
+	}
+	get clientTurnId() {
+		return this._clientTurnId;
+	}
+	set clientTurnId(value) {
+		this._clientTurnId = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		StreamingDetectIntentRequest.serializeBinaryToWriter(this, writer);
@@ -40532,7 +40650,9 @@ var StreamingDetectIntentRequest = class StreamingDetectIntentRequest {
 			queryParams: this.queryParams ? this.queryParams.toObject() : void 0,
 			queryInput: this.queryInput ? this.queryInput.toObject() : void 0,
 			singleUtterance: this.singleUtterance,
-			inputAudio: this.inputAudio ? this.inputAudio.subarray(0) : /* @__PURE__ */ new Uint8Array()
+			inputAudio: this.inputAudio ? this.inputAudio.subarray(0) : /* @__PURE__ */ new Uint8Array(),
+			turnControl: this.turnControl ? this.turnControl.toObject() : void 0,
+			clientTurnId: this.clientTurnId
 		};
 	}
 	toJSON() {
@@ -40544,7 +40664,9 @@ var StreamingDetectIntentRequest = class StreamingDetectIntentRequest {
 			queryParams: this.queryParams ? this.queryParams.toProtobufJSON(options) : null,
 			queryInput: this.queryInput ? this.queryInput.toProtobufJSON(options) : null,
 			singleUtterance: this.singleUtterance,
-			inputAudio: this.inputAudio ? uint8ArrayToBase64(this.inputAudio) : ""
+			inputAudio: this.inputAudio ? uint8ArrayToBase64(this.inputAudio) : "",
+			turnControl: this.turnControl ? this.turnControl.toProtobufJSON(options) : null,
+			clientTurnId: this.clientTurnId
 		};
 	}
 };
@@ -40562,6 +40684,8 @@ var StreamingDetectIntentResponse = class StreamingDetectIntentResponse {
 		_instance.recognitionResult = _instance.recognitionResult || void 0;
 		_instance.queryResult = _instance.queryResult || void 0;
 		_instance.webhookStatus = _instance.webhookStatus || void 0;
+		_instance.turnControlAck = _instance.turnControlAck || void 0;
+		_instance.clientTurnId = _instance.clientTurnId || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -40610,6 +40734,13 @@ var StreamingDetectIntentResponse = class StreamingDetectIntentResponse {
 					_instance.llmAgentNodeEvent = new LlmAgentNodeEvent();
 					_reader.readMessage(_instance.llmAgentNodeEvent, LlmAgentNodeEvent.deserializeBinaryFromReader);
 					break;
+				case 12:
+					_instance.turnControlAck = new TurnControlAck();
+					_reader.readMessage(_instance.turnControlAck, TurnControlAck.deserializeBinaryFromReader);
+					break;
+				case 13:
+					_instance.clientTurnId = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -40627,6 +40758,8 @@ var StreamingDetectIntentResponse = class StreamingDetectIntentResponse {
 		if (_instance.llmThinkingDelta) _writer.writeMessage(9, _instance.llmThinkingDelta, LlmThinkingDeltaEvent.serializeBinaryToWriter);
 		if (_instance.llmTokenUsageUpdate) _writer.writeMessage(10, _instance.llmTokenUsageUpdate, LlmTokenUsageUpdateEvent.serializeBinaryToWriter);
 		if (_instance.llmAgentNodeEvent) _writer.writeMessage(11, _instance.llmAgentNodeEvent, LlmAgentNodeEvent.serializeBinaryToWriter);
+		if (_instance.turnControlAck) _writer.writeMessage(12, _instance.turnControlAck, TurnControlAck.serializeBinaryToWriter);
+		if (_instance.clientTurnId) _writer.writeString(13, _instance.clientTurnId);
 	}
 	constructor(_value) {
 		this._telemetryEvent = StreamingDetectIntentResponse.TelemetryEventCase.none;
@@ -40642,6 +40775,8 @@ var StreamingDetectIntentResponse = class StreamingDetectIntentResponse {
 		this.llmThinkingDelta = _value.llmThinkingDelta ? new LlmThinkingDeltaEvent(_value.llmThinkingDelta) : void 0;
 		this.llmTokenUsageUpdate = _value.llmTokenUsageUpdate ? new LlmTokenUsageUpdateEvent(_value.llmTokenUsageUpdate) : void 0;
 		this.llmAgentNodeEvent = _value.llmAgentNodeEvent ? new LlmAgentNodeEvent(_value.llmAgentNodeEvent) : void 0;
+		this.turnControlAck = _value.turnControlAck ? new TurnControlAck(_value.turnControlAck) : void 0;
+		this.clientTurnId = _value.clientTurnId;
 		StreamingDetectIntentResponse.refineValues(this);
 	}
 	get responseId() {
@@ -40738,6 +40873,18 @@ var StreamingDetectIntentResponse = class StreamingDetectIntentResponse {
 		}
 		this._llmAgentNodeEvent = value;
 	}
+	get turnControlAck() {
+		return this._turnControlAck;
+	}
+	set turnControlAck(value) {
+		this._turnControlAck = value;
+	}
+	get clientTurnId() {
+		return this._clientTurnId;
+	}
+	set clientTurnId(value) {
+		this._clientTurnId = value;
+	}
 	get telemetryEvent() {
 		return this._telemetryEvent;
 	}
@@ -40758,7 +40905,9 @@ var StreamingDetectIntentResponse = class StreamingDetectIntentResponse {
 			llmToolCallFinished: this.llmToolCallFinished ? this.llmToolCallFinished.toObject() : void 0,
 			llmThinkingDelta: this.llmThinkingDelta ? this.llmThinkingDelta.toObject() : void 0,
 			llmTokenUsageUpdate: this.llmTokenUsageUpdate ? this.llmTokenUsageUpdate.toObject() : void 0,
-			llmAgentNodeEvent: this.llmAgentNodeEvent ? this.llmAgentNodeEvent.toObject() : void 0
+			llmAgentNodeEvent: this.llmAgentNodeEvent ? this.llmAgentNodeEvent.toObject() : void 0,
+			turnControlAck: this.turnControlAck ? this.turnControlAck.toObject() : void 0,
+			clientTurnId: this.clientTurnId
 		};
 	}
 	toJSON() {
@@ -40776,7 +40925,9 @@ var StreamingDetectIntentResponse = class StreamingDetectIntentResponse {
 			llmToolCallFinished: this.llmToolCallFinished ? this.llmToolCallFinished.toProtobufJSON(options) : null,
 			llmThinkingDelta: this.llmThinkingDelta ? this.llmThinkingDelta.toProtobufJSON(options) : null,
 			llmTokenUsageUpdate: this.llmTokenUsageUpdate ? this.llmTokenUsageUpdate.toProtobufJSON(options) : null,
-			llmAgentNodeEvent: this.llmAgentNodeEvent ? this.llmAgentNodeEvent.toProtobufJSON(options) : null
+			llmAgentNodeEvent: this.llmAgentNodeEvent ? this.llmAgentNodeEvent.toProtobufJSON(options) : null,
+			turnControlAck: this.turnControlAck ? this.turnControlAck.toProtobufJSON(options) : null,
+			clientTurnId: this.clientTurnId
 		};
 	}
 };
@@ -40792,6 +40943,1490 @@ var StreamingDetectIntentResponse = class StreamingDetectIntentResponse {
 		TelemetryEventCase[TelemetryEventCase["llmAgentNodeEvent"] = 7] = "llmAgentNodeEvent";
 	})(StreamingDetectIntentResponse.TelemetryEventCase || (StreamingDetectIntentResponse.TelemetryEventCase = {}));
 })(StreamingDetectIntentResponse || (StreamingDetectIntentResponse = {}));
+var TurnControl = class TurnControl {
+	static {
+		this.id = "ondewo.nlu.TurnControl";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new TurnControl();
+		TurnControl.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.cancelTurn = new CancelTurn();
+					_reader.readMessage(_instance.cancelTurn, CancelTurn.deserializeBinaryFromReader);
+					break;
+				case 2:
+					_instance.heardReport = new HeardReport();
+					_reader.readMessage(_instance.heardReport, HeardReport.deserializeBinaryFromReader);
+					break;
+				case 3:
+					_instance.discardDraft = new DiscardDraft();
+					_reader.readMessage(_instance.discardDraft, DiscardDraft.deserializeBinaryFromReader);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		TurnControl.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.cancelTurn) _writer.writeMessage(1, _instance.cancelTurn, CancelTurn.serializeBinaryToWriter);
+		if (_instance.heardReport) _writer.writeMessage(2, _instance.heardReport, HeardReport.serializeBinaryToWriter);
+		if (_instance.discardDraft) _writer.writeMessage(3, _instance.discardDraft, DiscardDraft.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		this._turnControl = TurnControl.TurnControlCase.none;
+		_value = _value || {};
+		this.cancelTurn = _value.cancelTurn ? new CancelTurn(_value.cancelTurn) : void 0;
+		this.heardReport = _value.heardReport ? new HeardReport(_value.heardReport) : void 0;
+		this.discardDraft = _value.discardDraft ? new DiscardDraft(_value.discardDraft) : void 0;
+		TurnControl.refineValues(this);
+	}
+	get cancelTurn() {
+		return this._cancelTurn;
+	}
+	set cancelTurn(value) {
+		if (value !== void 0 && value !== null) {
+			this._heardReport = this._discardDraft = void 0;
+			this._turnControl = TurnControl.TurnControlCase.cancelTurn;
+		}
+		this._cancelTurn = value;
+	}
+	get heardReport() {
+		return this._heardReport;
+	}
+	set heardReport(value) {
+		if (value !== void 0 && value !== null) {
+			this._cancelTurn = this._discardDraft = void 0;
+			this._turnControl = TurnControl.TurnControlCase.heardReport;
+		}
+		this._heardReport = value;
+	}
+	get discardDraft() {
+		return this._discardDraft;
+	}
+	set discardDraft(value) {
+		if (value !== void 0 && value !== null) {
+			this._cancelTurn = this._heardReport = void 0;
+			this._turnControl = TurnControl.TurnControlCase.discardDraft;
+		}
+		this._discardDraft = value;
+	}
+	get turnControl() {
+		return this._turnControl;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		TurnControl.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			cancelTurn: this.cancelTurn ? this.cancelTurn.toObject() : void 0,
+			heardReport: this.heardReport ? this.heardReport.toObject() : void 0,
+			discardDraft: this.discardDraft ? this.discardDraft.toObject() : void 0
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			cancelTurn: this.cancelTurn ? this.cancelTurn.toProtobufJSON(options) : null,
+			heardReport: this.heardReport ? this.heardReport.toProtobufJSON(options) : null,
+			discardDraft: this.discardDraft ? this.discardDraft.toProtobufJSON(options) : null
+		};
+	}
+};
+(function(TurnControl) {
+	(function(TurnControlCase) {
+		TurnControlCase[TurnControlCase["none"] = 0] = "none";
+		TurnControlCase[TurnControlCase["cancelTurn"] = 1] = "cancelTurn";
+		TurnControlCase[TurnControlCase["heardReport"] = 2] = "heardReport";
+		TurnControlCase[TurnControlCase["discardDraft"] = 3] = "discardDraft";
+	})(TurnControl.TurnControlCase || (TurnControl.TurnControlCase = {}));
+})(TurnControl || (TurnControl = {}));
+var CancelTurn = class CancelTurn {
+	static {
+		this.id = "ondewo.nlu.CancelTurn";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new CancelTurn();
+		CancelTurn.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.responseId = _instance.responseId || "";
+		_instance.clientTurnId = _instance.clientTurnId || "";
+		_instance.turnInterruptionReason = _instance.turnInterruptionReason || 0;
+		_instance.decidedAt = _instance.decidedAt || void 0;
+		_instance.backgroundWorkPolicy = _instance.backgroundWorkPolicy || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.responseId = _reader.readString();
+					break;
+				case 2:
+					_instance.clientTurnId = _reader.readString();
+					break;
+				case 3:
+					_instance.turnInterruptionReason = _reader.readEnum();
+					break;
+				case 4:
+					_instance.decidedAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.decidedAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				case 5:
+					_instance.backgroundWorkPolicy = _reader.readEnum();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		CancelTurn.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.responseId) _writer.writeString(1, _instance.responseId);
+		if (_instance.clientTurnId) _writer.writeString(2, _instance.clientTurnId);
+		if (_instance.turnInterruptionReason) _writer.writeEnum(3, _instance.turnInterruptionReason);
+		if (_instance.decidedAt) _writer.writeMessage(4, _instance.decidedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.backgroundWorkPolicy) _writer.writeEnum(5, _instance.backgroundWorkPolicy);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.responseId = _value.responseId;
+		this.clientTurnId = _value.clientTurnId;
+		this.turnInterruptionReason = _value.turnInterruptionReason;
+		this.decidedAt = _value.decidedAt ? new googleProtobuf000.Timestamp(_value.decidedAt) : void 0;
+		this.backgroundWorkPolicy = _value.backgroundWorkPolicy;
+		CancelTurn.refineValues(this);
+	}
+	get responseId() {
+		return this._responseId;
+	}
+	set responseId(value) {
+		this._responseId = value;
+	}
+	get clientTurnId() {
+		return this._clientTurnId;
+	}
+	set clientTurnId(value) {
+		this._clientTurnId = value;
+	}
+	get turnInterruptionReason() {
+		return this._turnInterruptionReason;
+	}
+	set turnInterruptionReason(value) {
+		this._turnInterruptionReason = value;
+	}
+	get decidedAt() {
+		return this._decidedAt;
+	}
+	set decidedAt(value) {
+		this._decidedAt = value;
+	}
+	get backgroundWorkPolicy() {
+		return this._backgroundWorkPolicy;
+	}
+	set backgroundWorkPolicy(value) {
+		this._backgroundWorkPolicy = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		CancelTurn.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			responseId: this.responseId,
+			clientTurnId: this.clientTurnId,
+			turnInterruptionReason: this.turnInterruptionReason,
+			decidedAt: this.decidedAt ? this.decidedAt.toObject() : void 0,
+			backgroundWorkPolicy: this.backgroundWorkPolicy
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			responseId: this.responseId,
+			clientTurnId: this.clientTurnId,
+			turnInterruptionReason: TurnInterruptionReason[this.turnInterruptionReason === null || this.turnInterruptionReason === void 0 ? 0 : this.turnInterruptionReason],
+			decidedAt: this.decidedAt ? this.decidedAt.toProtobufJSON(options) : null,
+			backgroundWorkPolicy: BackgroundWorkPolicy[this.backgroundWorkPolicy === null || this.backgroundWorkPolicy === void 0 ? 0 : this.backgroundWorkPolicy]
+		};
+	}
+};
+var HeardMessage = class HeardMessage {
+	static {
+		this.id = "ondewo.nlu.HeardMessage";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new HeardMessage();
+		HeardMessage.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.fulfillmentMessageIndex = _instance.fulfillmentMessageIndex || 0;
+		_instance.platform = _instance.platform || 0;
+		_instance.fullText = _instance.fullText || "";
+		_instance.heardText = _instance.heardText || "";
+		_instance.heardCharCount = _instance.heardCharCount || 0;
+		_instance.heardAudioDurationInS = _instance.heardAudioDurationInS || 0;
+		_instance.totalAudioDurationInS = _instance.totalAudioDurationInS || 0;
+		_instance.completed = _instance.completed || false;
+		_instance.neverStarted = _instance.neverStarted || false;
+		_instance.skippedSipTrigger = _instance.skippedSipTrigger || false;
+		_instance.fillerId = _instance.fillerId || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.fulfillmentMessageIndex = _reader.readInt32();
+					break;
+				case 2:
+					_instance.platform = _reader.readEnum();
+					break;
+				case 3:
+					_instance.fullText = _reader.readString();
+					break;
+				case 4:
+					_instance.heardText = _reader.readString();
+					break;
+				case 5:
+					_instance.heardCharCount = _reader.readInt32();
+					break;
+				case 6:
+					_instance.heardAudioDurationInS = _reader.readFloat();
+					break;
+				case 7:
+					_instance.totalAudioDurationInS = _reader.readFloat();
+					break;
+				case 8:
+					_instance.completed = _reader.readBool();
+					break;
+				case 9:
+					_instance.neverStarted = _reader.readBool();
+					break;
+				case 10:
+					_instance.skippedSipTrigger = _reader.readBool();
+					break;
+				case 11:
+					_instance.fillerId = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		HeardMessage.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.fulfillmentMessageIndex) _writer.writeInt32(1, _instance.fulfillmentMessageIndex);
+		if (_instance.platform) _writer.writeEnum(2, _instance.platform);
+		if (_instance.fullText) _writer.writeString(3, _instance.fullText);
+		if (_instance.heardText) _writer.writeString(4, _instance.heardText);
+		if (_instance.heardCharCount) _writer.writeInt32(5, _instance.heardCharCount);
+		if (_instance.heardAudioDurationInS) _writer.writeFloat(6, _instance.heardAudioDurationInS);
+		if (_instance.totalAudioDurationInS) _writer.writeFloat(7, _instance.totalAudioDurationInS);
+		if (_instance.completed) _writer.writeBool(8, _instance.completed);
+		if (_instance.neverStarted) _writer.writeBool(9, _instance.neverStarted);
+		if (_instance.skippedSipTrigger) _writer.writeBool(10, _instance.skippedSipTrigger);
+		if (_instance.fillerId) _writer.writeString(11, _instance.fillerId);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.fulfillmentMessageIndex = _value.fulfillmentMessageIndex;
+		this.platform = _value.platform;
+		this.fullText = _value.fullText;
+		this.heardText = _value.heardText;
+		this.heardCharCount = _value.heardCharCount;
+		this.heardAudioDurationInS = _value.heardAudioDurationInS;
+		this.totalAudioDurationInS = _value.totalAudioDurationInS;
+		this.completed = _value.completed;
+		this.neverStarted = _value.neverStarted;
+		this.skippedSipTrigger = _value.skippedSipTrigger;
+		this.fillerId = _value.fillerId;
+		HeardMessage.refineValues(this);
+	}
+	get fulfillmentMessageIndex() {
+		return this._fulfillmentMessageIndex;
+	}
+	set fulfillmentMessageIndex(value) {
+		this._fulfillmentMessageIndex = value;
+	}
+	get platform() {
+		return this._platform;
+	}
+	set platform(value) {
+		this._platform = value;
+	}
+	get fullText() {
+		return this._fullText;
+	}
+	set fullText(value) {
+		this._fullText = value;
+	}
+	get heardText() {
+		return this._heardText;
+	}
+	set heardText(value) {
+		this._heardText = value;
+	}
+	get heardCharCount() {
+		return this._heardCharCount;
+	}
+	set heardCharCount(value) {
+		this._heardCharCount = value;
+	}
+	get heardAudioDurationInS() {
+		return this._heardAudioDurationInS;
+	}
+	set heardAudioDurationInS(value) {
+		this._heardAudioDurationInS = value;
+	}
+	get totalAudioDurationInS() {
+		return this._totalAudioDurationInS;
+	}
+	set totalAudioDurationInS(value) {
+		this._totalAudioDurationInS = value;
+	}
+	get completed() {
+		return this._completed;
+	}
+	set completed(value) {
+		this._completed = value;
+	}
+	get neverStarted() {
+		return this._neverStarted;
+	}
+	set neverStarted(value) {
+		this._neverStarted = value;
+	}
+	get skippedSipTrigger() {
+		return this._skippedSipTrigger;
+	}
+	set skippedSipTrigger(value) {
+		this._skippedSipTrigger = value;
+	}
+	get fillerId() {
+		return this._fillerId;
+	}
+	set fillerId(value) {
+		this._fillerId = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		HeardMessage.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			fulfillmentMessageIndex: this.fulfillmentMessageIndex,
+			platform: this.platform,
+			fullText: this.fullText,
+			heardText: this.heardText,
+			heardCharCount: this.heardCharCount,
+			heardAudioDurationInS: this.heardAudioDurationInS,
+			totalAudioDurationInS: this.totalAudioDurationInS,
+			completed: this.completed,
+			neverStarted: this.neverStarted,
+			skippedSipTrigger: this.skippedSipTrigger,
+			fillerId: this.fillerId
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			fulfillmentMessageIndex: this.fulfillmentMessageIndex,
+			platform: Intent.Message.Platform[this.platform === null || this.platform === void 0 ? 0 : this.platform],
+			fullText: this.fullText,
+			heardText: this.heardText,
+			heardCharCount: this.heardCharCount,
+			heardAudioDurationInS: this.heardAudioDurationInS,
+			totalAudioDurationInS: this.totalAudioDurationInS,
+			completed: this.completed,
+			neverStarted: this.neverStarted,
+			skippedSipTrigger: this.skippedSipTrigger,
+			fillerId: this.fillerId
+		};
+	}
+};
+var HeardReport = class HeardReport {
+	static {
+		this.id = "ondewo.nlu.HeardReport";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new HeardReport();
+		HeardReport.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.responseId = _instance.responseId || "";
+		_instance.clientTurnId = _instance.clientTurnId || "";
+		_instance.revision = _instance.revision || 0;
+		_instance.turnInterruptionReason = _instance.turnInterruptionReason || 0;
+		_instance.heardMessages = _instance.heardMessages || [];
+		_instance.heardTextPrecision = _instance.heardTextPrecision || 0;
+		_instance.callerOverlapDurationInS = _instance.callerOverlapDurationInS || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.responseId = _reader.readString();
+					break;
+				case 2:
+					_instance.clientTurnId = _reader.readString();
+					break;
+				case 3:
+					_instance.revision = _reader.readInt32();
+					break;
+				case 4:
+					_instance.turnInterruptionReason = _reader.readEnum();
+					break;
+				case 5:
+					const messageInitializer5 = new HeardMessage();
+					_reader.readMessage(messageInitializer5, HeardMessage.deserializeBinaryFromReader);
+					(_instance.heardMessages = _instance.heardMessages || []).push(messageInitializer5);
+					break;
+				case 6:
+					_instance.heardTextPrecision = _reader.readEnum();
+					break;
+				case 7:
+					_instance.callerOverlapDurationInS = _reader.readFloat();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		HeardReport.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.responseId) _writer.writeString(1, _instance.responseId);
+		if (_instance.clientTurnId) _writer.writeString(2, _instance.clientTurnId);
+		if (_instance.revision) _writer.writeInt32(3, _instance.revision);
+		if (_instance.turnInterruptionReason) _writer.writeEnum(4, _instance.turnInterruptionReason);
+		if (_instance.heardMessages && _instance.heardMessages.length) _writer.writeRepeatedMessage(5, _instance.heardMessages, HeardMessage.serializeBinaryToWriter);
+		if (_instance.heardTextPrecision) _writer.writeEnum(6, _instance.heardTextPrecision);
+		if (_instance.callerOverlapDurationInS) _writer.writeFloat(7, _instance.callerOverlapDurationInS);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.responseId = _value.responseId;
+		this.clientTurnId = _value.clientTurnId;
+		this.revision = _value.revision;
+		this.turnInterruptionReason = _value.turnInterruptionReason;
+		this.heardMessages = (_value.heardMessages || []).map((m) => new HeardMessage(m));
+		this.heardTextPrecision = _value.heardTextPrecision;
+		this.callerOverlapDurationInS = _value.callerOverlapDurationInS;
+		HeardReport.refineValues(this);
+	}
+	get responseId() {
+		return this._responseId;
+	}
+	set responseId(value) {
+		this._responseId = value;
+	}
+	get clientTurnId() {
+		return this._clientTurnId;
+	}
+	set clientTurnId(value) {
+		this._clientTurnId = value;
+	}
+	get revision() {
+		return this._revision;
+	}
+	set revision(value) {
+		this._revision = value;
+	}
+	get turnInterruptionReason() {
+		return this._turnInterruptionReason;
+	}
+	set turnInterruptionReason(value) {
+		this._turnInterruptionReason = value;
+	}
+	get heardMessages() {
+		return this._heardMessages;
+	}
+	set heardMessages(value) {
+		this._heardMessages = value;
+	}
+	get heardTextPrecision() {
+		return this._heardTextPrecision;
+	}
+	set heardTextPrecision(value) {
+		this._heardTextPrecision = value;
+	}
+	get callerOverlapDurationInS() {
+		return this._callerOverlapDurationInS;
+	}
+	set callerOverlapDurationInS(value) {
+		this._callerOverlapDurationInS = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		HeardReport.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			responseId: this.responseId,
+			clientTurnId: this.clientTurnId,
+			revision: this.revision,
+			turnInterruptionReason: this.turnInterruptionReason,
+			heardMessages: (this.heardMessages || []).map((m) => m.toObject()),
+			heardTextPrecision: this.heardTextPrecision,
+			callerOverlapDurationInS: this.callerOverlapDurationInS
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			responseId: this.responseId,
+			clientTurnId: this.clientTurnId,
+			revision: this.revision,
+			turnInterruptionReason: TurnInterruptionReason[this.turnInterruptionReason === null || this.turnInterruptionReason === void 0 ? 0 : this.turnInterruptionReason],
+			heardMessages: (this.heardMessages || []).map((m) => m.toProtobufJSON(options)),
+			heardTextPrecision: HeardTextPrecision[this.heardTextPrecision === null || this.heardTextPrecision === void 0 ? 0 : this.heardTextPrecision],
+			callerOverlapDurationInS: this.callerOverlapDurationInS
+		};
+	}
+};
+var DiscardDraft = class DiscardDraft {
+	static {
+		this.id = "ondewo.nlu.DiscardDraft";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new DiscardDraft();
+		DiscardDraft.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.responseId = _instance.responseId || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.responseId = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		DiscardDraft.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.responseId) _writer.writeString(1, _instance.responseId);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.responseId = _value.responseId;
+		DiscardDraft.refineValues(this);
+	}
+	get responseId() {
+		return this._responseId;
+	}
+	set responseId(value) {
+		this._responseId = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DiscardDraft.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return { responseId: this.responseId };
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return { responseId: this.responseId };
+	}
+};
+var TurnControlAck = class TurnControlAck {
+	static {
+		this.id = "ondewo.nlu.TurnControlAck";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new TurnControlAck();
+		TurnControlAck.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.responseId = _instance.responseId || "";
+		_instance.clientTurnId = _instance.clientTurnId || "";
+		_instance.turnControlAckStatus = _instance.turnControlAckStatus || 0;
+		_instance.serverCancelDurationInS = _instance.serverCancelDurationInS || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.responseId = _reader.readString();
+					break;
+				case 2:
+					_instance.clientTurnId = _reader.readString();
+					break;
+				case 3:
+					_instance.turnControlAckStatus = _reader.readEnum();
+					break;
+				case 4:
+					_instance.serverCancelDurationInS = _reader.readFloat();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		TurnControlAck.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.responseId) _writer.writeString(1, _instance.responseId);
+		if (_instance.clientTurnId) _writer.writeString(2, _instance.clientTurnId);
+		if (_instance.turnControlAckStatus) _writer.writeEnum(3, _instance.turnControlAckStatus);
+		if (_instance.serverCancelDurationInS) _writer.writeFloat(4, _instance.serverCancelDurationInS);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.responseId = _value.responseId;
+		this.clientTurnId = _value.clientTurnId;
+		this.turnControlAckStatus = _value.turnControlAckStatus;
+		this.serverCancelDurationInS = _value.serverCancelDurationInS;
+		TurnControlAck.refineValues(this);
+	}
+	get responseId() {
+		return this._responseId;
+	}
+	set responseId(value) {
+		this._responseId = value;
+	}
+	get clientTurnId() {
+		return this._clientTurnId;
+	}
+	set clientTurnId(value) {
+		this._clientTurnId = value;
+	}
+	get turnControlAckStatus() {
+		return this._turnControlAckStatus;
+	}
+	set turnControlAckStatus(value) {
+		this._turnControlAckStatus = value;
+	}
+	get serverCancelDurationInS() {
+		return this._serverCancelDurationInS;
+	}
+	set serverCancelDurationInS(value) {
+		this._serverCancelDurationInS = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		TurnControlAck.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			responseId: this.responseId,
+			clientTurnId: this.clientTurnId,
+			turnControlAckStatus: this.turnControlAckStatus,
+			serverCancelDurationInS: this.serverCancelDurationInS
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			responseId: this.responseId,
+			clientTurnId: this.clientTurnId,
+			turnControlAckStatus: TurnControlAckStatus[this.turnControlAckStatus === null || this.turnControlAckStatus === void 0 ? 0 : this.turnControlAckStatus],
+			serverCancelDurationInS: this.serverCancelDurationInS
+		};
+	}
+};
+var InterruptTurnRequest = class InterruptTurnRequest {
+	static {
+		this.id = "ondewo.nlu.InterruptTurnRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new InterruptTurnRequest();
+		InterruptTurnRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.session = _instance.session || "";
+		_instance.turnControl = _instance.turnControl || void 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.session = _reader.readString();
+					break;
+				case 2:
+					_instance.turnControl = new TurnControl();
+					_reader.readMessage(_instance.turnControl, TurnControl.deserializeBinaryFromReader);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		InterruptTurnRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.session) _writer.writeString(1, _instance.session);
+		if (_instance.turnControl) _writer.writeMessage(2, _instance.turnControl, TurnControl.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.session = _value.session;
+		this.turnControl = _value.turnControl ? new TurnControl(_value.turnControl) : void 0;
+		InterruptTurnRequest.refineValues(this);
+	}
+	get session() {
+		return this._session;
+	}
+	set session(value) {
+		this._session = value;
+	}
+	get turnControl() {
+		return this._turnControl;
+	}
+	set turnControl(value) {
+		this._turnControl = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		InterruptTurnRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			session: this.session,
+			turnControl: this.turnControl ? this.turnControl.toObject() : void 0
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			session: this.session,
+			turnControl: this.turnControl ? this.turnControl.toProtobufJSON(options) : null
+		};
+	}
+};
+var InterruptTurnResponse = class InterruptTurnResponse {
+	static {
+		this.id = "ondewo.nlu.InterruptTurnResponse";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new InterruptTurnResponse();
+		InterruptTurnResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.turnControlAck = _instance.turnControlAck || void 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.turnControlAck = new TurnControlAck();
+					_reader.readMessage(_instance.turnControlAck, TurnControlAck.deserializeBinaryFromReader);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		InterruptTurnResponse.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.turnControlAck) _writer.writeMessage(1, _instance.turnControlAck, TurnControlAck.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.turnControlAck = _value.turnControlAck ? new TurnControlAck(_value.turnControlAck) : void 0;
+		InterruptTurnResponse.refineValues(this);
+	}
+	get turnControlAck() {
+		return this._turnControlAck;
+	}
+	set turnControlAck(value) {
+		this._turnControlAck = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		InterruptTurnResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return { turnControlAck: this.turnControlAck ? this.turnControlAck.toObject() : void 0 };
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return { turnControlAck: this.turnControlAck ? this.turnControlAck.toProtobufJSON(options) : null };
+	}
+};
+var WarmTransferIntroConfig = class WarmTransferIntroConfig {
+	static {
+		this.id = "ondewo.nlu.WarmTransferIntroConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new WarmTransferIntroConfig();
+		WarmTransferIntroConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.introPrompt = _instance.introPrompt || "";
+		_instance.textSource = _instance.textSource || 0;
+		_instance.readyQuestion = _instance.readyQuestion || "";
+		_instance.acceptQuestion = _instance.acceptQuestion || "";
+		_instance.callerDeclinedMessage = _instance.callerDeclinedMessage || "";
+		_instance.callerUnreachableMessage = _instance.callerUnreachableMessage || "";
+		_instance.acceptDtmf = _instance.acceptDtmf || "";
+		_instance.declineDtmf = _instance.declineDtmf || "";
+		_instance.calleeDisplayName = _instance.calleeDisplayName || "";
+		_instance.calleeDescription = _instance.calleeDescription || "";
+		_instance.llmCcaiServiceName = _instance.llmCcaiServiceName || "";
+		_instance.maxHistorySteps = _instance.maxHistorySteps || 0;
+		_instance.decisionTimeoutS = _instance.decisionTimeoutS || 0;
+		_instance.projectDisplayName = _instance.projectDisplayName || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.introPrompt = _reader.readString();
+					break;
+				case 2:
+					_instance.textSource = _reader.readEnum();
+					break;
+				case 3:
+					_instance.readyQuestion = _reader.readString();
+					break;
+				case 4:
+					_instance.confirmHumanBeforeIntro = _reader.readBool();
+					break;
+				case 5:
+					_instance.acceptQuestion = _reader.readString();
+					break;
+				case 6:
+					_instance.declineReasonQuestion = _reader.readString();
+					break;
+				case 7:
+					_instance.callerDeclinedMessage = _reader.readString();
+					break;
+				case 8:
+					_instance.callerUnreachableMessage = _reader.readString();
+					break;
+				case 9:
+					_instance.acceptDtmf = _reader.readString();
+					break;
+				case 10:
+					_instance.declineDtmf = _reader.readString();
+					break;
+				case 11:
+					_instance.calleeDisplayName = _reader.readString();
+					break;
+				case 12:
+					_instance.calleeDescription = _reader.readString();
+					break;
+				case 13:
+					_instance.llmCcaiServiceName = _reader.readString();
+					break;
+				case 14:
+					_instance.maxHistorySteps = _reader.readInt32();
+					break;
+				case 15:
+					_instance.decisionTimeoutS = _reader.readInt32();
+					break;
+				case 16:
+					_instance.projectDisplayName = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		WarmTransferIntroConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.introPrompt) _writer.writeString(1, _instance.introPrompt);
+		if (_instance.textSource) _writer.writeEnum(2, _instance.textSource);
+		if (_instance.readyQuestion) _writer.writeString(3, _instance.readyQuestion);
+		if (_instance.confirmHumanBeforeIntro !== void 0 && _instance.confirmHumanBeforeIntro !== null) _writer.writeBool(4, _instance.confirmHumanBeforeIntro);
+		if (_instance.acceptQuestion) _writer.writeString(5, _instance.acceptQuestion);
+		if (_instance.declineReasonQuestion !== void 0 && _instance.declineReasonQuestion !== null) _writer.writeString(6, _instance.declineReasonQuestion);
+		if (_instance.callerDeclinedMessage) _writer.writeString(7, _instance.callerDeclinedMessage);
+		if (_instance.callerUnreachableMessage) _writer.writeString(8, _instance.callerUnreachableMessage);
+		if (_instance.acceptDtmf) _writer.writeString(9, _instance.acceptDtmf);
+		if (_instance.declineDtmf) _writer.writeString(10, _instance.declineDtmf);
+		if (_instance.calleeDisplayName) _writer.writeString(11, _instance.calleeDisplayName);
+		if (_instance.calleeDescription) _writer.writeString(12, _instance.calleeDescription);
+		if (_instance.llmCcaiServiceName) _writer.writeString(13, _instance.llmCcaiServiceName);
+		if (_instance.maxHistorySteps) _writer.writeInt32(14, _instance.maxHistorySteps);
+		if (_instance.decisionTimeoutS) _writer.writeInt32(15, _instance.decisionTimeoutS);
+		if (_instance.projectDisplayName) _writer.writeString(16, _instance.projectDisplayName);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.introPrompt = _value.introPrompt;
+		this.textSource = _value.textSource;
+		this.readyQuestion = _value.readyQuestion;
+		this.confirmHumanBeforeIntro = _value.confirmHumanBeforeIntro;
+		this.acceptQuestion = _value.acceptQuestion;
+		this.declineReasonQuestion = _value.declineReasonQuestion;
+		this.callerDeclinedMessage = _value.callerDeclinedMessage;
+		this.callerUnreachableMessage = _value.callerUnreachableMessage;
+		this.acceptDtmf = _value.acceptDtmf;
+		this.declineDtmf = _value.declineDtmf;
+		this.calleeDisplayName = _value.calleeDisplayName;
+		this.calleeDescription = _value.calleeDescription;
+		this.llmCcaiServiceName = _value.llmCcaiServiceName;
+		this.maxHistorySteps = _value.maxHistorySteps;
+		this.decisionTimeoutS = _value.decisionTimeoutS;
+		this.projectDisplayName = _value.projectDisplayName;
+		WarmTransferIntroConfig.refineValues(this);
+	}
+	get introPrompt() {
+		return this._introPrompt;
+	}
+	set introPrompt(value) {
+		this._introPrompt = value;
+	}
+	get textSource() {
+		return this._textSource;
+	}
+	set textSource(value) {
+		this._textSource = value;
+	}
+	get readyQuestion() {
+		return this._readyQuestion;
+	}
+	set readyQuestion(value) {
+		this._readyQuestion = value;
+	}
+	get confirmHumanBeforeIntro() {
+		return this._confirmHumanBeforeIntro;
+	}
+	set confirmHumanBeforeIntro(value) {
+		this._confirmHumanBeforeIntro = value;
+	}
+	get acceptQuestion() {
+		return this._acceptQuestion;
+	}
+	set acceptQuestion(value) {
+		this._acceptQuestion = value;
+	}
+	get declineReasonQuestion() {
+		return this._declineReasonQuestion;
+	}
+	set declineReasonQuestion(value) {
+		this._declineReasonQuestion = value;
+	}
+	get callerDeclinedMessage() {
+		return this._callerDeclinedMessage;
+	}
+	set callerDeclinedMessage(value) {
+		this._callerDeclinedMessage = value;
+	}
+	get callerUnreachableMessage() {
+		return this._callerUnreachableMessage;
+	}
+	set callerUnreachableMessage(value) {
+		this._callerUnreachableMessage = value;
+	}
+	get acceptDtmf() {
+		return this._acceptDtmf;
+	}
+	set acceptDtmf(value) {
+		this._acceptDtmf = value;
+	}
+	get declineDtmf() {
+		return this._declineDtmf;
+	}
+	set declineDtmf(value) {
+		this._declineDtmf = value;
+	}
+	get calleeDisplayName() {
+		return this._calleeDisplayName;
+	}
+	set calleeDisplayName(value) {
+		this._calleeDisplayName = value;
+	}
+	get calleeDescription() {
+		return this._calleeDescription;
+	}
+	set calleeDescription(value) {
+		this._calleeDescription = value;
+	}
+	get llmCcaiServiceName() {
+		return this._llmCcaiServiceName;
+	}
+	set llmCcaiServiceName(value) {
+		this._llmCcaiServiceName = value;
+	}
+	get maxHistorySteps() {
+		return this._maxHistorySteps;
+	}
+	set maxHistorySteps(value) {
+		this._maxHistorySteps = value;
+	}
+	get decisionTimeoutS() {
+		return this._decisionTimeoutS;
+	}
+	set decisionTimeoutS(value) {
+		this._decisionTimeoutS = value;
+	}
+	get projectDisplayName() {
+		return this._projectDisplayName;
+	}
+	set projectDisplayName(value) {
+		this._projectDisplayName = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		WarmTransferIntroConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			introPrompt: this.introPrompt,
+			textSource: this.textSource,
+			readyQuestion: this.readyQuestion,
+			confirmHumanBeforeIntro: this.confirmHumanBeforeIntro,
+			acceptQuestion: this.acceptQuestion,
+			declineReasonQuestion: this.declineReasonQuestion,
+			callerDeclinedMessage: this.callerDeclinedMessage,
+			callerUnreachableMessage: this.callerUnreachableMessage,
+			acceptDtmf: this.acceptDtmf,
+			declineDtmf: this.declineDtmf,
+			calleeDisplayName: this.calleeDisplayName,
+			calleeDescription: this.calleeDescription,
+			llmCcaiServiceName: this.llmCcaiServiceName,
+			maxHistorySteps: this.maxHistorySteps,
+			decisionTimeoutS: this.decisionTimeoutS,
+			projectDisplayName: this.projectDisplayName
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			introPrompt: this.introPrompt,
+			textSource: WarmTransferIntroTextSource[this.textSource === null || this.textSource === void 0 ? 0 : this.textSource],
+			readyQuestion: this.readyQuestion,
+			confirmHumanBeforeIntro: this.confirmHumanBeforeIntro,
+			acceptQuestion: this.acceptQuestion,
+			declineReasonQuestion: this.declineReasonQuestion,
+			callerDeclinedMessage: this.callerDeclinedMessage,
+			callerUnreachableMessage: this.callerUnreachableMessage,
+			acceptDtmf: this.acceptDtmf,
+			declineDtmf: this.declineDtmf,
+			calleeDisplayName: this.calleeDisplayName,
+			calleeDescription: this.calleeDescription,
+			llmCcaiServiceName: this.llmCcaiServiceName,
+			maxHistorySteps: this.maxHistorySteps,
+			decisionTimeoutS: this.decisionTimeoutS,
+			projectDisplayName: this.projectDisplayName
+		};
+	}
+};
+var PrepareWarmTransferIntroRequest = class PrepareWarmTransferIntroRequest {
+	static {
+		this.id = "ondewo.nlu.PrepareWarmTransferIntroRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new PrepareWarmTransferIntroRequest();
+		PrepareWarmTransferIntroRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.introSession = _instance.introSession || "";
+		_instance.sourceSession = _instance.sourceSession || "";
+		_instance.config = _instance.config || void 0;
+		_instance.languageCode = _instance.languageCode || "";
+		_instance.transferRequestId = _instance.transferRequestId || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.introSession = _reader.readString();
+					break;
+				case 2:
+					_instance.sourceSession = _reader.readString();
+					break;
+				case 3:
+					_instance.config = new WarmTransferIntroConfig();
+					_reader.readMessage(_instance.config, WarmTransferIntroConfig.deserializeBinaryFromReader);
+					break;
+				case 4:
+					_instance.languageCode = _reader.readString();
+					break;
+				case 5:
+					_instance.transferRequestId = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		PrepareWarmTransferIntroRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.introSession) _writer.writeString(1, _instance.introSession);
+		if (_instance.sourceSession) _writer.writeString(2, _instance.sourceSession);
+		if (_instance.config) _writer.writeMessage(3, _instance.config, WarmTransferIntroConfig.serializeBinaryToWriter);
+		if (_instance.languageCode) _writer.writeString(4, _instance.languageCode);
+		if (_instance.transferRequestId) _writer.writeString(5, _instance.transferRequestId);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.introSession = _value.introSession;
+		this.sourceSession = _value.sourceSession;
+		this.config = _value.config ? new WarmTransferIntroConfig(_value.config) : void 0;
+		this.languageCode = _value.languageCode;
+		this.transferRequestId = _value.transferRequestId;
+		PrepareWarmTransferIntroRequest.refineValues(this);
+	}
+	get introSession() {
+		return this._introSession;
+	}
+	set introSession(value) {
+		this._introSession = value;
+	}
+	get sourceSession() {
+		return this._sourceSession;
+	}
+	set sourceSession(value) {
+		this._sourceSession = value;
+	}
+	get config() {
+		return this._config;
+	}
+	set config(value) {
+		this._config = value;
+	}
+	get languageCode() {
+		return this._languageCode;
+	}
+	set languageCode(value) {
+		this._languageCode = value;
+	}
+	get transferRequestId() {
+		return this._transferRequestId;
+	}
+	set transferRequestId(value) {
+		this._transferRequestId = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		PrepareWarmTransferIntroRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			introSession: this.introSession,
+			sourceSession: this.sourceSession,
+			config: this.config ? this.config.toObject() : void 0,
+			languageCode: this.languageCode,
+			transferRequestId: this.transferRequestId
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			introSession: this.introSession,
+			sourceSession: this.sourceSession,
+			config: this.config ? this.config.toProtobufJSON(options) : null,
+			languageCode: this.languageCode,
+			transferRequestId: this.transferRequestId
+		};
+	}
+};
+var PrepareWarmTransferIntroResponse = class PrepareWarmTransferIntroResponse {
+	static {
+		this.id = "ondewo.nlu.PrepareWarmTransferIntroResponse";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new PrepareWarmTransferIntroResponse();
+		PrepareWarmTransferIntroResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.textSourceUsed = _instance.textSourceUsed || 0;
+		_instance.textFellBack = _instance.textFellBack || false;
+		_instance.introTextChars = _instance.introTextChars || 0;
+		_instance.promptDigest = _instance.promptDigest || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.textSourceUsed = _reader.readEnum();
+					break;
+				case 2:
+					_instance.textFellBack = _reader.readBool();
+					break;
+				case 3:
+					_instance.introTextChars = _reader.readInt32();
+					break;
+				case 4:
+					_instance.promptDigest = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		PrepareWarmTransferIntroResponse.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.textSourceUsed) _writer.writeEnum(1, _instance.textSourceUsed);
+		if (_instance.textFellBack) _writer.writeBool(2, _instance.textFellBack);
+		if (_instance.introTextChars) _writer.writeInt32(3, _instance.introTextChars);
+		if (_instance.promptDigest) _writer.writeString(4, _instance.promptDigest);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.textSourceUsed = _value.textSourceUsed;
+		this.textFellBack = _value.textFellBack;
+		this.introTextChars = _value.introTextChars;
+		this.promptDigest = _value.promptDigest;
+		PrepareWarmTransferIntroResponse.refineValues(this);
+	}
+	get textSourceUsed() {
+		return this._textSourceUsed;
+	}
+	set textSourceUsed(value) {
+		this._textSourceUsed = value;
+	}
+	get textFellBack() {
+		return this._textFellBack;
+	}
+	set textFellBack(value) {
+		this._textFellBack = value;
+	}
+	get introTextChars() {
+		return this._introTextChars;
+	}
+	set introTextChars(value) {
+		this._introTextChars = value;
+	}
+	get promptDigest() {
+		return this._promptDigest;
+	}
+	set promptDigest(value) {
+		this._promptDigest = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		PrepareWarmTransferIntroResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			textSourceUsed: this.textSourceUsed,
+			textFellBack: this.textFellBack,
+			introTextChars: this.introTextChars,
+			promptDigest: this.promptDigest
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			textSourceUsed: WarmTransferIntroTextSource[this.textSourceUsed === null || this.textSourceUsed === void 0 ? 0 : this.textSourceUsed],
+			textFellBack: this.textFellBack,
+			introTextChars: this.introTextChars,
+			promptDigest: this.promptDigest
+		};
+	}
+};
+var GetWarmTransferIntroOutcomeRequest = class GetWarmTransferIntroOutcomeRequest {
+	static {
+		this.id = "ondewo.nlu.GetWarmTransferIntroOutcomeRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new GetWarmTransferIntroOutcomeRequest();
+		GetWarmTransferIntroOutcomeRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.introSession = _instance.introSession || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.introSession = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		GetWarmTransferIntroOutcomeRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.introSession) _writer.writeString(1, _instance.introSession);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.introSession = _value.introSession;
+		GetWarmTransferIntroOutcomeRequest.refineValues(this);
+	}
+	get introSession() {
+		return this._introSession;
+	}
+	set introSession(value) {
+		this._introSession = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		GetWarmTransferIntroOutcomeRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return { introSession: this.introSession };
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return { introSession: this.introSession };
+	}
+};
+var WarmTransferIntroOutcome = class WarmTransferIntroOutcome {
+	static {
+		this.id = "ondewo.nlu.WarmTransferIntroOutcome";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new WarmTransferIntroOutcome();
+		WarmTransferIntroOutcome.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.decision = _instance.decision || 0;
+		_instance.decidedBy = _instance.decidedBy || 0;
+		_instance.declineReasonPresent = _instance.declineReasonPresent || false;
+		_instance.stage = _instance.stage || 0;
+		_instance.cause = _instance.cause || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.decision = _reader.readEnum();
+					break;
+				case 2:
+					_instance.decidedBy = _reader.readEnum();
+					break;
+				case 3:
+					_instance.declineReasonPresent = _reader.readBool();
+					break;
+				case 4:
+					_instance.stage = _reader.readEnum();
+					break;
+				case 5:
+					_instance.cause = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		WarmTransferIntroOutcome.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.decision) _writer.writeEnum(1, _instance.decision);
+		if (_instance.decidedBy) _writer.writeEnum(2, _instance.decidedBy);
+		if (_instance.declineReasonPresent) _writer.writeBool(3, _instance.declineReasonPresent);
+		if (_instance.stage) _writer.writeEnum(4, _instance.stage);
+		if (_instance.cause) _writer.writeString(5, _instance.cause);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.decision = _value.decision;
+		this.decidedBy = _value.decidedBy;
+		this.declineReasonPresent = _value.declineReasonPresent;
+		this.stage = _value.stage;
+		this.cause = _value.cause;
+		WarmTransferIntroOutcome.refineValues(this);
+	}
+	get decision() {
+		return this._decision;
+	}
+	set decision(value) {
+		this._decision = value;
+	}
+	get decidedBy() {
+		return this._decidedBy;
+	}
+	set decidedBy(value) {
+		this._decidedBy = value;
+	}
+	get declineReasonPresent() {
+		return this._declineReasonPresent;
+	}
+	set declineReasonPresent(value) {
+		this._declineReasonPresent = value;
+	}
+	get stage() {
+		return this._stage;
+	}
+	set stage(value) {
+		this._stage = value;
+	}
+	get cause() {
+		return this._cause;
+	}
+	set cause(value) {
+		this._cause = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		WarmTransferIntroOutcome.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			decision: this.decision,
+			decidedBy: this.decidedBy,
+			declineReasonPresent: this.declineReasonPresent,
+			stage: this.stage,
+			cause: this.cause
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			decision: WarmTransferIntroDecision[this.decision === null || this.decision === void 0 ? 0 : this.decision],
+			decidedBy: WarmTransferIntroDecidedBy[this.decidedBy === null || this.decidedBy === void 0 ? 0 : this.decidedBy],
+			declineReasonPresent: this.declineReasonPresent,
+			stage: WarmTransferIntroStage[this.stage === null || this.stage === void 0 ? 0 : this.stage],
+			cause: this.cause
+		};
+	}
+};
 var StreamingRecognitionResult = class StreamingRecognitionResult {
 	static {
 		this.id = "ondewo.nlu.StreamingRecognitionResult";
@@ -51077,6 +52712,7 @@ var Agent = class Agent {
 		_instance.modifiedAt = _instance.modifiedAt || void 0;
 		_instance.createdBy = _instance.createdBy || "";
 		_instance.modifiedBy = _instance.modifiedBy || "";
+		_instance.warmTransferSettings = _instance.warmTransferSettings || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -51127,6 +52763,10 @@ var Agent = class Agent {
 				case 14:
 					_instance.modifiedBy = _reader.readString();
 					break;
+				case 15:
+					_instance.warmTransferSettings = new WarmTransferAgentSettings();
+					_reader.readMessage(_instance.warmTransferSettings, WarmTransferAgentSettings.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -51147,6 +52787,7 @@ var Agent = class Agent {
 		if (_instance.modifiedAt) _writer.writeMessage(12, _instance.modifiedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
 		if (_instance.createdBy) _writer.writeString(13, _instance.createdBy);
 		if (_instance.modifiedBy) _writer.writeString(14, _instance.modifiedBy);
+		if (_instance.warmTransferSettings) _writer.writeMessage(15, _instance.warmTransferSettings, WarmTransferAgentSettings.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -51164,6 +52805,7 @@ var Agent = class Agent {
 		this.modifiedAt = _value.modifiedAt ? new googleProtobuf000.Timestamp(_value.modifiedAt) : void 0;
 		this.createdBy = _value.createdBy;
 		this.modifiedBy = _value.modifiedBy;
+		this.warmTransferSettings = _value.warmTransferSettings ? new WarmTransferAgentSettings(_value.warmTransferSettings) : void 0;
 		Agent.refineValues(this);
 	}
 	get parent() {
@@ -51250,6 +52892,12 @@ var Agent = class Agent {
 	set modifiedBy(value) {
 		this._modifiedBy = value;
 	}
+	get warmTransferSettings() {
+		return this._warmTransferSettings;
+	}
+	set warmTransferSettings(value) {
+		this._warmTransferSettings = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		Agent.serializeBinaryToWriter(this, writer);
@@ -51270,7 +52918,8 @@ var Agent = class Agent {
 			createdAt: this.createdAt ? this.createdAt.toObject() : void 0,
 			modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : void 0,
 			createdBy: this.createdBy,
-			modifiedBy: this.modifiedBy
+			modifiedBy: this.modifiedBy,
+			warmTransferSettings: this.warmTransferSettings ? this.warmTransferSettings.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -51291,7 +52940,477 @@ var Agent = class Agent {
 			createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null,
 			modifiedAt: this.modifiedAt ? this.modifiedAt.toProtobufJSON(options) : null,
 			createdBy: this.createdBy,
-			modifiedBy: this.modifiedBy
+			modifiedBy: this.modifiedBy,
+			warmTransferSettings: this.warmTransferSettings ? this.warmTransferSettings.toProtobufJSON(options) : null
+		};
+	}
+};
+var WarmTransferAgentSettings = class WarmTransferAgentSettings {
+	static {
+		this.id = "ondewo.nlu.WarmTransferAgentSettings";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new WarmTransferAgentSettings();
+		WarmTransferAgentSettings.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.llmCcaiServiceName = _instance.llmCcaiServiceName || "";
+		_instance.defaultTexts = _instance.defaultTexts || {};
+		_instance.extraLexicon = _instance.extraLexicon || {};
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.enabled = _reader.readBool();
+					break;
+				case 2:
+					_instance.llmCcaiServiceName = _reader.readString();
+					break;
+				case 3:
+					const msg_3 = {};
+					_reader.readMessage(msg_3, WarmTransferAgentSettings.DefaultTextsEntry.deserializeBinaryFromReader);
+					_instance.defaultTexts = _instance.defaultTexts || {};
+					_instance.defaultTexts[msg_3.key] = msg_3.value;
+					break;
+				case 4:
+					const msg_4 = {};
+					_reader.readMessage(msg_4, WarmTransferAgentSettings.ExtraLexiconEntry.deserializeBinaryFromReader);
+					_instance.extraLexicon = _instance.extraLexicon || {};
+					_instance.extraLexicon[msg_4.key] = msg_4.value;
+					break;
+				default: _reader.skipField();
+			}
+		}
+		WarmTransferAgentSettings.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.enabled !== void 0 && _instance.enabled !== null) _writer.writeBool(1, _instance.enabled);
+		if (_instance.llmCcaiServiceName) _writer.writeString(2, _instance.llmCcaiServiceName);
+		if (!!_instance.defaultTexts) {
+			const keys_3 = Object.keys(_instance.defaultTexts);
+			if (keys_3.length) {
+				const repeated_3 = keys_3.map((key) => ({
+					key,
+					value: _instance.defaultTexts[key]
+				})).reduce((r, v) => [...r, v], []);
+				_writer.writeRepeatedMessage(3, repeated_3, WarmTransferAgentSettings.DefaultTextsEntry.serializeBinaryToWriter);
+			}
+		}
+		if (!!_instance.extraLexicon) {
+			const keys_4 = Object.keys(_instance.extraLexicon);
+			if (keys_4.length) {
+				const repeated_4 = keys_4.map((key) => ({
+					key,
+					value: _instance.extraLexicon[key]
+				})).reduce((r, v) => [...r, v], []);
+				_writer.writeRepeatedMessage(4, repeated_4, WarmTransferAgentSettings.ExtraLexiconEntry.serializeBinaryToWriter);
+			}
+		}
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.enabled = _value.enabled;
+		this.llmCcaiServiceName = _value.llmCcaiServiceName;
+		this.defaultTexts = _value.defaultTexts ? Object.keys(_value.defaultTexts).reduce((r, k) => ({
+			...r,
+			[k]: _value.defaultTexts[k] ? new WarmTransferAgentTexts(_value.defaultTexts[k]) : void 0
+		}), {}) : {}, this.extraLexicon = _value.extraLexicon ? Object.keys(_value.extraLexicon).reduce((r, k) => ({
+			...r,
+			[k]: _value.extraLexicon[k] ? new WarmTransferAgentLexicon(_value.extraLexicon[k]) : void 0
+		}), {}) : {}, WarmTransferAgentSettings.refineValues(this);
+	}
+	get enabled() {
+		return this._enabled;
+	}
+	set enabled(value) {
+		this._enabled = value;
+	}
+	get llmCcaiServiceName() {
+		return this._llmCcaiServiceName;
+	}
+	set llmCcaiServiceName(value) {
+		this._llmCcaiServiceName = value;
+	}
+	get defaultTexts() {
+		return this._defaultTexts;
+	}
+	set defaultTexts(value) {
+		this._defaultTexts = value;
+	}
+	get extraLexicon() {
+		return this._extraLexicon;
+	}
+	set extraLexicon(value) {
+		this._extraLexicon = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		WarmTransferAgentSettings.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			enabled: this.enabled,
+			llmCcaiServiceName: this.llmCcaiServiceName,
+			defaultTexts: this.defaultTexts ? Object.keys(this.defaultTexts).reduce((r, k) => ({
+				...r,
+				[k]: this.defaultTexts[k] ? this.defaultTexts[k].toObject() : void 0
+			}), {}) : {},
+			extraLexicon: this.extraLexicon ? Object.keys(this.extraLexicon).reduce((r, k) => ({
+				...r,
+				[k]: this.extraLexicon[k] ? this.extraLexicon[k].toObject() : void 0
+			}), {}) : {}
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			enabled: this.enabled,
+			llmCcaiServiceName: this.llmCcaiServiceName,
+			defaultTexts: this.defaultTexts ? Object.keys(this.defaultTexts).reduce((r, k) => ({
+				...r,
+				[k]: this.defaultTexts[k] ? this.defaultTexts[k].toJSON() : null
+			}), {}) : {},
+			extraLexicon: this.extraLexicon ? Object.keys(this.extraLexicon).reduce((r, k) => ({
+				...r,
+				[k]: this.extraLexicon[k] ? this.extraLexicon[k].toJSON() : null
+			}), {}) : {}
+		};
+	}
+};
+(function(WarmTransferAgentSettings) {
+	class DefaultTextsEntry {
+		static {
+			this.id = "ondewo.nlu.WarmTransferAgentSettings.DefaultTextsEntry";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new DefaultTextsEntry();
+			DefaultTextsEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.key = _instance.key || "";
+			_instance.value = _instance.value || void 0;
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						_instance.key = _reader.readString();
+						break;
+					case 2:
+						_instance.value = new WarmTransferAgentTexts();
+						_reader.readMessage(_instance.value, WarmTransferAgentTexts.deserializeBinaryFromReader);
+						break;
+					default: _reader.skipField();
+				}
+			}
+			DefaultTextsEntry.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.key) _writer.writeString(1, _instance.key);
+			if (_instance.value) _writer.writeMessage(2, _instance.value, WarmTransferAgentTexts.serializeBinaryToWriter);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.key = _value.key;
+			this.value = _value.value ? new WarmTransferAgentTexts(_value.value) : void 0;
+			DefaultTextsEntry.refineValues(this);
+		}
+		get key() {
+			return this._key;
+		}
+		set key(value) {
+			this._key = value;
+		}
+		get value() {
+			return this._value;
+		}
+		set value(value) {
+			this._value = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			DefaultTextsEntry.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toObject() : void 0
+			};
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toProtobufJSON(options) : null
+			};
+		}
+	}
+	WarmTransferAgentSettings.DefaultTextsEntry = DefaultTextsEntry;
+	class ExtraLexiconEntry {
+		static {
+			this.id = "ondewo.nlu.WarmTransferAgentSettings.ExtraLexiconEntry";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new ExtraLexiconEntry();
+			ExtraLexiconEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.key = _instance.key || "";
+			_instance.value = _instance.value || void 0;
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						_instance.key = _reader.readString();
+						break;
+					case 2:
+						_instance.value = new WarmTransferAgentLexicon();
+						_reader.readMessage(_instance.value, WarmTransferAgentLexicon.deserializeBinaryFromReader);
+						break;
+					default: _reader.skipField();
+				}
+			}
+			ExtraLexiconEntry.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.key) _writer.writeString(1, _instance.key);
+			if (_instance.value) _writer.writeMessage(2, _instance.value, WarmTransferAgentLexicon.serializeBinaryToWriter);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.key = _value.key;
+			this.value = _value.value ? new WarmTransferAgentLexicon(_value.value) : void 0;
+			ExtraLexiconEntry.refineValues(this);
+		}
+		get key() {
+			return this._key;
+		}
+		set key(value) {
+			this._key = value;
+		}
+		get value() {
+			return this._value;
+		}
+		set value(value) {
+			this._value = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			ExtraLexiconEntry.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toObject() : void 0
+			};
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toProtobufJSON(options) : null
+			};
+		}
+	}
+	WarmTransferAgentSettings.ExtraLexiconEntry = ExtraLexiconEntry;
+})(WarmTransferAgentSettings || (WarmTransferAgentSettings = {}));
+var WarmTransferAgentTexts = class WarmTransferAgentTexts {
+	static {
+		this.id = "ondewo.nlu.WarmTransferAgentTexts";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new WarmTransferAgentTexts();
+		WarmTransferAgentTexts.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.readyQuestion = _instance.readyQuestion || "";
+		_instance.acceptQuestion = _instance.acceptQuestion || "";
+		_instance.callerDeclinedMessage = _instance.callerDeclinedMessage || "";
+		_instance.callerUnreachableMessage = _instance.callerUnreachableMessage || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.readyQuestion = _reader.readString();
+					break;
+				case 2:
+					_instance.acceptQuestion = _reader.readString();
+					break;
+				case 3:
+					_instance.declineReasonQuestion = _reader.readString();
+					break;
+				case 4:
+					_instance.callerDeclinedMessage = _reader.readString();
+					break;
+				case 5:
+					_instance.callerUnreachableMessage = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		WarmTransferAgentTexts.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.readyQuestion) _writer.writeString(1, _instance.readyQuestion);
+		if (_instance.acceptQuestion) _writer.writeString(2, _instance.acceptQuestion);
+		if (_instance.declineReasonQuestion !== void 0 && _instance.declineReasonQuestion !== null) _writer.writeString(3, _instance.declineReasonQuestion);
+		if (_instance.callerDeclinedMessage) _writer.writeString(4, _instance.callerDeclinedMessage);
+		if (_instance.callerUnreachableMessage) _writer.writeString(5, _instance.callerUnreachableMessage);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.readyQuestion = _value.readyQuestion;
+		this.acceptQuestion = _value.acceptQuestion;
+		this.declineReasonQuestion = _value.declineReasonQuestion;
+		this.callerDeclinedMessage = _value.callerDeclinedMessage;
+		this.callerUnreachableMessage = _value.callerUnreachableMessage;
+		WarmTransferAgentTexts.refineValues(this);
+	}
+	get readyQuestion() {
+		return this._readyQuestion;
+	}
+	set readyQuestion(value) {
+		this._readyQuestion = value;
+	}
+	get acceptQuestion() {
+		return this._acceptQuestion;
+	}
+	set acceptQuestion(value) {
+		this._acceptQuestion = value;
+	}
+	get declineReasonQuestion() {
+		return this._declineReasonQuestion;
+	}
+	set declineReasonQuestion(value) {
+		this._declineReasonQuestion = value;
+	}
+	get callerDeclinedMessage() {
+		return this._callerDeclinedMessage;
+	}
+	set callerDeclinedMessage(value) {
+		this._callerDeclinedMessage = value;
+	}
+	get callerUnreachableMessage() {
+		return this._callerUnreachableMessage;
+	}
+	set callerUnreachableMessage(value) {
+		this._callerUnreachableMessage = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		WarmTransferAgentTexts.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			readyQuestion: this.readyQuestion,
+			acceptQuestion: this.acceptQuestion,
+			declineReasonQuestion: this.declineReasonQuestion,
+			callerDeclinedMessage: this.callerDeclinedMessage,
+			callerUnreachableMessage: this.callerUnreachableMessage
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			readyQuestion: this.readyQuestion,
+			acceptQuestion: this.acceptQuestion,
+			declineReasonQuestion: this.declineReasonQuestion,
+			callerDeclinedMessage: this.callerDeclinedMessage,
+			callerUnreachableMessage: this.callerUnreachableMessage
+		};
+	}
+};
+var WarmTransferAgentLexicon = class WarmTransferAgentLexicon {
+	static {
+		this.id = "ondewo.nlu.WarmTransferAgentLexicon";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new WarmTransferAgentLexicon();
+		WarmTransferAgentLexicon.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.acceptPhrases = _instance.acceptPhrases || [];
+		_instance.declinePhrases = _instance.declinePhrases || [];
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					(_instance.acceptPhrases = _instance.acceptPhrases || []).push(_reader.readString());
+					break;
+				case 2:
+					(_instance.declinePhrases = _instance.declinePhrases || []).push(_reader.readString());
+					break;
+				default: _reader.skipField();
+			}
+		}
+		WarmTransferAgentLexicon.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.acceptPhrases && _instance.acceptPhrases.length) _writer.writeRepeatedString(1, _instance.acceptPhrases);
+		if (_instance.declinePhrases && _instance.declinePhrases.length) _writer.writeRepeatedString(2, _instance.declinePhrases);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.acceptPhrases = (_value.acceptPhrases || []).slice();
+		this.declinePhrases = (_value.declinePhrases || []).slice();
+		WarmTransferAgentLexicon.refineValues(this);
+	}
+	get acceptPhrases() {
+		return this._acceptPhrases;
+	}
+	set acceptPhrases(value) {
+		this._acceptPhrases = value;
+	}
+	get declinePhrases() {
+		return this._declinePhrases;
+	}
+	set declinePhrases(value) {
+		this._declinePhrases = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		WarmTransferAgentLexicon.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			acceptPhrases: (this.acceptPhrases || []).slice(),
+			declinePhrases: (this.declinePhrases || []).slice()
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			acceptPhrases: (this.acceptPhrases || []).slice(),
+			declinePhrases: (this.declinePhrases || []).slice()
 		};
 	}
 };
@@ -61110,6 +63229,8 @@ var StreamRemoteOperationContainerLogsRequest = class StreamRemoteOperationConta
 		_instance.minLogLevel = _instance.minLogLevel || 0;
 		_instance.tailLines = _instance.tailLines || 0;
 		_instance.containerId = _instance.containerId || "";
+		_instance.regex = _instance.regex || "";
+		_instance.resumeToken = _instance.resumeToken || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -61127,6 +63248,12 @@ var StreamRemoteOperationContainerLogsRequest = class StreamRemoteOperationConta
 				case 4:
 					_instance.containerId = _reader.readString();
 					break;
+				case 5:
+					_instance.regex = _reader.readString();
+					break;
+				case 6:
+					_instance.resumeToken = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -61137,6 +63264,8 @@ var StreamRemoteOperationContainerLogsRequest = class StreamRemoteOperationConta
 		if (_instance.minLogLevel) _writer.writeEnum(2, _instance.minLogLevel);
 		if (_instance.tailLines) _writer.writeInt32(3, _instance.tailLines);
 		if (_instance.containerId) _writer.writeString(4, _instance.containerId);
+		if (_instance.regex) _writer.writeString(5, _instance.regex);
+		if (_instance.resumeToken) _writer.writeString(6, _instance.resumeToken);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -61144,6 +63273,8 @@ var StreamRemoteOperationContainerLogsRequest = class StreamRemoteOperationConta
 		this.minLogLevel = _value.minLogLevel;
 		this.tailLines = _value.tailLines;
 		this.containerId = _value.containerId;
+		this.regex = _value.regex;
+		this.resumeToken = _value.resumeToken;
 		StreamRemoteOperationContainerLogsRequest.refineValues(this);
 	}
 	get name() {
@@ -61170,6 +63301,18 @@ var StreamRemoteOperationContainerLogsRequest = class StreamRemoteOperationConta
 	set containerId(value) {
 		this._containerId = value;
 	}
+	get regex() {
+		return this._regex;
+	}
+	set regex(value) {
+		this._regex = value;
+	}
+	get resumeToken() {
+		return this._resumeToken;
+	}
+	set resumeToken(value) {
+		this._resumeToken = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		StreamRemoteOperationContainerLogsRequest.serializeBinaryToWriter(this, writer);
@@ -61180,7 +63323,9 @@ var StreamRemoteOperationContainerLogsRequest = class StreamRemoteOperationConta
 			name: this.name,
 			minLogLevel: this.minLogLevel,
 			tailLines: this.tailLines,
-			containerId: this.containerId
+			containerId: this.containerId,
+			regex: this.regex,
+			resumeToken: this.resumeToken
 		};
 	}
 	toJSON() {
@@ -61191,7 +63336,9 @@ var StreamRemoteOperationContainerLogsRequest = class StreamRemoteOperationConta
 			name: this.name,
 			minLogLevel: LogSeverity[this.minLogLevel === null || this.minLogLevel === void 0 ? 0 : this.minLogLevel],
 			tailLines: this.tailLines,
-			containerId: this.containerId
+			containerId: this.containerId,
+			regex: this.regex,
+			resumeToken: this.resumeToken
 		};
 	}
 };
@@ -61214,6 +63361,8 @@ var GetRemoteOperationContainerLogsRequest = class GetRemoteOperationContainerLo
 		_instance.containerId = _instance.containerId || "";
 		_instance.beforeSeq = _instance.beforeSeq || "0";
 		_instance.afterSeq = _instance.afterSeq || "0";
+		_instance.fieldMask = _instance.fieldMask || void 0;
+		_instance.resumeToken = _instance.resumeToken || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -61248,6 +63397,13 @@ var GetRemoteOperationContainerLogsRequest = class GetRemoteOperationContainerLo
 				case 9:
 					_instance.afterSeq = _reader.readInt64String();
 					break;
+				case 10:
+					_instance.fieldMask = new googleProtobuf000.FieldMask();
+					_reader.readMessage(_instance.fieldMask, googleProtobuf000.FieldMask.deserializeBinaryFromReader);
+					break;
+				case 11:
+					_instance.resumeToken = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -61263,6 +63419,8 @@ var GetRemoteOperationContainerLogsRequest = class GetRemoteOperationContainerLo
 		if (_instance.containerId) _writer.writeString(7, _instance.containerId);
 		if (_instance.beforeSeq) _writer.writeInt64String(8, _instance.beforeSeq);
 		if (_instance.afterSeq) _writer.writeInt64String(9, _instance.afterSeq);
+		if (_instance.fieldMask) _writer.writeMessage(10, _instance.fieldMask, googleProtobuf000.FieldMask.serializeBinaryToWriter);
+		if (_instance.resumeToken) _writer.writeString(11, _instance.resumeToken);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -61275,6 +63433,8 @@ var GetRemoteOperationContainerLogsRequest = class GetRemoteOperationContainerLo
 		this.containerId = _value.containerId;
 		this.beforeSeq = _value.beforeSeq;
 		this.afterSeq = _value.afterSeq;
+		this.fieldMask = _value.fieldMask ? new googleProtobuf000.FieldMask(_value.fieldMask) : void 0;
+		this.resumeToken = _value.resumeToken;
 		GetRemoteOperationContainerLogsRequest.refineValues(this);
 	}
 	get name() {
@@ -61331,6 +63491,18 @@ var GetRemoteOperationContainerLogsRequest = class GetRemoteOperationContainerLo
 	set afterSeq(value) {
 		this._afterSeq = value;
 	}
+	get fieldMask() {
+		return this._fieldMask;
+	}
+	set fieldMask(value) {
+		this._fieldMask = value;
+	}
+	get resumeToken() {
+		return this._resumeToken;
+	}
+	set resumeToken(value) {
+		this._resumeToken = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		GetRemoteOperationContainerLogsRequest.serializeBinaryToWriter(this, writer);
@@ -61346,7 +63518,9 @@ var GetRemoteOperationContainerLogsRequest = class GetRemoteOperationContainerLo
 			regex: this.regex,
 			containerId: this.containerId,
 			beforeSeq: this.beforeSeq,
-			afterSeq: this.afterSeq
+			afterSeq: this.afterSeq,
+			fieldMask: this.fieldMask ? this.fieldMask.toObject() : void 0,
+			resumeToken: this.resumeToken
 		};
 	}
 	toJSON() {
@@ -61362,7 +63536,9 @@ var GetRemoteOperationContainerLogsRequest = class GetRemoteOperationContainerLo
 			regex: this.regex,
 			containerId: this.containerId,
 			beforeSeq: this.beforeSeq,
-			afterSeq: this.afterSeq
+			afterSeq: this.afterSeq,
+			fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+			resumeToken: this.resumeToken
 		};
 	}
 };
@@ -61381,6 +63557,8 @@ var GetRemoteOperationContainerLogsResponse = class GetRemoteOperationContainerL
 		_instance.minAvailableSeq = _instance.minAvailableSeq || "0";
 		_instance.maxAvailableSeq = _instance.maxAvailableSeq || "0";
 		_instance.hasMoreOlder = _instance.hasMoreOlder || false;
+		_instance.nextResumeToken = _instance.nextResumeToken || "";
+		_instance.hasMoreNewer = _instance.hasMoreNewer || false;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -61403,6 +63581,12 @@ var GetRemoteOperationContainerLogsResponse = class GetRemoteOperationContainerL
 				case 5:
 					_instance.hasMoreOlder = _reader.readBool();
 					break;
+				case 6:
+					_instance.nextResumeToken = _reader.readString();
+					break;
+				case 7:
+					_instance.hasMoreNewer = _reader.readBool();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -61414,6 +63598,8 @@ var GetRemoteOperationContainerLogsResponse = class GetRemoteOperationContainerL
 		if (_instance.minAvailableSeq) _writer.writeInt64String(3, _instance.minAvailableSeq);
 		if (_instance.maxAvailableSeq) _writer.writeInt64String(4, _instance.maxAvailableSeq);
 		if (_instance.hasMoreOlder) _writer.writeBool(5, _instance.hasMoreOlder);
+		if (_instance.nextResumeToken) _writer.writeString(6, _instance.nextResumeToken);
+		if (_instance.hasMoreNewer) _writer.writeBool(7, _instance.hasMoreNewer);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -61422,6 +63608,8 @@ var GetRemoteOperationContainerLogsResponse = class GetRemoteOperationContainerL
 		this.minAvailableSeq = _value.minAvailableSeq;
 		this.maxAvailableSeq = _value.maxAvailableSeq;
 		this.hasMoreOlder = _value.hasMoreOlder;
+		this.nextResumeToken = _value.nextResumeToken;
+		this.hasMoreNewer = _value.hasMoreNewer;
 		GetRemoteOperationContainerLogsResponse.refineValues(this);
 	}
 	get logLines() {
@@ -61454,6 +63642,18 @@ var GetRemoteOperationContainerLogsResponse = class GetRemoteOperationContainerL
 	set hasMoreOlder(value) {
 		this._hasMoreOlder = value;
 	}
+	get nextResumeToken() {
+		return this._nextResumeToken;
+	}
+	set nextResumeToken(value) {
+		this._nextResumeToken = value;
+	}
+	get hasMoreNewer() {
+		return this._hasMoreNewer;
+	}
+	set hasMoreNewer(value) {
+		this._hasMoreNewer = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		GetRemoteOperationContainerLogsResponse.serializeBinaryToWriter(this, writer);
@@ -61465,7 +63665,9 @@ var GetRemoteOperationContainerLogsResponse = class GetRemoteOperationContainerL
 			truncated: this.truncated,
 			minAvailableSeq: this.minAvailableSeq,
 			maxAvailableSeq: this.maxAvailableSeq,
-			hasMoreOlder: this.hasMoreOlder
+			hasMoreOlder: this.hasMoreOlder,
+			nextResumeToken: this.nextResumeToken,
+			hasMoreNewer: this.hasMoreNewer
 		};
 	}
 	toJSON() {
@@ -61477,7 +63679,9 @@ var GetRemoteOperationContainerLogsResponse = class GetRemoteOperationContainerL
 			truncated: this.truncated,
 			minAvailableSeq: this.minAvailableSeq,
 			maxAvailableSeq: this.maxAvailableSeq,
-			hasMoreOlder: this.hasMoreOlder
+			hasMoreOlder: this.hasMoreOlder,
+			nextResumeToken: this.nextResumeToken,
+			hasMoreNewer: this.hasMoreNewer
 		};
 	}
 };
@@ -61497,6 +63701,7 @@ var RemoteOperationContainerLogLine = class RemoteOperationContainerLogLine {
 		_instance.containerId = _instance.containerId || "";
 		_instance.containerName = _instance.containerName || "";
 		_instance.seq = _instance.seq || "0";
+		_instance.logStream = _instance.logStream || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -61521,6 +63726,9 @@ var RemoteOperationContainerLogLine = class RemoteOperationContainerLogLine {
 				case 6:
 					_instance.seq = _reader.readInt64String();
 					break;
+				case 7:
+					_instance.logStream = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -61533,6 +63741,7 @@ var RemoteOperationContainerLogLine = class RemoteOperationContainerLogLine {
 		if (_instance.containerId) _writer.writeString(4, _instance.containerId);
 		if (_instance.containerName) _writer.writeString(5, _instance.containerName);
 		if (_instance.seq) _writer.writeInt64String(6, _instance.seq);
+		if (_instance.logStream) _writer.writeString(7, _instance.logStream);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -61542,6 +63751,7 @@ var RemoteOperationContainerLogLine = class RemoteOperationContainerLogLine {
 		this.containerId = _value.containerId;
 		this.containerName = _value.containerName;
 		this.seq = _value.seq;
+		this.logStream = _value.logStream;
 		RemoteOperationContainerLogLine.refineValues(this);
 	}
 	get timestamp() {
@@ -61580,6 +63790,12 @@ var RemoteOperationContainerLogLine = class RemoteOperationContainerLogLine {
 	set seq(value) {
 		this._seq = value;
 	}
+	get logStream() {
+		return this._logStream;
+	}
+	set logStream(value) {
+		this._logStream = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		RemoteOperationContainerLogLine.serializeBinaryToWriter(this, writer);
@@ -61592,7 +63808,8 @@ var RemoteOperationContainerLogLine = class RemoteOperationContainerLogLine {
 			message: this.message,
 			containerId: this.containerId,
 			containerName: this.containerName,
-			seq: this.seq
+			seq: this.seq,
+			logStream: this.logStream
 		};
 	}
 	toJSON() {
@@ -61605,7 +63822,8 @@ var RemoteOperationContainerLogLine = class RemoteOperationContainerLogLine {
 			message: this.message,
 			containerId: this.containerId,
 			containerName: this.containerName,
-			seq: this.seq
+			seq: this.seq,
+			logStream: this.logStream
 		};
 	}
 };
@@ -79517,6 +81735,39 @@ var SessionsClient = class SessionsClient {
 					responseClass: DetectIntentResponse
 				});
 			},
+			interruptTurn: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.nlu.Sessions/InterruptTurn",
+					requestData,
+					requestMetadata,
+					requestClass: InterruptTurnRequest,
+					responseClass: InterruptTurnResponse
+				});
+			},
+			prepareWarmTransferIntro: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.nlu.Sessions/PrepareWarmTransferIntro",
+					requestData,
+					requestMetadata,
+					requestClass: PrepareWarmTransferIntroRequest,
+					responseClass: PrepareWarmTransferIntroResponse
+				});
+			},
+			getWarmTransferIntroOutcome: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.nlu.Sessions/GetWarmTransferIntroOutcome",
+					requestData,
+					requestMetadata,
+					requestClass: GetWarmTransferIntroOutcomeRequest,
+					responseClass: WarmTransferIntroOutcome
+				});
+			},
 			listSessions: (requestData, requestMetadata = new GrpcMetadata()) => {
 				return this.handler.handle({
 					type: GrpcCallType.unary,
@@ -80050,6 +82301,15 @@ var SessionsClient = class SessionsClient {
 	}
 	detectIntent(requestData, requestMetadata = new GrpcMetadata()) {
 		return this.$raw.detectIntent(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	interruptTurn(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.interruptTurn(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	prepareWarmTransferIntro(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.prepareWarmTransferIntro(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	getWarmTransferIntroOutcome(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.getWarmTransferIntroOutcome(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
 	}
 	listSessions(requestData, requestMetadata = new GrpcMetadata()) {
 		return this.$raw.listSessions(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
@@ -86023,6 +88283,12 @@ var UtteranceDetectionOptions = class UtteranceDetectionOptions {
 					_instance.turnDetection = new TurnDetectionOptions();
 					_reader.readMessage(_instance.turnDetection, TurnDetectionOptions.deserializeBinaryFromReader);
 					break;
+				case 4:
+					_instance.minAudioChunkSize = _reader.readInt64String();
+					break;
+				case 5:
+					_instance.transcribeNotFinalPeriodSeconds = _reader.readFloat();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -86032,6 +88298,8 @@ var UtteranceDetectionOptions = class UtteranceDetectionOptions {
 		if (_instance.transcribeNotFinal || _instance.transcribeNotFinal === false) _writer.writeBool(1, _instance.transcribeNotFinal);
 		if (_instance.nextChunkTimeout) _writer.writeFloat(2, _instance.nextChunkTimeout);
 		if (_instance.turnDetection) _writer.writeMessage(3, _instance.turnDetection, TurnDetectionOptions.serializeBinaryToWriter);
+		if (_instance.minAudioChunkSize !== void 0 && _instance.minAudioChunkSize !== null) _writer.writeInt64String(4, _instance.minAudioChunkSize);
+		if (_instance.transcribeNotFinalPeriodSeconds !== void 0 && _instance.transcribeNotFinalPeriodSeconds !== null) _writer.writeFloat(5, _instance.transcribeNotFinalPeriodSeconds);
 	}
 	constructor(_value) {
 		this._oneofTranscribeNotFinal = UtteranceDetectionOptions.OneofTranscribeNotFinalCase.none;
@@ -86040,6 +88308,8 @@ var UtteranceDetectionOptions = class UtteranceDetectionOptions {
 		this.transcribeNotFinal = _value.transcribeNotFinal;
 		this.nextChunkTimeout = _value.nextChunkTimeout;
 		this.turnDetection = _value.turnDetection ? new TurnDetectionOptions(_value.turnDetection) : void 0;
+		this.minAudioChunkSize = _value.minAudioChunkSize;
+		this.transcribeNotFinalPeriodSeconds = _value.transcribeNotFinalPeriodSeconds;
 		UtteranceDetectionOptions.refineValues(this);
 	}
 	get transcribeNotFinal() {
@@ -86062,6 +88332,18 @@ var UtteranceDetectionOptions = class UtteranceDetectionOptions {
 		if (value !== void 0 && value !== null) this._oneofTurnDetection = UtteranceDetectionOptions.OneofTurnDetectionCase.turnDetection;
 		this._turnDetection = value;
 	}
+	get minAudioChunkSize() {
+		return this._minAudioChunkSize;
+	}
+	set minAudioChunkSize(value) {
+		this._minAudioChunkSize = value;
+	}
+	get transcribeNotFinalPeriodSeconds() {
+		return this._transcribeNotFinalPeriodSeconds;
+	}
+	set transcribeNotFinalPeriodSeconds(value) {
+		this._transcribeNotFinalPeriodSeconds = value;
+	}
 	get oneofTranscribeNotFinal() {
 		return this._oneofTranscribeNotFinal;
 	}
@@ -86077,7 +88359,9 @@ var UtteranceDetectionOptions = class UtteranceDetectionOptions {
 		return {
 			transcribeNotFinal: this.transcribeNotFinal,
 			nextChunkTimeout: this.nextChunkTimeout,
-			turnDetection: this.turnDetection ? this.turnDetection.toObject() : void 0
+			turnDetection: this.turnDetection ? this.turnDetection.toObject() : void 0,
+			minAudioChunkSize: this.minAudioChunkSize,
+			transcribeNotFinalPeriodSeconds: this.transcribeNotFinalPeriodSeconds
 		};
 	}
 	toJSON() {
@@ -86087,7 +88371,9 @@ var UtteranceDetectionOptions = class UtteranceDetectionOptions {
 		return {
 			transcribeNotFinal: this.transcribeNotFinal,
 			nextChunkTimeout: this.nextChunkTimeout,
-			turnDetection: this.turnDetection ? this.turnDetection.toProtobufJSON(options) : null
+			turnDetection: this.turnDetection ? this.turnDetection.toProtobufJSON(options) : null,
+			minAudioChunkSize: this.minAudioChunkSize,
+			transcribeNotFinalPeriodSeconds: this.transcribeNotFinalPeriodSeconds
 		};
 	}
 };
@@ -89457,7 +91743,6 @@ var StreamingSpeechRecognition = class StreamingSpeechRecognition {
 		return instance;
 	}
 	static refineValues(_instance) {
-		_instance.transcribeNotFinal = _instance.transcribeNotFinal || false;
 		_instance.decodingMethod = _instance.decodingMethod || "";
 		_instance.samplingRate = _instance.samplingRate || "0";
 		_instance.minAudioChunkSize = _instance.minAudioChunkSize || "0";
@@ -89487,18 +91772,22 @@ var StreamingSpeechRecognition = class StreamingSpeechRecognition {
 					_instance.turnDetection = new TurnDetectionOptions();
 					_reader.readMessage(_instance.turnDetection, TurnDetectionOptions.deserializeBinaryFromReader);
 					break;
+				case 7:
+					_instance.transcribeNotFinalPeriodSeconds = _reader.readFloat();
+					break;
 				default: _reader.skipField();
 			}
 		}
 		StreamingSpeechRecognition.refineValues(_instance);
 	}
 	static serializeBinaryToWriter(_instance, _writer) {
-		if (_instance.transcribeNotFinal) _writer.writeBool(1, _instance.transcribeNotFinal);
+		if (_instance.transcribeNotFinal !== void 0 && _instance.transcribeNotFinal !== null) _writer.writeBool(1, _instance.transcribeNotFinal);
 		if (_instance.decodingMethod) _writer.writeString(2, _instance.decodingMethod);
 		if (_instance.samplingRate) _writer.writeInt64String(3, _instance.samplingRate);
 		if (_instance.minAudioChunkSize) _writer.writeInt64String(4, _instance.minAudioChunkSize);
 		if (_instance.nextChunkTimeout) _writer.writeFloat(5, _instance.nextChunkTimeout);
 		if (_instance.turnDetection) _writer.writeMessage(6, _instance.turnDetection, TurnDetectionOptions.serializeBinaryToWriter);
+		if (_instance.transcribeNotFinalPeriodSeconds !== void 0 && _instance.transcribeNotFinalPeriodSeconds !== null) _writer.writeFloat(7, _instance.transcribeNotFinalPeriodSeconds);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -89508,6 +91797,7 @@ var StreamingSpeechRecognition = class StreamingSpeechRecognition {
 		this.minAudioChunkSize = _value.minAudioChunkSize;
 		this.nextChunkTimeout = _value.nextChunkTimeout;
 		this.turnDetection = _value.turnDetection ? new TurnDetectionOptions(_value.turnDetection) : void 0;
+		this.transcribeNotFinalPeriodSeconds = _value.transcribeNotFinalPeriodSeconds;
 		StreamingSpeechRecognition.refineValues(this);
 	}
 	get transcribeNotFinal() {
@@ -89546,6 +91836,12 @@ var StreamingSpeechRecognition = class StreamingSpeechRecognition {
 	set turnDetection(value) {
 		this._turnDetection = value;
 	}
+	get transcribeNotFinalPeriodSeconds() {
+		return this._transcribeNotFinalPeriodSeconds;
+	}
+	set transcribeNotFinalPeriodSeconds(value) {
+		this._transcribeNotFinalPeriodSeconds = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		StreamingSpeechRecognition.serializeBinaryToWriter(this, writer);
@@ -89558,7 +91854,8 @@ var StreamingSpeechRecognition = class StreamingSpeechRecognition {
 			samplingRate: this.samplingRate,
 			minAudioChunkSize: this.minAudioChunkSize,
 			nextChunkTimeout: this.nextChunkTimeout,
-			turnDetection: this.turnDetection ? this.turnDetection.toObject() : void 0
+			turnDetection: this.turnDetection ? this.turnDetection.toObject() : void 0,
+			transcribeNotFinalPeriodSeconds: this.transcribeNotFinalPeriodSeconds
 		};
 	}
 	toJSON() {
@@ -89571,7 +91868,8 @@ var StreamingSpeechRecognition = class StreamingSpeechRecognition {
 			samplingRate: this.samplingRate,
 			minAudioChunkSize: this.minAudioChunkSize,
 			nextChunkTimeout: this.nextChunkTimeout,
-			turnDetection: this.turnDetection ? this.turnDetection.toProtobufJSON(options) : null
+			turnDetection: this.turnDetection ? this.turnDetection.toProtobufJSON(options) : null,
+			transcribeNotFinalPeriodSeconds: this.transcribeNotFinalPeriodSeconds
 		};
 	}
 };
@@ -89586,6 +91884,8 @@ var TurnDetectionOptions = class TurnDetectionOptions {
 	}
 	static refineValues(_instance) {
 		_instance.turnDetectionLlmOpenaiOptions = _instance.turnDetectionLlmOpenaiOptions || void 0;
+		_instance.conversationContext = _instance.conversationContext || void 0;
+		_instance.holdBands = _instance.holdBands || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -89607,6 +91907,41 @@ var TurnDetectionOptions = class TurnDetectionOptions {
 					_instance.turnDetectionLlmOpenaiOptions = new OpenaiLlmOptions();
 					_reader.readMessage(_instance.turnDetectionLlmOpenaiOptions, OpenaiLlmOptions.deserializeBinaryFromReader);
 					break;
+				case 6:
+					_instance.conversationContext = new TurnDetectionConversationContext();
+					_reader.readMessage(_instance.conversationContext, TurnDetectionConversationContext.deserializeBinaryFromReader);
+					break;
+				case 7:
+					_instance.endOfTurnProbabilityThreshold = _reader.readFloat();
+					break;
+				case 8:
+					_instance.holdBands = new TurnDetectionHoldBands();
+					_reader.readMessage(_instance.holdBands, TurnDetectionHoldBands.deserializeBinaryFromReader);
+					break;
+				case 9:
+					_instance.uncertainMinWords = _reader.readUint32();
+					break;
+				case 10:
+					_instance.incompleteMaxSilenceSeconds = _reader.readFloat();
+					break;
+				case 11:
+					_instance.exactProbability = _reader.readBool();
+					break;
+				case 12:
+					_instance.pipecatTritonModelName = _reader.readString();
+					break;
+				case 13:
+					_instance.pipecatTritonServerHost = _reader.readString();
+					break;
+				case 14:
+					_instance.pipecatTritonServerPort = _reader.readInt64String();
+					break;
+				case 15:
+					_instance.pipecatMaxAudioSeconds = _reader.readFloat();
+					break;
+				case 16:
+					_instance.pipecatTimeoutSeconds = _reader.readFloat();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -89618,6 +91953,17 @@ var TurnDetectionOptions = class TurnDetectionOptions {
 		if (_instance.turnDetectionSystemPrompt !== void 0 && _instance.turnDetectionSystemPrompt !== null) _writer.writeString(3, _instance.turnDetectionSystemPrompt);
 		if (_instance.turnDetectionUserPrompt !== void 0 && _instance.turnDetectionUserPrompt !== null) _writer.writeString(4, _instance.turnDetectionUserPrompt);
 		if (_instance.turnDetectionLlmOpenaiOptions) _writer.writeMessage(5, _instance.turnDetectionLlmOpenaiOptions, OpenaiLlmOptions.serializeBinaryToWriter);
+		if (_instance.conversationContext) _writer.writeMessage(6, _instance.conversationContext, TurnDetectionConversationContext.serializeBinaryToWriter);
+		if (_instance.endOfTurnProbabilityThreshold !== void 0 && _instance.endOfTurnProbabilityThreshold !== null) _writer.writeFloat(7, _instance.endOfTurnProbabilityThreshold);
+		if (_instance.holdBands) _writer.writeMessage(8, _instance.holdBands, TurnDetectionHoldBands.serializeBinaryToWriter);
+		if (_instance.uncertainMinWords !== void 0 && _instance.uncertainMinWords !== null) _writer.writeUint32(9, _instance.uncertainMinWords);
+		if (_instance.incompleteMaxSilenceSeconds !== void 0 && _instance.incompleteMaxSilenceSeconds !== null) _writer.writeFloat(10, _instance.incompleteMaxSilenceSeconds);
+		if (_instance.exactProbability !== void 0 && _instance.exactProbability !== null) _writer.writeBool(11, _instance.exactProbability);
+		if (_instance.pipecatTritonModelName !== void 0 && _instance.pipecatTritonModelName !== null) _writer.writeString(12, _instance.pipecatTritonModelName);
+		if (_instance.pipecatTritonServerHost !== void 0 && _instance.pipecatTritonServerHost !== null) _writer.writeString(13, _instance.pipecatTritonServerHost);
+		if (_instance.pipecatTritonServerPort !== void 0 && _instance.pipecatTritonServerPort !== null) _writer.writeInt64String(14, _instance.pipecatTritonServerPort);
+		if (_instance.pipecatMaxAudioSeconds !== void 0 && _instance.pipecatMaxAudioSeconds !== null) _writer.writeFloat(15, _instance.pipecatMaxAudioSeconds);
+		if (_instance.pipecatTimeoutSeconds !== void 0 && _instance.pipecatTimeoutSeconds !== null) _writer.writeFloat(16, _instance.pipecatTimeoutSeconds);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -89626,6 +91972,17 @@ var TurnDetectionOptions = class TurnDetectionOptions {
 		this.turnDetectionSystemPrompt = _value.turnDetectionSystemPrompt;
 		this.turnDetectionUserPrompt = _value.turnDetectionUserPrompt;
 		this.turnDetectionLlmOpenaiOptions = _value.turnDetectionLlmOpenaiOptions ? new OpenaiLlmOptions(_value.turnDetectionLlmOpenaiOptions) : void 0;
+		this.conversationContext = _value.conversationContext ? new TurnDetectionConversationContext(_value.conversationContext) : void 0;
+		this.endOfTurnProbabilityThreshold = _value.endOfTurnProbabilityThreshold;
+		this.holdBands = _value.holdBands ? new TurnDetectionHoldBands(_value.holdBands) : void 0;
+		this.uncertainMinWords = _value.uncertainMinWords;
+		this.incompleteMaxSilenceSeconds = _value.incompleteMaxSilenceSeconds;
+		this.exactProbability = _value.exactProbability;
+		this.pipecatTritonModelName = _value.pipecatTritonModelName;
+		this.pipecatTritonServerHost = _value.pipecatTritonServerHost;
+		this.pipecatTritonServerPort = _value.pipecatTritonServerPort;
+		this.pipecatMaxAudioSeconds = _value.pipecatMaxAudioSeconds;
+		this.pipecatTimeoutSeconds = _value.pipecatTimeoutSeconds;
 		TurnDetectionOptions.refineValues(this);
 	}
 	get active() {
@@ -89658,6 +92015,72 @@ var TurnDetectionOptions = class TurnDetectionOptions {
 	set turnDetectionLlmOpenaiOptions(value) {
 		this._turnDetectionLlmOpenaiOptions = value;
 	}
+	get conversationContext() {
+		return this._conversationContext;
+	}
+	set conversationContext(value) {
+		this._conversationContext = value;
+	}
+	get endOfTurnProbabilityThreshold() {
+		return this._endOfTurnProbabilityThreshold;
+	}
+	set endOfTurnProbabilityThreshold(value) {
+		this._endOfTurnProbabilityThreshold = value;
+	}
+	get holdBands() {
+		return this._holdBands;
+	}
+	set holdBands(value) {
+		this._holdBands = value;
+	}
+	get uncertainMinWords() {
+		return this._uncertainMinWords;
+	}
+	set uncertainMinWords(value) {
+		this._uncertainMinWords = value;
+	}
+	get incompleteMaxSilenceSeconds() {
+		return this._incompleteMaxSilenceSeconds;
+	}
+	set incompleteMaxSilenceSeconds(value) {
+		this._incompleteMaxSilenceSeconds = value;
+	}
+	get exactProbability() {
+		return this._exactProbability;
+	}
+	set exactProbability(value) {
+		this._exactProbability = value;
+	}
+	get pipecatTritonModelName() {
+		return this._pipecatTritonModelName;
+	}
+	set pipecatTritonModelName(value) {
+		this._pipecatTritonModelName = value;
+	}
+	get pipecatTritonServerHost() {
+		return this._pipecatTritonServerHost;
+	}
+	set pipecatTritonServerHost(value) {
+		this._pipecatTritonServerHost = value;
+	}
+	get pipecatTritonServerPort() {
+		return this._pipecatTritonServerPort;
+	}
+	set pipecatTritonServerPort(value) {
+		this._pipecatTritonServerPort = value;
+	}
+	get pipecatMaxAudioSeconds() {
+		return this._pipecatMaxAudioSeconds;
+	}
+	set pipecatMaxAudioSeconds(value) {
+		this._pipecatMaxAudioSeconds = value;
+	}
+	get pipecatTimeoutSeconds() {
+		return this._pipecatTimeoutSeconds;
+	}
+	set pipecatTimeoutSeconds(value) {
+		this._pipecatTimeoutSeconds = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		TurnDetectionOptions.serializeBinaryToWriter(this, writer);
@@ -89669,7 +92092,18 @@ var TurnDetectionOptions = class TurnDetectionOptions {
 			fullUtteranceDeployment: this.fullUtteranceDeployment,
 			turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
 			turnDetectionUserPrompt: this.turnDetectionUserPrompt,
-			turnDetectionLlmOpenaiOptions: this.turnDetectionLlmOpenaiOptions ? this.turnDetectionLlmOpenaiOptions.toObject() : void 0
+			turnDetectionLlmOpenaiOptions: this.turnDetectionLlmOpenaiOptions ? this.turnDetectionLlmOpenaiOptions.toObject() : void 0,
+			conversationContext: this.conversationContext ? this.conversationContext.toObject() : void 0,
+			endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+			holdBands: this.holdBands ? this.holdBands.toObject() : void 0,
+			uncertainMinWords: this.uncertainMinWords,
+			incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+			exactProbability: this.exactProbability,
+			pipecatTritonModelName: this.pipecatTritonModelName,
+			pipecatTritonServerHost: this.pipecatTritonServerHost,
+			pipecatTritonServerPort: this.pipecatTritonServerPort,
+			pipecatMaxAudioSeconds: this.pipecatMaxAudioSeconds,
+			pipecatTimeoutSeconds: this.pipecatTimeoutSeconds
 		};
 	}
 	toJSON() {
@@ -89681,7 +92115,277 @@ var TurnDetectionOptions = class TurnDetectionOptions {
 			fullUtteranceDeployment: this.fullUtteranceDeployment,
 			turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
 			turnDetectionUserPrompt: this.turnDetectionUserPrompt,
-			turnDetectionLlmOpenaiOptions: this.turnDetectionLlmOpenaiOptions ? this.turnDetectionLlmOpenaiOptions.toProtobufJSON(options) : null
+			turnDetectionLlmOpenaiOptions: this.turnDetectionLlmOpenaiOptions ? this.turnDetectionLlmOpenaiOptions.toProtobufJSON(options) : null,
+			conversationContext: this.conversationContext ? this.conversationContext.toProtobufJSON(options) : null,
+			endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+			holdBands: this.holdBands ? this.holdBands.toProtobufJSON(options) : null,
+			uncertainMinWords: this.uncertainMinWords,
+			incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+			exactProbability: this.exactProbability,
+			pipecatTritonModelName: this.pipecatTritonModelName,
+			pipecatTritonServerHost: this.pipecatTritonServerHost,
+			pipecatTritonServerPort: this.pipecatTritonServerPort,
+			pipecatMaxAudioSeconds: this.pipecatMaxAudioSeconds,
+			pipecatTimeoutSeconds: this.pipecatTimeoutSeconds
+		};
+	}
+};
+var TurnDetectionConversationContext = class TurnDetectionConversationContext {
+	static {
+		this.id = "ondewo.s2t.TurnDetectionConversationContext";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new TurnDetectionConversationContext();
+		TurnDetectionConversationContext.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.turns = _instance.turns || [];
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					const messageInitializer1 = new TurnDetectionContextTurn();
+					_reader.readMessage(messageInitializer1, TurnDetectionContextTurn.deserializeBinaryFromReader);
+					(_instance.turns = _instance.turns || []).push(messageInitializer1);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		TurnDetectionConversationContext.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.turns && _instance.turns.length) _writer.writeRepeatedMessage(1, _instance.turns, TurnDetectionContextTurn.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.turns = (_value.turns || []).map((m) => new TurnDetectionContextTurn(m));
+		TurnDetectionConversationContext.refineValues(this);
+	}
+	get turns() {
+		return this._turns;
+	}
+	set turns(value) {
+		this._turns = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		TurnDetectionConversationContext.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return { turns: (this.turns || []).map((m) => m.toObject()) };
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return { turns: (this.turns || []).map((m) => m.toProtobufJSON(options)) };
+	}
+};
+var TurnDetectionContextTurn = class TurnDetectionContextTurn {
+	static {
+		this.id = "ondewo.s2t.TurnDetectionContextTurn";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new TurnDetectionContextTurn();
+		TurnDetectionContextTurn.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.role = _instance.role || 0;
+		_instance.text = _instance.text || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.role = _reader.readEnum();
+					break;
+				case 2:
+					_instance.text = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		TurnDetectionContextTurn.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.role) _writer.writeEnum(1, _instance.role);
+		if (_instance.text) _writer.writeString(2, _instance.text);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.role = _value.role;
+		this.text = _value.text;
+		TurnDetectionContextTurn.refineValues(this);
+	}
+	get role() {
+		return this._role;
+	}
+	set role(value) {
+		this._role = value;
+	}
+	get text() {
+		return this._text;
+	}
+	set text(value) {
+		this._text = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		TurnDetectionContextTurn.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			role: this.role,
+			text: this.text
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			role: TurnDetectionContextTurn.Role[this.role === null || this.role === void 0 ? 0 : this.role],
+			text: this.text
+		};
+	}
+};
+(function(TurnDetectionContextTurn) {
+	(function(Role) {
+		Role[Role["ROLE_UNSPECIFIED"] = 0] = "ROLE_UNSPECIFIED";
+		Role[Role["ROLE_USER"] = 1] = "ROLE_USER";
+		Role[Role["ROLE_ASSISTANT"] = 2] = "ROLE_ASSISTANT";
+	})(TurnDetectionContextTurn.Role || (TurnDetectionContextTurn.Role = {}));
+})(TurnDetectionContextTurn || (TurnDetectionContextTurn = {}));
+var TurnDetectionHoldBands = class TurnDetectionHoldBands {
+	static {
+		this.id = "ondewo.s2t.TurnDetectionHoldBands";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new TurnDetectionHoldBands();
+		TurnDetectionHoldBands.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.bands = _instance.bands || [];
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					const messageInitializer1 = new TurnDetectionHoldBand();
+					_reader.readMessage(messageInitializer1, TurnDetectionHoldBand.deserializeBinaryFromReader);
+					(_instance.bands = _instance.bands || []).push(messageInitializer1);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		TurnDetectionHoldBands.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.bands && _instance.bands.length) _writer.writeRepeatedMessage(1, _instance.bands, TurnDetectionHoldBand.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.bands = (_value.bands || []).map((m) => new TurnDetectionHoldBand(m));
+		TurnDetectionHoldBands.refineValues(this);
+	}
+	get bands() {
+		return this._bands;
+	}
+	set bands(value) {
+		this._bands = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		TurnDetectionHoldBands.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return { bands: (this.bands || []).map((m) => m.toObject()) };
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return { bands: (this.bands || []).map((m) => m.toProtobufJSON(options)) };
+	}
+};
+var TurnDetectionHoldBand = class TurnDetectionHoldBand {
+	static {
+		this.id = "ondewo.s2t.TurnDetectionHoldBand";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new TurnDetectionHoldBand();
+		TurnDetectionHoldBand.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.upperProbability = _instance.upperProbability || 0;
+		_instance.maxSilenceSeconds = _instance.maxSilenceSeconds || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.upperProbability = _reader.readFloat();
+					break;
+				case 2:
+					_instance.maxSilenceSeconds = _reader.readFloat();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		TurnDetectionHoldBand.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.upperProbability) _writer.writeFloat(1, _instance.upperProbability);
+		if (_instance.maxSilenceSeconds) _writer.writeFloat(2, _instance.maxSilenceSeconds);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.upperProbability = _value.upperProbability;
+		this.maxSilenceSeconds = _value.maxSilenceSeconds;
+		TurnDetectionHoldBand.refineValues(this);
+	}
+	get upperProbability() {
+		return this._upperProbability;
+	}
+	set upperProbability(value) {
+		this._upperProbability = value;
+	}
+	get maxSilenceSeconds() {
+		return this._maxSilenceSeconds;
+	}
+	set maxSilenceSeconds(value) {
+		this._maxSilenceSeconds = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		TurnDetectionHoldBand.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			upperProbability: this.upperProbability,
+			maxSilenceSeconds: this.maxSilenceSeconds
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			upperProbability: this.upperProbability,
+			maxSilenceSeconds: this.maxSilenceSeconds
 		};
 	}
 };
@@ -92877,6 +95581,13 @@ i0.ɵɵngDeclareClassMetadata({
 		{ type: i1$1.GrpcHandler }
 	]
 });
+var SipTransferDelegation;
+(function(SipTransferDelegation) {
+	SipTransferDelegation[SipTransferDelegation["SIP_TRANSFER_DELEGATION_UNSPECIFIED"] = 0] = "SIP_TRANSFER_DELEGATION_UNSPECIFIED";
+	SipTransferDelegation[SipTransferDelegation["SIP_TRANSFER_DELEGATION_CLAIM"] = 1] = "SIP_TRANSFER_DELEGATION_CLAIM";
+	SipTransferDelegation[SipTransferDelegation["SIP_TRANSFER_DELEGATION_EXECUTE"] = 2] = "SIP_TRANSFER_DELEGATION_EXECUTE";
+	SipTransferDelegation[SipTransferDelegation["SIP_TRANSFER_DELEGATION_DISCARD"] = 3] = "SIP_TRANSFER_DELEGATION_DISCARD";
+})(SipTransferDelegation || (SipTransferDelegation = {}));
 var MediaControlSetting;
 (function(MediaControlSetting) {
 	MediaControlSetting[MediaControlSetting["MEDIA_CONTROL_SETTING_UNCHANGED"] = 0] = "MEDIA_CONTROL_SETTING_UNCHANGED";
@@ -92889,6 +95600,22 @@ var MediaControlOwner;
 	MediaControlOwner[MediaControlOwner["MEDIA_CONTROL_OWNER_OPERATOR"] = 1] = "MEDIA_CONTROL_OWNER_OPERATOR";
 	MediaControlOwner[MediaControlOwner["MEDIA_CONTROL_OWNER_PARTICIPANT"] = 2] = "MEDIA_CONTROL_OWNER_PARTICIPANT";
 })(MediaControlOwner || (MediaControlOwner = {}));
+var SipWarmTransferOutcome;
+(function(SipWarmTransferOutcome) {
+	SipWarmTransferOutcome[SipWarmTransferOutcome["SIP_WARM_TRANSFER_OUTCOME_UNSPECIFIED"] = 0] = "SIP_WARM_TRANSFER_OUTCOME_UNSPECIFIED";
+	SipWarmTransferOutcome[SipWarmTransferOutcome["SIP_WARM_TRANSFER_OUTCOME_DECLINED"] = 1] = "SIP_WARM_TRANSFER_OUTCOME_DECLINED";
+	SipWarmTransferOutcome[SipWarmTransferOutcome["SIP_WARM_TRANSFER_OUTCOME_UNREACHABLE"] = 2] = "SIP_WARM_TRANSFER_OUTCOME_UNREACHABLE";
+	SipWarmTransferOutcome[SipWarmTransferOutcome["SIP_WARM_TRANSFER_OUTCOME_DELEGATION_EXPIRED"] = 3] = "SIP_WARM_TRANSFER_OUTCOME_DELEGATION_EXPIRED";
+})(SipWarmTransferOutcome || (SipWarmTransferOutcome = {}));
+var SipWarmTransferOutcomeNoticeStatus;
+(function(SipWarmTransferOutcomeNoticeStatus) {
+	SipWarmTransferOutcomeNoticeStatus[SipWarmTransferOutcomeNoticeStatus["SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_UNSPECIFIED"] = 0] = "SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_UNSPECIFIED";
+	SipWarmTransferOutcomeNoticeStatus[SipWarmTransferOutcomeNoticeStatus["SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_QUEUED"] = 1] = "SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_QUEUED";
+	SipWarmTransferOutcomeNoticeStatus[SipWarmTransferOutcomeNoticeStatus["SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_DUPLICATE"] = 2] = "SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_DUPLICATE";
+	SipWarmTransferOutcomeNoticeStatus[SipWarmTransferOutcomeNoticeStatus["SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_DISABLED"] = 3] = "SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_DISABLED";
+	SipWarmTransferOutcomeNoticeStatus[SipWarmTransferOutcomeNoticeStatus["SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_INVALID"] = 4] = "SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_INVALID";
+	SipWarmTransferOutcomeNoticeStatus[SipWarmTransferOutcomeNoticeStatus["SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_PENDING"] = 5] = "SIP_WARM_TRANSFER_OUTCOME_NOTICE_STATUS_PENDING";
+})(SipWarmTransferOutcomeNoticeStatus || (SipWarmTransferOutcomeNoticeStatus = {}));
 var SipCallAudioMode;
 (function(SipCallAudioMode) {
 	SipCallAudioMode[SipCallAudioMode["SIP_CALL_AUDIO_MODE_UNSPECIFIED"] = 0] = "SIP_CALL_AUDIO_MODE_UNSPECIFIED";
@@ -93587,6 +96314,8 @@ var SipTransferCallRequest = class SipTransferCallRequest {
 		_instance.transferId = _instance.transferId || "";
 		_instance.headers = _instance.headers || {};
 		_instance.outcomeTimeoutMs = _instance.outcomeTimeoutMs || 0;
+		_instance.delegation = _instance.delegation || 0;
+		_instance.delegatedRequestId = _instance.delegatedRequestId || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -93603,6 +96332,12 @@ var SipTransferCallRequest = class SipTransferCallRequest {
 					break;
 				case 3:
 					_instance.outcomeTimeoutMs = _reader.readUint32();
+					break;
+				case 4:
+					_instance.delegation = _reader.readEnum();
+					break;
+				case 5:
+					_instance.delegatedRequestId = _reader.readString();
 					break;
 				default: _reader.skipField();
 			}
@@ -93622,6 +96357,8 @@ var SipTransferCallRequest = class SipTransferCallRequest {
 			}
 		}
 		if (_instance.outcomeTimeoutMs) _writer.writeUint32(3, _instance.outcomeTimeoutMs);
+		if (_instance.delegation) _writer.writeEnum(4, _instance.delegation);
+		if (_instance.delegatedRequestId) _writer.writeString(5, _instance.delegatedRequestId);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -93630,6 +96367,8 @@ var SipTransferCallRequest = class SipTransferCallRequest {
 			...r,
 			[k]: _value.headers[k]
 		}), {}) : {}, this.outcomeTimeoutMs = _value.outcomeTimeoutMs;
+		this.delegation = _value.delegation;
+		this.delegatedRequestId = _value.delegatedRequestId;
 		SipTransferCallRequest.refineValues(this);
 	}
 	get transferId() {
@@ -93650,6 +96389,18 @@ var SipTransferCallRequest = class SipTransferCallRequest {
 	set outcomeTimeoutMs(value) {
 		this._outcomeTimeoutMs = value;
 	}
+	get delegation() {
+		return this._delegation;
+	}
+	set delegation(value) {
+		this._delegation = value;
+	}
+	get delegatedRequestId() {
+		return this._delegatedRequestId;
+	}
+	set delegatedRequestId(value) {
+		this._delegatedRequestId = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		SipTransferCallRequest.serializeBinaryToWriter(this, writer);
@@ -93662,7 +96413,9 @@ var SipTransferCallRequest = class SipTransferCallRequest {
 				...r,
 				[k]: this.headers[k]
 			}), {}) : {},
-			outcomeTimeoutMs: this.outcomeTimeoutMs
+			outcomeTimeoutMs: this.outcomeTimeoutMs,
+			delegation: this.delegation,
+			delegatedRequestId: this.delegatedRequestId
 		};
 	}
 	toJSON() {
@@ -93675,7 +96428,9 @@ var SipTransferCallRequest = class SipTransferCallRequest {
 				...r,
 				[k]: this.headers[k]
 			}), {}) : {},
-			outcomeTimeoutMs: this.outcomeTimeoutMs
+			outcomeTimeoutMs: this.outcomeTimeoutMs,
+			delegation: SipTransferDelegation[this.delegation === null || this.delegation === void 0 ? 0 : this.delegation],
+			delegatedRequestId: this.delegatedRequestId
 		};
 	}
 };
@@ -93753,6 +96508,214 @@ var SipTransferCallRequest = class SipTransferCallRequest {
 	}
 	SipTransferCallRequest.HeadersEntry = HeadersEntry;
 })(SipTransferCallRequest || (SipTransferCallRequest = {}));
+var SipDelegatedTransfer = class SipDelegatedTransfer {
+	static {
+		this.id = "ondewo.sip.SipDelegatedTransfer";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new SipDelegatedTransfer();
+		SipDelegatedTransfer.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.requestId = _instance.requestId || "";
+		_instance.requestedAt = _instance.requestedAt || void 0;
+		_instance.targetIsPhoneNumber = _instance.targetIsPhoneNumber || false;
+		_instance.transferId = _instance.transferId || "";
+		_instance.headers = _instance.headers || {};
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.requestId = _reader.readString();
+					break;
+				case 2:
+					_instance.requestedAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.requestedAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				case 3:
+					_instance.targetIsPhoneNumber = _reader.readBool();
+					break;
+				case 4:
+					_instance.transferId = _reader.readString();
+					break;
+				case 5:
+					const msg_5 = {};
+					_reader.readMessage(msg_5, SipDelegatedTransfer.HeadersEntry.deserializeBinaryFromReader);
+					_instance.headers = _instance.headers || {};
+					_instance.headers[msg_5.key] = msg_5.value;
+					break;
+				default: _reader.skipField();
+			}
+		}
+		SipDelegatedTransfer.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.requestId) _writer.writeString(1, _instance.requestId);
+		if (_instance.requestedAt) _writer.writeMessage(2, _instance.requestedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.targetIsPhoneNumber) _writer.writeBool(3, _instance.targetIsPhoneNumber);
+		if (_instance.transferId) _writer.writeString(4, _instance.transferId);
+		if (!!_instance.headers) {
+			const keys_5 = Object.keys(_instance.headers);
+			if (keys_5.length) {
+				const repeated_5 = keys_5.map((key) => ({
+					key,
+					value: _instance.headers[key]
+				})).reduce((r, v) => [...r, v], []);
+				_writer.writeRepeatedMessage(5, repeated_5, SipDelegatedTransfer.HeadersEntry.serializeBinaryToWriter);
+			}
+		}
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.requestId = _value.requestId;
+		this.requestedAt = _value.requestedAt ? new googleProtobuf000.Timestamp(_value.requestedAt) : void 0;
+		this.targetIsPhoneNumber = _value.targetIsPhoneNumber;
+		this.transferId = _value.transferId;
+		this.headers = _value.headers ? Object.keys(_value.headers).reduce((r, k) => ({
+			...r,
+			[k]: _value.headers[k]
+		}), {}) : {}, SipDelegatedTransfer.refineValues(this);
+	}
+	get requestId() {
+		return this._requestId;
+	}
+	set requestId(value) {
+		this._requestId = value;
+	}
+	get requestedAt() {
+		return this._requestedAt;
+	}
+	set requestedAt(value) {
+		this._requestedAt = value;
+	}
+	get targetIsPhoneNumber() {
+		return this._targetIsPhoneNumber;
+	}
+	set targetIsPhoneNumber(value) {
+		this._targetIsPhoneNumber = value;
+	}
+	get transferId() {
+		return this._transferId;
+	}
+	set transferId(value) {
+		this._transferId = value;
+	}
+	get headers() {
+		return this._headers;
+	}
+	set headers(value) {
+		this._headers = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		SipDelegatedTransfer.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			requestId: this.requestId,
+			requestedAt: this.requestedAt ? this.requestedAt.toObject() : void 0,
+			targetIsPhoneNumber: this.targetIsPhoneNumber,
+			transferId: this.transferId,
+			headers: this.headers ? Object.keys(this.headers).reduce((r, k) => ({
+				...r,
+				[k]: this.headers[k]
+			}), {}) : {}
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			requestId: this.requestId,
+			requestedAt: this.requestedAt ? this.requestedAt.toProtobufJSON(options) : null,
+			targetIsPhoneNumber: this.targetIsPhoneNumber,
+			transferId: this.transferId,
+			headers: this.headers ? Object.keys(this.headers).reduce((r, k) => ({
+				...r,
+				[k]: this.headers[k]
+			}), {}) : {}
+		};
+	}
+};
+(function(SipDelegatedTransfer) {
+	class HeadersEntry {
+		static {
+			this.id = "ondewo.sip.SipDelegatedTransfer.HeadersEntry";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new HeadersEntry();
+			HeadersEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.key = _instance.key || "";
+			_instance.value = _instance.value || "";
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						_instance.key = _reader.readString();
+						break;
+					case 2:
+						_instance.value = _reader.readString();
+						break;
+					default: _reader.skipField();
+				}
+			}
+			HeadersEntry.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.key) _writer.writeString(1, _instance.key);
+			if (_instance.value) _writer.writeString(2, _instance.value);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.key = _value.key;
+			this.value = _value.value;
+			HeadersEntry.refineValues(this);
+		}
+		get key() {
+			return this._key;
+		}
+		set key(value) {
+			this._key = value;
+		}
+		get value() {
+			return this._value;
+		}
+		set value(value) {
+			this._value = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			HeadersEntry.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return {
+				key: this.key,
+				value: this.value
+			};
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return {
+				key: this.key,
+				value: this.value
+			};
+		}
+	}
+	SipDelegatedTransfer.HeadersEntry = HeadersEntry;
+})(SipDelegatedTransfer || (SipDelegatedTransfer = {}));
 var SipStatus = class SipStatus {
 	static {
 		this.id = "ondewo.sip.SipStatus";
@@ -93779,6 +96742,9 @@ var SipStatus = class SipStatus {
 		_instance.listeningPaused = _instance.listeningPaused || false;
 		_instance.callAudioStreams = _instance.callAudioStreams || 0;
 		_instance.sipResponseCode = _instance.sipResponseCode || 0;
+		_instance.delegatedTransfer = _instance.delegatedTransfer || void 0;
+		_instance.capabilities = _instance.capabilities || [];
+		_instance.warmTransferOutcomeNoticeStatus = _instance.warmTransferOutcomeNoticeStatus || 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -93837,6 +96803,16 @@ var SipStatus = class SipStatus {
 				case 16:
 					_instance.sipResponseCode = _reader.readInt32();
 					break;
+				case 17:
+					_instance.delegatedTransfer = new SipDelegatedTransfer();
+					_reader.readMessage(_instance.delegatedTransfer, SipDelegatedTransfer.deserializeBinaryFromReader);
+					break;
+				case 18:
+					(_instance.capabilities = _instance.capabilities || []).push(_reader.readString());
+					break;
+				case 19:
+					_instance.warmTransferOutcomeNoticeStatus = _reader.readEnum();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -93868,6 +96844,9 @@ var SipStatus = class SipStatus {
 		if (_instance.listeningPaused) _writer.writeBool(14, _instance.listeningPaused);
 		if (_instance.callAudioStreams) _writer.writeInt32(15, _instance.callAudioStreams);
 		if (_instance.sipResponseCode) _writer.writeInt32(16, _instance.sipResponseCode);
+		if (_instance.delegatedTransfer) _writer.writeMessage(17, _instance.delegatedTransfer, SipDelegatedTransfer.serializeBinaryToWriter);
+		if (_instance.capabilities && _instance.capabilities.length) _writer.writeRepeatedString(18, _instance.capabilities);
+		if (_instance.warmTransferOutcomeNoticeStatus) _writer.writeEnum(19, _instance.warmTransferOutcomeNoticeStatus);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -93889,6 +96868,9 @@ var SipStatus = class SipStatus {
 		this.listeningPaused = _value.listeningPaused;
 		this.callAudioStreams = _value.callAudioStreams;
 		this.sipResponseCode = _value.sipResponseCode;
+		this.delegatedTransfer = _value.delegatedTransfer ? new SipDelegatedTransfer(_value.delegatedTransfer) : void 0;
+		this.capabilities = (_value.capabilities || []).slice();
+		this.warmTransferOutcomeNoticeStatus = _value.warmTransferOutcomeNoticeStatus;
 		SipStatus.refineValues(this);
 	}
 	get accountName() {
@@ -93987,6 +96969,24 @@ var SipStatus = class SipStatus {
 	set sipResponseCode(value) {
 		this._sipResponseCode = value;
 	}
+	get delegatedTransfer() {
+		return this._delegatedTransfer;
+	}
+	set delegatedTransfer(value) {
+		this._delegatedTransfer = value;
+	}
+	get capabilities() {
+		return this._capabilities;
+	}
+	set capabilities(value) {
+		this._capabilities = value;
+	}
+	get warmTransferOutcomeNoticeStatus() {
+		return this._warmTransferOutcomeNoticeStatus;
+	}
+	set warmTransferOutcomeNoticeStatus(value) {
+		this._warmTransferOutcomeNoticeStatus = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		SipStatus.serializeBinaryToWriter(this, writer);
@@ -94012,7 +97012,10 @@ var SipStatus = class SipStatus {
 			botMuted: this.botMuted,
 			listeningPaused: this.listeningPaused,
 			callAudioStreams: this.callAudioStreams,
-			sipResponseCode: this.sipResponseCode
+			sipResponseCode: this.sipResponseCode,
+			delegatedTransfer: this.delegatedTransfer ? this.delegatedTransfer.toObject() : void 0,
+			capabilities: (this.capabilities || []).slice(),
+			warmTransferOutcomeNoticeStatus: this.warmTransferOutcomeNoticeStatus
 		};
 	}
 	toJSON() {
@@ -94038,7 +97041,10 @@ var SipStatus = class SipStatus {
 			botMuted: this.botMuted,
 			listeningPaused: this.listeningPaused,
 			callAudioStreams: this.callAudioStreams,
-			sipResponseCode: this.sipResponseCode
+			sipResponseCode: this.sipResponseCode,
+			delegatedTransfer: this.delegatedTransfer ? this.delegatedTransfer.toProtobufJSON(options) : null,
+			capabilities: (this.capabilities || []).slice(),
+			warmTransferOutcomeNoticeStatus: SipWarmTransferOutcomeNoticeStatus[this.warmTransferOutcomeNoticeStatus === null || this.warmTransferOutcomeNoticeStatus === void 0 ? 0 : this.warmTransferOutcomeNoticeStatus]
 		};
 	}
 };
@@ -94210,6 +97216,7 @@ var SipSetCallMediaControlRequest = class SipSetCallMediaControlRequest {
 		_instance.botListening = _instance.botListening || 0;
 		_instance.owner = _instance.owner || 0;
 		_instance.participantsPresent = _instance.participantsPresent || false;
+		_instance.warmTransferOutcome = _instance.warmTransferOutcome || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -94227,6 +97234,10 @@ var SipSetCallMediaControlRequest = class SipSetCallMediaControlRequest {
 				case 4:
 					_instance.participantsPresent = _reader.readBool();
 					break;
+				case 5:
+					_instance.warmTransferOutcome = new SipWarmTransferOutcomeNotice();
+					_reader.readMessage(_instance.warmTransferOutcome, SipWarmTransferOutcomeNotice.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -94237,6 +97248,7 @@ var SipSetCallMediaControlRequest = class SipSetCallMediaControlRequest {
 		if (_instance.botListening) _writer.writeEnum(2, _instance.botListening);
 		if (_instance.owner) _writer.writeEnum(3, _instance.owner);
 		if (_instance.participantsPresent) _writer.writeBool(4, _instance.participantsPresent);
+		if (_instance.warmTransferOutcome) _writer.writeMessage(5, _instance.warmTransferOutcome, SipWarmTransferOutcomeNotice.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -94244,6 +97256,7 @@ var SipSetCallMediaControlRequest = class SipSetCallMediaControlRequest {
 		this.botListening = _value.botListening;
 		this.owner = _value.owner;
 		this.participantsPresent = _value.participantsPresent;
+		this.warmTransferOutcome = _value.warmTransferOutcome ? new SipWarmTransferOutcomeNotice(_value.warmTransferOutcome) : void 0;
 		SipSetCallMediaControlRequest.refineValues(this);
 	}
 	get botVoice() {
@@ -94270,6 +97283,12 @@ var SipSetCallMediaControlRequest = class SipSetCallMediaControlRequest {
 	set participantsPresent(value) {
 		this._participantsPresent = value;
 	}
+	get warmTransferOutcome() {
+		return this._warmTransferOutcome;
+	}
+	set warmTransferOutcome(value) {
+		this._warmTransferOutcome = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		SipSetCallMediaControlRequest.serializeBinaryToWriter(this, writer);
@@ -94280,7 +97299,8 @@ var SipSetCallMediaControlRequest = class SipSetCallMediaControlRequest {
 			botVoice: this.botVoice,
 			botListening: this.botListening,
 			owner: this.owner,
-			participantsPresent: this.participantsPresent
+			participantsPresent: this.participantsPresent,
+			warmTransferOutcome: this.warmTransferOutcome ? this.warmTransferOutcome.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -94291,8 +97311,189 @@ var SipSetCallMediaControlRequest = class SipSetCallMediaControlRequest {
 			botVoice: MediaControlSetting[this.botVoice === null || this.botVoice === void 0 ? 0 : this.botVoice],
 			botListening: MediaControlSetting[this.botListening === null || this.botListening === void 0 ? 0 : this.botListening],
 			owner: MediaControlOwner[this.owner === null || this.owner === void 0 ? 0 : this.owner],
-			participantsPresent: this.participantsPresent
+			participantsPresent: this.participantsPresent,
+			warmTransferOutcome: this.warmTransferOutcome ? this.warmTransferOutcome.toProtobufJSON(options) : null
 		};
+	}
+};
+var SipWarmTransferOutcomeNotice = class SipWarmTransferOutcomeNotice {
+	static {
+		this.id = "ondewo.sip.SipWarmTransferOutcomeNotice";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new SipWarmTransferOutcomeNotice();
+		SipWarmTransferOutcomeNotice.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.requestId = _instance.requestId || "";
+		_instance.outcome = _instance.outcome || 0;
+		_instance.introSession = _instance.introSession || "";
+		_instance.calleeDisplayName = _instance.calleeDisplayName || "";
+		_instance.cause = _instance.cause || "";
+		_instance.fallbackText = _instance.fallbackText || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.requestId = _reader.readString();
+					break;
+				case 2:
+					_instance.outcome = _reader.readEnum();
+					break;
+				case 3:
+					_instance.introSession = _reader.readString();
+					break;
+				case 4:
+					_instance.calleeDisplayName = _reader.readString();
+					break;
+				case 5:
+					_instance.cause = _reader.readString();
+					break;
+				case 6:
+					_instance.fallbackText = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		SipWarmTransferOutcomeNotice.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.requestId) _writer.writeString(1, _instance.requestId);
+		if (_instance.outcome) _writer.writeEnum(2, _instance.outcome);
+		if (_instance.introSession) _writer.writeString(3, _instance.introSession);
+		if (_instance.calleeDisplayName) _writer.writeString(4, _instance.calleeDisplayName);
+		if (_instance.cause) _writer.writeString(5, _instance.cause);
+		if (_instance.fallbackText) _writer.writeString(6, _instance.fallbackText);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.requestId = _value.requestId;
+		this.outcome = _value.outcome;
+		this.introSession = _value.introSession;
+		this.calleeDisplayName = _value.calleeDisplayName;
+		this.cause = _value.cause;
+		this.fallbackText = _value.fallbackText;
+		SipWarmTransferOutcomeNotice.refineValues(this);
+	}
+	get requestId() {
+		return this._requestId;
+	}
+	set requestId(value) {
+		this._requestId = value;
+	}
+	get outcome() {
+		return this._outcome;
+	}
+	set outcome(value) {
+		this._outcome = value;
+	}
+	get introSession() {
+		return this._introSession;
+	}
+	set introSession(value) {
+		this._introSession = value;
+	}
+	get calleeDisplayName() {
+		return this._calleeDisplayName;
+	}
+	set calleeDisplayName(value) {
+		this._calleeDisplayName = value;
+	}
+	get cause() {
+		return this._cause;
+	}
+	set cause(value) {
+		this._cause = value;
+	}
+	get fallbackText() {
+		return this._fallbackText;
+	}
+	set fallbackText(value) {
+		this._fallbackText = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		SipWarmTransferOutcomeNotice.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			requestId: this.requestId,
+			outcome: this.outcome,
+			introSession: this.introSession,
+			calleeDisplayName: this.calleeDisplayName,
+			cause: this.cause,
+			fallbackText: this.fallbackText
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			requestId: this.requestId,
+			outcome: SipWarmTransferOutcome[this.outcome === null || this.outcome === void 0 ? 0 : this.outcome],
+			introSession: this.introSession,
+			calleeDisplayName: this.calleeDisplayName,
+			cause: this.cause,
+			fallbackText: this.fallbackText
+		};
+	}
+};
+var SipSendDtmfRequest = class SipSendDtmfRequest {
+	static {
+		this.id = "ondewo.sip.SipSendDtmfRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new SipSendDtmfRequest();
+		SipSendDtmfRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.digits = _instance.digits || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.digits = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		SipSendDtmfRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.digits) _writer.writeString(1, _instance.digits);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.digits = _value.digits;
+		SipSendDtmfRequest.refineValues(this);
+	}
+	get digits() {
+		return this._digits;
+	}
+	set digits(value) {
+		this._digits = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		SipSendDtmfRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return { digits: this.digits };
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return { digits: this.digits };
 	}
 };
 var SipCallAudioConfig = class SipCallAudioConfig {
@@ -95210,6 +98411,17 @@ var SipClient = class SipClient {
 					requestClass: SipSetCallMediaControlRequest,
 					responseClass: SipStatus
 				});
+			},
+			sipSendDtmf: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.sip.Sip/SipSendDtmf",
+					requestData,
+					requestMetadata,
+					requestClass: SipSendDtmfRequest,
+					responseClass: SipStatus
+				});
 			}
 		};
 		this.client = clientFactory.createClient("ondewo.sip.Sip", settings);
@@ -95252,6 +98464,9 @@ var SipClient = class SipClient {
 	}
 	sipSetCallMediaControl(requestData, requestMetadata = new GrpcMetadata()) {
 		return this.$raw.sipSetCallMediaControl(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	sipSendDtmf(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.sipSendDtmf(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
 	}
 	static {
 		this.ɵfac = i0.ɵɵngDeclareFactory({
@@ -101524,6 +104739,32 @@ i0.ɵɵngDeclareClassMetadata({
 		{ type: i1$1.GrpcHandler }
 	]
 });
+var WarmIntroTextSource;
+(function(WarmIntroTextSource) {
+	WarmIntroTextSource[WarmIntroTextSource["WARM_INTRO_TEXT_SOURCE_UNSPECIFIED"] = 0] = "WARM_INTRO_TEXT_SOURCE_UNSPECIFIED";
+	WarmIntroTextSource[WarmIntroTextSource["WARM_INTRO_TEXT_SOURCE_TEMPLATE"] = 1] = "WARM_INTRO_TEXT_SOURCE_TEMPLATE";
+	WarmIntroTextSource[WarmIntroTextSource["WARM_INTRO_TEXT_SOURCE_LLM_SUMMARY"] = 2] = "WARM_INTRO_TEXT_SOURCE_LLM_SUMMARY";
+})(WarmIntroTextSource || (WarmIntroTextSource = {}));
+var WarmIntroUnavailablePolicy;
+(function(WarmIntroUnavailablePolicy) {
+	WarmIntroUnavailablePolicy[WarmIntroUnavailablePolicy["WARM_INTRO_UNAVAILABLE_POLICY_UNSPECIFIED"] = 0] = "WARM_INTRO_UNAVAILABLE_POLICY_UNSPECIFIED";
+	WarmIntroUnavailablePolicy[WarmIntroUnavailablePolicy["WARM_INTRO_UNAVAILABLE_POLICY_CONNECT_WITHOUT_INTRO"] = 1] = "WARM_INTRO_UNAVAILABLE_POLICY_CONNECT_WITHOUT_INTRO";
+	WarmIntroUnavailablePolicy[WarmIntroUnavailablePolicy["WARM_INTRO_UNAVAILABLE_POLICY_RETURN_TO_CALLER"] = 2] = "WARM_INTRO_UNAVAILABLE_POLICY_RETURN_TO_CALLER";
+})(WarmIntroUnavailablePolicy || (WarmIntroUnavailablePolicy = {}));
+var WarmIntroDecision;
+(function(WarmIntroDecision) {
+	WarmIntroDecision[WarmIntroDecision["WARM_INTRO_DECISION_UNSPECIFIED"] = 0] = "WARM_INTRO_DECISION_UNSPECIFIED";
+	WarmIntroDecision[WarmIntroDecision["WARM_INTRO_DECISION_ACCEPTED"] = 1] = "WARM_INTRO_DECISION_ACCEPTED";
+	WarmIntroDecision[WarmIntroDecision["WARM_INTRO_DECISION_DECLINED"] = 2] = "WARM_INTRO_DECISION_DECLINED";
+	WarmIntroDecision[WarmIntroDecision["WARM_INTRO_DECISION_NO_DECISION"] = 3] = "WARM_INTRO_DECISION_NO_DECISION";
+})(WarmIntroDecision || (WarmIntroDecision = {}));
+var WarmIntroDecidedBy;
+(function(WarmIntroDecidedBy) {
+	WarmIntroDecidedBy[WarmIntroDecidedBy["WARM_INTRO_DECIDED_BY_UNSPECIFIED"] = 0] = "WARM_INTRO_DECIDED_BY_UNSPECIFIED";
+	WarmIntroDecidedBy[WarmIntroDecidedBy["WARM_INTRO_DECIDED_BY_DTMF"] = 1] = "WARM_INTRO_DECIDED_BY_DTMF";
+	WarmIntroDecidedBy[WarmIntroDecidedBy["WARM_INTRO_DECIDED_BY_SPEECH"] = 2] = "WARM_INTRO_DECIDED_BY_SPEECH";
+	WarmIntroDecidedBy[WarmIntroDecidedBy["WARM_INTRO_DECIDED_BY_TIMEOUT"] = 3] = "WARM_INTRO_DECIDED_BY_TIMEOUT";
+})(WarmIntroDecidedBy || (WarmIntroDecidedBy = {}));
 var BaseServiceConfig = class BaseServiceConfig {
 	static {
 		this.id = "ondewo.vtsi.BaseServiceConfig";
@@ -101696,6 +104937,7 @@ var NluVtsiConfig = class NluVtsiConfig {
 		_instance.initialIntent = _instance.initialIntent || "";
 		_instance.contexts = _instance.contexts || [];
 		_instance.httpBasicAuthToken = _instance.httpBasicAuthToken || "";
+		_instance.preemptiveGenerationConfig = _instance.preemptiveGenerationConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -101732,6 +104974,10 @@ var NluVtsiConfig = class NluVtsiConfig {
 				case 9:
 					_instance.platform = _reader.readEnum();
 					break;
+				case 10:
+					_instance.preemptiveGenerationConfig = new NluPreemptiveGenerationConfig();
+					_reader.readMessage(_instance.preemptiveGenerationConfig, NluPreemptiveGenerationConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -101747,6 +104993,7 @@ var NluVtsiConfig = class NluVtsiConfig {
 		if (_instance.contexts && _instance.contexts.length) _writer.writeRepeatedMessage(7, _instance.contexts, Context.serializeBinaryToWriter);
 		if (_instance.httpBasicAuthToken) _writer.writeString(8, _instance.httpBasicAuthToken);
 		if (_instance.platform !== void 0 && _instance.platform !== null) _writer.writeEnum(9, _instance.platform);
+		if (_instance.preemptiveGenerationConfig) _writer.writeMessage(10, _instance.preemptiveGenerationConfig, NluPreemptiveGenerationConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		this._authentication = NluVtsiConfig.AuthenticationCase.none;
@@ -101760,6 +105007,7 @@ var NluVtsiConfig = class NluVtsiConfig {
 		this.contexts = (_value.contexts || []).map((m) => new Context(m));
 		this.httpBasicAuthToken = _value.httpBasicAuthToken;
 		this.platform = _value.platform;
+		this.preemptiveGenerationConfig = _value.preemptiveGenerationConfig ? new NluPreemptiveGenerationConfig(_value.preemptiveGenerationConfig) : void 0;
 		NluVtsiConfig.refineValues(this);
 	}
 	get nluBaseConfig() {
@@ -101824,6 +105072,12 @@ var NluVtsiConfig = class NluVtsiConfig {
 	set platform(value) {
 		this._platform = value;
 	}
+	get preemptiveGenerationConfig() {
+		return this._preemptiveGenerationConfig;
+	}
+	set preemptiveGenerationConfig(value) {
+		this._preemptiveGenerationConfig = value;
+	}
 	get authentication() {
 		return this._authentication;
 	}
@@ -101842,7 +105096,8 @@ var NluVtsiConfig = class NluVtsiConfig {
 			initialIntent: this.initialIntent,
 			contexts: (this.contexts || []).map((m) => m.toObject()),
 			httpBasicAuthToken: this.httpBasicAuthToken,
-			platform: this.platform
+			platform: this.platform,
+			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -101858,7 +105113,8 @@ var NluVtsiConfig = class NluVtsiConfig {
 			initialIntent: this.initialIntent,
 			contexts: (this.contexts || []).map((m) => m.toProtobufJSON(options)),
 			httpBasicAuthToken: this.httpBasicAuthToken,
-			platform: Intent.Message.Platform[this.platform === null || this.platform === void 0 ? 0 : this.platform]
+			platform: Intent.Message.Platform[this.platform === null || this.platform === void 0 ? 0 : this.platform],
+			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toProtobufJSON(options) : null
 		};
 	}
 };
@@ -101869,6 +105125,87 @@ var NluVtsiConfig = class NluVtsiConfig {
 		AuthenticationCase[AuthenticationCase["authToken"] = 2] = "authToken";
 	})(NluVtsiConfig.AuthenticationCase || (NluVtsiConfig.AuthenticationCase = {}));
 })(NluVtsiConfig || (NluVtsiConfig = {}));
+var NluPreemptiveGenerationConfig = class NluPreemptiveGenerationConfig {
+	static {
+		this.id = "ondewo.vtsi.NluPreemptiveGenerationConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new NluPreemptiveGenerationConfig();
+		NluPreemptiveGenerationConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.maxDraftsPerTurn = _reader.readInt32();
+					break;
+				case 2:
+					_instance.minStableDwellSeconds = _reader.readFloat();
+					break;
+				case 3:
+					_instance.minIntervalSeconds = _reader.readFloat();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		NluPreemptiveGenerationConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.maxDraftsPerTurn !== void 0 && _instance.maxDraftsPerTurn !== null) _writer.writeInt32(1, _instance.maxDraftsPerTurn);
+		if (_instance.minStableDwellSeconds !== void 0 && _instance.minStableDwellSeconds !== null) _writer.writeFloat(2, _instance.minStableDwellSeconds);
+		if (_instance.minIntervalSeconds !== void 0 && _instance.minIntervalSeconds !== null) _writer.writeFloat(3, _instance.minIntervalSeconds);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.maxDraftsPerTurn = _value.maxDraftsPerTurn;
+		this.minStableDwellSeconds = _value.minStableDwellSeconds;
+		this.minIntervalSeconds = _value.minIntervalSeconds;
+		NluPreemptiveGenerationConfig.refineValues(this);
+	}
+	get maxDraftsPerTurn() {
+		return this._maxDraftsPerTurn;
+	}
+	set maxDraftsPerTurn(value) {
+		this._maxDraftsPerTurn = value;
+	}
+	get minStableDwellSeconds() {
+		return this._minStableDwellSeconds;
+	}
+	set minStableDwellSeconds(value) {
+		this._minStableDwellSeconds = value;
+	}
+	get minIntervalSeconds() {
+		return this._minIntervalSeconds;
+	}
+	set minIntervalSeconds(value) {
+		this._minIntervalSeconds = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		NluPreemptiveGenerationConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			maxDraftsPerTurn: this.maxDraftsPerTurn,
+			minStableDwellSeconds: this.minStableDwellSeconds,
+			minIntervalSeconds: this.minIntervalSeconds
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			maxDraftsPerTurn: this.maxDraftsPerTurn,
+			minStableDwellSeconds: this.minStableDwellSeconds,
+			minIntervalSeconds: this.minIntervalSeconds
+		};
+	}
+};
 var T2sVtsiConfig = class T2sVtsiConfig {
 	static {
 		this.id = "ondewo.vtsi.T2sVtsiConfig";
@@ -101881,6 +105218,7 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 	static refineValues(_instance) {
 		_instance.t2sBaseConfig = _instance.t2sBaseConfig || void 0;
 		_instance.t2sRequestConfig = _instance.t2sRequestConfig || void 0;
+		_instance.preemptiveSynthesisConfig = _instance.preemptiveSynthesisConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -101894,6 +105232,10 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 					_instance.t2sRequestConfig = new RequestConfig();
 					_reader.readMessage(_instance.t2sRequestConfig, RequestConfig.deserializeBinaryFromReader);
 					break;
+				case 3:
+					_instance.preemptiveSynthesisConfig = new T2sPreemptiveSynthesisConfig();
+					_reader.readMessage(_instance.preemptiveSynthesisConfig, T2sPreemptiveSynthesisConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -101902,11 +105244,13 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 	static serializeBinaryToWriter(_instance, _writer) {
 		if (_instance.t2sBaseConfig) _writer.writeMessage(1, _instance.t2sBaseConfig, BaseServiceConfig.serializeBinaryToWriter);
 		if (_instance.t2sRequestConfig) _writer.writeMessage(2, _instance.t2sRequestConfig, RequestConfig.serializeBinaryToWriter);
+		if (_instance.preemptiveSynthesisConfig) _writer.writeMessage(3, _instance.preemptiveSynthesisConfig, T2sPreemptiveSynthesisConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
 		this.t2sBaseConfig = _value.t2sBaseConfig ? new BaseServiceConfig(_value.t2sBaseConfig) : void 0;
 		this.t2sRequestConfig = _value.t2sRequestConfig ? new RequestConfig(_value.t2sRequestConfig) : void 0;
+		this.preemptiveSynthesisConfig = _value.preemptiveSynthesisConfig ? new T2sPreemptiveSynthesisConfig(_value.preemptiveSynthesisConfig) : void 0;
 		T2sVtsiConfig.refineValues(this);
 	}
 	get t2sBaseConfig() {
@@ -101921,6 +105265,12 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 	set t2sRequestConfig(value) {
 		this._t2sRequestConfig = value;
 	}
+	get preemptiveSynthesisConfig() {
+		return this._preemptiveSynthesisConfig;
+	}
+	set preemptiveSynthesisConfig(value) {
+		this._preemptiveSynthesisConfig = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		T2sVtsiConfig.serializeBinaryToWriter(this, writer);
@@ -101929,7 +105279,8 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 	toObject() {
 		return {
 			t2sBaseConfig: this.t2sBaseConfig ? this.t2sBaseConfig.toObject() : void 0,
-			t2sRequestConfig: this.t2sRequestConfig ? this.t2sRequestConfig.toObject() : void 0
+			t2sRequestConfig: this.t2sRequestConfig ? this.t2sRequestConfig.toObject() : void 0,
+			preemptiveSynthesisConfig: this.preemptiveSynthesisConfig ? this.preemptiveSynthesisConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -101938,7 +105289,76 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 	toProtobufJSON(options) {
 		return {
 			t2sBaseConfig: this.t2sBaseConfig ? this.t2sBaseConfig.toProtobufJSON(options) : null,
-			t2sRequestConfig: this.t2sRequestConfig ? this.t2sRequestConfig.toProtobufJSON(options) : null
+			t2sRequestConfig: this.t2sRequestConfig ? this.t2sRequestConfig.toProtobufJSON(options) : null,
+			preemptiveSynthesisConfig: this.preemptiveSynthesisConfig ? this.preemptiveSynthesisConfig.toProtobufJSON(options) : null
+		};
+	}
+};
+var T2sPreemptiveSynthesisConfig = class T2sPreemptiveSynthesisConfig {
+	static {
+		this.id = "ondewo.vtsi.T2sPreemptiveSynthesisConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new T2sPreemptiveSynthesisConfig();
+		T2sPreemptiveSynthesisConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.enabled = _reader.readBool();
+					break;
+				case 2:
+					_instance.chunked = _reader.readBool();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		T2sPreemptiveSynthesisConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.enabled !== void 0 && _instance.enabled !== null) _writer.writeBool(1, _instance.enabled);
+		if (_instance.chunked !== void 0 && _instance.chunked !== null) _writer.writeBool(2, _instance.chunked);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.enabled = _value.enabled;
+		this.chunked = _value.chunked;
+		T2sPreemptiveSynthesisConfig.refineValues(this);
+	}
+	get enabled() {
+		return this._enabled;
+	}
+	set enabled(value) {
+		this._enabled = value;
+	}
+	get chunked() {
+		return this._chunked;
+	}
+	set chunked(value) {
+		this._chunked = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		T2sPreemptiveSynthesisConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			enabled: this.enabled,
+			chunked: this.chunked
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			enabled: this.enabled,
+			chunked: this.chunked
 		};
 	}
 };
@@ -102147,6 +105567,8 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 		_instance.interruptionHandlingConfig = _instance.interruptionHandlingConfig || void 0;
 		_instance.responseTimingConfig = _instance.responseTimingConfig || void 0;
 		_instance.answeringMachineDetectionConfig = _instance.answeringMachineDetectionConfig || void 0;
+		_instance.dtmfConfig = _instance.dtmfConfig || void 0;
+		_instance.warmTransferConfig = _instance.warmTransferConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -102168,6 +105590,14 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 					_instance.answeringMachineDetectionConfig = new AnsweringMachineDetectionConfig();
 					_reader.readMessage(_instance.answeringMachineDetectionConfig, AnsweringMachineDetectionConfig.deserializeBinaryFromReader);
 					break;
+				case 5:
+					_instance.dtmfConfig = new DtmfConfig();
+					_reader.readMessage(_instance.dtmfConfig, DtmfConfig.deserializeBinaryFromReader);
+					break;
+				case 6:
+					_instance.warmTransferConfig = new WarmTransferConfig();
+					_reader.readMessage(_instance.warmTransferConfig, WarmTransferConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -102178,6 +105608,8 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 		if (_instance.interruptionHandlingConfig) _writer.writeMessage(2, _instance.interruptionHandlingConfig, InterruptionHandlingConfig.serializeBinaryToWriter);
 		if (_instance.responseTimingConfig) _writer.writeMessage(3, _instance.responseTimingConfig, ResponseTimingConfig.serializeBinaryToWriter);
 		if (_instance.answeringMachineDetectionConfig) _writer.writeMessage(4, _instance.answeringMachineDetectionConfig, AnsweringMachineDetectionConfig.serializeBinaryToWriter);
+		if (_instance.dtmfConfig) _writer.writeMessage(5, _instance.dtmfConfig, DtmfConfig.serializeBinaryToWriter);
+		if (_instance.warmTransferConfig) _writer.writeMessage(6, _instance.warmTransferConfig, WarmTransferConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -102185,6 +105617,8 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 		this.interruptionHandlingConfig = _value.interruptionHandlingConfig ? new InterruptionHandlingConfig(_value.interruptionHandlingConfig) : void 0;
 		this.responseTimingConfig = _value.responseTimingConfig ? new ResponseTimingConfig(_value.responseTimingConfig) : void 0;
 		this.answeringMachineDetectionConfig = _value.answeringMachineDetectionConfig ? new AnsweringMachineDetectionConfig(_value.answeringMachineDetectionConfig) : void 0;
+		this.dtmfConfig = _value.dtmfConfig ? new DtmfConfig(_value.dtmfConfig) : void 0;
+		this.warmTransferConfig = _value.warmTransferConfig ? new WarmTransferConfig(_value.warmTransferConfig) : void 0;
 		VoiceInteractionConfig.refineValues(this);
 	}
 	get turnDetectionConfig() {
@@ -102211,6 +105645,18 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 	set answeringMachineDetectionConfig(value) {
 		this._answeringMachineDetectionConfig = value;
 	}
+	get dtmfConfig() {
+		return this._dtmfConfig;
+	}
+	set dtmfConfig(value) {
+		this._dtmfConfig = value;
+	}
+	get warmTransferConfig() {
+		return this._warmTransferConfig;
+	}
+	set warmTransferConfig(value) {
+		this._warmTransferConfig = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		VoiceInteractionConfig.serializeBinaryToWriter(this, writer);
@@ -102221,7 +105667,9 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 			turnDetectionConfig: this.turnDetectionConfig ? this.turnDetectionConfig.toObject() : void 0,
 			interruptionHandlingConfig: this.interruptionHandlingConfig ? this.interruptionHandlingConfig.toObject() : void 0,
 			responseTimingConfig: this.responseTimingConfig ? this.responseTimingConfig.toObject() : void 0,
-			answeringMachineDetectionConfig: this.answeringMachineDetectionConfig ? this.answeringMachineDetectionConfig.toObject() : void 0
+			answeringMachineDetectionConfig: this.answeringMachineDetectionConfig ? this.answeringMachineDetectionConfig.toObject() : void 0,
+			dtmfConfig: this.dtmfConfig ? this.dtmfConfig.toObject() : void 0,
+			warmTransferConfig: this.warmTransferConfig ? this.warmTransferConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -102232,7 +105680,687 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 			turnDetectionConfig: this.turnDetectionConfig ? this.turnDetectionConfig.toProtobufJSON(options) : null,
 			interruptionHandlingConfig: this.interruptionHandlingConfig ? this.interruptionHandlingConfig.toProtobufJSON(options) : null,
 			responseTimingConfig: this.responseTimingConfig ? this.responseTimingConfig.toProtobufJSON(options) : null,
-			answeringMachineDetectionConfig: this.answeringMachineDetectionConfig ? this.answeringMachineDetectionConfig.toProtobufJSON(options) : null
+			answeringMachineDetectionConfig: this.answeringMachineDetectionConfig ? this.answeringMachineDetectionConfig.toProtobufJSON(options) : null,
+			dtmfConfig: this.dtmfConfig ? this.dtmfConfig.toProtobufJSON(options) : null,
+			warmTransferConfig: this.warmTransferConfig ? this.warmTransferConfig.toProtobufJSON(options) : null
+		};
+	}
+};
+var DtmfConfig = class DtmfConfig {
+	static {
+		this.id = "ondewo.vtsi.DtmfConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new DtmfConfig();
+		DtmfConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.enabled = _reader.readBool();
+					break;
+				case 2:
+					_instance.bargeIn = _reader.readBool();
+					break;
+				case 3:
+					_instance.interDigitTimeoutMs = _reader.readUint32();
+					break;
+				case 4:
+					_instance.undeclaredPolicy = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		DtmfConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.enabled !== void 0 && _instance.enabled !== null) _writer.writeBool(1, _instance.enabled);
+		if (_instance.bargeIn !== void 0 && _instance.bargeIn !== null) _writer.writeBool(2, _instance.bargeIn);
+		if (_instance.interDigitTimeoutMs !== void 0 && _instance.interDigitTimeoutMs !== null) _writer.writeUint32(3, _instance.interDigitTimeoutMs);
+		if (_instance.undeclaredPolicy !== void 0 && _instance.undeclaredPolicy !== null) _writer.writeString(4, _instance.undeclaredPolicy);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.enabled = _value.enabled;
+		this.bargeIn = _value.bargeIn;
+		this.interDigitTimeoutMs = _value.interDigitTimeoutMs;
+		this.undeclaredPolicy = _value.undeclaredPolicy;
+		DtmfConfig.refineValues(this);
+	}
+	get enabled() {
+		return this._enabled;
+	}
+	set enabled(value) {
+		this._enabled = value;
+	}
+	get bargeIn() {
+		return this._bargeIn;
+	}
+	set bargeIn(value) {
+		this._bargeIn = value;
+	}
+	get interDigitTimeoutMs() {
+		return this._interDigitTimeoutMs;
+	}
+	set interDigitTimeoutMs(value) {
+		this._interDigitTimeoutMs = value;
+	}
+	get undeclaredPolicy() {
+		return this._undeclaredPolicy;
+	}
+	set undeclaredPolicy(value) {
+		this._undeclaredPolicy = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DtmfConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			enabled: this.enabled,
+			bargeIn: this.bargeIn,
+			interDigitTimeoutMs: this.interDigitTimeoutMs,
+			undeclaredPolicy: this.undeclaredPolicy
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			enabled: this.enabled,
+			bargeIn: this.bargeIn,
+			interDigitTimeoutMs: this.interDigitTimeoutMs,
+			undeclaredPolicy: this.undeclaredPolicy
+		};
+	}
+};
+var WarmTransferConfig = class WarmTransferConfig {
+	static {
+		this.id = "ondewo.vtsi.WarmTransferConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new WarmTransferConfig();
+		WarmTransferConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.introTextSource = _instance.introTextSource || 0;
+		_instance.onIntroUnavailable = _instance.onIntroUnavailable || 0;
+		_instance.introListenerNames = _instance.introListenerNames || [];
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.enabled = _reader.readBool();
+					break;
+				case 2:
+					_instance.introPrompt = _reader.readString();
+					break;
+				case 3:
+					_instance.introTextSource = _reader.readEnum();
+					break;
+				case 4:
+					_instance.readyQuestion = _reader.readString();
+					break;
+				case 5:
+					_instance.confirmHumanBeforeIntro = _reader.readBool();
+					break;
+				case 6:
+					_instance.acceptQuestion = _reader.readString();
+					break;
+				case 7:
+					_instance.declineReasonQuestion = _reader.readString();
+					break;
+				case 8:
+					_instance.callerDeclinedMessage = _reader.readString();
+					break;
+				case 9:
+					_instance.callerUnreachableMessage = _reader.readString();
+					break;
+				case 10:
+					_instance.acceptDtmf = _reader.readString();
+					break;
+				case 11:
+					_instance.declineDtmf = _reader.readString();
+					break;
+				case 12:
+					_instance.decisionTimeoutS = _reader.readUint32();
+					break;
+				case 13:
+					_instance.maxIntroDurationS = _reader.readUint32();
+					break;
+				case 14:
+					_instance.calleeDisplayName = _reader.readString();
+					break;
+				case 15:
+					_instance.calleeDescription = _reader.readString();
+					break;
+				case 16:
+					_instance.onIntroUnavailable = _reader.readEnum();
+					break;
+				case 17:
+					_instance.applyToBotTransfers = _reader.readBool();
+					break;
+				case 18:
+					_instance.callerHoldMessage = _reader.readString();
+					break;
+				case 19:
+					_instance.callerHoldMusic = _reader.readBool();
+					break;
+				case 20:
+					_instance.callerReassureIntervalS = _reader.readUint32();
+					break;
+				case 21:
+					_instance.llmCcaiServiceName = _reader.readString();
+					break;
+				case 22:
+					_instance.callerDisclosureMessage = _reader.readString();
+					break;
+				case 23:
+					_instance.callerAcceptedMessage = _reader.readString();
+					break;
+				case 24:
+					_instance.storeIntroAudio = _reader.readBool();
+					break;
+				case 25:
+					(_instance.introListenerNames = _instance.introListenerNames || []).push(_reader.readString());
+					break;
+				default: _reader.skipField();
+			}
+		}
+		WarmTransferConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.enabled !== void 0 && _instance.enabled !== null) _writer.writeBool(1, _instance.enabled);
+		if (_instance.introPrompt !== void 0 && _instance.introPrompt !== null) _writer.writeString(2, _instance.introPrompt);
+		if (_instance.introTextSource) _writer.writeEnum(3, _instance.introTextSource);
+		if (_instance.readyQuestion !== void 0 && _instance.readyQuestion !== null) _writer.writeString(4, _instance.readyQuestion);
+		if (_instance.confirmHumanBeforeIntro !== void 0 && _instance.confirmHumanBeforeIntro !== null) _writer.writeBool(5, _instance.confirmHumanBeforeIntro);
+		if (_instance.acceptQuestion !== void 0 && _instance.acceptQuestion !== null) _writer.writeString(6, _instance.acceptQuestion);
+		if (_instance.declineReasonQuestion !== void 0 && _instance.declineReasonQuestion !== null) _writer.writeString(7, _instance.declineReasonQuestion);
+		if (_instance.callerDeclinedMessage !== void 0 && _instance.callerDeclinedMessage !== null) _writer.writeString(8, _instance.callerDeclinedMessage);
+		if (_instance.callerUnreachableMessage !== void 0 && _instance.callerUnreachableMessage !== null) _writer.writeString(9, _instance.callerUnreachableMessage);
+		if (_instance.acceptDtmf !== void 0 && _instance.acceptDtmf !== null) _writer.writeString(10, _instance.acceptDtmf);
+		if (_instance.declineDtmf !== void 0 && _instance.declineDtmf !== null) _writer.writeString(11, _instance.declineDtmf);
+		if (_instance.decisionTimeoutS !== void 0 && _instance.decisionTimeoutS !== null) _writer.writeUint32(12, _instance.decisionTimeoutS);
+		if (_instance.maxIntroDurationS !== void 0 && _instance.maxIntroDurationS !== null) _writer.writeUint32(13, _instance.maxIntroDurationS);
+		if (_instance.calleeDisplayName !== void 0 && _instance.calleeDisplayName !== null) _writer.writeString(14, _instance.calleeDisplayName);
+		if (_instance.calleeDescription !== void 0 && _instance.calleeDescription !== null) _writer.writeString(15, _instance.calleeDescription);
+		if (_instance.onIntroUnavailable) _writer.writeEnum(16, _instance.onIntroUnavailable);
+		if (_instance.applyToBotTransfers !== void 0 && _instance.applyToBotTransfers !== null) _writer.writeBool(17, _instance.applyToBotTransfers);
+		if (_instance.callerHoldMessage !== void 0 && _instance.callerHoldMessage !== null) _writer.writeString(18, _instance.callerHoldMessage);
+		if (_instance.callerHoldMusic !== void 0 && _instance.callerHoldMusic !== null) _writer.writeBool(19, _instance.callerHoldMusic);
+		if (_instance.callerReassureIntervalS !== void 0 && _instance.callerReassureIntervalS !== null) _writer.writeUint32(20, _instance.callerReassureIntervalS);
+		if (_instance.llmCcaiServiceName !== void 0 && _instance.llmCcaiServiceName !== null) _writer.writeString(21, _instance.llmCcaiServiceName);
+		if (_instance.callerDisclosureMessage !== void 0 && _instance.callerDisclosureMessage !== null) _writer.writeString(22, _instance.callerDisclosureMessage);
+		if (_instance.callerAcceptedMessage !== void 0 && _instance.callerAcceptedMessage !== null) _writer.writeString(23, _instance.callerAcceptedMessage);
+		if (_instance.storeIntroAudio !== void 0 && _instance.storeIntroAudio !== null) _writer.writeBool(24, _instance.storeIntroAudio);
+		if (_instance.introListenerNames && _instance.introListenerNames.length) _writer.writeRepeatedString(25, _instance.introListenerNames);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.enabled = _value.enabled;
+		this.introPrompt = _value.introPrompt;
+		this.introTextSource = _value.introTextSource;
+		this.readyQuestion = _value.readyQuestion;
+		this.confirmHumanBeforeIntro = _value.confirmHumanBeforeIntro;
+		this.acceptQuestion = _value.acceptQuestion;
+		this.declineReasonQuestion = _value.declineReasonQuestion;
+		this.callerDeclinedMessage = _value.callerDeclinedMessage;
+		this.callerUnreachableMessage = _value.callerUnreachableMessage;
+		this.acceptDtmf = _value.acceptDtmf;
+		this.declineDtmf = _value.declineDtmf;
+		this.decisionTimeoutS = _value.decisionTimeoutS;
+		this.maxIntroDurationS = _value.maxIntroDurationS;
+		this.calleeDisplayName = _value.calleeDisplayName;
+		this.calleeDescription = _value.calleeDescription;
+		this.onIntroUnavailable = _value.onIntroUnavailable;
+		this.applyToBotTransfers = _value.applyToBotTransfers;
+		this.callerHoldMessage = _value.callerHoldMessage;
+		this.callerHoldMusic = _value.callerHoldMusic;
+		this.callerReassureIntervalS = _value.callerReassureIntervalS;
+		this.llmCcaiServiceName = _value.llmCcaiServiceName;
+		this.callerDisclosureMessage = _value.callerDisclosureMessage;
+		this.callerAcceptedMessage = _value.callerAcceptedMessage;
+		this.storeIntroAudio = _value.storeIntroAudio;
+		this.introListenerNames = (_value.introListenerNames || []).slice();
+		WarmTransferConfig.refineValues(this);
+	}
+	get enabled() {
+		return this._enabled;
+	}
+	set enabled(value) {
+		this._enabled = value;
+	}
+	get introPrompt() {
+		return this._introPrompt;
+	}
+	set introPrompt(value) {
+		this._introPrompt = value;
+	}
+	get introTextSource() {
+		return this._introTextSource;
+	}
+	set introTextSource(value) {
+		this._introTextSource = value;
+	}
+	get readyQuestion() {
+		return this._readyQuestion;
+	}
+	set readyQuestion(value) {
+		this._readyQuestion = value;
+	}
+	get confirmHumanBeforeIntro() {
+		return this._confirmHumanBeforeIntro;
+	}
+	set confirmHumanBeforeIntro(value) {
+		this._confirmHumanBeforeIntro = value;
+	}
+	get acceptQuestion() {
+		return this._acceptQuestion;
+	}
+	set acceptQuestion(value) {
+		this._acceptQuestion = value;
+	}
+	get declineReasonQuestion() {
+		return this._declineReasonQuestion;
+	}
+	set declineReasonQuestion(value) {
+		this._declineReasonQuestion = value;
+	}
+	get callerDeclinedMessage() {
+		return this._callerDeclinedMessage;
+	}
+	set callerDeclinedMessage(value) {
+		this._callerDeclinedMessage = value;
+	}
+	get callerUnreachableMessage() {
+		return this._callerUnreachableMessage;
+	}
+	set callerUnreachableMessage(value) {
+		this._callerUnreachableMessage = value;
+	}
+	get acceptDtmf() {
+		return this._acceptDtmf;
+	}
+	set acceptDtmf(value) {
+		this._acceptDtmf = value;
+	}
+	get declineDtmf() {
+		return this._declineDtmf;
+	}
+	set declineDtmf(value) {
+		this._declineDtmf = value;
+	}
+	get decisionTimeoutS() {
+		return this._decisionTimeoutS;
+	}
+	set decisionTimeoutS(value) {
+		this._decisionTimeoutS = value;
+	}
+	get maxIntroDurationS() {
+		return this._maxIntroDurationS;
+	}
+	set maxIntroDurationS(value) {
+		this._maxIntroDurationS = value;
+	}
+	get calleeDisplayName() {
+		return this._calleeDisplayName;
+	}
+	set calleeDisplayName(value) {
+		this._calleeDisplayName = value;
+	}
+	get calleeDescription() {
+		return this._calleeDescription;
+	}
+	set calleeDescription(value) {
+		this._calleeDescription = value;
+	}
+	get onIntroUnavailable() {
+		return this._onIntroUnavailable;
+	}
+	set onIntroUnavailable(value) {
+		this._onIntroUnavailable = value;
+	}
+	get applyToBotTransfers() {
+		return this._applyToBotTransfers;
+	}
+	set applyToBotTransfers(value) {
+		this._applyToBotTransfers = value;
+	}
+	get callerHoldMessage() {
+		return this._callerHoldMessage;
+	}
+	set callerHoldMessage(value) {
+		this._callerHoldMessage = value;
+	}
+	get callerHoldMusic() {
+		return this._callerHoldMusic;
+	}
+	set callerHoldMusic(value) {
+		this._callerHoldMusic = value;
+	}
+	get callerReassureIntervalS() {
+		return this._callerReassureIntervalS;
+	}
+	set callerReassureIntervalS(value) {
+		this._callerReassureIntervalS = value;
+	}
+	get llmCcaiServiceName() {
+		return this._llmCcaiServiceName;
+	}
+	set llmCcaiServiceName(value) {
+		this._llmCcaiServiceName = value;
+	}
+	get callerDisclosureMessage() {
+		return this._callerDisclosureMessage;
+	}
+	set callerDisclosureMessage(value) {
+		this._callerDisclosureMessage = value;
+	}
+	get callerAcceptedMessage() {
+		return this._callerAcceptedMessage;
+	}
+	set callerAcceptedMessage(value) {
+		this._callerAcceptedMessage = value;
+	}
+	get storeIntroAudio() {
+		return this._storeIntroAudio;
+	}
+	set storeIntroAudio(value) {
+		this._storeIntroAudio = value;
+	}
+	get introListenerNames() {
+		return this._introListenerNames;
+	}
+	set introListenerNames(value) {
+		this._introListenerNames = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		WarmTransferConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			enabled: this.enabled,
+			introPrompt: this.introPrompt,
+			introTextSource: this.introTextSource,
+			readyQuestion: this.readyQuestion,
+			confirmHumanBeforeIntro: this.confirmHumanBeforeIntro,
+			acceptQuestion: this.acceptQuestion,
+			declineReasonQuestion: this.declineReasonQuestion,
+			callerDeclinedMessage: this.callerDeclinedMessage,
+			callerUnreachableMessage: this.callerUnreachableMessage,
+			acceptDtmf: this.acceptDtmf,
+			declineDtmf: this.declineDtmf,
+			decisionTimeoutS: this.decisionTimeoutS,
+			maxIntroDurationS: this.maxIntroDurationS,
+			calleeDisplayName: this.calleeDisplayName,
+			calleeDescription: this.calleeDescription,
+			onIntroUnavailable: this.onIntroUnavailable,
+			applyToBotTransfers: this.applyToBotTransfers,
+			callerHoldMessage: this.callerHoldMessage,
+			callerHoldMusic: this.callerHoldMusic,
+			callerReassureIntervalS: this.callerReassureIntervalS,
+			llmCcaiServiceName: this.llmCcaiServiceName,
+			callerDisclosureMessage: this.callerDisclosureMessage,
+			callerAcceptedMessage: this.callerAcceptedMessage,
+			storeIntroAudio: this.storeIntroAudio,
+			introListenerNames: (this.introListenerNames || []).slice()
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			enabled: this.enabled,
+			introPrompt: this.introPrompt,
+			introTextSource: WarmIntroTextSource[this.introTextSource === null || this.introTextSource === void 0 ? 0 : this.introTextSource],
+			readyQuestion: this.readyQuestion,
+			confirmHumanBeforeIntro: this.confirmHumanBeforeIntro,
+			acceptQuestion: this.acceptQuestion,
+			declineReasonQuestion: this.declineReasonQuestion,
+			callerDeclinedMessage: this.callerDeclinedMessage,
+			callerUnreachableMessage: this.callerUnreachableMessage,
+			acceptDtmf: this.acceptDtmf,
+			declineDtmf: this.declineDtmf,
+			decisionTimeoutS: this.decisionTimeoutS,
+			maxIntroDurationS: this.maxIntroDurationS,
+			calleeDisplayName: this.calleeDisplayName,
+			calleeDescription: this.calleeDescription,
+			onIntroUnavailable: WarmIntroUnavailablePolicy[this.onIntroUnavailable === null || this.onIntroUnavailable === void 0 ? 0 : this.onIntroUnavailable],
+			applyToBotTransfers: this.applyToBotTransfers,
+			callerHoldMessage: this.callerHoldMessage,
+			callerHoldMusic: this.callerHoldMusic,
+			callerReassureIntervalS: this.callerReassureIntervalS,
+			llmCcaiServiceName: this.llmCcaiServiceName,
+			callerDisclosureMessage: this.callerDisclosureMessage,
+			callerAcceptedMessage: this.callerAcceptedMessage,
+			storeIntroAudio: this.storeIntroAudio,
+			introListenerNames: (this.introListenerNames || []).slice()
+		};
+	}
+};
+var WarmIntroRecord = class WarmIntroRecord {
+	static {
+		this.id = "ondewo.vtsi.WarmIntroRecord";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new WarmIntroRecord();
+		WarmIntroRecord.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.introId = _instance.introId || "";
+		_instance.decision = _instance.decision || 0;
+		_instance.decidedBy = _instance.decidedBy || 0;
+		_instance.declineReasonPresent = _instance.declineReasonPresent || false;
+		_instance.introCallName = _instance.introCallName || "";
+		_instance.ringDuration = _instance.ringDuration || void 0;
+		_instance.introDuration = _instance.introDuration || void 0;
+		_instance.textSource = _instance.textSource || 0;
+		_instance.textFellBack = _instance.textFellBack || false;
+		_instance.cause = _instance.cause || "";
+		_instance.noticeDelivered = _instance.noticeDelivered || false;
+		_instance.introStarted = _instance.introStarted || false;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.introId = _reader.readString();
+					break;
+				case 2:
+					_instance.decision = _reader.readEnum();
+					break;
+				case 3:
+					_instance.decidedBy = _reader.readEnum();
+					break;
+				case 4:
+					_instance.declineReasonPresent = _reader.readBool();
+					break;
+				case 5:
+					_instance.introCallName = _reader.readString();
+					break;
+				case 6:
+					_instance.ringDuration = new googleProtobuf000.Duration();
+					_reader.readMessage(_instance.ringDuration, googleProtobuf000.Duration.deserializeBinaryFromReader);
+					break;
+				case 7:
+					_instance.introDuration = new googleProtobuf000.Duration();
+					_reader.readMessage(_instance.introDuration, googleProtobuf000.Duration.deserializeBinaryFromReader);
+					break;
+				case 8:
+					_instance.textSource = _reader.readEnum();
+					break;
+				case 9:
+					_instance.textFellBack = _reader.readBool();
+					break;
+				case 10:
+					_instance.cause = _reader.readString();
+					break;
+				case 11:
+					_instance.noticeDelivered = _reader.readBool();
+					break;
+				case 12:
+					_instance.introStarted = _reader.readBool();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		WarmIntroRecord.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.introId) _writer.writeString(1, _instance.introId);
+		if (_instance.decision) _writer.writeEnum(2, _instance.decision);
+		if (_instance.decidedBy) _writer.writeEnum(3, _instance.decidedBy);
+		if (_instance.declineReasonPresent) _writer.writeBool(4, _instance.declineReasonPresent);
+		if (_instance.introCallName) _writer.writeString(5, _instance.introCallName);
+		if (_instance.ringDuration) _writer.writeMessage(6, _instance.ringDuration, googleProtobuf000.Duration.serializeBinaryToWriter);
+		if (_instance.introDuration) _writer.writeMessage(7, _instance.introDuration, googleProtobuf000.Duration.serializeBinaryToWriter);
+		if (_instance.textSource) _writer.writeEnum(8, _instance.textSource);
+		if (_instance.textFellBack) _writer.writeBool(9, _instance.textFellBack);
+		if (_instance.cause) _writer.writeString(10, _instance.cause);
+		if (_instance.noticeDelivered) _writer.writeBool(11, _instance.noticeDelivered);
+		if (_instance.introStarted) _writer.writeBool(12, _instance.introStarted);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.introId = _value.introId;
+		this.decision = _value.decision;
+		this.decidedBy = _value.decidedBy;
+		this.declineReasonPresent = _value.declineReasonPresent;
+		this.introCallName = _value.introCallName;
+		this.ringDuration = _value.ringDuration ? new googleProtobuf000.Duration(_value.ringDuration) : void 0;
+		this.introDuration = _value.introDuration ? new googleProtobuf000.Duration(_value.introDuration) : void 0;
+		this.textSource = _value.textSource;
+		this.textFellBack = _value.textFellBack;
+		this.cause = _value.cause;
+		this.noticeDelivered = _value.noticeDelivered;
+		this.introStarted = _value.introStarted;
+		WarmIntroRecord.refineValues(this);
+	}
+	get introId() {
+		return this._introId;
+	}
+	set introId(value) {
+		this._introId = value;
+	}
+	get decision() {
+		return this._decision;
+	}
+	set decision(value) {
+		this._decision = value;
+	}
+	get decidedBy() {
+		return this._decidedBy;
+	}
+	set decidedBy(value) {
+		this._decidedBy = value;
+	}
+	get declineReasonPresent() {
+		return this._declineReasonPresent;
+	}
+	set declineReasonPresent(value) {
+		this._declineReasonPresent = value;
+	}
+	get introCallName() {
+		return this._introCallName;
+	}
+	set introCallName(value) {
+		this._introCallName = value;
+	}
+	get ringDuration() {
+		return this._ringDuration;
+	}
+	set ringDuration(value) {
+		this._ringDuration = value;
+	}
+	get introDuration() {
+		return this._introDuration;
+	}
+	set introDuration(value) {
+		this._introDuration = value;
+	}
+	get textSource() {
+		return this._textSource;
+	}
+	set textSource(value) {
+		this._textSource = value;
+	}
+	get textFellBack() {
+		return this._textFellBack;
+	}
+	set textFellBack(value) {
+		this._textFellBack = value;
+	}
+	get cause() {
+		return this._cause;
+	}
+	set cause(value) {
+		this._cause = value;
+	}
+	get noticeDelivered() {
+		return this._noticeDelivered;
+	}
+	set noticeDelivered(value) {
+		this._noticeDelivered = value;
+	}
+	get introStarted() {
+		return this._introStarted;
+	}
+	set introStarted(value) {
+		this._introStarted = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		WarmIntroRecord.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			introId: this.introId,
+			decision: this.decision,
+			decidedBy: this.decidedBy,
+			declineReasonPresent: this.declineReasonPresent,
+			introCallName: this.introCallName,
+			ringDuration: this.ringDuration ? this.ringDuration.toObject() : void 0,
+			introDuration: this.introDuration ? this.introDuration.toObject() : void 0,
+			textSource: this.textSource,
+			textFellBack: this.textFellBack,
+			cause: this.cause,
+			noticeDelivered: this.noticeDelivered,
+			introStarted: this.introStarted
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			introId: this.introId,
+			decision: WarmIntroDecision[this.decision === null || this.decision === void 0 ? 0 : this.decision],
+			decidedBy: WarmIntroDecidedBy[this.decidedBy === null || this.decidedBy === void 0 ? 0 : this.decidedBy],
+			declineReasonPresent: this.declineReasonPresent,
+			introCallName: this.introCallName,
+			ringDuration: this.ringDuration ? this.ringDuration.toProtobufJSON(options) : null,
+			introDuration: this.introDuration ? this.introDuration.toProtobufJSON(options) : null,
+			textSource: WarmIntroTextSource[this.textSource === null || this.textSource === void 0 ? 0 : this.textSource],
+			textFellBack: this.textFellBack,
+			cause: this.cause,
+			noticeDelivered: this.noticeDelivered,
+			introStarted: this.introStarted
 		};
 	}
 };
@@ -102248,6 +106376,8 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 	static refineValues(_instance) {
 		_instance.mode = _instance.mode || 0;
 		_instance.turnEagerness = _instance.turnEagerness || 0;
+		_instance.holdBands = _instance.holdBands || void 0;
+		_instance.dictationConfig = _instance.dictationConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -102271,6 +106401,35 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 				case 6:
 					_instance.turnDetectionUserPrompt = _reader.readString();
 					break;
+				case 7:
+					_instance.conversationContextTurns = _reader.readUint32();
+					break;
+				case 8:
+					_instance.semanticModelName = _reader.readString();
+					break;
+				case 9:
+					_instance.endOfTurnProbabilityThreshold = _reader.readFloat();
+					break;
+				case 10:
+					_instance.holdBands = new TurnDetectionConfig.EndOfTurnHoldBands();
+					_reader.readMessage(_instance.holdBands, TurnDetectionConfig.EndOfTurnHoldBands.deserializeBinaryFromReader);
+					break;
+				case 11:
+					_instance.uncertainMinWords = _reader.readUint32();
+					break;
+				case 12:
+					_instance.incompleteMaxSilenceSeconds = _reader.readFloat();
+					break;
+				case 13:
+					_instance.exactProbability = _reader.readBool();
+					break;
+				case 14:
+					_instance.finalMergeWindowSeconds = _reader.readFloat();
+					break;
+				case 15:
+					_instance.dictationConfig = new DictationConfig();
+					_reader.readMessage(_instance.dictationConfig, DictationConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -102283,6 +106442,15 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 		if (_instance.turnEagerness) _writer.writeEnum(4, _instance.turnEagerness);
 		if (_instance.turnDetectionSystemPrompt !== void 0 && _instance.turnDetectionSystemPrompt !== null) _writer.writeString(5, _instance.turnDetectionSystemPrompt);
 		if (_instance.turnDetectionUserPrompt !== void 0 && _instance.turnDetectionUserPrompt !== null) _writer.writeString(6, _instance.turnDetectionUserPrompt);
+		if (_instance.conversationContextTurns !== void 0 && _instance.conversationContextTurns !== null) _writer.writeUint32(7, _instance.conversationContextTurns);
+		if (_instance.semanticModelName !== void 0 && _instance.semanticModelName !== null) _writer.writeString(8, _instance.semanticModelName);
+		if (_instance.endOfTurnProbabilityThreshold !== void 0 && _instance.endOfTurnProbabilityThreshold !== null) _writer.writeFloat(9, _instance.endOfTurnProbabilityThreshold);
+		if (_instance.holdBands) _writer.writeMessage(10, _instance.holdBands, TurnDetectionConfig.EndOfTurnHoldBands.serializeBinaryToWriter);
+		if (_instance.uncertainMinWords !== void 0 && _instance.uncertainMinWords !== null) _writer.writeUint32(11, _instance.uncertainMinWords);
+		if (_instance.incompleteMaxSilenceSeconds !== void 0 && _instance.incompleteMaxSilenceSeconds !== null) _writer.writeFloat(12, _instance.incompleteMaxSilenceSeconds);
+		if (_instance.exactProbability !== void 0 && _instance.exactProbability !== null) _writer.writeBool(13, _instance.exactProbability);
+		if (_instance.finalMergeWindowSeconds !== void 0 && _instance.finalMergeWindowSeconds !== null) _writer.writeFloat(14, _instance.finalMergeWindowSeconds);
+		if (_instance.dictationConfig) _writer.writeMessage(15, _instance.dictationConfig, DictationConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -102292,6 +106460,15 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 		this.turnEagerness = _value.turnEagerness;
 		this.turnDetectionSystemPrompt = _value.turnDetectionSystemPrompt;
 		this.turnDetectionUserPrompt = _value.turnDetectionUserPrompt;
+		this.conversationContextTurns = _value.conversationContextTurns;
+		this.semanticModelName = _value.semanticModelName;
+		this.endOfTurnProbabilityThreshold = _value.endOfTurnProbabilityThreshold;
+		this.holdBands = _value.holdBands ? new TurnDetectionConfig.EndOfTurnHoldBands(_value.holdBands) : void 0;
+		this.uncertainMinWords = _value.uncertainMinWords;
+		this.incompleteMaxSilenceSeconds = _value.incompleteMaxSilenceSeconds;
+		this.exactProbability = _value.exactProbability;
+		this.finalMergeWindowSeconds = _value.finalMergeWindowSeconds;
+		this.dictationConfig = _value.dictationConfig ? new DictationConfig(_value.dictationConfig) : void 0;
 		TurnDetectionConfig.refineValues(this);
 	}
 	get mode() {
@@ -102330,6 +106507,60 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 	set turnDetectionUserPrompt(value) {
 		this._turnDetectionUserPrompt = value;
 	}
+	get conversationContextTurns() {
+		return this._conversationContextTurns;
+	}
+	set conversationContextTurns(value) {
+		this._conversationContextTurns = value;
+	}
+	get semanticModelName() {
+		return this._semanticModelName;
+	}
+	set semanticModelName(value) {
+		this._semanticModelName = value;
+	}
+	get endOfTurnProbabilityThreshold() {
+		return this._endOfTurnProbabilityThreshold;
+	}
+	set endOfTurnProbabilityThreshold(value) {
+		this._endOfTurnProbabilityThreshold = value;
+	}
+	get holdBands() {
+		return this._holdBands;
+	}
+	set holdBands(value) {
+		this._holdBands = value;
+	}
+	get uncertainMinWords() {
+		return this._uncertainMinWords;
+	}
+	set uncertainMinWords(value) {
+		this._uncertainMinWords = value;
+	}
+	get incompleteMaxSilenceSeconds() {
+		return this._incompleteMaxSilenceSeconds;
+	}
+	set incompleteMaxSilenceSeconds(value) {
+		this._incompleteMaxSilenceSeconds = value;
+	}
+	get exactProbability() {
+		return this._exactProbability;
+	}
+	set exactProbability(value) {
+		this._exactProbability = value;
+	}
+	get finalMergeWindowSeconds() {
+		return this._finalMergeWindowSeconds;
+	}
+	set finalMergeWindowSeconds(value) {
+		this._finalMergeWindowSeconds = value;
+	}
+	get dictationConfig() {
+		return this._dictationConfig;
+	}
+	set dictationConfig(value) {
+		this._dictationConfig = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		TurnDetectionConfig.serializeBinaryToWriter(this, writer);
@@ -102342,7 +106573,16 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 			maxEndpointingDelaySeconds: this.maxEndpointingDelaySeconds,
 			turnEagerness: this.turnEagerness,
 			turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
-			turnDetectionUserPrompt: this.turnDetectionUserPrompt
+			turnDetectionUserPrompt: this.turnDetectionUserPrompt,
+			conversationContextTurns: this.conversationContextTurns,
+			semanticModelName: this.semanticModelName,
+			endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+			holdBands: this.holdBands ? this.holdBands.toObject() : void 0,
+			uncertainMinWords: this.uncertainMinWords,
+			incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+			exactProbability: this.exactProbability,
+			finalMergeWindowSeconds: this.finalMergeWindowSeconds,
+			dictationConfig: this.dictationConfig ? this.dictationConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -102355,7 +106595,16 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 			maxEndpointingDelaySeconds: this.maxEndpointingDelaySeconds,
 			turnEagerness: TurnDetectionConfig.TurnEagerness[this.turnEagerness === null || this.turnEagerness === void 0 ? 0 : this.turnEagerness],
 			turnDetectionSystemPrompt: this.turnDetectionSystemPrompt,
-			turnDetectionUserPrompt: this.turnDetectionUserPrompt
+			turnDetectionUserPrompt: this.turnDetectionUserPrompt,
+			conversationContextTurns: this.conversationContextTurns,
+			semanticModelName: this.semanticModelName,
+			endOfTurnProbabilityThreshold: this.endOfTurnProbabilityThreshold,
+			holdBands: this.holdBands ? this.holdBands.toProtobufJSON(options) : null,
+			uncertainMinWords: this.uncertainMinWords,
+			incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
+			exactProbability: this.exactProbability,
+			finalMergeWindowSeconds: this.finalMergeWindowSeconds,
+			dictationConfig: this.dictationConfig ? this.dictationConfig.toProtobufJSON(options) : null
 		};
 	}
 };
@@ -102372,7 +106621,390 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 		TurnEagerness[TurnEagerness["NORMAL"] = 2] = "NORMAL";
 		TurnEagerness[TurnEagerness["EAGER"] = 3] = "EAGER";
 	})(TurnDetectionConfig.TurnEagerness || (TurnDetectionConfig.TurnEagerness = {}));
+	class EndOfTurnHoldBands {
+		static {
+			this.id = "ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBands";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new EndOfTurnHoldBands();
+			EndOfTurnHoldBands.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.bands = _instance.bands || [];
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						const messageInitializer1 = new TurnDetectionConfig.EndOfTurnHoldBand();
+						_reader.readMessage(messageInitializer1, TurnDetectionConfig.EndOfTurnHoldBand.deserializeBinaryFromReader);
+						(_instance.bands = _instance.bands || []).push(messageInitializer1);
+						break;
+					default: _reader.skipField();
+				}
+			}
+			EndOfTurnHoldBands.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.bands && _instance.bands.length) _writer.writeRepeatedMessage(1, _instance.bands, TurnDetectionConfig.EndOfTurnHoldBand.serializeBinaryToWriter);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.bands = (_value.bands || []).map((m) => new TurnDetectionConfig.EndOfTurnHoldBand(m));
+			EndOfTurnHoldBands.refineValues(this);
+		}
+		get bands() {
+			return this._bands;
+		}
+		set bands(value) {
+			this._bands = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			EndOfTurnHoldBands.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return { bands: (this.bands || []).map((m) => m.toObject()) };
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return { bands: (this.bands || []).map((m) => m.toProtobufJSON(options)) };
+		}
+	}
+	TurnDetectionConfig.EndOfTurnHoldBands = EndOfTurnHoldBands;
+	class EndOfTurnHoldBand {
+		static {
+			this.id = "ondewo.vtsi.TurnDetectionConfig.EndOfTurnHoldBand";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new EndOfTurnHoldBand();
+			EndOfTurnHoldBand.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.upperProbability = _instance.upperProbability || 0;
+			_instance.maxSilenceSeconds = _instance.maxSilenceSeconds || 0;
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						_instance.upperProbability = _reader.readFloat();
+						break;
+					case 2:
+						_instance.maxSilenceSeconds = _reader.readFloat();
+						break;
+					default: _reader.skipField();
+				}
+			}
+			EndOfTurnHoldBand.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.upperProbability) _writer.writeFloat(1, _instance.upperProbability);
+			if (_instance.maxSilenceSeconds) _writer.writeFloat(2, _instance.maxSilenceSeconds);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.upperProbability = _value.upperProbability;
+			this.maxSilenceSeconds = _value.maxSilenceSeconds;
+			EndOfTurnHoldBand.refineValues(this);
+		}
+		get upperProbability() {
+			return this._upperProbability;
+		}
+		set upperProbability(value) {
+			this._upperProbability = value;
+		}
+		get maxSilenceSeconds() {
+			return this._maxSilenceSeconds;
+		}
+		set maxSilenceSeconds(value) {
+			this._maxSilenceSeconds = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			EndOfTurnHoldBand.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return {
+				upperProbability: this.upperProbability,
+				maxSilenceSeconds: this.maxSilenceSeconds
+			};
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return {
+				upperProbability: this.upperProbability,
+				maxSilenceSeconds: this.maxSilenceSeconds
+			};
+		}
+	}
+	TurnDetectionConfig.EndOfTurnHoldBand = EndOfTurnHoldBand;
 })(TurnDetectionConfig || (TurnDetectionConfig = {}));
+var DictationConfig = class DictationConfig {
+	static {
+		this.id = "ondewo.vtsi.DictationConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new DictationConfig();
+		DictationConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.holdMaxSecondsByCategory = _instance.holdMaxSecondsByCategory || {};
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.holdEnabled = _reader.readBool();
+					break;
+				case 2:
+					_instance.expectedInputEnabled = _reader.readBool();
+					break;
+				case 3:
+					_instance.readBackFromBotTextEnabled = _reader.readBool();
+					break;
+				case 4:
+					_instance.holdGenericMaxSeconds = _reader.readFloat();
+					break;
+				case 5:
+					const msg_5 = {};
+					_reader.readMessage(msg_5, DictationConfig.HoldMaxSecondsByCategoryEntry.deserializeBinaryFromReader);
+					_instance.holdMaxSecondsByCategory = _instance.holdMaxSecondsByCategory || {};
+					_instance.holdMaxSecondsByCategory[msg_5.key] = msg_5.value;
+					break;
+				case 6:
+					_instance.holdInvalidChecksumSeconds = _reader.readFloat();
+					break;
+				case 7:
+					_instance.earlyCommitOnCompleteValue = _reader.readBool();
+					break;
+				case 8:
+					_instance.s2tSlotMinDurationOffSeconds = _reader.readFloat();
+					break;
+				case 9:
+					_instance.s2tSlotMinDurationOffRestoreSeconds = _reader.readFloat();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		DictationConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.holdEnabled !== void 0 && _instance.holdEnabled !== null) _writer.writeBool(1, _instance.holdEnabled);
+		if (_instance.expectedInputEnabled !== void 0 && _instance.expectedInputEnabled !== null) _writer.writeBool(2, _instance.expectedInputEnabled);
+		if (_instance.readBackFromBotTextEnabled !== void 0 && _instance.readBackFromBotTextEnabled !== null) _writer.writeBool(3, _instance.readBackFromBotTextEnabled);
+		if (_instance.holdGenericMaxSeconds !== void 0 && _instance.holdGenericMaxSeconds !== null) _writer.writeFloat(4, _instance.holdGenericMaxSeconds);
+		if (!!_instance.holdMaxSecondsByCategory) {
+			const keys_5 = Object.keys(_instance.holdMaxSecondsByCategory);
+			if (keys_5.length) {
+				const repeated_5 = keys_5.map((key) => ({
+					key,
+					value: _instance.holdMaxSecondsByCategory[key]
+				})).reduce((r, v) => [...r, v], []);
+				_writer.writeRepeatedMessage(5, repeated_5, DictationConfig.HoldMaxSecondsByCategoryEntry.serializeBinaryToWriter);
+			}
+		}
+		if (_instance.holdInvalidChecksumSeconds !== void 0 && _instance.holdInvalidChecksumSeconds !== null) _writer.writeFloat(6, _instance.holdInvalidChecksumSeconds);
+		if (_instance.earlyCommitOnCompleteValue !== void 0 && _instance.earlyCommitOnCompleteValue !== null) _writer.writeBool(7, _instance.earlyCommitOnCompleteValue);
+		if (_instance.s2tSlotMinDurationOffSeconds !== void 0 && _instance.s2tSlotMinDurationOffSeconds !== null) _writer.writeFloat(8, _instance.s2tSlotMinDurationOffSeconds);
+		if (_instance.s2tSlotMinDurationOffRestoreSeconds !== void 0 && _instance.s2tSlotMinDurationOffRestoreSeconds !== null) _writer.writeFloat(9, _instance.s2tSlotMinDurationOffRestoreSeconds);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.holdEnabled = _value.holdEnabled;
+		this.expectedInputEnabled = _value.expectedInputEnabled;
+		this.readBackFromBotTextEnabled = _value.readBackFromBotTextEnabled;
+		this.holdGenericMaxSeconds = _value.holdGenericMaxSeconds;
+		this.holdMaxSecondsByCategory = _value.holdMaxSecondsByCategory ? Object.keys(_value.holdMaxSecondsByCategory).reduce((r, k) => ({
+			...r,
+			[k]: _value.holdMaxSecondsByCategory[k]
+		}), {}) : {}, this.holdInvalidChecksumSeconds = _value.holdInvalidChecksumSeconds;
+		this.earlyCommitOnCompleteValue = _value.earlyCommitOnCompleteValue;
+		this.s2tSlotMinDurationOffSeconds = _value.s2tSlotMinDurationOffSeconds;
+		this.s2tSlotMinDurationOffRestoreSeconds = _value.s2tSlotMinDurationOffRestoreSeconds;
+		DictationConfig.refineValues(this);
+	}
+	get holdEnabled() {
+		return this._holdEnabled;
+	}
+	set holdEnabled(value) {
+		this._holdEnabled = value;
+	}
+	get expectedInputEnabled() {
+		return this._expectedInputEnabled;
+	}
+	set expectedInputEnabled(value) {
+		this._expectedInputEnabled = value;
+	}
+	get readBackFromBotTextEnabled() {
+		return this._readBackFromBotTextEnabled;
+	}
+	set readBackFromBotTextEnabled(value) {
+		this._readBackFromBotTextEnabled = value;
+	}
+	get holdGenericMaxSeconds() {
+		return this._holdGenericMaxSeconds;
+	}
+	set holdGenericMaxSeconds(value) {
+		this._holdGenericMaxSeconds = value;
+	}
+	get holdMaxSecondsByCategory() {
+		return this._holdMaxSecondsByCategory;
+	}
+	set holdMaxSecondsByCategory(value) {
+		this._holdMaxSecondsByCategory = value;
+	}
+	get holdInvalidChecksumSeconds() {
+		return this._holdInvalidChecksumSeconds;
+	}
+	set holdInvalidChecksumSeconds(value) {
+		this._holdInvalidChecksumSeconds = value;
+	}
+	get earlyCommitOnCompleteValue() {
+		return this._earlyCommitOnCompleteValue;
+	}
+	set earlyCommitOnCompleteValue(value) {
+		this._earlyCommitOnCompleteValue = value;
+	}
+	get s2tSlotMinDurationOffSeconds() {
+		return this._s2tSlotMinDurationOffSeconds;
+	}
+	set s2tSlotMinDurationOffSeconds(value) {
+		this._s2tSlotMinDurationOffSeconds = value;
+	}
+	get s2tSlotMinDurationOffRestoreSeconds() {
+		return this._s2tSlotMinDurationOffRestoreSeconds;
+	}
+	set s2tSlotMinDurationOffRestoreSeconds(value) {
+		this._s2tSlotMinDurationOffRestoreSeconds = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DictationConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			holdEnabled: this.holdEnabled,
+			expectedInputEnabled: this.expectedInputEnabled,
+			readBackFromBotTextEnabled: this.readBackFromBotTextEnabled,
+			holdGenericMaxSeconds: this.holdGenericMaxSeconds,
+			holdMaxSecondsByCategory: this.holdMaxSecondsByCategory ? Object.keys(this.holdMaxSecondsByCategory).reduce((r, k) => ({
+				...r,
+				[k]: this.holdMaxSecondsByCategory[k]
+			}), {}) : {},
+			holdInvalidChecksumSeconds: this.holdInvalidChecksumSeconds,
+			earlyCommitOnCompleteValue: this.earlyCommitOnCompleteValue,
+			s2tSlotMinDurationOffSeconds: this.s2tSlotMinDurationOffSeconds,
+			s2tSlotMinDurationOffRestoreSeconds: this.s2tSlotMinDurationOffRestoreSeconds
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			holdEnabled: this.holdEnabled,
+			expectedInputEnabled: this.expectedInputEnabled,
+			readBackFromBotTextEnabled: this.readBackFromBotTextEnabled,
+			holdGenericMaxSeconds: this.holdGenericMaxSeconds,
+			holdMaxSecondsByCategory: this.holdMaxSecondsByCategory ? Object.keys(this.holdMaxSecondsByCategory).reduce((r, k) => ({
+				...r,
+				[k]: this.holdMaxSecondsByCategory[k]
+			}), {}) : {},
+			holdInvalidChecksumSeconds: this.holdInvalidChecksumSeconds,
+			earlyCommitOnCompleteValue: this.earlyCommitOnCompleteValue,
+			s2tSlotMinDurationOffSeconds: this.s2tSlotMinDurationOffSeconds,
+			s2tSlotMinDurationOffRestoreSeconds: this.s2tSlotMinDurationOffRestoreSeconds
+		};
+	}
+};
+(function(DictationConfig) {
+	class HoldMaxSecondsByCategoryEntry {
+		static {
+			this.id = "ondewo.vtsi.DictationConfig.HoldMaxSecondsByCategoryEntry";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new HoldMaxSecondsByCategoryEntry();
+			HoldMaxSecondsByCategoryEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.key = _instance.key || "";
+			_instance.value = _instance.value || 0;
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						_instance.key = _reader.readString();
+						break;
+					case 2:
+						_instance.value = _reader.readFloat();
+						break;
+					default: _reader.skipField();
+				}
+			}
+			HoldMaxSecondsByCategoryEntry.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.key) _writer.writeString(1, _instance.key);
+			if (_instance.value) _writer.writeFloat(2, _instance.value);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.key = _value.key;
+			this.value = _value.value;
+			HoldMaxSecondsByCategoryEntry.refineValues(this);
+		}
+		get key() {
+			return this._key;
+		}
+		set key(value) {
+			this._key = value;
+		}
+		get value() {
+			return this._value;
+		}
+		set value(value) {
+			this._value = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			HoldMaxSecondsByCategoryEntry.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return {
+				key: this.key,
+				value: this.value
+			};
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return {
+				key: this.key,
+				value: this.value
+			};
+		}
+	}
+	DictationConfig.HoldMaxSecondsByCategoryEntry = HoldMaxSecondsByCategoryEntry;
+})(DictationConfig || (DictationConfig = {}));
 var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 	static {
 		this.id = "ondewo.vtsi.InterruptionHandlingConfig";
@@ -102411,6 +107043,9 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 				case 8:
 					_instance.transcribeOnDisabledInterruptions = _reader.readBool();
 					break;
+				case 9:
+					_instance.interruptionFadeOutMs = _reader.readInt32();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -102425,6 +107060,7 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 		if (_instance.backoffSeconds !== void 0 && _instance.backoffSeconds !== null) _writer.writeFloat(6, _instance.backoffSeconds);
 		if (_instance.firstMessageProtectedSeconds !== void 0 && _instance.firstMessageProtectedSeconds !== null) _writer.writeFloat(7, _instance.firstMessageProtectedSeconds);
 		if (_instance.transcribeOnDisabledInterruptions !== void 0 && _instance.transcribeOnDisabledInterruptions !== null) _writer.writeBool(8, _instance.transcribeOnDisabledInterruptions);
+		if (_instance.interruptionFadeOutMs !== void 0 && _instance.interruptionFadeOutMs !== null) _writer.writeInt32(9, _instance.interruptionFadeOutMs);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -102436,6 +107072,7 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 		this.backoffSeconds = _value.backoffSeconds;
 		this.firstMessageProtectedSeconds = _value.firstMessageProtectedSeconds;
 		this.transcribeOnDisabledInterruptions = _value.transcribeOnDisabledInterruptions;
+		this.interruptionFadeOutMs = _value.interruptionFadeOutMs;
 		InterruptionHandlingConfig.refineValues(this);
 	}
 	get enabled() {
@@ -102486,6 +107123,12 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 	set transcribeOnDisabledInterruptions(value) {
 		this._transcribeOnDisabledInterruptions = value;
 	}
+	get interruptionFadeOutMs() {
+		return this._interruptionFadeOutMs;
+	}
+	set interruptionFadeOutMs(value) {
+		this._interruptionFadeOutMs = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		InterruptionHandlingConfig.serializeBinaryToWriter(this, writer);
@@ -102500,7 +107143,8 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 			resumeAfterFalseInterruption: this.resumeAfterFalseInterruption,
 			backoffSeconds: this.backoffSeconds,
 			firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
-			transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions
+			transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions,
+			interruptionFadeOutMs: this.interruptionFadeOutMs
 		};
 	}
 	toJSON() {
@@ -102515,7 +107159,8 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 			resumeAfterFalseInterruption: this.resumeAfterFalseInterruption,
 			backoffSeconds: this.backoffSeconds,
 			firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
-			transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions
+			transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions,
+			interruptionFadeOutMs: this.interruptionFadeOutMs
 		};
 	}
 };
@@ -103292,6 +107937,7 @@ var CsiVtsiConfig = class CsiVtsiConfig {
 		_instance.t2sVtsiCallbacks = _instance.t2sVtsiCallbacks || void 0;
 		_instance.audioObjectStoreConfig = _instance.audioObjectStoreConfig || void 0;
 		_instance.messageBrokerConfig = _instance.messageBrokerConfig || void 0;
+		_instance.preemptiveGenerationConfig = _instance.preemptiveGenerationConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -103320,6 +107966,10 @@ var CsiVtsiConfig = class CsiVtsiConfig {
 				case 6:
 					_instance.activateControlMessages = _reader.readBool();
 					break;
+				case 7:
+					_instance.preemptiveGenerationConfig = new CsiPreemptiveGenerationConfig();
+					_reader.readMessage(_instance.preemptiveGenerationConfig, CsiPreemptiveGenerationConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -103332,6 +107982,7 @@ var CsiVtsiConfig = class CsiVtsiConfig {
 		if (_instance.audioObjectStoreConfig) _writer.writeMessage(4, _instance.audioObjectStoreConfig, AudioObjectStorageConfig.serializeBinaryToWriter);
 		if (_instance.messageBrokerConfig) _writer.writeMessage(5, _instance.messageBrokerConfig, MessageBrokerConfig.serializeBinaryToWriter);
 		if (_instance.activateControlMessages !== void 0 && _instance.activateControlMessages !== null) _writer.writeBool(6, _instance.activateControlMessages);
+		if (_instance.preemptiveGenerationConfig) _writer.writeMessage(7, _instance.preemptiveGenerationConfig, CsiPreemptiveGenerationConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -103341,6 +107992,7 @@ var CsiVtsiConfig = class CsiVtsiConfig {
 		this.audioObjectStoreConfig = _value.audioObjectStoreConfig ? new AudioObjectStorageConfig(_value.audioObjectStoreConfig) : void 0;
 		this.messageBrokerConfig = _value.messageBrokerConfig ? new MessageBrokerConfig(_value.messageBrokerConfig) : void 0;
 		this.activateControlMessages = _value.activateControlMessages;
+		this.preemptiveGenerationConfig = _value.preemptiveGenerationConfig ? new CsiPreemptiveGenerationConfig(_value.preemptiveGenerationConfig) : void 0;
 		CsiVtsiConfig.refineValues(this);
 	}
 	get s2tVtsiCallbacks() {
@@ -103379,6 +108031,12 @@ var CsiVtsiConfig = class CsiVtsiConfig {
 	set activateControlMessages(value) {
 		this._activateControlMessages = value;
 	}
+	get preemptiveGenerationConfig() {
+		return this._preemptiveGenerationConfig;
+	}
+	set preemptiveGenerationConfig(value) {
+		this._preemptiveGenerationConfig = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		CsiVtsiConfig.serializeBinaryToWriter(this, writer);
@@ -103391,7 +108049,8 @@ var CsiVtsiConfig = class CsiVtsiConfig {
 			t2sVtsiCallbacks: this.t2sVtsiCallbacks ? this.t2sVtsiCallbacks.toObject() : void 0,
 			audioObjectStoreConfig: this.audioObjectStoreConfig ? this.audioObjectStoreConfig.toObject() : void 0,
 			messageBrokerConfig: this.messageBrokerConfig ? this.messageBrokerConfig.toObject() : void 0,
-			activateControlMessages: this.activateControlMessages
+			activateControlMessages: this.activateControlMessages,
+			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -103404,7 +108063,76 @@ var CsiVtsiConfig = class CsiVtsiConfig {
 			t2sVtsiCallbacks: this.t2sVtsiCallbacks ? this.t2sVtsiCallbacks.toProtobufJSON(options) : null,
 			audioObjectStoreConfig: this.audioObjectStoreConfig ? this.audioObjectStoreConfig.toProtobufJSON(options) : null,
 			messageBrokerConfig: this.messageBrokerConfig ? this.messageBrokerConfig.toProtobufJSON(options) : null,
-			activateControlMessages: this.activateControlMessages
+			activateControlMessages: this.activateControlMessages,
+			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toProtobufJSON(options) : null
+		};
+	}
+};
+var CsiPreemptiveGenerationConfig = class CsiPreemptiveGenerationConfig {
+	static {
+		this.id = "ondewo.vtsi.CsiPreemptiveGenerationConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new CsiPreemptiveGenerationConfig();
+		CsiPreemptiveGenerationConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.enabled = _reader.readBool();
+					break;
+				case 2:
+					_instance.commitWaitTimeoutSeconds = _reader.readFloat();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		CsiPreemptiveGenerationConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.enabled !== void 0 && _instance.enabled !== null) _writer.writeBool(1, _instance.enabled);
+		if (_instance.commitWaitTimeoutSeconds !== void 0 && _instance.commitWaitTimeoutSeconds !== null) _writer.writeFloat(2, _instance.commitWaitTimeoutSeconds);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.enabled = _value.enabled;
+		this.commitWaitTimeoutSeconds = _value.commitWaitTimeoutSeconds;
+		CsiPreemptiveGenerationConfig.refineValues(this);
+	}
+	get enabled() {
+		return this._enabled;
+	}
+	set enabled(value) {
+		this._enabled = value;
+	}
+	get commitWaitTimeoutSeconds() {
+		return this._commitWaitTimeoutSeconds;
+	}
+	set commitWaitTimeoutSeconds(value) {
+		this._commitWaitTimeoutSeconds = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		CsiPreemptiveGenerationConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			enabled: this.enabled,
+			commitWaitTimeoutSeconds: this.commitWaitTimeoutSeconds
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			enabled: this.enabled,
+			commitWaitTimeoutSeconds: this.commitWaitTimeoutSeconds
 		};
 	}
 };
@@ -108463,6 +113191,22 @@ var CloneCampaignRequest = class CloneCampaignRequest {
 		SourceCase[SourceCase["sourceDisplayName"] = 2] = "sourceDisplayName";
 	})(CloneCampaignRequest.SourceCase || (CloneCampaignRequest.SourceCase = {}));
 })(CloneCampaignRequest || (CloneCampaignRequest = {}));
+var WarmIntroAvailability;
+(function(WarmIntroAvailability) {
+	WarmIntroAvailability[WarmIntroAvailability["WARM_INTRO_AVAILABILITY_UNSPECIFIED"] = 0] = "WARM_INTRO_AVAILABILITY_UNSPECIFIED";
+	WarmIntroAvailability[WarmIntroAvailability["WARM_INTRO_AVAILABILITY_AVAILABLE"] = 1] = "WARM_INTRO_AVAILABILITY_AVAILABLE";
+	WarmIntroAvailability[WarmIntroAvailability["WARM_INTRO_AVAILABILITY_DISABLED_BY_DEPLOYMENT"] = 2] = "WARM_INTRO_AVAILABILITY_DISABLED_BY_DEPLOYMENT";
+	WarmIntroAvailability[WarmIntroAvailability["WARM_INTRO_AVAILABILITY_NEEDS_LOCAL_ASTERISK"] = 3] = "WARM_INTRO_AVAILABILITY_NEEDS_LOCAL_ASTERISK";
+	WarmIntroAvailability[WarmIntroAvailability["WARM_INTRO_AVAILABILITY_NEEDS_LISTENER"] = 4] = "WARM_INTRO_AVAILABILITY_NEEDS_LISTENER";
+	WarmIntroAvailability[WarmIntroAvailability["WARM_INTRO_AVAILABILITY_NEEDS_CALL_CONTROL_KEY"] = 5] = "WARM_INTRO_AVAILABILITY_NEEDS_CALL_CONTROL_KEY";
+})(WarmIntroAvailability || (WarmIntroAvailability = {}));
+var IvrAvailability;
+(function(IvrAvailability) {
+	IvrAvailability[IvrAvailability["IVR_AVAILABILITY_UNSPECIFIED"] = 0] = "IVR_AVAILABILITY_UNSPECIFIED";
+	IvrAvailability[IvrAvailability["IVR_AVAILABILITY_AVAILABLE"] = 1] = "IVR_AVAILABILITY_AVAILABLE";
+	IvrAvailability[IvrAvailability["IVR_AVAILABILITY_DISABLED_BY_DEPLOYMENT"] = 2] = "IVR_AVAILABILITY_DISABLED_BY_DEPLOYMENT";
+	IvrAvailability[IvrAvailability["IVR_AVAILABILITY_NEEDS_LOCAL_ASTERISK"] = 3] = "IVR_AVAILABILITY_NEEDS_LOCAL_ASTERISK";
+})(IvrAvailability || (IvrAvailability = {}));
 var TrunkRegistrationState;
 (function(TrunkRegistrationState) {
 	TrunkRegistrationState[TrunkRegistrationState["TRUNK_REGISTRATION_STATE_UNSPECIFIED"] = 0] = "TRUNK_REGISTRATION_STATE_UNSPECIFIED";
@@ -108533,6 +113277,9 @@ var VtsiProject = class VtsiProject {
 		_instance.statusChangedAt = _instance.statusChangedAt || void 0;
 		_instance.trunkRegistrationState = _instance.trunkRegistrationState || 0;
 		_instance.asteriskVersionEffective = _instance.asteriskVersionEffective || "";
+		_instance.warmTransferDefaults = _instance.warmTransferDefaults || void 0;
+		_instance.featureAvailability = _instance.featureAvailability || void 0;
+		_instance.transferTargetDirectory = _instance.transferTargetDirectory || {};
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -108605,6 +113352,23 @@ var VtsiProject = class VtsiProject {
 				case 21:
 					_instance.asteriskVersionEffective = _reader.readString();
 					break;
+				case 22:
+					_instance.warmTransferDefaults = new WarmTransferConfig();
+					_reader.readMessage(_instance.warmTransferDefaults, WarmTransferConfig.deserializeBinaryFromReader);
+					break;
+				case 23:
+					_instance.featureAvailability = new VtsiProjectFeatureAvailability();
+					_reader.readMessage(_instance.featureAvailability, VtsiProjectFeatureAvailability.deserializeBinaryFromReader);
+					break;
+				case 24:
+					_instance.ivrMenusEnabled = _reader.readBool();
+					break;
+				case 25:
+					const msg_25 = {};
+					_reader.readMessage(msg_25, VtsiProject.TransferTargetDirectoryEntry.deserializeBinaryFromReader);
+					_instance.transferTargetDirectory = _instance.transferTargetDirectory || {};
+					_instance.transferTargetDirectory[msg_25.key] = msg_25.value;
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -108632,6 +113396,19 @@ var VtsiProject = class VtsiProject {
 		if (_instance.statusChangedAt) _writer.writeMessage(19, _instance.statusChangedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
 		if (_instance.trunkRegistrationState) _writer.writeEnum(20, _instance.trunkRegistrationState);
 		if (_instance.asteriskVersionEffective) _writer.writeString(21, _instance.asteriskVersionEffective);
+		if (_instance.warmTransferDefaults) _writer.writeMessage(22, _instance.warmTransferDefaults, WarmTransferConfig.serializeBinaryToWriter);
+		if (_instance.featureAvailability) _writer.writeMessage(23, _instance.featureAvailability, VtsiProjectFeatureAvailability.serializeBinaryToWriter);
+		if (_instance.ivrMenusEnabled !== void 0 && _instance.ivrMenusEnabled !== null) _writer.writeBool(24, _instance.ivrMenusEnabled);
+		if (!!_instance.transferTargetDirectory) {
+			const keys_25 = Object.keys(_instance.transferTargetDirectory);
+			if (keys_25.length) {
+				const repeated_25 = keys_25.map((key) => ({
+					key,
+					value: _instance.transferTargetDirectory[key]
+				})).reduce((r, v) => [...r, v], []);
+				_writer.writeRepeatedMessage(25, repeated_25, VtsiProject.TransferTargetDirectoryEntry.serializeBinaryToWriter);
+			}
+		}
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -108656,7 +113433,13 @@ var VtsiProject = class VtsiProject {
 		this.statusChangedAt = _value.statusChangedAt ? new googleProtobuf000.Timestamp(_value.statusChangedAt) : void 0;
 		this.trunkRegistrationState = _value.trunkRegistrationState;
 		this.asteriskVersionEffective = _value.asteriskVersionEffective;
-		VtsiProject.refineValues(this);
+		this.warmTransferDefaults = _value.warmTransferDefaults ? new WarmTransferConfig(_value.warmTransferDefaults) : void 0;
+		this.featureAvailability = _value.featureAvailability ? new VtsiProjectFeatureAvailability(_value.featureAvailability) : void 0;
+		this.ivrMenusEnabled = _value.ivrMenusEnabled;
+		this.transferTargetDirectory = _value.transferTargetDirectory ? Object.keys(_value.transferTargetDirectory).reduce((r, k) => ({
+			...r,
+			[k]: _value.transferTargetDirectory[k] ? new TransferTargetDirectoryItem(_value.transferTargetDirectory[k]) : void 0
+		}), {}) : {}, VtsiProject.refineValues(this);
 	}
 	get name() {
 		return this._name;
@@ -108784,6 +113567,30 @@ var VtsiProject = class VtsiProject {
 	set asteriskVersionEffective(value) {
 		this._asteriskVersionEffective = value;
 	}
+	get warmTransferDefaults() {
+		return this._warmTransferDefaults;
+	}
+	set warmTransferDefaults(value) {
+		this._warmTransferDefaults = value;
+	}
+	get featureAvailability() {
+		return this._featureAvailability;
+	}
+	set featureAvailability(value) {
+		this._featureAvailability = value;
+	}
+	get ivrMenusEnabled() {
+		return this._ivrMenusEnabled;
+	}
+	set ivrMenusEnabled(value) {
+		this._ivrMenusEnabled = value;
+	}
+	get transferTargetDirectory() {
+		return this._transferTargetDirectory;
+	}
+	set transferTargetDirectory(value) {
+		this._transferTargetDirectory = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		VtsiProject.serializeBinaryToWriter(this, writer);
@@ -108811,7 +113618,14 @@ var VtsiProject = class VtsiProject {
 			statusMessage: this.statusMessage,
 			statusChangedAt: this.statusChangedAt ? this.statusChangedAt.toObject() : void 0,
 			trunkRegistrationState: this.trunkRegistrationState,
-			asteriskVersionEffective: this.asteriskVersionEffective
+			asteriskVersionEffective: this.asteriskVersionEffective,
+			warmTransferDefaults: this.warmTransferDefaults ? this.warmTransferDefaults.toObject() : void 0,
+			featureAvailability: this.featureAvailability ? this.featureAvailability.toObject() : void 0,
+			ivrMenusEnabled: this.ivrMenusEnabled,
+			transferTargetDirectory: this.transferTargetDirectory ? Object.keys(this.transferTargetDirectory).reduce((r, k) => ({
+				...r,
+				[k]: this.transferTargetDirectory[k] ? this.transferTargetDirectory[k].toObject() : void 0
+			}), {}) : {}
 		};
 	}
 	toJSON() {
@@ -108839,7 +113653,245 @@ var VtsiProject = class VtsiProject {
 			statusMessage: this.statusMessage,
 			statusChangedAt: this.statusChangedAt ? this.statusChangedAt.toProtobufJSON(options) : null,
 			trunkRegistrationState: TrunkRegistrationState[this.trunkRegistrationState === null || this.trunkRegistrationState === void 0 ? 0 : this.trunkRegistrationState],
-			asteriskVersionEffective: this.asteriskVersionEffective
+			asteriskVersionEffective: this.asteriskVersionEffective,
+			warmTransferDefaults: this.warmTransferDefaults ? this.warmTransferDefaults.toProtobufJSON(options) : null,
+			featureAvailability: this.featureAvailability ? this.featureAvailability.toProtobufJSON(options) : null,
+			ivrMenusEnabled: this.ivrMenusEnabled,
+			transferTargetDirectory: this.transferTargetDirectory ? Object.keys(this.transferTargetDirectory).reduce((r, k) => ({
+				...r,
+				[k]: this.transferTargetDirectory[k] ? this.transferTargetDirectory[k].toJSON() : null
+			}), {}) : {}
+		};
+	}
+};
+(function(VtsiProject) {
+	class TransferTargetDirectoryEntry {
+		static {
+			this.id = "ondewo.vtsi.VtsiProject.TransferTargetDirectoryEntry";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new TransferTargetDirectoryEntry();
+			TransferTargetDirectoryEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.key = _instance.key || "";
+			_instance.value = _instance.value || void 0;
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						_instance.key = _reader.readString();
+						break;
+					case 2:
+						_instance.value = new TransferTargetDirectoryItem();
+						_reader.readMessage(_instance.value, TransferTargetDirectoryItem.deserializeBinaryFromReader);
+						break;
+					default: _reader.skipField();
+				}
+			}
+			TransferTargetDirectoryEntry.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.key) _writer.writeString(1, _instance.key);
+			if (_instance.value) _writer.writeMessage(2, _instance.value, TransferTargetDirectoryItem.serializeBinaryToWriter);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.key = _value.key;
+			this.value = _value.value ? new TransferTargetDirectoryItem(_value.value) : void 0;
+			TransferTargetDirectoryEntry.refineValues(this);
+		}
+		get key() {
+			return this._key;
+		}
+		set key(value) {
+			this._key = value;
+		}
+		get value() {
+			return this._value;
+		}
+		set value(value) {
+			this._value = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			TransferTargetDirectoryEntry.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toObject() : void 0
+			};
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toProtobufJSON(options) : null
+			};
+		}
+	}
+	VtsiProject.TransferTargetDirectoryEntry = TransferTargetDirectoryEntry;
+})(VtsiProject || (VtsiProject = {}));
+var TransferTargetDirectoryItem = class TransferTargetDirectoryItem {
+	static {
+		this.id = "ondewo.vtsi.TransferTargetDirectoryItem";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new TransferTargetDirectoryItem();
+		TransferTargetDirectoryItem.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.displayName = _instance.displayName || "";
+		_instance.description = _instance.description || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.displayName = _reader.readString();
+					break;
+				case 2:
+					_instance.description = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		TransferTargetDirectoryItem.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.displayName) _writer.writeString(1, _instance.displayName);
+		if (_instance.description) _writer.writeString(2, _instance.description);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.displayName = _value.displayName;
+		this.description = _value.description;
+		TransferTargetDirectoryItem.refineValues(this);
+	}
+	get displayName() {
+		return this._displayName;
+	}
+	set displayName(value) {
+		this._displayName = value;
+	}
+	get description() {
+		return this._description;
+	}
+	set description(value) {
+		this._description = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		TransferTargetDirectoryItem.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			displayName: this.displayName,
+			description: this.description
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			displayName: this.displayName,
+			description: this.description
+		};
+	}
+};
+var VtsiProjectFeatureAvailability = class VtsiProjectFeatureAvailability {
+	static {
+		this.id = "ondewo.vtsi.VtsiProjectFeatureAvailability";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new VtsiProjectFeatureAvailability();
+		VtsiProjectFeatureAvailability.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.warmIntro = _instance.warmIntro || 0;
+		_instance.warmIntroPhaseB = _instance.warmIntroPhaseB || false;
+		_instance.ivr = _instance.ivr || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.warmIntro = _reader.readEnum();
+					break;
+				case 2:
+					_instance.warmIntroPhaseB = _reader.readBool();
+					break;
+				case 3:
+					_instance.ivr = _reader.readEnum();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		VtsiProjectFeatureAvailability.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.warmIntro) _writer.writeEnum(1, _instance.warmIntro);
+		if (_instance.warmIntroPhaseB) _writer.writeBool(2, _instance.warmIntroPhaseB);
+		if (_instance.ivr) _writer.writeEnum(3, _instance.ivr);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.warmIntro = _value.warmIntro;
+		this.warmIntroPhaseB = _value.warmIntroPhaseB;
+		this.ivr = _value.ivr;
+		VtsiProjectFeatureAvailability.refineValues(this);
+	}
+	get warmIntro() {
+		return this._warmIntro;
+	}
+	set warmIntro(value) {
+		this._warmIntro = value;
+	}
+	get warmIntroPhaseB() {
+		return this._warmIntroPhaseB;
+	}
+	set warmIntroPhaseB(value) {
+		this._warmIntroPhaseB = value;
+	}
+	get ivr() {
+		return this._ivr;
+	}
+	set ivr(value) {
+		this._ivr = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		VtsiProjectFeatureAvailability.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			warmIntro: this.warmIntro,
+			warmIntroPhaseB: this.warmIntroPhaseB,
+			ivr: this.ivr
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			warmIntro: WarmIntroAvailability[this.warmIntro === null || this.warmIntro === void 0 ? 0 : this.warmIntro],
+			warmIntroPhaseB: this.warmIntroPhaseB,
+			ivr: IvrAvailability[this.ivr === null || this.ivr === void 0 ? 0 : this.ivr]
 		};
 	}
 };
@@ -110437,6 +115489,10 @@ var TransferOutcome;
 	TransferOutcome[TransferOutcome["TRANSFER_OUTCOME_CALL_ENDED"] = 6] = "TRANSFER_OUTCOME_CALL_ENDED";
 	TransferOutcome[TransferOutcome["TRANSFER_OUTCOME_CALL_SCOPE_MISMATCH"] = 7] = "TRANSFER_OUTCOME_CALL_SCOPE_MISMATCH";
 	TransferOutcome[TransferOutcome["TRANSFER_OUTCOME_SIP_UNREACHABLE"] = 8] = "TRANSFER_OUTCOME_SIP_UNREACHABLE";
+	TransferOutcome[TransferOutcome["TRANSFER_OUTCOME_DECLINED"] = 9] = "TRANSFER_OUTCOME_DECLINED";
+	TransferOutcome[TransferOutcome["TRANSFER_OUTCOME_NO_DECISION"] = 10] = "TRANSFER_OUTCOME_NO_DECISION";
+	TransferOutcome[TransferOutcome["TRANSFER_OUTCOME_TARGET_UNAVAILABLE"] = 11] = "TRANSFER_OUTCOME_TARGET_UNAVAILABLE";
+	TransferOutcome[TransferOutcome["TRANSFER_OUTCOME_INTRO_UNAVAILABLE"] = 12] = "TRANSFER_OUTCOME_INTRO_UNAVAILABLE";
 })(TransferOutcome || (TransferOutcome = {}));
 var CallMediaSetting;
 (function(CallMediaSetting) {
@@ -116718,6 +121774,7 @@ var TransferCallRequest = class TransferCallRequest {
 		_instance.headers = _instance.headers || {};
 		_instance.ringTimeoutS = _instance.ringTimeoutS || 0;
 		_instance.requestId = _instance.requestId || "";
+		_instance.warmTransferConfig = _instance.warmTransferConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -116751,6 +121808,10 @@ var TransferCallRequest = class TransferCallRequest {
 				case 8:
 					_instance.requestId = _reader.readString();
 					break;
+				case 9:
+					_instance.warmTransferConfig = new WarmTransferConfig();
+					_reader.readMessage(_instance.warmTransferConfig, WarmTransferConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -116774,6 +121835,7 @@ var TransferCallRequest = class TransferCallRequest {
 		}
 		if (_instance.ringTimeoutS) _writer.writeInt32(7, _instance.ringTimeoutS);
 		if (_instance.requestId) _writer.writeString(8, _instance.requestId);
+		if (_instance.warmTransferConfig) _writer.writeMessage(9, _instance.warmTransferConfig, WarmTransferConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -116787,6 +121849,7 @@ var TransferCallRequest = class TransferCallRequest {
 			[k]: _value.headers[k]
 		}), {}) : {}, this.ringTimeoutS = _value.ringTimeoutS;
 		this.requestId = _value.requestId;
+		this.warmTransferConfig = _value.warmTransferConfig ? new WarmTransferConfig(_value.warmTransferConfig) : void 0;
 		TransferCallRequest.refineValues(this);
 	}
 	get vtsiProjectName() {
@@ -116837,6 +121900,12 @@ var TransferCallRequest = class TransferCallRequest {
 	set requestId(value) {
 		this._requestId = value;
 	}
+	get warmTransferConfig() {
+		return this._warmTransferConfig;
+	}
+	set warmTransferConfig(value) {
+		this._warmTransferConfig = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		TransferCallRequest.serializeBinaryToWriter(this, writer);
@@ -116854,7 +121923,8 @@ var TransferCallRequest = class TransferCallRequest {
 				[k]: this.headers[k]
 			}), {}) : {},
 			ringTimeoutS: this.ringTimeoutS,
-			requestId: this.requestId
+			requestId: this.requestId,
+			warmTransferConfig: this.warmTransferConfig ? this.warmTransferConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -116872,7 +121942,8 @@ var TransferCallRequest = class TransferCallRequest {
 				[k]: this.headers[k]
 			}), {}) : {},
 			ringTimeoutS: this.ringTimeoutS,
-			requestId: this.requestId
+			requestId: this.requestId,
+			warmTransferConfig: this.warmTransferConfig ? this.warmTransferConfig.toProtobufJSON(options) : null
 		};
 	}
 };
@@ -116977,6 +122048,9 @@ var CallTarget = class CallTarget {
 					_instance.listenerQueue = new ListenerQueueTarget();
 					_reader.readMessage(_instance.listenerQueue, ListenerQueueTarget.deserializeBinaryFromReader);
 					break;
+				case 5:
+					_instance.ivrMenuName = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -116987,6 +122061,7 @@ var CallTarget = class CallTarget {
 		if (_instance.softphoneAccountName || _instance.softphoneAccountName === "") _writer.writeString(2, _instance.softphoneAccountName);
 		if (_instance.listenerName || _instance.listenerName === "") _writer.writeString(3, _instance.listenerName);
 		if (_instance.listenerQueue) _writer.writeMessage(4, _instance.listenerQueue, ListenerQueueTarget.serializeBinaryToWriter);
+		if (_instance.ivrMenuName || _instance.ivrMenuName === "") _writer.writeString(5, _instance.ivrMenuName);
 	}
 	constructor(_value) {
 		this._target = CallTarget.TargetCase.none;
@@ -116995,6 +122070,7 @@ var CallTarget = class CallTarget {
 		this.softphoneAccountName = _value.softphoneAccountName;
 		this.listenerName = _value.listenerName;
 		this.listenerQueue = _value.listenerQueue ? new ListenerQueueTarget(_value.listenerQueue) : void 0;
+		this.ivrMenuName = _value.ivrMenuName;
 		CallTarget.refineValues(this);
 	}
 	get phoneNumber() {
@@ -117002,7 +122078,7 @@ var CallTarget = class CallTarget {
 	}
 	set phoneNumber(value) {
 		if (value !== void 0 && value !== null) {
-			this._softphoneAccountName = this._listenerName = this._listenerQueue = void 0;
+			this._softphoneAccountName = this._listenerName = this._listenerQueue = this._ivrMenuName = void 0;
 			this._target = CallTarget.TargetCase.phoneNumber;
 		}
 		this._phoneNumber = value;
@@ -117012,7 +122088,7 @@ var CallTarget = class CallTarget {
 	}
 	set softphoneAccountName(value) {
 		if (value !== void 0 && value !== null) {
-			this._phoneNumber = this._listenerName = this._listenerQueue = void 0;
+			this._phoneNumber = this._listenerName = this._listenerQueue = this._ivrMenuName = void 0;
 			this._target = CallTarget.TargetCase.softphoneAccountName;
 		}
 		this._softphoneAccountName = value;
@@ -117022,7 +122098,7 @@ var CallTarget = class CallTarget {
 	}
 	set listenerName(value) {
 		if (value !== void 0 && value !== null) {
-			this._phoneNumber = this._softphoneAccountName = this._listenerQueue = void 0;
+			this._phoneNumber = this._softphoneAccountName = this._listenerQueue = this._ivrMenuName = void 0;
 			this._target = CallTarget.TargetCase.listenerName;
 		}
 		this._listenerName = value;
@@ -117032,10 +122108,20 @@ var CallTarget = class CallTarget {
 	}
 	set listenerQueue(value) {
 		if (value !== void 0 && value !== null) {
-			this._phoneNumber = this._softphoneAccountName = this._listenerName = void 0;
+			this._phoneNumber = this._softphoneAccountName = this._listenerName = this._ivrMenuName = void 0;
 			this._target = CallTarget.TargetCase.listenerQueue;
 		}
 		this._listenerQueue = value;
+	}
+	get ivrMenuName() {
+		return this._ivrMenuName;
+	}
+	set ivrMenuName(value) {
+		if (value !== void 0 && value !== null) {
+			this._phoneNumber = this._softphoneAccountName = this._listenerName = this._listenerQueue = void 0;
+			this._target = CallTarget.TargetCase.ivrMenuName;
+		}
+		this._ivrMenuName = value;
 	}
 	get target() {
 		return this._target;
@@ -117050,7 +122136,8 @@ var CallTarget = class CallTarget {
 			phoneNumber: this.phoneNumber,
 			softphoneAccountName: this.softphoneAccountName,
 			listenerName: this.listenerName,
-			listenerQueue: this.listenerQueue ? this.listenerQueue.toObject() : void 0
+			listenerQueue: this.listenerQueue ? this.listenerQueue.toObject() : void 0,
+			ivrMenuName: this.ivrMenuName
 		};
 	}
 	toJSON() {
@@ -117061,7 +122148,8 @@ var CallTarget = class CallTarget {
 			phoneNumber: this.phoneNumber === null || this.phoneNumber === void 0 ? null : this.phoneNumber,
 			softphoneAccountName: this.softphoneAccountName === null || this.softphoneAccountName === void 0 ? null : this.softphoneAccountName,
 			listenerName: this.listenerName === null || this.listenerName === void 0 ? null : this.listenerName,
-			listenerQueue: this.listenerQueue ? this.listenerQueue.toProtobufJSON(options) : null
+			listenerQueue: this.listenerQueue ? this.listenerQueue.toProtobufJSON(options) : null,
+			ivrMenuName: this.ivrMenuName === null || this.ivrMenuName === void 0 ? null : this.ivrMenuName
 		};
 	}
 };
@@ -117072,6 +122160,7 @@ var CallTarget = class CallTarget {
 		TargetCase[TargetCase["softphoneAccountName"] = 2] = "softphoneAccountName";
 		TargetCase[TargetCase["listenerName"] = 3] = "listenerName";
 		TargetCase[TargetCase["listenerQueue"] = 4] = "listenerQueue";
+		TargetCase[TargetCase["ivrMenuName"] = 5] = "ivrMenuName";
 	})(CallTarget.TargetCase || (CallTarget.TargetCase = {}));
 })(CallTarget || (CallTarget = {}));
 var ListenerQueueTarget = class ListenerQueueTarget {
@@ -117284,6 +122373,8 @@ var CallTransferRecord = class CallTransferRecord {
 		_instance.outcome = _instance.outcome || 0;
 		_instance.sipResponseCode = _instance.sipResponseCode || 0;
 		_instance.time = _instance.time || void 0;
+		_instance.warmIntro = _instance.warmIntro || void 0;
+		_instance.effectiveWarmTransferConfig = _instance.effectiveWarmTransferConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -117309,6 +122400,14 @@ var CallTransferRecord = class CallTransferRecord {
 					_instance.time = new googleProtobuf000.Timestamp();
 					_reader.readMessage(_instance.time, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
 					break;
+				case 7:
+					_instance.warmIntro = new WarmIntroRecord();
+					_reader.readMessage(_instance.warmIntro, WarmIntroRecord.deserializeBinaryFromReader);
+					break;
+				case 8:
+					_instance.effectiveWarmTransferConfig = new WarmTransferConfig();
+					_reader.readMessage(_instance.effectiveWarmTransferConfig, WarmTransferConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -117321,6 +122420,8 @@ var CallTransferRecord = class CallTransferRecord {
 		if (_instance.outcome) _writer.writeEnum(4, _instance.outcome);
 		if (_instance.sipResponseCode) _writer.writeInt32(5, _instance.sipResponseCode);
 		if (_instance.time) _writer.writeMessage(6, _instance.time, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.warmIntro) _writer.writeMessage(7, _instance.warmIntro, WarmIntroRecord.serializeBinaryToWriter);
+		if (_instance.effectiveWarmTransferConfig) _writer.writeMessage(8, _instance.effectiveWarmTransferConfig, WarmTransferConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -117330,6 +122431,8 @@ var CallTransferRecord = class CallTransferRecord {
 		this.outcome = _value.outcome;
 		this.sipResponseCode = _value.sipResponseCode;
 		this.time = _value.time ? new googleProtobuf000.Timestamp(_value.time) : void 0;
+		this.warmIntro = _value.warmIntro ? new WarmIntroRecord(_value.warmIntro) : void 0;
+		this.effectiveWarmTransferConfig = _value.effectiveWarmTransferConfig ? new WarmTransferConfig(_value.effectiveWarmTransferConfig) : void 0;
 		CallTransferRecord.refineValues(this);
 	}
 	get target() {
@@ -117368,6 +122471,18 @@ var CallTransferRecord = class CallTransferRecord {
 	set time(value) {
 		this._time = value;
 	}
+	get warmIntro() {
+		return this._warmIntro;
+	}
+	set warmIntro(value) {
+		this._warmIntro = value;
+	}
+	get effectiveWarmTransferConfig() {
+		return this._effectiveWarmTransferConfig;
+	}
+	set effectiveWarmTransferConfig(value) {
+		this._effectiveWarmTransferConfig = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		CallTransferRecord.serializeBinaryToWriter(this, writer);
@@ -117380,7 +122495,9 @@ var CallTransferRecord = class CallTransferRecord {
 			mode: this.mode,
 			outcome: this.outcome,
 			sipResponseCode: this.sipResponseCode,
-			time: this.time ? this.time.toObject() : void 0
+			time: this.time ? this.time.toObject() : void 0,
+			warmIntro: this.warmIntro ? this.warmIntro.toObject() : void 0,
+			effectiveWarmTransferConfig: this.effectiveWarmTransferConfig ? this.effectiveWarmTransferConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -117393,7 +122510,9 @@ var CallTransferRecord = class CallTransferRecord {
 			mode: TransferMode[this.mode === null || this.mode === void 0 ? 0 : this.mode],
 			outcome: TransferOutcome[this.outcome === null || this.outcome === void 0 ? 0 : this.outcome],
 			sipResponseCode: this.sipResponseCode,
-			time: this.time ? this.time.toProtobufJSON(options) : null
+			time: this.time ? this.time.toProtobufJSON(options) : null,
+			warmIntro: this.warmIntro ? this.warmIntro.toProtobufJSON(options) : null,
+			effectiveWarmTransferConfig: this.effectiveWarmTransferConfig ? this.effectiveWarmTransferConfig.toProtobufJSON(options) : null
 		};
 	}
 };
@@ -117948,6 +123067,176 @@ var InviteToCallResponse = class InviteToCallResponse {
 			callName: this.callName,
 			participant: this.participant ? this.participant.toProtobufJSON(options) : null,
 			errorMessage: this.errorMessage
+		};
+	}
+};
+var SendCallDtmfRequest = class SendCallDtmfRequest {
+	static {
+		this.id = "ondewo.vtsi.SendCallDtmfRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new SendCallDtmfRequest();
+		SendCallDtmfRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.vtsiProjectName = _instance.vtsiProjectName || "";
+		_instance.callName = _instance.callName || "";
+		_instance.digits = _instance.digits || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.vtsiProjectName = _reader.readString();
+					break;
+				case 2:
+					_instance.callName = _reader.readString();
+					break;
+				case 3:
+					_instance.digits = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		SendCallDtmfRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.vtsiProjectName) _writer.writeString(1, _instance.vtsiProjectName);
+		if (_instance.callName) _writer.writeString(2, _instance.callName);
+		if (_instance.digits) _writer.writeString(3, _instance.digits);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.vtsiProjectName = _value.vtsiProjectName;
+		this.callName = _value.callName;
+		this.digits = _value.digits;
+		SendCallDtmfRequest.refineValues(this);
+	}
+	get vtsiProjectName() {
+		return this._vtsiProjectName;
+	}
+	set vtsiProjectName(value) {
+		this._vtsiProjectName = value;
+	}
+	get callName() {
+		return this._callName;
+	}
+	set callName(value) {
+		this._callName = value;
+	}
+	get digits() {
+		return this._digits;
+	}
+	set digits(value) {
+		this._digits = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		SendCallDtmfRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			callName: this.callName,
+			digits: this.digits
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			callName: this.callName,
+			digits: this.digits
+		};
+	}
+};
+var SendCallDtmfResponse = class SendCallDtmfResponse {
+	static {
+		this.id = "ondewo.vtsi.SendCallDtmfResponse";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new SendCallDtmfResponse();
+		SendCallDtmfResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.vtsiProjectName = _instance.vtsiProjectName || "";
+		_instance.callName = _instance.callName || "";
+		_instance.queuedKeys = _instance.queuedKeys || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.vtsiProjectName = _reader.readString();
+					break;
+				case 2:
+					_instance.callName = _reader.readString();
+					break;
+				case 3:
+					_instance.queuedKeys = _reader.readInt32();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		SendCallDtmfResponse.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.vtsiProjectName) _writer.writeString(1, _instance.vtsiProjectName);
+		if (_instance.callName) _writer.writeString(2, _instance.callName);
+		if (_instance.queuedKeys) _writer.writeInt32(3, _instance.queuedKeys);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.vtsiProjectName = _value.vtsiProjectName;
+		this.callName = _value.callName;
+		this.queuedKeys = _value.queuedKeys;
+		SendCallDtmfResponse.refineValues(this);
+	}
+	get vtsiProjectName() {
+		return this._vtsiProjectName;
+	}
+	set vtsiProjectName(value) {
+		this._vtsiProjectName = value;
+	}
+	get callName() {
+		return this._callName;
+	}
+	set callName(value) {
+		this._callName = value;
+	}
+	get queuedKeys() {
+		return this._queuedKeys;
+	}
+	set queuedKeys(value) {
+		this._queuedKeys = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		SendCallDtmfResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			callName: this.callName,
+			queuedKeys: this.queuedKeys
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			callName: this.callName,
+			queuedKeys: this.queuedKeys
 		};
 	}
 };
@@ -119406,6 +124695,8 @@ var Call = class Call {
 		_instance.lastTransfer = _instance.lastTransfer || void 0;
 		_instance.sipCallId = _instance.sipCallId || "";
 		_instance.labels = _instance.labels || {};
+		_instance.ivrMenuDisplayName = _instance.ivrMenuDisplayName || "";
+		_instance.ivrPath = _instance.ivrPath || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -119502,6 +124793,12 @@ var Call = class Call {
 					_instance.labels = _instance.labels || {};
 					_instance.labels[msg_26.key] = msg_26.value;
 					break;
+				case 27:
+					_instance.ivrMenuDisplayName = _reader.readString();
+					break;
+				case 28:
+					_instance.ivrPath = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -119543,6 +124840,8 @@ var Call = class Call {
 				_writer.writeRepeatedMessage(26, repeated_26, Call.LabelsEntry.serializeBinaryToWriter);
 			}
 		}
+		if (_instance.ivrMenuDisplayName) _writer.writeString(27, _instance.ivrMenuDisplayName);
+		if (_instance.ivrPath) _writer.writeString(28, _instance.ivrPath);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -119574,7 +124873,9 @@ var Call = class Call {
 		this.labels = _value.labels ? Object.keys(_value.labels).reduce((r, k) => ({
 			...r,
 			[k]: _value.labels[k]
-		}), {}) : {}, Call.refineValues(this);
+		}), {}) : {}, this.ivrMenuDisplayName = _value.ivrMenuDisplayName;
+		this.ivrPath = _value.ivrPath;
+		Call.refineValues(this);
 	}
 	get name() {
 		return this._name;
@@ -119732,6 +125033,18 @@ var Call = class Call {
 	set labels(value) {
 		this._labels = value;
 	}
+	get ivrMenuDisplayName() {
+		return this._ivrMenuDisplayName;
+	}
+	set ivrMenuDisplayName(value) {
+		this._ivrMenuDisplayName = value;
+	}
+	get ivrPath() {
+		return this._ivrPath;
+	}
+	set ivrPath(value) {
+		this._ivrPath = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		Call.serializeBinaryToWriter(this, writer);
@@ -119767,7 +125080,9 @@ var Call = class Call {
 			labels: this.labels ? Object.keys(this.labels).reduce((r, k) => ({
 				...r,
 				[k]: this.labels[k]
-			}), {}) : {}
+			}), {}) : {},
+			ivrMenuDisplayName: this.ivrMenuDisplayName,
+			ivrPath: this.ivrPath
 		};
 	}
 	toJSON() {
@@ -119803,7 +125118,9 @@ var Call = class Call {
 			labels: this.labels ? Object.keys(this.labels).reduce((r, k) => ({
 				...r,
 				[k]: this.labels[k]
-			}), {}) : {}
+			}), {}) : {},
+			ivrMenuDisplayName: this.ivrMenuDisplayName,
+			ivrPath: this.ivrPath
 		};
 	}
 };
@@ -122895,6 +128212,17 @@ var CallsClient = class CallsClient {
 					responseClass: SetCallMediaControlResponse
 				});
 			},
+			sendCallDtmf: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.Calls/SendCallDtmf",
+					requestData,
+					requestMetadata,
+					requestClass: SendCallDtmfRequest,
+					responseClass: SendCallDtmfResponse
+				});
+			},
 			listenCallAudio: (requestData, requestMetadata = new GrpcMetadata()) => {
 				return this.handler.handle({
 					type: GrpcCallType.serverStream,
@@ -123046,6 +128374,9 @@ var CallsClient = class CallsClient {
 	}
 	setCallMediaControl(requestData, requestMetadata = new GrpcMetadata()) {
 		return this.$raw.setCallMediaControl(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	sendCallDtmf(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.sendCallDtmf(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
 	}
 	listenCallAudio(requestData, requestMetadata = new GrpcMetadata()) {
 		return this.$raw.listenCallAudio(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
@@ -123416,6 +128747,13 @@ var VtsiEvent;
 	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_AUDIO_STREAM_CONNECTED"] = 120] = "VTSI_EVENT_CALL_AUDIO_STREAM_CONNECTED";
 	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_AUDIO_STREAM_DISCONNECTED"] = 121] = "VTSI_EVENT_CALL_AUDIO_STREAM_DISCONNECTED";
 	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_UPDATED"] = 122] = "VTSI_EVENT_CALL_UPDATED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_DTMF_SENT"] = 123] = "VTSI_EVENT_CALL_DTMF_SENT";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_WARM_INTRO_STARTED"] = 124] = "VTSI_EVENT_CALL_WARM_INTRO_STARTED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_WARM_INTRO_ACCEPTED"] = 125] = "VTSI_EVENT_CALL_WARM_INTRO_ACCEPTED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_WARM_INTRO_DECLINED"] = 126] = "VTSI_EVENT_CALL_WARM_INTRO_DECLINED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_WARM_INTRO_NO_DECISION"] = 127] = "VTSI_EVENT_CALL_WARM_INTRO_NO_DECISION";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_WARM_INTRO_TARGET_UNAVAILABLE"] = 128] = "VTSI_EVENT_CALL_WARM_INTRO_TARGET_UNAVAILABLE";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_CALL_WARM_TRANSFER_OUTCOME_NOTICE_UNDELIVERED"] = 129] = "VTSI_EVENT_CALL_WARM_TRANSFER_OUTCOME_NOTICE_UNDELIVERED";
 	VtsiEvent[VtsiEvent["VTSI_EVENT_CALLER_STARTED"] = 200] = "VTSI_EVENT_CALLER_STARTED";
 	VtsiEvent[VtsiEvent["VTSI_EVENT_CALLER_START_FAILED"] = 201] = "VTSI_EVENT_CALLER_START_FAILED";
 	VtsiEvent[VtsiEvent["VTSI_EVENT_CALLER_STOPPED"] = 202] = "VTSI_EVENT_CALLER_STOPPED";
@@ -123490,6 +128828,12 @@ var VtsiEvent;
 	VtsiEvent[VtsiEvent["VTSI_EVENT_EVENT_SUBSCRIPTION_CREATED"] = 904] = "VTSI_EVENT_EVENT_SUBSCRIPTION_CREATED";
 	VtsiEvent[VtsiEvent["VTSI_EVENT_EVENT_SUBSCRIPTION_UPDATED"] = 905] = "VTSI_EVENT_EVENT_SUBSCRIPTION_UPDATED";
 	VtsiEvent[VtsiEvent["VTSI_EVENT_EVENT_SUBSCRIPTION_DELETED"] = 906] = "VTSI_EVENT_EVENT_SUBSCRIPTION_DELETED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_IVR_MENU_CREATED"] = 1001] = "VTSI_EVENT_IVR_MENU_CREATED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_IVR_MENU_UPDATED"] = 1002] = "VTSI_EVENT_IVR_MENU_UPDATED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_IVR_MENU_DELETED"] = 1003] = "VTSI_EVENT_IVR_MENU_DELETED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_IVR_MENU_PUBLISHED"] = 1004] = "VTSI_EVENT_IVR_MENU_PUBLISHED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_IVR_MENU_PUBLISH_FAILED"] = 1005] = "VTSI_EVENT_IVR_MENU_PUBLISH_FAILED";
+	VtsiEvent[VtsiEvent["VTSI_EVENT_IVR_MENU_TESTED"] = 1006] = "VTSI_EVENT_IVR_MENU_TESTED";
 })(VtsiEvent || (VtsiEvent = {}));
 var WebhookHttpMethod;
 (function(WebhookHttpMethod) {
@@ -126661,6 +132005,3641 @@ i0.ɵɵngDeclareClassMetadata({
 		{ type: i1$1.GrpcHandler }
 	]
 });
+var IvrNodeType;
+(function(IvrNodeType) {
+	IvrNodeType[IvrNodeType["IVR_NODE_TYPE_UNSPECIFIED"] = 0] = "IVR_NODE_TYPE_UNSPECIFIED";
+	IvrNodeType[IvrNodeType["IVR_NODE_TYPE_MENU"] = 1] = "IVR_NODE_TYPE_MENU";
+	IvrNodeType[IvrNodeType["IVR_NODE_TYPE_PLAY"] = 2] = "IVR_NODE_TYPE_PLAY";
+	IvrNodeType[IvrNodeType["IVR_NODE_TYPE_ROUTE"] = 3] = "IVR_NODE_TYPE_ROUTE";
+	IvrNodeType[IvrNodeType["IVR_NODE_TYPE_HANGUP"] = 4] = "IVR_NODE_TYPE_HANGUP";
+	IvrNodeType[IvrNodeType["IVR_NODE_TYPE_SCHEDULE"] = 5] = "IVR_NODE_TYPE_SCHEDULE";
+	IvrNodeType[IvrNodeType["IVR_NODE_TYPE_GOTO_MENU"] = 6] = "IVR_NODE_TYPE_GOTO_MENU";
+})(IvrNodeType || (IvrNodeType = {}));
+var IvrMenuState;
+(function(IvrMenuState) {
+	IvrMenuState[IvrMenuState["IVR_MENU_STATE_UNSPECIFIED"] = 0] = "IVR_MENU_STATE_UNSPECIFIED";
+	IvrMenuState[IvrMenuState["IVR_MENU_STATE_DRAFT"] = 1] = "IVR_MENU_STATE_DRAFT";
+	IvrMenuState[IvrMenuState["IVR_MENU_STATE_PUBLISHED"] = 2] = "IVR_MENU_STATE_PUBLISHED";
+	IvrMenuState[IvrMenuState["IVR_MENU_STATE_PUBLISH_FAILED"] = 3] = "IVR_MENU_STATE_PUBLISH_FAILED";
+})(IvrMenuState || (IvrMenuState = {}));
+var IvrMenuOrderBy;
+(function(IvrMenuOrderBy) {
+	IvrMenuOrderBy[IvrMenuOrderBy["IVR_MENU_ORDER_BY_UNSPECIFIED"] = 0] = "IVR_MENU_ORDER_BY_UNSPECIFIED";
+	IvrMenuOrderBy[IvrMenuOrderBy["IVR_MENU_ORDER_BY_DISPLAY_NAME"] = 1] = "IVR_MENU_ORDER_BY_DISPLAY_NAME";
+	IvrMenuOrderBy[IvrMenuOrderBy["IVR_MENU_ORDER_BY_MODIFIED_AT_DESC"] = 2] = "IVR_MENU_ORDER_BY_MODIFIED_AT_DESC";
+})(IvrMenuOrderBy || (IvrMenuOrderBy = {}));
+var IvrMenuIssueSeverity;
+(function(IvrMenuIssueSeverity) {
+	IvrMenuIssueSeverity[IvrMenuIssueSeverity["IVR_MENU_ISSUE_SEVERITY_UNSPECIFIED"] = 0] = "IVR_MENU_ISSUE_SEVERITY_UNSPECIFIED";
+	IvrMenuIssueSeverity[IvrMenuIssueSeverity["IVR_MENU_ISSUE_SEVERITY_ERROR"] = 1] = "IVR_MENU_ISSUE_SEVERITY_ERROR";
+	IvrMenuIssueSeverity[IvrMenuIssueSeverity["IVR_MENU_ISSUE_SEVERITY_WARNING"] = 2] = "IVR_MENU_ISSUE_SEVERITY_WARNING";
+})(IvrMenuIssueSeverity || (IvrMenuIssueSeverity = {}));
+var IvrMenuTestState;
+(function(IvrMenuTestState) {
+	IvrMenuTestState[IvrMenuTestState["IVR_MENU_TEST_STATE_UNSPECIFIED"] = 0] = "IVR_MENU_TEST_STATE_UNSPECIFIED";
+	IvrMenuTestState[IvrMenuTestState["IVR_MENU_TEST_STATE_RUNNING"] = 1] = "IVR_MENU_TEST_STATE_RUNNING";
+	IvrMenuTestState[IvrMenuTestState["IVR_MENU_TEST_STATE_SUCCEEDED"] = 2] = "IVR_MENU_TEST_STATE_SUCCEEDED";
+	IvrMenuTestState[IvrMenuTestState["IVR_MENU_TEST_STATE_TIMED_OUT"] = 3] = "IVR_MENU_TEST_STATE_TIMED_OUT";
+	IvrMenuTestState[IvrMenuTestState["IVR_MENU_TEST_STATE_FAILED"] = 4] = "IVR_MENU_TEST_STATE_FAILED";
+})(IvrMenuTestState || (IvrMenuTestState = {}));
+var IvrMenu = class IvrMenu {
+	static {
+		this.id = "ondewo.vtsi.IvrMenu";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrMenu();
+		IvrMenu.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.name = _instance.name || "";
+		_instance.displayName = _instance.displayName || "";
+		_instance.description = _instance.description || "";
+		_instance.entryNodeId = _instance.entryNodeId || "";
+		_instance.nodes = _instance.nodes || [];
+		_instance.languageCode = _instance.languageCode || "";
+		_instance.t2sPipelineId = _instance.t2sPipelineId || "";
+		_instance.inboundPhoneNumbers = _instance.inboundPhoneNumbers || [];
+		_instance.defaultInbound = _instance.defaultInbound || false;
+		_instance.disabled = _instance.disabled || false;
+		_instance.state = _instance.state || 0;
+		_instance.revision = _instance.revision || "0";
+		_instance.publishedRevision = _instance.publishedRevision || "0";
+		_instance.stateMessage = _instance.stateMessage || "";
+		_instance.layout = _instance.layout || {};
+		_instance.createdBy = _instance.createdBy || "";
+		_instance.createdAt = _instance.createdAt || void 0;
+		_instance.modifiedBy = _instance.modifiedBy || "";
+		_instance.modifiedAt = _instance.modifiedAt || void 0;
+		_instance.publishedAt = _instance.publishedAt || void 0;
+		_instance.publishedBy = _instance.publishedBy || "";
+		_instance.nodeStats = _instance.nodeStats || {};
+		_instance.nodeStatsUpdatedAt = _instance.nodeStatsUpdatedAt || void 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.displayName = _reader.readString();
+					break;
+				case 3:
+					_instance.description = _reader.readString();
+					break;
+				case 4:
+					_instance.entryNodeId = _reader.readString();
+					break;
+				case 5:
+					const messageInitializer5 = new IvrNode();
+					_reader.readMessage(messageInitializer5, IvrNode.deserializeBinaryFromReader);
+					(_instance.nodes = _instance.nodes || []).push(messageInitializer5);
+					break;
+				case 6:
+					_instance.languageCode = _reader.readString();
+					break;
+				case 7:
+					_instance.t2sPipelineId = _reader.readString();
+					break;
+				case 8:
+					(_instance.inboundPhoneNumbers = _instance.inboundPhoneNumbers || []).push(_reader.readString());
+					break;
+				case 9:
+					_instance.defaultInbound = _reader.readBool();
+					break;
+				case 10:
+					_instance.disabled = _reader.readBool();
+					break;
+				case 11:
+					_instance.state = _reader.readEnum();
+					break;
+				case 12:
+					_instance.revision = _reader.readInt64String();
+					break;
+				case 13:
+					_instance.publishedRevision = _reader.readInt64String();
+					break;
+				case 14:
+					_instance.stateMessage = _reader.readString();
+					break;
+				case 15:
+					const msg_15 = {};
+					_reader.readMessage(msg_15, IvrMenu.LayoutEntry.deserializeBinaryFromReader);
+					_instance.layout = _instance.layout || {};
+					_instance.layout[msg_15.key] = msg_15.value;
+					break;
+				case 16:
+					_instance.createdBy = _reader.readString();
+					break;
+				case 17:
+					_instance.createdAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.createdAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				case 18:
+					_instance.modifiedBy = _reader.readString();
+					break;
+				case 19:
+					_instance.modifiedAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.modifiedAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				case 20:
+					_instance.publishedAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.publishedAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				case 21:
+					_instance.publishedBy = _reader.readString();
+					break;
+				case 22:
+					const msg_22 = {};
+					_reader.readMessage(msg_22, IvrMenu.NodeStatsEntry.deserializeBinaryFromReader);
+					_instance.nodeStats = _instance.nodeStats || {};
+					_instance.nodeStats[msg_22.key] = msg_22.value;
+					break;
+				case 23:
+					_instance.nodeStatsUpdatedAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.nodeStatsUpdatedAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrMenu.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) _writer.writeString(1, _instance.name);
+		if (_instance.displayName) _writer.writeString(2, _instance.displayName);
+		if (_instance.description) _writer.writeString(3, _instance.description);
+		if (_instance.entryNodeId) _writer.writeString(4, _instance.entryNodeId);
+		if (_instance.nodes && _instance.nodes.length) _writer.writeRepeatedMessage(5, _instance.nodes, IvrNode.serializeBinaryToWriter);
+		if (_instance.languageCode) _writer.writeString(6, _instance.languageCode);
+		if (_instance.t2sPipelineId) _writer.writeString(7, _instance.t2sPipelineId);
+		if (_instance.inboundPhoneNumbers && _instance.inboundPhoneNumbers.length) _writer.writeRepeatedString(8, _instance.inboundPhoneNumbers);
+		if (_instance.defaultInbound) _writer.writeBool(9, _instance.defaultInbound);
+		if (_instance.disabled) _writer.writeBool(10, _instance.disabled);
+		if (_instance.state) _writer.writeEnum(11, _instance.state);
+		if (_instance.revision) _writer.writeInt64String(12, _instance.revision);
+		if (_instance.publishedRevision) _writer.writeInt64String(13, _instance.publishedRevision);
+		if (_instance.stateMessage) _writer.writeString(14, _instance.stateMessage);
+		if (!!_instance.layout) {
+			const keys_15 = Object.keys(_instance.layout);
+			if (keys_15.length) {
+				const repeated_15 = keys_15.map((key) => ({
+					key,
+					value: _instance.layout[key]
+				})).reduce((r, v) => [...r, v], []);
+				_writer.writeRepeatedMessage(15, repeated_15, IvrMenu.LayoutEntry.serializeBinaryToWriter);
+			}
+		}
+		if (_instance.createdBy) _writer.writeString(16, _instance.createdBy);
+		if (_instance.createdAt) _writer.writeMessage(17, _instance.createdAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.modifiedBy) _writer.writeString(18, _instance.modifiedBy);
+		if (_instance.modifiedAt) _writer.writeMessage(19, _instance.modifiedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.publishedAt) _writer.writeMessage(20, _instance.publishedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.publishedBy) _writer.writeString(21, _instance.publishedBy);
+		if (!!_instance.nodeStats) {
+			const keys_22 = Object.keys(_instance.nodeStats);
+			if (keys_22.length) {
+				const repeated_22 = keys_22.map((key) => ({
+					key,
+					value: _instance.nodeStats[key]
+				})).reduce((r, v) => [...r, v], []);
+				_writer.writeRepeatedMessage(22, repeated_22, IvrMenu.NodeStatsEntry.serializeBinaryToWriter);
+			}
+		}
+		if (_instance.nodeStatsUpdatedAt) _writer.writeMessage(23, _instance.nodeStatsUpdatedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.displayName = _value.displayName;
+		this.description = _value.description;
+		this.entryNodeId = _value.entryNodeId;
+		this.nodes = (_value.nodes || []).map((m) => new IvrNode(m));
+		this.languageCode = _value.languageCode;
+		this.t2sPipelineId = _value.t2sPipelineId;
+		this.inboundPhoneNumbers = (_value.inboundPhoneNumbers || []).slice();
+		this.defaultInbound = _value.defaultInbound;
+		this.disabled = _value.disabled;
+		this.state = _value.state;
+		this.revision = _value.revision;
+		this.publishedRevision = _value.publishedRevision;
+		this.stateMessage = _value.stateMessage;
+		this.layout = _value.layout ? Object.keys(_value.layout).reduce((r, k) => ({
+			...r,
+			[k]: _value.layout[k] ? new IvrNodePosition(_value.layout[k]) : void 0
+		}), {}) : {}, this.createdBy = _value.createdBy;
+		this.createdAt = _value.createdAt ? new googleProtobuf000.Timestamp(_value.createdAt) : void 0;
+		this.modifiedBy = _value.modifiedBy;
+		this.modifiedAt = _value.modifiedAt ? new googleProtobuf000.Timestamp(_value.modifiedAt) : void 0;
+		this.publishedAt = _value.publishedAt ? new googleProtobuf000.Timestamp(_value.publishedAt) : void 0;
+		this.publishedBy = _value.publishedBy;
+		this.nodeStats = _value.nodeStats ? Object.keys(_value.nodeStats).reduce((r, k) => ({
+			...r,
+			[k]: _value.nodeStats[k] ? new IvrNodeStats(_value.nodeStats[k]) : void 0
+		}), {}) : {}, this.nodeStatsUpdatedAt = _value.nodeStatsUpdatedAt ? new googleProtobuf000.Timestamp(_value.nodeStatsUpdatedAt) : void 0;
+		IvrMenu.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get displayName() {
+		return this._displayName;
+	}
+	set displayName(value) {
+		this._displayName = value;
+	}
+	get description() {
+		return this._description;
+	}
+	set description(value) {
+		this._description = value;
+	}
+	get entryNodeId() {
+		return this._entryNodeId;
+	}
+	set entryNodeId(value) {
+		this._entryNodeId = value;
+	}
+	get nodes() {
+		return this._nodes;
+	}
+	set nodes(value) {
+		this._nodes = value;
+	}
+	get languageCode() {
+		return this._languageCode;
+	}
+	set languageCode(value) {
+		this._languageCode = value;
+	}
+	get t2sPipelineId() {
+		return this._t2sPipelineId;
+	}
+	set t2sPipelineId(value) {
+		this._t2sPipelineId = value;
+	}
+	get inboundPhoneNumbers() {
+		return this._inboundPhoneNumbers;
+	}
+	set inboundPhoneNumbers(value) {
+		this._inboundPhoneNumbers = value;
+	}
+	get defaultInbound() {
+		return this._defaultInbound;
+	}
+	set defaultInbound(value) {
+		this._defaultInbound = value;
+	}
+	get disabled() {
+		return this._disabled;
+	}
+	set disabled(value) {
+		this._disabled = value;
+	}
+	get state() {
+		return this._state;
+	}
+	set state(value) {
+		this._state = value;
+	}
+	get revision() {
+		return this._revision;
+	}
+	set revision(value) {
+		this._revision = value;
+	}
+	get publishedRevision() {
+		return this._publishedRevision;
+	}
+	set publishedRevision(value) {
+		this._publishedRevision = value;
+	}
+	get stateMessage() {
+		return this._stateMessage;
+	}
+	set stateMessage(value) {
+		this._stateMessage = value;
+	}
+	get layout() {
+		return this._layout;
+	}
+	set layout(value) {
+		this._layout = value;
+	}
+	get createdBy() {
+		return this._createdBy;
+	}
+	set createdBy(value) {
+		this._createdBy = value;
+	}
+	get createdAt() {
+		return this._createdAt;
+	}
+	set createdAt(value) {
+		this._createdAt = value;
+	}
+	get modifiedBy() {
+		return this._modifiedBy;
+	}
+	set modifiedBy(value) {
+		this._modifiedBy = value;
+	}
+	get modifiedAt() {
+		return this._modifiedAt;
+	}
+	set modifiedAt(value) {
+		this._modifiedAt = value;
+	}
+	get publishedAt() {
+		return this._publishedAt;
+	}
+	set publishedAt(value) {
+		this._publishedAt = value;
+	}
+	get publishedBy() {
+		return this._publishedBy;
+	}
+	set publishedBy(value) {
+		this._publishedBy = value;
+	}
+	get nodeStats() {
+		return this._nodeStats;
+	}
+	set nodeStats(value) {
+		this._nodeStats = value;
+	}
+	get nodeStatsUpdatedAt() {
+		return this._nodeStatsUpdatedAt;
+	}
+	set nodeStatsUpdatedAt(value) {
+		this._nodeStatsUpdatedAt = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrMenu.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			displayName: this.displayName,
+			description: this.description,
+			entryNodeId: this.entryNodeId,
+			nodes: (this.nodes || []).map((m) => m.toObject()),
+			languageCode: this.languageCode,
+			t2sPipelineId: this.t2sPipelineId,
+			inboundPhoneNumbers: (this.inboundPhoneNumbers || []).slice(),
+			defaultInbound: this.defaultInbound,
+			disabled: this.disabled,
+			state: this.state,
+			revision: this.revision,
+			publishedRevision: this.publishedRevision,
+			stateMessage: this.stateMessage,
+			layout: this.layout ? Object.keys(this.layout).reduce((r, k) => ({
+				...r,
+				[k]: this.layout[k] ? this.layout[k].toObject() : void 0
+			}), {}) : {},
+			createdBy: this.createdBy,
+			createdAt: this.createdAt ? this.createdAt.toObject() : void 0,
+			modifiedBy: this.modifiedBy,
+			modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : void 0,
+			publishedAt: this.publishedAt ? this.publishedAt.toObject() : void 0,
+			publishedBy: this.publishedBy,
+			nodeStats: this.nodeStats ? Object.keys(this.nodeStats).reduce((r, k) => ({
+				...r,
+				[k]: this.nodeStats[k] ? this.nodeStats[k].toObject() : void 0
+			}), {}) : {},
+			nodeStatsUpdatedAt: this.nodeStatsUpdatedAt ? this.nodeStatsUpdatedAt.toObject() : void 0
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name,
+			displayName: this.displayName,
+			description: this.description,
+			entryNodeId: this.entryNodeId,
+			nodes: (this.nodes || []).map((m) => m.toProtobufJSON(options)),
+			languageCode: this.languageCode,
+			t2sPipelineId: this.t2sPipelineId,
+			inboundPhoneNumbers: (this.inboundPhoneNumbers || []).slice(),
+			defaultInbound: this.defaultInbound,
+			disabled: this.disabled,
+			state: IvrMenuState[this.state === null || this.state === void 0 ? 0 : this.state],
+			revision: this.revision,
+			publishedRevision: this.publishedRevision,
+			stateMessage: this.stateMessage,
+			layout: this.layout ? Object.keys(this.layout).reduce((r, k) => ({
+				...r,
+				[k]: this.layout[k] ? this.layout[k].toJSON() : null
+			}), {}) : {},
+			createdBy: this.createdBy,
+			createdAt: this.createdAt ? this.createdAt.toProtobufJSON(options) : null,
+			modifiedBy: this.modifiedBy,
+			modifiedAt: this.modifiedAt ? this.modifiedAt.toProtobufJSON(options) : null,
+			publishedAt: this.publishedAt ? this.publishedAt.toProtobufJSON(options) : null,
+			publishedBy: this.publishedBy,
+			nodeStats: this.nodeStats ? Object.keys(this.nodeStats).reduce((r, k) => ({
+				...r,
+				[k]: this.nodeStats[k] ? this.nodeStats[k].toJSON() : null
+			}), {}) : {},
+			nodeStatsUpdatedAt: this.nodeStatsUpdatedAt ? this.nodeStatsUpdatedAt.toProtobufJSON(options) : null
+		};
+	}
+};
+(function(IvrMenu) {
+	class LayoutEntry {
+		static {
+			this.id = "ondewo.vtsi.IvrMenu.LayoutEntry";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new LayoutEntry();
+			LayoutEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.key = _instance.key || "";
+			_instance.value = _instance.value || void 0;
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						_instance.key = _reader.readString();
+						break;
+					case 2:
+						_instance.value = new IvrNodePosition();
+						_reader.readMessage(_instance.value, IvrNodePosition.deserializeBinaryFromReader);
+						break;
+					default: _reader.skipField();
+				}
+			}
+			LayoutEntry.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.key) _writer.writeString(1, _instance.key);
+			if (_instance.value) _writer.writeMessage(2, _instance.value, IvrNodePosition.serializeBinaryToWriter);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.key = _value.key;
+			this.value = _value.value ? new IvrNodePosition(_value.value) : void 0;
+			LayoutEntry.refineValues(this);
+		}
+		get key() {
+			return this._key;
+		}
+		set key(value) {
+			this._key = value;
+		}
+		get value() {
+			return this._value;
+		}
+		set value(value) {
+			this._value = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			LayoutEntry.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toObject() : void 0
+			};
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toProtobufJSON(options) : null
+			};
+		}
+	}
+	IvrMenu.LayoutEntry = LayoutEntry;
+	class NodeStatsEntry {
+		static {
+			this.id = "ondewo.vtsi.IvrMenu.NodeStatsEntry";
+		}
+		static deserializeBinary(bytes) {
+			const instance = new NodeStatsEntry();
+			NodeStatsEntry.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+			return instance;
+		}
+		static refineValues(_instance) {
+			_instance.key = _instance.key || "";
+			_instance.value = _instance.value || void 0;
+		}
+		static deserializeBinaryFromReader(_instance, _reader) {
+			while (_reader.nextField()) {
+				if (_reader.isEndGroup()) break;
+				switch (_reader.getFieldNumber()) {
+					case 1:
+						_instance.key = _reader.readString();
+						break;
+					case 2:
+						_instance.value = new IvrNodeStats();
+						_reader.readMessage(_instance.value, IvrNodeStats.deserializeBinaryFromReader);
+						break;
+					default: _reader.skipField();
+				}
+			}
+			NodeStatsEntry.refineValues(_instance);
+		}
+		static serializeBinaryToWriter(_instance, _writer) {
+			if (_instance.key) _writer.writeString(1, _instance.key);
+			if (_instance.value) _writer.writeMessage(2, _instance.value, IvrNodeStats.serializeBinaryToWriter);
+		}
+		constructor(_value) {
+			_value = _value || {};
+			this.key = _value.key;
+			this.value = _value.value ? new IvrNodeStats(_value.value) : void 0;
+			NodeStatsEntry.refineValues(this);
+		}
+		get key() {
+			return this._key;
+		}
+		set key(value) {
+			this._key = value;
+		}
+		get value() {
+			return this._value;
+		}
+		set value(value) {
+			this._value = value;
+		}
+		serializeBinary() {
+			const writer = new BinaryWriter();
+			NodeStatsEntry.serializeBinaryToWriter(this, writer);
+			return writer.getResultBuffer();
+		}
+		toObject() {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toObject() : void 0
+			};
+		}
+		toJSON() {
+			return this.toObject();
+		}
+		toProtobufJSON(options) {
+			return {
+				key: this.key,
+				value: this.value ? this.value.toProtobufJSON(options) : null
+			};
+		}
+	}
+	IvrMenu.NodeStatsEntry = NodeStatsEntry;
+})(IvrMenu || (IvrMenu = {}));
+var IvrNode = class IvrNode {
+	static {
+		this.id = "ondewo.vtsi.IvrNode";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrNode();
+		IvrNode.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.nodeId = _instance.nodeId || "";
+		_instance.displayName = _instance.displayName || "";
+		_instance.type = _instance.type || 0;
+		_instance.prompt = _instance.prompt || void 0;
+		_instance.options = _instance.options || [];
+		_instance.timeoutS = _instance.timeoutS || 0;
+		_instance.maxRetries = _instance.maxRetries || 0;
+		_instance.timeoutNextNodeId = _instance.timeoutNextNodeId || "";
+		_instance.invalidNextNodeId = _instance.invalidNextNodeId || "";
+		_instance.nextNodeId = _instance.nextNodeId || "";
+		_instance.routeTarget = _instance.routeTarget || void 0;
+		_instance.schedule = _instance.schedule || void 0;
+		_instance.closedNextNodeId = _instance.closedNextNodeId || "";
+		_instance.busyNextNodeId = _instance.busyNextNodeId || "";
+		_instance.reprompt = _instance.reprompt || void 0;
+		_instance.gotoMenuName = _instance.gotoMenuName || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.nodeId = _reader.readString();
+					break;
+				case 2:
+					_instance.displayName = _reader.readString();
+					break;
+				case 3:
+					_instance.type = _reader.readEnum();
+					break;
+				case 4:
+					_instance.prompt = new IvrPrompt();
+					_reader.readMessage(_instance.prompt, IvrPrompt.deserializeBinaryFromReader);
+					break;
+				case 5:
+					const messageInitializer5 = new IvrOption();
+					_reader.readMessage(messageInitializer5, IvrOption.deserializeBinaryFromReader);
+					(_instance.options = _instance.options || []).push(messageInitializer5);
+					break;
+				case 6:
+					_instance.timeoutS = _reader.readUint32();
+					break;
+				case 7:
+					_instance.maxRetries = _reader.readUint32();
+					break;
+				case 8:
+					_instance.timeoutNextNodeId = _reader.readString();
+					break;
+				case 9:
+					_instance.invalidNextNodeId = _reader.readString();
+					break;
+				case 10:
+					_instance.nextNodeId = _reader.readString();
+					break;
+				case 11:
+					_instance.routeTarget = new CallTarget();
+					_reader.readMessage(_instance.routeTarget, CallTarget.deserializeBinaryFromReader);
+					break;
+				case 12:
+					_instance.schedule = new CampaignCallingWindow();
+					_reader.readMessage(_instance.schedule, CampaignCallingWindow.deserializeBinaryFromReader);
+					break;
+				case 13:
+					_instance.closedNextNodeId = _reader.readString();
+					break;
+				case 14:
+					_instance.busyNextNodeId = _reader.readString();
+					break;
+				case 15:
+					_instance.reprompt = new IvrPrompt();
+					_reader.readMessage(_instance.reprompt, IvrPrompt.deserializeBinaryFromReader);
+					break;
+				case 16:
+					_instance.gotoMenuName = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrNode.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.nodeId) _writer.writeString(1, _instance.nodeId);
+		if (_instance.displayName) _writer.writeString(2, _instance.displayName);
+		if (_instance.type) _writer.writeEnum(3, _instance.type);
+		if (_instance.prompt) _writer.writeMessage(4, _instance.prompt, IvrPrompt.serializeBinaryToWriter);
+		if (_instance.options && _instance.options.length) _writer.writeRepeatedMessage(5, _instance.options, IvrOption.serializeBinaryToWriter);
+		if (_instance.timeoutS) _writer.writeUint32(6, _instance.timeoutS);
+		if (_instance.maxRetries) _writer.writeUint32(7, _instance.maxRetries);
+		if (_instance.timeoutNextNodeId) _writer.writeString(8, _instance.timeoutNextNodeId);
+		if (_instance.invalidNextNodeId) _writer.writeString(9, _instance.invalidNextNodeId);
+		if (_instance.nextNodeId) _writer.writeString(10, _instance.nextNodeId);
+		if (_instance.routeTarget) _writer.writeMessage(11, _instance.routeTarget, CallTarget.serializeBinaryToWriter);
+		if (_instance.schedule) _writer.writeMessage(12, _instance.schedule, CampaignCallingWindow.serializeBinaryToWriter);
+		if (_instance.closedNextNodeId) _writer.writeString(13, _instance.closedNextNodeId);
+		if (_instance.busyNextNodeId) _writer.writeString(14, _instance.busyNextNodeId);
+		if (_instance.reprompt) _writer.writeMessage(15, _instance.reprompt, IvrPrompt.serializeBinaryToWriter);
+		if (_instance.gotoMenuName) _writer.writeString(16, _instance.gotoMenuName);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.nodeId = _value.nodeId;
+		this.displayName = _value.displayName;
+		this.type = _value.type;
+		this.prompt = _value.prompt ? new IvrPrompt(_value.prompt) : void 0;
+		this.options = (_value.options || []).map((m) => new IvrOption(m));
+		this.timeoutS = _value.timeoutS;
+		this.maxRetries = _value.maxRetries;
+		this.timeoutNextNodeId = _value.timeoutNextNodeId;
+		this.invalidNextNodeId = _value.invalidNextNodeId;
+		this.nextNodeId = _value.nextNodeId;
+		this.routeTarget = _value.routeTarget ? new CallTarget(_value.routeTarget) : void 0;
+		this.schedule = _value.schedule ? new CampaignCallingWindow(_value.schedule) : void 0;
+		this.closedNextNodeId = _value.closedNextNodeId;
+		this.busyNextNodeId = _value.busyNextNodeId;
+		this.reprompt = _value.reprompt ? new IvrPrompt(_value.reprompt) : void 0;
+		this.gotoMenuName = _value.gotoMenuName;
+		IvrNode.refineValues(this);
+	}
+	get nodeId() {
+		return this._nodeId;
+	}
+	set nodeId(value) {
+		this._nodeId = value;
+	}
+	get displayName() {
+		return this._displayName;
+	}
+	set displayName(value) {
+		this._displayName = value;
+	}
+	get type() {
+		return this._type;
+	}
+	set type(value) {
+		this._type = value;
+	}
+	get prompt() {
+		return this._prompt;
+	}
+	set prompt(value) {
+		this._prompt = value;
+	}
+	get options() {
+		return this._options;
+	}
+	set options(value) {
+		this._options = value;
+	}
+	get timeoutS() {
+		return this._timeoutS;
+	}
+	set timeoutS(value) {
+		this._timeoutS = value;
+	}
+	get maxRetries() {
+		return this._maxRetries;
+	}
+	set maxRetries(value) {
+		this._maxRetries = value;
+	}
+	get timeoutNextNodeId() {
+		return this._timeoutNextNodeId;
+	}
+	set timeoutNextNodeId(value) {
+		this._timeoutNextNodeId = value;
+	}
+	get invalidNextNodeId() {
+		return this._invalidNextNodeId;
+	}
+	set invalidNextNodeId(value) {
+		this._invalidNextNodeId = value;
+	}
+	get nextNodeId() {
+		return this._nextNodeId;
+	}
+	set nextNodeId(value) {
+		this._nextNodeId = value;
+	}
+	get routeTarget() {
+		return this._routeTarget;
+	}
+	set routeTarget(value) {
+		this._routeTarget = value;
+	}
+	get schedule() {
+		return this._schedule;
+	}
+	set schedule(value) {
+		this._schedule = value;
+	}
+	get closedNextNodeId() {
+		return this._closedNextNodeId;
+	}
+	set closedNextNodeId(value) {
+		this._closedNextNodeId = value;
+	}
+	get busyNextNodeId() {
+		return this._busyNextNodeId;
+	}
+	set busyNextNodeId(value) {
+		this._busyNextNodeId = value;
+	}
+	get reprompt() {
+		return this._reprompt;
+	}
+	set reprompt(value) {
+		this._reprompt = value;
+	}
+	get gotoMenuName() {
+		return this._gotoMenuName;
+	}
+	set gotoMenuName(value) {
+		this._gotoMenuName = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrNode.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			nodeId: this.nodeId,
+			displayName: this.displayName,
+			type: this.type,
+			prompt: this.prompt ? this.prompt.toObject() : void 0,
+			options: (this.options || []).map((m) => m.toObject()),
+			timeoutS: this.timeoutS,
+			maxRetries: this.maxRetries,
+			timeoutNextNodeId: this.timeoutNextNodeId,
+			invalidNextNodeId: this.invalidNextNodeId,
+			nextNodeId: this.nextNodeId,
+			routeTarget: this.routeTarget ? this.routeTarget.toObject() : void 0,
+			schedule: this.schedule ? this.schedule.toObject() : void 0,
+			closedNextNodeId: this.closedNextNodeId,
+			busyNextNodeId: this.busyNextNodeId,
+			reprompt: this.reprompt ? this.reprompt.toObject() : void 0,
+			gotoMenuName: this.gotoMenuName
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			nodeId: this.nodeId,
+			displayName: this.displayName,
+			type: IvrNodeType[this.type === null || this.type === void 0 ? 0 : this.type],
+			prompt: this.prompt ? this.prompt.toProtobufJSON(options) : null,
+			options: (this.options || []).map((m) => m.toProtobufJSON(options)),
+			timeoutS: this.timeoutS,
+			maxRetries: this.maxRetries,
+			timeoutNextNodeId: this.timeoutNextNodeId,
+			invalidNextNodeId: this.invalidNextNodeId,
+			nextNodeId: this.nextNodeId,
+			routeTarget: this.routeTarget ? this.routeTarget.toProtobufJSON(options) : null,
+			schedule: this.schedule ? this.schedule.toProtobufJSON(options) : null,
+			closedNextNodeId: this.closedNextNodeId,
+			busyNextNodeId: this.busyNextNodeId,
+			reprompt: this.reprompt ? this.reprompt.toProtobufJSON(options) : null,
+			gotoMenuName: this.gotoMenuName
+		};
+	}
+};
+var IvrOption = class IvrOption {
+	static {
+		this.id = "ondewo.vtsi.IvrOption";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrOption();
+		IvrOption.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.dtmf = _instance.dtmf || "";
+		_instance.nextNodeId = _instance.nextNodeId || "";
+		_instance.label = _instance.label || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.dtmf = _reader.readString();
+					break;
+				case 2:
+					_instance.nextNodeId = _reader.readString();
+					break;
+				case 3:
+					_instance.label = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrOption.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.dtmf) _writer.writeString(1, _instance.dtmf);
+		if (_instance.nextNodeId) _writer.writeString(2, _instance.nextNodeId);
+		if (_instance.label) _writer.writeString(3, _instance.label);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.dtmf = _value.dtmf;
+		this.nextNodeId = _value.nextNodeId;
+		this.label = _value.label;
+		IvrOption.refineValues(this);
+	}
+	get dtmf() {
+		return this._dtmf;
+	}
+	set dtmf(value) {
+		this._dtmf = value;
+	}
+	get nextNodeId() {
+		return this._nextNodeId;
+	}
+	set nextNodeId(value) {
+		this._nextNodeId = value;
+	}
+	get label() {
+		return this._label;
+	}
+	set label(value) {
+		this._label = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrOption.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			dtmf: this.dtmf,
+			nextNodeId: this.nextNodeId,
+			label: this.label
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			dtmf: this.dtmf,
+			nextNodeId: this.nextNodeId,
+			label: this.label
+		};
+	}
+};
+var IvrPrompt = class IvrPrompt {
+	static {
+		this.id = "ondewo.vtsi.IvrPrompt";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrPrompt();
+		IvrPrompt.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.sha256 = _instance.sha256 || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.text = _reader.readString();
+					break;
+				case 2:
+					_instance.wav = _reader.readBytes();
+					break;
+				case 3:
+					_instance.asteriskSound = _reader.readString();
+					break;
+				case 4:
+					_instance.sha256 = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrPrompt.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.text || _instance.text === "") _writer.writeString(1, _instance.text);
+		if (_instance.wav && _instance.wav.length) _writer.writeBytes(2, _instance.wav);
+		if (_instance.asteriskSound || _instance.asteriskSound === "") _writer.writeString(3, _instance.asteriskSound);
+		if (_instance.sha256) _writer.writeString(4, _instance.sha256);
+	}
+	constructor(_value) {
+		this._source = IvrPrompt.SourceCase.none;
+		_value = _value || {};
+		this.text = _value.text;
+		this.wav = _value.wav;
+		this.asteriskSound = _value.asteriskSound;
+		this.sha256 = _value.sha256;
+		IvrPrompt.refineValues(this);
+	}
+	get text() {
+		return this._text;
+	}
+	set text(value) {
+		if (value !== void 0 && value !== null) {
+			this._wav = this._asteriskSound = void 0;
+			this._source = IvrPrompt.SourceCase.text;
+		}
+		this._text = value;
+	}
+	get wav() {
+		return this._wav;
+	}
+	set wav(value) {
+		if (value !== void 0 && value !== null) {
+			this._text = this._asteriskSound = void 0;
+			this._source = IvrPrompt.SourceCase.wav;
+		}
+		this._wav = value;
+	}
+	get asteriskSound() {
+		return this._asteriskSound;
+	}
+	set asteriskSound(value) {
+		if (value !== void 0 && value !== null) {
+			this._text = this._wav = void 0;
+			this._source = IvrPrompt.SourceCase.asteriskSound;
+		}
+		this._asteriskSound = value;
+	}
+	get sha256() {
+		return this._sha256;
+	}
+	set sha256(value) {
+		this._sha256 = value;
+	}
+	get source() {
+		return this._source;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrPrompt.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			text: this.text,
+			wav: this.wav ? this.wav.subarray(0) : /* @__PURE__ */ new Uint8Array(),
+			asteriskSound: this.asteriskSound,
+			sha256: this.sha256
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			text: this.text === null || this.text === void 0 ? null : this.text,
+			wav: this.wav ? uint8ArrayToBase64(this.wav) : "",
+			asteriskSound: this.asteriskSound === null || this.asteriskSound === void 0 ? null : this.asteriskSound,
+			sha256: this.sha256
+		};
+	}
+};
+(function(IvrPrompt) {
+	(function(SourceCase) {
+		SourceCase[SourceCase["none"] = 0] = "none";
+		SourceCase[SourceCase["text"] = 1] = "text";
+		SourceCase[SourceCase["wav"] = 2] = "wav";
+		SourceCase[SourceCase["asteriskSound"] = 3] = "asteriskSound";
+	})(IvrPrompt.SourceCase || (IvrPrompt.SourceCase = {}));
+})(IvrPrompt || (IvrPrompt = {}));
+var IvrNodePosition = class IvrNodePosition {
+	static {
+		this.id = "ondewo.vtsi.IvrNodePosition";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrNodePosition();
+		IvrNodePosition.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.x = _instance.x || 0;
+		_instance.y = _instance.y || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.x = _reader.readDouble();
+					break;
+				case 2:
+					_instance.y = _reader.readDouble();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrNodePosition.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.x) _writer.writeDouble(1, _instance.x);
+		if (_instance.y) _writer.writeDouble(2, _instance.y);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.x = _value.x;
+		this.y = _value.y;
+		IvrNodePosition.refineValues(this);
+	}
+	get x() {
+		return this._x;
+	}
+	set x(value) {
+		this._x = value;
+	}
+	get y() {
+		return this._y;
+	}
+	set y(value) {
+		this._y = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrNodePosition.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			x: this.x,
+			y: this.y
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			x: this.x,
+			y: this.y
+		};
+	}
+};
+var IvrNodeStats = class IvrNodeStats {
+	static {
+		this.id = "ondewo.vtsi.IvrNodeStats";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrNodeStats();
+		IvrNodeStats.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.publishedRevisionEntries = _instance.publishedRevisionEntries || "0";
+		_instance.totalEntries = _instance.totalEntries || "0";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.publishedRevisionEntries = _reader.readInt64String();
+					break;
+				case 2:
+					_instance.totalEntries = _reader.readInt64String();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrNodeStats.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.publishedRevisionEntries) _writer.writeInt64String(1, _instance.publishedRevisionEntries);
+		if (_instance.totalEntries) _writer.writeInt64String(2, _instance.totalEntries);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.publishedRevisionEntries = _value.publishedRevisionEntries;
+		this.totalEntries = _value.totalEntries;
+		IvrNodeStats.refineValues(this);
+	}
+	get publishedRevisionEntries() {
+		return this._publishedRevisionEntries;
+	}
+	set publishedRevisionEntries(value) {
+		this._publishedRevisionEntries = value;
+	}
+	get totalEntries() {
+		return this._totalEntries;
+	}
+	set totalEntries(value) {
+		this._totalEntries = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrNodeStats.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			publishedRevisionEntries: this.publishedRevisionEntries,
+			totalEntries: this.totalEntries
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			publishedRevisionEntries: this.publishedRevisionEntries,
+			totalEntries: this.totalEntries
+		};
+	}
+};
+var CreateIvrMenuRequest = class CreateIvrMenuRequest {
+	static {
+		this.id = "ondewo.vtsi.CreateIvrMenuRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new CreateIvrMenuRequest();
+		CreateIvrMenuRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.vtsiProjectName = _instance.vtsiProjectName || "";
+		_instance.ivrMenu = _instance.ivrMenu || void 0;
+		_instance.fieldMask = _instance.fieldMask || void 0;
+		_instance.idempotencyKey = _instance.idempotencyKey || "";
+		_instance.validateOnly = _instance.validateOnly || false;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.vtsiProjectName = _reader.readString();
+					break;
+				case 2:
+					_instance.ivrMenu = new IvrMenu();
+					_reader.readMessage(_instance.ivrMenu, IvrMenu.deserializeBinaryFromReader);
+					break;
+				case 3:
+					_instance.fieldMask = new googleProtobuf000.FieldMask();
+					_reader.readMessage(_instance.fieldMask, googleProtobuf000.FieldMask.deserializeBinaryFromReader);
+					break;
+				case 4:
+					_instance.idempotencyKey = _reader.readString();
+					break;
+				case 5:
+					_instance.validateOnly = _reader.readBool();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		CreateIvrMenuRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.vtsiProjectName) _writer.writeString(1, _instance.vtsiProjectName);
+		if (_instance.ivrMenu) _writer.writeMessage(2, _instance.ivrMenu, IvrMenu.serializeBinaryToWriter);
+		if (_instance.fieldMask) _writer.writeMessage(3, _instance.fieldMask, googleProtobuf000.FieldMask.serializeBinaryToWriter);
+		if (_instance.idempotencyKey) _writer.writeString(4, _instance.idempotencyKey);
+		if (_instance.validateOnly) _writer.writeBool(5, _instance.validateOnly);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.vtsiProjectName = _value.vtsiProjectName;
+		this.ivrMenu = _value.ivrMenu ? new IvrMenu(_value.ivrMenu) : void 0;
+		this.fieldMask = _value.fieldMask ? new googleProtobuf000.FieldMask(_value.fieldMask) : void 0;
+		this.idempotencyKey = _value.idempotencyKey;
+		this.validateOnly = _value.validateOnly;
+		CreateIvrMenuRequest.refineValues(this);
+	}
+	get vtsiProjectName() {
+		return this._vtsiProjectName;
+	}
+	set vtsiProjectName(value) {
+		this._vtsiProjectName = value;
+	}
+	get ivrMenu() {
+		return this._ivrMenu;
+	}
+	set ivrMenu(value) {
+		this._ivrMenu = value;
+	}
+	get fieldMask() {
+		return this._fieldMask;
+	}
+	set fieldMask(value) {
+		this._fieldMask = value;
+	}
+	get idempotencyKey() {
+		return this._idempotencyKey;
+	}
+	set idempotencyKey(value) {
+		this._idempotencyKey = value;
+	}
+	get validateOnly() {
+		return this._validateOnly;
+	}
+	set validateOnly(value) {
+		this._validateOnly = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		CreateIvrMenuRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			ivrMenu: this.ivrMenu ? this.ivrMenu.toObject() : void 0,
+			fieldMask: this.fieldMask ? this.fieldMask.toObject() : void 0,
+			idempotencyKey: this.idempotencyKey,
+			validateOnly: this.validateOnly
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			ivrMenu: this.ivrMenu ? this.ivrMenu.toProtobufJSON(options) : null,
+			fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+			idempotencyKey: this.idempotencyKey,
+			validateOnly: this.validateOnly
+		};
+	}
+};
+var GetIvrMenuRequest = class GetIvrMenuRequest {
+	static {
+		this.id = "ondewo.vtsi.GetIvrMenuRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new GetIvrMenuRequest();
+		GetIvrMenuRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.vtsiProjectName = _instance.vtsiProjectName || "";
+		_instance.fieldMask = _instance.fieldMask || void 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.displayName = _reader.readString();
+					break;
+				case 3:
+					_instance.vtsiProjectName = _reader.readString();
+					break;
+				case 4:
+					_instance.fieldMask = new googleProtobuf000.FieldMask();
+					_reader.readMessage(_instance.fieldMask, googleProtobuf000.FieldMask.deserializeBinaryFromReader);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		GetIvrMenuRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name || _instance.name === "") _writer.writeString(1, _instance.name);
+		if (_instance.displayName || _instance.displayName === "") _writer.writeString(2, _instance.displayName);
+		if (_instance.vtsiProjectName) _writer.writeString(3, _instance.vtsiProjectName);
+		if (_instance.fieldMask) _writer.writeMessage(4, _instance.fieldMask, googleProtobuf000.FieldMask.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		this._ivrMenu = GetIvrMenuRequest.IvrMenuCase.none;
+		_value = _value || {};
+		this.name = _value.name;
+		this.displayName = _value.displayName;
+		this.vtsiProjectName = _value.vtsiProjectName;
+		this.fieldMask = _value.fieldMask ? new googleProtobuf000.FieldMask(_value.fieldMask) : void 0;
+		GetIvrMenuRequest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		if (value !== void 0 && value !== null) {
+			this._displayName = void 0;
+			this._ivrMenu = GetIvrMenuRequest.IvrMenuCase.name;
+		}
+		this._name = value;
+	}
+	get displayName() {
+		return this._displayName;
+	}
+	set displayName(value) {
+		if (value !== void 0 && value !== null) {
+			this._name = void 0;
+			this._ivrMenu = GetIvrMenuRequest.IvrMenuCase.displayName;
+		}
+		this._displayName = value;
+	}
+	get vtsiProjectName() {
+		return this._vtsiProjectName;
+	}
+	set vtsiProjectName(value) {
+		this._vtsiProjectName = value;
+	}
+	get fieldMask() {
+		return this._fieldMask;
+	}
+	set fieldMask(value) {
+		this._fieldMask = value;
+	}
+	get ivrMenu() {
+		return this._ivrMenu;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		GetIvrMenuRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			displayName: this.displayName,
+			vtsiProjectName: this.vtsiProjectName,
+			fieldMask: this.fieldMask ? this.fieldMask.toObject() : void 0
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name === null || this.name === void 0 ? null : this.name,
+			displayName: this.displayName === null || this.displayName === void 0 ? null : this.displayName,
+			vtsiProjectName: this.vtsiProjectName,
+			fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null
+		};
+	}
+};
+(function(GetIvrMenuRequest) {
+	(function(IvrMenuCase) {
+		IvrMenuCase[IvrMenuCase["none"] = 0] = "none";
+		IvrMenuCase[IvrMenuCase["name"] = 1] = "name";
+		IvrMenuCase[IvrMenuCase["displayName"] = 2] = "displayName";
+	})(GetIvrMenuRequest.IvrMenuCase || (GetIvrMenuRequest.IvrMenuCase = {}));
+})(GetIvrMenuRequest || (GetIvrMenuRequest = {}));
+var UpdateIvrMenuRequest = class UpdateIvrMenuRequest {
+	static {
+		this.id = "ondewo.vtsi.UpdateIvrMenuRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new UpdateIvrMenuRequest();
+		UpdateIvrMenuRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.ivrMenu = _instance.ivrMenu || void 0;
+		_instance.updateMask = _instance.updateMask || void 0;
+		_instance.fieldMask = _instance.fieldMask || void 0;
+		_instance.validateOnly = _instance.validateOnly || false;
+		_instance.expectedRevision = _instance.expectedRevision || "0";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.ivrMenu = new IvrMenu();
+					_reader.readMessage(_instance.ivrMenu, IvrMenu.deserializeBinaryFromReader);
+					break;
+				case 2:
+					_instance.updateMask = new googleProtobuf000.FieldMask();
+					_reader.readMessage(_instance.updateMask, googleProtobuf000.FieldMask.deserializeBinaryFromReader);
+					break;
+				case 3:
+					_instance.fieldMask = new googleProtobuf000.FieldMask();
+					_reader.readMessage(_instance.fieldMask, googleProtobuf000.FieldMask.deserializeBinaryFromReader);
+					break;
+				case 4:
+					_instance.validateOnly = _reader.readBool();
+					break;
+				case 5:
+					_instance.expectedRevision = _reader.readInt64String();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		UpdateIvrMenuRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.ivrMenu) _writer.writeMessage(1, _instance.ivrMenu, IvrMenu.serializeBinaryToWriter);
+		if (_instance.updateMask) _writer.writeMessage(2, _instance.updateMask, googleProtobuf000.FieldMask.serializeBinaryToWriter);
+		if (_instance.fieldMask) _writer.writeMessage(3, _instance.fieldMask, googleProtobuf000.FieldMask.serializeBinaryToWriter);
+		if (_instance.validateOnly) _writer.writeBool(4, _instance.validateOnly);
+		if (_instance.expectedRevision) _writer.writeInt64String(5, _instance.expectedRevision);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.ivrMenu = _value.ivrMenu ? new IvrMenu(_value.ivrMenu) : void 0;
+		this.updateMask = _value.updateMask ? new googleProtobuf000.FieldMask(_value.updateMask) : void 0;
+		this.fieldMask = _value.fieldMask ? new googleProtobuf000.FieldMask(_value.fieldMask) : void 0;
+		this.validateOnly = _value.validateOnly;
+		this.expectedRevision = _value.expectedRevision;
+		UpdateIvrMenuRequest.refineValues(this);
+	}
+	get ivrMenu() {
+		return this._ivrMenu;
+	}
+	set ivrMenu(value) {
+		this._ivrMenu = value;
+	}
+	get updateMask() {
+		return this._updateMask;
+	}
+	set updateMask(value) {
+		this._updateMask = value;
+	}
+	get fieldMask() {
+		return this._fieldMask;
+	}
+	set fieldMask(value) {
+		this._fieldMask = value;
+	}
+	get validateOnly() {
+		return this._validateOnly;
+	}
+	set validateOnly(value) {
+		this._validateOnly = value;
+	}
+	get expectedRevision() {
+		return this._expectedRevision;
+	}
+	set expectedRevision(value) {
+		this._expectedRevision = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		UpdateIvrMenuRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			ivrMenu: this.ivrMenu ? this.ivrMenu.toObject() : void 0,
+			updateMask: this.updateMask ? this.updateMask.toObject() : void 0,
+			fieldMask: this.fieldMask ? this.fieldMask.toObject() : void 0,
+			validateOnly: this.validateOnly,
+			expectedRevision: this.expectedRevision
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			ivrMenu: this.ivrMenu ? this.ivrMenu.toProtobufJSON(options) : null,
+			updateMask: this.updateMask ? this.updateMask.toProtobufJSON(options) : null,
+			fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+			validateOnly: this.validateOnly,
+			expectedRevision: this.expectedRevision
+		};
+	}
+};
+var DeleteIvrMenuRequest = class DeleteIvrMenuRequest {
+	static {
+		this.id = "ondewo.vtsi.DeleteIvrMenuRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new DeleteIvrMenuRequest();
+		DeleteIvrMenuRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.vtsiProjectName = _instance.vtsiProjectName || "";
+		_instance.force = _instance.force || false;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.displayName = _reader.readString();
+					break;
+				case 3:
+					_instance.vtsiProjectName = _reader.readString();
+					break;
+				case 4:
+					_instance.force = _reader.readBool();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		DeleteIvrMenuRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name || _instance.name === "") _writer.writeString(1, _instance.name);
+		if (_instance.displayName || _instance.displayName === "") _writer.writeString(2, _instance.displayName);
+		if (_instance.vtsiProjectName) _writer.writeString(3, _instance.vtsiProjectName);
+		if (_instance.force) _writer.writeBool(4, _instance.force);
+	}
+	constructor(_value) {
+		this._ivrMenu = DeleteIvrMenuRequest.IvrMenuCase.none;
+		_value = _value || {};
+		this.name = _value.name;
+		this.displayName = _value.displayName;
+		this.vtsiProjectName = _value.vtsiProjectName;
+		this.force = _value.force;
+		DeleteIvrMenuRequest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		if (value !== void 0 && value !== null) {
+			this._displayName = void 0;
+			this._ivrMenu = DeleteIvrMenuRequest.IvrMenuCase.name;
+		}
+		this._name = value;
+	}
+	get displayName() {
+		return this._displayName;
+	}
+	set displayName(value) {
+		if (value !== void 0 && value !== null) {
+			this._name = void 0;
+			this._ivrMenu = DeleteIvrMenuRequest.IvrMenuCase.displayName;
+		}
+		this._displayName = value;
+	}
+	get vtsiProjectName() {
+		return this._vtsiProjectName;
+	}
+	set vtsiProjectName(value) {
+		this._vtsiProjectName = value;
+	}
+	get force() {
+		return this._force;
+	}
+	set force(value) {
+		this._force = value;
+	}
+	get ivrMenu() {
+		return this._ivrMenu;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteIvrMenuRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			displayName: this.displayName,
+			vtsiProjectName: this.vtsiProjectName,
+			force: this.force
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name === null || this.name === void 0 ? null : this.name,
+			displayName: this.displayName === null || this.displayName === void 0 ? null : this.displayName,
+			vtsiProjectName: this.vtsiProjectName,
+			force: this.force
+		};
+	}
+};
+(function(DeleteIvrMenuRequest) {
+	(function(IvrMenuCase) {
+		IvrMenuCase[IvrMenuCase["none"] = 0] = "none";
+		IvrMenuCase[IvrMenuCase["name"] = 1] = "name";
+		IvrMenuCase[IvrMenuCase["displayName"] = 2] = "displayName";
+	})(DeleteIvrMenuRequest.IvrMenuCase || (DeleteIvrMenuRequest.IvrMenuCase = {}));
+})(DeleteIvrMenuRequest || (DeleteIvrMenuRequest = {}));
+var DeleteIvrMenuResponse = class DeleteIvrMenuResponse {
+	static {
+		this.id = "ondewo.vtsi.DeleteIvrMenuResponse";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new DeleteIvrMenuResponse();
+		DeleteIvrMenuResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.unroutedPhoneNumbers = _instance.unroutedPhoneNumbers || 0;
+		_instance.defaultInboundRemoved = _instance.defaultInboundRemoved || false;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.unroutedPhoneNumbers = _reader.readInt32();
+					break;
+				case 2:
+					_instance.defaultInboundRemoved = _reader.readBool();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		DeleteIvrMenuResponse.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.unroutedPhoneNumbers) _writer.writeInt32(1, _instance.unroutedPhoneNumbers);
+		if (_instance.defaultInboundRemoved) _writer.writeBool(2, _instance.defaultInboundRemoved);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.unroutedPhoneNumbers = _value.unroutedPhoneNumbers;
+		this.defaultInboundRemoved = _value.defaultInboundRemoved;
+		DeleteIvrMenuResponse.refineValues(this);
+	}
+	get unroutedPhoneNumbers() {
+		return this._unroutedPhoneNumbers;
+	}
+	set unroutedPhoneNumbers(value) {
+		this._unroutedPhoneNumbers = value;
+	}
+	get defaultInboundRemoved() {
+		return this._defaultInboundRemoved;
+	}
+	set defaultInboundRemoved(value) {
+		this._defaultInboundRemoved = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		DeleteIvrMenuResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			unroutedPhoneNumbers: this.unroutedPhoneNumbers,
+			defaultInboundRemoved: this.defaultInboundRemoved
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			unroutedPhoneNumbers: this.unroutedPhoneNumbers,
+			defaultInboundRemoved: this.defaultInboundRemoved
+		};
+	}
+};
+var IvrMenuFilter = class IvrMenuFilter {
+	static {
+		this.id = "ondewo.vtsi.IvrMenuFilter";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrMenuFilter();
+		IvrMenuFilter.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.displayNameContains = _instance.displayNameContains || "";
+		_instance.state = _instance.state || 0;
+		_instance.inboundPhoneNumber = _instance.inboundPhoneNumber || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.displayNameContains = _reader.readString();
+					break;
+				case 2:
+					_instance.state = _reader.readEnum();
+					break;
+				case 3:
+					_instance.inboundPhoneNumber = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrMenuFilter.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.displayNameContains) _writer.writeString(1, _instance.displayNameContains);
+		if (_instance.state) _writer.writeEnum(2, _instance.state);
+		if (_instance.inboundPhoneNumber) _writer.writeString(3, _instance.inboundPhoneNumber);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.displayNameContains = _value.displayNameContains;
+		this.state = _value.state;
+		this.inboundPhoneNumber = _value.inboundPhoneNumber;
+		IvrMenuFilter.refineValues(this);
+	}
+	get displayNameContains() {
+		return this._displayNameContains;
+	}
+	set displayNameContains(value) {
+		this._displayNameContains = value;
+	}
+	get state() {
+		return this._state;
+	}
+	set state(value) {
+		this._state = value;
+	}
+	get inboundPhoneNumber() {
+		return this._inboundPhoneNumber;
+	}
+	set inboundPhoneNumber(value) {
+		this._inboundPhoneNumber = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrMenuFilter.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			displayNameContains: this.displayNameContains,
+			state: this.state,
+			inboundPhoneNumber: this.inboundPhoneNumber
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			displayNameContains: this.displayNameContains,
+			state: IvrMenuState[this.state === null || this.state === void 0 ? 0 : this.state],
+			inboundPhoneNumber: this.inboundPhoneNumber
+		};
+	}
+};
+var ListIvrMenusRequest = class ListIvrMenusRequest {
+	static {
+		this.id = "ondewo.vtsi.ListIvrMenusRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new ListIvrMenusRequest();
+		ListIvrMenusRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.vtsiProjectName = _instance.vtsiProjectName || "";
+		_instance.filter = _instance.filter || void 0;
+		_instance.pageSize = _instance.pageSize || 0;
+		_instance.fieldMask = _instance.fieldMask || void 0;
+		_instance.orderBy = _instance.orderBy || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.vtsiProjectName = _reader.readString();
+					break;
+				case 2:
+					_instance.filter = new IvrMenuFilter();
+					_reader.readMessage(_instance.filter, IvrMenuFilter.deserializeBinaryFromReader);
+					break;
+				case 3:
+					_instance.pageSize = _reader.readInt32();
+					break;
+				case 4:
+					_instance.pageToken = _reader.readString();
+					break;
+				case 5:
+					_instance.fieldMask = new googleProtobuf000.FieldMask();
+					_reader.readMessage(_instance.fieldMask, googleProtobuf000.FieldMask.deserializeBinaryFromReader);
+					break;
+				case 6:
+					_instance.orderBy = _reader.readEnum();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		ListIvrMenusRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.vtsiProjectName) _writer.writeString(1, _instance.vtsiProjectName);
+		if (_instance.filter) _writer.writeMessage(2, _instance.filter, IvrMenuFilter.serializeBinaryToWriter);
+		if (_instance.pageSize) _writer.writeInt32(3, _instance.pageSize);
+		if (_instance.pageToken !== void 0 && _instance.pageToken !== null) _writer.writeString(4, _instance.pageToken);
+		if (_instance.fieldMask) _writer.writeMessage(5, _instance.fieldMask, googleProtobuf000.FieldMask.serializeBinaryToWriter);
+		if (_instance.orderBy) _writer.writeEnum(6, _instance.orderBy);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.vtsiProjectName = _value.vtsiProjectName;
+		this.filter = _value.filter ? new IvrMenuFilter(_value.filter) : void 0;
+		this.pageSize = _value.pageSize;
+		this.pageToken = _value.pageToken;
+		this.fieldMask = _value.fieldMask ? new googleProtobuf000.FieldMask(_value.fieldMask) : void 0;
+		this.orderBy = _value.orderBy;
+		ListIvrMenusRequest.refineValues(this);
+	}
+	get vtsiProjectName() {
+		return this._vtsiProjectName;
+	}
+	set vtsiProjectName(value) {
+		this._vtsiProjectName = value;
+	}
+	get filter() {
+		return this._filter;
+	}
+	set filter(value) {
+		this._filter = value;
+	}
+	get pageSize() {
+		return this._pageSize;
+	}
+	set pageSize(value) {
+		this._pageSize = value;
+	}
+	get pageToken() {
+		return this._pageToken;
+	}
+	set pageToken(value) {
+		this._pageToken = value;
+	}
+	get fieldMask() {
+		return this._fieldMask;
+	}
+	set fieldMask(value) {
+		this._fieldMask = value;
+	}
+	get orderBy() {
+		return this._orderBy;
+	}
+	set orderBy(value) {
+		this._orderBy = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		ListIvrMenusRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			filter: this.filter ? this.filter.toObject() : void 0,
+			pageSize: this.pageSize,
+			pageToken: this.pageToken,
+			fieldMask: this.fieldMask ? this.fieldMask.toObject() : void 0,
+			orderBy: this.orderBy
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			filter: this.filter ? this.filter.toProtobufJSON(options) : null,
+			pageSize: this.pageSize,
+			pageToken: this.pageToken,
+			fieldMask: this.fieldMask ? this.fieldMask.toProtobufJSON(options) : null,
+			orderBy: IvrMenuOrderBy[this.orderBy === null || this.orderBy === void 0 ? 0 : this.orderBy]
+		};
+	}
+};
+var ListIvrMenusResponse = class ListIvrMenusResponse {
+	static {
+		this.id = "ondewo.vtsi.ListIvrMenusResponse";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new ListIvrMenusResponse();
+		ListIvrMenusResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.ivrMenus = _instance.ivrMenus || [];
+		_instance.nextPageToken = _instance.nextPageToken || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					const messageInitializer1 = new IvrMenu();
+					_reader.readMessage(messageInitializer1, IvrMenu.deserializeBinaryFromReader);
+					(_instance.ivrMenus = _instance.ivrMenus || []).push(messageInitializer1);
+					break;
+				case 2:
+					_instance.nextPageToken = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		ListIvrMenusResponse.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.ivrMenus && _instance.ivrMenus.length) _writer.writeRepeatedMessage(1, _instance.ivrMenus, IvrMenu.serializeBinaryToWriter);
+		if (_instance.nextPageToken) _writer.writeString(2, _instance.nextPageToken);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.ivrMenus = (_value.ivrMenus || []).map((m) => new IvrMenu(m));
+		this.nextPageToken = _value.nextPageToken;
+		ListIvrMenusResponse.refineValues(this);
+	}
+	get ivrMenus() {
+		return this._ivrMenus;
+	}
+	set ivrMenus(value) {
+		this._ivrMenus = value;
+	}
+	get nextPageToken() {
+		return this._nextPageToken;
+	}
+	set nextPageToken(value) {
+		this._nextPageToken = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		ListIvrMenusResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			ivrMenus: (this.ivrMenus || []).map((m) => m.toObject()),
+			nextPageToken: this.nextPageToken
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			ivrMenus: (this.ivrMenus || []).map((m) => m.toProtobufJSON(options)),
+			nextPageToken: this.nextPageToken
+		};
+	}
+};
+var ValidateIvrMenuRequest = class ValidateIvrMenuRequest {
+	static {
+		this.id = "ondewo.vtsi.ValidateIvrMenuRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new ValidateIvrMenuRequest();
+		ValidateIvrMenuRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.vtsiProjectName = _instance.vtsiProjectName || "";
+		_instance.ivrMenu = _instance.ivrMenu || void 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.vtsiProjectName = _reader.readString();
+					break;
+				case 2:
+					_instance.ivrMenu = new IvrMenu();
+					_reader.readMessage(_instance.ivrMenu, IvrMenu.deserializeBinaryFromReader);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		ValidateIvrMenuRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.vtsiProjectName) _writer.writeString(1, _instance.vtsiProjectName);
+		if (_instance.ivrMenu) _writer.writeMessage(2, _instance.ivrMenu, IvrMenu.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.vtsiProjectName = _value.vtsiProjectName;
+		this.ivrMenu = _value.ivrMenu ? new IvrMenu(_value.ivrMenu) : void 0;
+		ValidateIvrMenuRequest.refineValues(this);
+	}
+	get vtsiProjectName() {
+		return this._vtsiProjectName;
+	}
+	set vtsiProjectName(value) {
+		this._vtsiProjectName = value;
+	}
+	get ivrMenu() {
+		return this._ivrMenu;
+	}
+	set ivrMenu(value) {
+		this._ivrMenu = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		ValidateIvrMenuRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			ivrMenu: this.ivrMenu ? this.ivrMenu.toObject() : void 0
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			vtsiProjectName: this.vtsiProjectName,
+			ivrMenu: this.ivrMenu ? this.ivrMenu.toProtobufJSON(options) : null
+		};
+	}
+};
+var IvrMenuIssue = class IvrMenuIssue {
+	static {
+		this.id = "ondewo.vtsi.IvrMenuIssue";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrMenuIssue();
+		IvrMenuIssue.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.severity = _instance.severity || 0;
+		_instance.code = _instance.code || "";
+		_instance.path = _instance.path || "";
+		_instance.nodeId = _instance.nodeId || "";
+		_instance.message = _instance.message || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.severity = _reader.readEnum();
+					break;
+				case 2:
+					_instance.code = _reader.readString();
+					break;
+				case 3:
+					_instance.path = _reader.readString();
+					break;
+				case 4:
+					_instance.nodeId = _reader.readString();
+					break;
+				case 5:
+					_instance.message = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrMenuIssue.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.severity) _writer.writeEnum(1, _instance.severity);
+		if (_instance.code) _writer.writeString(2, _instance.code);
+		if (_instance.path) _writer.writeString(3, _instance.path);
+		if (_instance.nodeId) _writer.writeString(4, _instance.nodeId);
+		if (_instance.message) _writer.writeString(5, _instance.message);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.severity = _value.severity;
+		this.code = _value.code;
+		this.path = _value.path;
+		this.nodeId = _value.nodeId;
+		this.message = _value.message;
+		IvrMenuIssue.refineValues(this);
+	}
+	get severity() {
+		return this._severity;
+	}
+	set severity(value) {
+		this._severity = value;
+	}
+	get code() {
+		return this._code;
+	}
+	set code(value) {
+		this._code = value;
+	}
+	get path() {
+		return this._path;
+	}
+	set path(value) {
+		this._path = value;
+	}
+	get nodeId() {
+		return this._nodeId;
+	}
+	set nodeId(value) {
+		this._nodeId = value;
+	}
+	get message() {
+		return this._message;
+	}
+	set message(value) {
+		this._message = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrMenuIssue.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			severity: this.severity,
+			code: this.code,
+			path: this.path,
+			nodeId: this.nodeId,
+			message: this.message
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			severity: IvrMenuIssueSeverity[this.severity === null || this.severity === void 0 ? 0 : this.severity],
+			code: this.code,
+			path: this.path,
+			nodeId: this.nodeId,
+			message: this.message
+		};
+	}
+};
+var ValidateIvrMenuResponse = class ValidateIvrMenuResponse {
+	static {
+		this.id = "ondewo.vtsi.ValidateIvrMenuResponse";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new ValidateIvrMenuResponse();
+		ValidateIvrMenuResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.issues = _instance.issues || [];
+		_instance.valid = _instance.valid || false;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					const messageInitializer1 = new IvrMenuIssue();
+					_reader.readMessage(messageInitializer1, IvrMenuIssue.deserializeBinaryFromReader);
+					(_instance.issues = _instance.issues || []).push(messageInitializer1);
+					break;
+				case 2:
+					_instance.valid = _reader.readBool();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		ValidateIvrMenuResponse.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.issues && _instance.issues.length) _writer.writeRepeatedMessage(1, _instance.issues, IvrMenuIssue.serializeBinaryToWriter);
+		if (_instance.valid) _writer.writeBool(2, _instance.valid);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.issues = (_value.issues || []).map((m) => new IvrMenuIssue(m));
+		this.valid = _value.valid;
+		ValidateIvrMenuResponse.refineValues(this);
+	}
+	get issues() {
+		return this._issues;
+	}
+	set issues(value) {
+		this._issues = value;
+	}
+	get valid() {
+		return this._valid;
+	}
+	set valid(value) {
+		this._valid = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		ValidateIvrMenuResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			issues: (this.issues || []).map((m) => m.toObject()),
+			valid: this.valid
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			issues: (this.issues || []).map((m) => m.toProtobufJSON(options)),
+			valid: this.valid
+		};
+	}
+};
+var PublishIvrMenuRequest = class PublishIvrMenuRequest {
+	static {
+		this.id = "ondewo.vtsi.PublishIvrMenuRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new PublishIvrMenuRequest();
+		PublishIvrMenuRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.name = _instance.name || "";
+		_instance.revision = _instance.revision || "0";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.revision = _reader.readInt64String();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		PublishIvrMenuRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) _writer.writeString(1, _instance.name);
+		if (_instance.revision) _writer.writeInt64String(2, _instance.revision);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.revision = _value.revision;
+		PublishIvrMenuRequest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get revision() {
+		return this._revision;
+	}
+	set revision(value) {
+		this._revision = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		PublishIvrMenuRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			revision: this.revision
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name,
+			revision: this.revision
+		};
+	}
+};
+var CloneIvrMenuRequest = class CloneIvrMenuRequest {
+	static {
+		this.id = "ondewo.vtsi.CloneIvrMenuRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new CloneIvrMenuRequest();
+		CloneIvrMenuRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.name = _instance.name || "";
+		_instance.displayName = _instance.displayName || "";
+		_instance.revision = _instance.revision || "0";
+		_instance.idempotencyKey = _instance.idempotencyKey || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.displayName = _reader.readString();
+					break;
+				case 3:
+					_instance.revision = _reader.readInt64String();
+					break;
+				case 4:
+					_instance.idempotencyKey = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		CloneIvrMenuRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) _writer.writeString(1, _instance.name);
+		if (_instance.displayName) _writer.writeString(2, _instance.displayName);
+		if (_instance.revision) _writer.writeInt64String(3, _instance.revision);
+		if (_instance.idempotencyKey) _writer.writeString(4, _instance.idempotencyKey);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.displayName = _value.displayName;
+		this.revision = _value.revision;
+		this.idempotencyKey = _value.idempotencyKey;
+		CloneIvrMenuRequest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get displayName() {
+		return this._displayName;
+	}
+	set displayName(value) {
+		this._displayName = value;
+	}
+	get revision() {
+		return this._revision;
+	}
+	set revision(value) {
+		this._revision = value;
+	}
+	get idempotencyKey() {
+		return this._idempotencyKey;
+	}
+	set idempotencyKey(value) {
+		this._idempotencyKey = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		CloneIvrMenuRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			displayName: this.displayName,
+			revision: this.revision,
+			idempotencyKey: this.idempotencyKey
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name,
+			displayName: this.displayName,
+			revision: this.revision,
+			idempotencyKey: this.idempotencyKey
+		};
+	}
+};
+var ListIvrMenuRevisionsRequest = class ListIvrMenuRevisionsRequest {
+	static {
+		this.id = "ondewo.vtsi.ListIvrMenuRevisionsRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new ListIvrMenuRevisionsRequest();
+		ListIvrMenuRevisionsRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.name = _instance.name || "";
+		_instance.pageSize = _instance.pageSize || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.pageSize = _reader.readInt32();
+					break;
+				case 3:
+					_instance.pageToken = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		ListIvrMenuRevisionsRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) _writer.writeString(1, _instance.name);
+		if (_instance.pageSize) _writer.writeInt32(2, _instance.pageSize);
+		if (_instance.pageToken !== void 0 && _instance.pageToken !== null) _writer.writeString(3, _instance.pageToken);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.pageSize = _value.pageSize;
+		this.pageToken = _value.pageToken;
+		ListIvrMenuRevisionsRequest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get pageSize() {
+		return this._pageSize;
+	}
+	set pageSize(value) {
+		this._pageSize = value;
+	}
+	get pageToken() {
+		return this._pageToken;
+	}
+	set pageToken(value) {
+		this._pageToken = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		ListIvrMenuRevisionsRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			pageSize: this.pageSize,
+			pageToken: this.pageToken
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name,
+			pageSize: this.pageSize,
+			pageToken: this.pageToken
+		};
+	}
+};
+var IvrMenuRevision = class IvrMenuRevision {
+	static {
+		this.id = "ondewo.vtsi.IvrMenuRevision";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrMenuRevision();
+		IvrMenuRevision.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.revision = _instance.revision || "0";
+		_instance.snapshot = _instance.snapshot || void 0;
+		_instance.modifiedBy = _instance.modifiedBy || "";
+		_instance.modifiedAt = _instance.modifiedAt || void 0;
+		_instance.published = _instance.published || false;
+		_instance.live = _instance.live || false;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.revision = _reader.readInt64String();
+					break;
+				case 2:
+					_instance.snapshot = new IvrMenu();
+					_reader.readMessage(_instance.snapshot, IvrMenu.deserializeBinaryFromReader);
+					break;
+				case 3:
+					_instance.modifiedBy = _reader.readString();
+					break;
+				case 4:
+					_instance.modifiedAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.modifiedAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				case 5:
+					_instance.published = _reader.readBool();
+					break;
+				case 6:
+					_instance.live = _reader.readBool();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrMenuRevision.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.revision) _writer.writeInt64String(1, _instance.revision);
+		if (_instance.snapshot) _writer.writeMessage(2, _instance.snapshot, IvrMenu.serializeBinaryToWriter);
+		if (_instance.modifiedBy) _writer.writeString(3, _instance.modifiedBy);
+		if (_instance.modifiedAt) _writer.writeMessage(4, _instance.modifiedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.published) _writer.writeBool(5, _instance.published);
+		if (_instance.live) _writer.writeBool(6, _instance.live);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.revision = _value.revision;
+		this.snapshot = _value.snapshot ? new IvrMenu(_value.snapshot) : void 0;
+		this.modifiedBy = _value.modifiedBy;
+		this.modifiedAt = _value.modifiedAt ? new googleProtobuf000.Timestamp(_value.modifiedAt) : void 0;
+		this.published = _value.published;
+		this.live = _value.live;
+		IvrMenuRevision.refineValues(this);
+	}
+	get revision() {
+		return this._revision;
+	}
+	set revision(value) {
+		this._revision = value;
+	}
+	get snapshot() {
+		return this._snapshot;
+	}
+	set snapshot(value) {
+		this._snapshot = value;
+	}
+	get modifiedBy() {
+		return this._modifiedBy;
+	}
+	set modifiedBy(value) {
+		this._modifiedBy = value;
+	}
+	get modifiedAt() {
+		return this._modifiedAt;
+	}
+	set modifiedAt(value) {
+		this._modifiedAt = value;
+	}
+	get published() {
+		return this._published;
+	}
+	set published(value) {
+		this._published = value;
+	}
+	get live() {
+		return this._live;
+	}
+	set live(value) {
+		this._live = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrMenuRevision.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			revision: this.revision,
+			snapshot: this.snapshot ? this.snapshot.toObject() : void 0,
+			modifiedBy: this.modifiedBy,
+			modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : void 0,
+			published: this.published,
+			live: this.live
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			revision: this.revision,
+			snapshot: this.snapshot ? this.snapshot.toProtobufJSON(options) : null,
+			modifiedBy: this.modifiedBy,
+			modifiedAt: this.modifiedAt ? this.modifiedAt.toProtobufJSON(options) : null,
+			published: this.published,
+			live: this.live
+		};
+	}
+};
+var ListIvrMenuRevisionsResponse = class ListIvrMenuRevisionsResponse {
+	static {
+		this.id = "ondewo.vtsi.ListIvrMenuRevisionsResponse";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new ListIvrMenuRevisionsResponse();
+		ListIvrMenuRevisionsResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.revisions = _instance.revisions || [];
+		_instance.nextPageToken = _instance.nextPageToken || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					const messageInitializer1 = new IvrMenuRevision();
+					_reader.readMessage(messageInitializer1, IvrMenuRevision.deserializeBinaryFromReader);
+					(_instance.revisions = _instance.revisions || []).push(messageInitializer1);
+					break;
+				case 2:
+					_instance.nextPageToken = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		ListIvrMenuRevisionsResponse.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.revisions && _instance.revisions.length) _writer.writeRepeatedMessage(1, _instance.revisions, IvrMenuRevision.serializeBinaryToWriter);
+		if (_instance.nextPageToken) _writer.writeString(2, _instance.nextPageToken);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.revisions = (_value.revisions || []).map((m) => new IvrMenuRevision(m));
+		this.nextPageToken = _value.nextPageToken;
+		ListIvrMenuRevisionsResponse.refineValues(this);
+	}
+	get revisions() {
+		return this._revisions;
+	}
+	set revisions(value) {
+		this._revisions = value;
+	}
+	get nextPageToken() {
+		return this._nextPageToken;
+	}
+	set nextPageToken(value) {
+		this._nextPageToken = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		ListIvrMenuRevisionsResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			revisions: (this.revisions || []).map((m) => m.toObject()),
+			nextPageToken: this.nextPageToken
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			revisions: (this.revisions || []).map((m) => m.toProtobufJSON(options)),
+			nextPageToken: this.nextPageToken
+		};
+	}
+};
+var IvrTestStep = class IvrTestStep {
+	static {
+		this.id = "ondewo.vtsi.IvrTestStep";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrTestStep();
+		IvrTestStep.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.waitMs = _instance.waitMs || 0;
+		_instance.dtmf = _instance.dtmf || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.waitMs = _reader.readUint32();
+					break;
+				case 2:
+					_instance.dtmf = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrTestStep.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.waitMs) _writer.writeUint32(1, _instance.waitMs);
+		if (_instance.dtmf) _writer.writeString(2, _instance.dtmf);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.waitMs = _value.waitMs;
+		this.dtmf = _value.dtmf;
+		IvrTestStep.refineValues(this);
+	}
+	get waitMs() {
+		return this._waitMs;
+	}
+	set waitMs(value) {
+		this._waitMs = value;
+	}
+	get dtmf() {
+		return this._dtmf;
+	}
+	set dtmf(value) {
+		this._dtmf = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrTestStep.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			waitMs: this.waitMs,
+			dtmf: this.dtmf
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			waitMs: this.waitMs,
+			dtmf: this.dtmf
+		};
+	}
+};
+var TestIvrMenuRequest = class TestIvrMenuRequest {
+	static {
+		this.id = "ondewo.vtsi.TestIvrMenuRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new TestIvrMenuRequest();
+		TestIvrMenuRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.name = _instance.name || "";
+		_instance.steps = _instance.steps || [];
+		_instance.maxDurationS = _instance.maxDurationS || 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					const messageInitializer2 = new IvrTestStep();
+					_reader.readMessage(messageInitializer2, IvrTestStep.deserializeBinaryFromReader);
+					(_instance.steps = _instance.steps || []).push(messageInitializer2);
+					break;
+				case 3:
+					_instance.maxDurationS = _reader.readUint32();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		TestIvrMenuRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) _writer.writeString(1, _instance.name);
+		if (_instance.steps && _instance.steps.length) _writer.writeRepeatedMessage(2, _instance.steps, IvrTestStep.serializeBinaryToWriter);
+		if (_instance.maxDurationS) _writer.writeUint32(3, _instance.maxDurationS);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.steps = (_value.steps || []).map((m) => new IvrTestStep(m));
+		this.maxDurationS = _value.maxDurationS;
+		TestIvrMenuRequest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get steps() {
+		return this._steps;
+	}
+	set steps(value) {
+		this._steps = value;
+	}
+	get maxDurationS() {
+		return this._maxDurationS;
+	}
+	set maxDurationS(value) {
+		this._maxDurationS = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		TestIvrMenuRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			steps: (this.steps || []).map((m) => m.toObject()),
+			maxDurationS: this.maxDurationS
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name,
+			steps: (this.steps || []).map((m) => m.toProtobufJSON(options)),
+			maxDurationS: this.maxDurationS
+		};
+	}
+};
+var GetIvrMenuTestRequest = class GetIvrMenuTestRequest {
+	static {
+		this.id = "ondewo.vtsi.GetIvrMenuTestRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new GetIvrMenuTestRequest();
+		GetIvrMenuTestRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.name = _instance.name || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		GetIvrMenuTestRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) _writer.writeString(1, _instance.name);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		GetIvrMenuTestRequest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		GetIvrMenuTestRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return { name: this.name };
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return { name: this.name };
+	}
+};
+var IvrTraversalStep = class IvrTraversalStep {
+	static {
+		this.id = "ondewo.vtsi.IvrTraversalStep";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrTraversalStep();
+		IvrTraversalStep.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.nodeId = _instance.nodeId || "";
+		_instance.input = _instance.input || "";
+		_instance.nextNodeId = _instance.nextNodeId || "";
+		_instance.enteredAt = _instance.enteredAt || void 0;
+		_instance.ivrMenuName = _instance.ivrMenuName || "";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.nodeId = _reader.readString();
+					break;
+				case 2:
+					_instance.input = _reader.readString();
+					break;
+				case 3:
+					_instance.nextNodeId = _reader.readString();
+					break;
+				case 4:
+					_instance.enteredAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.enteredAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				case 5:
+					_instance.ivrMenuName = _reader.readString();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrTraversalStep.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.nodeId) _writer.writeString(1, _instance.nodeId);
+		if (_instance.input) _writer.writeString(2, _instance.input);
+		if (_instance.nextNodeId) _writer.writeString(3, _instance.nextNodeId);
+		if (_instance.enteredAt) _writer.writeMessage(4, _instance.enteredAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.ivrMenuName) _writer.writeString(5, _instance.ivrMenuName);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.nodeId = _value.nodeId;
+		this.input = _value.input;
+		this.nextNodeId = _value.nextNodeId;
+		this.enteredAt = _value.enteredAt ? new googleProtobuf000.Timestamp(_value.enteredAt) : void 0;
+		this.ivrMenuName = _value.ivrMenuName;
+		IvrTraversalStep.refineValues(this);
+	}
+	get nodeId() {
+		return this._nodeId;
+	}
+	set nodeId(value) {
+		this._nodeId = value;
+	}
+	get input() {
+		return this._input;
+	}
+	set input(value) {
+		this._input = value;
+	}
+	get nextNodeId() {
+		return this._nextNodeId;
+	}
+	set nextNodeId(value) {
+		this._nextNodeId = value;
+	}
+	get enteredAt() {
+		return this._enteredAt;
+	}
+	set enteredAt(value) {
+		this._enteredAt = value;
+	}
+	get ivrMenuName() {
+		return this._ivrMenuName;
+	}
+	set ivrMenuName(value) {
+		this._ivrMenuName = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrTraversalStep.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			nodeId: this.nodeId,
+			input: this.input,
+			nextNodeId: this.nextNodeId,
+			enteredAt: this.enteredAt ? this.enteredAt.toObject() : void 0,
+			ivrMenuName: this.ivrMenuName
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			nodeId: this.nodeId,
+			input: this.input,
+			nextNodeId: this.nextNodeId,
+			enteredAt: this.enteredAt ? this.enteredAt.toProtobufJSON(options) : null,
+			ivrMenuName: this.ivrMenuName
+		};
+	}
+};
+var IvrMenuTest = class IvrMenuTest {
+	static {
+		this.id = "ondewo.vtsi.IvrMenuTest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new IvrMenuTest();
+		IvrMenuTest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.name = _instance.name || "";
+		_instance.testId = _instance.testId || "";
+		_instance.state = _instance.state || 0;
+		_instance.revision = _instance.revision || "0";
+		_instance.path = _instance.path || [];
+		_instance.finalNodeId = _instance.finalNodeId || "";
+		_instance.route = _instance.route || "";
+		_instance.errorMessage = _instance.errorMessage || "";
+		_instance.startedAt = _instance.startedAt || void 0;
+		_instance.finishedAt = _instance.finishedAt || void 0;
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.testId = _reader.readString();
+					break;
+				case 3:
+					_instance.state = _reader.readEnum();
+					break;
+				case 4:
+					_instance.revision = _reader.readInt64String();
+					break;
+				case 5:
+					const messageInitializer5 = new IvrTraversalStep();
+					_reader.readMessage(messageInitializer5, IvrTraversalStep.deserializeBinaryFromReader);
+					(_instance.path = _instance.path || []).push(messageInitializer5);
+					break;
+				case 6:
+					_instance.finalNodeId = _reader.readString();
+					break;
+				case 7:
+					_instance.route = _reader.readString();
+					break;
+				case 8:
+					_instance.errorMessage = _reader.readString();
+					break;
+				case 9:
+					_instance.startedAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.startedAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				case 10:
+					_instance.finishedAt = new googleProtobuf000.Timestamp();
+					_reader.readMessage(_instance.finishedAt, googleProtobuf000.Timestamp.deserializeBinaryFromReader);
+					break;
+				default: _reader.skipField();
+			}
+		}
+		IvrMenuTest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) _writer.writeString(1, _instance.name);
+		if (_instance.testId) _writer.writeString(2, _instance.testId);
+		if (_instance.state) _writer.writeEnum(3, _instance.state);
+		if (_instance.revision) _writer.writeInt64String(4, _instance.revision);
+		if (_instance.path && _instance.path.length) _writer.writeRepeatedMessage(5, _instance.path, IvrTraversalStep.serializeBinaryToWriter);
+		if (_instance.finalNodeId) _writer.writeString(6, _instance.finalNodeId);
+		if (_instance.route) _writer.writeString(7, _instance.route);
+		if (_instance.errorMessage) _writer.writeString(8, _instance.errorMessage);
+		if (_instance.startedAt) _writer.writeMessage(9, _instance.startedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+		if (_instance.finishedAt) _writer.writeMessage(10, _instance.finishedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.testId = _value.testId;
+		this.state = _value.state;
+		this.revision = _value.revision;
+		this.path = (_value.path || []).map((m) => new IvrTraversalStep(m));
+		this.finalNodeId = _value.finalNodeId;
+		this.route = _value.route;
+		this.errorMessage = _value.errorMessage;
+		this.startedAt = _value.startedAt ? new googleProtobuf000.Timestamp(_value.startedAt) : void 0;
+		this.finishedAt = _value.finishedAt ? new googleProtobuf000.Timestamp(_value.finishedAt) : void 0;
+		IvrMenuTest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get testId() {
+		return this._testId;
+	}
+	set testId(value) {
+		this._testId = value;
+	}
+	get state() {
+		return this._state;
+	}
+	set state(value) {
+		this._state = value;
+	}
+	get revision() {
+		return this._revision;
+	}
+	set revision(value) {
+		this._revision = value;
+	}
+	get path() {
+		return this._path;
+	}
+	set path(value) {
+		this._path = value;
+	}
+	get finalNodeId() {
+		return this._finalNodeId;
+	}
+	set finalNodeId(value) {
+		this._finalNodeId = value;
+	}
+	get route() {
+		return this._route;
+	}
+	set route(value) {
+		this._route = value;
+	}
+	get errorMessage() {
+		return this._errorMessage;
+	}
+	set errorMessage(value) {
+		this._errorMessage = value;
+	}
+	get startedAt() {
+		return this._startedAt;
+	}
+	set startedAt(value) {
+		this._startedAt = value;
+	}
+	get finishedAt() {
+		return this._finishedAt;
+	}
+	set finishedAt(value) {
+		this._finishedAt = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		IvrMenuTest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			testId: this.testId,
+			state: this.state,
+			revision: this.revision,
+			path: (this.path || []).map((m) => m.toObject()),
+			finalNodeId: this.finalNodeId,
+			route: this.route,
+			errorMessage: this.errorMessage,
+			startedAt: this.startedAt ? this.startedAt.toObject() : void 0,
+			finishedAt: this.finishedAt ? this.finishedAt.toObject() : void 0
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name,
+			testId: this.testId,
+			state: IvrMenuTestState[this.state === null || this.state === void 0 ? 0 : this.state],
+			revision: this.revision,
+			path: (this.path || []).map((m) => m.toProtobufJSON(options)),
+			finalNodeId: this.finalNodeId,
+			route: this.route,
+			errorMessage: this.errorMessage,
+			startedAt: this.startedAt ? this.startedAt.toProtobufJSON(options) : null,
+			finishedAt: this.finishedAt ? this.finishedAt.toProtobufJSON(options) : null
+		};
+	}
+};
+var GetIvrMenuDialplanRequest = class GetIvrMenuDialplanRequest {
+	static {
+		this.id = "ondewo.vtsi.GetIvrMenuDialplanRequest";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new GetIvrMenuDialplanRequest();
+		GetIvrMenuDialplanRequest.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.name = _instance.name || "";
+		_instance.revision = _instance.revision || "0";
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.name = _reader.readString();
+					break;
+				case 2:
+					_instance.revision = _reader.readInt64String();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		GetIvrMenuDialplanRequest.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.name) _writer.writeString(1, _instance.name);
+		if (_instance.revision) _writer.writeInt64String(2, _instance.revision);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.name = _value.name;
+		this.revision = _value.revision;
+		GetIvrMenuDialplanRequest.refineValues(this);
+	}
+	get name() {
+		return this._name;
+	}
+	set name(value) {
+		this._name = value;
+	}
+	get revision() {
+		return this._revision;
+	}
+	set revision(value) {
+		this._revision = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		GetIvrMenuDialplanRequest.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			name: this.name,
+			revision: this.revision
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			name: this.name,
+			revision: this.revision
+		};
+	}
+};
+var GetIvrMenuDialplanResponse = class GetIvrMenuDialplanResponse {
+	static {
+		this.id = "ondewo.vtsi.GetIvrMenuDialplanResponse";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new GetIvrMenuDialplanResponse();
+		GetIvrMenuDialplanResponse.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {
+		_instance.dialplan = _instance.dialplan || "";
+		_instance.promptFiles = _instance.promptFiles || [];
+	}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.dialplan = _reader.readString();
+					break;
+				case 2:
+					(_instance.promptFiles = _instance.promptFiles || []).push(_reader.readString());
+					break;
+				default: _reader.skipField();
+			}
+		}
+		GetIvrMenuDialplanResponse.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.dialplan) _writer.writeString(1, _instance.dialplan);
+		if (_instance.promptFiles && _instance.promptFiles.length) _writer.writeRepeatedString(2, _instance.promptFiles);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.dialplan = _value.dialplan;
+		this.promptFiles = (_value.promptFiles || []).slice();
+		GetIvrMenuDialplanResponse.refineValues(this);
+	}
+	get dialplan() {
+		return this._dialplan;
+	}
+	set dialplan(value) {
+		this._dialplan = value;
+	}
+	get promptFiles() {
+		return this._promptFiles;
+	}
+	set promptFiles(value) {
+		this._promptFiles = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		GetIvrMenuDialplanResponse.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			dialplan: this.dialplan,
+			promptFiles: (this.promptFiles || []).slice()
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			dialplan: this.dialplan,
+			promptFiles: (this.promptFiles || []).slice()
+		};
+	}
+};
+const GRPC_IVR_MENUS_CLIENT_SETTINGS = new InjectionToken("GRPC_IVR_MENUS_CLIENT_SETTINGS");
+var IvrMenusClient = class IvrMenusClient {
+	constructor(settings, clientFactory, handler) {
+		this.handler = handler;
+		this.$raw = {
+			createIvrMenu: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/CreateIvrMenu",
+					requestData,
+					requestMetadata,
+					requestClass: CreateIvrMenuRequest,
+					responseClass: IvrMenu
+				});
+			},
+			getIvrMenu: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/GetIvrMenu",
+					requestData,
+					requestMetadata,
+					requestClass: GetIvrMenuRequest,
+					responseClass: IvrMenu
+				});
+			},
+			updateIvrMenu: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/UpdateIvrMenu",
+					requestData,
+					requestMetadata,
+					requestClass: UpdateIvrMenuRequest,
+					responseClass: IvrMenu
+				});
+			},
+			deleteIvrMenu: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/DeleteIvrMenu",
+					requestData,
+					requestMetadata,
+					requestClass: DeleteIvrMenuRequest,
+					responseClass: DeleteIvrMenuResponse
+				});
+			},
+			listIvrMenus: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/ListIvrMenus",
+					requestData,
+					requestMetadata,
+					requestClass: ListIvrMenusRequest,
+					responseClass: ListIvrMenusResponse
+				});
+			},
+			validateIvrMenu: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/ValidateIvrMenu",
+					requestData,
+					requestMetadata,
+					requestClass: ValidateIvrMenuRequest,
+					responseClass: ValidateIvrMenuResponse
+				});
+			},
+			publishIvrMenu: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/PublishIvrMenu",
+					requestData,
+					requestMetadata,
+					requestClass: PublishIvrMenuRequest,
+					responseClass: IvrMenu
+				});
+			},
+			cloneIvrMenu: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/CloneIvrMenu",
+					requestData,
+					requestMetadata,
+					requestClass: CloneIvrMenuRequest,
+					responseClass: IvrMenu
+				});
+			},
+			listIvrMenuRevisions: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/ListIvrMenuRevisions",
+					requestData,
+					requestMetadata,
+					requestClass: ListIvrMenuRevisionsRequest,
+					responseClass: ListIvrMenuRevisionsResponse
+				});
+			},
+			testIvrMenu: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/TestIvrMenu",
+					requestData,
+					requestMetadata,
+					requestClass: TestIvrMenuRequest,
+					responseClass: IvrMenuTest
+				});
+			},
+			getIvrMenuTest: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/GetIvrMenuTest",
+					requestData,
+					requestMetadata,
+					requestClass: GetIvrMenuTestRequest,
+					responseClass: IvrMenuTest
+				});
+			},
+			getIvrMenuDialplan: (requestData, requestMetadata = new GrpcMetadata()) => {
+				return this.handler.handle({
+					type: GrpcCallType.unary,
+					client: this.client,
+					path: "/ondewo.vtsi.IvrMenus/GetIvrMenuDialplan",
+					requestData,
+					requestMetadata,
+					requestClass: GetIvrMenuDialplanRequest,
+					responseClass: GetIvrMenuDialplanResponse
+				});
+			}
+		};
+		this.client = clientFactory.createClient("ondewo.vtsi.IvrMenus", settings);
+	}
+	createIvrMenu(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.createIvrMenu(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	getIvrMenu(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.getIvrMenu(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	updateIvrMenu(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.updateIvrMenu(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	deleteIvrMenu(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.deleteIvrMenu(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	listIvrMenus(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.listIvrMenus(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	validateIvrMenu(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.validateIvrMenu(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	publishIvrMenu(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.publishIvrMenu(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	cloneIvrMenu(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.cloneIvrMenu(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	listIvrMenuRevisions(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.listIvrMenuRevisions(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	testIvrMenu(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.testIvrMenu(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	getIvrMenuTest(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.getIvrMenuTest(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	getIvrMenuDialplan(requestData, requestMetadata = new GrpcMetadata()) {
+		return this.$raw.getIvrMenuDialplan(requestData, requestMetadata).pipe(throwStatusErrors(), takeMessages());
+	}
+	static {
+		this.ɵfac = i0.ɵɵngDeclareFactory({
+			minVersion: "12.0.0",
+			version: "22.2.6",
+			ngImport: i0,
+			type: IvrMenusClient,
+			deps: [
+				{
+					token: GRPC_IVR_MENUS_CLIENT_SETTINGS,
+					optional: true
+				},
+				{ token: GRPC_CLIENT_FACTORY },
+				{ token: i1$1.GrpcHandler }
+			],
+			target: i0.ɵɵFactoryTarget.Injectable
+		});
+	}
+	static {
+		this.ɵprov = i0.ɵɵngDeclareInjectable({
+			minVersion: "12.0.0",
+			version: "22.2.6",
+			ngImport: i0,
+			type: IvrMenusClient,
+			providedIn: "any"
+		});
+	}
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.6",
+	ngImport: i0,
+	type: IvrMenusClient,
+	decorators: [{
+		type: Injectable,
+		args: [{ providedIn: "any" }]
+	}],
+	ctorParameters: () => [
+		{
+			type: void 0,
+			decorators: [{ type: Optional }, {
+				type: Inject,
+				args: [GRPC_IVR_MENUS_CLIENT_SETTINGS]
+			}]
+		},
+		{
+			type: void 0,
+			decorators: [{
+				type: Inject,
+				args: [GRPC_CLIENT_FACTORY]
+			}]
+		},
+		{ type: i1$1.GrpcHandler }
+	]
+});
 var LogSource;
 (function(LogSource) {
 	LogSource[LogSource["LOG_SOURCE_UNSPECIFIED"] = 0] = "LOG_SOURCE_UNSPECIFIED";
@@ -129612,6 +138591,7 @@ var SoftphoneAccount = class SoftphoneAccount {
 		_instance.locked = _instance.locked || false;
 		_instance.lockedAt = _instance.lockedAt || void 0;
 		_instance.lockedReason = _instance.lockedReason || "";
+		_instance.description = _instance.description || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -129688,6 +138668,9 @@ var SoftphoneAccount = class SoftphoneAccount {
 				case 21:
 					_instance.lockedReason = _reader.readString();
 					break;
+				case 22:
+					_instance.description = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -129724,6 +138707,7 @@ var SoftphoneAccount = class SoftphoneAccount {
 		if (_instance.locked) _writer.writeBool(19, _instance.locked);
 		if (_instance.lockedAt) _writer.writeMessage(20, _instance.lockedAt, googleProtobuf000.Timestamp.serializeBinaryToWriter);
 		if (_instance.lockedReason) _writer.writeString(21, _instance.lockedReason);
+		if (_instance.description) _writer.writeString(22, _instance.description);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -129750,6 +138734,7 @@ var SoftphoneAccount = class SoftphoneAccount {
 		this.locked = _value.locked;
 		this.lockedAt = _value.lockedAt ? new googleProtobuf000.Timestamp(_value.lockedAt) : void 0;
 		this.lockedReason = _value.lockedReason;
+		this.description = _value.description;
 		SoftphoneAccount.refineValues(this);
 	}
 	get name() {
@@ -129878,6 +138863,12 @@ var SoftphoneAccount = class SoftphoneAccount {
 	set lockedReason(value) {
 		this._lockedReason = value;
 	}
+	get description() {
+		return this._description;
+	}
+	set description(value) {
+		this._description = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		SoftphoneAccount.serializeBinaryToWriter(this, writer);
@@ -129908,7 +138899,8 @@ var SoftphoneAccount = class SoftphoneAccount {
 			modifiedAt: this.modifiedAt ? this.modifiedAt.toObject() : void 0,
 			locked: this.locked,
 			lockedAt: this.lockedAt ? this.lockedAt.toObject() : void 0,
-			lockedReason: this.lockedReason
+			lockedReason: this.lockedReason,
+			description: this.description
 		};
 	}
 	toJSON() {
@@ -129939,7 +138931,8 @@ var SoftphoneAccount = class SoftphoneAccount {
 			modifiedAt: this.modifiedAt ? this.modifiedAt.toProtobufJSON(options) : null,
 			locked: this.locked,
 			lockedAt: this.lockedAt ? this.lockedAt.toProtobufJSON(options) : null,
-			lockedReason: this.lockedReason
+			lockedReason: this.lockedReason,
+			description: this.description
 		};
 	}
 };
@@ -133159,6 +142152,6 @@ function buildGrpcWebHost(config) {
 function warnInsecure(authority) {
 	console.warn(`ONDEWO gRPC-web: insecure http:// endpoint ${authority}; requests and bearer tokens are sent unencrypted. Use useSecureChannel: true (https://) outside local development.`);
 }
-export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddCallersToCampaignRequest, AddCallersToCampaignResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddScheduledCallersToCampaignRequest, AddScheduledCallersToCampaignResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, AmdVerdictCount, AnsweringMachineDetectionConfig, AnsweringMachineDetectionResult, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BROWSER_UNSUPPORTED_TLS_FIELDS, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BotPolicyOnJoin, BuildCacheRequest, Caching, Call, CallAudioEndReason, CallAudioEnded, CallAudioFrame, CallAudioMode, CallAudioStarted, CallAudioStats, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallMediaControlState, CallMediaSetting, CallParticipant, CallResourceStatus, CallSorting, CallStatistics, CallStatus, CallTarget, CallTransferRecord, CallType, CallTypeCount, CallView, Caller, CallingWindowDayOfWeek, CallingWindowSlot, CallsClient, Campaign, CampaignAssignment, CampaignCall, CampaignCallAttempt, CampaignCallAttemptOutcome, CampaignCallRefusal, CampaignCallSource, CampaignCallState, CampaignCallingWindow, CampaignFilter, CampaignOrderBy, CampaignStartMode, CampaignState, CampaignStatistics, CampaignsClient, CancelCampaignCallsRequest, CancelCampaignCallsResponse, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CancelScheduledCallersRequest, CancelScheduledCallersResponse, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CloneCampaignRequest, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCampaignRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateSoftphoneAccountRequest, CreateSoftphoneAccountResponse, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiEventSubscriptionRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, CreateWebhookRequest, Credentials, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCampaignRequest, DeleteCampaignResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteSoftphoneAccountRequest, DeleteSoftphoneAccountResponse, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiEventSubscriptionRequest, DeleteVtsiEventSubscriptionResponse, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeleteWebhookRequest, DeleteWebhookResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DocumentFileResource, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, EventsClient, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportCallLogsRequest, ExportCallLogsResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CAMPAIGNS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_EVENTS_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SOFTPHONES_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallStatisticsRequest, GetCallerRequest, GetCampaignCallRequest, GetCampaignRequest, GetCampaignStatisticsRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSoftphoneAccountRequest, GetSoftphoneCertificateRequest, GetSoftphoneProvisioningRequest, GetSoftphoneRegistrationRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiEventSubscriptionRequest, GetVtsiProjectRequest, GetWebhookRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, GrpcWebEndpointError, HardStopCampaignRequest, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptionHandlingConfig, InviteToCallRequest, InviteToCallResponse, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCampaignCallsRequest, ListCampaignCallsResponse, ListCampaignsRequest, ListCampaignsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListSoftphoneAccountsRequest, ListSoftphoneAccountsResponse, ListSoftphoneCertificatesRequest, ListSoftphoneCertificatesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiEventSubscriptionsRequest, ListVtsiEventSubscriptionsResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, ListWebhooksRequest, ListWebhooksResponse, ListenCallAudioRequest, Listener, ListenerQueueTarget, LlmAgentNodeEvent, LlmAgentNodePhase, LlmAgentUsage, LlmBaseUrlUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogExportFormat, LogSeverity, LogSource, LogStreamChannel, LogStreamEndReason, Logging, Logmnse, LogsClient, MIN_REFRESH_DELAY_IN_S, Map, MbMelganTriton, MediaControlOwner, MediaControlSetting, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, ParticipantEndReason, ParticipantMode, ParticipantState, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerIncrementalConfig, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort, RedeliverWebhookEventsRequest, RedeliverWebhookEventsResponse, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveCallParticipantRequest, RemoveCallParticipantResponse, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, ResumeCampaignRequest, RetryCampaignCallsRequest, RetryCampaignCallsResponse, RetryScheduledCallerRequest, RevokeSoftphoneCertificateRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RotateSoftphoneCredentialsRequest, RotateSoftphoneCredentialsResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetCallMediaControlRequest, SetCallMediaControlResponse, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, Silero, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallAudioConfig, SipCallAudioEndReason, SipCallAudioEnded, SipCallAudioFrame, SipCallAudioMode, SipCallAudioRequest, SipCallAudioResponse, SipCallAudioStarted, SipCallAudioStats, SipCallerConfig, SipClient, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipReportAnsweringMachineDetectedRequest, SipSetCallMediaControlRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipStatusTypeCount, SipTransferCallRequest, SipTrunkTransport, SoftTimeoutConfig, SoftphoneAccount, SoftphoneAccountFilter, SoftphoneAccountSorting, SoftphoneCertificate, SoftphoneCertificateFilter, SoftphoneCertificateStatus, SoftphoneContact, SoftphoneContactStatus, SoftphoneCredentials, SoftphoneProvisioning, SoftphoneRegistration, SoftphoneSrtpMode, SoftphoneTransportSecurity, SoftphonesClient, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartCampaignRequest, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopCampaignRequest, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallAudioConfig, StreamCallAudioRequest, StreamCallAudioResponse, StreamCallLogsRequest, StreamCallLogsResponse, StreamCallResourceStatusResponse, StreamCallerStatusRequest, StreamCampaignStatusRequest, StreamCampaignStatusResponse, StreamEndReason, StreamListenerStatusRequest, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamScheduledCallerStatusRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SubscribeVtsiEventsRequest, SubscribeVtsiEventsResponse, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, TestWebhookRequest, TestWebhookResponse, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TransferMode, TransferOutcome, TransferOutcomeCount, TrunkRegistrationState, TsdMethod, TurnDetectionConfig, TurnDetectionOptions, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCallRequest, UpdateCallResponse, UpdateCallerRequest, UpdateCallerResponse, UpdateCallersRequest, UpdateCallersResponse, UpdateCallsRequest, UpdateCallsResponse, UpdateCampaignRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateListenerRequest, UpdateListenerResponse, UpdateListenersRequest, UpdateListenersResponse, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateScheduledCallerRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateSoftphoneAccountRequest, UpdateUserRequest, UpdateVtsiEventSubscriptionRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UpdateWebhookRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, VadMethod, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiEvent, VtsiEventFilter, VtsiEventMessage, VtsiEventSubscription, VtsiProject, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, Wav2Vec, Wav2VecTriton, Webhook, WebhookClient, WebhookDeliveryStatistics, WebhookHttpMethod, WebhookRequest, WebhookResponse, WespeakerTsd, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, authHttpInterceptor, buildBearerValue, buildGrpcWebHost, provideOndewoVtsiAuth, resolveBearerValue, resolveToken };
+export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddCallersToCampaignRequest, AddCallersToCampaignResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddScheduledCallersToCampaignRequest, AddScheduledCallersToCampaignResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, AmdVerdictCount, AnsweringMachineDetectionConfig, AnsweringMachineDetectionResult, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BROWSER_UNSUPPORTED_TLS_FIELDS, BackgroundWorkPolicy, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BotPolicyOnJoin, BuildCacheRequest, Caching, Call, CallAudioEndReason, CallAudioEnded, CallAudioFrame, CallAudioMode, CallAudioStarted, CallAudioStats, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallMediaControlState, CallMediaSetting, CallParticipant, CallResourceStatus, CallSorting, CallStatistics, CallStatus, CallTarget, CallTransferRecord, CallType, CallTypeCount, CallView, Caller, CallingWindowDayOfWeek, CallingWindowSlot, CallsClient, Campaign, CampaignAssignment, CampaignCall, CampaignCallAttempt, CampaignCallAttemptOutcome, CampaignCallRefusal, CampaignCallSource, CampaignCallState, CampaignCallingWindow, CampaignFilter, CampaignOrderBy, CampaignStartMode, CampaignState, CampaignStatistics, CampaignsClient, CancelCampaignCallsRequest, CancelCampaignCallsResponse, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CancelScheduledCallersRequest, CancelScheduledCallersResponse, CancelTurn, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CloneCampaignRequest, CloneIvrMenuRequest, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCampaignRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateIvrMenuRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateSoftphoneAccountRequest, CreateSoftphoneAccountResponse, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiEventSubscriptionRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, CreateWebhookRequest, Credentials, CsiPreemptiveGenerationConfig, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCampaignRequest, DeleteCampaignResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteIvrMenuRequest, DeleteIvrMenuResponse, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteSoftphoneAccountRequest, DeleteSoftphoneAccountResponse, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiEventSubscriptionRequest, DeleteVtsiEventSubscriptionResponse, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeleteWebhookRequest, DeleteWebhookResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DictationConfig, DiscardDraft, DocumentFileResource, DtmfConfig, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, EventsClient, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportCallLogsRequest, ExportCallLogsResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CAMPAIGNS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_EVENTS_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_IVR_MENUS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SOFTPHONES_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallStatisticsRequest, GetCallerRequest, GetCampaignCallRequest, GetCampaignRequest, GetCampaignStatisticsRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetIvrMenuDialplanRequest, GetIvrMenuDialplanResponse, GetIvrMenuRequest, GetIvrMenuTestRequest, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSoftphoneAccountRequest, GetSoftphoneCertificateRequest, GetSoftphoneProvisioningRequest, GetSoftphoneRegistrationRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiEventSubscriptionRequest, GetVtsiProjectRequest, GetWarmTransferIntroOutcomeRequest, GetWebhookRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, GrpcWebEndpointError, HardStopCampaignRequest, HeardMessage, HeardReport, HeardTextPrecision, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptTurnRequest, InterruptTurnResponse, InterruptionHandlingConfig, InviteToCallRequest, InviteToCallResponse, IvrAvailability, IvrMenu, IvrMenuFilter, IvrMenuIssue, IvrMenuIssueSeverity, IvrMenuOrderBy, IvrMenuRevision, IvrMenuState, IvrMenuTest, IvrMenuTestState, IvrMenusClient, IvrNode, IvrNodePosition, IvrNodeStats, IvrNodeType, IvrOption, IvrPrompt, IvrTestStep, IvrTraversalStep, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCampaignCallsRequest, ListCampaignCallsResponse, ListCampaignsRequest, ListCampaignsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListIvrMenuRevisionsRequest, ListIvrMenuRevisionsResponse, ListIvrMenusRequest, ListIvrMenusResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListSoftphoneAccountsRequest, ListSoftphoneAccountsResponse, ListSoftphoneCertificatesRequest, ListSoftphoneCertificatesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiEventSubscriptionsRequest, ListVtsiEventSubscriptionsResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, ListWebhooksRequest, ListWebhooksResponse, ListenCallAudioRequest, Listener, ListenerQueueTarget, LlmAgentNodeEvent, LlmAgentNodePhase, LlmAgentUsage, LlmBaseUrlUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogExportFormat, LogSeverity, LogSource, LogStreamChannel, LogStreamEndReason, Logging, Logmnse, LogsClient, MIN_REFRESH_DELAY_IN_S, Map, MbMelganTriton, MediaControlOwner, MediaControlSetting, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluPreemptiveGenerationConfig, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, ParticipantEndReason, ParticipantMode, ParticipantState, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, PrepareWarmTransferIntroRequest, PrepareWarmTransferIntroResponse, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, PublishIvrMenuRequest, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerIncrementalConfig, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort, RedeliverWebhookEventsRequest, RedeliverWebhookEventsResponse, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveCallParticipantRequest, RemoveCallParticipantResponse, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, ResumeCampaignRequest, RetryCampaignCallsRequest, RetryCampaignCallsResponse, RetryScheduledCallerRequest, RevokeSoftphoneCertificateRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RotateSoftphoneCredentialsRequest, RotateSoftphoneCredentialsResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, SendCallDtmfRequest, SendCallDtmfResponse, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetCallMediaControlRequest, SetCallMediaControlResponse, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, Silero, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallAudioConfig, SipCallAudioEndReason, SipCallAudioEnded, SipCallAudioFrame, SipCallAudioMode, SipCallAudioRequest, SipCallAudioResponse, SipCallAudioStarted, SipCallAudioStats, SipCallerConfig, SipClient, SipDelegatedTransfer, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipReportAnsweringMachineDetectedRequest, SipSendDtmfRequest, SipSetCallMediaControlRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipStatusTypeCount, SipTransferCallRequest, SipTransferDelegation, SipTrunkTransport, SipWarmTransferOutcome, SipWarmTransferOutcomeNotice, SipWarmTransferOutcomeNoticeStatus, SoftTimeoutConfig, SoftphoneAccount, SoftphoneAccountFilter, SoftphoneAccountSorting, SoftphoneCertificate, SoftphoneCertificateFilter, SoftphoneCertificateStatus, SoftphoneContact, SoftphoneContactStatus, SoftphoneCredentials, SoftphoneProvisioning, SoftphoneRegistration, SoftphoneSrtpMode, SoftphoneTransportSecurity, SoftphonesClient, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartCampaignRequest, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopCampaignRequest, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallAudioConfig, StreamCallAudioRequest, StreamCallAudioResponse, StreamCallLogsRequest, StreamCallLogsResponse, StreamCallResourceStatusResponse, StreamCallerStatusRequest, StreamCampaignStatusRequest, StreamCampaignStatusResponse, StreamEndReason, StreamListenerStatusRequest, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamScheduledCallerStatusRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SubscribeVtsiEventsRequest, SubscribeVtsiEventsResponse, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sPreemptiveSynthesisConfig, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, TestIvrMenuRequest, TestWebhookRequest, TestWebhookResponse, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TransferMode, TransferOutcome, TransferOutcomeCount, TransferTargetDirectoryItem, TrunkRegistrationState, TsdMethod, TurnControl, TurnControlAck, TurnControlAckStatus, TurnDetectionConfig, TurnDetectionContextTurn, TurnDetectionConversationContext, TurnDetectionHoldBand, TurnDetectionHoldBands, TurnDetectionOptions, TurnInterruptionReason, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCallRequest, UpdateCallResponse, UpdateCallerRequest, UpdateCallerResponse, UpdateCallersRequest, UpdateCallersResponse, UpdateCallsRequest, UpdateCallsResponse, UpdateCampaignRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateIvrMenuRequest, UpdateListenerRequest, UpdateListenerResponse, UpdateListenersRequest, UpdateListenersResponse, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateScheduledCallerRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateSoftphoneAccountRequest, UpdateUserRequest, UpdateVtsiEventSubscriptionRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UpdateWebhookRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, VadMethod, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateIvrMenuRequest, ValidateIvrMenuResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiEvent, VtsiEventFilter, VtsiEventMessage, VtsiEventSubscription, VtsiProject, VtsiProjectFeatureAvailability, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, WarmIntroAvailability, WarmIntroDecidedBy, WarmIntroDecision, WarmIntroRecord, WarmIntroTextSource, WarmIntroUnavailablePolicy, WarmTransferAgentLexicon, WarmTransferAgentSettings, WarmTransferAgentTexts, WarmTransferConfig, WarmTransferIntroConfig, WarmTransferIntroDecidedBy, WarmTransferIntroDecision, WarmTransferIntroOutcome, WarmTransferIntroStage, WarmTransferIntroTextSource, Wav2Vec, Wav2VecTriton, Webhook, WebhookClient, WebhookDeliveryStatistics, WebhookHttpMethod, WebhookRequest, WebhookResponse, WespeakerTsd, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, authHttpInterceptor, buildBearerValue, buildGrpcWebHost, provideOndewoVtsiAuth, resolveBearerValue, resolveToken };
 
 //# sourceMappingURL=ondewo-vtsi-client-angular.mjs.map
