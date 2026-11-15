@@ -25,7 +25,7 @@ dist/
 # typings and public-api.ts is the generated barrel. `.husky/pre-commit` runs prettier in WRITE
 # mode, so anything missing here is reformatted on every commit and no longer matches what the
 # codegen emits. coverage/ is jest's report — untracked, and enough to fail `make prettier`.
-index.d.ts
+types/
 public-api.ts
 coverage/
 # README.md is prettier-ignored: .prettierrc sets useTabs, so prettier re-tabs the fenced
