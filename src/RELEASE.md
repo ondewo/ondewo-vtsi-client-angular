@@ -7,6 +7,7 @@
 ### Improvements
 
 * Tracking API Version [9.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
+* `Call.ivrMenuName` (output only): the resource name (`projects/<project_uuid>/ivr_menus/<ivr_menu_uuid>`) of the IVR menu `Call.ivrMenuDisplayName` names, so the menu is found by id instead of by its label; empty when the call did not pass an IVR menu (ondewo-vtsi-api `e6caa8a0aab19180427639d979a01ee7ee192d5f`)
 * `LogsClient` and `GRPC_LOGS_CLIENT_SETTINGS` stay the `ondewo.vtsi.Logs` client: the `ondewo.nlu.Logs` service vendored with ondewo-nlu-api is not compiled into this library (use `@ondewo/nlu-client-angular` for it)
 
 *****************

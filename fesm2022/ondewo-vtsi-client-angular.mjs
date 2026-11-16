@@ -124697,6 +124697,7 @@ var Call = class Call {
 		_instance.labels = _instance.labels || {};
 		_instance.ivrMenuDisplayName = _instance.ivrMenuDisplayName || "";
 		_instance.ivrPath = _instance.ivrPath || "";
+		_instance.ivrMenuName = _instance.ivrMenuName || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -124799,6 +124800,9 @@ var Call = class Call {
 				case 28:
 					_instance.ivrPath = _reader.readString();
 					break;
+				case 29:
+					_instance.ivrMenuName = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -124842,6 +124846,7 @@ var Call = class Call {
 		}
 		if (_instance.ivrMenuDisplayName) _writer.writeString(27, _instance.ivrMenuDisplayName);
 		if (_instance.ivrPath) _writer.writeString(28, _instance.ivrPath);
+		if (_instance.ivrMenuName) _writer.writeString(29, _instance.ivrMenuName);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -124875,6 +124880,7 @@ var Call = class Call {
 			[k]: _value.labels[k]
 		}), {}) : {}, this.ivrMenuDisplayName = _value.ivrMenuDisplayName;
 		this.ivrPath = _value.ivrPath;
+		this.ivrMenuName = _value.ivrMenuName;
 		Call.refineValues(this);
 	}
 	get name() {
@@ -125045,6 +125051,12 @@ var Call = class Call {
 	set ivrPath(value) {
 		this._ivrPath = value;
 	}
+	get ivrMenuName() {
+		return this._ivrMenuName;
+	}
+	set ivrMenuName(value) {
+		this._ivrMenuName = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		Call.serializeBinaryToWriter(this, writer);
@@ -125082,7 +125094,8 @@ var Call = class Call {
 				[k]: this.labels[k]
 			}), {}) : {},
 			ivrMenuDisplayName: this.ivrMenuDisplayName,
-			ivrPath: this.ivrPath
+			ivrPath: this.ivrPath,
+			ivrMenuName: this.ivrMenuName
 		};
 	}
 	toJSON() {
@@ -125120,7 +125133,8 @@ var Call = class Call {
 				[k]: this.labels[k]
 			}), {}) : {},
 			ivrMenuDisplayName: this.ivrMenuDisplayName,
-			ivrPath: this.ivrPath
+			ivrPath: this.ivrPath,
+			ivrMenuName: this.ivrMenuName
 		};
 	}
 };

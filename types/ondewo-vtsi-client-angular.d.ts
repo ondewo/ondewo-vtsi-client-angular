@@ -101851,6 +101851,7 @@ export declare class Call implements GrpcMessage {
   private _labels;
   private _ivrMenuDisplayName;
   private _ivrPath;
+  private _ivrMenuName;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of Call to deeply clone from
@@ -101916,6 +101917,8 @@ export declare class Call implements GrpcMessage {
   set ivrMenuDisplayName(value: string);
   get ivrPath(): string;
   set ivrPath(value: string);
+  get ivrMenuName(): string;
+  set ivrMenuName(value: string);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -101971,6 +101974,7 @@ export declare namespace Call {
     };
     ivrMenuDisplayName: string;
     ivrPath: string;
+    ivrMenuName: string;
   }
   /**
    * Protobuf JSON representation for Call
@@ -102006,6 +102010,7 @@ export declare namespace Call {
     };
     ivrMenuDisplayName: string;
     ivrPath: string;
+    ivrMenuName: string;
   }
   /**
    * Message implementation for ondewo.vtsi.Call.LabelsEntry
