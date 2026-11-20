@@ -2751,8 +2751,8 @@ export class ListCallersRequest implements GrpcMessage {
           _instance.activeOnly = _reader.readBool();
           break;
         case 9:
-          _reader.readPackableEnumInto(
-            (_instance.sipStatusTypes = _instance.sipStatusTypes || [])
+          (_instance.sipStatusTypes = _instance.sipStatusTypes || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         default:
@@ -3475,8 +3475,8 @@ export class ListListenersRequest implements GrpcMessage {
           _instance.activeOnly = _reader.readBool();
           break;
         case 7:
-          _reader.readPackableEnumInto(
-            (_instance.sipStatusTypes = _instance.sipStatusTypes || [])
+          (_instance.sipStatusTypes = _instance.sipStatusTypes || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         default:
@@ -10950,8 +10950,8 @@ export class ListScheduledCallersRequest implements GrpcMessage {
           _instance.callView = _reader.readEnum();
           break;
         case 4:
-          _reader.readPackableEnumInto(
-            (_instance.statuses = _instance.statuses || [])
+          (_instance.statuses = _instance.statuses || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 5:
@@ -20547,13 +20547,13 @@ export class CallFilter implements GrpcMessage {
           );
           break;
         case 8:
-          _reader.readPackableEnumInto(
-            (_instance.callTypes = _instance.callTypes || [])
+          (_instance.callTypes = _instance.callTypes || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 9:
-          _reader.readPackableEnumInto(
-            (_instance.sipStatusTypes = _instance.sipStatusTypes || [])
+          (_instance.sipStatusTypes = _instance.sipStatusTypes || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 10:
@@ -20580,8 +20580,8 @@ export class CallFilter implements GrpcMessage {
           _instance.durationInSMax = _reader.readFloat();
           break;
         case 15:
-          _reader.readPackableEnumInto(
-            (_instance.platforms = _instance.platforms || [])
+          (_instance.platforms = _instance.platforms || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 16:
@@ -20613,18 +20613,18 @@ export class CallFilter implements GrpcMessage {
           _instance.redialRecommended = _reader.readBool();
           break;
         case 22:
-          _reader.readPackableEnumInto(
-            (_instance.transferOutcomes = _instance.transferOutcomes || [])
+          (_instance.transferOutcomes = _instance.transferOutcomes || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 23:
-          _reader.readPackableInt32Into(
-            (_instance.sipPortNumbers = _instance.sipPortNumbers || [])
+          (_instance.sipPortNumbers = _instance.sipPortNumbers || []).push(
+            ...(_reader.readPackedInt32() || [])
           );
           break;
         case 24:
-          _reader.readPackableInt32Into(
-            (_instance.csiPortNumbers = _instance.csiPortNumbers || [])
+          (_instance.csiPortNumbers = _instance.csiPortNumbers || []).push(
+            ...(_reader.readPackedInt32() || [])
           );
           break;
         default:
@@ -25198,8 +25198,8 @@ export class StreamScheduledCallerStatusRequest implements GrpcMessage {
             _instance.scheduledCallerNames || []).push(_reader.readString());
           break;
         case 3:
-          _reader.readPackableEnumInto(
-            (_instance.statuses = _instance.statuses || [])
+          (_instance.statuses = _instance.statuses || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 4:

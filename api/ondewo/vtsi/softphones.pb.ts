@@ -2139,9 +2139,9 @@ export class SoftphoneAccountFilter implements GrpcMessage {
 
       switch (_reader.getFieldNumber()) {
         case 1:
-          _reader.readPackableEnumInto(
-            (_instance.transportSecurities =
-              _instance.transportSecurities || [])
+          (_instance.transportSecurities =
+            _instance.transportSecurities || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 2:
@@ -2630,8 +2630,8 @@ export class SoftphoneCertificateFilter implements GrpcMessage {
 
       switch (_reader.getFieldNumber()) {
         case 1:
-          _reader.readPackableEnumInto(
-            (_instance.statuses = _instance.statuses || [])
+          (_instance.statuses = _instance.statuses || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 2:

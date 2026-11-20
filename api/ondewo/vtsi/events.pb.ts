@@ -817,8 +817,8 @@ export class VtsiEventSubscription implements GrpcMessage {
           _instance.displayName = _reader.readString();
           break;
         case 4:
-          _reader.readPackableEnumInto(
-            (_instance.events = _instance.events || [])
+          (_instance.events = _instance.events || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 5:
@@ -862,8 +862,8 @@ export class VtsiEventSubscription implements GrpcMessage {
           );
           break;
         case 14:
-          _reader.readPackableEnumInto(
-            (_instance.excludedEvents = _instance.excludedEvents || [])
+          (_instance.excludedEvents = _instance.excludedEvents || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         default:
@@ -2125,8 +2125,8 @@ export class VtsiEventFilter implements GrpcMessage {
 
       switch (_reader.getFieldNumber()) {
         case 1:
-          _reader.readPackableEnumInto(
-            (_instance.events = _instance.events || [])
+          (_instance.events = _instance.events || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 2:
@@ -2142,8 +2142,8 @@ export class VtsiEventFilter implements GrpcMessage {
           _instance.allEvents = _reader.readBool();
           break;
         case 5:
-          _reader.readPackableEnumInto(
-            (_instance.excludedEvents = _instance.excludedEvents || [])
+          (_instance.excludedEvents = _instance.excludedEvents || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         default:

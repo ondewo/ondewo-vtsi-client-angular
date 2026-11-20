@@ -1,3 +1,6 @@
+/**
+ * Generated bundle index. Do not edit.
+ */
 import { GrpcClientFactory, GrpcEvent, GrpcMessage, GrpcMetadata, GrpcRequest, RecursivePartial, ToProtobufJSONOptions } from "@ngx-grpc/common";
 import { BinaryReader, BinaryWriter, ByteSource } from "google-protobuf";
 import * as googleProtobuf000 from "@ngx-grpc/well-known-types";
@@ -71895,6 +71898,7 @@ export declare class TranscriptionReturnOptions implements GrpcMessage {
   private _returnAlternativeWords;
   private _returnAlternativeWordsNr;
   private _returnWordTiming;
+  private _returnEndOfSpeechCandidate;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of TranscriptionReturnOptions to deeply clone from
@@ -71916,6 +71920,8 @@ export declare class TranscriptionReturnOptions implements GrpcMessage {
   set returnAlternativeWordsNr(value: number);
   get returnWordTiming(): boolean;
   set returnWordTiming(value: boolean);
+  get returnEndOfSpeechCandidate(): boolean;
+  set returnEndOfSpeechCandidate(value: boolean);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -71949,6 +71955,7 @@ export declare namespace TranscriptionReturnOptions {
     returnAlternativeWords: boolean;
     returnAlternativeWordsNr: number;
     returnWordTiming: boolean;
+    returnEndOfSpeechCandidate: boolean;
   }
   /**
    * Protobuf JSON representation for TranscriptionReturnOptions
@@ -71962,6 +71969,7 @@ export declare namespace TranscriptionReturnOptions {
     returnAlternativeWords: boolean;
     returnAlternativeWordsNr: number;
     returnWordTiming: boolean;
+    returnEndOfSpeechCandidate: boolean;
   }
 }
 /**
@@ -72593,6 +72601,7 @@ export declare class TranscribeStreamResponse implements GrpcMessage {
   private _audio;
   private _utteranceStart;
   private _audioUuid;
+  private _endOfSpeechCandidate;
   private _config?;
   private _oneofConfig;
   /**
@@ -72614,6 +72623,8 @@ export declare class TranscribeStreamResponse implements GrpcMessage {
   set utteranceStart(value: boolean);
   get audioUuid(): string;
   set audioUuid(value: string);
+  get endOfSpeechCandidate(): boolean;
+  set endOfSpeechCandidate(value: boolean);
   get config(): TranscribeRequestConfig | undefined;
   set config(value: TranscribeRequestConfig | undefined);
   get oneofConfig(): TranscribeStreamResponse.OneofConfigCase;
@@ -72649,6 +72660,7 @@ export declare namespace TranscribeStreamResponse {
     audio: Uint8Array;
     utteranceStart: boolean;
     audioUuid: string;
+    endOfSpeechCandidate: boolean;
     config?: TranscribeRequestConfig.AsObject;
   }
   /**
@@ -72662,6 +72674,7 @@ export declare namespace TranscribeStreamResponse {
     audio: string;
     utteranceStart: boolean;
     audioUuid: string;
+    endOfSpeechCandidate: boolean;
     config: TranscribeRequestConfig.AsProtobufJSON | null;
   }
   enum OneofConfigCase {
@@ -75043,17 +75056,14 @@ export declare class TurnDetectionOptions implements GrpcMessage {
   private _turnDetectionSystemPrompt;
   private _turnDetectionUserPrompt;
   private _turnDetectionLlmOpenaiOptions?;
-  private _conversationContext?;
-  private _endOfTurnProbabilityThreshold;
-  private _holdBands?;
-  private _uncertainMinWords;
   private _incompleteMaxSilenceSeconds;
-  private _exactProbability;
-  private _pipecatTritonModelName;
-  private _pipecatTritonServerHost;
-  private _pipecatTritonServerPort;
-  private _pipecatMaxAudioSeconds;
-  private _pipecatTimeoutSeconds;
+  private _turnDetectionConversationContext?;
+  private _turnDetectionChatLlmOptions?;
+  private _turnDetectionEndOfUtteranceLlmOptions?;
+  private _turnDetectionOndewoDeOptions?;
+  private _turnDetectionOndewoDeFusionOptions?;
+  private _turnDetectionPipecatSmartTurnOptions?;
+  private _oneofTurnDetector;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of TurnDetectionOptions to deeply clone from
@@ -75069,28 +75079,21 @@ export declare class TurnDetectionOptions implements GrpcMessage {
   set turnDetectionUserPrompt(value: string);
   get turnDetectionLlmOpenaiOptions(): OpenaiLlmOptions | undefined;
   set turnDetectionLlmOpenaiOptions(value: OpenaiLlmOptions | undefined);
-  get conversationContext(): TurnDetectionConversationContext | undefined;
-  set conversationContext(value: TurnDetectionConversationContext | undefined);
-  get endOfTurnProbabilityThreshold(): number;
-  set endOfTurnProbabilityThreshold(value: number);
-  get holdBands(): TurnDetectionHoldBands | undefined;
-  set holdBands(value: TurnDetectionHoldBands | undefined);
-  get uncertainMinWords(): number;
-  set uncertainMinWords(value: number);
   get incompleteMaxSilenceSeconds(): number;
   set incompleteMaxSilenceSeconds(value: number);
-  get exactProbability(): boolean;
-  set exactProbability(value: boolean);
-  get pipecatTritonModelName(): string;
-  set pipecatTritonModelName(value: string);
-  get pipecatTritonServerHost(): string;
-  set pipecatTritonServerHost(value: string);
-  get pipecatTritonServerPort(): string;
-  set pipecatTritonServerPort(value: string);
-  get pipecatMaxAudioSeconds(): number;
-  set pipecatMaxAudioSeconds(value: number);
-  get pipecatTimeoutSeconds(): number;
-  set pipecatTimeoutSeconds(value: number);
+  get turnDetectionConversationContext(): TurnDetectionConversationContext | undefined;
+  set turnDetectionConversationContext(value: TurnDetectionConversationContext | undefined);
+  get turnDetectionChatLlmOptions(): TurnDetectionChatLlmOptions | undefined;
+  set turnDetectionChatLlmOptions(value: TurnDetectionChatLlmOptions | undefined);
+  get turnDetectionEndOfUtteranceLlmOptions(): TurnDetectionEndOfUtteranceLlmOptions | undefined;
+  set turnDetectionEndOfUtteranceLlmOptions(value: TurnDetectionEndOfUtteranceLlmOptions | undefined);
+  get turnDetectionOndewoDeOptions(): TurnDetectionOndewoDeOptions | undefined;
+  set turnDetectionOndewoDeOptions(value: TurnDetectionOndewoDeOptions | undefined);
+  get turnDetectionOndewoDeFusionOptions(): TurnDetectionOndewoDeFusionOptions | undefined;
+  set turnDetectionOndewoDeFusionOptions(value: TurnDetectionOndewoDeFusionOptions | undefined);
+  get turnDetectionPipecatSmartTurnOptions(): TurnDetectionPipecatSmartTurnOptions | undefined;
+  set turnDetectionPipecatSmartTurnOptions(value: TurnDetectionPipecatSmartTurnOptions | undefined);
+  get oneofTurnDetector(): TurnDetectionOptions.OneofTurnDetectorCase;
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -75121,17 +75124,13 @@ export declare namespace TurnDetectionOptions {
     turnDetectionSystemPrompt: string;
     turnDetectionUserPrompt: string;
     turnDetectionLlmOpenaiOptions?: OpenaiLlmOptions.AsObject;
-    conversationContext?: TurnDetectionConversationContext.AsObject;
-    endOfTurnProbabilityThreshold: number;
-    holdBands?: TurnDetectionHoldBands.AsObject;
-    uncertainMinWords: number;
     incompleteMaxSilenceSeconds: number;
-    exactProbability: boolean;
-    pipecatTritonModelName: string;
-    pipecatTritonServerHost: string;
-    pipecatTritonServerPort: string;
-    pipecatMaxAudioSeconds: number;
-    pipecatTimeoutSeconds: number;
+    turnDetectionConversationContext?: TurnDetectionConversationContext.AsObject;
+    turnDetectionChatLlmOptions?: TurnDetectionChatLlmOptions.AsObject;
+    turnDetectionEndOfUtteranceLlmOptions?: TurnDetectionEndOfUtteranceLlmOptions.AsObject;
+    turnDetectionOndewoDeOptions?: TurnDetectionOndewoDeOptions.AsObject;
+    turnDetectionOndewoDeFusionOptions?: TurnDetectionOndewoDeFusionOptions.AsObject;
+    turnDetectionPipecatSmartTurnOptions?: TurnDetectionPipecatSmartTurnOptions.AsObject;
   }
   /**
    * Protobuf JSON representation for TurnDetectionOptions
@@ -75142,17 +75141,431 @@ export declare namespace TurnDetectionOptions {
     turnDetectionSystemPrompt: string;
     turnDetectionUserPrompt: string;
     turnDetectionLlmOpenaiOptions: OpenaiLlmOptions.AsProtobufJSON | null;
-    conversationContext: TurnDetectionConversationContext.AsProtobufJSON | null;
-    endOfTurnProbabilityThreshold: number;
-    holdBands: TurnDetectionHoldBands.AsProtobufJSON | null;
-    uncertainMinWords: number;
     incompleteMaxSilenceSeconds: number;
+    turnDetectionConversationContext: TurnDetectionConversationContext.AsProtobufJSON | null;
+    turnDetectionChatLlmOptions: TurnDetectionChatLlmOptions.AsProtobufJSON | null;
+    turnDetectionEndOfUtteranceLlmOptions: TurnDetectionEndOfUtteranceLlmOptions.AsProtobufJSON | null;
+    turnDetectionOndewoDeOptions: TurnDetectionOndewoDeOptions.AsProtobufJSON | null;
+    turnDetectionOndewoDeFusionOptions: TurnDetectionOndewoDeFusionOptions.AsProtobufJSON | null;
+    turnDetectionPipecatSmartTurnOptions: TurnDetectionPipecatSmartTurnOptions.AsProtobufJSON | null;
+  }
+  enum OneofTurnDetectorCase {
+    none = 0,
+    turnDetectionChatLlmOptions = 1,
+    turnDetectionEndOfUtteranceLlmOptions = 2,
+    turnDetectionOndewoDeOptions = 3,
+    turnDetectionOndewoDeFusionOptions = 4,
+    turnDetectionPipecatSmartTurnOptions = 5
+  }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionChatLlmOptions
+ */
+export declare class TurnDetectionChatLlmOptions implements GrpcMessage {
+  static id: string;
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource): TurnDetectionChatLlmOptions;
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: TurnDetectionChatLlmOptions): void;
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(_instance: TurnDetectionChatLlmOptions, _reader: BinaryReader): void;
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: TurnDetectionChatLlmOptions, _writer: BinaryWriter): void;
+  private _openaiLlmOptions?;
+  private _systemPrompt;
+  private _userPrompt;
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of TurnDetectionChatLlmOptions to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<TurnDetectionChatLlmOptions.AsObject>);
+  get openaiLlmOptions(): OpenaiLlmOptions | undefined;
+  set openaiLlmOptions(value: OpenaiLlmOptions | undefined);
+  get systemPrompt(): string;
+  set systemPrompt(value: string);
+  get userPrompt(): string;
+  set userPrompt(value: string);
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary(): any;
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): TurnDetectionChatLlmOptions.AsObject;
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON(): TurnDetectionChatLlmOptions.AsObject;
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionChatLlmOptions.AsProtobufJSON;
+}
+export declare namespace TurnDetectionChatLlmOptions {
+  /**
+   * Standard JavaScript object representation for TurnDetectionChatLlmOptions
+   */
+  interface AsObject {
+    openaiLlmOptions?: OpenaiLlmOptions.AsObject;
+    systemPrompt: string;
+    userPrompt: string;
+  }
+  /**
+   * Protobuf JSON representation for TurnDetectionChatLlmOptions
+   */
+  interface AsProtobufJSON {
+    openaiLlmOptions: OpenaiLlmOptions.AsProtobufJSON | null;
+    systemPrompt: string;
+    userPrompt: string;
+  }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionEndOfUtteranceLlmOptions
+ */
+export declare class TurnDetectionEndOfUtteranceLlmOptions implements GrpcMessage {
+  static id: string;
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource): TurnDetectionEndOfUtteranceLlmOptions;
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: TurnDetectionEndOfUtteranceLlmOptions): void;
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(_instance: TurnDetectionEndOfUtteranceLlmOptions, _reader: BinaryReader): void;
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: TurnDetectionEndOfUtteranceLlmOptions, _writer: BinaryWriter): void;
+  private _openaiLlmOptions?;
+  private _endOfTurnProbabilityThreshold;
+  private _turnDetectionHoldBands?;
+  private _uncertainMinWords;
+  private _exactProbability;
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of TurnDetectionEndOfUtteranceLlmOptions to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<TurnDetectionEndOfUtteranceLlmOptions.AsObject>);
+  get openaiLlmOptions(): OpenaiLlmOptions | undefined;
+  set openaiLlmOptions(value: OpenaiLlmOptions | undefined);
+  get endOfTurnProbabilityThreshold(): number;
+  set endOfTurnProbabilityThreshold(value: number);
+  get turnDetectionHoldBands(): TurnDetectionHoldBands | undefined;
+  set turnDetectionHoldBands(value: TurnDetectionHoldBands | undefined);
+  get uncertainMinWords(): number;
+  set uncertainMinWords(value: number);
+  get exactProbability(): boolean;
+  set exactProbability(value: boolean);
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary(): any;
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): TurnDetectionEndOfUtteranceLlmOptions.AsObject;
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON(): TurnDetectionEndOfUtteranceLlmOptions.AsObject;
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionEndOfUtteranceLlmOptions.AsProtobufJSON;
+}
+export declare namespace TurnDetectionEndOfUtteranceLlmOptions {
+  /**
+   * Standard JavaScript object representation for TurnDetectionEndOfUtteranceLlmOptions
+   */
+  interface AsObject {
+    openaiLlmOptions?: OpenaiLlmOptions.AsObject;
+    endOfTurnProbabilityThreshold: number;
+    turnDetectionHoldBands?: TurnDetectionHoldBands.AsObject;
+    uncertainMinWords: number;
     exactProbability: boolean;
-    pipecatTritonModelName: string;
-    pipecatTritonServerHost: string;
-    pipecatTritonServerPort: string;
-    pipecatMaxAudioSeconds: number;
-    pipecatTimeoutSeconds: number;
+  }
+  /**
+   * Protobuf JSON representation for TurnDetectionEndOfUtteranceLlmOptions
+   */
+  interface AsProtobufJSON {
+    openaiLlmOptions: OpenaiLlmOptions.AsProtobufJSON | null;
+    endOfTurnProbabilityThreshold: number;
+    turnDetectionHoldBands: TurnDetectionHoldBands.AsProtobufJSON | null;
+    uncertainMinWords: number;
+    exactProbability: boolean;
+  }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionOndewoDeOptions
+ */
+export declare class TurnDetectionOndewoDeOptions implements GrpcMessage {
+  static id: string;
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource): TurnDetectionOndewoDeOptions;
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: TurnDetectionOndewoDeOptions): void;
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(_instance: TurnDetectionOndewoDeOptions, _reader: BinaryReader): void;
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: TurnDetectionOndewoDeOptions, _writer: BinaryWriter): void;
+  private _openaiLlmOptions?;
+  private _endOfTurnProbabilityThreshold;
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of TurnDetectionOndewoDeOptions to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<TurnDetectionOndewoDeOptions.AsObject>);
+  get openaiLlmOptions(): OpenaiLlmOptions | undefined;
+  set openaiLlmOptions(value: OpenaiLlmOptions | undefined);
+  get endOfTurnProbabilityThreshold(): number;
+  set endOfTurnProbabilityThreshold(value: number);
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary(): any;
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): TurnDetectionOndewoDeOptions.AsObject;
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON(): TurnDetectionOndewoDeOptions.AsObject;
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionOndewoDeOptions.AsProtobufJSON;
+}
+export declare namespace TurnDetectionOndewoDeOptions {
+  /**
+   * Standard JavaScript object representation for TurnDetectionOndewoDeOptions
+   */
+  interface AsObject {
+    openaiLlmOptions?: OpenaiLlmOptions.AsObject;
+    endOfTurnProbabilityThreshold: number;
+  }
+  /**
+   * Protobuf JSON representation for TurnDetectionOndewoDeOptions
+   */
+  interface AsProtobufJSON {
+    openaiLlmOptions: OpenaiLlmOptions.AsProtobufJSON | null;
+    endOfTurnProbabilityThreshold: number;
+  }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionOndewoDeFusionOptions
+ */
+export declare class TurnDetectionOndewoDeFusionOptions implements GrpcMessage {
+  static id: string;
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource): TurnDetectionOndewoDeFusionOptions;
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: TurnDetectionOndewoDeFusionOptions): void;
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(_instance: TurnDetectionOndewoDeFusionOptions, _reader: BinaryReader): void;
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: TurnDetectionOndewoDeFusionOptions, _writer: BinaryWriter): void;
+  private _openaiLlmOptions?;
+  private _endOfTurnProbabilityThreshold;
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of TurnDetectionOndewoDeFusionOptions to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<TurnDetectionOndewoDeFusionOptions.AsObject>);
+  get openaiLlmOptions(): OpenaiLlmOptions | undefined;
+  set openaiLlmOptions(value: OpenaiLlmOptions | undefined);
+  get endOfTurnProbabilityThreshold(): number;
+  set endOfTurnProbabilityThreshold(value: number);
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary(): any;
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): TurnDetectionOndewoDeFusionOptions.AsObject;
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON(): TurnDetectionOndewoDeFusionOptions.AsObject;
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionOndewoDeFusionOptions.AsProtobufJSON;
+}
+export declare namespace TurnDetectionOndewoDeFusionOptions {
+  /**
+   * Standard JavaScript object representation for TurnDetectionOndewoDeFusionOptions
+   */
+  interface AsObject {
+    openaiLlmOptions?: OpenaiLlmOptions.AsObject;
+    endOfTurnProbabilityThreshold: number;
+  }
+  /**
+   * Protobuf JSON representation for TurnDetectionOndewoDeFusionOptions
+   */
+  interface AsProtobufJSON {
+    openaiLlmOptions: OpenaiLlmOptions.AsProtobufJSON | null;
+    endOfTurnProbabilityThreshold: number;
+  }
+}
+/**
+ * Message implementation for ondewo.s2t.TurnDetectionPipecatSmartTurnOptions
+ */
+export declare class TurnDetectionPipecatSmartTurnOptions implements GrpcMessage {
+  static id: string;
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource): TurnDetectionPipecatSmartTurnOptions;
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: TurnDetectionPipecatSmartTurnOptions): void;
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(_instance: TurnDetectionPipecatSmartTurnOptions, _reader: BinaryReader): void;
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: TurnDetectionPipecatSmartTurnOptions, _writer: BinaryWriter): void;
+  private _modelName;
+  private _tritonServerHost;
+  private _tritonServerPort;
+  private _maxAudioSeconds;
+  private _timeoutSeconds;
+  private _endOfTurnProbabilityThreshold;
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of TurnDetectionPipecatSmartTurnOptions to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<TurnDetectionPipecatSmartTurnOptions.AsObject>);
+  get modelName(): string;
+  set modelName(value: string);
+  get tritonServerHost(): string;
+  set tritonServerHost(value: string);
+  get tritonServerPort(): string;
+  set tritonServerPort(value: string);
+  get maxAudioSeconds(): number;
+  set maxAudioSeconds(value: number);
+  get timeoutSeconds(): number;
+  set timeoutSeconds(value: number);
+  get endOfTurnProbabilityThreshold(): number;
+  set endOfTurnProbabilityThreshold(value: number);
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary(): any;
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): TurnDetectionPipecatSmartTurnOptions.AsObject;
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON(): TurnDetectionPipecatSmartTurnOptions.AsObject;
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(options?: ToProtobufJSONOptions): TurnDetectionPipecatSmartTurnOptions.AsProtobufJSON;
+}
+export declare namespace TurnDetectionPipecatSmartTurnOptions {
+  /**
+   * Standard JavaScript object representation for TurnDetectionPipecatSmartTurnOptions
+   */
+  interface AsObject {
+    modelName: string;
+    tritonServerHost: string;
+    tritonServerPort: string;
+    maxAudioSeconds: number;
+    timeoutSeconds: number;
+    endOfTurnProbabilityThreshold: number;
+  }
+  /**
+   * Protobuf JSON representation for TurnDetectionPipecatSmartTurnOptions
+   */
+  interface AsProtobufJSON {
+    modelName: string;
+    tritonServerHost: string;
+    tritonServerPort: string;
+    maxAudioSeconds: number;
+    timeoutSeconds: number;
+    endOfTurnProbabilityThreshold: number;
   }
 }
 /**
@@ -75182,14 +75595,14 @@ export declare class TurnDetectionConversationContext implements GrpcMessage {
    * @param _writer binary writer instance
    */
   static serializeBinaryToWriter(_instance: TurnDetectionConversationContext, _writer: BinaryWriter): void;
-  private _turns?;
+  private _turnDetectionContextTurns?;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of TurnDetectionConversationContext to deeply clone from
    */
   constructor(_value?: RecursivePartial<TurnDetectionConversationContext.AsObject>);
-  get turns(): TurnDetectionContextTurn[] | undefined;
-  set turns(value: TurnDetectionContextTurn[] | undefined);
+  get turnDetectionContextTurns(): TurnDetectionContextTurn[] | undefined;
+  set turnDetectionContextTurns(value: TurnDetectionContextTurn[] | undefined);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -75215,13 +75628,13 @@ export declare namespace TurnDetectionConversationContext {
    * Standard JavaScript object representation for TurnDetectionConversationContext
    */
   interface AsObject {
-    turns?: TurnDetectionContextTurn.AsObject[];
+    turnDetectionContextTurns?: TurnDetectionContextTurn.AsObject[];
   }
   /**
    * Protobuf JSON representation for TurnDetectionConversationContext
    */
   interface AsProtobufJSON {
-    turns: TurnDetectionContextTurn.AsProtobufJSON[] | null;
+    turnDetectionContextTurns: TurnDetectionContextTurn.AsProtobufJSON[] | null;
   }
 }
 /**
@@ -75330,14 +75743,14 @@ export declare class TurnDetectionHoldBands implements GrpcMessage {
    * @param _writer binary writer instance
    */
   static serializeBinaryToWriter(_instance: TurnDetectionHoldBands, _writer: BinaryWriter): void;
-  private _bands?;
+  private _turnDetectionHoldBands?;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of TurnDetectionHoldBands to deeply clone from
    */
   constructor(_value?: RecursivePartial<TurnDetectionHoldBands.AsObject>);
-  get bands(): TurnDetectionHoldBand[] | undefined;
-  set bands(value: TurnDetectionHoldBand[] | undefined);
+  get turnDetectionHoldBands(): TurnDetectionHoldBand[] | undefined;
+  set turnDetectionHoldBands(value: TurnDetectionHoldBand[] | undefined);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -75363,13 +75776,13 @@ export declare namespace TurnDetectionHoldBands {
    * Standard JavaScript object representation for TurnDetectionHoldBands
    */
   interface AsObject {
-    bands?: TurnDetectionHoldBand.AsObject[];
+    turnDetectionHoldBands?: TurnDetectionHoldBand.AsObject[];
   }
   /**
    * Protobuf JSON representation for TurnDetectionHoldBands
    */
   interface AsProtobufJSON {
-    bands: TurnDetectionHoldBand.AsProtobufJSON[] | null;
+    turnDetectionHoldBands: TurnDetectionHoldBand.AsProtobufJSON[] | null;
   }
 }
 /**

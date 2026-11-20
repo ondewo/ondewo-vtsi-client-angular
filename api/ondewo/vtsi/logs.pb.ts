@@ -811,8 +811,8 @@ export class CallLogFilter implements GrpcMessage {
           );
           break;
         case 19:
-          _reader.readPackableEnumInto(
-            (_instance.callTypes = _instance.callTypes || [])
+          (_instance.callTypes = _instance.callTypes || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 20:
@@ -826,21 +826,21 @@ export class CallLogFilter implements GrpcMessage {
           );
           break;
         case 21:
-          _reader.readPackableEnumInto(
-            (_instance.logSources = _instance.logSources || [])
+          (_instance.logSources = _instance.logSources || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 22:
-          _reader.readPackableEnumInto(
-            (_instance.channels = _instance.channels || [])
+          (_instance.channels = _instance.channels || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 23:
           _instance.minLogLevel = _reader.readEnum();
           break;
         case 24:
-          _reader.readPackableEnumInto(
-            (_instance.logLevels = _instance.logLevels || [])
+          (_instance.logLevels = _instance.logLevels || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 25:
@@ -877,19 +877,19 @@ export class CallLogFilter implements GrpcMessage {
           );
           break;
         case 32:
-          _reader.readPackableInt32Into(
-            (_instance.sipPortNumbers = _instance.sipPortNumbers || [])
+          (_instance.sipPortNumbers = _instance.sipPortNumbers || []).push(
+            ...(_reader.readPackedInt32() || [])
           );
           break;
         case 33:
-          _reader.readPackableInt32Into(
-            (_instance.csiPortNumbers = _instance.csiPortNumbers || [])
+          (_instance.csiPortNumbers = _instance.csiPortNumbers || []).push(
+            ...(_reader.readPackedInt32() || [])
           );
           break;
         case 34:
-          _reader.readPackableInt32Into(
-            (_instance.asteriskPortNumbers =
-              _instance.asteriskPortNumbers || [])
+          (_instance.asteriskPortNumbers =
+            _instance.asteriskPortNumbers || []).push(
+            ...(_reader.readPackedInt32() || [])
           );
           break;
         default:
@@ -2963,9 +2963,9 @@ export class ListCallLogsResponse implements GrpcMessage {
           _instance.nextResumeToken = _reader.readString();
           break;
         case 8:
-          _reader.readPackableEnumInto(
-            (_instance.scopeLimitedFilters =
-              _instance.scopeLimitedFilters || [])
+          (_instance.scopeLimitedFilters =
+            _instance.scopeLimitedFilters || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 9:
@@ -3663,8 +3663,8 @@ export class ListCallLogStreamsRequest implements GrpcMessage {
           _instance.pageSize = _reader.readInt32();
           break;
         case 6:
-          _reader.readPackableEnumInto(
-            (_instance.captureStates = _instance.captureStates || [])
+          (_instance.captureStates = _instance.captureStates || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         default:

@@ -3884,8 +3884,8 @@ export class CampaignFilter implements GrpcMessage {
 
       switch (_reader.getFieldNumber()) {
         case 1:
-          _reader.readPackableEnumInto(
-            (_instance.states = _instance.states || [])
+          (_instance.states = _instance.states || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 2:
@@ -4818,8 +4818,8 @@ export class ListCampaignCallsRequest implements GrpcMessage {
           _instance.vtsiProjectName = _reader.readString();
           break;
         case 2:
-          _reader.readPackableEnumInto(
-            (_instance.states = _instance.states || [])
+          (_instance.states = _instance.states || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 3:
@@ -4847,8 +4847,8 @@ export class ListCampaignCallsRequest implements GrpcMessage {
           );
           break;
         case 12:
-          _reader.readPackableEnumInto(
-            (_instance.sources = _instance.sources || [])
+          (_instance.sources = _instance.sources || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 13:
@@ -6398,8 +6398,8 @@ export class StreamCampaignStatusRequest implements GrpcMessage {
           _instance.includeCalls = _reader.readBool();
           break;
         case 5:
-          _reader.readPackableEnumInto(
-            (_instance.states = _instance.states || [])
+          (_instance.states = _instance.states || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         default:
@@ -7255,8 +7255,8 @@ export class CancelCampaignCallsRequest implements GrpcMessage {
             _instance.campaignCallNames || []).push(_reader.readString());
           break;
         case 5:
-          _reader.readPackableEnumInto(
-            (_instance.states = _instance.states || [])
+          (_instance.states = _instance.states || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         default:
@@ -7715,8 +7715,8 @@ export class RetryCampaignCallsRequest implements GrpcMessage {
             _instance.campaignCallNames || []).push(_reader.readString());
           break;
         case 5:
-          _reader.readPackableEnumInto(
-            (_instance.states = _instance.states || [])
+          (_instance.states = _instance.states || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 6:
@@ -8244,8 +8244,8 @@ export class CloneCampaignRequest implements GrpcMessage {
           _instance.includeCalls = _reader.readBool();
           break;
         case 6:
-          _reader.readPackableEnumInto(
-            (_instance.callStates = _instance.callStates || [])
+          (_instance.callStates = _instance.callStates || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 7:

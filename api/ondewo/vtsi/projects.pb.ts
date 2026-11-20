@@ -2792,8 +2792,8 @@ export class ListVtsiProjectsRequest implements GrpcMessage {
           _instance.pageSize = _reader.readInt32();
           break;
         case 7:
-          _reader.readPackableEnumInto(
-            (_instance.statuses = _instance.statuses || [])
+          (_instance.statuses = _instance.statuses || []).push(
+            ...(_reader.readPackedEnum() || [])
           );
           break;
         case 8:

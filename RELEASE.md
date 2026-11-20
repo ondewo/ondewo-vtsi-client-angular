@@ -9,6 +9,7 @@
 * Tracking API Version [9.5.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.5.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) )
 * `Call.ivrMenuName` (output only): the resource name (`projects/<project_uuid>/ivr_menus/<ivr_menu_uuid>`) of the IVR menu `Call.ivrMenuDisplayName` names, so the menu is found by id instead of by its label; empty when the call did not pass an IVR menu (ondewo-vtsi-api `e6caa8a0aab19180427639d979a01ee7ee192d5f`)
 * `LogsClient` and `GRPC_LOGS_CLIENT_SETTINGS` stay the `ondewo.vtsi.Logs` client: the `ondewo.nlu.Logs` service vendored with ondewo-nlu-api is not compiled into this library (use `@ondewo/nlu-client-angular` for it)
+* Generated with ondewo-proto-compiler 5.17.0 (protoc 35.1). New runtime floors: `"grpc-web": "2.1.1"` as an exact direct dependency plus `"overrides": { "grpc-web": "$grpc-web" }` in the installing app's package.json (`@ngx-grpc/grpc-web-client` still declares the peer `grpc-web ^1.2.1`), `@ngx-grpc/*` `~3.1.2` and `google-protobuf ~3.21.4`
 
 *****************
 
