@@ -86567,6 +86567,9 @@ export declare class NluVtsiConfig implements GrpcMessage {
   private _httpBasicAuthToken;
   private _platform;
   private _preemptiveGenerationConfig?;
+  private _aiTeamsFillersAudible;
+  private _failureApologyMessage;
+  private _sessionIdFromSipContext;
   private _authentication;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -86593,6 +86596,12 @@ export declare class NluVtsiConfig implements GrpcMessage {
   set platform(value: Intent.Message.Platform);
   get preemptiveGenerationConfig(): NluPreemptiveGenerationConfig | undefined;
   set preemptiveGenerationConfig(value: NluPreemptiveGenerationConfig | undefined);
+  get aiTeamsFillersAudible(): boolean;
+  set aiTeamsFillersAudible(value: boolean);
+  get failureApologyMessage(): string;
+  set failureApologyMessage(value: string);
+  get sessionIdFromSipContext(): boolean;
+  set sessionIdFromSipContext(value: boolean);
   get authentication(): NluVtsiConfig.AuthenticationCase;
   /**
    * Serialize message to binary data
@@ -86629,6 +86638,9 @@ export declare namespace NluVtsiConfig {
     httpBasicAuthToken: string;
     platform: Intent.Message.Platform;
     preemptiveGenerationConfig?: NluPreemptiveGenerationConfig.AsObject;
+    aiTeamsFillersAudible: boolean;
+    failureApologyMessage: string;
+    sessionIdFromSipContext: boolean;
   }
   /**
    * Protobuf JSON representation for NluVtsiConfig
@@ -86644,6 +86656,9 @@ export declare namespace NluVtsiConfig {
     httpBasicAuthToken: string;
     platform: string;
     preemptiveGenerationConfig: NluPreemptiveGenerationConfig.AsProtobufJSON | null;
+    aiTeamsFillersAudible: boolean;
+    failureApologyMessage: string;
+    sessionIdFromSipContext: boolean;
   }
   enum AuthenticationCase {
     none = 0,
@@ -86912,6 +86927,7 @@ export declare class S2tVtsiConfig implements GrpcMessage {
   static serializeBinaryToWriter(_instance: S2tVtsiConfig, _writer: BinaryWriter): void;
   private _s2tBaseConfig?;
   private _s2tTranscribeRequestConfig?;
+  private _failureSipTrigger;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of S2tVtsiConfig to deeply clone from
@@ -86921,6 +86937,8 @@ export declare class S2tVtsiConfig implements GrpcMessage {
   set s2tBaseConfig(value: BaseServiceConfig | undefined);
   get s2tTranscribeRequestConfig(): TranscribeRequestConfig | undefined;
   set s2tTranscribeRequestConfig(value: TranscribeRequestConfig | undefined);
+  get failureSipTrigger(): string;
+  set failureSipTrigger(value: string);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -86948,6 +86966,7 @@ export declare namespace S2tVtsiConfig {
   interface AsObject {
     s2tBaseConfig?: BaseServiceConfig.AsObject;
     s2tTranscribeRequestConfig?: TranscribeRequestConfig.AsObject;
+    failureSipTrigger: string;
   }
   /**
    * Protobuf JSON representation for S2tVtsiConfig
@@ -86955,6 +86974,7 @@ export declare namespace S2tVtsiConfig {
   interface AsProtobufJSON {
     s2tBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
     s2tTranscribeRequestConfig: TranscribeRequestConfig.AsProtobufJSON | null;
+    failureSipTrigger: string;
   }
 }
 /**
@@ -86989,6 +87009,7 @@ export declare class CommonServicesConfig implements GrpcMessage {
   private _t2sVtsiConfig?;
   private _csiVtsiConfig?;
   private _voiceInteractionConfig?;
+  private _sipVtsiConfig?;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of CommonServicesConfig to deeply clone from
@@ -87004,6 +87025,8 @@ export declare class CommonServicesConfig implements GrpcMessage {
   set csiVtsiConfig(value: CsiVtsiConfig | undefined);
   get voiceInteractionConfig(): VoiceInteractionConfig | undefined;
   set voiceInteractionConfig(value: VoiceInteractionConfig | undefined);
+  get sipVtsiConfig(): SipVtsiConfig | undefined;
+  set sipVtsiConfig(value: SipVtsiConfig | undefined);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -87034,6 +87057,7 @@ export declare namespace CommonServicesConfig {
     t2sVtsiConfig?: T2sVtsiConfig.AsObject;
     csiVtsiConfig?: CsiVtsiConfig.AsObject;
     voiceInteractionConfig?: VoiceInteractionConfig.AsObject;
+    sipVtsiConfig?: SipVtsiConfig.AsObject;
   }
   /**
    * Protobuf JSON representation for CommonServicesConfig
@@ -87044,6 +87068,111 @@ export declare namespace CommonServicesConfig {
     t2sVtsiConfig: T2sVtsiConfig.AsProtobufJSON | null;
     csiVtsiConfig: CsiVtsiConfig.AsProtobufJSON | null;
     voiceInteractionConfig: VoiceInteractionConfig.AsProtobufJSON | null;
+    sipVtsiConfig: SipVtsiConfig.AsProtobufJSON | null;
+  }
+}
+/**
+ * Message implementation for ondewo.vtsi.SipVtsiConfig
+ */
+export declare class SipVtsiConfig implements GrpcMessage {
+  static id: string;
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource): SipVtsiConfig;
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: SipVtsiConfig): void;
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(_instance: SipVtsiConfig, _reader: BinaryReader): void;
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: SipVtsiConfig, _writer: BinaryWriter): void;
+  private _playbackLatencyMs;
+  private _softwareClockEnabled;
+  private _rtpStatsSampleIntervalSeconds;
+  private _hangupWaitForPlaybackTimeoutSeconds;
+  private _outgoingDialWatchdogSeconds;
+  private _registerIntervalSeconds;
+  private _callAudioStreamMaxConcurrent;
+  private _callAudioStreamMaxDurationSeconds;
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of SipVtsiConfig to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<SipVtsiConfig.AsObject>);
+  get playbackLatencyMs(): number;
+  set playbackLatencyMs(value: number);
+  get softwareClockEnabled(): boolean;
+  set softwareClockEnabled(value: boolean);
+  get rtpStatsSampleIntervalSeconds(): number;
+  set rtpStatsSampleIntervalSeconds(value: number);
+  get hangupWaitForPlaybackTimeoutSeconds(): number;
+  set hangupWaitForPlaybackTimeoutSeconds(value: number);
+  get outgoingDialWatchdogSeconds(): number;
+  set outgoingDialWatchdogSeconds(value: number);
+  get registerIntervalSeconds(): number;
+  set registerIntervalSeconds(value: number);
+  get callAudioStreamMaxConcurrent(): number;
+  set callAudioStreamMaxConcurrent(value: number);
+  get callAudioStreamMaxDurationSeconds(): number;
+  set callAudioStreamMaxDurationSeconds(value: number);
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary(): any;
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): SipVtsiConfig.AsObject;
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON(): SipVtsiConfig.AsObject;
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(options?: ToProtobufJSONOptions): SipVtsiConfig.AsProtobufJSON;
+}
+export declare namespace SipVtsiConfig {
+  /**
+   * Standard JavaScript object representation for SipVtsiConfig
+   */
+  interface AsObject {
+    playbackLatencyMs: number;
+    softwareClockEnabled: boolean;
+    rtpStatsSampleIntervalSeconds: number;
+    hangupWaitForPlaybackTimeoutSeconds: number;
+    outgoingDialWatchdogSeconds: number;
+    registerIntervalSeconds: number;
+    callAudioStreamMaxConcurrent: number;
+    callAudioStreamMaxDurationSeconds: number;
+  }
+  /**
+   * Protobuf JSON representation for SipVtsiConfig
+   */
+  interface AsProtobufJSON {
+    playbackLatencyMs: number;
+    softwareClockEnabled: boolean;
+    rtpStatsSampleIntervalSeconds: number;
+    hangupWaitForPlaybackTimeoutSeconds: number;
+    outgoingDialWatchdogSeconds: number;
+    registerIntervalSeconds: number;
+    callAudioStreamMaxConcurrent: number;
+    callAudioStreamMaxDurationSeconds: number;
   }
 }
 /**
@@ -87079,6 +87208,7 @@ export declare class VoiceInteractionConfig implements GrpcMessage {
   private _answeringMachineDetectionConfig?;
   private _dtmfConfig?;
   private _warmTransferConfig?;
+  private _botTransferConfig?;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of VoiceInteractionConfig to deeply clone from
@@ -87096,6 +87226,8 @@ export declare class VoiceInteractionConfig implements GrpcMessage {
   set dtmfConfig(value: DtmfConfig | undefined);
   get warmTransferConfig(): WarmTransferConfig | undefined;
   set warmTransferConfig(value: WarmTransferConfig | undefined);
+  get botTransferConfig(): BotTransferConfig | undefined;
+  set botTransferConfig(value: BotTransferConfig | undefined);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -87127,6 +87259,7 @@ export declare namespace VoiceInteractionConfig {
     answeringMachineDetectionConfig?: AnsweringMachineDetectionConfig.AsObject;
     dtmfConfig?: DtmfConfig.AsObject;
     warmTransferConfig?: WarmTransferConfig.AsObject;
+    botTransferConfig?: BotTransferConfig.AsObject;
   }
   /**
    * Protobuf JSON representation for VoiceInteractionConfig
@@ -87138,6 +87271,86 @@ export declare namespace VoiceInteractionConfig {
     answeringMachineDetectionConfig: AnsweringMachineDetectionConfig.AsProtobufJSON | null;
     dtmfConfig: DtmfConfig.AsProtobufJSON | null;
     warmTransferConfig: WarmTransferConfig.AsProtobufJSON | null;
+    botTransferConfig: BotTransferConfig.AsProtobufJSON | null;
+  }
+}
+/**
+ * Message implementation for ondewo.vtsi.BotTransferConfig
+ */
+export declare class BotTransferConfig implements GrpcMessage {
+  static id: string;
+  /**
+   * Deserialize binary data to message
+   * @param instance message instance
+   */
+  static deserializeBinary(bytes: ByteSource): BotTransferConfig;
+  /**
+   * Check all the properties and set default protobuf values if necessary
+   * @param _instance message instance
+   */
+  static refineValues(_instance: BotTransferConfig): void;
+  /**
+   * Deserializes / reads binary message into message instance using provided binary reader
+   * @param _instance message instance
+   * @param _reader binary reader instance
+   */
+  static deserializeBinaryFromReader(_instance: BotTransferConfig, _reader: BinaryReader): void;
+  /**
+   * Serializes a message to binary format using provided binary reader
+   * @param _instance message instance
+   * @param _writer binary writer instance
+   */
+  static serializeBinaryToWriter(_instance: BotTransferConfig, _writer: BinaryWriter): void;
+  private _outcomeTimeoutMs;
+  private _failedAction;
+  private _warmTransferOutcomeCommitTimeoutSeconds;
+  /**
+   * Message constructor. Initializes the properties and applies default Protobuf values if necessary
+   * @param _value initial values object or instance of BotTransferConfig to deeply clone from
+   */
+  constructor(_value?: RecursivePartial<BotTransferConfig.AsObject>);
+  get outcomeTimeoutMs(): number;
+  set outcomeTimeoutMs(value: number);
+  get failedAction(): string;
+  set failedAction(value: string);
+  get warmTransferOutcomeCommitTimeoutSeconds(): number;
+  set warmTransferOutcomeCommitTimeoutSeconds(value: number);
+  /**
+   * Serialize message to binary data
+   * @param instance message instance
+   */
+  serializeBinary(): any;
+  /**
+   * Cast message to standard JavaScript object (all non-primitive values are deeply cloned)
+   */
+  toObject(): BotTransferConfig.AsObject;
+  /**
+   * Convenience method to support JSON.stringify(message), replicates the structure of toObject()
+   */
+  toJSON(): BotTransferConfig.AsObject;
+  /**
+   * Cast message to JSON using protobuf JSON notation: https://developers.google.com/protocol-buffers/docs/proto3#json
+   * Attention: output differs from toObject() e.g. enums are represented as names and not as numbers, Timestamp is an ISO Date string format etc.
+   * If the message itself or some of descendant messages is google.protobuf.Any, you MUST provide a message pool as options. If not, the messagePool is not required
+   */
+  toProtobufJSON(options?: ToProtobufJSONOptions): BotTransferConfig.AsProtobufJSON;
+}
+export declare namespace BotTransferConfig {
+  /**
+   * Standard JavaScript object representation for BotTransferConfig
+   */
+  interface AsObject {
+    outcomeTimeoutMs: number;
+    failedAction: string;
+    warmTransferOutcomeCommitTimeoutSeconds: number;
+  }
+  /**
+   * Protobuf JSON representation for BotTransferConfig
+   */
+  interface AsProtobufJSON {
+    outcomeTimeoutMs: number;
+    failedAction: string;
+    warmTransferOutcomeCommitTimeoutSeconds: number;
   }
 }
 /**
@@ -87171,6 +87384,8 @@ export declare class DtmfConfig implements GrpcMessage {
   private _bargeIn;
   private _interDigitTimeoutMs;
   private _undeclaredPolicy;
+  private _speechGuardMs;
+  private _textTemplate;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of DtmfConfig to deeply clone from
@@ -87184,6 +87399,10 @@ export declare class DtmfConfig implements GrpcMessage {
   set interDigitTimeoutMs(value: number);
   get undeclaredPolicy(): string;
   set undeclaredPolicy(value: string);
+  get speechGuardMs(): number;
+  set speechGuardMs(value: number);
+  get textTemplate(): string;
+  set textTemplate(value: string);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -87213,6 +87432,8 @@ export declare namespace DtmfConfig {
     bargeIn: boolean;
     interDigitTimeoutMs: number;
     undeclaredPolicy: string;
+    speechGuardMs: number;
+    textTemplate: string;
   }
   /**
    * Protobuf JSON representation for DtmfConfig
@@ -87222,6 +87443,8 @@ export declare namespace DtmfConfig {
     bargeIn: boolean;
     interDigitTimeoutMs: number;
     undeclaredPolicy: string;
+    speechGuardMs: number;
+    textTemplate: string;
   }
 }
 /**
@@ -87579,6 +87802,11 @@ export declare class TurnDetectionConfig implements GrpcMessage {
   private _exactProbability;
   private _finalMergeWindowSeconds;
   private _dictationConfig?;
+  private _s2tEmitMs;
+  private _s2tRequestPartials;
+  private _s2tRequestEndOfSpeechCandidate;
+  private _smartTurnThreshold;
+  private _postUnmutePhantomWindowSeconds;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of TurnDetectionConfig to deeply clone from
@@ -87614,6 +87842,16 @@ export declare class TurnDetectionConfig implements GrpcMessage {
   set finalMergeWindowSeconds(value: number);
   get dictationConfig(): DictationConfig | undefined;
   set dictationConfig(value: DictationConfig | undefined);
+  get s2tEmitMs(): number;
+  set s2tEmitMs(value: number);
+  get s2tRequestPartials(): boolean;
+  set s2tRequestPartials(value: boolean);
+  get s2tRequestEndOfSpeechCandidate(): boolean;
+  set s2tRequestEndOfSpeechCandidate(value: boolean);
+  get smartTurnThreshold(): number;
+  set smartTurnThreshold(value: number);
+  get postUnmutePhantomWindowSeconds(): number;
+  set postUnmutePhantomWindowSeconds(value: number);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -87654,6 +87892,11 @@ export declare namespace TurnDetectionConfig {
     exactProbability: boolean;
     finalMergeWindowSeconds: number;
     dictationConfig?: DictationConfig.AsObject;
+    s2tEmitMs: number;
+    s2tRequestPartials: boolean;
+    s2tRequestEndOfSpeechCandidate: boolean;
+    smartTurnThreshold: number;
+    postUnmutePhantomWindowSeconds: number;
   }
   /**
    * Protobuf JSON representation for TurnDetectionConfig
@@ -87674,6 +87917,11 @@ export declare namespace TurnDetectionConfig {
     exactProbability: boolean;
     finalMergeWindowSeconds: number;
     dictationConfig: DictationConfig.AsProtobufJSON | null;
+    s2tEmitMs: number;
+    s2tRequestPartials: boolean;
+    s2tRequestEndOfSpeechCandidate: boolean;
+    smartTurnThreshold: number;
+    postUnmutePhantomWindowSeconds: number;
   }
   enum TurnDetectionMode {
     TURN_DETECTION_MODE_UNSPECIFIED = 0,
@@ -88058,6 +88306,12 @@ export declare class InterruptionHandlingConfig implements GrpcMessage {
   private _firstMessageProtectedSeconds;
   private _transcribeOnDisabledInterruptions;
   private _interruptionFadeOutMs;
+  private _cancelOnSpeechWhileThinking;
+  private _aiTeamsCancelPendingOnInterrupt;
+  private _t2sCancelOnBargeIn;
+  private _nluTurnControlEnabled;
+  private _heardReportEnabled;
+  private _heardTextAlignmentEnabled;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of InterruptionHandlingConfig to deeply clone from
@@ -88081,6 +88335,18 @@ export declare class InterruptionHandlingConfig implements GrpcMessage {
   set transcribeOnDisabledInterruptions(value: boolean);
   get interruptionFadeOutMs(): number;
   set interruptionFadeOutMs(value: number);
+  get cancelOnSpeechWhileThinking(): boolean;
+  set cancelOnSpeechWhileThinking(value: boolean);
+  get aiTeamsCancelPendingOnInterrupt(): boolean;
+  set aiTeamsCancelPendingOnInterrupt(value: boolean);
+  get t2sCancelOnBargeIn(): boolean;
+  set t2sCancelOnBargeIn(value: boolean);
+  get nluTurnControlEnabled(): boolean;
+  set nluTurnControlEnabled(value: boolean);
+  get heardReportEnabled(): boolean;
+  set heardReportEnabled(value: boolean);
+  get heardTextAlignmentEnabled(): boolean;
+  set heardTextAlignmentEnabled(value: boolean);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -88115,6 +88381,12 @@ export declare namespace InterruptionHandlingConfig {
     firstMessageProtectedSeconds: number;
     transcribeOnDisabledInterruptions: boolean;
     interruptionFadeOutMs: number;
+    cancelOnSpeechWhileThinking: boolean;
+    aiTeamsCancelPendingOnInterrupt: boolean;
+    t2sCancelOnBargeIn: boolean;
+    nluTurnControlEnabled: boolean;
+    heardReportEnabled: boolean;
+    heardTextAlignmentEnabled: boolean;
   }
   /**
    * Protobuf JSON representation for InterruptionHandlingConfig
@@ -88129,6 +88401,12 @@ export declare namespace InterruptionHandlingConfig {
     firstMessageProtectedSeconds: number;
     transcribeOnDisabledInterruptions: boolean;
     interruptionFadeOutMs: number;
+    cancelOnSpeechWhileThinking: boolean;
+    aiTeamsCancelPendingOnInterrupt: boolean;
+    t2sCancelOnBargeIn: boolean;
+    nluTurnControlEnabled: boolean;
+    heardReportEnabled: boolean;
+    heardTextAlignmentEnabled: boolean;
   }
 }
 /**
@@ -88163,6 +88441,10 @@ export declare class ResponseTimingConfig implements GrpcMessage {
   private _softTimeoutConfig?;
   private _preemptiveGenerationEnabled;
   private _t2sChunkedStreamingEnabled;
+  private _streamingEnabled;
+  private _nluCallStreamEnabled;
+  private _turnTimeoutIntent;
+  private _t2sMaxEdgeSilenceMs;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of ResponseTimingConfig to deeply clone from
@@ -88178,6 +88460,14 @@ export declare class ResponseTimingConfig implements GrpcMessage {
   set preemptiveGenerationEnabled(value: boolean);
   get t2sChunkedStreamingEnabled(): boolean;
   set t2sChunkedStreamingEnabled(value: boolean);
+  get streamingEnabled(): boolean;
+  set streamingEnabled(value: boolean);
+  get nluCallStreamEnabled(): boolean;
+  set nluCallStreamEnabled(value: boolean);
+  get turnTimeoutIntent(): string;
+  set turnTimeoutIntent(value: string);
+  get t2sMaxEdgeSilenceMs(): number;
+  set t2sMaxEdgeSilenceMs(value: number);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -88208,6 +88498,10 @@ export declare namespace ResponseTimingConfig {
     softTimeoutConfig?: SoftTimeoutConfig.AsObject;
     preemptiveGenerationEnabled: boolean;
     t2sChunkedStreamingEnabled: boolean;
+    streamingEnabled: boolean;
+    nluCallStreamEnabled: boolean;
+    turnTimeoutIntent: string;
+    t2sMaxEdgeSilenceMs: number;
   }
   /**
    * Protobuf JSON representation for ResponseTimingConfig
@@ -88218,6 +88512,10 @@ export declare namespace ResponseTimingConfig {
     softTimeoutConfig: SoftTimeoutConfig.AsProtobufJSON | null;
     preemptiveGenerationEnabled: boolean;
     t2sChunkedStreamingEnabled: boolean;
+    streamingEnabled: boolean;
+    nluCallStreamEnabled: boolean;
+    turnTimeoutIntent: string;
+    t2sMaxEdgeSilenceMs: number;
   }
 }
 /**

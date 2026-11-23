@@ -105448,6 +105448,15 @@ var NluVtsiConfig = class NluVtsiConfig {
 					_instance.preemptiveGenerationConfig = new NluPreemptiveGenerationConfig();
 					_reader.readMessage(_instance.preemptiveGenerationConfig, NluPreemptiveGenerationConfig.deserializeBinaryFromReader);
 					break;
+				case 11:
+					_instance.aiTeamsFillersAudible = _reader.readBool();
+					break;
+				case 12:
+					_instance.failureApologyMessage = _reader.readString();
+					break;
+				case 13:
+					_instance.sessionIdFromSipContext = _reader.readBool();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -105464,6 +105473,9 @@ var NluVtsiConfig = class NluVtsiConfig {
 		if (_instance.httpBasicAuthToken) _writer.writeString(8, _instance.httpBasicAuthToken);
 		if (_instance.platform !== void 0 && _instance.platform !== null) _writer.writeEnum(9, _instance.platform);
 		if (_instance.preemptiveGenerationConfig) _writer.writeMessage(10, _instance.preemptiveGenerationConfig, NluPreemptiveGenerationConfig.serializeBinaryToWriter);
+		if (_instance.aiTeamsFillersAudible !== void 0 && _instance.aiTeamsFillersAudible !== null) _writer.writeBool(11, _instance.aiTeamsFillersAudible);
+		if (_instance.failureApologyMessage !== void 0 && _instance.failureApologyMessage !== null) _writer.writeString(12, _instance.failureApologyMessage);
+		if (_instance.sessionIdFromSipContext !== void 0 && _instance.sessionIdFromSipContext !== null) _writer.writeBool(13, _instance.sessionIdFromSipContext);
 	}
 	constructor(_value) {
 		this._authentication = NluVtsiConfig.AuthenticationCase.none;
@@ -105478,6 +105490,9 @@ var NluVtsiConfig = class NluVtsiConfig {
 		this.httpBasicAuthToken = _value.httpBasicAuthToken;
 		this.platform = _value.platform;
 		this.preemptiveGenerationConfig = _value.preemptiveGenerationConfig ? new NluPreemptiveGenerationConfig(_value.preemptiveGenerationConfig) : void 0;
+		this.aiTeamsFillersAudible = _value.aiTeamsFillersAudible;
+		this.failureApologyMessage = _value.failureApologyMessage;
+		this.sessionIdFromSipContext = _value.sessionIdFromSipContext;
 		NluVtsiConfig.refineValues(this);
 	}
 	get nluBaseConfig() {
@@ -105548,6 +105563,24 @@ var NluVtsiConfig = class NluVtsiConfig {
 	set preemptiveGenerationConfig(value) {
 		this._preemptiveGenerationConfig = value;
 	}
+	get aiTeamsFillersAudible() {
+		return this._aiTeamsFillersAudible;
+	}
+	set aiTeamsFillersAudible(value) {
+		this._aiTeamsFillersAudible = value;
+	}
+	get failureApologyMessage() {
+		return this._failureApologyMessage;
+	}
+	set failureApologyMessage(value) {
+		this._failureApologyMessage = value;
+	}
+	get sessionIdFromSipContext() {
+		return this._sessionIdFromSipContext;
+	}
+	set sessionIdFromSipContext(value) {
+		this._sessionIdFromSipContext = value;
+	}
 	get authentication() {
 		return this._authentication;
 	}
@@ -105567,7 +105600,10 @@ var NluVtsiConfig = class NluVtsiConfig {
 			contexts: (this.contexts || []).map((m) => m.toObject()),
 			httpBasicAuthToken: this.httpBasicAuthToken,
 			platform: this.platform,
-			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toObject() : void 0
+			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toObject() : void 0,
+			aiTeamsFillersAudible: this.aiTeamsFillersAudible,
+			failureApologyMessage: this.failureApologyMessage,
+			sessionIdFromSipContext: this.sessionIdFromSipContext
 		};
 	}
 	toJSON() {
@@ -105584,7 +105620,10 @@ var NluVtsiConfig = class NluVtsiConfig {
 			contexts: (this.contexts || []).map((m) => m.toProtobufJSON(options)),
 			httpBasicAuthToken: this.httpBasicAuthToken,
 			platform: Intent.Message.Platform[this.platform === null || this.platform === void 0 ? 0 : this.platform],
-			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toProtobufJSON(options) : null
+			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toProtobufJSON(options) : null,
+			aiTeamsFillersAudible: this.aiTeamsFillersAudible,
+			failureApologyMessage: this.failureApologyMessage,
+			sessionIdFromSipContext: this.sessionIdFromSipContext
 		};
 	}
 };
@@ -105857,6 +105896,9 @@ var S2tVtsiConfig = class S2tVtsiConfig {
 					_instance.s2tTranscribeRequestConfig = new TranscribeRequestConfig();
 					_reader.readMessage(_instance.s2tTranscribeRequestConfig, TranscribeRequestConfig.deserializeBinaryFromReader);
 					break;
+				case 3:
+					_instance.failureSipTrigger = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -105865,11 +105907,13 @@ var S2tVtsiConfig = class S2tVtsiConfig {
 	static serializeBinaryToWriter(_instance, _writer) {
 		if (_instance.s2tBaseConfig) _writer.writeMessage(1, _instance.s2tBaseConfig, BaseServiceConfig.serializeBinaryToWriter);
 		if (_instance.s2tTranscribeRequestConfig) _writer.writeMessage(2, _instance.s2tTranscribeRequestConfig, TranscribeRequestConfig.serializeBinaryToWriter);
+		if (_instance.failureSipTrigger !== void 0 && _instance.failureSipTrigger !== null) _writer.writeString(3, _instance.failureSipTrigger);
 	}
 	constructor(_value) {
 		_value = _value || {};
 		this.s2tBaseConfig = _value.s2tBaseConfig ? new BaseServiceConfig(_value.s2tBaseConfig) : void 0;
 		this.s2tTranscribeRequestConfig = _value.s2tTranscribeRequestConfig ? new TranscribeRequestConfig(_value.s2tTranscribeRequestConfig) : void 0;
+		this.failureSipTrigger = _value.failureSipTrigger;
 		S2tVtsiConfig.refineValues(this);
 	}
 	get s2tBaseConfig() {
@@ -105884,6 +105928,12 @@ var S2tVtsiConfig = class S2tVtsiConfig {
 	set s2tTranscribeRequestConfig(value) {
 		this._s2tTranscribeRequestConfig = value;
 	}
+	get failureSipTrigger() {
+		return this._failureSipTrigger;
+	}
+	set failureSipTrigger(value) {
+		this._failureSipTrigger = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		S2tVtsiConfig.serializeBinaryToWriter(this, writer);
@@ -105892,7 +105942,8 @@ var S2tVtsiConfig = class S2tVtsiConfig {
 	toObject() {
 		return {
 			s2tBaseConfig: this.s2tBaseConfig ? this.s2tBaseConfig.toObject() : void 0,
-			s2tTranscribeRequestConfig: this.s2tTranscribeRequestConfig ? this.s2tTranscribeRequestConfig.toObject() : void 0
+			s2tTranscribeRequestConfig: this.s2tTranscribeRequestConfig ? this.s2tTranscribeRequestConfig.toObject() : void 0,
+			failureSipTrigger: this.failureSipTrigger
 		};
 	}
 	toJSON() {
@@ -105901,7 +105952,8 @@ var S2tVtsiConfig = class S2tVtsiConfig {
 	toProtobufJSON(options) {
 		return {
 			s2tBaseConfig: this.s2tBaseConfig ? this.s2tBaseConfig.toProtobufJSON(options) : null,
-			s2tTranscribeRequestConfig: this.s2tTranscribeRequestConfig ? this.s2tTranscribeRequestConfig.toProtobufJSON(options) : null
+			s2tTranscribeRequestConfig: this.s2tTranscribeRequestConfig ? this.s2tTranscribeRequestConfig.toProtobufJSON(options) : null,
+			failureSipTrigger: this.failureSipTrigger
 		};
 	}
 };
@@ -105920,6 +105972,7 @@ var CommonServicesConfig = class CommonServicesConfig {
 		_instance.t2sVtsiConfig = _instance.t2sVtsiConfig || void 0;
 		_instance.csiVtsiConfig = _instance.csiVtsiConfig || void 0;
 		_instance.voiceInteractionConfig = _instance.voiceInteractionConfig || void 0;
+		_instance.sipVtsiConfig = _instance.sipVtsiConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -105945,6 +105998,10 @@ var CommonServicesConfig = class CommonServicesConfig {
 					_instance.voiceInteractionConfig = new VoiceInteractionConfig();
 					_reader.readMessage(_instance.voiceInteractionConfig, VoiceInteractionConfig.deserializeBinaryFromReader);
 					break;
+				case 6:
+					_instance.sipVtsiConfig = new SipVtsiConfig();
+					_reader.readMessage(_instance.sipVtsiConfig, SipVtsiConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -105956,6 +106013,7 @@ var CommonServicesConfig = class CommonServicesConfig {
 		if (_instance.t2sVtsiConfig) _writer.writeMessage(3, _instance.t2sVtsiConfig, T2sVtsiConfig.serializeBinaryToWriter);
 		if (_instance.csiVtsiConfig) _writer.writeMessage(4, _instance.csiVtsiConfig, CsiVtsiConfig.serializeBinaryToWriter);
 		if (_instance.voiceInteractionConfig) _writer.writeMessage(5, _instance.voiceInteractionConfig, VoiceInteractionConfig.serializeBinaryToWriter);
+		if (_instance.sipVtsiConfig) _writer.writeMessage(6, _instance.sipVtsiConfig, SipVtsiConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -105964,6 +106022,7 @@ var CommonServicesConfig = class CommonServicesConfig {
 		this.t2sVtsiConfig = _value.t2sVtsiConfig ? new T2sVtsiConfig(_value.t2sVtsiConfig) : void 0;
 		this.csiVtsiConfig = _value.csiVtsiConfig ? new CsiVtsiConfig(_value.csiVtsiConfig) : void 0;
 		this.voiceInteractionConfig = _value.voiceInteractionConfig ? new VoiceInteractionConfig(_value.voiceInteractionConfig) : void 0;
+		this.sipVtsiConfig = _value.sipVtsiConfig ? new SipVtsiConfig(_value.sipVtsiConfig) : void 0;
 		CommonServicesConfig.refineValues(this);
 	}
 	get s2tVtsiConfig() {
@@ -105996,6 +106055,12 @@ var CommonServicesConfig = class CommonServicesConfig {
 	set voiceInteractionConfig(value) {
 		this._voiceInteractionConfig = value;
 	}
+	get sipVtsiConfig() {
+		return this._sipVtsiConfig;
+	}
+	set sipVtsiConfig(value) {
+		this._sipVtsiConfig = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		CommonServicesConfig.serializeBinaryToWriter(this, writer);
@@ -106007,7 +106072,8 @@ var CommonServicesConfig = class CommonServicesConfig {
 			nluVtsiConfig: this.nluVtsiConfig ? this.nluVtsiConfig.toObject() : void 0,
 			t2sVtsiConfig: this.t2sVtsiConfig ? this.t2sVtsiConfig.toObject() : void 0,
 			csiVtsiConfig: this.csiVtsiConfig ? this.csiVtsiConfig.toObject() : void 0,
-			voiceInteractionConfig: this.voiceInteractionConfig ? this.voiceInteractionConfig.toObject() : void 0
+			voiceInteractionConfig: this.voiceInteractionConfig ? this.voiceInteractionConfig.toObject() : void 0,
+			sipVtsiConfig: this.sipVtsiConfig ? this.sipVtsiConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -106019,7 +106085,154 @@ var CommonServicesConfig = class CommonServicesConfig {
 			nluVtsiConfig: this.nluVtsiConfig ? this.nluVtsiConfig.toProtobufJSON(options) : null,
 			t2sVtsiConfig: this.t2sVtsiConfig ? this.t2sVtsiConfig.toProtobufJSON(options) : null,
 			csiVtsiConfig: this.csiVtsiConfig ? this.csiVtsiConfig.toProtobufJSON(options) : null,
-			voiceInteractionConfig: this.voiceInteractionConfig ? this.voiceInteractionConfig.toProtobufJSON(options) : null
+			voiceInteractionConfig: this.voiceInteractionConfig ? this.voiceInteractionConfig.toProtobufJSON(options) : null,
+			sipVtsiConfig: this.sipVtsiConfig ? this.sipVtsiConfig.toProtobufJSON(options) : null
+		};
+	}
+};
+var SipVtsiConfig = class SipVtsiConfig {
+	static {
+		this.id = "ondewo.vtsi.SipVtsiConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new SipVtsiConfig();
+		SipVtsiConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.playbackLatencyMs = _reader.readUint32();
+					break;
+				case 2:
+					_instance.softwareClockEnabled = _reader.readBool();
+					break;
+				case 3:
+					_instance.rtpStatsSampleIntervalSeconds = _reader.readFloat();
+					break;
+				case 4:
+					_instance.hangupWaitForPlaybackTimeoutSeconds = _reader.readFloat();
+					break;
+				case 5:
+					_instance.outgoingDialWatchdogSeconds = _reader.readFloat();
+					break;
+				case 6:
+					_instance.registerIntervalSeconds = _reader.readUint32();
+					break;
+				case 7:
+					_instance.callAudioStreamMaxConcurrent = _reader.readUint32();
+					break;
+				case 8:
+					_instance.callAudioStreamMaxDurationSeconds = _reader.readUint32();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		SipVtsiConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.playbackLatencyMs !== void 0 && _instance.playbackLatencyMs !== null) _writer.writeUint32(1, _instance.playbackLatencyMs);
+		if (_instance.softwareClockEnabled !== void 0 && _instance.softwareClockEnabled !== null) _writer.writeBool(2, _instance.softwareClockEnabled);
+		if (_instance.rtpStatsSampleIntervalSeconds !== void 0 && _instance.rtpStatsSampleIntervalSeconds !== null) _writer.writeFloat(3, _instance.rtpStatsSampleIntervalSeconds);
+		if (_instance.hangupWaitForPlaybackTimeoutSeconds !== void 0 && _instance.hangupWaitForPlaybackTimeoutSeconds !== null) _writer.writeFloat(4, _instance.hangupWaitForPlaybackTimeoutSeconds);
+		if (_instance.outgoingDialWatchdogSeconds !== void 0 && _instance.outgoingDialWatchdogSeconds !== null) _writer.writeFloat(5, _instance.outgoingDialWatchdogSeconds);
+		if (_instance.registerIntervalSeconds !== void 0 && _instance.registerIntervalSeconds !== null) _writer.writeUint32(6, _instance.registerIntervalSeconds);
+		if (_instance.callAudioStreamMaxConcurrent !== void 0 && _instance.callAudioStreamMaxConcurrent !== null) _writer.writeUint32(7, _instance.callAudioStreamMaxConcurrent);
+		if (_instance.callAudioStreamMaxDurationSeconds !== void 0 && _instance.callAudioStreamMaxDurationSeconds !== null) _writer.writeUint32(8, _instance.callAudioStreamMaxDurationSeconds);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.playbackLatencyMs = _value.playbackLatencyMs;
+		this.softwareClockEnabled = _value.softwareClockEnabled;
+		this.rtpStatsSampleIntervalSeconds = _value.rtpStatsSampleIntervalSeconds;
+		this.hangupWaitForPlaybackTimeoutSeconds = _value.hangupWaitForPlaybackTimeoutSeconds;
+		this.outgoingDialWatchdogSeconds = _value.outgoingDialWatchdogSeconds;
+		this.registerIntervalSeconds = _value.registerIntervalSeconds;
+		this.callAudioStreamMaxConcurrent = _value.callAudioStreamMaxConcurrent;
+		this.callAudioStreamMaxDurationSeconds = _value.callAudioStreamMaxDurationSeconds;
+		SipVtsiConfig.refineValues(this);
+	}
+	get playbackLatencyMs() {
+		return this._playbackLatencyMs;
+	}
+	set playbackLatencyMs(value) {
+		this._playbackLatencyMs = value;
+	}
+	get softwareClockEnabled() {
+		return this._softwareClockEnabled;
+	}
+	set softwareClockEnabled(value) {
+		this._softwareClockEnabled = value;
+	}
+	get rtpStatsSampleIntervalSeconds() {
+		return this._rtpStatsSampleIntervalSeconds;
+	}
+	set rtpStatsSampleIntervalSeconds(value) {
+		this._rtpStatsSampleIntervalSeconds = value;
+	}
+	get hangupWaitForPlaybackTimeoutSeconds() {
+		return this._hangupWaitForPlaybackTimeoutSeconds;
+	}
+	set hangupWaitForPlaybackTimeoutSeconds(value) {
+		this._hangupWaitForPlaybackTimeoutSeconds = value;
+	}
+	get outgoingDialWatchdogSeconds() {
+		return this._outgoingDialWatchdogSeconds;
+	}
+	set outgoingDialWatchdogSeconds(value) {
+		this._outgoingDialWatchdogSeconds = value;
+	}
+	get registerIntervalSeconds() {
+		return this._registerIntervalSeconds;
+	}
+	set registerIntervalSeconds(value) {
+		this._registerIntervalSeconds = value;
+	}
+	get callAudioStreamMaxConcurrent() {
+		return this._callAudioStreamMaxConcurrent;
+	}
+	set callAudioStreamMaxConcurrent(value) {
+		this._callAudioStreamMaxConcurrent = value;
+	}
+	get callAudioStreamMaxDurationSeconds() {
+		return this._callAudioStreamMaxDurationSeconds;
+	}
+	set callAudioStreamMaxDurationSeconds(value) {
+		this._callAudioStreamMaxDurationSeconds = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		SipVtsiConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			playbackLatencyMs: this.playbackLatencyMs,
+			softwareClockEnabled: this.softwareClockEnabled,
+			rtpStatsSampleIntervalSeconds: this.rtpStatsSampleIntervalSeconds,
+			hangupWaitForPlaybackTimeoutSeconds: this.hangupWaitForPlaybackTimeoutSeconds,
+			outgoingDialWatchdogSeconds: this.outgoingDialWatchdogSeconds,
+			registerIntervalSeconds: this.registerIntervalSeconds,
+			callAudioStreamMaxConcurrent: this.callAudioStreamMaxConcurrent,
+			callAudioStreamMaxDurationSeconds: this.callAudioStreamMaxDurationSeconds
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			playbackLatencyMs: this.playbackLatencyMs,
+			softwareClockEnabled: this.softwareClockEnabled,
+			rtpStatsSampleIntervalSeconds: this.rtpStatsSampleIntervalSeconds,
+			hangupWaitForPlaybackTimeoutSeconds: this.hangupWaitForPlaybackTimeoutSeconds,
+			outgoingDialWatchdogSeconds: this.outgoingDialWatchdogSeconds,
+			registerIntervalSeconds: this.registerIntervalSeconds,
+			callAudioStreamMaxConcurrent: this.callAudioStreamMaxConcurrent,
+			callAudioStreamMaxDurationSeconds: this.callAudioStreamMaxDurationSeconds
 		};
 	}
 };
@@ -106039,6 +106252,7 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 		_instance.answeringMachineDetectionConfig = _instance.answeringMachineDetectionConfig || void 0;
 		_instance.dtmfConfig = _instance.dtmfConfig || void 0;
 		_instance.warmTransferConfig = _instance.warmTransferConfig || void 0;
+		_instance.botTransferConfig = _instance.botTransferConfig || void 0;
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -106068,6 +106282,10 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 					_instance.warmTransferConfig = new WarmTransferConfig();
 					_reader.readMessage(_instance.warmTransferConfig, WarmTransferConfig.deserializeBinaryFromReader);
 					break;
+				case 7:
+					_instance.botTransferConfig = new BotTransferConfig();
+					_reader.readMessage(_instance.botTransferConfig, BotTransferConfig.deserializeBinaryFromReader);
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -106080,6 +106298,7 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 		if (_instance.answeringMachineDetectionConfig) _writer.writeMessage(4, _instance.answeringMachineDetectionConfig, AnsweringMachineDetectionConfig.serializeBinaryToWriter);
 		if (_instance.dtmfConfig) _writer.writeMessage(5, _instance.dtmfConfig, DtmfConfig.serializeBinaryToWriter);
 		if (_instance.warmTransferConfig) _writer.writeMessage(6, _instance.warmTransferConfig, WarmTransferConfig.serializeBinaryToWriter);
+		if (_instance.botTransferConfig) _writer.writeMessage(7, _instance.botTransferConfig, BotTransferConfig.serializeBinaryToWriter);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -106089,6 +106308,7 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 		this.answeringMachineDetectionConfig = _value.answeringMachineDetectionConfig ? new AnsweringMachineDetectionConfig(_value.answeringMachineDetectionConfig) : void 0;
 		this.dtmfConfig = _value.dtmfConfig ? new DtmfConfig(_value.dtmfConfig) : void 0;
 		this.warmTransferConfig = _value.warmTransferConfig ? new WarmTransferConfig(_value.warmTransferConfig) : void 0;
+		this.botTransferConfig = _value.botTransferConfig ? new BotTransferConfig(_value.botTransferConfig) : void 0;
 		VoiceInteractionConfig.refineValues(this);
 	}
 	get turnDetectionConfig() {
@@ -106127,6 +106347,12 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 	set warmTransferConfig(value) {
 		this._warmTransferConfig = value;
 	}
+	get botTransferConfig() {
+		return this._botTransferConfig;
+	}
+	set botTransferConfig(value) {
+		this._botTransferConfig = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		VoiceInteractionConfig.serializeBinaryToWriter(this, writer);
@@ -106139,7 +106365,8 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 			responseTimingConfig: this.responseTimingConfig ? this.responseTimingConfig.toObject() : void 0,
 			answeringMachineDetectionConfig: this.answeringMachineDetectionConfig ? this.answeringMachineDetectionConfig.toObject() : void 0,
 			dtmfConfig: this.dtmfConfig ? this.dtmfConfig.toObject() : void 0,
-			warmTransferConfig: this.warmTransferConfig ? this.warmTransferConfig.toObject() : void 0
+			warmTransferConfig: this.warmTransferConfig ? this.warmTransferConfig.toObject() : void 0,
+			botTransferConfig: this.botTransferConfig ? this.botTransferConfig.toObject() : void 0
 		};
 	}
 	toJSON() {
@@ -106152,7 +106379,89 @@ var VoiceInteractionConfig = class VoiceInteractionConfig {
 			responseTimingConfig: this.responseTimingConfig ? this.responseTimingConfig.toProtobufJSON(options) : null,
 			answeringMachineDetectionConfig: this.answeringMachineDetectionConfig ? this.answeringMachineDetectionConfig.toProtobufJSON(options) : null,
 			dtmfConfig: this.dtmfConfig ? this.dtmfConfig.toProtobufJSON(options) : null,
-			warmTransferConfig: this.warmTransferConfig ? this.warmTransferConfig.toProtobufJSON(options) : null
+			warmTransferConfig: this.warmTransferConfig ? this.warmTransferConfig.toProtobufJSON(options) : null,
+			botTransferConfig: this.botTransferConfig ? this.botTransferConfig.toProtobufJSON(options) : null
+		};
+	}
+};
+var BotTransferConfig = class BotTransferConfig {
+	static {
+		this.id = "ondewo.vtsi.BotTransferConfig";
+	}
+	static deserializeBinary(bytes) {
+		const instance = new BotTransferConfig();
+		BotTransferConfig.deserializeBinaryFromReader(instance, new BinaryReader(bytes));
+		return instance;
+	}
+	static refineValues(_instance) {}
+	static deserializeBinaryFromReader(_instance, _reader) {
+		while (_reader.nextField()) {
+			if (_reader.isEndGroup()) break;
+			switch (_reader.getFieldNumber()) {
+				case 1:
+					_instance.outcomeTimeoutMs = _reader.readUint32();
+					break;
+				case 2:
+					_instance.failedAction = _reader.readString();
+					break;
+				case 3:
+					_instance.warmTransferOutcomeCommitTimeoutSeconds = _reader.readFloat();
+					break;
+				default: _reader.skipField();
+			}
+		}
+		BotTransferConfig.refineValues(_instance);
+	}
+	static serializeBinaryToWriter(_instance, _writer) {
+		if (_instance.outcomeTimeoutMs !== void 0 && _instance.outcomeTimeoutMs !== null) _writer.writeUint32(1, _instance.outcomeTimeoutMs);
+		if (_instance.failedAction !== void 0 && _instance.failedAction !== null) _writer.writeString(2, _instance.failedAction);
+		if (_instance.warmTransferOutcomeCommitTimeoutSeconds !== void 0 && _instance.warmTransferOutcomeCommitTimeoutSeconds !== null) _writer.writeFloat(3, _instance.warmTransferOutcomeCommitTimeoutSeconds);
+	}
+	constructor(_value) {
+		_value = _value || {};
+		this.outcomeTimeoutMs = _value.outcomeTimeoutMs;
+		this.failedAction = _value.failedAction;
+		this.warmTransferOutcomeCommitTimeoutSeconds = _value.warmTransferOutcomeCommitTimeoutSeconds;
+		BotTransferConfig.refineValues(this);
+	}
+	get outcomeTimeoutMs() {
+		return this._outcomeTimeoutMs;
+	}
+	set outcomeTimeoutMs(value) {
+		this._outcomeTimeoutMs = value;
+	}
+	get failedAction() {
+		return this._failedAction;
+	}
+	set failedAction(value) {
+		this._failedAction = value;
+	}
+	get warmTransferOutcomeCommitTimeoutSeconds() {
+		return this._warmTransferOutcomeCommitTimeoutSeconds;
+	}
+	set warmTransferOutcomeCommitTimeoutSeconds(value) {
+		this._warmTransferOutcomeCommitTimeoutSeconds = value;
+	}
+	serializeBinary() {
+		const writer = new BinaryWriter();
+		BotTransferConfig.serializeBinaryToWriter(this, writer);
+		return writer.getResultBuffer();
+	}
+	toObject() {
+		return {
+			outcomeTimeoutMs: this.outcomeTimeoutMs,
+			failedAction: this.failedAction,
+			warmTransferOutcomeCommitTimeoutSeconds: this.warmTransferOutcomeCommitTimeoutSeconds
+		};
+	}
+	toJSON() {
+		return this.toObject();
+	}
+	toProtobufJSON(options) {
+		return {
+			outcomeTimeoutMs: this.outcomeTimeoutMs,
+			failedAction: this.failedAction,
+			warmTransferOutcomeCommitTimeoutSeconds: this.warmTransferOutcomeCommitTimeoutSeconds
 		};
 	}
 };
@@ -106182,6 +106491,12 @@ var DtmfConfig = class DtmfConfig {
 				case 4:
 					_instance.undeclaredPolicy = _reader.readString();
 					break;
+				case 5:
+					_instance.speechGuardMs = _reader.readUint32();
+					break;
+				case 6:
+					_instance.textTemplate = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -106192,6 +106507,8 @@ var DtmfConfig = class DtmfConfig {
 		if (_instance.bargeIn !== void 0 && _instance.bargeIn !== null) _writer.writeBool(2, _instance.bargeIn);
 		if (_instance.interDigitTimeoutMs !== void 0 && _instance.interDigitTimeoutMs !== null) _writer.writeUint32(3, _instance.interDigitTimeoutMs);
 		if (_instance.undeclaredPolicy !== void 0 && _instance.undeclaredPolicy !== null) _writer.writeString(4, _instance.undeclaredPolicy);
+		if (_instance.speechGuardMs !== void 0 && _instance.speechGuardMs !== null) _writer.writeUint32(5, _instance.speechGuardMs);
+		if (_instance.textTemplate !== void 0 && _instance.textTemplate !== null) _writer.writeString(6, _instance.textTemplate);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -106199,6 +106516,8 @@ var DtmfConfig = class DtmfConfig {
 		this.bargeIn = _value.bargeIn;
 		this.interDigitTimeoutMs = _value.interDigitTimeoutMs;
 		this.undeclaredPolicy = _value.undeclaredPolicy;
+		this.speechGuardMs = _value.speechGuardMs;
+		this.textTemplate = _value.textTemplate;
 		DtmfConfig.refineValues(this);
 	}
 	get enabled() {
@@ -106225,6 +106544,18 @@ var DtmfConfig = class DtmfConfig {
 	set undeclaredPolicy(value) {
 		this._undeclaredPolicy = value;
 	}
+	get speechGuardMs() {
+		return this._speechGuardMs;
+	}
+	set speechGuardMs(value) {
+		this._speechGuardMs = value;
+	}
+	get textTemplate() {
+		return this._textTemplate;
+	}
+	set textTemplate(value) {
+		this._textTemplate = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		DtmfConfig.serializeBinaryToWriter(this, writer);
@@ -106235,7 +106566,9 @@ var DtmfConfig = class DtmfConfig {
 			enabled: this.enabled,
 			bargeIn: this.bargeIn,
 			interDigitTimeoutMs: this.interDigitTimeoutMs,
-			undeclaredPolicy: this.undeclaredPolicy
+			undeclaredPolicy: this.undeclaredPolicy,
+			speechGuardMs: this.speechGuardMs,
+			textTemplate: this.textTemplate
 		};
 	}
 	toJSON() {
@@ -106246,7 +106579,9 @@ var DtmfConfig = class DtmfConfig {
 			enabled: this.enabled,
 			bargeIn: this.bargeIn,
 			interDigitTimeoutMs: this.interDigitTimeoutMs,
-			undeclaredPolicy: this.undeclaredPolicy
+			undeclaredPolicy: this.undeclaredPolicy,
+			speechGuardMs: this.speechGuardMs,
+			textTemplate: this.textTemplate
 		};
 	}
 };
@@ -106900,6 +107235,21 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 					_instance.dictationConfig = new DictationConfig();
 					_reader.readMessage(_instance.dictationConfig, DictationConfig.deserializeBinaryFromReader);
 					break;
+				case 16:
+					_instance.s2tEmitMs = _reader.readUint32();
+					break;
+				case 17:
+					_instance.s2tRequestPartials = _reader.readBool();
+					break;
+				case 18:
+					_instance.s2tRequestEndOfSpeechCandidate = _reader.readBool();
+					break;
+				case 19:
+					_instance.smartTurnThreshold = _reader.readFloat();
+					break;
+				case 20:
+					_instance.postUnmutePhantomWindowSeconds = _reader.readFloat();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -106921,6 +107271,11 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 		if (_instance.exactProbability !== void 0 && _instance.exactProbability !== null) _writer.writeBool(13, _instance.exactProbability);
 		if (_instance.finalMergeWindowSeconds !== void 0 && _instance.finalMergeWindowSeconds !== null) _writer.writeFloat(14, _instance.finalMergeWindowSeconds);
 		if (_instance.dictationConfig) _writer.writeMessage(15, _instance.dictationConfig, DictationConfig.serializeBinaryToWriter);
+		if (_instance.s2tEmitMs !== void 0 && _instance.s2tEmitMs !== null) _writer.writeUint32(16, _instance.s2tEmitMs);
+		if (_instance.s2tRequestPartials !== void 0 && _instance.s2tRequestPartials !== null) _writer.writeBool(17, _instance.s2tRequestPartials);
+		if (_instance.s2tRequestEndOfSpeechCandidate !== void 0 && _instance.s2tRequestEndOfSpeechCandidate !== null) _writer.writeBool(18, _instance.s2tRequestEndOfSpeechCandidate);
+		if (_instance.smartTurnThreshold !== void 0 && _instance.smartTurnThreshold !== null) _writer.writeFloat(19, _instance.smartTurnThreshold);
+		if (_instance.postUnmutePhantomWindowSeconds !== void 0 && _instance.postUnmutePhantomWindowSeconds !== null) _writer.writeFloat(20, _instance.postUnmutePhantomWindowSeconds);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -106939,6 +107294,11 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 		this.exactProbability = _value.exactProbability;
 		this.finalMergeWindowSeconds = _value.finalMergeWindowSeconds;
 		this.dictationConfig = _value.dictationConfig ? new DictationConfig(_value.dictationConfig) : void 0;
+		this.s2tEmitMs = _value.s2tEmitMs;
+		this.s2tRequestPartials = _value.s2tRequestPartials;
+		this.s2tRequestEndOfSpeechCandidate = _value.s2tRequestEndOfSpeechCandidate;
+		this.smartTurnThreshold = _value.smartTurnThreshold;
+		this.postUnmutePhantomWindowSeconds = _value.postUnmutePhantomWindowSeconds;
 		TurnDetectionConfig.refineValues(this);
 	}
 	get mode() {
@@ -107031,6 +107391,36 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 	set dictationConfig(value) {
 		this._dictationConfig = value;
 	}
+	get s2tEmitMs() {
+		return this._s2tEmitMs;
+	}
+	set s2tEmitMs(value) {
+		this._s2tEmitMs = value;
+	}
+	get s2tRequestPartials() {
+		return this._s2tRequestPartials;
+	}
+	set s2tRequestPartials(value) {
+		this._s2tRequestPartials = value;
+	}
+	get s2tRequestEndOfSpeechCandidate() {
+		return this._s2tRequestEndOfSpeechCandidate;
+	}
+	set s2tRequestEndOfSpeechCandidate(value) {
+		this._s2tRequestEndOfSpeechCandidate = value;
+	}
+	get smartTurnThreshold() {
+		return this._smartTurnThreshold;
+	}
+	set smartTurnThreshold(value) {
+		this._smartTurnThreshold = value;
+	}
+	get postUnmutePhantomWindowSeconds() {
+		return this._postUnmutePhantomWindowSeconds;
+	}
+	set postUnmutePhantomWindowSeconds(value) {
+		this._postUnmutePhantomWindowSeconds = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		TurnDetectionConfig.serializeBinaryToWriter(this, writer);
@@ -107052,7 +107442,12 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 			incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
 			exactProbability: this.exactProbability,
 			finalMergeWindowSeconds: this.finalMergeWindowSeconds,
-			dictationConfig: this.dictationConfig ? this.dictationConfig.toObject() : void 0
+			dictationConfig: this.dictationConfig ? this.dictationConfig.toObject() : void 0,
+			s2tEmitMs: this.s2tEmitMs,
+			s2tRequestPartials: this.s2tRequestPartials,
+			s2tRequestEndOfSpeechCandidate: this.s2tRequestEndOfSpeechCandidate,
+			smartTurnThreshold: this.smartTurnThreshold,
+			postUnmutePhantomWindowSeconds: this.postUnmutePhantomWindowSeconds
 		};
 	}
 	toJSON() {
@@ -107074,7 +107469,12 @@ var TurnDetectionConfig = class TurnDetectionConfig {
 			incompleteMaxSilenceSeconds: this.incompleteMaxSilenceSeconds,
 			exactProbability: this.exactProbability,
 			finalMergeWindowSeconds: this.finalMergeWindowSeconds,
-			dictationConfig: this.dictationConfig ? this.dictationConfig.toProtobufJSON(options) : null
+			dictationConfig: this.dictationConfig ? this.dictationConfig.toProtobufJSON(options) : null,
+			s2tEmitMs: this.s2tEmitMs,
+			s2tRequestPartials: this.s2tRequestPartials,
+			s2tRequestEndOfSpeechCandidate: this.s2tRequestEndOfSpeechCandidate,
+			smartTurnThreshold: this.smartTurnThreshold,
+			postUnmutePhantomWindowSeconds: this.postUnmutePhantomWindowSeconds
 		};
 	}
 };
@@ -107516,6 +107916,24 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 				case 9:
 					_instance.interruptionFadeOutMs = _reader.readInt32();
 					break;
+				case 10:
+					_instance.cancelOnSpeechWhileThinking = _reader.readBool();
+					break;
+				case 11:
+					_instance.aiTeamsCancelPendingOnInterrupt = _reader.readBool();
+					break;
+				case 12:
+					_instance.t2sCancelOnBargeIn = _reader.readBool();
+					break;
+				case 13:
+					_instance.nluTurnControlEnabled = _reader.readBool();
+					break;
+				case 14:
+					_instance.heardReportEnabled = _reader.readBool();
+					break;
+				case 15:
+					_instance.heardTextAlignmentEnabled = _reader.readBool();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -107531,6 +107949,12 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 		if (_instance.firstMessageProtectedSeconds !== void 0 && _instance.firstMessageProtectedSeconds !== null) _writer.writeFloat(7, _instance.firstMessageProtectedSeconds);
 		if (_instance.transcribeOnDisabledInterruptions !== void 0 && _instance.transcribeOnDisabledInterruptions !== null) _writer.writeBool(8, _instance.transcribeOnDisabledInterruptions);
 		if (_instance.interruptionFadeOutMs !== void 0 && _instance.interruptionFadeOutMs !== null) _writer.writeInt32(9, _instance.interruptionFadeOutMs);
+		if (_instance.cancelOnSpeechWhileThinking !== void 0 && _instance.cancelOnSpeechWhileThinking !== null) _writer.writeBool(10, _instance.cancelOnSpeechWhileThinking);
+		if (_instance.aiTeamsCancelPendingOnInterrupt !== void 0 && _instance.aiTeamsCancelPendingOnInterrupt !== null) _writer.writeBool(11, _instance.aiTeamsCancelPendingOnInterrupt);
+		if (_instance.t2sCancelOnBargeIn !== void 0 && _instance.t2sCancelOnBargeIn !== null) _writer.writeBool(12, _instance.t2sCancelOnBargeIn);
+		if (_instance.nluTurnControlEnabled !== void 0 && _instance.nluTurnControlEnabled !== null) _writer.writeBool(13, _instance.nluTurnControlEnabled);
+		if (_instance.heardReportEnabled !== void 0 && _instance.heardReportEnabled !== null) _writer.writeBool(14, _instance.heardReportEnabled);
+		if (_instance.heardTextAlignmentEnabled !== void 0 && _instance.heardTextAlignmentEnabled !== null) _writer.writeBool(15, _instance.heardTextAlignmentEnabled);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -107543,6 +107967,12 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 		this.firstMessageProtectedSeconds = _value.firstMessageProtectedSeconds;
 		this.transcribeOnDisabledInterruptions = _value.transcribeOnDisabledInterruptions;
 		this.interruptionFadeOutMs = _value.interruptionFadeOutMs;
+		this.cancelOnSpeechWhileThinking = _value.cancelOnSpeechWhileThinking;
+		this.aiTeamsCancelPendingOnInterrupt = _value.aiTeamsCancelPendingOnInterrupt;
+		this.t2sCancelOnBargeIn = _value.t2sCancelOnBargeIn;
+		this.nluTurnControlEnabled = _value.nluTurnControlEnabled;
+		this.heardReportEnabled = _value.heardReportEnabled;
+		this.heardTextAlignmentEnabled = _value.heardTextAlignmentEnabled;
 		InterruptionHandlingConfig.refineValues(this);
 	}
 	get enabled() {
@@ -107599,6 +108029,42 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 	set interruptionFadeOutMs(value) {
 		this._interruptionFadeOutMs = value;
 	}
+	get cancelOnSpeechWhileThinking() {
+		return this._cancelOnSpeechWhileThinking;
+	}
+	set cancelOnSpeechWhileThinking(value) {
+		this._cancelOnSpeechWhileThinking = value;
+	}
+	get aiTeamsCancelPendingOnInterrupt() {
+		return this._aiTeamsCancelPendingOnInterrupt;
+	}
+	set aiTeamsCancelPendingOnInterrupt(value) {
+		this._aiTeamsCancelPendingOnInterrupt = value;
+	}
+	get t2sCancelOnBargeIn() {
+		return this._t2sCancelOnBargeIn;
+	}
+	set t2sCancelOnBargeIn(value) {
+		this._t2sCancelOnBargeIn = value;
+	}
+	get nluTurnControlEnabled() {
+		return this._nluTurnControlEnabled;
+	}
+	set nluTurnControlEnabled(value) {
+		this._nluTurnControlEnabled = value;
+	}
+	get heardReportEnabled() {
+		return this._heardReportEnabled;
+	}
+	set heardReportEnabled(value) {
+		this._heardReportEnabled = value;
+	}
+	get heardTextAlignmentEnabled() {
+		return this._heardTextAlignmentEnabled;
+	}
+	set heardTextAlignmentEnabled(value) {
+		this._heardTextAlignmentEnabled = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		InterruptionHandlingConfig.serializeBinaryToWriter(this, writer);
@@ -107614,7 +108080,13 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 			backoffSeconds: this.backoffSeconds,
 			firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
 			transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions,
-			interruptionFadeOutMs: this.interruptionFadeOutMs
+			interruptionFadeOutMs: this.interruptionFadeOutMs,
+			cancelOnSpeechWhileThinking: this.cancelOnSpeechWhileThinking,
+			aiTeamsCancelPendingOnInterrupt: this.aiTeamsCancelPendingOnInterrupt,
+			t2sCancelOnBargeIn: this.t2sCancelOnBargeIn,
+			nluTurnControlEnabled: this.nluTurnControlEnabled,
+			heardReportEnabled: this.heardReportEnabled,
+			heardTextAlignmentEnabled: this.heardTextAlignmentEnabled
 		};
 	}
 	toJSON() {
@@ -107630,7 +108102,13 @@ var InterruptionHandlingConfig = class InterruptionHandlingConfig {
 			backoffSeconds: this.backoffSeconds,
 			firstMessageProtectedSeconds: this.firstMessageProtectedSeconds,
 			transcribeOnDisabledInterruptions: this.transcribeOnDisabledInterruptions,
-			interruptionFadeOutMs: this.interruptionFadeOutMs
+			interruptionFadeOutMs: this.interruptionFadeOutMs,
+			cancelOnSpeechWhileThinking: this.cancelOnSpeechWhileThinking,
+			aiTeamsCancelPendingOnInterrupt: this.aiTeamsCancelPendingOnInterrupt,
+			t2sCancelOnBargeIn: this.t2sCancelOnBargeIn,
+			nluTurnControlEnabled: this.nluTurnControlEnabled,
+			heardReportEnabled: this.heardReportEnabled,
+			heardTextAlignmentEnabled: this.heardTextAlignmentEnabled
 		};
 	}
 };
@@ -107666,6 +108144,18 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 				case 5:
 					_instance.t2sChunkedStreamingEnabled = _reader.readBool();
 					break;
+				case 6:
+					_instance.streamingEnabled = _reader.readBool();
+					break;
+				case 7:
+					_instance.nluCallStreamEnabled = _reader.readBool();
+					break;
+				case 8:
+					_instance.turnTimeoutIntent = _reader.readString();
+					break;
+				case 9:
+					_instance.t2sMaxEdgeSilenceMs = _reader.readInt32();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -107677,6 +108167,10 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 		if (_instance.softTimeoutConfig) _writer.writeMessage(3, _instance.softTimeoutConfig, SoftTimeoutConfig.serializeBinaryToWriter);
 		if (_instance.preemptiveGenerationEnabled !== void 0 && _instance.preemptiveGenerationEnabled !== null) _writer.writeBool(4, _instance.preemptiveGenerationEnabled);
 		if (_instance.t2sChunkedStreamingEnabled !== void 0 && _instance.t2sChunkedStreamingEnabled !== null) _writer.writeBool(5, _instance.t2sChunkedStreamingEnabled);
+		if (_instance.streamingEnabled !== void 0 && _instance.streamingEnabled !== null) _writer.writeBool(6, _instance.streamingEnabled);
+		if (_instance.nluCallStreamEnabled !== void 0 && _instance.nluCallStreamEnabled !== null) _writer.writeBool(7, _instance.nluCallStreamEnabled);
+		if (_instance.turnTimeoutIntent !== void 0 && _instance.turnTimeoutIntent !== null) _writer.writeString(8, _instance.turnTimeoutIntent);
+		if (_instance.t2sMaxEdgeSilenceMs !== void 0 && _instance.t2sMaxEdgeSilenceMs !== null) _writer.writeInt32(9, _instance.t2sMaxEdgeSilenceMs);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -107685,6 +108179,10 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 		this.softTimeoutConfig = _value.softTimeoutConfig ? new SoftTimeoutConfig(_value.softTimeoutConfig) : void 0;
 		this.preemptiveGenerationEnabled = _value.preemptiveGenerationEnabled;
 		this.t2sChunkedStreamingEnabled = _value.t2sChunkedStreamingEnabled;
+		this.streamingEnabled = _value.streamingEnabled;
+		this.nluCallStreamEnabled = _value.nluCallStreamEnabled;
+		this.turnTimeoutIntent = _value.turnTimeoutIntent;
+		this.t2sMaxEdgeSilenceMs = _value.t2sMaxEdgeSilenceMs;
 		ResponseTimingConfig.refineValues(this);
 	}
 	get turnTimeoutSeconds() {
@@ -107717,6 +108215,30 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 	set t2sChunkedStreamingEnabled(value) {
 		this._t2sChunkedStreamingEnabled = value;
 	}
+	get streamingEnabled() {
+		return this._streamingEnabled;
+	}
+	set streamingEnabled(value) {
+		this._streamingEnabled = value;
+	}
+	get nluCallStreamEnabled() {
+		return this._nluCallStreamEnabled;
+	}
+	set nluCallStreamEnabled(value) {
+		this._nluCallStreamEnabled = value;
+	}
+	get turnTimeoutIntent() {
+		return this._turnTimeoutIntent;
+	}
+	set turnTimeoutIntent(value) {
+		this._turnTimeoutIntent = value;
+	}
+	get t2sMaxEdgeSilenceMs() {
+		return this._t2sMaxEdgeSilenceMs;
+	}
+	set t2sMaxEdgeSilenceMs(value) {
+		this._t2sMaxEdgeSilenceMs = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		ResponseTimingConfig.serializeBinaryToWriter(this, writer);
@@ -107728,7 +108250,11 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 			silenceEndCallTimeoutSeconds: this.silenceEndCallTimeoutSeconds,
 			softTimeoutConfig: this.softTimeoutConfig ? this.softTimeoutConfig.toObject() : void 0,
 			preemptiveGenerationEnabled: this.preemptiveGenerationEnabled,
-			t2sChunkedStreamingEnabled: this.t2sChunkedStreamingEnabled
+			t2sChunkedStreamingEnabled: this.t2sChunkedStreamingEnabled,
+			streamingEnabled: this.streamingEnabled,
+			nluCallStreamEnabled: this.nluCallStreamEnabled,
+			turnTimeoutIntent: this.turnTimeoutIntent,
+			t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs
 		};
 	}
 	toJSON() {
@@ -107740,7 +108266,11 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 			silenceEndCallTimeoutSeconds: this.silenceEndCallTimeoutSeconds,
 			softTimeoutConfig: this.softTimeoutConfig ? this.softTimeoutConfig.toProtobufJSON(options) : null,
 			preemptiveGenerationEnabled: this.preemptiveGenerationEnabled,
-			t2sChunkedStreamingEnabled: this.t2sChunkedStreamingEnabled
+			t2sChunkedStreamingEnabled: this.t2sChunkedStreamingEnabled,
+			streamingEnabled: this.streamingEnabled,
+			nluCallStreamEnabled: this.nluCallStreamEnabled,
+			turnTimeoutIntent: this.turnTimeoutIntent,
+			t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs
 		};
 	}
 };
@@ -143199,6 +143729,6 @@ function buildGrpcWebHost(config) {
 function warnInsecure(authority) {
 	console.warn(`ONDEWO gRPC-web: insecure http:// endpoint ${authority}; requests and bearer tokens are sent unencrypted. Use useSecureChannel: true (https://) outside local development.`);
 }
-export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddCallersToCampaignRequest, AddCallersToCampaignResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddScheduledCallersToCampaignRequest, AddScheduledCallersToCampaignResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, AmdVerdictCount, AnsweringMachineDetectionConfig, AnsweringMachineDetectionResult, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BROWSER_UNSUPPORTED_TLS_FIELDS, BackgroundWorkPolicy, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BotPolicyOnJoin, BuildCacheRequest, CONSOLE_KEYCLOAK_LOGGER, Caching, Call, CallAudioEndReason, CallAudioEnded, CallAudioFrame, CallAudioMode, CallAudioStarted, CallAudioStats, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallMediaControlState, CallMediaSetting, CallParticipant, CallResourceStatus, CallSorting, CallStatistics, CallStatus, CallTarget, CallTransferRecord, CallType, CallTypeCount, CallView, Caller, CallingWindowDayOfWeek, CallingWindowSlot, CallsClient, Campaign, CampaignAssignment, CampaignCall, CampaignCallAttempt, CampaignCallAttemptOutcome, CampaignCallRefusal, CampaignCallSource, CampaignCallState, CampaignCallingWindow, CampaignFilter, CampaignOrderBy, CampaignStartMode, CampaignState, CampaignStatistics, CampaignsClient, CancelCampaignCallsRequest, CancelCampaignCallsResponse, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CancelScheduledCallersRequest, CancelScheduledCallersResponse, CancelTurn, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CloneCampaignRequest, CloneIvrMenuRequest, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCampaignRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateIvrMenuRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateSoftphoneAccountRequest, CreateSoftphoneAccountResponse, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiEventSubscriptionRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, CreateWebhookRequest, Credentials, CsiPreemptiveGenerationConfig, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DEFAULT_KEYCLOAK_TIMINGS, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCampaignRequest, DeleteCampaignResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteIvrMenuRequest, DeleteIvrMenuResponse, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteSoftphoneAccountRequest, DeleteSoftphoneAccountResponse, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiEventSubscriptionRequest, DeleteVtsiEventSubscriptionResponse, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeleteWebhookRequest, DeleteWebhookResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DictationConfig, DiscardDraft, DocumentFileResource, DtmfConfig, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, EventsClient, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportCallLogsRequest, ExportCallLogsResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GLOBAL_KEYCLOAK_SCHEDULER, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CAMPAIGNS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_EVENTS_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_IVR_MENUS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SOFTPHONES_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallStatisticsRequest, GetCallerRequest, GetCampaignCallRequest, GetCampaignRequest, GetCampaignStatisticsRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetIvrMenuDialplanRequest, GetIvrMenuDialplanResponse, GetIvrMenuRequest, GetIvrMenuTestRequest, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSoftphoneAccountRequest, GetSoftphoneCertificateRequest, GetSoftphoneProvisioningRequest, GetSoftphoneRegistrationRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiEventSubscriptionRequest, GetVtsiProjectRequest, GetWarmTransferIntroOutcomeRequest, GetWebhookRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, GrpcWebEndpointError, HTTP_TIMEOUT_IN_S, HardStopCampaignRequest, HeardMessage, HeardReport, HeardTextPrecision, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptTurnRequest, InterruptTurnResponse, InterruptionHandlingConfig, InviteToCallRequest, InviteToCallResponse, IvrAvailability, IvrMenu, IvrMenuFilter, IvrMenuIssue, IvrMenuIssueSeverity, IvrMenuOrderBy, IvrMenuRevision, IvrMenuState, IvrMenuTest, IvrMenuTestState, IvrMenusClient, IvrNode, IvrNodePosition, IvrNodeStats, IvrNodeType, IvrOption, IvrPrompt, IvrTestStep, IvrTraversalStep, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, KeycloakTokenSession, KeycloakTransportError, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCampaignCallsRequest, ListCampaignCallsResponse, ListCampaignsRequest, ListCampaignsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListIvrMenuRevisionsRequest, ListIvrMenuRevisionsResponse, ListIvrMenusRequest, ListIvrMenusResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListSoftphoneAccountsRequest, ListSoftphoneAccountsResponse, ListSoftphoneCertificatesRequest, ListSoftphoneCertificatesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiEventSubscriptionsRequest, ListVtsiEventSubscriptionsResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, ListWebhooksRequest, ListWebhooksResponse, ListenCallAudioRequest, Listener, ListenerQueueTarget, LlmAgentNodeEvent, LlmAgentNodePhase, LlmAgentUsage, LlmBaseUrlUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogExportFormat, LogSeverity, LogSource, LogStreamChannel, LogStreamEndReason, Logging, Logmnse, LogsClient, MAX_ERROR_BODY_CHARS, MAX_REFRESH_RETRY_EXPONENT, MIN_REFRESH_DELAY_IN_S, Map$1 as Map, MbMelganTriton, MediaControlOwner, MediaControlSetting, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluPreemptiveGenerationConfig, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, ParticipantEndReason, ParticipantMode, ParticipantState, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, PrepareWarmTransferIntroRequest, PrepareWarmTransferIntroResponse, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, PublishIvrMenuRequest, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REDACTED, REFRESH_RETRY_BASE_DELAY_IN_S, REFRESH_RETRY_MAX_DELAY_IN_S, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerIncrementalConfig, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort, RedeliverWebhookEventsRequest, RedeliverWebhookEventsResponse, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveCallParticipantRequest, RemoveCallParticipantResponse, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, ResumeCampaignRequest, RetryCampaignCallsRequest, RetryCampaignCallsResponse, RetryScheduledCallerRequest, RevokeSoftphoneCertificateRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RotateSoftphoneCredentialsRequest, RotateSoftphoneCredentialsResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, SendCallDtmfRequest, SendCallDtmfResponse, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetCallMediaControlRequest, SetCallMediaControlResponse, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, Silero, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallAudioConfig, SipCallAudioEndReason, SipCallAudioEnded, SipCallAudioFrame, SipCallAudioMode, SipCallAudioRequest, SipCallAudioResponse, SipCallAudioStarted, SipCallAudioStats, SipCallerConfig, SipClient, SipDelegatedTransfer, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipReportAnsweringMachineDetectedRequest, SipSendDtmfRequest, SipSetCallMediaControlRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipStatusTypeCount, SipTransferCallRequest, SipTransferDelegation, SipTrunkTransport, SipWarmTransferOutcome, SipWarmTransferOutcomeNotice, SipWarmTransferOutcomeNoticeStatus, SoftTimeoutConfig, SoftphoneAccount, SoftphoneAccountFilter, SoftphoneAccountSorting, SoftphoneCertificate, SoftphoneCertificateFilter, SoftphoneCertificateStatus, SoftphoneContact, SoftphoneContactStatus, SoftphoneCredentials, SoftphoneProvisioning, SoftphoneRegistration, SoftphoneSrtpMode, SoftphoneTransportSecurity, SoftphonesClient, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartCampaignRequest, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopCampaignRequest, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallAudioConfig, StreamCallAudioRequest, StreamCallAudioResponse, StreamCallLogsRequest, StreamCallLogsResponse, StreamCallResourceStatusResponse, StreamCallerStatusRequest, StreamCampaignStatusRequest, StreamCampaignStatusResponse, StreamEndReason, StreamListenerStatusRequest, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamScheduledCallerStatusRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SubscribeVtsiEventsRequest, SubscribeVtsiEventsResponse, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sPreemptiveSynthesisConfig, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, TestIvrMenuRequest, TestWebhookRequest, TestWebhookResponse, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TransferMode, TransferOutcome, TransferOutcomeCount, TransferTargetDirectoryItem, TrunkRegistrationState, TsdMethod, TurnControl, TurnControlAck, TurnControlAckStatus, TurnDetectionChatLlmOptions, TurnDetectionConfig, TurnDetectionContextTurn, TurnDetectionConversationContext, TurnDetectionEndOfUtteranceLlmOptions, TurnDetectionHoldBand, TurnDetectionHoldBands, TurnDetectionOndewoDeFusionOptions, TurnDetectionOndewoDeOptions, TurnDetectionOptions, TurnDetectionPipecatSmartTurnOptions, TurnInterruptionReason, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCallRequest, UpdateCallResponse, UpdateCallerRequest, UpdateCallerResponse, UpdateCallersRequest, UpdateCallersResponse, UpdateCallsRequest, UpdateCallsResponse, UpdateCampaignRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateIvrMenuRequest, UpdateListenerRequest, UpdateListenerResponse, UpdateListenersRequest, UpdateListenersResponse, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateScheduledCallerRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateSoftphoneAccountRequest, UpdateUserRequest, UpdateVtsiEventSubscriptionRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UpdateWebhookRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, VadMethod, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateIvrMenuRequest, ValidateIvrMenuResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiEvent, VtsiEventFilter, VtsiEventMessage, VtsiEventSubscription, VtsiProject, VtsiProjectFeatureAvailability, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, WarmIntroAvailability, WarmIntroDecidedBy, WarmIntroDecision, WarmIntroRecord, WarmIntroTextSource, WarmIntroUnavailablePolicy, WarmTransferAgentLexicon, WarmTransferAgentSettings, WarmTransferAgentTexts, WarmTransferConfig, WarmTransferIntroConfig, WarmTransferIntroDecidedBy, WarmTransferIntroDecision, WarmTransferIntroOutcome, WarmTransferIntroStage, WarmTransferIntroTextSource, Wav2Vec, Wav2VecTriton, Webhook, WebhookClient, WebhookDeliveryStatistics, WebhookHttpMethod, WebhookRequest, WebhookResponse, WespeakerTsd, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, acquireKeycloakTokenSession, authHttpInterceptor, backoffDelayInS, buildBearerValue, buildGrpcWebHost, keycloakSessionRegistryKey, provideOndewoVtsiAuth, redactSecret, resolveBearerValue, resolveToken };
+export { AUTHORIZATION_HEADER, AcousticModels, AddAudioFilesRequest, AddAudioFilesResponse, AddCallersToCampaignRequest, AddCallersToCampaignResponse, AddDataToUserLanguageModelRequest, AddLlmEvaluationExampleRequest, AddLlmEvaluationExamplesRequest, AddLlmEvaluationExamplesResponse, AddNotificationsRequest, AddNotificationsResponse, AddScheduledCallersToCampaignRequest, AddScheduledCallersToCampaignResponse, AddSessionCommentRequest, AddSessionFeedbackRequest, AddSessionLabelsRequest, AddSessionStepFeedbackRequest, AddTrainingPhrasesFromCSVRequest, AddTrainingPhrasesRequest, AddTrainingPhrasesResponse, AddUserToProjectRequest, Agent, AgentOfUserWithOwner, AgentSorting, AgentStatus, AgentView, AgentWithOwner, AgentsClient, AiServicesClient, AllServicesStatuses, AltSentence, AltTrainingPhrase, AmdVerdictCount, AnsweringMachineDetectionConfig, AnsweringMachineDetectionResult, Apodization, ApplyLlmEvaluationAbRolloutRequest, AsteriskConfig, AsteriskConfigs, AsteriskConfigsFiles, AsteriskConfigsVariables, AudioEncoding, AudioFileResource, AudioFileResourceType, AudioFormat, AudioObjectStorageConfig, AudioObjectStorageServicesActivationConfig, AuthGrpcInterceptor, BEARER_PREFIX, BROWSER_UNSUPPORTED_TLS_FIELDS, BackgroundWorkPolicy, BaseServiceConfig, BatchCreateEntitiesRequest, BatchCreateParametersRequest, BatchCreateResponseMessagesRequest, BatchCreateTrainingPhrasesRequest, BatchDeleteEntitiesRequest, BatchDeleteEntitiesResponse, BatchDeleteEntityTypesRequest, BatchDeleteIntentsRequest, BatchDeleteParametersRequest, BatchDeleteParametersResponse, BatchDeleteResponseMessagesRequest, BatchDeleteResponseMessagesResponse, BatchDeleteTrainingPhrasesRequest, BatchDeleteTrainingPhrasesResponse, BatchEntitiesResponse, BatchGetEntitiesRequest, BatchGetParametersRequest, BatchGetResponseMessagesRequest, BatchGetTrainingPhrasesRequest, BatchParametersStatusResponse, BatchResponseMessagesStatusResponse, BatchSynthesizeRequest, BatchSynthesizeResponse, BatchTrainingPhrasesStatusResponse, BatchUpdateEntitiesRequest, BatchUpdateEntityTypesRequest, BatchUpdateEntityTypesResponse, BatchUpdateIntentsRequest, BatchUpdateIntentsResponse, BatchUpdateParametersRequest, BatchUpdateResponseMessagesRequest, BatchUpdateTrainingPhrasesRequest, BertAugEnrichmentConfig, BotPolicyOnJoin, BotTransferConfig, BuildCacheRequest, CONSOLE_KEYCLOAK_LOGGER, Caching, Call, CallAudioEndReason, CallAudioEnded, CallAudioFrame, CallAudioMode, CallAudioStarted, CallAudioStats, CallFilter, CallLogEntry, CallLogFilter, CallLogFilterField, CallLogStream, CallMediaControlState, CallMediaSetting, CallParticipant, CallResourceStatus, CallSorting, CallStatistics, CallStatus, CallTarget, CallTransferRecord, CallType, CallTypeCount, CallView, Caller, CallingWindowDayOfWeek, CallingWindowSlot, CallsClient, Campaign, CampaignAssignment, CampaignCall, CampaignCallAttempt, CampaignCallAttemptOutcome, CampaignCallRefusal, CampaignCallSource, CampaignCallState, CampaignCallingWindow, CampaignFilter, CampaignOrderBy, CampaignStartMode, CampaignState, CampaignStatistics, CampaignsClient, CancelCampaignCallsRequest, CancelCampaignCallsResponse, CancelLlmEvaluationExperimentRequest, CancelOperationRequest, CancelScheduledCallerRequest, CancelScheduledCallerResponse, CancelScheduledCallersRequest, CancelScheduledCallersResponse, CancelTurn, CcaiProject, CcaiProjectSorting, CcaiProjectStatus, CcaiProjectView, CcaiProjectsClient, CcaiService, CcaiServiceFilter, CcaiServiceList, CcaiServiceProvider, CcaiServiceType, CkptFile, ClassifyIntentsRequest, ClassifyIntentsResponse, CleanAllEntityTypesRequest, CleanAllEntityTypesResponse, CleanAllIntentsRequest, CleanAllIntentsResponse, CleanEntityTypeRequest, CleanEntityTypeResponse, CleanIntentRequest, CleanIntentResponse, CloneCampaignRequest, CloneIvrMenuRequest, Comment, CommonServicesConfig, CompareLlmEvaluationExperimentsRequest, ComparisonOperator, CompositeInference, Context, ContextFilter, ContextsClient, CreateAgentRequest, CreateCampaignRequest, CreateCcaiProjectRequest, CreateCcaiProjectResponse, CreateContextRequest, CreateCustomPhonemizerRequest, CreateEntityRequest, CreateEntityTypeRequest, CreateIntentRequest, CreateIvrMenuRequest, CreateLlmEvaluationAbExperimentRequest, CreateLlmEvaluationDatasetRequest, CreateLlmEvaluationExamplesFromSessionRequest, CreateLlmEvaluationExamplesFromSessionResponse, CreateLlmEvaluationOnlineConfigRequest, CreateLlmEvaluationReleaseGateRequest, CreateLlmEvaluationReportRequest, CreateLlmEvaluationScheduleRequest, CreateLlmEvaluationScorecardRequest, CreateProjectRoleRequest, CreateProjectTechnicalUserRequest, CreateProjectTechnicalUserResponse, CreateServerRoleRequest, CreateSessionEntityTypeRequest, CreateSessionRequest, CreateSessionReviewRequest, CreateSessionStepRequest, CreateSoftphoneAccountRequest, CreateSoftphoneAccountResponse, CreateUserLanguageModelRequest, CreateUserRequest, CreateVtsiEventSubscriptionRequest, CreateVtsiProjectRequest, CreateVtsiProjectResponse, CreateWebhookRequest, Credentials, CsiPreemptiveGenerationConfig, CsiVtsiConfig, CustomHttpPattern, CustomPhonemizerProto, CustomPlatformInfo, DEFAULT_KEYCLOAK_TIMINGS, DataEnrichmentConfig, Decoding, DefaultProjectRole, DefaultServerRole, DeleteAgentRequest, DeleteAllContextsRequest, DeleteAllUserPreferencesRequest, DeleteAudioFilesRequest, DeleteAudioFilesResponse, DeleteCallLogsRequest, DeleteCallLogsResponse, DeleteCallerRequest, DeleteCallerResponse, DeleteCallersRequest, DeleteCallersResponse, DeleteCampaignRequest, DeleteCampaignResponse, DeleteCcaiProjectRequest, DeleteCcaiProjectResponse, DeleteContextRequest, DeleteEntityRequest, DeleteEntityStatus, DeleteEntityTypeRequest, DeleteIntentRequest, DeleteIvrMenuRequest, DeleteIvrMenuResponse, DeleteListenerRequest, DeleteListenerResponse, DeleteListenersRequest, DeleteListenersResponse, DeleteLlmEvaluationAbExperimentRequest, DeleteLlmEvaluationDatasetRequest, DeleteLlmEvaluationExampleRequest, DeleteLlmEvaluationExperimentRequest, DeleteLlmEvaluationFeedbackRequest, DeleteLlmEvaluationOnlineConfigRequest, DeleteLlmEvaluationReleaseGateRequest, DeleteLlmEvaluationReportRequest, DeleteLlmEvaluationScheduleRequest, DeleteLlmEvaluationScorecardRequest, DeleteNotificationsRequest, DeleteOperationRequest, DeleteProjectRoleRequest, DeleteProjectTechnicalUserRequest, DeleteResourcesRequest, DeleteServerRoleRequest, DeleteSessionCommentsRequest, DeleteSessionEntityTypeRequest, DeleteSessionFeedbackRequest, DeleteSessionLabelsRequest, DeleteSessionRequest, DeleteSessionStepRequest, DeleteSoftphoneAccountRequest, DeleteSoftphoneAccountResponse, DeleteUserLanguageModelRequest, DeleteUserPreferencesRequest, DeleteUserPreferencesResponse, DeleteUserRequest, DeleteVtsiEventSubscriptionRequest, DeleteVtsiEventSubscriptionResponse, DeleteVtsiProjectRequest, DeleteVtsiProjectResponse, DeleteWebhookRequest, DeleteWebhookResponse, DeployVtsiProjectRequest, DeployVtsiProjectResponse, DetectIntentRequest, DetectIntentResponse, DetectedIntent, DictationConfig, DiscardDraft, DocumentFileResource, DtmfConfig, EntityDetected, EntityEnrichmentConfig, EntityStatus, EntityType, EntityTypeBatch, EntityTypeCategory, EntityTypeFuzzyNerConfig, EntityTypeSorting, EntityTypeUpdate, EntityTypeView, EntityTypesClient, EntityValueSorting, EventInput, EventsClient, ExportAgentRequest, ExportAgentResponse, ExportBenchmarkAgentRequest, ExportBenchmarkAgentResponse, ExportCallLogsRequest, ExportCallLogsResponse, ExportResourcesRequest, ExportResourcesResponse, ExtractEntitiesFuzzyRequest, ExtractEntitiesRequest, ExtractEntitiesResponse, FeedbackAuthorType, FeedbackBreakdownBucket, FeedbackFilter, FeedbackRating, FeedbackScope, FeedbackStatistics, FeedbackTimeGranularity, FeedbackTimeSeriesBucket, FileResource, FullTextSearchRequest, FullTextSearchResponseEntity, FullTextSearchResponseEntitySynonym, FullTextSearchResponseEntityType, FullTextSearchResponseIntent, FullTextSearchResponseIntentContextIn, FullTextSearchResponseIntentContextOut, FullTextSearchResponseIntentParameters, FullTextSearchResponseIntentResponse, FullTextSearchResponseIntentTags, FullTextSearchResponseIntentUsersays, GLOBAL_KEYCLOAK_SCHEDULER, GPT2EnrichmentConfig, GRPC_AGENTS_CLIENT_SETTINGS, GRPC_AI_SERVICES_CLIENT_SETTINGS, GRPC_CALLS_CLIENT_SETTINGS, GRPC_CAMPAIGNS_CLIENT_SETTINGS, GRPC_CCAI_PROJECTS_CLIENT_SETTINGS, GRPC_CONTEXTS_CLIENT_SETTINGS, GRPC_ENTITY_TYPES_CLIENT_SETTINGS, GRPC_EVENTS_CLIENT_SETTINGS, GRPC_INTENTS_CLIENT_SETTINGS, GRPC_IVR_MENUS_CLIENT_SETTINGS, GRPC_LLM_EVALUATIONS_CLIENT_SETTINGS, GRPC_LOGS_CLIENT_SETTINGS, GRPC_OPERATIONS_CLIENT_SETTINGS, GRPC_PROJECTS_CLIENT_SETTINGS, GRPC_PROJECT_ROLES_CLIENT_SETTINGS, GRPC_PROJECT_STATISTICS_CLIENT_SETTINGS, GRPC_QA_CLIENT_SETTINGS, GRPC_RAGS_CLIENT_SETTINGS, GRPC_SERVER_STATISTICS_CLIENT_SETTINGS, GRPC_SESSIONS_CLIENT_SETTINGS, GRPC_SIP_CLIENT_SETTINGS, GRPC_SOFTPHONES_CLIENT_SETTINGS, GRPC_SPEECH2_TEXT_CLIENT_SETTINGS, GRPC_TEXT2_SPEECH_CLIENT_SETTINGS, GRPC_USERS_CLIENT_SETTINGS, GRPC_UTILITIES_CLIENT_SETTINGS, GRPC_WEBHOOK_CLIENT_SETTINGS, GenerateResponsesRequest, GenerateResponsesResponse, GenerateUserSaysRequest, GenerateUserSaysResponse, GetAgentRequest, GetAgentStatisticsRequest, GetAgentStatisticsResponse, GetAllIntentTagsRequest, GetAlternativeSentencesRequest, GetAlternativeSentencesResponse, GetAlternativeTrainingPhrasesRequest, GetAlternativeTrainingPhrasesResponse, GetAnswerRequest, GetAnswerResponse, GetAudioFileOfSessionRequest, GetAudioFilesRequest, GetAudioFilesResponse, GetCallLogStreamRequest, GetCallRequest, GetCallStatisticsRequest, GetCallerRequest, GetCampaignCallRequest, GetCampaignRequest, GetCampaignStatisticsRequest, GetCcaiProjectRequest, GetCcaiServiceRequest, GetContextRequest, GetEntityRequest, GetEntityTypeCountRequest, GetEntityTypeRequest, GetFeedbackStatisticsRequest, GetFeedbackStatisticsResponse, GetFeedbackStatisticsTimeSeriesRequest, GetFeedbackStatisticsTimeSeriesResponse, GetIntentCountRequest, GetIntentRequest, GetIntentTagsRequest, GetIntentTagsResponse, GetIvrMenuDialplanRequest, GetIvrMenuDialplanResponse, GetIvrMenuRequest, GetIvrMenuTestRequest, GetLatestSessionReviewRequest, GetListenerRequest, GetLlmEvaluationAbExperimentRequest, GetLlmEvaluationAbExperimentResultsRequest, GetLlmEvaluationAbExperimentResultsResponse, GetLlmEvaluationAbRolloutDecisionRequest, GetLlmEvaluationAbRolloutRecommendationRequest, GetLlmEvaluationAnnotationQueueItemRequest, GetLlmEvaluationDatasetRequest, GetLlmEvaluationExampleRequest, GetLlmEvaluationExperimentRequest, GetLlmEvaluationOnlineConfigRequest, GetLlmEvaluationOnlineResultRequest, GetLlmEvaluationProjectSettingsRequest, GetLlmEvaluationReleaseGateRequest, GetLlmEvaluationReleaseGateRunRequest, GetLlmEvaluationReportRequest, GetLlmEvaluationScheduleRequest, GetLlmEvaluationScorecardRequest, GetModelStatusesRequest, GetModelStatusesResponse, GetNotificationRequest, GetOperationRequest, GetPlatformInfoResponse, GetPlatformMappingRequest, GetProjectConfigRequest, GetProjectConfigResponse, GetProjectElementStatRequest, GetProjectRoleRequest, GetProjectStatRequest, GetRemoteOperationContainerLogsRequest, GetRemoteOperationContainerLogsResponse, GetRemoteOperationContainerStatusRequest, GetScheduledCallerRequest, GetServerRoleRequest, GetServerStateResponse, GetSessionEntityTypeRequest, GetSessionFeedbackRequest, GetSessionRequest, GetSessionReviewRequest, GetSessionStepRequest, GetSessionsStatisticsRequest, GetSessionsStatisticsResponse, GetSessionsStatisticsTimeSeriesRequest, GetSessionsStatisticsTimeSeriesResponse, GetSoftphoneAccountRequest, GetSoftphoneCertificateRequest, GetSoftphoneProvisioningRequest, GetSoftphoneRegistrationRequest, GetSynonymsRequest, GetSynonymsResponse, GetUserPreferencesRequest, GetUserPreferencesResponse, GetUserProjectCountRequest, GetUserRequest, GetVtsiEventSubscriptionRequest, GetVtsiProjectRequest, GetWarmTransferIntroOutcomeRequest, GetWebhookRequest, GloVeEnrichmentConfig, GlowTTS, GlowTTSTriton, GrpcWebEndpointError, HTTP_TIMEOUT_IN_S, HardStopCampaignRequest, HeardMessage, HeardReport, HeardTextPrecision, HiFiGan, HiFiGanTriton, Http, HttpRule, ImageFileResource, ImportAgentRequest, InferenceBackend, InitiationProtocol, InputAudioConfig, Intent, IntentAlgorithms, IntentBatch, IntentCategory, IntentClassified, IntentSorting, IntentTagRequest, IntentUpdate, IntentView, IntentsClient, InterruptTurnRequest, InterruptTurnResponse, InterruptionHandlingConfig, InviteToCallRequest, InviteToCallResponse, IvrAvailability, IvrMenu, IvrMenuFilter, IvrMenuIssue, IvrMenuIssueSeverity, IvrMenuOrderBy, IvrMenuRevision, IvrMenuState, IvrMenuTest, IvrMenuTestState, IvrMenusClient, IvrNode, IvrNodePosition, IvrNodeStats, IvrNodeType, IvrOption, IvrPrompt, IvrTestStep, IvrTraversalStep, KEYCLOAK_TOKEN_PROVIDER_CONFIG, KeyValuePair, KeycloakAuthenticationError, KeycloakTokenProvider, KeycloakTokenSession, KeycloakTransportError, LanguageModelPipelineId, LanguageModels, LatLng, ListAccountIdsOfAllSessionsRequest, ListAccountIdsResponse, ListAgentsOfUserResponse, ListAgentsRequest, ListAgentsResponse, ListAudioFilesRequest, ListAudioFilesResponse, ListCallLogStreamsRequest, ListCallLogStreamsResponse, ListCallLogsRequest, ListCallLogsResponse, ListCallersRequest, ListCallersResponse, ListCallsRequest, ListCallsResponse, ListCampaignCallsRequest, ListCampaignCallsResponse, ListCampaignsRequest, ListCampaignsResponse, ListCcaiProjectsRequest, ListCcaiProjectsResponse, ListContextsRequest, ListContextsResponse, ListCustomPhonemizerRequest, ListCustomPhonemizerResponse, ListDatastreamIdsOfAllSessionsRequest, ListDatastreamIdsResponse, ListEntitiesRequest, ListEntitiesResponse, ListEntityTypesRequest, ListEntityTypesResponse, ListIdentifiedUserIdsOfAllSessionsRequest, ListIdentifiedUserIdsResponse, ListInputContextsOfAllSessionsRequest, ListInputContextsResponse, ListIntentsRequest, ListIntentsResponse, ListIvrMenuRevisionsRequest, ListIvrMenuRevisionsResponse, ListIvrMenusRequest, ListIvrMenusResponse, ListLanguageCodesOfAllSessionsRequest, ListLanguageCodesResponse, ListListenersRequest, ListListenersResponse, ListLlmEvaluationAbExperimentsRequest, ListLlmEvaluationAbExperimentsResponse, ListLlmEvaluationAbRolloutDecisionsRequest, ListLlmEvaluationAbRolloutDecisionsResponse, ListLlmEvaluationAnnotationQueueItemsRequest, ListLlmEvaluationAnnotationQueueItemsResponse, ListLlmEvaluationDatasetsRequest, ListLlmEvaluationDatasetsResponse, ListLlmEvaluationEvaluatorsRequest, ListLlmEvaluationEvaluatorsResponse, ListLlmEvaluationExamplesRequest, ListLlmEvaluationExamplesResponse, ListLlmEvaluationExperimentsRequest, ListLlmEvaluationExperimentsResponse, ListLlmEvaluationFeedbackRequest, ListLlmEvaluationFeedbackResponse, ListLlmEvaluationOnlineConfigsRequest, ListLlmEvaluationOnlineConfigsResponse, ListLlmEvaluationOnlineResultsRequest, ListLlmEvaluationOnlineResultsResponse, ListLlmEvaluationReleaseGateRunsRequest, ListLlmEvaluationReleaseGateRunsResponse, ListLlmEvaluationReleaseGatesRequest, ListLlmEvaluationReleaseGatesResponse, ListLlmEvaluationReportsRequest, ListLlmEvaluationReportsResponse, ListLlmEvaluationSchedulesRequest, ListLlmEvaluationSchedulesResponse, ListLlmEvaluationScorecardsRequest, ListLlmEvaluationScorecardsResponse, ListLlmModelsRequest, ListLlmModelsResponse, ListMatchedEntityTypesOfAllSessionsRequest, ListMatchedEntityTypesResponse, ListMatchedIntentsOfAllSessionsRequest, ListMatchedIntentsResponse, ListNotificationsRequest, ListNotificationsResponse, ListOperationsRequest, ListOperationsResponse, ListOriginIdsOfAllSessionsRequest, ListOriginIdsResponse, ListOutputContextsOfAllSessionsRequest, ListOutputContextsResponse, ListParametersRequest, ListParametersResponse, ListPlatformsOfAllSessionsRequest, ListPlatformsResponse, ListProjectIdsResponse, ListProjectPermissionsRequest, ListProjectPermissionsResponse, ListProjectRolesRequest, ListProjectRolesResponse, ListProjectTechnicalUsersRequest, ListProjectTechnicalUsersResponse, ListPropertyIdsOfAllSessionsRequest, ListPropertyIdsResponse, ListRemoteOperationContainersRequest, ListRemoteOperationContainersResponse, ListResponseMessagesRequest, ListResponseMessagesResponse, ListS2tDomainsRequest, ListS2tDomainsResponse, ListS2tLanguageModelsRequest, ListS2tLanguageModelsResponse, ListS2tLanguagesRequest, ListS2tLanguagesResponse, ListS2tNormalizationPipelinesRequest, ListS2tNormalizationPipelinesResponse, ListS2tPipelinesRequest, ListS2tPipelinesResponse, ListScheduledCallersRequest, ListScheduledCallersResponse, ListServerPermissionsRequest, ListServerPermissionsResponse, ListServerRolesRequest, ListServerRolesResponse, ListSessionCommentsOfAllSessionsRequest, ListSessionCommentsRequest, ListSessionCommentsResponse, ListSessionEntityTypesRequest, ListSessionEntityTypesResponse, ListSessionFeedbackOfAllSessionsRequest, ListSessionFeedbackRequest, ListSessionFeedbackResponse, ListSessionLabelsOfAllSessionsRequest, ListSessionLabelsRequest, ListSessionLabelsResponse, ListSessionReviewsRequest, ListSessionReviewsResponse, ListSessionsRequest, ListSessionsResponse, ListSoftphoneAccountsRequest, ListSoftphoneAccountsResponse, ListSoftphoneCertificatesRequest, ListSoftphoneCertificatesResponse, ListT2sDomainsRequest, ListT2sDomainsResponse, ListT2sLanguagesRequest, ListT2sLanguagesResponse, ListT2sNormalizationPipelinesRequest, ListT2sNormalizationPipelinesResponse, ListT2sPipelinesRequest, ListT2sPipelinesResponse, ListTagsOfAllSessionsRequest, ListTagsResponse, ListTrainingPhrasesRequest, ListTrainingPhrasesResponse, ListTrainingPhrasesofIntentsWithEnrichmentRequest, ListTrainingPhrasesofIntentsWithEnrichmentResponse, ListUserIdsOfAllSessionsRequest, ListUserIdsResponse, ListUserInfosResponse, ListUserPreferencesRequest, ListUserPreferencesResponse, ListUsersInProjectRequest, ListUsersInProjectResponse, ListUsersRequest, ListUsersResponse, ListVtsiEventSubscriptionsRequest, ListVtsiEventSubscriptionsResponse, ListVtsiProjectsRequest, ListVtsiProjectsResponse, ListWebhooksRequest, ListWebhooksResponse, ListenCallAudioRequest, Listener, ListenerQueueTarget, LlmAgentNodeEvent, LlmAgentNodePhase, LlmAgentUsage, LlmBaseUrlUsage, LlmCacheStats, LlmCallFinishedEvent, LlmCallStartedEvent, LlmCcaiServiceUsage, LlmEnrichmentConfig, LlmErrorStat, LlmErrorStats, LlmEvaluationAbExperiment, LlmEvaluationAbExperimentFilter, LlmEvaluationAbExperimentStatus, LlmEvaluationAbOptimizeMetric, LlmEvaluationAbRolloutDecision, LlmEvaluationAbRolloutDecisionFilter, LlmEvaluationAbRolloutRecommendation, LlmEvaluationAbTrafficConfig, LlmEvaluationAbVariant, LlmEvaluationAbVariantResult, LlmEvaluationAnnotationQueueItem, LlmEvaluationAnnotationQueueItemFilter, LlmEvaluationAnnotationStatus, LlmEvaluationComparison, LlmEvaluationDataset, LlmEvaluationDatasetFilter, LlmEvaluationDatasetType, LlmEvaluationEvaluatorCategory, LlmEvaluationEvaluatorParameterSpec, LlmEvaluationEvaluatorRun, LlmEvaluationEvaluatorSpec, LlmEvaluationEvaluatorType, LlmEvaluationExample, LlmEvaluationExampleExtractionMode, LlmEvaluationExampleFilter, LlmEvaluationExperiment, LlmEvaluationExperimentFilter, LlmEvaluationExperimentKind, LlmEvaluationExperimentStatus, LlmEvaluationFeedback, LlmEvaluationFeedbackFilter, LlmEvaluationJudgeConfig, LlmEvaluationOnlineConfig, LlmEvaluationOnlineConfigFilter, LlmEvaluationOnlineResult, LlmEvaluationOnlineResultFilter, LlmEvaluationOnlineSessionFilter, LlmEvaluationPairwiseResult, LlmEvaluationProjectSettings, LlmEvaluationReleaseGate, LlmEvaluationReleaseGateCheck, LlmEvaluationReleaseGateFilter, LlmEvaluationReleaseGateRun, LlmEvaluationReleaseGateRunFilter, LlmEvaluationReleaseGateSafetyConfig, LlmEvaluationReleaseGateThresholds, LlmEvaluationReleaseGateVerdict, LlmEvaluationReport, LlmEvaluationReportFilter, LlmEvaluationSchedule, LlmEvaluationScheduleAction, LlmEvaluationScheduleFilter, LlmEvaluationScorecard, LlmEvaluationScorecardComponent, LlmEvaluationScorecardFilter, LlmEvaluationSimulationKind, LlmEvaluationSimulationPersona, LlmEvaluationTurnResult, LlmEvaluationsClient, LlmFinishReasonStat, LlmGenerateRequest, LlmGenerateResponse, LlmLatencyStats, LlmModel, LlmModelUsage, LlmProviderUsage, LlmReasoningEffortStat, LlmRetrievalMetadata, LlmRetrievedChunk, LlmSafetyAssessment, LlmSafetyCategoryStat, LlmSafetyFinding, LlmSafetyLocation, LlmSafetyStats, LlmTelemetry, LlmTelemetryReport, LlmTelemetryTimeSeriesBucket, LlmThinkingDeltaEvent, LlmThinkingMetadata, LlmTokenUsage, LlmTokenUsageUpdateEvent, LlmToolCallFinishedEvent, LlmToolCallMetadata, LlmToolCallStartedEvent, LlmToolUsage, LogCaptureState, LogEntry, LogExportFormat, LogSeverity, LogSource, LogStreamChannel, LogStreamEndReason, Logging, Logmnse, LogsClient, MAX_ERROR_BODY_CHARS, MAX_REFRESH_RETRY_EXPONENT, MIN_REFRESH_DELAY_IN_S, Map$1 as Map, MbMelganTriton, MediaControlOwner, MediaControlSetting, Mel2Audio, MessageBrokerConfig, MessageBrokerServicesActivationConfig, MigrateAgentRequest, Mode, ModelStatus, NluPreemptiveGenerationConfig, NluVtsiCallbacks, NluVtsiConfig, NormalizeTextRequest, NormalizeTextResponse, Notification, NotificationFilter, NotificationFlaggedStatus, NotificationOrigin, NotificationReadStatus, NotificationType, NotificationVisibility, OpenaiLlmOptions, Operation, OperationFilter, OperationMetadata, OperationsClient, OptimizeRankingMatchRequest, OptimizeRankingMatchResponse, OriginalDetectIntentRequest, Parakeet, ParticipantEndReason, ParticipantMode, ParticipantState, Pcm, PhonemizerId, PingRequest, PingResponse, PlatformMapping, PostProcessing, PostProcessingOptions, PostProcessors, Postprocessing, PrepareWarmTransferIntroRequest, PrepareWarmTransferIntroResponse, ProjectRole, ProjectRoleView, ProjectRolesClient, ProjectStatisticsClient, ProjectTechnicalUser, ProjectsClient, PromoteLlmEvaluationAnnotationQueueItemRequest, PromoteLlmEvaluationAnnotationQueueItemResponse, PtFiles, PublishIvrMenuRequest, Pyannote, QAClient, QueryInput, QueryParameters, QueryResult, Qwen3TtsBase, Qwen3TtsCustomVoice, REDACTED, REFRESH_RETRY_BASE_DELAY_IN_S, REFRESH_RETRY_MAX_DELAY_IN_S, REFRESH_SKEW_IN_S, RabbitMqConfig, RagAddCrawlerResultsToDatasetsRequest, RagChunk, RagChunkMethod, RagComparisonOperator, RagCrawler, RagCrawlerAuth, RagCrawlerAuthenticationExecutionType, RagCrawlerBrowserConfig, RagCrawlerConcurrencyConfig, RagCrawlerConfig, RagCrawlerContentResult, RagCrawlerContentScope, RagCrawlerCookie, RagCrawlerCrawlStrategy, RagCrawlerDeepCrawlerConfig, RagCrawlerDensityPruning, RagCrawlerExecutionInfo, RagCrawlerFilters, RagCrawlerHtmlAuth, RagCrawlerHttpAuth, RagCrawlerIncrementalConfig, RagCrawlerMetaDataExtractor, RagCrawlerMetaDataExtractorType, RagCrawlerPruningThresholdType, RagCrawlerResult, RagCrawlerResultsConfig, RagCrawlerRetryConfig, RagCrawlerSeedUrlFilters, RagCrawlerSelectorType, RagCrawlerSources, RagCrawlerStatusFilter, RagCreateCrawlerRequest, RagCreateDatasetRequest, RagDataset, RagDatasetList, RagDatasetParsingStatus, RagDeleteCrawlerRequest, RagDeleteCrawlerResponse, RagDeleteCrawlerRunsRequest, RagDeleteCrawlerRunsResponse, RagDeleteCrawlersRequest, RagDeleteCrawlersResponse, RagDeleteDocumentsRequest, RagDeleteRequest, RagDocAgg, RagDocument, RagDocumentIdsRequest, RagDocumentList, RagDocumentStatus, RagDocumentType, RagDownloadDocumentRequest, RagFileChunk, RagFileMetadata, RagGetCrawlerAttachedDatasetsRequest, RagGetCrawlerAttachedDatasetsResponse, RagGetCrawlerRequest, RagGetCrawlerResultRequest, RagGetCrawlerResultsRequest, RagGetCrawlerResultsResponse, RagGetCrawlerRunLogsRequest, RagGetCrawlerRunLogsResponse, RagGetCrawlerRunRequest, RagGraphRagConfig, RagGraphRagMethod, RagListCrawlerRunsRequest, RagListCrawlerRunsResponse, RagListCrawlersRequest, RagListCrawlersResponse, RagListDatasetsRequest, RagListDocumentsRequest, RagLogic, RagMetadataCondition, RagMetadataConditions, RagParserConfig, RagPartialSuccess, RagRaptorConfig, RagRemoveCrawlerResultsFromDatasetsRequest, RagRetrievalRequest, RagRetrievalResponse, RagStartCrawlerRequest, RagStopCrawlerRequest, RagStopCrawlerResponse, RagUpdateCrawlerRequest, RagUpdateDatasetRequest, RagUpdateDocumentRequest, RagUploadDocumentRequest, RagVariantConfig, RagsClient, RankingMatchOptimizationConfig, ReannotateEntitiesOptions, ReasoningEffort, RedeliverWebhookEventsRequest, RedeliverWebhookEventsResponse, ReferencedChunk, ReindexAgentRequest, RemoteOperationContainer, RemoteOperationContainerLifecycleState, RemoteOperationContainerLogLine, RemoteOperationContainerStatus, RemoveCallParticipantRequest, RemoveCallParticipantResponse, RemoveUserFromProjectRequest, ReportFormat, ReportType, RequestConfig, ResourceView, ResponseTimingConfig, RestoreAgentRequest, ResumeCampaignRequest, RetryCampaignCallsRequest, RetryCampaignCallsResponse, RetryScheduledCallerRequest, RevokeSoftphoneCertificateRequest, RotateProjectTechnicalUserPasswordRequest, RotateProjectTechnicalUserPasswordResponse, RotateSoftphoneCredentialsRequest, RotateSoftphoneCredentialsResponse, RunLlmEvaluationExperimentRequest, RunLlmEvaluationReleaseGateRequest, RunScraperRequest, RunScraperResponse, RunTrainingResponse, S2tCloudProviderConfig, S2tCloudProviderConfigAmazon, S2tCloudProviderConfigDeepgram, S2tCloudProviderConfigGoogle, S2tCloudProviderConfigMicrosoft, S2tCloudServiceAmazon, S2tCloudServiceDeepgram, S2tCloudServiceGoogle, S2tCloudServiceMicrosoft, S2tDescription, S2tGetServiceInfoResponse, S2tInference, S2tLlmPostProcessing, S2tLlmPostProcessingInverseNormalizationOptions, S2tLlmPostProcessingNormalizationOptions, S2tLlmPostProcessingSubTaskOptions, S2tLlmPostProcessingSummarizationOptions, S2tLlmPostProcessingTranslationOptions, S2tNormalization, S2tPipelineId, S2tTranscription, S2tVtsiCallbacks, S2tVtsiConfig, ScheduledCaller, ScheduledCallerStatus, SendCallDtmfRequest, SendCallDtmfResponse, ServerRole, ServerStatisticsClient, ServiceStatus, ServiceTier, Session, SessionEntityType, SessionFeedback, SessionFilter, SessionInfo, SessionReview, SessionReviewStep, SessionStep, SessionsClient, SessionsReportType, SetAgentStatusRequest, SetCallMediaControlRequest, SetCallMediaControlResponse, SetNotificationsFlaggedStatusRequest, SetNotificationsReadStatusRequest, SetResourcesRequest, SetUserPreferencesRequest, SetUserPreferencesResponse, Silero, SimulateLlmEvaluationConversationsRequest, SingleInference, SipBaseConfig, SipCallAudioConfig, SipCallAudioEndReason, SipCallAudioEnded, SipCallAudioFrame, SipCallAudioMode, SipCallAudioRequest, SipCallAudioResponse, SipCallAudioStarted, SipCallAudioStats, SipCallerConfig, SipClient, SipDelegatedTransfer, SipEndCallRequest, SipHeaderFilter, SipPlayWavFilesRequest, SipRegisterAccountRequest, SipReportAnsweringMachineDetectedRequest, SipSendDtmfRequest, SipSetCallMediaControlRequest, SipStartCallRequest, SipStartSessionRequest, SipStatus, SipStatusHistoryResponse, SipStatusTypeCount, SipTransferCallRequest, SipTransferDelegation, SipTrunkTransport, SipVtsiConfig, SipWarmTransferOutcome, SipWarmTransferOutcomeNotice, SipWarmTransferOutcomeNoticeStatus, SoftTimeoutConfig, SoftphoneAccount, SoftphoneAccountFilter, SoftphoneAccountSorting, SoftphoneCertificate, SoftphoneCertificateFilter, SoftphoneCertificateStatus, SoftphoneContact, SoftphoneContactStatus, SoftphoneCredentials, SoftphoneProvisioning, SoftphoneRegistration, SoftphoneSrtpMode, SoftphoneTransportSecurity, SoftphonesClient, SortingMode, Speech2TextClient, Speech2TextConfig, StartCallerRequest, StartCallerResponse, StartCallersRequest, StartCallersResponse, StartCampaignRequest, StartListenerRequest, StartListenerResponse, StartListenersRequest, StartListenersResponse, StartLlmEvaluationAbExperimentRequest, StartScheduledCallerRequest, StartScheduledCallerResponse, StartScheduledCallersRequest, StartScheduledCallersResponse, StatResponse, Status, StopAllCallsRequest, StopCallRequest, StopCallResponse, StopCallerRequest, StopCallerResponse, StopCallersRequest, StopCallersResponse, StopCallsRequest, StopCallsResponse, StopCampaignRequest, StopListenerRequest, StopListenerResponse, StopListenersRequest, StopListenersResponse, StopLlmEvaluationAbExperimentRequest, StreamCallAudioConfig, StreamCallAudioRequest, StreamCallAudioResponse, StreamCallLogsRequest, StreamCallLogsResponse, StreamCallResourceStatusResponse, StreamCallerStatusRequest, StreamCampaignStatusRequest, StreamCampaignStatusResponse, StreamEndReason, StreamListenerStatusRequest, StreamNotificationsRequest, StreamRemoteOperationContainerLogsRequest, StreamScheduledCallerStatusRequest, StreamingDetectIntentRequest, StreamingDetectIntentResponse, StreamingLlmGenerateResponse, StreamingRecognitionResult, StreamingServer, StreamingSpeechRecognition, StreamingSynthesizeRequest, StreamingSynthesizeResponse, StringUpdate, SubmitLlmEvaluationFeedbackRequest, SubscribeVtsiEventsRequest, SubscribeVtsiEventsResponse, SymSpell, Synonym, SynthesizeRequest, SynthesizeResponse, T2SCustomLengthScales, T2SDescription, T2SGetServiceInfoResponse, T2SInference, T2SNormalization, T2sCloudProviderConfig, T2sCloudProviderConfigElevenLabs, T2sCloudProviderConfigGoogle, T2sCloudProviderConfigMicrosoft, T2sCloudServiceAmazon, T2sCloudServiceElevenLabs, T2sCloudServiceGoogle, T2sCloudServiceMicrosoft, T2sPipelineId, T2sPreemptiveSynthesisConfig, T2sVtsiCallbacks, T2sVtsiConfig, TOKEN_PROVIDER, TestIvrMenuRequest, TestWebhookRequest, TestWebhookResponse, Text2Audio, Text2Mel, Text2SpeechClient, Text2SpeechConfig, TextInput, ThesaurusEnrichmentConfig, TrainAgentRequest, TrainUserLanguageModelRequest, TrainingPhraseCleanerOptions, TrainingPhraseStatus, TranscribeFileRequest, TranscribeFileResponse, TranscribeRequestConfig, TranscribeStreamRequest, TranscribeStreamResponse, Transcription, TranscriptionAlternative, TranscriptionReturnOptions, TranscriptionType, TransferCallRequest, TransferCallResponse, TransferCallsRequest, TransferCallsResponse, TransferMode, TransferOutcome, TransferOutcomeCount, TransferTargetDirectoryItem, TrunkRegistrationState, TsdMethod, TurnControl, TurnControlAck, TurnControlAckStatus, TurnDetectionChatLlmOptions, TurnDetectionConfig, TurnDetectionContextTurn, TurnDetectionConversationContext, TurnDetectionEndOfUtteranceLlmOptions, TurnDetectionHoldBand, TurnDetectionHoldBands, TurnDetectionOndewoDeFusionOptions, TurnDetectionOndewoDeOptions, TurnDetectionOptions, TurnDetectionPipecatSmartTurnOptions, TurnInterruptionReason, UndeployVtsiProjectRequest, UndeployVtsiProjectResponse, UpdateAgentRequest, UpdateCallRequest, UpdateCallResponse, UpdateCallerRequest, UpdateCallerResponse, UpdateCallersRequest, UpdateCallersResponse, UpdateCallsRequest, UpdateCallsResponse, UpdateCampaignRequest, UpdateCcaiProjectRequest, UpdateCcaiProjectResponse, UpdateContextRequest, UpdateCustomPhonemizerRequest, UpdateDatabaseRequest, UpdateDatabaseResponse, UpdateEntityRequest, UpdateEntityTypeRequest, UpdateIntentRequest, UpdateIvrMenuRequest, UpdateListenerRequest, UpdateListenerResponse, UpdateListenersRequest, UpdateListenersResponse, UpdateLlmEvaluationAbExperimentRequest, UpdateLlmEvaluationAnnotationQueueItemRequest, UpdateLlmEvaluationDatasetRequest, UpdateLlmEvaluationExampleRequest, UpdateLlmEvaluationExperimentRequest, UpdateLlmEvaluationFeedbackRequest, UpdateLlmEvaluationOnlineConfigRequest, UpdateLlmEvaluationProjectSettingsRequest, UpdateLlmEvaluationReleaseGateRequest, UpdateLlmEvaluationScheduleRequest, UpdateLlmEvaluationScorecardRequest, UpdateNotificationRequest, UpdateProjectRoleRequest, UpdateScheduledCallerRequest, UpdateServerRoleRequest, UpdateSessionCommentsRequest, UpdateSessionEntityTypeRequest, UpdateSessionFeedbackRequest, UpdateSessionStepRequest, UpdateSoftphoneAccountRequest, UpdateUserRequest, UpdateVtsiEventSubscriptionRequest, UpdateVtsiProjectRequest, UpdateVtsiProjectResponse, UpdateWebhookRequest, UrlFilter, User, UserInProject, UserInfo, UsersClient, UtilitiesClient, UtteranceDetectionOptions, VadMethod, ValidateEmbeddedRegexRequest, ValidateEmbeddedRegexResponse, ValidateIvrMenuRequest, ValidateIvrMenuResponse, ValidateRegexRequest, ValidateRegexResponse, Verbosity, VideoFileResource, Vits, VitsTriton, VoiceActivityDetection, VoiceCloningRequest, VoiceInteractionConfig, VoiceSettings, VtsiEvent, VtsiEventFilter, VtsiEventMessage, VtsiEventSubscription, VtsiProject, VtsiProjectFeatureAvailability, VtsiProjectSorting, VtsiProjectSortingMode, VtsiProjectStatus, VtsiProjectView, WarmIntroAvailability, WarmIntroDecidedBy, WarmIntroDecision, WarmIntroRecord, WarmIntroTextSource, WarmIntroUnavailablePolicy, WarmTransferAgentLexicon, WarmTransferAgentSettings, WarmTransferAgentTexts, WarmTransferConfig, WarmTransferIntroConfig, WarmTransferIntroDecidedBy, WarmTransferIntroDecision, WarmTransferIntroOutcome, WarmTransferIntroStage, WarmTransferIntroTextSource, Wav2Vec, Wav2VecTriton, Webhook, WebhookClient, WebhookDeliveryStatistics, WebhookHttpMethod, WebhookRequest, WebhookResponse, WespeakerTsd, Whisper, WhisperTriton, Wiener, Word2VecEnrichmentConfig, WordAlternative, WordDetail, WordNetAugEnrichmentConfig, XLNetAugEnrichmentConfig, acquireKeycloakTokenSession, authHttpInterceptor, backoffDelayInS, buildBearerValue, buildGrpcWebHost, keycloakSessionRegistryKey, provideOndewoVtsiAuth, redactSecret, resolveBearerValue, resolveToken };
 
 //# sourceMappingURL=ondewo-vtsi-client-angular.mjs.map

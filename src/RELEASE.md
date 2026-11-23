@@ -2,6 +2,19 @@
 
 *****************
 
+## Release ONDEWO VTSI Angular Client 9.6.0
+
+### New Features
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Every call-behaviour setting of ondewo-vtsi-api 9.6.0 is settable per call through `CommonServicesConfig`: `InterruptionHandlingConfig` (`cancelOnSpeechWhileThinking`, `aiTeamsCancelPendingOnInterrupt`, `t2sCancelOnBargeIn`, `nluTurnControlEnabled`, `heardReportEnabled`, `heardTextAlignmentEnabled`), `TurnDetectionConfig` (`s2tEmitMs`, `s2tRequestPartials`, `s2tRequestEndOfSpeechCandidate`, `smartTurnThreshold`, `postUnmutePhantomWindowSeconds`), `ResponseTimingConfig` (`streamingEnabled`, `nluCallStreamEnabled`, `turnTimeoutIntent`, `t2sMaxEdgeSilenceMs`), `NluVtsiConfig` (`aiTeamsFillersAudible`, `failureApologyMessage`, `sessionIdFromSipContext`), `S2tVtsiConfig.failureSipTrigger`, `DtmfConfig` (`speechGuardMs`, `textTemplate`), the new `BotTransferConfig` (`VoiceInteractionConfig.botTransferConfig`) and the new `SipVtsiConfig` (`CommonServicesConfig.sipVtsiConfig`)
+* Every new scalar is `optional` and keeps its presence: left `undefined` it is not written, so ondewo-vtsi keeps the deployment's value; `false`, `0` and `""` are written
+
+### Improvements
+
+* Tracking API Version [9.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ), generated against ondewo-vtsi-api `84af18b7059beb284480015df304e8ae22affcdf` with ondewo-proto-compiler 5.17.0
+
+*****************
+
 ## Release ONDEWO VTSI Angular Client 9.5.2
 
 ### New Features
