@@ -6,13 +6,29 @@
 
 ### New Features
 
-* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Every call-behaviour setting of ondewo-vtsi-api 9.6.0 is settable per call through `CommonServicesConfig`: `InterruptionHandlingConfig` (`cancelOnSpeechWhileThinking`, `aiTeamsCancelPendingOnInterrupt`, `t2sCancelOnBargeIn`, `nluTurnControlEnabled`, `heardReportEnabled`, `heardTextAlignmentEnabled`), `TurnDetectionConfig` (`s2tEmitMs`, `s2tRequestPartials`, `s2tRequestEndOfSpeechCandidate`, `smartTurnThreshold`, `postUnmutePhantomWindowSeconds`), `ResponseTimingConfig` (`streamingEnabled`, `nluCallStreamEnabled`, `turnTimeoutIntent`, `t2sMaxEdgeSilenceMs`), `NluVtsiConfig` (`aiTeamsFillersAudible`, `failureApologyMessage`, `sessionIdFromSipContext`), `S2tVtsiConfig.failureSipTrigger`, `DtmfConfig` (`speechGuardMs`, `textTemplate`), the new `BotTransferConfig` (`VoiceInteractionConfig.botTransferConfig`) and the new `SipVtsiConfig` (`CommonServicesConfig.sipVtsiConfig`)
-* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `Call.dialedNumber` (the dialled inbound number of a trunk call), `NluVtsiConfig.aiTeamsPushMaxAgeSeconds` / `aiTeamsPushMaxSpoken` (the AI Teams push backlog), `T2sVtsiConfig.synthesizeTimeoutSeconds` / `cacheRetention`, `ResponseTimingConfig.nluCallStreamTurnTimeoutSeconds` / `nluCallStreamTurnQuietSeconds` and `CommonServicesConfig.maxCallDurationSeconds`
-* Every new scalar is `optional` and keeps its presence: left `undefined` it is not written, so ondewo-vtsi keeps the deployment's value; `false`, `0` and `""` are written
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Every speech-to-speech and SIP setting that changes
+  how a call behaves is settable per call through `CommonServicesConfig`. Every new scalar is `optional`: left unset
+  it keeps the deployment's setting, a set value wins over it. New fields: `InterruptionHandlingConfig` 10-15,
+  `TurnDetectionConfig` 16-20, `ResponseTimingConfig` 6-9, `NluVtsiConfig` 11-13,
+  `S2tVtsiConfig.failure_sip_trigger = 3`, `DtmfConfig` 5-6, the new `BotTransferConfig`
+  (`VoiceInteractionConfig.bot_transfer_config = 7`) and the new `SipVtsiConfig`
+  (`CommonServicesConfig.sip_vtsi_config = 6`).
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `Call.dialed_number = 30` (output only): the inbound
+  number a carrier-trunk caller dialled.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The AI Teams push backlog
+  `NluVtsiConfig.ai_teams_push_max_age_seconds = 14` (default 30 s) and `ai_teams_push_max_spoken = 15` (default 2),
+  `0` switching each off; `T2sVtsiConfig.synthesize_timeout_seconds = 4` and `cache_retention = 5`;
+  `ResponseTimingConfig.nlu_call_stream_turn_timeout_seconds = 10` and `nlu_call_stream_turn_quiet_seconds = 11`; and
+  `CommonServicesConfig.max_call_duration_seconds = 7`.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Documented: the dictation hold of ondewo-csi is on by
+  default only for a turn whose NLU answer asks for a value (`DictationConfig.hold_enabled` unset), and
+  `expected_input_enabled` defaults to `true`.
 
 ### Improvements
 
-* Tracking API Version [9.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ), generated against ondewo-vtsi-api `da7e545f14f53451a66058f5f26e437fdb093d72` with ondewo-proto-compiler 5.17.0
+* Tracking API Version [9.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.6.0)
+  ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ). Field names are the proto names; the accessors
+  follow each language's naming.
 
 *****************
 
