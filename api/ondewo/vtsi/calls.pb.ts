@@ -19501,6 +19501,7 @@ export class Call implements GrpcMessage {
     _instance.ivrMenuDisplayName = _instance.ivrMenuDisplayName || '';
     _instance.ivrPath = _instance.ivrPath || '';
     _instance.ivrMenuName = _instance.ivrMenuName || '';
+    _instance.dialedNumber = _instance.dialedNumber || '';
   }
 
   /**
@@ -19644,6 +19645,9 @@ export class Call implements GrpcMessage {
           break;
         case 29:
           _instance.ivrMenuName = _reader.readString();
+          break;
+        case 30:
+          _instance.dialedNumber = _reader.readString();
           break;
         default:
           _reader.skipField();
@@ -19809,6 +19813,9 @@ export class Call implements GrpcMessage {
     if (_instance.ivrMenuName) {
       _writer.writeString(29, _instance.ivrMenuName);
     }
+    if (_instance.dialedNumber) {
+      _writer.writeString(30, _instance.dialedNumber);
+    }
   }
 
   private _name: string;
@@ -19840,6 +19847,7 @@ export class Call implements GrpcMessage {
   private _ivrMenuDisplayName: string;
   private _ivrPath: string;
   private _ivrMenuName: string;
+  private _dialedNumber: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -19900,6 +19908,7 @@ export class Call implements GrpcMessage {
       (this.ivrMenuDisplayName = _value.ivrMenuDisplayName);
     this.ivrPath = _value.ivrPath;
     this.ivrMenuName = _value.ivrMenuName;
+    this.dialedNumber = _value.dialedNumber;
     Call.refineValues(this);
   }
   get name(): string {
@@ -20080,6 +20089,12 @@ export class Call implements GrpcMessage {
   set ivrMenuName(value: string) {
     this._ivrMenuName = value;
   }
+  get dialedNumber(): string {
+    return this._dialedNumber;
+  }
+  set dialedNumber(value: string) {
+    this._dialedNumber = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -20140,7 +20155,8 @@ export class Call implements GrpcMessage {
         : {},
       ivrMenuDisplayName: this.ivrMenuDisplayName,
       ivrPath: this.ivrPath,
-      ivrMenuName: this.ivrMenuName
+      ivrMenuName: this.ivrMenuName,
+      dialedNumber: this.dialedNumber
     };
   }
 
@@ -20222,7 +20238,8 @@ export class Call implements GrpcMessage {
         : {},
       ivrMenuDisplayName: this.ivrMenuDisplayName,
       ivrPath: this.ivrPath,
-      ivrMenuName: this.ivrMenuName
+      ivrMenuName: this.ivrMenuName,
+      dialedNumber: this.dialedNumber
     };
   }
 }
@@ -20260,6 +20277,7 @@ export module Call {
     ivrMenuDisplayName: string;
     ivrPath: string;
     ivrMenuName: string;
+    dialedNumber: string;
   }
 
   /**
@@ -20295,6 +20313,7 @@ export module Call {
     ivrMenuDisplayName: string;
     ivrPath: string;
     ivrMenuName: string;
+    dialedNumber: string;
   }
 
   /**

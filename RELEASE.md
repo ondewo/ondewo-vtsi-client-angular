@@ -7,11 +7,12 @@
 ### New Features
 
 * [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Every call-behaviour setting of ondewo-vtsi-api 9.6.0 is settable per call through `CommonServicesConfig`: `InterruptionHandlingConfig` (`cancelOnSpeechWhileThinking`, `aiTeamsCancelPendingOnInterrupt`, `t2sCancelOnBargeIn`, `nluTurnControlEnabled`, `heardReportEnabled`, `heardTextAlignmentEnabled`), `TurnDetectionConfig` (`s2tEmitMs`, `s2tRequestPartials`, `s2tRequestEndOfSpeechCandidate`, `smartTurnThreshold`, `postUnmutePhantomWindowSeconds`), `ResponseTimingConfig` (`streamingEnabled`, `nluCallStreamEnabled`, `turnTimeoutIntent`, `t2sMaxEdgeSilenceMs`), `NluVtsiConfig` (`aiTeamsFillersAudible`, `failureApologyMessage`, `sessionIdFromSipContext`), `S2tVtsiConfig.failureSipTrigger`, `DtmfConfig` (`speechGuardMs`, `textTemplate`), the new `BotTransferConfig` (`VoiceInteractionConfig.botTransferConfig`) and the new `SipVtsiConfig` (`CommonServicesConfig.sipVtsiConfig`)
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `Call.dialedNumber` (the dialled inbound number of a trunk call), `NluVtsiConfig.aiTeamsPushMaxAgeSeconds` / `aiTeamsPushMaxSpoken` (the AI Teams push backlog), `T2sVtsiConfig.synthesizeTimeoutSeconds` / `cacheRetention`, `ResponseTimingConfig.nluCallStreamTurnTimeoutSeconds` / `nluCallStreamTurnQuietSeconds` and `CommonServicesConfig.maxCallDurationSeconds`
 * Every new scalar is `optional` and keeps its presence: left `undefined` it is not written, so ondewo-vtsi keeps the deployment's value; `false`, `0` and `""` are written
 
 ### Improvements
 
-* Tracking API Version [9.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ), generated against ondewo-vtsi-api `84af18b7059beb284480015df304e8ae22affcdf` with ondewo-proto-compiler 5.17.0
+* Tracking API Version [9.6.0](https://github.com/ondewo/ondewo-vtsi-api/releases/tag/9.6.0) ( [Documentation](https://ondewo.github.io/ondewo-vtsi-api/) ), generated against ondewo-vtsi-api `da7e545f14f53451a66058f5f26e437fdb093d72` with ondewo-proto-compiler 5.17.0
 
 *****************
 

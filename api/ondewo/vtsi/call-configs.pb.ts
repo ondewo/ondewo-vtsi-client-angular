@@ -482,6 +482,12 @@ export class NluVtsiConfig implements GrpcMessage {
         case 13:
           _instance.sessionIdFromSipContext = _reader.readBool();
           break;
+        case 14:
+          _instance.aiTeamsPushMaxAgeSeconds = _reader.readFloat();
+          break;
+        case 15:
+          _instance.aiTeamsPushMaxSpoken = _reader.readInt32();
+          break;
         default:
           _reader.skipField();
       }
@@ -563,6 +569,18 @@ export class NluVtsiConfig implements GrpcMessage {
     ) {
       _writer.writeBool(13, _instance.sessionIdFromSipContext);
     }
+    if (
+      _instance.aiTeamsPushMaxAgeSeconds !== undefined &&
+      _instance.aiTeamsPushMaxAgeSeconds !== null
+    ) {
+      _writer.writeFloat(14, _instance.aiTeamsPushMaxAgeSeconds);
+    }
+    if (
+      _instance.aiTeamsPushMaxSpoken !== undefined &&
+      _instance.aiTeamsPushMaxSpoken !== null
+    ) {
+      _writer.writeInt32(15, _instance.aiTeamsPushMaxSpoken);
+    }
   }
 
   private _nluBaseConfig?: BaseServiceConfig;
@@ -578,6 +596,8 @@ export class NluVtsiConfig implements GrpcMessage {
   private _aiTeamsFillersAudible: boolean;
   private _failureApologyMessage: string;
   private _sessionIdFromSipContext: boolean;
+  private _aiTeamsPushMaxAgeSeconds: number;
+  private _aiTeamsPushMaxSpoken: number;
 
   private _authentication: NluVtsiConfig.AuthenticationCase =
     NluVtsiConfig.AuthenticationCase.none;
@@ -609,6 +629,8 @@ export class NluVtsiConfig implements GrpcMessage {
     this.aiTeamsFillersAudible = _value.aiTeamsFillersAudible;
     this.failureApologyMessage = _value.failureApologyMessage;
     this.sessionIdFromSipContext = _value.sessionIdFromSipContext;
+    this.aiTeamsPushMaxAgeSeconds = _value.aiTeamsPushMaxAgeSeconds;
+    this.aiTeamsPushMaxSpoken = _value.aiTeamsPushMaxSpoken;
     NluVtsiConfig.refineValues(this);
   }
   get nluBaseConfig(): BaseServiceConfig | undefined {
@@ -699,6 +721,18 @@ export class NluVtsiConfig implements GrpcMessage {
   set sessionIdFromSipContext(value: boolean) {
     this._sessionIdFromSipContext = value;
   }
+  get aiTeamsPushMaxAgeSeconds(): number {
+    return this._aiTeamsPushMaxAgeSeconds;
+  }
+  set aiTeamsPushMaxAgeSeconds(value: number) {
+    this._aiTeamsPushMaxAgeSeconds = value;
+  }
+  get aiTeamsPushMaxSpoken(): number {
+    return this._aiTeamsPushMaxSpoken;
+  }
+  set aiTeamsPushMaxSpoken(value: number) {
+    this._aiTeamsPushMaxSpoken = value;
+  }
   get authentication() {
     return this._authentication;
   }
@@ -734,7 +768,9 @@ export class NluVtsiConfig implements GrpcMessage {
         : undefined,
       aiTeamsFillersAudible: this.aiTeamsFillersAudible,
       failureApologyMessage: this.failureApologyMessage,
-      sessionIdFromSipContext: this.sessionIdFromSipContext
+      sessionIdFromSipContext: this.sessionIdFromSipContext,
+      aiTeamsPushMaxAgeSeconds: this.aiTeamsPushMaxAgeSeconds,
+      aiTeamsPushMaxSpoken: this.aiTeamsPushMaxSpoken
     };
   }
 
@@ -781,7 +817,9 @@ export class NluVtsiConfig implements GrpcMessage {
         : null,
       aiTeamsFillersAudible: this.aiTeamsFillersAudible,
       failureApologyMessage: this.failureApologyMessage,
-      sessionIdFromSipContext: this.sessionIdFromSipContext
+      sessionIdFromSipContext: this.sessionIdFromSipContext,
+      aiTeamsPushMaxAgeSeconds: this.aiTeamsPushMaxAgeSeconds,
+      aiTeamsPushMaxSpoken: this.aiTeamsPushMaxSpoken
     };
   }
 }
@@ -803,6 +841,8 @@ export module NluVtsiConfig {
     aiTeamsFillersAudible: boolean;
     failureApologyMessage: string;
     sessionIdFromSipContext: boolean;
+    aiTeamsPushMaxAgeSeconds: number;
+    aiTeamsPushMaxSpoken: number;
   }
 
   /**
@@ -822,6 +862,8 @@ export module NluVtsiConfig {
     aiTeamsFillersAudible: boolean;
     failureApologyMessage: string;
     sessionIdFromSipContext: boolean;
+    aiTeamsPushMaxAgeSeconds: number;
+    aiTeamsPushMaxSpoken: number;
   }
   export enum AuthenticationCase {
     none = 0,
@@ -1079,6 +1121,12 @@ export class T2sVtsiConfig implements GrpcMessage {
             T2sPreemptiveSynthesisConfig.deserializeBinaryFromReader
           );
           break;
+        case 4:
+          _instance.synthesizeTimeoutSeconds = _reader.readFloat();
+          break;
+        case 5:
+          _instance.cacheRetention = _reader.readString();
+          break;
         default:
           _reader.skipField();
       }
@@ -1117,11 +1165,25 @@ export class T2sVtsiConfig implements GrpcMessage {
         T2sPreemptiveSynthesisConfig.serializeBinaryToWriter
       );
     }
+    if (
+      _instance.synthesizeTimeoutSeconds !== undefined &&
+      _instance.synthesizeTimeoutSeconds !== null
+    ) {
+      _writer.writeFloat(4, _instance.synthesizeTimeoutSeconds);
+    }
+    if (
+      _instance.cacheRetention !== undefined &&
+      _instance.cacheRetention !== null
+    ) {
+      _writer.writeString(5, _instance.cacheRetention);
+    }
   }
 
   private _t2sBaseConfig?: BaseServiceConfig;
   private _t2sRequestConfig?: ondewoT2s011.RequestConfig;
   private _preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig;
+  private _synthesizeTimeoutSeconds: number;
+  private _cacheRetention: string;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1138,6 +1200,8 @@ export class T2sVtsiConfig implements GrpcMessage {
     this.preemptiveSynthesisConfig = _value.preemptiveSynthesisConfig
       ? new T2sPreemptiveSynthesisConfig(_value.preemptiveSynthesisConfig)
       : undefined;
+    this.synthesizeTimeoutSeconds = _value.synthesizeTimeoutSeconds;
+    this.cacheRetention = _value.cacheRetention;
     T2sVtsiConfig.refineValues(this);
   }
   get t2sBaseConfig(): BaseServiceConfig | undefined {
@@ -1159,6 +1223,18 @@ export class T2sVtsiConfig implements GrpcMessage {
     value: T2sPreemptiveSynthesisConfig | undefined
   ) {
     this._preemptiveSynthesisConfig = value;
+  }
+  get synthesizeTimeoutSeconds(): number {
+    return this._synthesizeTimeoutSeconds;
+  }
+  set synthesizeTimeoutSeconds(value: number) {
+    this._synthesizeTimeoutSeconds = value;
+  }
+  get cacheRetention(): string {
+    return this._cacheRetention;
+  }
+  set cacheRetention(value: string) {
+    this._cacheRetention = value;
   }
 
   /**
@@ -1184,7 +1260,9 @@ export class T2sVtsiConfig implements GrpcMessage {
         : undefined,
       preemptiveSynthesisConfig: this.preemptiveSynthesisConfig
         ? this.preemptiveSynthesisConfig.toObject()
-        : undefined
+        : undefined,
+      synthesizeTimeoutSeconds: this.synthesizeTimeoutSeconds,
+      cacheRetention: this.cacheRetention
     };
   }
 
@@ -1213,7 +1291,9 @@ export class T2sVtsiConfig implements GrpcMessage {
         : null,
       preemptiveSynthesisConfig: this.preemptiveSynthesisConfig
         ? this.preemptiveSynthesisConfig.toProtobufJSON(options)
-        : null
+        : null,
+      synthesizeTimeoutSeconds: this.synthesizeTimeoutSeconds,
+      cacheRetention: this.cacheRetention
     };
   }
 }
@@ -1225,6 +1305,8 @@ export module T2sVtsiConfig {
     t2sBaseConfig?: BaseServiceConfig.AsObject;
     t2sRequestConfig?: ondewoT2s011.RequestConfig.AsObject;
     preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig.AsObject;
+    synthesizeTimeoutSeconds: number;
+    cacheRetention: string;
   }
 
   /**
@@ -1234,6 +1316,8 @@ export module T2sVtsiConfig {
     t2sBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
     t2sRequestConfig: ondewoT2s011.RequestConfig.AsProtobufJSON | null;
     preemptiveSynthesisConfig: T2sPreemptiveSynthesisConfig.AsProtobufJSON | null;
+    synthesizeTimeoutSeconds: number;
+    cacheRetention: string;
   }
 }
 
@@ -1697,6 +1781,9 @@ export class CommonServicesConfig implements GrpcMessage {
             SipVtsiConfig.deserializeBinaryFromReader
           );
           break;
+        case 7:
+          _instance.maxCallDurationSeconds = _reader.readUint32();
+          break;
         default:
           _reader.skipField();
       }
@@ -1756,6 +1843,12 @@ export class CommonServicesConfig implements GrpcMessage {
         SipVtsiConfig.serializeBinaryToWriter
       );
     }
+    if (
+      _instance.maxCallDurationSeconds !== undefined &&
+      _instance.maxCallDurationSeconds !== null
+    ) {
+      _writer.writeUint32(7, _instance.maxCallDurationSeconds);
+    }
   }
 
   private _s2tVtsiConfig?: S2tVtsiConfig;
@@ -1764,6 +1857,7 @@ export class CommonServicesConfig implements GrpcMessage {
   private _csiVtsiConfig?: CsiVtsiConfig;
   private _voiceInteractionConfig?: VoiceInteractionConfig;
   private _sipVtsiConfig?: SipVtsiConfig;
+  private _maxCallDurationSeconds: number;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -1789,6 +1883,7 @@ export class CommonServicesConfig implements GrpcMessage {
     this.sipVtsiConfig = _value.sipVtsiConfig
       ? new SipVtsiConfig(_value.sipVtsiConfig)
       : undefined;
+    this.maxCallDurationSeconds = _value.maxCallDurationSeconds;
     CommonServicesConfig.refineValues(this);
   }
   get s2tVtsiConfig(): S2tVtsiConfig | undefined {
@@ -1827,6 +1922,12 @@ export class CommonServicesConfig implements GrpcMessage {
   set sipVtsiConfig(value: SipVtsiConfig | undefined) {
     this._sipVtsiConfig = value;
   }
+  get maxCallDurationSeconds(): number {
+    return this._maxCallDurationSeconds;
+  }
+  set maxCallDurationSeconds(value: number) {
+    this._maxCallDurationSeconds = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -1860,7 +1961,8 @@ export class CommonServicesConfig implements GrpcMessage {
         : undefined,
       sipVtsiConfig: this.sipVtsiConfig
         ? this.sipVtsiConfig.toObject()
-        : undefined
+        : undefined,
+      maxCallDurationSeconds: this.maxCallDurationSeconds
     };
   }
 
@@ -1898,7 +2000,8 @@ export class CommonServicesConfig implements GrpcMessage {
         : null,
       sipVtsiConfig: this.sipVtsiConfig
         ? this.sipVtsiConfig.toProtobufJSON(options)
-        : null
+        : null,
+      maxCallDurationSeconds: this.maxCallDurationSeconds
     };
   }
 }
@@ -1913,6 +2016,7 @@ export module CommonServicesConfig {
     csiVtsiConfig?: CsiVtsiConfig.AsObject;
     voiceInteractionConfig?: VoiceInteractionConfig.AsObject;
     sipVtsiConfig?: SipVtsiConfig.AsObject;
+    maxCallDurationSeconds: number;
   }
 
   /**
@@ -1925,6 +2029,7 @@ export module CommonServicesConfig {
     csiVtsiConfig: CsiVtsiConfig.AsProtobufJSON | null;
     voiceInteractionConfig: VoiceInteractionConfig.AsProtobufJSON | null;
     sipVtsiConfig: SipVtsiConfig.AsProtobufJSON | null;
+    maxCallDurationSeconds: number;
   }
 }
 
@@ -5922,6 +6027,12 @@ export class ResponseTimingConfig implements GrpcMessage {
         case 9:
           _instance.t2sMaxEdgeSilenceMs = _reader.readInt32();
           break;
+        case 10:
+          _instance.nluCallStreamTurnTimeoutSeconds = _reader.readFloat();
+          break;
+        case 11:
+          _instance.nluCallStreamTurnQuietSeconds = _reader.readFloat();
+          break;
         default:
           _reader.skipField();
       }
@@ -5994,6 +6105,18 @@ export class ResponseTimingConfig implements GrpcMessage {
     ) {
       _writer.writeInt32(9, _instance.t2sMaxEdgeSilenceMs);
     }
+    if (
+      _instance.nluCallStreamTurnTimeoutSeconds !== undefined &&
+      _instance.nluCallStreamTurnTimeoutSeconds !== null
+    ) {
+      _writer.writeFloat(10, _instance.nluCallStreamTurnTimeoutSeconds);
+    }
+    if (
+      _instance.nluCallStreamTurnQuietSeconds !== undefined &&
+      _instance.nluCallStreamTurnQuietSeconds !== null
+    ) {
+      _writer.writeFloat(11, _instance.nluCallStreamTurnQuietSeconds);
+    }
   }
 
   private _turnTimeoutSeconds: number;
@@ -6005,6 +6128,8 @@ export class ResponseTimingConfig implements GrpcMessage {
   private _nluCallStreamEnabled: boolean;
   private _turnTimeoutIntent: string;
   private _t2sMaxEdgeSilenceMs: number;
+  private _nluCallStreamTurnTimeoutSeconds: number;
+  private _nluCallStreamTurnQuietSeconds: number;
 
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -6023,6 +6148,9 @@ export class ResponseTimingConfig implements GrpcMessage {
     this.nluCallStreamEnabled = _value.nluCallStreamEnabled;
     this.turnTimeoutIntent = _value.turnTimeoutIntent;
     this.t2sMaxEdgeSilenceMs = _value.t2sMaxEdgeSilenceMs;
+    this.nluCallStreamTurnTimeoutSeconds =
+      _value.nluCallStreamTurnTimeoutSeconds;
+    this.nluCallStreamTurnQuietSeconds = _value.nluCallStreamTurnQuietSeconds;
     ResponseTimingConfig.refineValues(this);
   }
   get turnTimeoutSeconds(): number {
@@ -6079,6 +6207,18 @@ export class ResponseTimingConfig implements GrpcMessage {
   set t2sMaxEdgeSilenceMs(value: number) {
     this._t2sMaxEdgeSilenceMs = value;
   }
+  get nluCallStreamTurnTimeoutSeconds(): number {
+    return this._nluCallStreamTurnTimeoutSeconds;
+  }
+  set nluCallStreamTurnTimeoutSeconds(value: number) {
+    this._nluCallStreamTurnTimeoutSeconds = value;
+  }
+  get nluCallStreamTurnQuietSeconds(): number {
+    return this._nluCallStreamTurnQuietSeconds;
+  }
+  set nluCallStreamTurnQuietSeconds(value: number) {
+    this._nluCallStreamTurnQuietSeconds = value;
+  }
 
   /**
    * Serialize message to binary data
@@ -6105,7 +6245,9 @@ export class ResponseTimingConfig implements GrpcMessage {
       streamingEnabled: this.streamingEnabled,
       nluCallStreamEnabled: this.nluCallStreamEnabled,
       turnTimeoutIntent: this.turnTimeoutIntent,
-      t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs
+      t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs,
+      nluCallStreamTurnTimeoutSeconds: this.nluCallStreamTurnTimeoutSeconds,
+      nluCallStreamTurnQuietSeconds: this.nluCallStreamTurnQuietSeconds
     };
   }
 
@@ -6136,7 +6278,9 @@ export class ResponseTimingConfig implements GrpcMessage {
       streamingEnabled: this.streamingEnabled,
       nluCallStreamEnabled: this.nluCallStreamEnabled,
       turnTimeoutIntent: this.turnTimeoutIntent,
-      t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs
+      t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs,
+      nluCallStreamTurnTimeoutSeconds: this.nluCallStreamTurnTimeoutSeconds,
+      nluCallStreamTurnQuietSeconds: this.nluCallStreamTurnQuietSeconds
     };
   }
 }
@@ -6154,6 +6298,8 @@ export module ResponseTimingConfig {
     nluCallStreamEnabled: boolean;
     turnTimeoutIntent: string;
     t2sMaxEdgeSilenceMs: number;
+    nluCallStreamTurnTimeoutSeconds: number;
+    nluCallStreamTurnQuietSeconds: number;
   }
 
   /**
@@ -6169,6 +6315,8 @@ export module ResponseTimingConfig {
     nluCallStreamEnabled: boolean;
     turnTimeoutIntent: string;
     t2sMaxEdgeSilenceMs: number;
+    nluCallStreamTurnTimeoutSeconds: number;
+    nluCallStreamTurnQuietSeconds: number;
   }
 }
 

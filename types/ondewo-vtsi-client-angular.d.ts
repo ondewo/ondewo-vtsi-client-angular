@@ -86570,6 +86570,8 @@ export declare class NluVtsiConfig implements GrpcMessage {
   private _aiTeamsFillersAudible;
   private _failureApologyMessage;
   private _sessionIdFromSipContext;
+  private _aiTeamsPushMaxAgeSeconds;
+  private _aiTeamsPushMaxSpoken;
   private _authentication;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
@@ -86602,6 +86604,10 @@ export declare class NluVtsiConfig implements GrpcMessage {
   set failureApologyMessage(value: string);
   get sessionIdFromSipContext(): boolean;
   set sessionIdFromSipContext(value: boolean);
+  get aiTeamsPushMaxAgeSeconds(): number;
+  set aiTeamsPushMaxAgeSeconds(value: number);
+  get aiTeamsPushMaxSpoken(): number;
+  set aiTeamsPushMaxSpoken(value: number);
   get authentication(): NluVtsiConfig.AuthenticationCase;
   /**
    * Serialize message to binary data
@@ -86641,6 +86647,8 @@ export declare namespace NluVtsiConfig {
     aiTeamsFillersAudible: boolean;
     failureApologyMessage: string;
     sessionIdFromSipContext: boolean;
+    aiTeamsPushMaxAgeSeconds: number;
+    aiTeamsPushMaxSpoken: number;
   }
   /**
    * Protobuf JSON representation for NluVtsiConfig
@@ -86659,6 +86667,8 @@ export declare namespace NluVtsiConfig {
     aiTeamsFillersAudible: boolean;
     failureApologyMessage: string;
     sessionIdFromSipContext: boolean;
+    aiTeamsPushMaxAgeSeconds: number;
+    aiTeamsPushMaxSpoken: number;
   }
   enum AuthenticationCase {
     none = 0,
@@ -86775,6 +86785,8 @@ export declare class T2sVtsiConfig implements GrpcMessage {
   private _t2sBaseConfig?;
   private _t2sRequestConfig?;
   private _preemptiveSynthesisConfig?;
+  private _synthesizeTimeoutSeconds;
+  private _cacheRetention;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of T2sVtsiConfig to deeply clone from
@@ -86786,6 +86798,10 @@ export declare class T2sVtsiConfig implements GrpcMessage {
   set t2sRequestConfig(value: RequestConfig | undefined);
   get preemptiveSynthesisConfig(): T2sPreemptiveSynthesisConfig | undefined;
   set preemptiveSynthesisConfig(value: T2sPreemptiveSynthesisConfig | undefined);
+  get synthesizeTimeoutSeconds(): number;
+  set synthesizeTimeoutSeconds(value: number);
+  get cacheRetention(): string;
+  set cacheRetention(value: string);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -86814,6 +86830,8 @@ export declare namespace T2sVtsiConfig {
     t2sBaseConfig?: BaseServiceConfig.AsObject;
     t2sRequestConfig?: RequestConfig.AsObject;
     preemptiveSynthesisConfig?: T2sPreemptiveSynthesisConfig.AsObject;
+    synthesizeTimeoutSeconds: number;
+    cacheRetention: string;
   }
   /**
    * Protobuf JSON representation for T2sVtsiConfig
@@ -86822,6 +86840,8 @@ export declare namespace T2sVtsiConfig {
     t2sBaseConfig: BaseServiceConfig.AsProtobufJSON | null;
     t2sRequestConfig: RequestConfig.AsProtobufJSON | null;
     preemptiveSynthesisConfig: T2sPreemptiveSynthesisConfig.AsProtobufJSON | null;
+    synthesizeTimeoutSeconds: number;
+    cacheRetention: string;
   }
 }
 /**
@@ -87010,6 +87030,7 @@ export declare class CommonServicesConfig implements GrpcMessage {
   private _csiVtsiConfig?;
   private _voiceInteractionConfig?;
   private _sipVtsiConfig?;
+  private _maxCallDurationSeconds;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of CommonServicesConfig to deeply clone from
@@ -87027,6 +87048,8 @@ export declare class CommonServicesConfig implements GrpcMessage {
   set voiceInteractionConfig(value: VoiceInteractionConfig | undefined);
   get sipVtsiConfig(): SipVtsiConfig | undefined;
   set sipVtsiConfig(value: SipVtsiConfig | undefined);
+  get maxCallDurationSeconds(): number;
+  set maxCallDurationSeconds(value: number);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -87058,6 +87081,7 @@ export declare namespace CommonServicesConfig {
     csiVtsiConfig?: CsiVtsiConfig.AsObject;
     voiceInteractionConfig?: VoiceInteractionConfig.AsObject;
     sipVtsiConfig?: SipVtsiConfig.AsObject;
+    maxCallDurationSeconds: number;
   }
   /**
    * Protobuf JSON representation for CommonServicesConfig
@@ -87069,6 +87093,7 @@ export declare namespace CommonServicesConfig {
     csiVtsiConfig: CsiVtsiConfig.AsProtobufJSON | null;
     voiceInteractionConfig: VoiceInteractionConfig.AsProtobufJSON | null;
     sipVtsiConfig: SipVtsiConfig.AsProtobufJSON | null;
+    maxCallDurationSeconds: number;
   }
 }
 /**
@@ -88445,6 +88470,8 @@ export declare class ResponseTimingConfig implements GrpcMessage {
   private _nluCallStreamEnabled;
   private _turnTimeoutIntent;
   private _t2sMaxEdgeSilenceMs;
+  private _nluCallStreamTurnTimeoutSeconds;
+  private _nluCallStreamTurnQuietSeconds;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of ResponseTimingConfig to deeply clone from
@@ -88468,6 +88495,10 @@ export declare class ResponseTimingConfig implements GrpcMessage {
   set turnTimeoutIntent(value: string);
   get t2sMaxEdgeSilenceMs(): number;
   set t2sMaxEdgeSilenceMs(value: number);
+  get nluCallStreamTurnTimeoutSeconds(): number;
+  set nluCallStreamTurnTimeoutSeconds(value: number);
+  get nluCallStreamTurnQuietSeconds(): number;
+  set nluCallStreamTurnQuietSeconds(value: number);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -88502,6 +88533,8 @@ export declare namespace ResponseTimingConfig {
     nluCallStreamEnabled: boolean;
     turnTimeoutIntent: string;
     t2sMaxEdgeSilenceMs: number;
+    nluCallStreamTurnTimeoutSeconds: number;
+    nluCallStreamTurnQuietSeconds: number;
   }
   /**
    * Protobuf JSON representation for ResponseTimingConfig
@@ -88516,6 +88549,8 @@ export declare namespace ResponseTimingConfig {
     nluCallStreamEnabled: boolean;
     turnTimeoutIntent: string;
     t2sMaxEdgeSilenceMs: number;
+    nluCallStreamTurnTimeoutSeconds: number;
+    nluCallStreamTurnQuietSeconds: number;
   }
 }
 /**
@@ -102563,6 +102598,7 @@ export declare class Call implements GrpcMessage {
   private _ivrMenuDisplayName;
   private _ivrPath;
   private _ivrMenuName;
+  private _dialedNumber;
   /**
    * Message constructor. Initializes the properties and applies default Protobuf values if necessary
    * @param _value initial values object or instance of Call to deeply clone from
@@ -102630,6 +102666,8 @@ export declare class Call implements GrpcMessage {
   set ivrPath(value: string);
   get ivrMenuName(): string;
   set ivrMenuName(value: string);
+  get dialedNumber(): string;
+  set dialedNumber(value: string);
   /**
    * Serialize message to binary data
    * @param instance message instance
@@ -102686,6 +102724,7 @@ export declare namespace Call {
     ivrMenuDisplayName: string;
     ivrPath: string;
     ivrMenuName: string;
+    dialedNumber: string;
   }
   /**
    * Protobuf JSON representation for Call
@@ -102722,6 +102761,7 @@ export declare namespace Call {
     ivrMenuDisplayName: string;
     ivrPath: string;
     ivrMenuName: string;
+    dialedNumber: string;
   }
   /**
    * Message implementation for ondewo.vtsi.Call.LabelsEntry

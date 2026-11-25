@@ -105457,6 +105457,12 @@ var NluVtsiConfig = class NluVtsiConfig {
 				case 13:
 					_instance.sessionIdFromSipContext = _reader.readBool();
 					break;
+				case 14:
+					_instance.aiTeamsPushMaxAgeSeconds = _reader.readFloat();
+					break;
+				case 15:
+					_instance.aiTeamsPushMaxSpoken = _reader.readInt32();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -105476,6 +105482,8 @@ var NluVtsiConfig = class NluVtsiConfig {
 		if (_instance.aiTeamsFillersAudible !== void 0 && _instance.aiTeamsFillersAudible !== null) _writer.writeBool(11, _instance.aiTeamsFillersAudible);
 		if (_instance.failureApologyMessage !== void 0 && _instance.failureApologyMessage !== null) _writer.writeString(12, _instance.failureApologyMessage);
 		if (_instance.sessionIdFromSipContext !== void 0 && _instance.sessionIdFromSipContext !== null) _writer.writeBool(13, _instance.sessionIdFromSipContext);
+		if (_instance.aiTeamsPushMaxAgeSeconds !== void 0 && _instance.aiTeamsPushMaxAgeSeconds !== null) _writer.writeFloat(14, _instance.aiTeamsPushMaxAgeSeconds);
+		if (_instance.aiTeamsPushMaxSpoken !== void 0 && _instance.aiTeamsPushMaxSpoken !== null) _writer.writeInt32(15, _instance.aiTeamsPushMaxSpoken);
 	}
 	constructor(_value) {
 		this._authentication = NluVtsiConfig.AuthenticationCase.none;
@@ -105493,6 +105501,8 @@ var NluVtsiConfig = class NluVtsiConfig {
 		this.aiTeamsFillersAudible = _value.aiTeamsFillersAudible;
 		this.failureApologyMessage = _value.failureApologyMessage;
 		this.sessionIdFromSipContext = _value.sessionIdFromSipContext;
+		this.aiTeamsPushMaxAgeSeconds = _value.aiTeamsPushMaxAgeSeconds;
+		this.aiTeamsPushMaxSpoken = _value.aiTeamsPushMaxSpoken;
 		NluVtsiConfig.refineValues(this);
 	}
 	get nluBaseConfig() {
@@ -105581,6 +105591,18 @@ var NluVtsiConfig = class NluVtsiConfig {
 	set sessionIdFromSipContext(value) {
 		this._sessionIdFromSipContext = value;
 	}
+	get aiTeamsPushMaxAgeSeconds() {
+		return this._aiTeamsPushMaxAgeSeconds;
+	}
+	set aiTeamsPushMaxAgeSeconds(value) {
+		this._aiTeamsPushMaxAgeSeconds = value;
+	}
+	get aiTeamsPushMaxSpoken() {
+		return this._aiTeamsPushMaxSpoken;
+	}
+	set aiTeamsPushMaxSpoken(value) {
+		this._aiTeamsPushMaxSpoken = value;
+	}
 	get authentication() {
 		return this._authentication;
 	}
@@ -105603,7 +105625,9 @@ var NluVtsiConfig = class NluVtsiConfig {
 			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toObject() : void 0,
 			aiTeamsFillersAudible: this.aiTeamsFillersAudible,
 			failureApologyMessage: this.failureApologyMessage,
-			sessionIdFromSipContext: this.sessionIdFromSipContext
+			sessionIdFromSipContext: this.sessionIdFromSipContext,
+			aiTeamsPushMaxAgeSeconds: this.aiTeamsPushMaxAgeSeconds,
+			aiTeamsPushMaxSpoken: this.aiTeamsPushMaxSpoken
 		};
 	}
 	toJSON() {
@@ -105623,7 +105647,9 @@ var NluVtsiConfig = class NluVtsiConfig {
 			preemptiveGenerationConfig: this.preemptiveGenerationConfig ? this.preemptiveGenerationConfig.toProtobufJSON(options) : null,
 			aiTeamsFillersAudible: this.aiTeamsFillersAudible,
 			failureApologyMessage: this.failureApologyMessage,
-			sessionIdFromSipContext: this.sessionIdFromSipContext
+			sessionIdFromSipContext: this.sessionIdFromSipContext,
+			aiTeamsPushMaxAgeSeconds: this.aiTeamsPushMaxAgeSeconds,
+			aiTeamsPushMaxSpoken: this.aiTeamsPushMaxSpoken
 		};
 	}
 };
@@ -105745,6 +105771,12 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 					_instance.preemptiveSynthesisConfig = new T2sPreemptiveSynthesisConfig();
 					_reader.readMessage(_instance.preemptiveSynthesisConfig, T2sPreemptiveSynthesisConfig.deserializeBinaryFromReader);
 					break;
+				case 4:
+					_instance.synthesizeTimeoutSeconds = _reader.readFloat();
+					break;
+				case 5:
+					_instance.cacheRetention = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -105754,12 +105786,16 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 		if (_instance.t2sBaseConfig) _writer.writeMessage(1, _instance.t2sBaseConfig, BaseServiceConfig.serializeBinaryToWriter);
 		if (_instance.t2sRequestConfig) _writer.writeMessage(2, _instance.t2sRequestConfig, RequestConfig.serializeBinaryToWriter);
 		if (_instance.preemptiveSynthesisConfig) _writer.writeMessage(3, _instance.preemptiveSynthesisConfig, T2sPreemptiveSynthesisConfig.serializeBinaryToWriter);
+		if (_instance.synthesizeTimeoutSeconds !== void 0 && _instance.synthesizeTimeoutSeconds !== null) _writer.writeFloat(4, _instance.synthesizeTimeoutSeconds);
+		if (_instance.cacheRetention !== void 0 && _instance.cacheRetention !== null) _writer.writeString(5, _instance.cacheRetention);
 	}
 	constructor(_value) {
 		_value = _value || {};
 		this.t2sBaseConfig = _value.t2sBaseConfig ? new BaseServiceConfig(_value.t2sBaseConfig) : void 0;
 		this.t2sRequestConfig = _value.t2sRequestConfig ? new RequestConfig(_value.t2sRequestConfig) : void 0;
 		this.preemptiveSynthesisConfig = _value.preemptiveSynthesisConfig ? new T2sPreemptiveSynthesisConfig(_value.preemptiveSynthesisConfig) : void 0;
+		this.synthesizeTimeoutSeconds = _value.synthesizeTimeoutSeconds;
+		this.cacheRetention = _value.cacheRetention;
 		T2sVtsiConfig.refineValues(this);
 	}
 	get t2sBaseConfig() {
@@ -105780,6 +105816,18 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 	set preemptiveSynthesisConfig(value) {
 		this._preemptiveSynthesisConfig = value;
 	}
+	get synthesizeTimeoutSeconds() {
+		return this._synthesizeTimeoutSeconds;
+	}
+	set synthesizeTimeoutSeconds(value) {
+		this._synthesizeTimeoutSeconds = value;
+	}
+	get cacheRetention() {
+		return this._cacheRetention;
+	}
+	set cacheRetention(value) {
+		this._cacheRetention = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		T2sVtsiConfig.serializeBinaryToWriter(this, writer);
@@ -105789,7 +105837,9 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 		return {
 			t2sBaseConfig: this.t2sBaseConfig ? this.t2sBaseConfig.toObject() : void 0,
 			t2sRequestConfig: this.t2sRequestConfig ? this.t2sRequestConfig.toObject() : void 0,
-			preemptiveSynthesisConfig: this.preemptiveSynthesisConfig ? this.preemptiveSynthesisConfig.toObject() : void 0
+			preemptiveSynthesisConfig: this.preemptiveSynthesisConfig ? this.preemptiveSynthesisConfig.toObject() : void 0,
+			synthesizeTimeoutSeconds: this.synthesizeTimeoutSeconds,
+			cacheRetention: this.cacheRetention
 		};
 	}
 	toJSON() {
@@ -105799,7 +105849,9 @@ var T2sVtsiConfig = class T2sVtsiConfig {
 		return {
 			t2sBaseConfig: this.t2sBaseConfig ? this.t2sBaseConfig.toProtobufJSON(options) : null,
 			t2sRequestConfig: this.t2sRequestConfig ? this.t2sRequestConfig.toProtobufJSON(options) : null,
-			preemptiveSynthesisConfig: this.preemptiveSynthesisConfig ? this.preemptiveSynthesisConfig.toProtobufJSON(options) : null
+			preemptiveSynthesisConfig: this.preemptiveSynthesisConfig ? this.preemptiveSynthesisConfig.toProtobufJSON(options) : null,
+			synthesizeTimeoutSeconds: this.synthesizeTimeoutSeconds,
+			cacheRetention: this.cacheRetention
 		};
 	}
 };
@@ -106002,6 +106054,9 @@ var CommonServicesConfig = class CommonServicesConfig {
 					_instance.sipVtsiConfig = new SipVtsiConfig();
 					_reader.readMessage(_instance.sipVtsiConfig, SipVtsiConfig.deserializeBinaryFromReader);
 					break;
+				case 7:
+					_instance.maxCallDurationSeconds = _reader.readUint32();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -106014,6 +106069,7 @@ var CommonServicesConfig = class CommonServicesConfig {
 		if (_instance.csiVtsiConfig) _writer.writeMessage(4, _instance.csiVtsiConfig, CsiVtsiConfig.serializeBinaryToWriter);
 		if (_instance.voiceInteractionConfig) _writer.writeMessage(5, _instance.voiceInteractionConfig, VoiceInteractionConfig.serializeBinaryToWriter);
 		if (_instance.sipVtsiConfig) _writer.writeMessage(6, _instance.sipVtsiConfig, SipVtsiConfig.serializeBinaryToWriter);
+		if (_instance.maxCallDurationSeconds !== void 0 && _instance.maxCallDurationSeconds !== null) _writer.writeUint32(7, _instance.maxCallDurationSeconds);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -106023,6 +106079,7 @@ var CommonServicesConfig = class CommonServicesConfig {
 		this.csiVtsiConfig = _value.csiVtsiConfig ? new CsiVtsiConfig(_value.csiVtsiConfig) : void 0;
 		this.voiceInteractionConfig = _value.voiceInteractionConfig ? new VoiceInteractionConfig(_value.voiceInteractionConfig) : void 0;
 		this.sipVtsiConfig = _value.sipVtsiConfig ? new SipVtsiConfig(_value.sipVtsiConfig) : void 0;
+		this.maxCallDurationSeconds = _value.maxCallDurationSeconds;
 		CommonServicesConfig.refineValues(this);
 	}
 	get s2tVtsiConfig() {
@@ -106061,6 +106118,12 @@ var CommonServicesConfig = class CommonServicesConfig {
 	set sipVtsiConfig(value) {
 		this._sipVtsiConfig = value;
 	}
+	get maxCallDurationSeconds() {
+		return this._maxCallDurationSeconds;
+	}
+	set maxCallDurationSeconds(value) {
+		this._maxCallDurationSeconds = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		CommonServicesConfig.serializeBinaryToWriter(this, writer);
@@ -106073,7 +106136,8 @@ var CommonServicesConfig = class CommonServicesConfig {
 			t2sVtsiConfig: this.t2sVtsiConfig ? this.t2sVtsiConfig.toObject() : void 0,
 			csiVtsiConfig: this.csiVtsiConfig ? this.csiVtsiConfig.toObject() : void 0,
 			voiceInteractionConfig: this.voiceInteractionConfig ? this.voiceInteractionConfig.toObject() : void 0,
-			sipVtsiConfig: this.sipVtsiConfig ? this.sipVtsiConfig.toObject() : void 0
+			sipVtsiConfig: this.sipVtsiConfig ? this.sipVtsiConfig.toObject() : void 0,
+			maxCallDurationSeconds: this.maxCallDurationSeconds
 		};
 	}
 	toJSON() {
@@ -106086,7 +106150,8 @@ var CommonServicesConfig = class CommonServicesConfig {
 			t2sVtsiConfig: this.t2sVtsiConfig ? this.t2sVtsiConfig.toProtobufJSON(options) : null,
 			csiVtsiConfig: this.csiVtsiConfig ? this.csiVtsiConfig.toProtobufJSON(options) : null,
 			voiceInteractionConfig: this.voiceInteractionConfig ? this.voiceInteractionConfig.toProtobufJSON(options) : null,
-			sipVtsiConfig: this.sipVtsiConfig ? this.sipVtsiConfig.toProtobufJSON(options) : null
+			sipVtsiConfig: this.sipVtsiConfig ? this.sipVtsiConfig.toProtobufJSON(options) : null,
+			maxCallDurationSeconds: this.maxCallDurationSeconds
 		};
 	}
 };
@@ -108156,6 +108221,12 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 				case 9:
 					_instance.t2sMaxEdgeSilenceMs = _reader.readInt32();
 					break;
+				case 10:
+					_instance.nluCallStreamTurnTimeoutSeconds = _reader.readFloat();
+					break;
+				case 11:
+					_instance.nluCallStreamTurnQuietSeconds = _reader.readFloat();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -108171,6 +108242,8 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 		if (_instance.nluCallStreamEnabled !== void 0 && _instance.nluCallStreamEnabled !== null) _writer.writeBool(7, _instance.nluCallStreamEnabled);
 		if (_instance.turnTimeoutIntent !== void 0 && _instance.turnTimeoutIntent !== null) _writer.writeString(8, _instance.turnTimeoutIntent);
 		if (_instance.t2sMaxEdgeSilenceMs !== void 0 && _instance.t2sMaxEdgeSilenceMs !== null) _writer.writeInt32(9, _instance.t2sMaxEdgeSilenceMs);
+		if (_instance.nluCallStreamTurnTimeoutSeconds !== void 0 && _instance.nluCallStreamTurnTimeoutSeconds !== null) _writer.writeFloat(10, _instance.nluCallStreamTurnTimeoutSeconds);
+		if (_instance.nluCallStreamTurnQuietSeconds !== void 0 && _instance.nluCallStreamTurnQuietSeconds !== null) _writer.writeFloat(11, _instance.nluCallStreamTurnQuietSeconds);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -108183,6 +108256,8 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 		this.nluCallStreamEnabled = _value.nluCallStreamEnabled;
 		this.turnTimeoutIntent = _value.turnTimeoutIntent;
 		this.t2sMaxEdgeSilenceMs = _value.t2sMaxEdgeSilenceMs;
+		this.nluCallStreamTurnTimeoutSeconds = _value.nluCallStreamTurnTimeoutSeconds;
+		this.nluCallStreamTurnQuietSeconds = _value.nluCallStreamTurnQuietSeconds;
 		ResponseTimingConfig.refineValues(this);
 	}
 	get turnTimeoutSeconds() {
@@ -108239,6 +108314,18 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 	set t2sMaxEdgeSilenceMs(value) {
 		this._t2sMaxEdgeSilenceMs = value;
 	}
+	get nluCallStreamTurnTimeoutSeconds() {
+		return this._nluCallStreamTurnTimeoutSeconds;
+	}
+	set nluCallStreamTurnTimeoutSeconds(value) {
+		this._nluCallStreamTurnTimeoutSeconds = value;
+	}
+	get nluCallStreamTurnQuietSeconds() {
+		return this._nluCallStreamTurnQuietSeconds;
+	}
+	set nluCallStreamTurnQuietSeconds(value) {
+		this._nluCallStreamTurnQuietSeconds = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		ResponseTimingConfig.serializeBinaryToWriter(this, writer);
@@ -108254,7 +108341,9 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 			streamingEnabled: this.streamingEnabled,
 			nluCallStreamEnabled: this.nluCallStreamEnabled,
 			turnTimeoutIntent: this.turnTimeoutIntent,
-			t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs
+			t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs,
+			nluCallStreamTurnTimeoutSeconds: this.nluCallStreamTurnTimeoutSeconds,
+			nluCallStreamTurnQuietSeconds: this.nluCallStreamTurnQuietSeconds
 		};
 	}
 	toJSON() {
@@ -108270,7 +108359,9 @@ var ResponseTimingConfig = class ResponseTimingConfig {
 			streamingEnabled: this.streamingEnabled,
 			nluCallStreamEnabled: this.nluCallStreamEnabled,
 			turnTimeoutIntent: this.turnTimeoutIntent,
-			t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs
+			t2sMaxEdgeSilenceMs: this.t2sMaxEdgeSilenceMs,
+			nluCallStreamTurnTimeoutSeconds: this.nluCallStreamTurnTimeoutSeconds,
+			nluCallStreamTurnQuietSeconds: this.nluCallStreamTurnQuietSeconds
 		};
 	}
 };
@@ -125698,6 +125789,7 @@ var Call = class Call {
 		_instance.ivrMenuDisplayName = _instance.ivrMenuDisplayName || "";
 		_instance.ivrPath = _instance.ivrPath || "";
 		_instance.ivrMenuName = _instance.ivrMenuName || "";
+		_instance.dialedNumber = _instance.dialedNumber || "";
 	}
 	static deserializeBinaryFromReader(_instance, _reader) {
 		while (_reader.nextField()) {
@@ -125803,6 +125895,9 @@ var Call = class Call {
 				case 29:
 					_instance.ivrMenuName = _reader.readString();
 					break;
+				case 30:
+					_instance.dialedNumber = _reader.readString();
+					break;
 				default: _reader.skipField();
 			}
 		}
@@ -125847,6 +125942,7 @@ var Call = class Call {
 		if (_instance.ivrMenuDisplayName) _writer.writeString(27, _instance.ivrMenuDisplayName);
 		if (_instance.ivrPath) _writer.writeString(28, _instance.ivrPath);
 		if (_instance.ivrMenuName) _writer.writeString(29, _instance.ivrMenuName);
+		if (_instance.dialedNumber) _writer.writeString(30, _instance.dialedNumber);
 	}
 	constructor(_value) {
 		_value = _value || {};
@@ -125881,6 +125977,7 @@ var Call = class Call {
 		}), {}) : {}, this.ivrMenuDisplayName = _value.ivrMenuDisplayName;
 		this.ivrPath = _value.ivrPath;
 		this.ivrMenuName = _value.ivrMenuName;
+		this.dialedNumber = _value.dialedNumber;
 		Call.refineValues(this);
 	}
 	get name() {
@@ -126057,6 +126154,12 @@ var Call = class Call {
 	set ivrMenuName(value) {
 		this._ivrMenuName = value;
 	}
+	get dialedNumber() {
+		return this._dialedNumber;
+	}
+	set dialedNumber(value) {
+		this._dialedNumber = value;
+	}
 	serializeBinary() {
 		const writer = new BinaryWriter();
 		Call.serializeBinaryToWriter(this, writer);
@@ -126095,7 +126198,8 @@ var Call = class Call {
 			}), {}) : {},
 			ivrMenuDisplayName: this.ivrMenuDisplayName,
 			ivrPath: this.ivrPath,
-			ivrMenuName: this.ivrMenuName
+			ivrMenuName: this.ivrMenuName,
+			dialedNumber: this.dialedNumber
 		};
 	}
 	toJSON() {
@@ -126134,7 +126238,8 @@ var Call = class Call {
 			}), {}) : {},
 			ivrMenuDisplayName: this.ivrMenuDisplayName,
 			ivrPath: this.ivrPath,
-			ivrMenuName: this.ivrMenuName
+			ivrMenuName: this.ivrMenuName,
+			dialedNumber: this.dialedNumber
 		};
 	}
 };
